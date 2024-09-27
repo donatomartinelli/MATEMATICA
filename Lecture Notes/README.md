@@ -4,17 +4,17 @@ Welcome to the **Lecture Notes** section of the MATEMATICA repository! This fold
 
 ## Folder Structure
 
-### Year 1
+### BSC - Year 1
 - **Calculus I**
 - **Geometry I**
 - **Algebra**
-### Year 2
+### BSC - Year 2
 - **Calculus II**
 - **Physics I**
 - **Rational Mechanics**
 - **Numerical Methods**
 
-### Year 3
+### BSC - Year 3
 - **Advanced Calculus**
 - **Advanced Geometry**
 - **Advanced Algebra**
