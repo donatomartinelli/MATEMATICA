@@ -6,45 +6,20 @@ Welcome to the **Lecture Notes** section of the MATEMATICA repository! This fold
 
 ### Year 1
 - **Calculus I**
-  - Lecture Notes
-  - Supplementary Material
-  - Exam Preparation
-- **Linear Algebra**
-  - Lecture Notes
-  - Supplementary Material
-  - Exam Preparation
-- **Discrete Mathematics**
-  - Lecture Notes
-  - Supplementary Material
-  - Exam Preparation
-
+- **Geometry I**
+- **Algebra**
 ### Year 2
 - **Calculus II**
-  - Lecture Notes
-  - Supplementary Material
-  - Exam Preparation
-- **Abstract Algebra**
-  - Lecture Notes
-  - Supplementary Material
-  - Exam Preparation
-- **Real Analysis**
-  - Lecture Notes
-  - Supplementary Material
-  - Exam Preparation
+- **Physics I**
+- **Rational Mechanics**
+- **Numerical Methods**
 
 ### Year 3
-- **Complex Analysis**
-  - Lecture Notes
-  - Supplementary Material
-  - Exam Preparation
-- **Differential Equations**
-  - Lecture Notes
-  - Supplementary Material
-  - Exam Preparation
-- **Probability and Statistics**
-  - Lecture Notes
-  - Supplementary Material
-  - Exam Preparation
+- **Advanced Calculus**
+- **Advanced Geometry**
+- **Advanced Algebra**
+- **Physics II**
+- **Probability Theory**
 
 ## How to Use These Resources
 
