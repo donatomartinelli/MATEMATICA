@@ -5,12 +5,26 @@ Welcome to the **MATEMATICA** repository! This repository serves as a comprehens
 ## Repository Contents
 
 ### Mathematics Resources
-- **Lecture Notes**: Detailed notes from mathematics lectures covering various topics.
-- **Problem Sets**: Challenging problem sets designed to deepen your understanding of mathematical concepts.
-- **Research Articles**: Scholarly articles and papers on recent developments and research in mathematics.
-- **Solved Problems**: Step-by-step solutions to a variety of mathematical problems and exercises.
+- **Lecture Notes**: Detailed notes from courses I take during my math BSc, along with additional material used to prepare for exams.
+- **Cheatsheets**: Short and concise documents containing the most essential information and properties of different math concepts, designed for quick reference.
+- **Problem Sets and Exercises**: A collection of exercises and problems aimed at preparing for exams, improving proficiency in specific topics, and deepening your understanding of various mathematical concepts.
+- **Research Articles**: Documents made by me on topics I find interesting, providing insights and developments in various areas of mathematics.
 
 ### Programming Resources
 - **Python**: Notes, code snippets, and exercises for learning and mastering Python programming.
 - **C++**: Comprehensive materials on C++ programming, including notes, examples, and exercises.
 - **MATLAB**: Resources to help you understand and use MATLAB for mathematical computing.
+
+## Contribution Guidelines
+
+1. **Fork the Repository**: If you want to contribute, start by forking the repository.
+2. **Create a Branch**: Create a new branch for your changes.
+3. **Submit a Pull Request**: Once your changes are ready, submit a pull request for review.
+
+## License
+
+This repository is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+
+## Contact
+
+For any questions or suggestions, feel free to open an issue or contact me directly.
