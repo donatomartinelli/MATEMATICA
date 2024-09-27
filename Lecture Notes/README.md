@@ -24,4 +24,3 @@ Welcome to the **Lecture Notes** section of the MATEMATICA repository! This fold
 ## How to Improve This Readme
 - Ci sarà un documento con note prese per giorno, un'altro che compatta le note e le riordina rimanendo fedele agli appunti del prof, un altro in cui magari aggiungi delle modifiche tu o aggiungi materiale da altre fonti.
 
-Happy Studying!
