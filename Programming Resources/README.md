@@ -2,7 +2,7 @@
 
 This repository contains subdirectories for different programming languages, each containing relevant projects and programs. The current structure is divided into Python, C++, and MATLAB.
 
-## Structure
+## Folder structure
 
 - **Python**
 - **C++**
