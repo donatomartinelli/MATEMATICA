@@ -1,4 +1,4 @@
-# Cheatsheet Repository
+# Cheatsheet
 
 This repository contains various mathematical cheat sheets for quick reference and study. Below is a list of the topics covered:
 
