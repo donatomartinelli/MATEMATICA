@@ -4,13 +4,13 @@ Welcome to the **MATEMATICA** repository! This repository serves as a comprehens
 
 ## Repository Contents
 
-### Mathematics Resources
+### Mathematics
 - **Lecture Notes**: Detailed notes from courses I take during my math BSc, along with additional material used to prepare for exams.
 - **Cheatsheets**: Short and concise documents containing the most essential information and properties of different math concepts, designed for quick reference.
 - **Problem Sets and Exercises**: A collection of exercises and problems aimed at preparing for exams, improving proficiency in specific topics, and deepening your understanding of various mathematical concepts.
 - **Research Articles**: Documents made by me on topics I find interesting, providing insights and developments in various areas of mathematics.
 
-### Programming Resources
+### Programming
 - **Python**: Notes, code snippets, and exercises for learning and mastering Python programming.
 - **C++**: Comprehensive materials on C++ programming, including notes, examples, and exercises.
 - **MATLAB**: Resources to help you understand and use MATLAB for mathematical computing.
