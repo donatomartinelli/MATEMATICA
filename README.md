@@ -17,7 +17,7 @@ Welcome to the **MATEMATICA** repository! This repository serves as a comprehens
 
 ### Be Aware !
 
-This is a long-term project, so the structure is not definitive. The content may not always be in the same place as you found it the previous day, and there will be several moving parts. I am by no means in a position to teach someone these topics; these materials are primarily useful for me, and I have decided to share them for free. I will be using AI not to create documents from scratch but to translate them from Italian to English to save excessive time. Additionally, I will use AI to generate most of the code, but the ideas and structure will be my own. For intellectual honesty, I will always indicate when the code has been generated with AI.
+This is a long-term project, so the structure is not definitive. The content may not always be in the same place as you found it the previous day, and there will be several moving parts. I am by no means in a position to teach someone these topics; these materials are primarily useful for me, and I have decided to share them for free. I will be using AI to translate documents from Italian to English to save excessive time, and eventually to generate code. For intellectual honesty, I will always indicate when the code has been generated with AI.
 
 
 ## Contribution Guidelines
