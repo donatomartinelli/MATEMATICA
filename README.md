@@ -1,6 +1,6 @@
 # MATEMATICA
 
-Welcome to the **MATEMATICA** repository! This repository serves as a comprehensive resource for students, educators, and enthusiasts of mathematics. Here, you will find a wide range of materials including lecture notes, problem sets, research articles, and solved exercises across various fields of mathematics. Additionally, this repository includes programming notes, code snippets, and exercises for Python, C++, and MATLAB.
+Welcome to the **MATEMATICA** repository! This repository serves as a comprehensive resource for students, educators, and enthusiasts of mathematics. Here, you will find a wide range of materials including lecture notes, problem sets, exercises, and research articles across various fields of mathematics. Additionally, this repository includes programming notes, code snippets, and exercises for Python, C++, and MATLAB.
 
 ## Repository Contents
 
