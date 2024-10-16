@@ -5,5 +5,5 @@ This repository contains various mathematical cheat sheets for quick reference a
 ## Contents
 
 1. **Derivatives and Integrals**
-2. **Famous Limits**
+2. **Limits**
 3. **Trigonometry**
