@@ -1,7 +1,9 @@
-//  Scrivere un programma in linguaggio C++ che:
-//  -legga dalla tastiera la lunghezza delle basi e dell’altezza di un trapezio;
-//  -calcoli l’area del trapezio;
-//  -stampi sullo schermo l’area calcolata.
+/* 
+Scrivere un programma in linguaggio C++ che:
+- legga dalla tastiera la lunghezza delle basi e dell’altezza di un trapezio;
+- calcoli l’area del trapezio;
+- stampi sullo schermo l’area calcolata.
+*/  
 
 #include <iostream>
 
