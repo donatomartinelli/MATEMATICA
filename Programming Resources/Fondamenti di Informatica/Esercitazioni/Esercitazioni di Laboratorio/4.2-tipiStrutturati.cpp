@@ -13,13 +13,11 @@ using namespace std;
 const int N = 5;
 
 int main() {
-
     int array[N];
     int minimo;
     int pos;
 
     pos = 0;
-
 
     for (int i = 0; i < N; i++) {
         cout << "Inserire il valore dell'elemento numero " 
