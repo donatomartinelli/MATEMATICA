@@ -1,5 +1,5 @@
 /*
-    Scrivere una function in linguaggio Matlab e un programma in linguaggio C++ che preveda in input un vettore ed effettui le seguenti operazioni:
+    Scrivere una function in linguaggio C++ che preveda in input un vettore ed effettui le seguenti operazioni:
     - costruisca la matrice quadrata “a freccia” che ha la prima riga, la prima colonna e la diagonale coincidenti con il vettore di input;
     - calcoli il minimo degli elementi positivi della matrice;
     - restituisca il minimo calcolato e la matrice.
