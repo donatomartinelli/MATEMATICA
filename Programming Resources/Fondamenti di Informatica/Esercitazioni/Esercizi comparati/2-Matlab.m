@@ -28,4 +28,4 @@ function [matrice, avg, elem] = matTrig(vec1, vec2)
     avg = avgV;
     elem = elemMaggAvgV;
     
-end 
+end
