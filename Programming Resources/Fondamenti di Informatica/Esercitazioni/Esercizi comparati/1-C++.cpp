@@ -57,9 +57,12 @@ void matriceFreccia(int vettore[N], int matrice[N][N]) {
     ricercaMinimo(vettore);
     
     if (ricercaMinimo(vettore) != -1) {
-        cout << "Minimo tra gli elementi positivi: " << vettore[ricercaMinimo(vettore)] << endl;
+        cout << "Minimo tra gli elementi positivi: " 
+             << vettore[ricercaMinimo(vettore)] 
+             << endl;
     } else {
-        cout << "Nessun elemento positivo trovato nel vettore." << endl;
+        cout << "Nessun elemento positivo trovato nel vettore." 
+             << endl;
     }
     
     return ;
