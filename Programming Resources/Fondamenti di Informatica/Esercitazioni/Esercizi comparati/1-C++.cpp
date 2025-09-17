@@ -21,7 +21,6 @@ void letturaMatrice(int matrice[N][N]) {
     }
     
     return;
-  
     }
 
 int ricercaMinimo(int vettore[]) {
@@ -66,10 +65,11 @@ void matriceFreccia(int vettore[N], int matrice[N][N]) {
     return ;
 }
 
-int main()
-{
-    int vettore[N] = {-11, 2, -1, 1, -30};
+int main() {
+    int vettore[N];
     int matrice[N][N];
+
+    vettore[N] = {-11, 2, -1, 1, -30};
     
     matriceFreccia(vettore, matrice);
     
