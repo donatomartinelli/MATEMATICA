@@ -4,19 +4,6 @@
 % - restituisca il minimo calcolato e la matrice.
 
 function [minimo, B] = arrMatMin(A)
-    % arrMatMin - Costruisce una matrice a freccia da un vettore e
-    % restituisce il minimo degli elementi positivi della matrice
-    % 
-    % Sintassi:
-    %   [minimo, B] = arrMatMin(A)
-    %
-    % Input:
-    %   A - Vettore riga o colonna
-    %
-    % Output:
-    %   minimo - minimo degli elementi positivi della matrice
-    %   B      - matrice quadrata "a freccia"
-
     n = length(A);        % dimensione del vettore
     B = zeros(n);         % inizializza matrice n×n
 
