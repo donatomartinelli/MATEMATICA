@@ -1,3 +1,8 @@
+% Scrivere una function in linguaggio Matlab e un programma in linguaggio C++ che preveda in input due vettori v e w di lunghezza N e N-1 rispettivamente ed effettui le seguenti operazioni:
+% - costruisca la matrice “tridiagonale” che ha come diagonale principale il vettore v, come sopra diagonale il vettore w e come sottodiagonale il vettore -w;
+% - conti quanti elementi della matrice sono superiori alla media degli elementi del vettore v;
+% - restituisca il valore della media e il numero di elementi di valore superiore.
+
 v = [1 2 3 4 6 8 29];
 w = [7 7 7 0 0 -1];
 
