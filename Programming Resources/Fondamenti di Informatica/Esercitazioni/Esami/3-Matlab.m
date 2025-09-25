@@ -7,7 +7,6 @@
 % - conti quanti elementi della matrice sono inferiori a n2 e calcoli il loro minimo
 % - restituisca il numero di tali elementi, il valore minimo e la sua posizione all’interno della matrice
 
-% ==================== ESEMPIO DI INPUT ====================
 v = [-10 2 -30 4 0 6];   % vettore principale (lunghezza N)
 u = [-1 0 3 -2 7];       % vettore per la prima sovradiagonale (lunghezza N-1)
 
@@ -23,7 +22,6 @@ disp("Il minimo tra questi è " +  valMin);
 disp("Posizione di " + valMin + " : " + posMin(1) + " , " + posMin(2));
 
 
-% ==================== FUNZIONE PRINCIPALE ====================
 function [numEl, valMin, posMin] = mainn(vec1, vec2, n1, n2)
     
     n = length(vec1);     % dimensione della matrice quadrata
