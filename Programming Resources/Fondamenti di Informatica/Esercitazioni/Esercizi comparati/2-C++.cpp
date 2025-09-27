@@ -6,7 +6,6 @@
 */
 
 #include <iostream>
-
 using namespace std;
 
 const int N = 5;
@@ -19,9 +18,7 @@ void letturaV (int v[N]) {
              << endl;
         cin  >> v[i];
     }
-
     cout << endl;
-
     return ;
 }
 
@@ -33,9 +30,7 @@ void letturaW (int w[N - 1]) {
              << endl;
         cin  >> w[i];
     }
-
     cout << endl;
-
     return ;
 }
 
@@ -44,9 +39,7 @@ void stampaV (int v[N]) {
         cout << v[i]
              << " " ;
     }
-
     cout << endl;
-
     return ;
 }
 
@@ -55,9 +48,7 @@ void stampaW (int w[N - 1]) {
         cout << w[i]
              << " " ;
     }
-
     cout << endl;
-
     return ;
 }
 
@@ -71,7 +62,6 @@ void letturaMat (int mat[N][N], int v[N], int w[N-1]) {
             }
         }
     }
-    
     for (int i = 0; i < N - 1; i++) {
         for (int j = 0; j < N - 1; j++) {
             if (i == j) {
@@ -80,7 +70,6 @@ void letturaMat (int mat[N][N], int v[N], int w[N-1]) {
             }
         }
     }
-
     cout << endl;
 
     return ;
@@ -91,10 +80,8 @@ void stampaMat (int mat[N][N]) {
         for (int j = 0; j < N; j++) {
             cout << mat[i][j] << " ";
         }
-
         cout << endl;
     }
-
     cout << endl;
 
     return ;
