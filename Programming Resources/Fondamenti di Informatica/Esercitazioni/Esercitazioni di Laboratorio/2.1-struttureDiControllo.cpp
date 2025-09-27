@@ -7,7 +7,6 @@
     Introduci inoltre meccanismi di convalida dei dati di ingresso.
 */
 
-
 #include <iostream>
 #include <cmath>
 
