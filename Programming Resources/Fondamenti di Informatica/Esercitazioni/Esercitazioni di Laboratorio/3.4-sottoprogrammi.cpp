@@ -1,11 +1,11 @@
 /*
-Utilizzando i sottoprogrammi, scrivere un programma in linguaggio C++ che consente di elaborare i dati
-relativi ad un insieme di segmenti, secondo le seguenti specifiche:
-- il programma chiede il numero di segmenti da elaborare;
-- per ciascun segmento:
-    - l’applicazione acquisisce dalla tastiera le coordinate (x1,y1) e (x2,y2) degli estremi del segmento;
-    - calcola la lunghezza del segmento; (La misura del segmento che congiunge i due vertici è uguale alla distanza euclidea);
-    - stampa sullo schermo le coordinate dei vertici e la lunghezza del segmento.
+    Utilizzando i sottoprogrammi, scrivere un programma in linguaggio C++ che consente di elaborare i dati
+    relativi ad un insieme di segmenti, secondo le seguenti specifiche:
+    - il programma chiede il numero di segmenti da elaborare;
+    - per ciascun segmento:
+        - l’applicazione acquisisce dalla tastiera le coordinate (x1,y1) e (x2,y2) degli estremi del segmento;
+        - calcola la lunghezza del segmento; (La misura del segmento che congiunge i due vertici è uguale alla distanza euclidea);
+        - stampa sullo schermo le coordinate dei vertici e la lunghezza del segmento.
 */
 
 #include <iostream>
