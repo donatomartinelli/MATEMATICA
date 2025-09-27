@@ -1,9 +1,9 @@
 /*
-Si scriva un programma in linguaggio C++ che gestisce una matrice di numeri interi di dimensione NxN (es: NxN=3x3). 
-Il programma deve effettuare le seguenti operazioni:
-- legge dalla tastiera i valori degli elementi della matrice;
-- calcola la somma totale degli elementi della matrice;
-- stampa la somma calcolata sullo schermo.
+    Si scriva un programma in linguaggio C++ che gestisce una matrice di numeri interi di dimensione NxN (es: NxN=3x3). 
+    Il programma deve effettuare le seguenti operazioni:
+    - legge dalla tastiera i valori degli elementi della matrice;
+    - calcola la somma totale degli elementi della matrice;
+    - stampa la somma calcolata sullo schermo.
 */
 
 #include <iostream>
