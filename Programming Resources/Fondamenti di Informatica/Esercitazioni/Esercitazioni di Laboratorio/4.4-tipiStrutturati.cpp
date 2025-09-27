@@ -9,8 +9,9 @@
 #include <iostream>
 using namespace std;
 
-int main () {
-    const int N = 3;
+const int N = 3;
+
+int main () {    
     double sommaElementi;
     double matrice[N][N];
     
