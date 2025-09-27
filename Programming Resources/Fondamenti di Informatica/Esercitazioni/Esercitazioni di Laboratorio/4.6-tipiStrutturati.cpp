@@ -1,7 +1,6 @@
 // 4.5 con sottoprogrammi, da ultimare.
 
 #include <iostream>
-
 using namespace std;
 
 const int N = 3;
