@@ -7,7 +7,6 @@
 */
 
 #include <iostream>
-
 using namespace std;
 
 const int N = 4;
@@ -19,7 +18,6 @@ void letturaVettore (int v[N]) {
     for (int i = 0; i < N; i++) {
         cin  >> v[i];
     }
-
     cout << endl;
 
     return ;
@@ -35,7 +33,6 @@ void letturaMatA (int mat[N][N], int v[N]) {
             }
         }
     }
-    
     for (int i = 0; i < N - 1; i++) {
         for (int j = 0; j < N - 1; j++) {
             if (i == j) {
@@ -43,7 +40,6 @@ void letturaMatA (int mat[N][N], int v[N]) {
             }
         }
     }
-
     cout << endl;
 
     return ;
@@ -59,7 +55,6 @@ void letturaMatB (int mat[N][N], int v[N]) {
             }
         }
     }
-    
     for (int i = 0; i < N - 1; i++) {
         for (int j = 0; j < N - 1; j++) {
             if (i == j) {
@@ -67,7 +62,6 @@ void letturaMatB (int mat[N][N], int v[N]) {
             }
         }
     }
-
     cout << endl;
 
     return ;
@@ -88,10 +82,8 @@ void stampaMat (int mat[N][N]) {
         for (int j = 0; j < N; j++) {
             cout << mat[i][j] << " ";
         }
-
         cout << endl;
     }
-
     cout << endl;
 
     return ;
