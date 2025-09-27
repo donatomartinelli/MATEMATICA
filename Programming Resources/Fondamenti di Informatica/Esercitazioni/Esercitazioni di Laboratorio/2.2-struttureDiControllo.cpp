@@ -1,6 +1,5 @@
 /* 
-Scrivere un programma in linguaggio C++ che legga da tastiera un insieme di numeri reali (0 per fermarsi), 
-ne calcoli il prodotto e lo stampi a video.
+    Scrivere un programma in linguaggio C++ che legga da tastiera un insieme di numeri reali (0 per fermarsi), ne calcoli il prodotto e lo stampi a video.
 */
 
 #include <iostream>
