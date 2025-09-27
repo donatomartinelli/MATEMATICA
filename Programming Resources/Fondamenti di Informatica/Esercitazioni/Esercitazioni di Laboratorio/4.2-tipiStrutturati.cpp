@@ -1,9 +1,9 @@
 /*
-Si scriva un programma in linguaggio C++ che gestisce un array di numeri reali di dimensione N (es: N = 5). 
-Il programma deve effettuare le seguenti operazioni:
-- legge dalla tastiera i valori dell’array;
-- calcola il valore minimo contenuto nell’array;
-- stampa il valore del minimo e la sua posizione nell’array sullo schermo.
+    Si scriva un programma in linguaggio C++ che gestisce un array di numeri reali di dimensione N (es: N = 5). 
+    Il programma deve effettuare le seguenti operazioni:
+    - legge dalla tastiera i valori dell’array;
+    - calcola il valore minimo contenuto nell’array;
+    - stampa il valore del minimo e la sua posizione nell’array sullo schermo.
 */
 
 #include <iostream>
