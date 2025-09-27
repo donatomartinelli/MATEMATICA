@@ -1,3 +1,21 @@
+/*
+    It is known that if a function f(x) is continuous on the interval [a,b], 
+    the definite integral of f, denoted by
+        ∫ from a to b f(x) dx
+    represents the area between the curve y = f(x) and the x-axis. 
+    It is not always possible to compute the integral analytically. 
+    However, numerical algorithms can be used to approximate it. 
+    One such method is the so-called rectangle formula:
+        ∫ from a to b f(x) dx ≈ (b - a) / m * Σ from k=0 to m f(x_k)
+    where:
+        x_k = x_(k-1) + (b - a)/m ,   k = 1,...,m,   with x_0 = a.
+    Write a C++ program that uses subprograms and that:
+    - Reads from the keyboard the interval endpoints a and b, and an integer m;
+    - Computes the approximate value of the integral of the function
+        f(x) = e^x / (x^2 + 1);
+    - Prints the calculated value on the screen.
+*/
+
 #include <iostream>
 #include <cmath>
 
