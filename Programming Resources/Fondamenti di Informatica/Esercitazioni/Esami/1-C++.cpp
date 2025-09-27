@@ -1,19 +1,15 @@
 /*
     Scrivere un programma in linguaggio C++ che effettui le seguenti operazioni su una matrice di reali di fissata dimensione NxN (per es. N=4):
-
     Parte a:
     - legga dalla tastiera gli elementi della matrice;
     - stampi sullo schermo gli elementi della matrice;
-
     Parte b:
     - legga da tastiera due numeri reali distinti x e y (con verifica dei dati);
     - conti quanti elementi non nulli della matrice sono maggiori di (x-y)/2;
     - stampi sullo schermo il contatore;
-
     Parte c:
     - calcoli il minimo degli elementi che si trovano sulle prime N/2 righe;
     - stampi sullo schermo tale minimo e la sua posizione.
-
     L’uso di sottoprogrammi è facoltativo.
 */
 
