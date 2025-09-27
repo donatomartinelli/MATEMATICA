@@ -1,10 +1,10 @@
 /*
-Si scriva un programma in linguaggio C++, strutturato mediante i sottoprogrammi, che effettui le seguenti operazioni
-- legga da tastiera un numero intero positivo (con convalida del dato);
-- stampi a video tutti i numeri primi minori o uguali di tale intero;
-- effettui la media di tali numeri primi;
-- stampi a video la media e il numero di numeri primi.
-(Sugg. Un numero primo k non può essere pari, tranne il 2, e non deve essere divisibile per 3,5,7,…k-1.)
+    Si scriva un programma in linguaggio C++, strutturato mediante i sottoprogrammi, che effettui le seguenti operazioni
+    - legga da tastiera un numero intero positivo (con convalida del dato);
+    - stampi a video tutti i numeri primi minori o uguali di tale intero;
+    - effettui la media di tali numeri primi;
+    - stampi a video la media e il numero di numeri primi.
+    (Sugg. Un numero primo k non può essere pari, tranne il 2, e non deve essere divisibile per 3,5,7,…k-1.)
 */
 
 #include <iostream>
