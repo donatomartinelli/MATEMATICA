@@ -1,11 +1,11 @@
 /*
-Si scriva un programma in linguaggio C++ che gestisce una matrice di numeri interi di dimensione NxN (es: NxN=5x5). 
-Il programma deve effettuare le seguenti operazioni:
-- legge dalla tastiera i valori degli elementi della matrice;
-- stampa a video la matrice;
-- calcola la media degli elementi della seconda riga della matrice;
-- verifica se ci sono elementi nulli sulla diagonale;
-- stampa sullo schermo la somma e un messaggio che dice se ci sono elementi nulli o meno sulla diagonale.
+    Si scriva un programma in linguaggio C++ che gestisce una matrice di numeri interi di dimensione NxN (es: NxN=5x5). 
+    Il programma deve effettuare le seguenti operazioni:
+    - legge dalla tastiera i valori degli elementi della matrice;
+    - stampa a video la matrice;
+    - calcola la media degli elementi della seconda riga della matrice;
+    - verifica se ci sono elementi nulli sulla diagonale;
+    - stampa sullo schermo la somma e un messaggio che dice se ci sono elementi nulli o meno sulla diagonale.
 */
 
 #include <iostream>
