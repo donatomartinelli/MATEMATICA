@@ -8,7 +8,6 @@
 */
 
 #include <iostream>
-
 using namespace std;
 
 void lettura(int &num) {
