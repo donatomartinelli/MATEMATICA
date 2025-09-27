@@ -11,8 +11,9 @@
 #include <iostream>
 using namespace std;
 
+const int N = 5;
+
 int main () {
-    const int N = 5;
     double matrice[N][N];
     double sommaSecondaRiga;
     double mediaSecondaRiga;
