@@ -18,7 +18,6 @@
 
 #include <iostream>
 #include <cmath>
-
 using namespace std;
 
 void letturaIntervallo(double &a, double &b) {
