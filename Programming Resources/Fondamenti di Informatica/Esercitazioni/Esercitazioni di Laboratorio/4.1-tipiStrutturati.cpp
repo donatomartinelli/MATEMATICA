@@ -1,10 +1,10 @@
 /*
-Si scriva un programma in linguaggio C++ che gestisce un array di numeri interi di dimensione N (es: N = 5). 
-Il programma deve effettuare le seguenti operazioni:
-- legge dalla tastiera i valori dell’array;
-- conta il numero di elementi dell’array minori di zero;
-- stampa il numero così calcolato sullo schermo; 
-- se nell’array non ci sono elementi negativi stampa a video “non ci sono elementi negativi”.
+    Si scriva un programma in linguaggio C++ che gestisce un array di numeri interi di dimensione N (es: N = 5). 
+    Il programma deve effettuare le seguenti operazioni:
+    - legge dalla tastiera i valori dell’array;
+    - conta il numero di elementi dell’array minori di zero;
+    - stampa il numero così calcolato sullo schermo; 
+    - se nell’array non ci sono elementi negativi stampa a video “non ci sono elementi negativi”.
 */
 
 #include <iostream>
