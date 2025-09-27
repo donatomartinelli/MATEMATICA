@@ -1,10 +1,10 @@
-/**
-Scrivere un programma in linguaggio C++ che consenta di calcolare il perimetro di un poligono con n lati, secondo le seguenti specifiche il programma:
-- chiede il numero di lati del poligono;
-- per ciascun lato chiede la misura;
-- calcola il perimetro del poligono;
-- stampa sullo schermo il perimetro calcolato.
-Introduci inoltre meccanismi di convalida dei dati di ingresso.
+/*
+    Scrivere un programma in linguaggio C++ che consenta di calcolare il perimetro di un poligono con n lati, secondo le seguenti specifiche il programma:
+    - chiede il numero di lati del poligono;
+    - per ciascun lato chiede la misura;
+    - calcola il perimetro del poligono;
+    - stampa sullo schermo il perimetro calcolato.
+    Introduci inoltre meccanismi di convalida dei dati di ingresso.
 */
 
 
