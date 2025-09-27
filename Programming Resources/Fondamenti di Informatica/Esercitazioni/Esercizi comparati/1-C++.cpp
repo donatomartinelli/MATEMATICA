@@ -6,7 +6,6 @@
 */
 
 #include<iostream>
-
 using namespace std;
 
 const int N = 5;
@@ -16,12 +15,10 @@ void letturaMatrice(int matrice[N][N]) {
         for (int j = 0; j < N; j++) {
             cout << matrice[i][j] << " ";
         }
-      
         cout << endl;   
     }
-    
     return;
-    }
+}
 
 int ricercaMinimo(int vettore[]) {
     int pos = -1;
@@ -33,9 +30,8 @@ int ricercaMinimo(int vettore[]) {
             }
         }
     }
-    
     return pos;
-    
+}
     
 void matriceFreccia(int vettore[N], int matrice[N][N]) {
     for (int i = 0; i < N; i++) {
@@ -64,7 +60,6 @@ void matriceFreccia(int vettore[N], int matrice[N][N]) {
         cout << "Nessun elemento positivo trovato nel vettore." 
              << endl;
     }
-    
     return ;
 }
 
