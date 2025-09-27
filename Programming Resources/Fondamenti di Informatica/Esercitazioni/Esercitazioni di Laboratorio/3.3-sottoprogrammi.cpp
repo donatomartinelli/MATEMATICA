@@ -1,10 +1,10 @@
 /*
-Utilizzando i sottoprogrammi, scrivere un programma in linguaggio C++ che acquisisce ed elabora una sequenza di rettangoli:
-- il programma richiede il numero di rettangoli da analizzare;
-- per ciascun rettangolo legge la base e l’altezza;
-- calcola la superficie;
-- stampa i dati e la superficie;
-- conta e stampa quanti rettangoli hanno superficie superiore a 10.
+    Utilizzando i sottoprogrammi, scrivere un programma in linguaggio C++ che acquisisce ed elabora una sequenza di rettangoli:
+    - il programma richiede il numero di rettangoli da analizzare;
+    - per ciascun rettangolo legge la base e l’altezza;
+    - calcola la superficie;
+    - stampa i dati e la superficie;
+    - conta e stampa quanti rettangoli hanno superficie superiore a 10.
 */
 
 #include <iostream>
