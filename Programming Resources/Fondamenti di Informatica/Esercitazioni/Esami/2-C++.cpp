@@ -1,19 +1,15 @@
 /*
-    Scrivere un programma in linguaggio C++ che effettui le seguenti operazioni su una matrice di reali di fissata dimensione NxN (per es. N=5):
-    
+    Scrivere un programma in linguaggio C++ che effettui le seguenti operazioni su una matrice di reali di fissata dimensione NxN (per es. N=5):    
     Parte a:
     - legga dalla tastiera gli elementi della matrice;
     - stampi sullo schermo gli elementi della matrice;
-
     Parte b:
     - legga da tastiera un numero reale x>0 (con convalida del dato);
     - calcoli il prodotto degli elementi della diagonale che sono minori di x e diversi da zero;
     - stampi sullo schermo il prodotto o un messaggio nel caso non ci siano elementi minori di x sulla diagonale;
-
     Parte c:
     - conti quanti elementi che si trovano sulla prima riga, sulla seconda riga, sulla penultima riga e sull’ultima riga della matrice sono maggiori di x;
     - stampi sullo schermo il contatore.
-
     L’uso di sottoprogrammi è facoltativo.
 */
 
