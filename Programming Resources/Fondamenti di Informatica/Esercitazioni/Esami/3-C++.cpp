@@ -1,19 +1,15 @@
 /*
     Scrivere un programma in linguaggio C++ che effettui le seguenti operazioni su una matrice di reali di fissata dimensione NxN (per es. N=4):
-    
     Parte a:
     - legga dalla tastiera gli elementi della matrice;
     - stampi sullo schermo gli elementi della matrice;
-    
     Parte b:
     - legga da tastiera due numeri reali x e y con x < y (con convalida dei dati);
     - conti quanti elementi della matrice sono compresi tra x e y;
     - stampi sullo schermo il contatore;
-    
     Parte c:
     - scambi gli elementi della prima colonna con quelli dell’ultima riga;
     - stampi sullo schermo la matrice modificata.
-    
     L’uso di sottoprogrammi è facoltativo.
 */
 
