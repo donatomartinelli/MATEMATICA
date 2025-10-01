@@ -1,0 +1,3984 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsfonts, amsthm}
+\usepackage{mathtools}
+\usepackage{mdframed}
+\usepackage{cancel}
+\usepackage{import, xifthen, pdfpages, transparent}
+\usepackage{enumitem}
+\usepackage{geometry}
+\usepackage{multicol}
+\usepackage{hyperref}
+\usepackage{mathrsfs}
+\usepackage{float}
+\usepackage{tikz, pgfplots}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+\usetikzlibrary{positioning}
+\pgfplotsset{compat=1.18}
+\geometry{a4paper, margin=1.5cm}
+
+\newmdenv[
+  linecolor=black,
+  linewidth=1pt,
+  roundcorner=5pt,
+  innertopmargin=4pt,
+  innerbottommargin=10pt,
+  innerleftmargin=10pt,
+  innerrightmargin=10pt
+]{bxthm}
+
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[section]
+\newtheorem{exmp}{Example}[section]
+\newtheorem{xca}[exmp]{Exercise}
+
+\theoremstyle{remark}
+\newtheorem{rem}{Remark}
+\newtheorem{note}{Note}
+\newtheorem{case}{Case}
+
+\newcommand{\incfig}[2][\columnwidth]{%
+    \def\svgwidth{#1}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\begin{document}
+\begin{titlepage}
+    \centering
+	{\textsc{Università degli Studi della Basilicata} \par}
+	\vspace{2cm}
+    {\huge\bfseries Esercizi Geometria I\par}
+    \vfill
+	{\Large\itshape Donato Martinelli\par}
+	{\large \today\par}
+\end{titlepage}
+
+\tableofcontents
+
+\newpage
+\part{Geometria Affine}
+\newpage
+
+\newpage
+\section{Algebra Lineare}
+\vspace{20pt}
+
+\vspace{20pt}
+\subsection{Spazi Vettoriali}
+\vspace{20pt}
+
+
+\begin{bxthm}
+\begin{xca}\label{uno}
+    Un'applicazione $s:\mathbb{N}\to\mathbb{K}$ dell'insieme dei numeri naturali in $\mathbb{K}$ si dice \textbf{successione di elementi} in $\mathbb{K}$. 
+    Se $s(n)=a_n\in\mathbb{K}$, la successione $s$ si denota anche con $\{a_n\}_{n\in\mathbb{N}}$ o semplicemente con $\{a_n\}$. 
+    Sia $S_\mathbb{K}$ l'insieme di tutte le successioni di elementi di $\mathbb{K}$. 
+    Si definiscano in $S_\mathbb{K}$ le operazioni seguenti:
+    \[\{a_n\}+\{b_n\}=\{a_n+b_n\},\quad\quad \lambda\{a_n\}=\{\lambda a_n\}\quad\quad\forall\,\{a_n\},\{b_n\}\in S_\mathbb{K},\;\lambda\in\mathbb{K}.\]
+    Dimostrare che, con queste operazioni, $S_\mathbb{K}$ è un $\mathbb{K}$-spazio vettoriale.
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+Definiamo anzitutto la successione nulla: 
+\[\{0_n\}:\mathbb{N}\to\mathbb{K},\quad n\mapsto 0.\]
+Verifichiamo gli assiomi di spazio vettoriale date queste operazioni:
+\begin{itemize}
+    \item[SV1] \textbf{Proprietà associativa}: $\forall\,\{a_n\},\{b_n\},\{c_n\}\in S_\mathbb{K},$
+    \[
+    (\{a_n\} + \{b_n\}) + \{c_n\} = \{a_n + b_n\} + \{c_n\} = \{a_n + b_n + c_n\} = \{a_n\} + \{b_n + c_n\} = \{a_n\} + (\{b_n\} + \{c_n\}).
+    \]
+    
+    \item[SV2] \textbf{Esistenza dello zero}: $\exists\,\{0_n\} \in S_\mathbb{K}\,:\;\forall\,\{a_n\}\in S_\mathbb{K},$
+    \[
+    \{0_n\} + \{a_n\} = \{0_n + a_n\} = \{a_n\}.
+    \]
+    
+    \item[SV3] \textbf{Esistenza dell'opposto}: $\forall\,\{a_n\}\in S_\mathbb{K}$, l'opposto è definito come $\{-a_n\}$, poiché
+    \[
+    \{a_n\} + \{-a_n\} = \{a_n + (-a_n)\} = \{0_n\}.
+    \]
+    
+    \item[SV4] \textbf{Proprietà commutativa}: 
+    \[
+    \forall\,\{a_n\},\{b_n\}\in S_\mathbb{K},\quad \{a_n\} + \{b_n\} = \{a_n + b_n\} = \{b_n + a_n\} = \{b_n\} + \{a_n\}.
+    \]
+    %per la commutatività di K
+    
+    \item[SV5] \textbf{Distributività rispetto alla somma di vettori}: 
+    \[
+    \forall\,\lambda\in\mathbb{K},\;\forall\,\{a_n\},\{b_n\}\in S_\mathbb{K},\quad \lambda(\{a_n\}+\{b_n\}) = \{\lambda (a_n+b_n)\} = \{\lambda a_n+\lambda b_n\} = \lambda\{a_n\}+\lambda\{b_n\}.
+    \]
+    
+    \item[SV6] \textbf{Distributività rispetto alla somma di scalari}: 
+    \[
+    \forall\,\lambda,\mu\in\mathbb{K},\;\forall\,\{a_n\}\in S_\mathbb{K},\quad (\lambda+\mu)\{a_n\} = \{(\lambda+\mu)a_n\} = \{\lambda a_n+\mu a_n\} = \lambda\{a_n\}+\mu\{a_n\}.
+    \]
+    
+    \item[SV7] \textbf{Compatibilità della moltiplicazione scalare}: 
+    \[
+    \forall\,\lambda,\mu\in\mathbb{K},\;\forall\,\{a_n\}\in S_\mathbb{K},\quad \lambda(\mu\{a_n\}) = \{\lambda(\mu a_n)\} = \{(\lambda\mu)a_n\} = (\lambda\mu)\{a_n\}.
+    \]
+    
+    \item[SV8] \textbf{Identità moltiplicativa}: 
+    \[
+    \forall\,\{a_n\}\in S_\mathbb{K},\quad 1\{a_n\} = \{1\cdot a_n\} = \{a_n\}.
+    \]
+\end{itemize}
+Tutti gli assiomi per uno spazio vettoriale sono dunque soddisfatti, per cui si conclude che $S_\mathbb{K}$ è un $\mathbb{K}$-spazio vettoriale. \qed
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+    Una successione $\{a_n\}\in S_\mathbb{R}$ si dice \textbf{limitata} se 
+    \[\exists\, R\in\mathbb{R}\,:\;\forall\,n\in\mathbb{N},\;|a_n|\leq R.\]
+    Sia $L_\mathbb{R}$ il sottoinsieme di $S_\mathbb{R}$ costituito dalle successioni limitate. 
+    Dimostrare che, con le stesse operazioni definite nell'esercizio $\ref{uno}$, $L_\mathbb{R}$ è uno spazio vettoriale reale.
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+Per dimostrare che $L_\mathbb{R}$ è uno spazio vettoriale, verifichiamo che esso sia un sottospazio di $S_\mathbb{R}$, cioè che:
+\begin{enumerate}
+    \item La successione nulla $\{0_n\}$ è in $L_\mathbb{R}$.
+    \item Se $\{a_n\},\,\{b_n\}\in L_\mathbb{R}$, allora anche $\{a_n\}+\{b_n\}\in L_\mathbb{R}$.
+    \item Se $\{a_n\}\in L_\mathbb{R}$ e $\lambda\in\mathbb{R}$, allora $\lambda\{a_n\}\in L_\mathbb{R}$.
+\end{enumerate}
+
+\textbf{1)} La successione nulla è definita da
+\[
+\{0_n\}:\,n\mapsto 0.
+\]
+Poiché per ogni $n\in\mathbb{N}$ vale $|0|=0$, essa è limitata (si può prendere, ad esempio, $R=0$).
+
+\textbf{2)} Siano $\{a_n\},\,\{b_n\}\in L_\mathbb{R}$: esistono $R_1,\,R_2\ge 0$ tali che
+\[
+|a_n|\le R_1\quad\text{e}\quad |b_n|\le R_2,\quad\forall\,n\in\mathbb{N}.
+\]
+Per la disuguaglianza triangolare si ha:
+\[
+|a_n+b_n|\le |a_n|+|b_n|\le R_1+R_2,\quad\forall\,n\in\mathbb{N}.
+\]
+Quindi la successione $\{a_n+b_n\}$ è limitata con costante $R_1+R_2$.
+
+\textbf{3)} Sia $\{a_n\}\in L_\mathbb{R}$ e sia $\lambda\in\mathbb{R}$. Esiste $R\ge 0$ tale che 
+\[
+|a_n|\le R,\quad\forall\,n\in\mathbb{N}.
+\]
+Moltiplicando per $\lambda$ si ottiene:
+\[
+|\lambda a_n|=|\lambda|\cdot |a_n|\le |\lambda|R,\quad\forall\,n\in\mathbb{N}.
+\]
+Pertanto, $\lambda\{a_n\}$ è limitata (con costante $|\lambda|R$).
+
+Avendo verificato che $L_\mathbb{R}$ contiene lo zero e che è chiuso rispetto all'addizione e alla moltiplicazione per scalari, concludiamo che $L_\mathbb{R}$, con le operazioni ereditate da $S_\mathbb{R}$, è uno spazio vettoriale reale. \qed
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+    Siano $a,b\in\mathbb{R}\,(a<b)$, e sia $C_{]a,b[}$ l'insieme di tutte le applicazioni continue definite nell'intervallo $]a,b[\subseteq\mathbb{R}$.
+    Per ogni $f,g\in C_{]a,b[}$ si definisca 
+    \[f+g:]a,b[\to\mathbb{R},\quad x\mapsto (f+g)(x)=f(x)+g(x).\]
+    Se $f\in C_{]a,b[}$ e $\lambda\in\mathbb{R}$, si definisca 
+    \[\lambda f:]a,b[\to\mathbb{R},\quad x\mapsto (\lambda f)(x)=\lambda f(x).\]
+    Dimostrare che $f+g$ e $\lambda f$ sono continue e quindi nel modo anzidetto restano definite due operazioni su $C_{]a,b[}$.
+    Dimostrare che con queste operazioni $C_{]a,b[}$ è uno spazio vettoriale reale.
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+Siano $f,g:\,]a,b[\to\mathbb{R}$, $\varepsilon>0$ e $w\in\, ]a,b[$.
+Per $f$ trovo $\delta'>0$ tale che 
+\[\forall\, x\in\, ]a,b[\,\cap\, ]w-\delta',w+\delta'[,\quad |f(x)-f(w)|<\dfrac{\varepsilon}{2}.\]
+Per $g$ trovo $\delta''>0$ tale che 
+\[\forall\, x\in\, ]a,b[\,\cap\,]w-\delta'',w+\delta''[,\quad |g(x)-g(w)|<\dfrac{\varepsilon}{2}.\]
+Sia $\delta=\min\{\delta',\delta''\}$, allora abbiamo che $\forall\, x\in\, ]a,b[\,\cap\, ]w-\delta,w+\delta[$
+\begin{align*}
+    &|(f+g)(x)-(f+g)(w)|=|f(x)+g(x)-(f(w)+g(w))|=|f(x)+g(x)-f(w)-g(w)|\\
+    &=|f(x)-f(w)+g(x)-g(w)|\leq |f(x)-f(w)|+|g(x)-g(w)|<\frac{\varepsilon}{2}+\frac{\varepsilon}{2}=\varepsilon.
+\end{align*}
+Dalle stesse ipotesi fissiamo $\lambda\in\mathbb{R}\setminus\{0\}$ e prendiamo $\delta>0$ tale che 
+\[\forall\, x\in \, ]a,b[\,\cap\, ]w-\delta,w+\delta[,\quad|f(x)-f(w)|<\dfrac{\varepsilon}{|\lambda|}.\]
+Per ognuno di tali $x$ si ha 
+\[ |\lambda f(x)-\lambda f(w)|=|\lambda \cdot(f(x)-f(w))|=|\lambda |\cdot |f(x)-f(w)|<\cancel{|\lambda |}\cdot \frac{\varepsilon}{\cancel{|\lambda |}}=\varepsilon, \]
+da cui \[|\lambda f(x)-\lambda f(w)|<\varepsilon.\]
+
+\newpage
+\subsection{Matrici}
+\vspace{20pt}
+
+\begin{bxthm}
+\begin{xca}
+    Calcolare
+    \begin{enumerate}
+        \item 
+        \[
+        \begin{bmatrix}
+            3 & 1 \\
+            -1 & 1
+        \end{bmatrix}
+        \begin{bmatrix}
+            2 & 1 & 4 \\
+            0 & 6 & 0
+        \end{bmatrix}
+        \begin{bmatrix}
+            1 \\
+            \sqrt{2} \\
+            \dfrac{3}{2}
+        \end{bmatrix}.
+        \]
+        \item 
+        \[
+        \begin{bmatrix}
+            2 \\
+            -3
+        \end{bmatrix}
+        \begin{bmatrix}
+            1 & 5 & \sqrt{37} & 429\pi & 2 & -2 & 1
+        \end{bmatrix}
+        \begin{bmatrix}
+            3 \\
+            0 \\
+            0 \\
+            1 \\
+            2 \\
+            6
+        \end{bmatrix}.
+        \]
+        \item 
+        \[
+        \begin{bmatrix}
+            0 \\
+            1 \\
+            0 \\
+            2
+        \end{bmatrix}
+        \begin{bmatrix}
+            5 & 0 & 1 & 0
+        \end{bmatrix}.
+        \]
+    \end{enumerate}
+\end{xca}
+\end{bxthm}
+\paragraph{Solution}
+\textbf{1)} 
+Verifichiamo le dimensioni: la prima matrice è $2\times2$, la seconda $2\times3$ e la terza $3\times1$. Siccome
+\[
+2\times2\cdot2\times3=2\times3\quad\text{e}\quad2\times3\cdot3\times1=2\times1,
+\]
+il prodotto è definito.
+
+(a) Calcoliamo il prodotto della prima per la seconda matrice:
+\[
+\begin{bmatrix}
+3&1\\[4mm]
+-1&1
+\end{bmatrix}
+\begin{bmatrix}
+2&1&4\\[4mm]
+0&6&0
+\end{bmatrix}
+=
+\begin{bmatrix}
+3\cdot2+1\cdot0 & 3\cdot1+1\cdot6 & 3\cdot4+1\cdot0 \\[4mm]
+-1\cdot2+1\cdot0 & -1\cdot1+1\cdot6 & -1\cdot4+1\cdot0
+\end{bmatrix}
+=
+\begin{bmatrix}
+6 & 9 & 12 \\[4mm]
+-2 & 5 & -4
+\end{bmatrix}.
+\]
+
+(b) Moltiplichiamo il risultato per la terza matrice:
+\[
+\begin{bmatrix}
+6 & 9 & 12 \\
+-2 & 5 & -4
+\end{bmatrix}
+\begin{bmatrix}
+1\\[2mm]
+\sqrt{2}\\[2mm]
+\dfrac{3}{2}
+\end{bmatrix}
+=
+\begin{bmatrix}
+6\cdot1+9\cdot\sqrt{2}+12\cdot\frac{3}{2} \\[4mm]
+-2\cdot1+5\cdot\sqrt{2}-4\cdot\frac{3}{2}
+\end{bmatrix}
+=
+\begin{bmatrix}
+6+9\sqrt{2}+18 \\[4mm]
+-2+5\sqrt{2}-6
+\end{bmatrix}
+=
+\begin{bmatrix}
+24+9\sqrt{2} \\[4mm]
+5\sqrt{2}-8
+\end{bmatrix}.
+\]
+
+\medskip
+\textbf{2)} 
+Verifichiamo le dimensioni: il primo vettore è $2\times1$, il secondo è $1\times7$ e il terzo è $6\times1$. Il prodotto dei primi due dà una matrice $2\times7$, ma il successivo prodotto richiede la moltiplicazione di una $2\times7$ per una $6\times1$, il che non è possibile perché $7\neq6$. Quindi, il prodotto non è definito.
+
+\medskip
+\textbf{3)}
+Verifichiamo le dimensioni: il primo vettore è $4\times1$ e il secondo è $1\times4$, quindi il loro prodotto (prodotto esterno) risulta in una matrice $4\times4$. Calcoliamo:
+\[
+\begin{bmatrix}
+0\\[2mm]
+1\\[2mm]
+0\\[2mm]
+2
+\end{bmatrix}
+\begin{bmatrix}
+5 & 0 & 1 & 0
+\end{bmatrix}
+=
+\begin{bmatrix}
+0\cdot5 & 0\cdot0 & 0\cdot1 & 0\cdot0 \\[4mm]
+1\cdot5 & 1\cdot0 & 1\cdot1 & 1\cdot0 \\[4mm]
+0\cdot5 & 0\cdot0 & 0\cdot1 & 0\cdot0 \\[4mm]
+2\cdot5 & 2\cdot0 & 2\cdot1 & 2\cdot0
+\end{bmatrix}
+=
+\begin{bmatrix}
+0 & 0 & 0 & 0 \\[4mm]
+5 & 0 & 1 & 0 \\[4mm]
+0 & 0 & 0 & 0 \\[4mm]
+10 & 0 & 2 & 0
+\end{bmatrix}.
+\]
+\qed
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+    Sia \[
+    A=\begin{bmatrix}
+        1 & 2 \\
+        0 & 3
+    \end{bmatrix} \in M_2(\mathbb{R}).
+    \]
+    Calcolare:
+    \begin{enumerate}
+        \item \(A^2\);
+        \item \(3A^3-\dfrac{A}{2}+A^0\);
+        \item \(\ {}^{t}A^2+A\ {}^{t}A+\ {}^{t}AA-3\mathbf{I}_2\).
+    \end{enumerate}
+\end{xca}
+\end{bxthm}
+
+\paragraph{Solution}
+\begin{enumerate}
+    \item Calcoliamo \(A^2\):
+    \[
+    A^2 = A\cdot A =
+    \begin{bmatrix}
+    1 & 2 \\
+    0 & 3
+    \end{bmatrix}
+    \begin{bmatrix}
+    1 & 2 \\
+    0 & 3
+    \end{bmatrix} =
+    \begin{bmatrix}
+    1\cdot1+2\cdot0 & 1\cdot2+2\cdot3 \\
+    0\cdot1+3\cdot0 & 0\cdot2+3\cdot3
+    \end{bmatrix} =
+    \begin{bmatrix}
+    1 & 8 \\
+    0 & 9
+    \end{bmatrix}.
+    \]
+    \item Calcoliamo \(A^3\):
+    \[
+    A^3 = A^2\cdot A =
+    \begin{bmatrix}
+    1 & 8 \\
+    0 & 9
+    \end{bmatrix}
+    \begin{bmatrix}
+    1 & 2 \\
+    0 & 3
+    \end{bmatrix} =
+    \begin{bmatrix}
+    1\cdot1+8\cdot0 & 1\cdot2+8\cdot3 \\
+    0\cdot1+9\cdot0 & 0\cdot2+9\cdot3
+    \end{bmatrix} =
+    \begin{bmatrix}
+    1 & 26 \\
+    0 & 27
+    \end{bmatrix}.
+    \]
+    Poiché per definizione \(A^0=\mathbf{I}_2\), si ha:
+    \[
+    3A^3-\dfrac{A}{2}+A^0 =
+    3\begin{bmatrix}1&26\\0&27\end{bmatrix}
+    -\dfrac{1}{2}\begin{bmatrix}1&2\\0&3\end{bmatrix}
+    +\begin{bmatrix}1&0\\0&1\end{bmatrix}.
+    \]
+    Calcoliamo ogni termine:
+    \[
+    3A^3=\begin{bmatrix}3&78\\0&81\end{bmatrix},\quad
+    \dfrac{A}{2}=\begin{bmatrix}\tfrac{1}{2}&1\\0&\tfrac{3}{2}\end{bmatrix}.
+    \]
+    Quindi,
+    \[
+    3A^3-\dfrac{A}{2}+A^0=
+    \begin{bmatrix}
+    3-\tfrac{1}{2}+1  & 78-1+0\\[1mm]
+    0-0+0            & 81-\tfrac{3}{2}+1
+    \end{bmatrix}=
+    \begin{bmatrix}
+    \tfrac{7}{2}&77\\[2mm]
+    0&\tfrac{161}{2}
+    \end{bmatrix}.
+    \]
+    \item Calcoliamo \(\ {}^{t}A^2+A\ {}^{t}A+\ {}^{t}AA-3\mathbf{I}_2\).
+
+    Osserviamo che:
+    \[
+    A=\begin{bmatrix}1&2\\0&3\end{bmatrix},\quad
+    A^T=\begin{bmatrix}1&0\\2&3\end{bmatrix},\quad
+    A^2=\begin{bmatrix}1&8\\0&9\end{bmatrix}\quad\Longrightarrow\quad
+    {}^{t}A^2=\begin{bmatrix}1&0\\8&9\end{bmatrix}.
+    \]
+    Calcoliamo ora:
+    \[
+    A^T A=\begin{bmatrix}1&0\\2&3\end{bmatrix}\begin{bmatrix}1&2\\0&3\end{bmatrix}
+    =\begin{bmatrix}1+0 & 2+0\\2+0 & 4+9\end{bmatrix}=
+    \begin{bmatrix}1&2\\2&13\end{bmatrix},
+    \]
+    \[
+    AA^T=\begin{bmatrix}1&2\\0&3\end{bmatrix}\begin{bmatrix}1&0\\2&3\end{bmatrix}
+    =\begin{bmatrix}1+4&0+6\\0+6&0+9\end{bmatrix}=
+    \begin{bmatrix}5&6\\6&9\end{bmatrix}.
+    \]
+    Sommando si ottiene:
+    \[
+    {}^{t}A^2+A^TA+AA^T=
+    \begin{bmatrix}1&0\\8&9\end{bmatrix}+
+    \begin{bmatrix}1&2\\2&13\end{bmatrix}+
+    \begin{bmatrix}5&6\\6&9\end{bmatrix}=
+    \begin{bmatrix}7&8\\16&31\end{bmatrix}.
+    \]
+    Infine, sottraendo \(3\mathbf{I}_2\):
+    \[
+    \begin{bmatrix}7&8\\16&31\end{bmatrix}-
+    3\begin{bmatrix}1&0\\0&1\end{bmatrix}=
+    \begin{bmatrix}4&8\\16&28\end{bmatrix}.
+    \]
+\end{enumerate}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+    Sia 
+    \[A=\begin{bmatrix}
+        1 & 1 & -1\\[4mm]
+        0 & 2 & \frac{1}{2}\\[4mm]
+        0 & -2 & -1
+    \end{bmatrix}\in M_3(\mathbb{R}).\]
+    Calcolare \(A^2-{}^{t}A+\mathbf{I}_3.\)
+\end{xca}
+\end{bxthm}
+
+\paragraph{Solution}
+Calcoliamo innanzitutto \(A^2=A\cdot A\). Dato
+\[
+A=\begin{bmatrix}
+1 & 1 & -1\\[4mm]
+0 & 2 & \frac{1}{2}\\[4mm]
+0 & -2 & -1
+\end{bmatrix},
+\]
+le entrate di \(A^2\) sono:
+\[
+A^2_{ij}=\sum_{k=1}^3 a_{ik}\,a_{kj}.
+\]
+\begin{itemize}
+    \item \textbf{Prima riga:}
+    \begin{itemize}
+        \item \((1,1):\quad 1\cdot 1 + 1\cdot 0 + (-1)\cdot 0 = 1.\)
+        \item \((1,2):\quad 1\cdot 1 + 1\cdot 2 + (-1)\cdot (-2) = 1+2+2 = 5.\)
+        \item \((1,3):\quad 1\cdot (-1) + 1\cdot \frac{1}{2} + (-1)\cdot (-1) = -1+\frac{1}{2}+1 = \frac{1}{2}.\)
+    \end{itemize}
+    \item \textbf{Seconda riga:}
+    \begin{itemize}
+        \item \((2,1):\quad 0\cdot 1 + 2\cdot 0 + \frac{1}{2}\cdot 0 = 0.\)
+        \item \((2,2):\quad 0\cdot 1 + 2\cdot 2 + \frac{1}{2}\cdot (-2) = 0+4-1 = 3.\)
+        \item \((2,3):\quad 0\cdot (-1) + 2\cdot \frac{1}{2} + \frac{1}{2}\cdot (-1) = 0+1-\frac{1}{2} = \frac{1}{2}.\)
+    \end{itemize}
+    \item \textbf{Terza riga:}
+    \begin{itemize}
+        \item \((3,1):\quad 0\cdot 1 + (-2)\cdot 0 + (-1)\cdot 0 = 0.\)
+        \item \((3,2):\quad 0\cdot 1 + (-2)\cdot 2 + (-1)\cdot (-2) = 0-4+2 = -2.\)
+        \item \((3,3):\quad 0\cdot (-1) + (-2)\cdot \frac{1}{2} + (-1)\cdot (-1) = 0-1+1 = 0.\)
+    \end{itemize}
+\end{itemize}
+Pertanto,
+\[
+A^2=
+\begin{bmatrix}
+1 & 5 & \frac{1}{2}\\[4mm]
+0 & 3 & \frac{1}{2}\\[4mm]
+0 & -2 & 0
+\end{bmatrix}.
+\]
+
+Calcoliamo ora la trasposta:
+\[
+{}^{t}A=\begin{bmatrix}
+1 & 0 & 0\\[4mm]
+1 & 2 & -2\\[4mm]
+-1 & \frac{1}{2} & -1
+\end{bmatrix}.
+\]
+
+Infine, essendo \(\mathbf{I}_3=\begin{bmatrix}1&0&0\\[2mm]0&1&0\\[2mm]0&0&1\end{bmatrix}\), calcoliamo
+\[
+A^2-{}^{t}A+\mathbf{I}_3=
+\begin{bmatrix}
+1-1+1 &\quad 5-0+0 &\quad \frac{1}{2}-0+0\\[4mm]
+0-1+0 &\quad 3-2+1 &\quad \frac{1}{2}-(-2)+0\\[4mm]
+0-(-1)+0 &\quad -2-\frac{1}{2}+0 &\quad 0-(-1)+1
+\end{bmatrix}.
+\]
+Semplificando ogni entrata:
+\begin{itemize}
+    \item \((1,1):\quad 1-1+1=1.\)
+    \item \((1,2):\quad 5.\)
+    \item \((1,3):\quad \frac{1}{2}.\)
+    \item \((2,1):\quad 0-1=-1.\)
+    \item \((2,2):\quad 3-2+1=2.\)
+    \item \((2,3):\quad \frac{1}{2}-(-2)=\frac{1}{2}+2=\frac{5}{2}.\)
+    \item \((3,1):\quad 0-(-1)=1.\)
+    \item \((3,2):\quad -2-\frac{1}{2}=-\frac{5}{2}.\)
+    \item \((3,3):\quad 0-(-1)+1=1+1=2.\)
+\end{itemize}
+Quindi il risultato finale è:
+\[
+A^2-{}^{t}A+\mathbf{I}_3=
+\begin{bmatrix}
+1 & 5 & \frac{1}{2}\\[4mm]
+-1 & 2 & \frac{5}{2}\\[4mm]
+1 & -\frac{5}{2} & 2
+\end{bmatrix}.
+\]
+\qed
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+    Calcolare 
+    \[\dfrac{1}{3}\begin{bmatrix}
+        \dfrac{i}{2}&1+i\\[2mm]
+        -2i&1
+    \end{bmatrix}^2+\mathbf{I}_2.\]
+\end{xca}
+\end{bxthm}
+
+\paragraph{Soluzione}
+Sia 
+\[
+A=\begin{bmatrix}
+\frac{i}{2} & 1+i\\[2mm]
+-2i & 1
+\end{bmatrix}.
+\]
+Calcoliamo \(A^2\):
+\[
+A^2 = \begin{bmatrix}
+\frac{i}{2}\cdot\frac{i}{2}+(1+i)(-2i) & \frac{i}{2}(1+i)+(1+i)\cdot1\\[2mm]
+-2i\cdot\frac{i}{2}+1\cdot(-2i) & -2i(1+i)+1\cdot1
+\end{bmatrix}.
+\]
+Computiamo le singole entrate:
+\begin{itemize}
+    \item \textbf{Entrata (1,1):}
+    \[
+    \frac{i}{2}\cdot\frac{i}{2} = \frac{i^2}{4} = -\frac{1}{4},\quad
+    (1+i)(-2i) = -2i-2i^2 = -2i+2.
+    \]
+    Quindi,
+    \[
+    a_{11} = -\frac{1}{4}+2-2i=\frac{7}{4}-2i.
+    \]
+    
+    \item \textbf{Entrata (1,2):}
+    \[
+    \frac{i}{2}(1+i)=\frac{i+i^2}{2}=\frac{i-1}{2},\quad
+    (1+i)\cdot1=1+i.
+    \]
+    Pertanto,
+    \[
+    a_{12} = \frac{i-1}{2}+1+i = \frac{i-1+2+2i}{2}=\frac{3i+1}{2}.
+    \]
+    
+    \item \textbf{Entrata (2,1):}
+    \[
+    -2i\cdot\frac{i}{2} = -i^2=1,\quad
+    1\cdot(-2i)=-2i.
+    \]
+    Quindi,
+    \[
+    a_{21}=1-2i.
+    \]
+    
+    \item \textbf{Entrata (2,2):}
+    \[
+    -2i(1+i) = -2i-2i^2=-2i+2,\quad
+    1\cdot 1 =1.
+    \]
+    Quindi,
+    \[
+    a_{22}= -2i+2+1=3-2i.
+    \]
+\end{itemize}
+Pertanto,
+\[
+A^2=\begin{bmatrix}
+\frac{7}{4}-2i & \frac{3i+1}{2}\\[2mm]
+1-2i & 3-2i
+\end{bmatrix}.
+\]
+
+Ricaviamo ora il termine richiesto:
+\[
+\dfrac{1}{3}A^2+\mathbf{I}_2.
+\]
+Calcoliamo
+\[
+\dfrac{1}{3}A^2=
+\begin{bmatrix}
+\frac{1}{3}\left(\frac{7}{4}-2i\right)& \frac{1}{3}\cdot\frac{3i+1}{2}\\[2mm]
+\frac{1}{3}(1-2i)& \frac{1}{3}(3-2i)
+\end{bmatrix}
+=\begin{bmatrix}
+\frac{7}{12}-\frac{2}{3}i & \frac{3i+1}{6}\\[2mm]
+\frac{1}{3}-\frac{2}{3}i & 1-\frac{2}{3}i
+\end{bmatrix}.
+\]
+Aggiungendo la matrice identità \(\mathbf{I}_2=\begin{bmatrix}1&0\\[2mm]0&1\end{bmatrix}\) otteniamo:
+\[
+\dfrac{1}{3}A^2+\mathbf{I}_2=
+\begin{bmatrix}
+\frac{7}{12}-\frac{2}{3}i+1 & \frac{3i+1}{6}\\[2mm]
+\frac{1}{3}-\frac{2}{3}i & 1-\frac{2}{3}i+1
+\end{bmatrix}
+=\begin{bmatrix}
+\frac{19}{12}-\frac{2}{3}i & \frac{1+3i}{6}\\[2mm]
+\frac{1}{3}-\frac{2}{3}i & 2-\frac{2}{3}i
+\end{bmatrix}.
+\]
+
+\[
+\boxed{\dfrac{1}{3}\begin{bmatrix}
+\dfrac{i}{2}&1+i\\[2mm]
+-2i&1
+\end{bmatrix}^2+\mathbf{I}_2
+=\begin{bmatrix}
+\frac{19}{12}-\frac{2}{3}i & \frac{1+3i}{6}\\[2mm]
+\frac{1}{3}-\frac{2}{3}i & 2-\frac{2}{3}i
+\end{bmatrix}.}
+\]
+\qed
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+    Sia $A\in M_n(\mathbb{K})$. Dimostrare che $A+\ ^{t}A$ è simmetrica e che $A-\ ^{t}A$ è antisimmetrica. 
+    Dedurre che $A$ può essere espressa come somma di una mtrice simmetrica e di una antisimmetrica.
+\end{xca}
+\end{bxthm}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+    Esprimere le seguenti matrici a elementi numeri razionali come somma di una matrice simmetrica e di una antisimmetrica:
+    \[\begin{bmatrix}
+        1&2\\
+        -1&0
+    \end{bmatrix}, \begin{bmatrix}
+        3&1\\
+        1&0
+    \end{bmatrix},\begin{bmatrix}
+        1&0&0\\
+        1&-1&-1\\
+        2&1&0
+    \end{bmatrix}.\]
+\end{xca}
+\end{bxthm}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+    Dimostrare che se $A\in M_n(\mathbb{K})$, allora $\ ^{t}AA$ è simmetrica.
+\end{xca}
+\end{bxthm}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+Una matrice $N\in M_n(\mathbb{K})$ si dice \textbf{nilpotente} se \(\exists\,k\in\mathbb{N}\,(k\geq1)\,:\;A^k=\mathbf{0},\)
+dove $\mathbf{0}\in M_n(\mathbb{K})$ è la matrice nulla. Dimostrare che $\forall\,a,b,c\in\mathbb{K}$, le matrici 
+\[\begin{pmatrix}
+    0&a\\
+    0&0
+\end{pmatrix}\textup{ e }
+\begin{pmatrix}
+    0&a&b\\
+    0&0&c\\
+    0&0&0
+\end{pmatrix}\]
+sono nilpotenti. Dimostrare che, più in generale, ogni matrice $A\in M_n(\mathbb{K})$ strettamente triangolare (superiore o inferiore) è nilpotente.
+\end{xca}
+\end{bxthm}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+    Dimostrare che una matrice $A\in M_n(\mathbb{K})$ nilpotente non è invertibile.
+\end{xca}
+\end{bxthm}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+    Stabilire quali delle seguenti matrici sono ortogonali:
+    \begin{multicols}{2}
+        \begin{enumerate}
+            \item \[\begin{pmatrix}
+                \dfrac{\sqrt{2}}{2} & -\dfrac{\sqrt{2}}{2} \\
+                \dfrac{\sqrt{2}}{2} & \dfrac{\sqrt{2}}{2}
+            \end{pmatrix}\]
+            \item \[\begin{pmatrix}
+                1&0\\
+                0&-1
+            \end{pmatrix}\]
+            \item \[\begin{pmatrix}
+                1&-1\\
+                -1&1
+            \end{pmatrix}\]
+            \item \[\begin{pmatrix}
+                \dfrac{\sqrt{3}}{3}&-\dfrac{2\sqrt{3}}{3}\\
+                \dfrac{2\sqrt{3}}{3}&\dfrac{\sqrt{3}}{3}
+            \end{pmatrix}\]
+            \item \[\begin{pmatrix}
+                -\dfrac{\sqrt{3}}{3}&\dfrac{\sqrt{6}}{3}\\
+                \dfrac{\sqrt{6}}{3}&\dfrac{\sqrt{3}}{3}
+            \end{pmatrix}\]
+            \item \[\begin{pmatrix}
+                -\dfrac{\sqrt{2}}{2}&0&\dfrac{\sqrt{2}}{2}\\
+                0&1&0\\
+                \dfrac{\sqrt{2}}{2}&0&\dfrac{\sqrt{2}}{2}
+            \end{pmatrix}\]
+            \item \[\begin{pmatrix}
+                0&-1&0\\
+                0&0&-1\\
+                -1&0&0
+            \end{pmatrix}\]
+            \item \[\begin{pmatrix}
+                0&1&1\\
+                0&0&0\\
+                1&1&0
+            \end{pmatrix}\]
+            \item \[\begin{pmatrix}
+                \dfrac{1}{2}&\dfrac{\sqrt{3}}{2}&0\\
+                \dfrac{\sqrt{3}}{2}&-\dfrac{1}{2}&9\\
+                0&0&1
+            \end{pmatrix}\]
+            \item \[\begin{pmatrix}
+                \dfrac{1}{9}&\dfrac{8}{9}&-\dfrac{4}{9}\\
+                \dfrac{8}{9}&\dfrac{1}{9}&\dfrac{4}{9}\\
+                -\dfrac{4}{9}&\dfrac{4}{9}&\dfrac{7}{9}
+            \end{pmatrix}\]
+            \item \[\begin{pmatrix}
+                1&0&0&0\\
+                0&0&0&1\\
+                0&\dfrac{\sqrt{2}}{2}&\dfrac{\sqrt{2}}{2}&0\\
+                0&-\dfrac{\sqrt{2}}{2}&\dfrac{\sqrt{2}}{2}&0
+            \end{pmatrix}\]
+        \end{enumerate}    
+    \end{multicols}
+\end{xca}
+\end{bxthm}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+    Siano \[A=\begin{pmatrix}
+        a_1&0&\dots&0\\
+        0&a_2&\dots&0\\
+        \vdots&\vdots&&\vdots\\
+        0&0&\dots&a_n
+    \end{pmatrix}\quad B=\begin{pmatrix}
+        b_1&0&\dots&0\\
+        0&b_2&\dots&0\\
+        \vdots&\vdots&&\vdots\\
+        0&0&\dots&b_n
+    \end{pmatrix}\]
+    due matrici diagonali di ordine $n$. Dimostrare che 
+    \[AB=BA=\begin{pmatrix}
+        a_1b_1&0&\dots&0\\
+        0&a_2b_2&\dots&0\\
+        \vdots&\vdots&&\vdots\\
+        0&0&\dots&a_nb_n
+    \end{pmatrix}.\]
+\end{xca}
+\end{bxthm}
+
+\newpage
+\subsection{Sistemi di Equazioni Lineari}
+\vspace{20pt}
+
+
+
+\begin{bxthm}
+\begin{xca}
+    Risolvere i seguenti sistemi con il metodo di eliminazione di Gauss-Jordan:
+    \begin{enumerate}
+        \item $\mathbb{K}=\mathbb{Q}$
+        \[\begin{cases}
+            X-3Y+5Z=0 \\
+            2X-4Y+2Z=0 \\
+            5X-11Y+9Z=0
+        \end{cases}\]
+        \item $\mathbb{K}=\mathbb{Q}$
+        \[\begin{cases}
+            X_1 - 2X_2 +3X_3 +4X_4 +5X_5= 0 \\
+            X_1 + 4X_2 + 7X_4 + 2X_5= 0 \\
+            X_1 + 4X_2 + 7X_4 + 2X_5= 0 \\
+            2X_1 + 2X_2 + 3X_3 + 11X_4 + 7X_5= 0 \\
+            3X_1 + 6X_2 + 3X_3 + 18X_4 + 9X_5= 0
+        \end{cases}\]
+        \item $\mathbb{K}=\mathbb{R}$
+        \[\begin{cases}
+            X_1 + 2X_2-\sqrt{2} X_3 = 0 \\
+            3X_1 -(\sqrt{2}+6)X_3 = 0 \\
+            -X_1+ X_2 +3X_3 = -1
+        \end{cases}\]
+        \item $\mathbb{K}=\mathbb{C}$
+        \[\begin{cases}
+                2X_2+ X_4+5 X_5= i \\
+            2X_1 +2 X_3+ X_4-3 X_5= i \\
+            X_1+ X_2+ X_3+ X_4+ X_5= 0 
+        \end{cases}\]
+        \item $\mathbb{K}=\mathbb{R}$
+        \[\begin{cases}
+            X_3+2 X_4 = 3 \\
+            2X_1+4 X_2-2 X_3= 4 \\
+            2X_1+4 X_2- X_3+2 X_4= 7
+        \end{cases}\]
+    \end{enumerate}
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+\begin{enumerate}
+    \item Scriviamo il sistema in forma matriciale, essendo omogeneo possiamo ignorare la colonna dei termini noti:
+    \[
+    \begin{pmatrix}
+    1 & -3 & 5 \\
+    2 & -4 & 2 \\
+    5 & -11 & 9 
+    \end{pmatrix}
+    \]
+    
+    Applichiamo Gauss-Jordan:
+    \begin{itemize}
+        \item Sottraiamo 2 volte la prima riga dalla seconda:
+        \[
+        \begin{pmatrix}
+        1 & -3 & 5 \\
+        0 & 2 & -8 \\
+        5 & -11 & 9 
+        \end{pmatrix}
+        \]
+        
+        \item Sottraiamo 5 volte la prima riga dalla terza:
+        \[
+        \begin{pmatrix}
+        1 & -3 & 5 \\
+        0 & 2 & -8 \\
+        0 & 4 & -16 
+        \end{pmatrix}
+        \]
+        
+        \item Sottraiamo 2 volte la seconda riga dalla terza:
+        \[
+        \begin{pmatrix}
+        1 & -3 & 5 \\
+        0 & 2 & -8 \\
+        0 & 0 & 0 
+        \end{pmatrix}
+        \]
+    \end{itemize}
+    
+    Ritornando al sistema:
+    \[\begin{cases}
+    X - 3Y + 5Z = 0 \\
+    2Y - 8Z = 0
+    \end{cases}\]
+    
+    Dalla seconda equazione: $Y = 4Z$
+    Sostituendo nella prima: $X - 3(4Z) + 5Z = 0 \Rightarrow X - 12Z + 5Z = 0 \Rightarrow X = 7Z$
+    
+    Ponendo $Z = t$, $t \in \mathbb{Q}$, la soluzione è:
+    \[\boxed{(X,Y,Z) = (7t, 4t, t),\quad t \in \mathbb{Q}}\]
+    \item Il sistema ha la matrice:
+    \[
+    \begin{pmatrix}
+    1 & -2 & 3 & 4 & 5 \\
+    1 & 4 & 0 & 7 & 2 \\
+    1 & 4 & 0 & 7 & 2 \\
+    2 & 2 & 3 & 11 & 7 \\
+    3 & 6 & 3 & 18 & 9 
+    \end{pmatrix}
+    \]
+    
+    Notiamo che la seconda e terza riga sono identiche, quindi possiamo eliminarne una:
+    \[
+    \begin{pmatrix}
+    1 & -2 & 3 & 4 & 5 \\
+    1 & 4 & 0 & 7 & 2 \\
+    2 & 2 & 3 & 11 & 7 \\
+    3 & 6 & 3 & 18 & 9 
+    \end{pmatrix}
+    \]
+    
+    Applicando Gauss-Jordan:
+    \begin{itemize}
+        \item Sottraiamo la prima riga dalla seconda:
+        \[
+        \begin{pmatrix}
+        1 & -2 & 3 & 4 & 5 \\
+        0 & 6 & -3 & 3 & -3 \\
+        2 & 2 & 3 & 11 & 7 \\
+        3 & 6 & 3 & 18 & 9 
+        \end{pmatrix}
+        \]
+        
+        \item Sottraiamo 2 volte la prima riga dalla terza e 3 volte dalla quarta:
+        \[
+        \begin{pmatrix}
+        1 & -2 & 3 & 4 & 5 \\
+        0 & 6 & -3 & 3 & -3 \\
+        0 & 6 & -3 & 3 & -3 \\
+        0 & 12 & -6 & 6 & -6
+        \end{pmatrix}
+        \]
+    \end{itemize}
+    
+    Otteniamo:
+    \[
+    \begin{cases}
+    X_1 - 2X_2 + 3X_3 + 4X_4 + 5X_5 = 0 \\
+    6X_2 - 3X_3 + 3X_4 - 3X_5 = 0
+    \end{cases}
+    \]
+    
+    Posto $X_3 = t_1$, $X_4 = t_2$, $X_5 = t_3$, dalla seconda equazione:
+    \[X_2 = \frac{1}{2}(t_1 - t_2 + t_3)\]
+    
+    Sostituendo nella prima:
+    \[X_1 - 2(\frac{1}{2}(t_1 - t_2 + t_3)) + 3t_1 + 4t_2 + 5t_3 = 0\]
+    Da cui:
+    \[X_1 = -2t_1 - 5t_2 - 4t_3\]
+    
+    Quindi:
+    \[\boxed{(X_1,X_2,X_3,X_4,X_5) = (-2t_1-5t_2-4t_3, \frac{1}{2}(t_1-t_2+t_3), t_1, t_2, t_3),\quad t_1,t_2,t_3 \in \mathbb{Q}}\]
+    \item La matrice del sistema è:
+    \[
+    \begin{pmatrix}
+    1 & 2 & -\sqrt{2} & 0 \\
+    3 & 0 & -(\sqrt{2}+6) & 0 \\
+    -1 & 1 & 3 & -1
+    \end{pmatrix}
+    \]
+    
+    Applicando Gauss-Jordan:
+    \begin{itemize}
+        \item Sottraiamo 3 volte la prima riga dalla seconda:
+        \[
+        \begin{pmatrix}
+        1 & 2 & -\sqrt{2} & 0 \\
+        0 & -6 & -6 & 0 \\
+        -1 & 1 & 3 & -1
+        \end{pmatrix}
+        \]
+        
+        \item Sommiamo la prima riga alla terza:
+        \[
+        \begin{pmatrix}
+        1 & 2 & -\sqrt{2} & 0 \\
+        0 & -6 & -6 & 0 \\
+        0 & 3 & 3-\sqrt{2} & -1
+        \end{pmatrix}
+        \]
+    \end{itemize}
+    
+    Moltiplicando la seconda riga per $-\frac{1}{6}$:
+    \[\begin{cases}
+    X_1 + 2X_2 - \sqrt{2}X_3 = 0 \\
+    X_2 + X_3 = 0 \\
+    3X_2 + (3-\sqrt{2})X_3 = -1
+    \end{cases}\]
+    
+    Dalle prime due equazioni otteniamo $X_2 = -X_3$ e sostituendo nella terza:
+    \[3(-X_3) + (3-\sqrt{2})X_3 = -1\]
+    \[-3X_3 + 3X_3 - \sqrt{2}X_3 = -1\]
+    \[-\sqrt{2}X_3 = -1\]
+    \[X_3 = \frac{1}{\sqrt{2}}\]
+    
+    Ma questo porta a una contraddizione con la prima equazione. Quindi il sistema è incompatibile.
+    
+    \boxed{\text{Il sistema non ha soluzioni}}
+    \item La matrice del sistema è:
+    \[
+    \begin{pmatrix}
+    0 & 2 & 0 & 1 & 5 & i \\
+    2 & 0 & 2 & 1 & -3 & i \\
+    1 & 1 & 1 & 1 & 1 & 0
+    \end{pmatrix}
+    \]
+    
+    Applicando Gauss-Jordan:
+    \begin{itemize}
+        \item Sottraiamo la terza riga dalla seconda:
+        \[
+        \begin{pmatrix}
+        0 & 2 & 0 & 1 & 5 & i \\
+        1 & -1 & 1 & 0 & -4 & i \\
+        1 & 1 & 1 & 1 & 1 & 0
+        \end{pmatrix}
+        \]
+        
+        \item Sottraiamo la prima riga dalla seconda:
+        \[
+        \begin{pmatrix}
+        0 & 2 & 0 & 1 & 5 & i \\
+        1 & -3 & 1 & -1 & -9 & 0 \\
+        1 & 1 & 1 & 1 & 1 & 0
+        \end{pmatrix}
+        \]
+    \end{itemize}
+    
+    Il sistema è incompatibile poiché nell'ultima riga otteniamo $0 = i$.
+    
+    \boxed{\text{Il sistema non ha soluzioni}}
+    \item La matrice del sistema è:
+    \[
+    \begin{pmatrix}
+    0 & 0 & 1 & 2 & 3 \\
+    2 & 4 & -2 & 0 & 4 \\
+    2 & 4 & -1 & 2 & 7
+    \end{pmatrix}
+    \]
+    
+    Applicando Gauss-Jordan:
+    \begin{itemize}
+        \item Sottraiamo la seconda riga dalla terza:
+        \[
+        \begin{pmatrix}
+        0 & 0 & 1 & 2 & 3 \\
+        2 & 4 & -2 & 0 & 4 \\
+        0 & 0 & 1 & 2 & 3
+        \end{pmatrix}
+        \]
+    \end{itemize}
+    
+    Osserviamo che la prima e la terza riga sono identiche. Il sistema equivale a:
+    \[\begin{cases}
+    X_3 + 2X_4 = 3 \\
+    2X_1 + 4X_2 - 2X_3 = 4
+    \end{cases}\]
+    
+    Ponendo $X_1 = t_1$ e $X_4 = t_2$, dalla prima equazione:
+    \[X_3 = 3 - 2t_2\]
+    
+    Sostituendo nella seconda:
+    \[2t_1 + 4X_2 - 2(3-2t_2) = 4\]
+    \[2t_1 + 4X_2 - 6 + 4t_2 = 4\]
+    \[4X_2 = 10 - 2t_1 - 4t_2\]
+    \[X_2 = \frac{10-2t_1-4t_2}{4} = \frac{5-t_1-2t_2}{2}\]
+    
+    Quindi:
+    \[\boxed{(X_1,X_2,X_3,X_4) = (t_1, 5-2t_1-2t_2, 3-2t_2, t_2),\quad t_1,t_2 \in \mathbb{R}}\]
+\end{enumerate}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+    Dimostrare che una matrice diagonale 
+    \[A=\begin{pmatrix}
+        a_1&0&\dots&0\\
+        0&a_2&\dots&0\\
+        \vdots&\vdots&&\vdots\\
+        0&0&\dots&a_n
+    \end{pmatrix}\]
+    è invertibile se e solo se $a_1, a_2, \ldots, a_n\neq0$, ed in tal caso la sua inversa è 
+    \[A^{-1}=\begin{pmatrix}
+        a_1^{-1}&0&\dots&0\\
+        0&a_2^{-1}&\dots&0\\
+        \vdots&\vdots&&\vdots\\
+        0&0&\dots&a_n^{-1}
+    \end{pmatrix}\]
+\end{xca}
+\end{bxthm}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+    Calcolare $3A^{-1}-AB^{-2}$, dove \[A=\begin{pmatrix}
+        1&-1\\
+        1&1
+    \end{pmatrix},\quad B=\begin{pmatrix}
+        0&2\\
+        -1&1
+    \end{pmatrix}\]
+\end{xca}
+\end{bxthm}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+    Calcolare l'inversa, se esiste, di ognuna delle seguenti matrici:
+    \begin{multicols}{2}
+    \begin{enumerate}
+    \item ($\mathbb{K}=\mathbb{Q}$)
+    \[
+      \begin{pmatrix}
+      \frac{1}{2} & \frac{1}{3} \\
+      5 & 2
+      \end{pmatrix}
+    \]
+
+    \item ($\mathbb{K}=\mathbb{R}$)
+    \[
+      \begin{pmatrix}
+      3 & \sqrt{3} \\
+      1 & \tfrac{1}{\sqrt{3}}
+      \end{pmatrix}
+    \]
+  
+    \item($\mathbb{K}=\mathbb{R}$)
+    \[
+      \begin{pmatrix}
+      0 & -4 \\
+      -6 & 2
+      \end{pmatrix}
+    \]
+  
+    \item ($\mathbb{K}=\mathbb{C}$)
+    \[
+      \begin{pmatrix}
+      1 & i \\
+      2i & -1
+      \end{pmatrix}
+    \]
+  
+    \item ($\mathbb{K}=\mathbb{C}$)
+    \[
+      \begin{pmatrix}
+      2 & 2 - i \\
+      2 + i & -2
+      \end{pmatrix}
+    \]
+  
+    \item ($\mathbb{K}=\mathbb{C}$)
+    \[
+      \begin{pmatrix}
+      1 & \frac{1}{2} \\
+      2i & 1
+      \end{pmatrix}
+    \]
+
+    \item ($\mathbb{K}=\mathbb{Q}$)
+    \[
+      \begin{pmatrix}
+      6 & -3 & -2 \\
+      5 & -2 & -2 \\
+      5 & -3 & -1
+      \end{pmatrix}
+    \]
+    \item ($\mathbb{K}=\mathbb{Q}$)
+    \[
+      \begin{pmatrix}
+      -1 & 2 & -1 \\
+      -5 & 13 & -10 \\
+      2 & -5 & 4
+      \end{pmatrix}
+    \]
+    \item ($\mathbb{K}=\mathbb{Q}$)
+    \[
+      \begin{pmatrix}
+      1 & 0 & 1 \\
+      1 & 1 & 0 \\
+      -1 & 1 & 0
+      \end{pmatrix}
+    \]
+    \item ($\mathbb{K}=\mathbb{C}$)
+    \[
+      \begin{pmatrix}
+      2i & 0 & 1 \\
+      0 & 0 & i \\
+      1 & 1 & 1
+      \end{pmatrix}
+    \]
+    \item ($\mathbb{K}=\mathbb{Q}$)
+    \[
+      \begin{pmatrix}
+      -1 & 0 & 0& 2 \\
+      0 & 1 & 0 & 0\\
+      1 & 0 & 0 & 1\\
+      1&0&1&1
+      \end{pmatrix}
+    \]
+    \item ($\mathbb{K}=\mathbb{C}$)
+    \[
+      \begin{pmatrix}
+      0 & 0 & 0& i \\
+      0 & 0 & 1 & 0\\
+      0 & 1 & 0 & 1\\
+      i&0&0&0
+      \end{pmatrix}
+    \]
+    \end{enumerate}
+    \end{multicols}
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+In questo esercizio si chiede di calcolare l'inversa. A livello di teoria studiata fino a questo punto, l'unico modo per calcolare l'inversa è tramite il seguente modo:
+\begin{itemize}
+    \item scrivere la matrice $A$ a sinistra e la matrice identità a destra, in modo da formare una matrice aumentata:
+    \[
+    \begin{pmatrix}
+    A & \mathbf{I}_n
+    \end{pmatrix}
+    \]
+    \item applicare le operazioni elementari di riga fino a ottenere la matrice identità a sinistra:
+    \[
+    \begin{pmatrix}
+        \mathbf{I}_n & A^{-1}
+    \end{pmatrix}
+    \]
+    \item a questo punto, la matrice a destra è l'inversa di $A$. 
+    \item Se non si riesce a ottenere la matrice identità a sinistra, significa che la matrice non è invertibile.
+\end{itemize}
+\begin{multicols}{2}
+\begin{enumerate}
+    \item ($\mathbb{K}=\mathbb{Q}$)
+    \[
+      \begin{pmatrix}
+      -3 & \frac{1}{2} \\
+      \frac{15}{2} & -\frac{3}{4}
+      \end{pmatrix}
+    \]
+
+    \item $\nexists$
+  
+    \item($\mathbb{K}=\mathbb{R}$)
+    \[
+      \begin{pmatrix}
+      -\frac{1}{12} & -\frac{1}{6} \\
+      -\frac{1}{4} & 0
+      \end{pmatrix}
+    \]
+  
+    \item ($\mathbb{K}=\mathbb{C}$)
+    \[
+      \begin{pmatrix}
+      -1 & -i \\
+      -2i & 1
+      \end{pmatrix}
+    \]
+  
+    \item ($\mathbb{K}=\mathbb{C}$)
+    \[
+      \dfrac{1}{9}\begin{pmatrix}
+      2 & 2 - i \\
+      2 + i & -2
+      \end{pmatrix}
+    \]
+  
+    \item ($\mathbb{K}=\mathbb{C}$)
+    \[
+      \begin{pmatrix}
+        \frac{1+i}{2} & -\frac{1+i}{4} \\
+      1-i & \frac{i+1}{2}
+      \end{pmatrix}
+    \]
+    
+    \item ($\mathbb{K}=\mathbb{Q}$)
+    \[
+      \begin{pmatrix}
+        -4&3&2\\
+        -5&4&2\\
+        -5&3&3
+      \end{pmatrix}
+    \]
+\end{enumerate}
+\end{multicols}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+    Risolvere i seguenti sistemi col metodo dell'inversa:
+    \begin{enumerate}
+        \item ($\mathbb{K}=\mathbb{Q}$)
+        \[
+          \begin{cases}
+          X + Y - \frac{Z}{2} = 1 \\
+          12Y - Z = 12 \\
+          X + 3Y = 3
+          \end{cases}
+        \]
+        \item ($\mathbb{K}=\mathbb{C}$)
+        \[
+          \begin{cases}
+          iX - Y = 2i, \\
+          3X - 2iY = 1
+          \end{cases}
+        \]
+        \item ($\mathbb{K}=\mathbb{R}$)
+        \[
+          \begin{cases}
+          X+Z=\sqrt{2}\\
+          X+\sqrt{2}Y+\frac{1}{2}Z=2\sqrt{2}\\
+          \frac{\sqrt{2}}{2}X+2Y+\frac{\sqrt{2}}{2}Z=3
+          \end{cases}
+        \]
+    \end{enumerate}
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+L'esercizio chiede di risolvere i sistemi tramite il metodo dell'inversa. 
+Il metodo dell'inversa consiste nel scrivere il sistema in forma matriciale, e calcolare l'inversa della matrice dei coefficienti. Se l'inversa esiste, si può calcolare la soluzione del sistema come prodotto tra l'inversa e la matrice dei termini noti.
+\begin{enumerate}
+    \item ($\mathbb{K}=\mathbb{Q}$)
+    \[\begin{pmatrix}
+        \frac{3}{8}&-\frac{3}{16}&\frac{5}{8}\\
+        -\frac{1}{8}&\frac{1}{16}&\frac{1}{8}\\
+        -\frac{3}{2}&-\frac{1}{4}&\frac{3}{2}
+    \end{pmatrix}
+    \begin{pmatrix}
+        0\\
+        1\\
+        0
+    \end{pmatrix}\]
+
+    \item ($\mathbb{K}=\mathbb{C}$)
+    \[\begin{pmatrix}
+        -\frac{6i}{15}&\frac{1}{5}\\
+        -\frac{3}{5}&\frac{i}{5}
+    \end{pmatrix}
+    \begin{pmatrix}
+        1\\
+        -i
+    \end{pmatrix}\]
+
+    \item ($\mathbb{K}=\mathbb{R}$)
+    \[\begin{pmatrix}
+        0&2&-\sqrt{2}\\
+        -\frac{\sqrt{2}}{4}&0&\frac{1}{2}\\
+        1&-2&\sqrt{\frac{}{}}
+    \end{pmatrix}
+    \begin{pmatrix}
+        \sqrt{2}\\
+        1\\
+        0
+    \end{pmatrix}\]
+
+\end{enumerate}
+
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+    Esprimere ciascuna delle seguenti matrici quadrate ad elementi reali come prodotto di matrici elementari:
+    \begin{multicols}{2}
+    \begin{enumerate}
+    \item \[\begin{pmatrix}
+        0&2\\
+        \frac{1}{2}&0
+    \end{pmatrix}\]
+    \item \[\begin{pmatrix}
+        1&-1\\
+        2&0
+    \end{pmatrix}\]
+    \item \[\begin{pmatrix}
+        3&5\\
+        1&2
+    \end{pmatrix}\]
+    \item \[\begin{pmatrix}
+        2&1&0\\
+        1&1&0\\
+        0&0&2
+    \end{pmatrix}\]
+    \item \[\begin{pmatrix}
+        1&3&0\\
+        2&1&1\\
+        2&-1&0
+    \end{pmatrix}\]
+    \end{enumerate}
+\end{multicols}
+\end{xca}
+\end{bxthm}
+
+\newpage
+\subsection{Sottospazi Vettoriali}
+\vspace{20pt}
+
+\begin{bxthm}
+\begin{xca}
+    Stabilire quali dei seguenti insiemi di vettori sono linearmente indipendenti, quali sono un sistema di generatori dello spazio, e quali costituiscono una base:
+    \begin{itemize}
+        \item In $\mathbb{R}^2$:
+            \[\left\{
+            \begin{pmatrix}
+                1\\
+                123
+            \end{pmatrix},
+            \begin{pmatrix}
+                -\pi\\
+                -\pi
+            \end{pmatrix}
+            \right\},\quad \left\{
+            \begin{pmatrix}
+                4/5\\
+                5/4
+            \end{pmatrix},
+            \begin{pmatrix}
+                4\\
+                5
+            \end{pmatrix}
+            \right\},\quad \left\{
+            \begin{pmatrix}
+                2\\
+                -1/3
+            \end{pmatrix},
+            \begin{pmatrix}
+                -1\\
+                1/6
+            \end{pmatrix}
+            \right\},\quad \left\{
+            \begin{pmatrix}
+                1\\
+                2
+            \end{pmatrix},
+            \begin{pmatrix}
+                11\\
+                -7\sqrt{2}
+            \end{pmatrix},
+            \begin{pmatrix}
+                -1\\
+                1
+            \end{pmatrix}
+            \right\}\]
+        \item In $\mathbb{R}^3$:
+        \[\left\{
+            \begin{pmatrix}
+                1\\
+                1\\
+                3
+            \end{pmatrix},
+            \begin{pmatrix}
+                2\\
+                2\\
+                0
+            \end{pmatrix},
+            \begin{pmatrix}
+                3\\
+                3\\
+                -3
+            \end{pmatrix}
+            \right\},\quad \left\{
+            \begin{pmatrix}
+                1\\
+                -1\\
+                -\sqrt{5}
+            \end{pmatrix},
+            \begin{pmatrix}
+                1\\
+                1\\
+                \sqrt{5}
+            \end{pmatrix},
+            \begin{pmatrix}
+                0\\
+                1\\
+                2\sqrt{5}
+            \end{pmatrix}
+            \right\},\quad\left\{
+            \begin{pmatrix}
+                1\\
+                0\\
+                0
+            \end{pmatrix},
+            \begin{pmatrix}
+                1\\
+                1\\
+                1
+            \end{pmatrix},
+            \begin{pmatrix}
+                0\\
+                1\\
+                2
+            \end{pmatrix},
+            \begin{pmatrix}
+                -1\\
+                -2\\
+                -3
+            \end{pmatrix}
+            \right\}\]
+        \item In $\mathbb{C}^4$:
+        \[\left\{
+            \begin{pmatrix}
+                1\\
+                0\\
+                i\\
+                0
+            \end{pmatrix},
+            \begin{pmatrix}
+                i\\
+                0\\
+                i\\
+                0
+            \end{pmatrix},
+            \begin{pmatrix}
+                0\\
+                1\\
+                1\\
+                0
+            \end{pmatrix},
+            \begin{pmatrix}
+                0\\
+                i\\
+                0\\
+                i
+            \end{pmatrix}
+            \right\},\quad\left\{
+            \begin{pmatrix}
+                0\\
+                1\\
+                1\\
+                0
+            \end{pmatrix},
+            \begin{pmatrix}
+                0\\
+                -i\\
+                -2i\\
+                1
+            \end{pmatrix},
+            \begin{pmatrix}
+                0\\
+                i\\
+                0\\
+                1
+            \end{pmatrix},
+            \begin{pmatrix}
+                1\\
+                0\\
+                0\\
+                0
+            \end{pmatrix},
+            \right\}\]
+    \end{itemize}
+\end{xca}
+\end{bxthm}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+    Dimostrare che le matrici
+    \[\begin{pmatrix}
+        1&1&1\\
+        2&0&1
+    \end{pmatrix},\begin{pmatrix}
+        1&1&0\\
+        -1&0&1
+    \end{pmatrix},\begin{pmatrix}
+        2&-2&1\\
+        1&0&0
+    \end{pmatrix}\in M_{2,3}(\mathbb{Q})\]
+    sono linearmente indipendenti.
+\end{xca}
+\end{bxthm}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+    Stabilire quali dei seguenti sottoinsiemi di $\mathbb{R}^3$ sono sottospazi vettoriali:
+    \begin{multicols}{2}
+        \begin{enumerate}
+            \item \[\left\{\begin{pmatrix}0\\0\\0\end{pmatrix}\right\}\]
+            \item \[\left\{\begin{pmatrix}x\\0 \\0 \end{pmatrix}\,:\;x\in\mathbb{R}\setminus\{0\}\right\}\]
+            \item \[\left\{\begin{pmatrix}x\\y \\z \end{pmatrix}\,:\;x-2y+z=1\right\}\]
+            \item \[\left\{\begin{pmatrix}t\\t \\t \end{pmatrix}\,:\;0\leq t\leq 1\right\}\]
+            \item \[\left\{\begin{pmatrix}t\\t \\t \end{pmatrix}\,:\;0< t< 1\right\}\]
+            \item \[\mathbb{R}^3\setminus\left\{\begin{pmatrix}0\\ 0\\ 1\end{pmatrix}\right\}\]
+            \item \[H_1\cup H_2\cup H_3,\quad \textup{con }H_i=\left\{\begin{pmatrix}x_1\\x_2 \\x_3 \end{pmatrix}\,:\;x_i=0\right\}\]
+            \item \[\left\{\begin{pmatrix}x\\y \\z \end{pmatrix}\,:\;x^2+y^2+z^2=1\right\}\]
+            \item \[\left\{\begin{pmatrix}x\\y \\z \end{pmatrix}\,:\;\begin{cases}x+y-5z=0\\2x+2y=0\end{cases}\right\}\]
+            \item \[\left\{\begin{pmatrix}t\\1 \\t \end{pmatrix}\,:\;t\in\mathbb{R}\right\}\]
+        \end{enumerate}
+    \end{multicols}
+\end{xca}
+\end{bxthm}
+
+\begin{bxthm}
+\begin{xca}
+    Sia $\mathbf{V}$ uno spazio vettoriale reale di dimensione $3$, e sia $\{\mathbf{i}, \mathbf{j}, \mathbf{k}\}$ una base di $\mathbf{V}$. Siano 
+    \[
+    \mathbf{U} = \langle \mathbf{i} + \mathbf{j}, \mathbf{i} - \mathbf{j} \rangle,\quad \mathbf{W} = \langle \mathbf{j} + \mathbf{k}, \mathbf{j} - \mathbf{k} \rangle.
+    \]
+    Dimostrare che $\mathbf{V} = \mathbf{U} + \mathbf{W}$, e che la somma non è diretta.
+\end{xca}
+\end{bxthm}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+    Dimostrare che $\mathbb{R}^4 = \mathbf{U} \oplus \mathbf{W}$, dove
+    \[
+    \mathbf{U} = \langle (1, 0, -\sqrt{5}, 0),\ (\sqrt{5}, 0, -1, 0) \rangle, \quad
+    \mathbf{W} = \langle (0, -2, 0, 3),\ (0, 1, 0, 1) \rangle.
+    \]
+\end{xca}
+\end{bxthm}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+    Dimostrare che $\mathbb{R}^3 = \mathbf{U} \oplus \mathbf{W}$, dove
+    \[
+    \mathbf{U} = \{ (x, y, z) \in \mathbb{R}^3 \mid x-y=0 \}, \quad
+    \mathbf{W} = \langle (1, 0,1) \rangle.
+    \]
+\end{xca}
+\end{bxthm}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+    Utilizzando esclusivamente operazioni elementari sui vettori, trovare una base del sottospazio di $\mathbb{Q}^4$ generato dai seguenti vettori:
+        \[
+        \mathbf{v}_1 = \begin{pmatrix} 1 \\ 1 \\ 2 \\ 3 \end{pmatrix},\quad 
+        \mathbf{v}_2 = \begin{pmatrix} 3 \\ 2 \\ 1 \\ 0 \end{pmatrix},\quad 
+        \mathbf{v}_3 = \begin{pmatrix} -1 \\ 0 \\ 3 \\ 6 \end{pmatrix},\quad 
+        \mathbf{v}_4 = \begin{pmatrix} 2 \\ 2 \\ 2 \\ 2 \end{pmatrix}.
+        \]
+\end{xca}
+\end{bxthm}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+    Dimostrare che gli $n$ vettori
+    \[
+    \begin{pmatrix} 1\\1\\\vdots\\1 \end{pmatrix},\ 
+    \begin{pmatrix} 0\\1\\\vdots\\1 \end{pmatrix},\ 
+    \begin{pmatrix} 0\\0\\1\\\vdots\\1 \end{pmatrix},\ 
+    \ldots,\ 
+    \begin{pmatrix} 0\\\vdots\\0\\1\\1 \end{pmatrix},
+    \begin{pmatrix} 0\\0\\\vdots\\0\\1 \end{pmatrix}
+    \]
+    costituiscono una base di $\mathbb{K}^n$.
+\end{xca}
+\end{bxthm}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+    Sia $\mathbf{V}$ un $\mathbb{K}$-spazio vettoriale. Si supponga che 
+    \[
+    \mathbf{v}_1,\ldots,\mathbf{v}_k\in \mathbf{V}
+    \]
+    siano linearmente indipendenti; dimostrare che 
+    \[
+    \lambda_1\mathbf{v}_1,\ldots,\lambda_k\mathbf{v}_k
+    \]
+    sono linearmente indipendenti per ogni $\lambda_1,\ldots,\lambda_k\in \mathbb{K}^*$.
+\end{xca}
+\end{bxthm}
+
+\begin{bxthm}
+\begin{xca}
+    Sia $1\leq i\leq n$. Determinare una base del sottospazio $\mathbf{H}_i$ di $\mathbb{K}^n$.
+\end{xca}
+\end{bxthm}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+    Dimostrare che $\mathrm{GL}_n(\mathbb{K})$ non è un sottospazio vettoriale di $M_n(\mathbb{K})$.
+\end{xca}
+\end{bxthm}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+    Sia $A=(a_{ij})\in M_n(\mathbb{K})$. La \textbf{traccia} di $A$ è
+    \[
+    \mathrm{tr}(A)=a_{11}+a_{22}+\dots+a_{nn}.
+    \]
+    Dimostrare che il sottoinsieme $\mathcal{T}_0$ di $M_n(\mathbb{K})$ costituito dalle matrici aventi traccia uguale a 0 è un sottospazio vettoriale, e calcolarne la dimensione.
+\end{xca}
+\end{bxthm}
+
+\begin{bxthm}
+\begin{xca}
+    Le matrici di $M_2(\mathbb{C})$
+    \[
+    \Sigma_1=\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix},\quad
+    \Sigma_2=\begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix},\quad
+    \Sigma_3=\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}
+    \]
+    si dicono \textbf{matrici di Pauli}. Dimostrare che 
+    \begin{enumerate}
+        \item Le seguenti proprietà sono soddisfatte:
+            \begin{enumerate}
+                \item \[\Sigma_1^2=\Sigma_2^2=\Sigma_3^2=\mathbf{I}_2 \]
+                \item Prodotti ordinati:
+                \[\begin{array}{lll}
+                \Sigma_1\Sigma_2=i\Sigma_3 & \Sigma_2\Sigma_3=i\Sigma_1 & \Sigma_3\Sigma_1=i\Sigma_2 \\
+                \Sigma_2\Sigma_1=-i\Sigma_3 & \Sigma_3\Sigma_2=-i\Sigma_1 & \Sigma_1\Sigma_3=-i\Sigma_2
+                \end{array}\]
+            \end{enumerate}
+        \item $\{\mathbf{I}_2, \Sigma_1, \Sigma_2, \Sigma_3\}$ è una base di $M_2(\mathbb{C})$.
+    \end{enumerate}
+    Calcolare le coordinate in tale base delle matrici 
+    \[1_{11}=\begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix},\quad 1_{12}=\begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix},\quad 1_{21}=\begin{pmatrix} 0 & 0 \\ 1 & 0 \end{pmatrix},\quad 1_{22}=\begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix}.\]
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+Verifichiamo le proprietà:
+\begin{enumerate}
+    \item \begin{align*}
+        \Sigma_1^2 &= \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}
+                   = \begin{pmatrix} 0\cdot0+1\cdot1 & 0\cdot1+1\cdot0 \\[1ex] 1\cdot0+0\cdot1 & 1\cdot1+0\cdot0 \end{pmatrix}
+                   = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix},\\[2ex]
+        \Sigma_2^2 &= \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}\begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}
+                   = \begin{pmatrix} 0\cdot0+(-i)\cdot i & 0\cdot(-i)+(-i)\cdot0 \\[1ex] i\cdot0+0\cdot i & i\cdot(-i)+0\cdot0 \end{pmatrix}
+                   = \begin{pmatrix} -i^2 & 0 \\ 0 & -i^2 \end{pmatrix}
+                   = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix},\\[2ex]
+        \Sigma_3^2 &= \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}
+                   = \begin{pmatrix} 1\cdot1+0\cdot0 & 1\cdot0+0\cdot(-1) \\[1ex] 0\cdot1+(-1)\cdot0 & 0\cdot0+(-1)\cdot(-1) \end{pmatrix}
+                   = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}.
+        \end{align*}
+        che verifica \[\Sigma_1^2=\Sigma_2^2=\Sigma_3^2=\mathbf{I}_2; \]
+        \item 
+        
+        \begin{align*}
+            \Sigma_1\,\Sigma_2
+            &=
+            \begin{pmatrix} 0 & 1 \\[4pt] 1 & 0 \end{pmatrix}
+            \begin{pmatrix} 0 & -\,i \\[4pt] i & 0 \end{pmatrix}
+            =
+            \begin{pmatrix}
+            0\cdot 0 + 1\cdot i & 0\cdot(-\,i) + 1\cdot 0 \\[6pt]
+            1\cdot 0 + 0\cdot i & 1\cdot(-\,i) + 0\cdot 0
+            \end{pmatrix}
+            =
+            \begin{pmatrix} i & 0 \\[4pt] 0 & -\,i \end{pmatrix}
+            =\,i
+            \begin{pmatrix} 1 & 0 \\[4pt] 0 & -\,1 \end{pmatrix}
+            =\,i\,\Sigma_3, \\[1em]
+            %
+            \Sigma_2\,\Sigma_3
+            &=
+            \begin{pmatrix} 0 & -\,i \\[4pt] i & 0 \end{pmatrix}
+            \begin{pmatrix} 1 & 0 \\[4pt] 0 & -\,1 \end{pmatrix}
+            =
+            \begin{pmatrix}
+            0\cdot 1 + (-\,i)\cdot 0 & 0\cdot 0 + (-\,i)\cdot(-\,1) \\[6pt]
+            i\cdot 1 + 0\cdot 0 & i\cdot 0 + 0\cdot(-\,1)
+            \end{pmatrix}
+            =
+            \begin{pmatrix} 0 & i \\[4pt] i & 0 \end{pmatrix}
+            =\,i
+            \begin{pmatrix} 0 & 1 \\[4pt] 1 & 0 \end{pmatrix}
+            =\,i\,\Sigma_1, \\[1em]
+            %
+            \Sigma_3\,\Sigma_1
+            &=
+            \begin{pmatrix} 1 & 0 \\[4pt] 0 & -\,1 \end{pmatrix}
+            \begin{pmatrix} 0 & 1 \\[4pt] 1 & 0 \end{pmatrix}
+            =
+            \begin{pmatrix}
+            1\cdot 0 + 0\cdot 1 & 1\cdot 1 + 0\cdot 0 \\[6pt]
+            0\cdot 0 + (-\,1)\cdot 1 & 0\cdot 1 + (-\,1)\cdot 0
+            \end{pmatrix}
+            =
+            \begin{pmatrix} 0 & 1 \\[4pt] -\,1 & 0 \end{pmatrix}
+            =\,i
+            \begin{pmatrix} 0 & -\,i \\[4pt] i & 0 \end{pmatrix}
+            =\,i\,\Sigma_2, \\[1em]
+            %
+            \Sigma_2\,\Sigma_1
+            &=
+            \begin{pmatrix} 0 & -\,i \\[4pt] i & 0 \end{pmatrix}
+            \begin{pmatrix} 0 & 1 \\[4pt] 1 & 0 \end{pmatrix}
+            =
+            \begin{pmatrix}
+            0\cdot 0 + (-\,i)\cdot 1 & 0\cdot 1 + (-\,i)\cdot 0 \\[6pt]
+            i\cdot 0 + 0\cdot 1 & i\cdot 1 + 0\cdot 0
+            \end{pmatrix}
+            =
+            \begin{pmatrix} -\,i & 0 \\[4pt] 0 & i \end{pmatrix}
+            =\,-\,i
+            \begin{pmatrix} 1 & 0 \\[4pt] 0 & -\,1 \end{pmatrix}
+            =\,-\,i\,\Sigma_3, \\[1em]
+            %
+            \Sigma_3\,\Sigma_2
+            &=
+            \begin{pmatrix} 1 & 0 \\[4pt] 0 & -\,1 \end{pmatrix}
+            \begin{pmatrix} 0 & -\,i \\[4pt] i & 0 \end{pmatrix}
+            =
+            \begin{pmatrix}
+            1\cdot 0 + 0\cdot i & 1\cdot(-\,i) + 0\cdot 0 \\[6pt]
+            0\cdot 0 + (-\,1)\cdot i & 0\cdot(-\,i) + (-\,1)\cdot 0
+            \end{pmatrix}
+            =
+            \begin{pmatrix} 0 & -\,i \\[4pt] -\,i & 0 \end{pmatrix}
+            =\,-\,i
+            \begin{pmatrix} 0 & 1 \\[4pt] 1 & 0 \end{pmatrix}
+            =\,-\,i\,\Sigma_1, \\[1em]
+            %
+            \Sigma_1\,\Sigma_3
+            &=
+            \begin{pmatrix} 0 & 1 \\[4pt] 1 & 0 \end{pmatrix}
+            \begin{pmatrix} 1 & 0 \\[4pt] 0 & -\,1 \end{pmatrix}
+            =
+            \begin{pmatrix}
+            0\cdot 1 + 1\cdot 0 & 0\cdot 0 + 1\cdot(-\,1) \\[6pt]
+            1\cdot 1 + 0\cdot 0 & 1\cdot 0 + 0\cdot(-\,1)
+            \end{pmatrix}
+            =
+            \begin{pmatrix} 0 & -\,1 \\[4pt] 1 & 0 \end{pmatrix}
+            =\,-\,i
+            \begin{pmatrix} 0 & -\,i \\[4pt] i & 0 \end{pmatrix}
+            =\,-\,i\,\Sigma_2.
+        \end{align*}
+\end{enumerate}
+Per dimostrare che 
+\[
+\mathcal{B} \;=\; \{\,\mathbf{I}_2,\;\Sigma_1,\;\Sigma_2,\;\Sigma_3\,\}
+\]
+è una base di \(M_2(\mathbb{C})\), basta osservare che \(\dim_{\mathbb{C}} M_2(\mathbb{C})=4\) e che i quattro elementi di \(\mathcal{B}\) sono linearmente indipendenti (o, equivalentemente, che span\-mano tutto \(M_2(\mathbb{C})\)). Qui di seguito mostriamo esplicitamente che ogni matrice 
+\[
+A \;=\; \begin{pmatrix} a & b \\ c & d \end{pmatrix}
+\;\in M_2(\mathbb{C})
+\]
+si può scrivere in modo unico come combinazione lineare di \(\mathbf{I}_2,\;\Sigma_1,\;\Sigma_2,\;\Sigma_3\).
+
+Cerchiamo scalari \(x,y,z,w\in\mathbb{C}\) tali che
+\[
+x\,\mathbf{I}_2 \;+\; y\,\Sigma_1 \;+\; z\,\Sigma_2 \;+\; w\,\Sigma_3
+\;=\;
+\begin{pmatrix} a & b \\ c & d \end{pmatrix}.
+\]
+Scriviamo separatamente ciascun termine:
+\[
+x\,\mathbf{I}_2
+\;=\;
+x \begin{pmatrix}1 & 0 \\ 0 & 1\end{pmatrix}
+\;=\;
+\begin{pmatrix} x & 0 \\[4pt] 0 & x \end{pmatrix},
+\qquad
+y\,\Sigma_1
+\;=\;
+y \begin{pmatrix}0 & 1 \\ 1 & 0\end{pmatrix}
+\;=\;
+\begin{pmatrix} 0 & y \\[4pt] y & 0 \end{pmatrix},
+\]
+\[
+z\,\Sigma_2
+\;=\;
+z \begin{pmatrix}0 & -\,i \\[4pt] i & 0\end{pmatrix}
+\;=\;
+\begin{pmatrix} 0 & -\,i\,z \\[4pt] i\,z & 0 \end{pmatrix},
+\qquad
+w\,\Sigma_3
+\;=\;
+w \begin{pmatrix}1 & 0 \\ 0 & -\,1\end{pmatrix}
+\;=\;
+\begin{pmatrix} w & 0 \\[4pt] 0 & -\,w \end{pmatrix}.
+\]
+Sommando i quattro contributi otteniamo
+\[
+x\,\mathbf{I}_2 \;+\; y\,\Sigma_1 \;+\; z\,\Sigma_2 \;+\; w\,\Sigma_3
+\;=\;
+\begin{pmatrix}
+    x + w        & y \;-\; i\,z \\[6pt]
+    y \;+\; i\,z & x - w
+\end{pmatrix}.
+\]
+Vogliamo uguagliare questa matrice a \(\bigl(\begin{smallmatrix}a & b \\ c & d\end{smallmatrix}\bigr)\). Ne segue il sistema di equazioni:
+\[
+\begin{cases}
+x + w \;=\; a,\\[4pt]
+x - w \;=\; d,\\[6pt]
+y - i\,z \;=\; b,\\[4pt]
+y + i\,z \;=\; c.
+\end{cases}
+\]
+Risolviamo a coppie:
+\[
+\begin{aligned}
+&x + w \;=\; a, 
+\quad
+x - w \;=\; d
+\quad\Longrightarrow\quad
+x \;=\; \frac{a + d}{2}, 
+\quad
+w \;=\; \frac{a - d}{2}, 
+\\[6pt]
+&y - i\,z \;=\; b, 
+\quad
+y + i\,z \;=\; c
+\quad\Longrightarrow\quad
+y \;=\; \frac{b + c}{2}, 
+\quad
+i\,z \;=\; \frac{c - b}{2}
+\;\Longrightarrow\;
+z \;=\; \frac{c - b}{2\,i} \;=\; \frac{i\,(b - c)}{2}.
+\end{aligned}
+\]
+Quindi esiste un \emph{unica} quadrupla \(\bigl(x,y,z,w\bigr)=\left(\frac{a+d}{2},\frac{b+c}{2},\frac{c-b}{2i},\frac{a-d}{2}\right)\in\mathbb{C}^4\) che realizza
+\[
+\begin{pmatrix}a & b\\ c & d\end{pmatrix}
+\;=\;
+x\,\mathbf{I}_2 \;+\; y\,\Sigma_1 \;+\; z\,\Sigma_2 \;+\; w\,\Sigma_3.
+\]
+Ciò mostra sia che ogni matrice \(2\times 2\) si esprime come combinazione degli elementi di \(\mathcal{B}\) (spanning), sia che la scrittura è unica (linearmente indipendenti). Poiché \(\dim_{\mathbb{C}}M_2(\mathbb{C})=4\), ne consegue che
+\[
+\{\mathbf{I}_2,\;\Sigma_1,\;\Sigma_2,\;\Sigma_3\}
+\]
+è effettivamente una base di \(M_2(\mathbb{C})\).
+
+\vspace{10pt}
+
+Calcolare le coordinate in tale base delle matrici 
+\begin{align*}
+    1_{11}=\begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}&\implies (x,y,z,w) = \left(\frac{1}{2},0,0,\frac{1}{2}\right)\\
+    1_{12}=\begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}&\implies (x,y,z,w) = \left(0,\frac{1}{2},-\frac{1}{2i},0\right)\\
+    1_{21}=\begin{pmatrix} 0 & 0 \\ 1 & 0 \end{pmatrix}&\implies (x,y,z,w) = \left(0,\frac{1}{2},\frac{1}{2i},0\right)\\
+    1_{22}=\begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix}&\implies (x,y,z,w) = \left(\frac{1}{2},0,0,-\frac{1}{2}\right)
+\end{align*}
+
+\newpage
+\subsection{Rango}
+\vspace{20pt}
+
+\begin{bxthm}
+\begin{xca}
+    Calcolare il rango delle seguenti matrici a elementi razionali:
+    \[\begin{pmatrix}
+        \frac{1}{2}&3&1&-1\\
+        1&4&2&0\\
+        -\frac{1}{2}&-2&-1&0
+    \end{pmatrix},\quad\begin{pmatrix}
+        1&1&-1\\
+        0&1&1\\
+        1&-1&-1\\
+        0&0&1\\
+        0&0&0
+    \end{pmatrix},\quad\begin{pmatrix}
+        1&-2&3&4&5\\
+        1&4&0&7&2\\
+        2&2&3&11&7\\
+        3&6&3&18&9
+    \end{pmatrix}\]
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+\begin{enumerate}
+    \item $2$
+    \item $3$
+    \item $2$
+\end{enumerate}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+    Dimostrare che tutte le matrici $n\times m$ a elementi in $\mathbb{K}$ di rango minore sono della forma
+    \[\begin{pmatrix}
+        a_1\\
+        \vdots\\
+        a_n
+    \end{pmatrix}\begin{pmatrix}
+        b_1\;\ldots\;b_m
+    \end{pmatrix},\quad a_1,\ldots,a_n,b_1,\ldots,b_m\in\mathbb{K}\]
+\end{xca}
+\end{bxthm}
+
+\newpage
+\subsection{Determinanti}
+\vspace{20pt}
+
+\begin{bxthm}
+\begin{xca}
+    Calcolare l'inversa delle seguenti matrici utilizzando la Formula di Laplace per l'inversa:
+    \begin{multicols}{2}
+    \begin{enumerate}
+    \item ($\mathbb{K}=\mathbb{Q}$)
+    \[
+      \begin{pmatrix}
+      \frac{1}{2} & \frac{1}{3} \\
+      5 & 2
+      \end{pmatrix}
+    \]
+
+    \item ($\mathbb{K}=\mathbb{R}$)
+    \[
+      \begin{pmatrix}
+      3 & \sqrt{3} \\
+      1 & \tfrac{1}{\sqrt{3}}
+      \end{pmatrix}
+    \]
+  
+    \item($\mathbb{K}=\mathbb{R}$)
+    \[
+      \begin{pmatrix}
+      0 & -4 \\
+      -6 & 2
+      \end{pmatrix}
+    \]
+  
+    \item ($\mathbb{K}=\mathbb{C}$)
+    \[
+      \begin{pmatrix}
+      1 & i \\
+      2i & -1
+      \end{pmatrix}
+    \]
+  
+    \item ($\mathbb{K}=\mathbb{C}$)
+    \[
+      \begin{pmatrix}
+      2 & 2 - i \\
+      2 + i & -2
+      \end{pmatrix}
+    \]
+  
+    \item ($\mathbb{K}=\mathbb{C}$)
+    \[
+      \begin{pmatrix}
+      1 & \frac{1}{2} \\
+      2i & 1
+      \end{pmatrix}
+    \]
+
+    \item ($\mathbb{K}=\mathbb{Q}$)
+    \[
+      \begin{pmatrix}
+      6 & -3 & -2 \\
+      5 & -2 & -2 \\
+      5 & -3 & -1
+      \end{pmatrix}
+    \]
+    \item ($\mathbb{K}=\mathbb{Q}$)
+    \[
+      \begin{pmatrix}
+      -1 & 2 & -1 \\
+      -5 & 13 & -10 \\
+      2 & -5 & 4
+      \end{pmatrix}
+    \]
+    \item ($\mathbb{K}=\mathbb{Q}$)
+    \[
+      \begin{pmatrix}
+      1 & 0 & 1 \\
+      1 & 1 & 0 \\
+      -1 & 1 & 0
+      \end{pmatrix}
+    \]
+    \item ($\mathbb{K}=\mathbb{C}$)
+    \[
+      \begin{pmatrix}
+      2i & 0 & 1 \\
+      0 & 0 & i \\
+      1 & 1 & 1
+      \end{pmatrix}
+    \]
+    \item ($\mathbb{K}=\mathbb{Q}$)
+    \[
+      \begin{pmatrix}
+      -1 & 0 & 0& 2 \\
+      0 & 1 & 0 & 0\\
+      1 & 0 & 0 & 1\\
+      1&0&1&1
+      \end{pmatrix}
+    \]
+    \item ($\mathbb{K}=\mathbb{C}$)
+    \[
+      \begin{pmatrix}
+      0 & 0 & 0& i \\
+      0 & 0 & 1 & 0\\
+      0 & 1 & 0 & 1\\
+      i&0&0&0
+      \end{pmatrix}
+    \]
+    \end{enumerate}
+    \end{multicols}
+\end{xca}
+\end{bxthm}
+\begin{enumerate}
+    \item ($\mathbb{K}=\mathbb{Q}$)
+    \[
+      \begin{pmatrix}
+      -3 & \frac{1}{2} \\
+      \frac{15}{2} & -\frac{3}{4}
+      \end{pmatrix}
+    \]
+
+    \item \[
+      \begin{vmatrix}
+      3 & \sqrt{3} \\
+      1 & \tfrac{1}{\sqrt{3}}
+      \end{vmatrix}=0\implies \dfrac{\ ^{t}\operatorname{cof}\begin{pmatrix}
+        3 & \sqrt{3} \\
+        1 & \tfrac{1}{\sqrt{3}}
+        \end{pmatrix}}{\begin{vmatrix}
+            3 & \sqrt{3} \\
+            1 & \tfrac{1}{\sqrt{3}}
+            \end{vmatrix}}=\dfrac{\ ^{t}\operatorname{cof}\begin{pmatrix}
+                3 & \sqrt{3} \\
+                1 & \tfrac{1}{\sqrt{3}}
+                \end{pmatrix}}{0}\;\nexists
+    \]
+  
+    \item($\mathbb{K}=\mathbb{R}$)
+    \[
+      \begin{pmatrix}
+      -\frac{1}{12} & -\frac{1}{6} \\
+      -\frac{1}{4} & 0
+      \end{pmatrix}
+    \]
+  
+    \item ($\mathbb{K}=\mathbb{C}$)
+    \[
+      \begin{pmatrix}
+      -1 & -i \\
+      -2i & 1
+      \end{pmatrix}
+    \]
+  
+    \item ($\mathbb{K}=\mathbb{C}$)
+    \[
+      \dfrac{1}{9}\begin{pmatrix}
+      2 & 2 - i \\
+      2 + i & -2
+      \end{pmatrix}
+    \]
+  
+    \item ($\mathbb{K}=\mathbb{C}$)
+    \[
+      \begin{pmatrix}
+        \frac{1-i}{2} & \frac{1-i}{4} \\
+      1+i & \frac{i-1}{2}
+      \end{pmatrix}
+    \]
+
+    \item ($\mathbb{K}=\mathbb{Q}$)
+    \[
+      \begin{pmatrix}
+        -4&3&2\\
+        -5&4&2\\
+        -5&3&3
+      \end{pmatrix}
+    \]
+\end{enumerate}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+    Discutere i seguenti sistemi nelle incognite reali $X$,$Y$ in cui $m$ è un parametro reale:
+    \begin{enumerate}
+        \item 
+        \[
+        \begin{cases}
+            2X-Y=m+1\\
+            mX+Y=1
+        \end{cases}\]
+        \item \[
+        \begin{cases}
+            2X+mY=1\\
+            2X+(1+m)Y=1\\
+            (3-m)X+3Y=1+m
+        \end{cases}\]
+        \item \[\begin{cases}
+            2X+mY=-4\\
+            mX-3Y=5\\
+            3X+Y=-5m
+        \end{cases}\]
+    \end{enumerate}
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+Supponiamo assegnato un sistema di $m$ equazioni in $n$ incognite, in cui i coefficienti delle incognite e i termini noti siano funzioni di uno o più parametri variabili in $\mathbb{K}$. 
+Per ogni valore assunto dai parametri si ottiene un diverso sistema a coefficienti in $\mathbb{K}$ di cui si vuole accertare la compatibilità e ricercare le eventuali soluzioni: lo studio dei casi 
+che si presentano e la ricerca delle rispettive soluzione si dice la \textbf{discussione del sistema assegnato}. Il modo più efficace e naturale di procedere in questo caso è quello di utilizzare 
+il teorema (\ref{cinqsett}) analizzando i valori possibili del rango della matrice dei coefficienti e della matrice orlata in funzione dei parametri. Una volta stabiliti i valori dei parametri per cui il sistema è compatibile, 
+e in ogni caso l'infinità delle soluzioni, si procederà a risolverlo in ciascun caso.
+\begin{enumerate}
+    \item 
+    \[
+    \begin{cases}
+        2X-Y=m+1\\
+        mX+Y=1
+    \end{cases}\]
+    
+\bigskip
+\textbf{1. Forma matriciale e matrici aumentate}
+
+Poni
+\[
+A = \begin{pmatrix}
+2 & -1\\
+m & 1
+\end{pmatrix},
+\qquad
+\mathbf{x} = \begin{pmatrix}X\\Y\end{pmatrix},
+\qquad
+\mathbf{b} = \begin{pmatrix}m+1\\1\end{pmatrix}.
+\]
+Il sistema si scrive \(A\mathbf{x}=\mathbf{b}\). La matrice aumentata è
+\[
+\bigl[A\mid \mathbf{b}\bigr]
+=
+\begin{pmatrix}
+2 & -1 & \mid & m+1\\
+m & 1  & \mid & 1
+\end{pmatrix}.
+\]
+
+\bigskip
+\textbf{2. Teorema di Rouché–Capelli}
+
+Calcoliamo il determinante della matrice dei coefficienti:
+\[
+\det A = 
+\begin{vmatrix}
+2 & -1\\
+m & 1
+\end{vmatrix}
+= 2\cdot1 - (-1)\cdot m = 2 + m.
+\]
+\begin{itemize}
+  \item Se \(m + 2 \neq 0\), allora \(\operatorname{rank}(A)=2\) e anche \(\operatorname{rank}([A\mid\mathbf b])=2\). Il sistema è \emph{determinato} con \emph{unica} soluzione.
+  \item Se \(m + 2 = 0\), cioè \(m=-2\), allora \(\det A=0\) e \(\operatorname{rank}(A)\le1\). Calcoliamo i minori orlati per verificare la consistenza:
+  \[
+  \begin{vmatrix}
+  2 & -1 & m+1\\
+  m & 1  & 1
+  \end{vmatrix}
+  \quad\text{per }m=-2
+  \;\Longrightarrow\;
+  \begin{vmatrix}
+  2 & -1 & -1\\
+  -2 & 1 & 1
+  \end{vmatrix}
+  =2\cdot1\cdot1 +(-1)\cdot1\cdot(-2) +(-1)\cdot(-2)\cdot(-1)
+  -\bigl((-1)\cdot1\cdot(-1) +2\cdot1\cdot(-1) +(-2)\cdot(-1)\cdot2\bigr)
+  =0.
+  \]
+  Quindi \(\operatorname{rank}(A)=\operatorname{rank}([A\mid\mathbf b])=1\) e il sistema è \emph{indeterminato} con infinite soluzioni.
+\end{itemize}
+
+\bigskip
+\textbf{3. Caso \(m + 2 \neq 0\): soluzione unica}
+
+Quando \(m\neq -2\), invertiamo \(A\) o risolviamo direttamente:
+\[
+(2+m)X = (m+1)+1 = m+2
+\quad\Longrightarrow\quad
+X = \frac{m+2}{m+2} = 1,
+\]
+\[
+2\cdot1 - Y = m+1
+\quad\Longrightarrow\quad
+Y = 2 - (m+1) = 1 - m.
+\]
+\[
+\boxed{X=1,\quad Y=1-m.}
+\]
+
+\bigskip
+\textbf{4. Caso \(m = -2\): infinite soluzioni}
+
+Per \(m=-2\) il sistema diventa
+\[
+\begin{cases}
+2X - Y = -1,\\
+-2X + Y = 1,
+\end{cases}
+\]
+che in realtà è una sola equazione (la seconda è la moltiplicazione per \(-1\) della prima). Da
+\[
+2X - Y = -1
+\quad\Longrightarrow\quad
+Y = 2X + 1,
+\]
+otteniamo la famiglia di soluzioni:
+\[
+\boxed{X = t,\quad Y = 2t + 1,\quad t\in\mathbb{K}.}
+\]
+
+\bigskip
+\textbf{Conclusione:}
+
+\[
+\begin{cases}
+\text{se }m\neq -2: & (X,Y) = \bigl(1,\,1-m\bigr),\\
+\text{se }m=-2:    & (X,Y) = \bigl(t,\,2t+1\bigr),\;t\in\mathbb{K}.
+\end{cases}
+\]
+
+    \item \[
+    \begin{cases}
+        2X+mY=1\\
+        2X+(1+m)Y=1\\
+        (3-m)X+3Y=1+m
+    \end{cases}\]
+    \bigskip
+\textbf{1. Forma matriciale}
+
+\[
+A = \begin{pmatrix}
+2      & m      \\
+2      & 1 + m  \\
+3 - m  & 3
+\end{pmatrix},
+\quad
+\mathbf{x} = \begin{pmatrix}X\\Y\end{pmatrix},
+\quad
+\mathbf{b} = \begin{pmatrix}1\\1\\1+m\end{pmatrix}.
+\]
+
+\bigskip
+\textbf{2. Rango di \(A\)}
+
+Calcoliamo un generico minore di ordine 2, ad esempio quello delle prime due righe:
+\[
+\det\begin{pmatrix}
+2 & m\\
+2 & 1+m
+\end{pmatrix}
+=2(1+m) - 2m =2 +2m -2m =2 \neq 0.
+\]
+Quindi \(\operatorname{rank}(A)=2\) per ogni \(m\).
+
+\bigskip
+\textbf{3. Rango della matrice aumentata}
+
+La matrice aumentata è
+\[
+[A\mid \mathbf b]
+=
+\begin{pmatrix}
+2      & m      & \mid & 1\\
+2      & 1 + m  & \mid & 1\\
+3 - m  & 3      & \mid & 1 + m
+\end{pmatrix}.
+\]
+Risolvendo le prime due equazioni (minori orlati):
+\[
+\begin{cases}
+2X + mY = 1,\\
+2X + (1+m)Y = 1,
+\end{cases}
+\quad\Longrightarrow\quad
+\begin{cases}
+Y = 0,\\
+X = \tfrac12.
+\end{cases}
+\]
+Verifichiamo la terza equazione con \(X=\tfrac12\), \(Y=0\):
+\[
+(3 - m)\tfrac12 + 3\cdot 0 \stackrel{?}{=} 1 + m
+\quad\Longrightarrow\quad
+\tfrac{3 - m}{2} = 1 + m
+\quad\Longrightarrow\quad
+3 - m = 2 + 2m
+\quad\Longrightarrow\quad
+3 - 2 = 3m
+\quad\Longrightarrow\quad
+m = \tfrac13.
+\]
+- Se \(m=\tfrac13\), la terza riga è combinazione delle prime due e quindi \(\operatorname{rank}([A\mid\mathbf b])=2=\operatorname{rank}(A)\): il sistema è compatibile determinato.
+- Se \(m\neq\tfrac13\), la terza equazione non è soddisfatta e \(\operatorname{rank}([A\mid\mathbf b])=3>\operatorname{rank}(A)=2\): il sistema è incompatibile.
+
+\bigskip
+\textbf{4. Soluzione}
+
+\[
+\boxed{
+\begin{aligned}
+&\text{Se }m = \tfrac13:
+&&X = \tfrac12,\quad Y = 0.\\
+&\text{Se }m \neq \tfrac13:
+&&\text{nessuna soluzione.}
+\end{aligned}
+}
+\]
+    \item \[\begin{cases}
+        2X+mY=-4\\
+        mX-3Y=5\\
+        3X+Y=-5m
+    \end{cases}\]
+    \bigskip
+\textbf{1. Forma matriciale}
+
+\[
+A = \begin{pmatrix}
+2 & m\\
+m & -3\\
+3 & 1
+\end{pmatrix},
+\quad
+\mathbf{x}=\begin{pmatrix}X\\Y\end{pmatrix},
+\quad
+\mathbf{b}=\begin{pmatrix}-4\\5\\-5m\end{pmatrix}.
+\]
+
+\bigskip
+\textbf{2. Rango di \(A\)}
+
+Calcoliamo un qualunque minore principale di ordine \(2\), per esempio il minore formato dalle prime due righe:
+\[
+\det\begin{pmatrix}
+2 & m\\
+m & -3
+\end{pmatrix}
+=2\cdot(-3) - m\cdot m = -6 - m^2 \;\neq0\quad\forall m\in\mathbb R.
+\]
+Dunque
+\[
+\operatorname{rank}(A) = 2\quad\forall\,m.
+\]
+
+\bigskip
+\textbf{3. Soluzione delle prime due equazioni}
+
+Risolvendo il sistema costituito dalle prime due equazioni (minori orlati):
+\[
+\begin{cases}
+2X + mY = -4,\\
+mX - 3Y = 5,
+\end{cases}
+\qquad
+D = \det\begin{pmatrix}2 & m\\ m & -3\end{pmatrix} = -6 - m^2.
+\]
+Per Cramer,
+\[
+X = \frac{\det\begin{pmatrix}-4 & m\\ 5 & -3\end{pmatrix}}{D}
+= \frac{(-4)(-3) - m\cdot5}{-6 - m^2}
+= \frac{12 - 5m}{-(m^2 + 6)}
+= -\frac{12 - 5m}{m^2 + 6},
+\]
+\[
+Y = \frac{\det\begin{pmatrix}2 & -4\\ m & 5\end{pmatrix}}{D}
+= \frac{2\cdot5 - (-4)\,m}{-6 - m^2}
+= \frac{10 + 4m}{-(m^2 + 6)}
+= -\frac{10 + 4m}{m^2 + 6}.
+\]
+
+\bigskip
+\textbf{4. Consistenza con la terza equazione}
+
+Imponiamo che la terza equazione
+\[
+3X + Y = -5m
+\]
+sia soddisfatta dalle soluzioni \(X,Y\) trovate. Sostituendo:
+\[
+3X + Y
+= -\frac{3(12 - 5m) + (10 + 4m)}{m^2 + 6}
+= -\frac{36 - 15m + 10 + 4m}{m^2 + 6}
+= -\frac{46 - 11m}{m^2 + 6}
+\stackrel{!}{=} -5m.
+\]
+Da cui
+\[
+\frac{46 - 11m}{m^2 + 6} = 5m
+\;\Longrightarrow\;
+46 - 11m = 5m\,(m^2 + 6)
+= 5m^3 + 30m
+\;\Longrightarrow\;
+5m^3 + 41m - 46 = 0.
+\]
+Il polinomio \(5m^3 + 41m - 46\) ha unico zero reale \(m=1\).  
+
+\bigskip
+\textbf{5. Conclusione}
+
+\[
+\begin{cases}
+\text{Se }m = 1:\quad
+X = -\dfrac{12 - 5\cdot1}{1^2 + 6} = -\dfrac{7}{7} = -1,\quad
+Y = -\dfrac{10 + 4\cdot1}{7} = -\dfrac{14}{7} = -2;\\[6pt]
+\text{Se }m \neq 1:\quad
+\operatorname{rank}([A\mid\mathbf b]) = 3 > \operatorname{rank}(A) = 2
+\;\Longrightarrow\;
+\text{nessuna soluzione.}
+\end{cases}
+\]
+\end{enumerate}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+    Discutere i seguenti sistemi nelle incognite reali $X$,$Y$,$Z$ in cui $m$ è un parametro reale:
+    \begin{enumerate}
+        \item \[\begin{cases}
+            X+mY+Z=2m\\
+            mX+Y+Z=2
+        \end{cases}\]
+        \item \[\begin{cases}
+            Y+mZ=m+1\\
+            X+Y+Z=2\\
+            mX+Y=m+1
+        \end{cases}\]
+        \item \[\begin{cases}
+            2X+mY+mZ=1\\
+            mX+2Y+mZ=1\\
+            mX+mY+2Z=1
+        \end{cases}\]
+        \item \[\begin{cases}
+            X+Y-2Z=0\\
+            2X-Y+mZ=0\\
+            X-Y-Z=0
+        \end{cases}\]
+        \item \[\begin{cases}
+            X+Y+2X=1\\
+            X+2Y+4Z=1\\
+            2X+3Y+6Z=m
+        \end{cases}\]
+        \item \[\begin{cases}
+            X-Y=2\\
+            mY+Z=m\\
+            Y+mZ=m
+        \end{cases}\]
+        \item \[\begin{cases}
+            mY+(m-2)Z=0\\
+            mX+Y+2Z=0\\
+            mX+3Z=0
+        \end{cases}\]
+        \item \[\begin{cases}
+            X-Y+Z=0\\
+            -X-mY+2mZ=-\frac{1}{3}\\
+            mX+mY=-\frac{1}{3}
+        \end{cases}\]
+    \end{enumerate}
+\end{xca}
+\end{bxthm}
+\paragraph{Solution}
+\begin{xca}
+    Discutere i seguenti sistemi nelle incognite reali $X$,$Y$,$Z$ in cui $m$ è un parametro reale:
+    \begin{enumerate}
+        \item \[\begin{cases}
+            X+mY+Z=2m\\
+            mX+Y+Z=2
+        \end{cases}\]
+        \item \[\begin{cases}
+            Y+mZ=m+1\\
+            X+Y+Z=2\\
+            mX+Y=m+1
+        \end{cases}\]
+        \item \[\begin{cases}
+            2X+mY+mZ=1\\
+            mX+2Y+mZ=1\\
+            mX+mY+2Z=1
+        \end{cases}\]
+        \item \[\begin{cases}
+            X+Y-2Z=0\\
+            2X-Y+mZ=0\\
+            X-Y-Z=0
+        \end{cases}\]
+        \item \[\begin{cases}
+            X+Y+2X=1\\
+            X+2Y+4Z=1\\
+            2X+3Y+6Z=m
+        \end{cases}\]
+        \item \[\begin{cases}
+            X-Y=2\\
+            mY+Z=m\\
+            Y+mZ=m
+        \end{cases}\]
+        \item \[\begin{cases}
+            mY+(m-2)Z=0\\
+            mX+Y+2Z=0\\
+            mX+3Z=0
+        \end{cases}\]
+        \item \[\begin{cases}
+            X-Y+Z=0\\
+            -X-mY+2mZ=-\frac{1}{3}\\
+            mX+mY=-\frac{1}{3}
+        \end{cases}\]
+    \end{enumerate}
+\end{xca}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+    Risolvere i seguenti sistemi con la regola di Cramer:
+    \begin{enumerate}
+        \item $(\mathbb{K}=\mathbb{R})$
+        \[\begin{cases}
+            2X-Y=2-\sqrt{2}\\
+            -X+\sqrt{2}Z=1\\
+            \sqrt{2}X+Y=2\sqrt{2}
+        \end{cases}\]
+        \item $(\mathbb{K}=\mathbb{C})$
+        \[\begin{cases}
+            2X+iY+Z=1-2i\\
+            2Y-iZ=2i-2\\
+            iX+iY+iZ=1+i
+        \end{cases}\]
+        \item $(\mathbb{K}=\mathbb{Q})$
+        \[\begin{cases}
+            X_1+2X_3=4\\
+            -X_1+X_2=-1\\
+            X_2+X_3=2\\
+            X_1+X_4=1
+        \end{cases}\]
+    \end{enumerate}
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+\begin{enumerate}
+    \item Trasformiamo il sistema in forma matriciale:
+        \[
+        \begin{pmatrix}
+            2 & -1 & 0\\[4mm]
+            -1 & 0 & \sqrt{2}\\[4mm]
+            \sqrt{2} & 1 & 0
+        \end{pmatrix}
+        \begin{pmatrix}
+            X\\[2mm]
+            Y\\[2mm]
+            Z
+        \end{pmatrix}=
+        \begin{pmatrix}
+            2-\sqrt{2}\\[2mm]
+            1\\[2mm]
+            2\sqrt{2}
+        \end{pmatrix}\]
+        Calcoliamo il determinante di $A$ e la matrice dei cofattori:
+        \[
+        \det(A)=-2(1+\sqrt{2}),\quad \operatorname{cof}(A)=
+        \begin{pmatrix}
+            -\sqrt{2} & 2 & -1\\[2mm]
+            0 & 0 & -2-\sqrt{2}\\[2mm]
+            -\sqrt{2} & -2\sqrt{2} & -1
+        \end{pmatrix}
+        \]
+        Per la regola di Cramer otteniamo:
+        \begin{align*}
+            X &=\dfrac{b_1A_{11}+b_2A_{21}+b_3A_{31}}{-2(1+\sqrt{2})}=1,\\\\
+            Y &=\dfrac{b_1A_{12}+b_2A_{22}+b_3A_{32}}{-2(1+\sqrt{2})}=\sqrt{2},\\\\
+            Z &=\dfrac{b_1A_{13}+b_2A_{23}+b_3A_{33}}{-2(1+\sqrt{2})}=\sqrt{2}.
+        \end{align*}
+        Verifichiamo ora la soluzione sostituendo i valori ottenuti nelle equazioni del sistema:
+        \[\begin{cases}
+            2X-Y=2\cdot 1 - \sqrt{2} = 2-\sqrt{2}\\
+            -X+\sqrt{2}Z=-1 + \sqrt{2}\cdot\sqrt{2} = -1+2 = 1\\
+            \sqrt{2}X+Y=\sqrt{2}\cdot 1 + \sqrt{2} = 2\sqrt{2}
+        \end{cases}\]
+    \item Trasformiamo il sistema in forma matriciale:
+        \[
+        \begin{pmatrix}
+              2 & i & 1\\[2mm]
+              0 & 2 & -i\\[2mm]
+              i & i & i
+          \end{pmatrix}
+          \begin{pmatrix}
+              X\\[2mm]
+              Y\\[2mm]
+              Z
+          \end{pmatrix}=
+          \begin{pmatrix}
+              1-2i\\[2mm]
+              2i-2\\[2mm]
+              1+i
+          \end{pmatrix}
+        \]
+        Calcoliamo il determinante di $A$ e la matrice dei cofattori:
+        \[
+            \det(A)=3i-2,\quad \operatorname{cof}(A)=
+            \begin{pmatrix}
+            2i-1 & 1    & -2i\\[2mm]
+            1+i  & i    & -2i-1\\[2mm]
+            -1   & 2i   & 4
+            \end{pmatrix}.
+        \]
+        Per la regola di Cramer otteniamo:
+        \begin{align*}
+            X &= \frac{b_1A_{11}+b_2A_{21}+b_3A_{31}}{3i-2} = 1,\\[2mm]
+            Y &= \frac{b_1A_{12}+b_2A_{22}+b_3A_{32}}{3i-2} = i,\\[2mm]
+            Z &= \frac{b_1A_{13}+b_2A_{23}+b_3A_{33}}{3i-2} = -2i.
+        \end{align*}
+        Verifichiamo ora la soluzione sostituendo i valori ottenuti nelle equazioni del sistema:
+        \[\begin{cases}
+            2X+iY+Z=2\cdot 1 + i\cdot i + (-2i)= 2 + (-1) - 2i = 1-2i\\
+            2Y-iZ= 2\cdot i - i\cdot(-2i)= 2i + 2i^2 = 2i - 2\\
+            iX+iY+iZ= i\cdot 1 + i\cdot i + i\cdot(-2i)= i + (-1) + 2 = 1+i
+        \end{cases}\]
+    \item Trasformiamo il sistema in forma matriciale:
+        \[            
+            \begin{pmatrix}
+                1&0&2&0\\
+                -1&1&0&0\\
+                0&1&1&0\\
+                1&0&0&1
+            \end{pmatrix}
+            \begin{pmatrix}
+                X_1\\
+                X_2\\
+                X_3\\
+                X_4
+            \end{pmatrix}=
+            \begin{pmatrix}
+                4\\
+                -1\\
+                2\\
+                1
+            \end{pmatrix}\]
+        Calcoliamo il determinante di $A$ e la matrice dei cofattori:
+        \[
+            \det(A)=-1,\quad \operatorname{cof}(A)=
+            \begin{pmatrix}
+            1&1&-1&-1\\
+            2&1&-1&-2\\
+            -2&-2&1&2\\
+            0&0&0&-1
+            \end{pmatrix}.
+        \]
+        \begin{align*}
+            X_1 &= -(b_1A_{11}+b_2A_{21}+b_3A_{31}+b_4A_{41})=2\\
+            X_2 &= -(b_1A_{12}+b_2A_{22}+b_3A_{32}+b_4A_{42})=1\\
+            X_3 &= -(b_1A_{13}+b_2A_{23}+b_3A_{33}+b_4A_{43})=1\\
+            X_4 &= -(b_1A_{14}+b_2A_{24}+b_3A_{34}+b_4A_{44})=-1
+        \end{align*}
+        Verifichiamo ora la soluzione sostituendo i valori ottenuti nelle equazioni del sistema:
+        \[\begin{cases}
+            X_1+2X_3=2+2\cdot1=4\\
+            -X_1+X_2=-2+1=-1\\
+            X_2+X_3=1+1=2\\
+            X_1+X_4=2-1=1
+        \end{cases}\]
+\end{enumerate}
+
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+    Siano $A,B,C\in M_n(\mathbb{K})$, e siano $M,N\in M_{2n}(\mathbb{K})$ le matrici seguenti:
+    \[M=\begin{pmatrix}
+        A&B\\
+        \mathbf{0}&C
+    \end{pmatrix},\quad N=\begin{pmatrix}
+        A&\mathbf{0}\\
+        B&C
+    \end{pmatrix}\]
+    Dimostrare che 
+    \[\det(M)=\det(A)\det(C)=\det(N).\]
+\end{xca}
+\end{bxthm}
+
+\newpage
+\section{Spazi Affini}
+\vspace{20pt}
+
+\vspace{20pt}
+\subsection{Spazi e Sottospazi Affini}
+\vspace{20pt}
+
+
+\begin{bxthm}
+\begin{xca}
+    In $\mathbf{A}^3(\mathbb{C})$ sia $\varphi$ il piano di equazione $2X+Y-1=0$. 
+    In ciascuno dei seguenti casi calcolare le coordinate di $p_u(x,y,z)$, dove $p_u:\mathbf{A^3}\to\varphi$ è la proiezione, $(x,y,z)\in\mathbf{A}^3$ è un punto variabile e $\mathbf{u}\in\mathbb{C}^3$ è il vettore:
+    \[(1,0,0),\;(i,0,0),\;(2i,i,1),\;(0,i,2).\]
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+    Sia $\mathbf{A}$ uno spazio affine reale con spazio vettoriale associato $\mathbf{V}$. 
+    Si supponga fissato un riferimento affine $O\mathbf{e}_1\ldots\mathbf{e}_n$. Sia $\mathbf{H}\subset\mathbf{A}$ un iperpiano di equazione
+    \[a_1X_1+\ldots+a_nX_n+c=0.\]
+    I sottoinsiemi di $\mathbf{A}$
+    \[\Sigma_+=\{P(x_1,\ldots,x_n)\,:\;\sum_{i=1}^{n}a_ix_i\geq0\}\quad\textup{e}\quad\Sigma_-=\{P(x_1,\ldots,x_n)\,:\;\sum_{i=1}^{n}a_ix_i\leq0\},\]
+    sono i \textbf{semispazi} di $\mathbf{A}$ definiti da $\mathbf{H}$. 
+    Dalla definizione segue che $\Sigma_+\cap\Sigma_-=H$ e che $\Sigma_+\cup\Sigma_-=\mathbf{A}$.
+    Verificare che la definizione di semispazio non dipende dall'equazione nè dal sistema di riferimento. Dimostrare che i semispazi sono sottoinsiemi convessi di $\mathbf{A}$.
+    Se $\dim(\mathbf{A})=1$, ($\dim(\mathbf{A})=2$), i semispazi sono chiamati \textbf{semirette} (\textbf{semipiani}). Se $\dim(\mathbf{A})=1$, dimostrare che una semiretta, così definita, coincide con una semiretta di $\mathbf{A}$.
+\end{xca}
+\end{bxthm}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+    Sia $\mathbf{A}$ uno spazio affine reale e siano $A,B,C,D$ punti indipendenti di $\mathbf{A}$.
+    Dimostrare che il triangolo di vertici $A,B,C$ è l'inviluppo convesso di $\{A,B,C\}$ e che il tetraedro di vertici $A,B,C,D$ è l'inviluppo convesso di $\{A,B,C,D\}$.
+\end{xca}
+\end{bxthm}
+
+\newpage
+\subsection{Geometria in un Piano Affine}
+\vspace{20pt}
+
+\begin{bxthm}
+\begin{xca}
+    Stabilire quali delle seguenti terne di punti allineati di $\mathbf{A}^2(\mathbb{R})$: 
+    \begin{enumerate}
+        \item \[\left\{\begin{pmatrix}\dfrac{1}{2}\\\\2\end{pmatrix},\;\begin{pmatrix}\dfrac{1}{2}\\\\100\end{pmatrix},\;\begin{pmatrix}\dfrac{1}{2}\\\\\dfrac{\pi}{4}\end{pmatrix}\right\}\]
+        \item \[\left\{\begin{pmatrix}1\\1\end{pmatrix},\;\begin{pmatrix}1\\-1\end{pmatrix},\;\begin{pmatrix}-1\\1\end{pmatrix}\right\}\]
+        \item \[\left\{\begin{pmatrix}\dfrac{5}{4}\\\\\dfrac{9}{4}\end{pmatrix},\;\begin{pmatrix}-\dfrac{3}{2}\\\\-\dfrac{1}{2}\end{pmatrix},\;\begin{pmatrix}\dfrac{1}{5}\\\\\dfrac{6}{5}\end{pmatrix}\right\}\]
+    \end{enumerate}
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+In uno spazio affine reale $\mathbb{A}^2(\mathbb{R})$, tre punti
+\[
+P_1=(x_1,y_1),\quad P_2=(x_2,y_2),\quad P_3=(x_3,y_3)
+\]
+sono allineati se e solo se i vettori
+\[
+\overrightarrow{P_1P_2}=(x_2 - x_1,\;y_2 - y_1), 
+\quad 
+\overrightarrow{P_1P_3}=(x_3 - x_1,\;y_3 - y_1)
+\]
+sono linearmente dipendenti.  
+
+In pratica si verifica che 
+\[
+\begin{vmatrix*}
+x_2 - x_1 & y_2 - y_1 \\
+x_3 - x_1 & y_3 - y_1
+\end{vmatrix*}
+=
+0
+\]
+\begin{enumerate}
+    \item Tutti i punti hanno la stessa ascissa, quindi sono allineati lungo la retta verticale $x=\frac{1}{2}$.
+    \item Abbiamo $\overrightarrow{P_1P_2}=(0,-2)$ e $\overrightarrow{P_1P_3}=(-2,0)$, quindi il determinante è:
+    \[ \begin{vmatrix}
+        0 & -2 \\
+        -2 & 0
+    \end{vmatrix}= 0\cdot0 - (-2)(-2) = -4 \neq 0.\]
+    \item Abbiamo $\overrightarrow{P_1P_2}=\left(-\frac{11}{4},-\frac{11}{4}\right)$ e $\overrightarrow{P_1P_3}=\left(-\frac{21}{20},-\frac{21}{20}\right)$, quindi il determinante è:
+    \[ \begin{vmatrix}
+        -\dfrac{11}{4} & -\dfrac{11}{4} \\\\
+        -\dfrac{21}{20} & -\dfrac{21}{20}
+    \end{vmatrix} = -\dfrac{11}{4}\cdot -\dfrac{21}{20} - \left(-\dfrac{11}{4}\right)\left(-\dfrac{21}{20}\right) = \dfrac{231}{80} - \dfrac{231}{80} = 0.\]
+\end{enumerate}
+
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+    Determinare un'equazione cartesiana della retta $\mathbf{r}$ di $\mathbf{A}^2(\mathbb{R})$ contenente i punti $P$ e $Q$ in ognuno dei casi seguenti:
+    \begin{enumerate}
+        \item \[P=\left(1,\dfrac{4}{3}\right),\quad Q=\left(\dfrac{3}{2},1\right);\]
+        \item \[P=\left(0,172\right),\quad Q=\left(\sqrt{7},0\right);\]
+        \item \[P=\mathfrak{s}\cap\mathfrak{s}',\quad Q=\mathfrak{l}\cap\mathfrak{l}'\]
+        dove $\mathfrak{s}, \mathfrak{s}', \mathfrak{l}, \mathfrak{l}'$ sono le rette:
+        \[\mathfrak{s}:\;X+5Y-8=0,\quad \mathfrak{s}':\;3X+6=0,\quad \mathfrak{l}:\;5X-\dfrac{Y}{2}=1,\quad \mathfrak{l}':\;X-Y=5.\]
+    \end{enumerate}
+\end{xca}
+\end{bxthm}
+
+\vspace{50pt}
+\subsection{Geometria in uno Spazio Affine}
+\vspace{20pt}
+
+\newpage
+\section{Applicazioni Lineari}
+\vspace{20pt}
+
+
+\subsection{Applicazioni lineari}
+\vspace{20pt}
+
+
+\begin{bxthm}
+\begin{xca}
+    Siano $G:\mathbf{U}\to\mathbf{V}$, $F:\mathbf{V}\to\mathbf{W}$ applicazioni lineari. Dimostrare che:
+    \begin{enumerate}
+        \item $\mathrm{N}(G)\subset \mathrm{N}(F\circ G)$;
+        \item $\mathrm{Im}(F)\supset\mathrm{Im}(F\circ G)$.
+    \end{enumerate}
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+\begin{enumerate}
+    \item Sia $\mathbf{u}\in\mathrm{N}(G)$. Allora $G(\mathbf{u})=\mathbf{0}$, e quindi $F(G(\mathbf{u}))=F(\mathbf{0})=\mathbf{0}$, perciò $\mathbf{u}\in \mathrm{N}(F\circ G)$. 
+    Segue, data la generalità di $\mathbf{u}$, che $\mathrm{N}(G)\subseteq \mathrm{N}(F\circ G)$.
+    Dobbiamo ora dimostrare che $\mathrm{N}(G)\neq \mathrm{N}(F\circ G)$, e cioè che 
+    \[\exists\,\mathbf{u}\in \mathrm{N}(F\circ G)\,:\;\mathbf{u}\notin \mathrm{N}(G).\]
+    Sia $\mathbf{u}\in \mathrm{N}(F\circ G)$, allora $F(G(\mathbf{u}))=\mathbf{0}$, e quindi $G(\mathbf{u})\in \ker(F)$.
+    Ora, se $F$ è iniettiva, $\ker(F)=\langle\mathbf{0}\rangle$, e quindi $G(\mathbf{u})=\mathbf{0}$, dunque $\mathbf{u}\in \mathrm{N}(G)$ e quindi se $F$ è iniettiva, $\mathrm{N}(G)=\mathrm{N}(F\circ G)$.
+    Se $F$ non è iniettiva, possiamo supporre $G(\mathbf{u})\neq 0$, e quindi $\mathbf{u}\notin \mathrm{N}(G)$.
+    Dunque $\mathrm{N}(G)\subset \mathrm{N}(F\circ G)$ se e solo se $F$ non è iniettiva.
+    \item .
+\end{enumerate}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+    Dimostrare che, se $F:\mathbf{V}\to\mathbf{W}$ è un'applicazione lineare tale che $\ker(F)=\langle\mathbf{0}\rangle$, e $\mathbf{v}_1,\ldots,\mathbf{v}_n\in\mathbf{V}$ sono vettori linearmente indipendenti, allora $F(\mathbf{v}_1),\ldots,F(\mathbf{v}_n)$ sono linearmente indipendenti.
+\end{xca}
+\end{bxthm}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+    Sia $\mathbf{H}\subset\mathbb{R}^3$ il piano di equazione $X_1+X_2-X_3=0$, e sia $\mathbf{u}=(0,0,1)$.
+    Dopo aver verificato che $\mathbb{R}^3=\mathbf{H}\oplus\langle\mathbf{u}\rangle$, trovare l'espressione analitica della proiezione $p:\mathbb{R}^3\to \mathbf{H}$ nella direzione di $\langle\mathbf{u}\rangle$.
+\end{xca}
+\end{bxthm}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+    Sia $\mathbf{W}$ il sottospazio di $\mathbb{R}^4$ di equazioni cartesiane
+    \[\begin{cases}
+        2X_1+X_3=0\\
+        X_2-3X_4=0
+    \end{cases}\]
+    e sia 
+    \[\mathbf{U}=\langle\begin{pmatrix}1\\0\\0\\0\end{pmatrix},\begin{pmatrix}0\\1\\0\\0\end{pmatrix}\rangle.\]
+    Dopo aver verificato che $\mathbb{R}^4=\mathbf{U}\oplus\mathbf{W}$, trovare l'espressione analitica della proiezione $p:\mathbb{R}^3\to\mathbf{W}$ definita dalla precedente decomposizione di $\mathbb{R}^4$ in somma diretta.
+\end{xca}
+\end{bxthm}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+    Esprimendo i funzionali lineari su $\mathbb{R}^3$ come polinomi omogenei in $X_1,X_2,X_3$ a coefficienti reali, determinare le basi di $(\mathbb{R}^3)^\smile$ duali di ognuna delle seguenti basi di $\mathbb{R}^3$:
+    \begin{multicols}{2}
+        \begin{enumerate}
+            \item \[\left\{\begin{pmatrix}1\\0\\0\end{pmatrix},\begin{pmatrix}0\\1\\0\end{pmatrix},\begin{pmatrix}0\\0\\1\end{pmatrix}\right\}\]
+            \item \[\left\{\begin{pmatrix}2\\0\\0\end{pmatrix},\begin{pmatrix}0\\\frac{1}{\sqrt{2}}\\0\end{pmatrix},\begin{pmatrix}0\\0\\-\frac{1}{6}\end{pmatrix}\right\}\]
+            \item \[\left\{\begin{pmatrix}1\\-1\\0\end{pmatrix},\begin{pmatrix}0\\1\\1\end{pmatrix},\begin{pmatrix}1\\0\\2\end{pmatrix}\right\}\]
+            \item \[\left\{\begin{pmatrix}1\\0\\0\end{pmatrix},\begin{pmatrix}1\\1\\0\end{pmatrix},\begin{pmatrix}1\\1\\1\end{pmatrix}\right\}\]
+        \end{enumerate}
+    \end{multicols}
+\end{xca}
+\end{bxthm}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+    Sia $\mathbf{V}$ un $\mathbb{K}$-spazio vettoriale tale che $\mathrm{dim}(\mathbf{V})=1$, e sia $\mathbf{e}\in\mathbf{V}\setminus\{\mathbf{0}\}$.
+    Sia $\eta\in\mathbf{V}^\smallsmile$ il funzionale duale di $\mathbf{e}$ cioè il funzionale definito dalla condizione
+    \[\eta(\mathbf{e})=1.\]
+    Dimostrare che per ogni $a\in\mathbb{K}^\star$:
+    \begin{enumerate}
+        \item il funzionale lineare duale di $a\mathbf{e}$ è $\xi=a^{-1}\eta$;
+        \item se $\varphi,\psi:\mathbf{V}\to\mathbf{V}^\smallsmile$ sono gli isomorfismi definiti rispettivamente da $\varphi(\mathbf{e})=\eta,\psi(a\mathbf{e})=\xi$, allora $\psi=a^{-2}\varphi$.
+    \end{enumerate}
+\end{xca}
+\end{bxthm}
+
+\newpage
+\subsection{Applicazioni Lineari e matrici, cambiamenti di coordinate affini}
+\vspace{20pt}
+
+\begin{bxthm}
+\begin{xca}
+    Sia $F:\mathbb{R}^2\to\mathbb{R}^3$ l'applicazione lineare definita da:
+    \[F\begin{pmatrix}
+        x_1\\
+        x_2
+    \end{pmatrix}\mapsto\begin{pmatrix}
+        x_1+x_2\\
+        x_2-2x_2\\
+        x_1
+    \end{pmatrix}.\]
+    Determinare $M_{\phi\varphi}(F)$ dove 
+    \[\phi=\left\{\begin{pmatrix}
+        1\\
+        1
+    \end{pmatrix},\begin{pmatrix}
+        0\\
+        -1
+    \end{pmatrix}\right\}, \quad\quad  \psi=\left\{\begin{pmatrix}
+        1\\
+        1\\
+        1
+    \end{pmatrix},\begin{pmatrix}
+        1\\
+        -2\\
+        0
+    \end{pmatrix},\begin{pmatrix}
+        0\\
+        0\\
+        1
+    \end{pmatrix}\right\}
+    \]
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+\[F\begin{pmatrix}1\\1\end{pmatrix}=\begin{pmatrix}2\\-1\\1\end{pmatrix}\implies
+\begin{cases}
+    x+y=2\\
+    x-2y=-1\\
+    x+z=1
+\end{cases}\implies \begin{pmatrix}x\\y\\z\end{pmatrix} = \begin{pmatrix}1\\1\\0\end{pmatrix}\]
+
+\[F\begin{pmatrix}0\\-1\end{pmatrix}=\begin{pmatrix}-1\\2\\0\end{pmatrix}\implies
+\begin{cases}
+    x+y=-1\\
+    x-2y=2\\
+    x+z=0
+\end{cases}\implies \begin{pmatrix}x\\y\\z\end{pmatrix} = \begin{pmatrix}0\\-1\\0\end{pmatrix}
+.\]
+Dunque la matrice di $F$ rispetto alle basi $\psi$ e $\phi$ è: 
+\[
+M_{\phi\psi}(F)=\begin{pmatrix}
+    1 & 0\\
+    1 & -1\\
+    0 & 0   
+\end{pmatrix}.
+\]
+
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+    Sia $F:\mathbb{R}^2\to\mathbb{R}^3$ l'applicazione lineare definita da:
+    \[F\begin{pmatrix}
+        x_1\\
+        x_2
+    \end{pmatrix}\mapsto\begin{pmatrix}
+        \dfrac{-x_1+3x_2}{2}\\\\
+        \dfrac{3x_1-x_2}{2}\\\\
+        2x_1
+    \end{pmatrix}.\]
+    Determinare $M_{\phi\varphi}(F)$ dove 
+    \[\phi=\left\{\begin{pmatrix}
+        1\\
+        1
+    \end{pmatrix},\begin{pmatrix}
+        1\\
+        -1
+    \end{pmatrix}\right\}, \quad\quad  \psi=\left\{\begin{pmatrix}
+        1\\
+        0\\
+        1
+    \end{pmatrix},\begin{pmatrix}
+        0\\
+        1\\
+        1
+    \end{pmatrix},\begin{pmatrix}
+        2\\
+        -1\\
+        -1
+    \end{pmatrix}\right\}
+    \]
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+\[F\begin{pmatrix}1\\1\end{pmatrix}=\begin{pmatrix}1\\1\\2\end{pmatrix}\implies
+\begin{cases}
+    x+2z=1\\
+    y-z=1\\
+    x+y-z=2
+\end{cases}\implies \begin{pmatrix}x\\y\\z\end{pmatrix} = \begin{pmatrix}1\\1\\0\end{pmatrix}\]
+
+\[F\begin{pmatrix}1\\-1\end{pmatrix}=\begin{pmatrix}-2\\2\\2\end{pmatrix}\implies
+\begin{cases}
+    x+2z=-2\\
+    y-z=2\\
+    x+y-z=2
+\end{cases}\implies \begin{pmatrix}x\\y\\z\end{pmatrix} = \begin{pmatrix}0\\1\\-1\end{pmatrix}
+.\]
+Dunque la matrice di $F$ rispetto alle basi $\psi$ e $\phi$ è: 
+\[
+M_{\phi\psi}(F)=\begin{pmatrix}
+    1 & 0\\
+    1 & 1\\
+    0 & -1  
+\end{pmatrix}.
+\]
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+    Sia $F:\mathbb{C}^3\to\mathbb{C}^2$ l'applicazione lineare definita dalla matrice
+    \[\begin{pmatrix}
+        2 & 1 & -1 \\
+        i & i & 1+i
+    \end{pmatrix}\]
+    rispetto alle basi 
+    \[\psi=\left\{\begin{pmatrix}
+        1\\
+        i\\
+        i
+    \end{pmatrix},\begin{pmatrix}
+        i\\
+        i\\
+        1
+    \end{pmatrix},\begin{pmatrix}
+        0\\
+        i\\
+        0
+    \end{pmatrix}\right\},\quad \quad \phi=\left\{\begin{pmatrix}
+        1\\
+        1
+    \end{pmatrix},\begin{pmatrix}
+        i\\
+        -i
+    \end{pmatrix}\right\}
+    \]
+    di $\mathbb{C}^3$ e $\mathbb{C}^2$ rispettivamente.
+    Determinare la matriche che rappresenta $F$ rispetto alle basi canoniche
+    \[\alpha=\left\{\begin{pmatrix}
+        1\\
+        0\\
+        0
+    \end{pmatrix},\begin{pmatrix}
+        0\\
+        1\\
+        0
+    \end{pmatrix},\begin{pmatrix}
+        0\\
+        0\\
+        1
+    \end{pmatrix}\right\},\quad \quad \beta=\left\{\begin{pmatrix}
+        1\\
+        0
+    \end{pmatrix},\begin{pmatrix}
+        0\\
+        1
+    \end{pmatrix}\right\}.
+    \]
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+\[M_{\beta,\alpha}(F)=M_{\beta,\phi}(\mathbf{1}_{\mathbb{R}^2})M_{\phi,\psi}(F)M_{\psi,\alpha}(\mathbf{1}_{\mathbb{R}^3}).\]
+\begin{align*}
+\begin{cases}
+    x+iy=1\\
+    ix+iy+iz=0\\
+    ix+y=0
+\end{cases}\\
+\begin{cases}
+    x+iy=0\\
+    ix+iy+iz=1\\
+    ix+y=0
+\end{cases}\\
+\begin{cases}
+    x+iy=0\\
+    ix+iy+iz=0\\
+    ix+y=1
+\end{cases}    
+\end{align*}
+
+\[
+\begin{pmatrix}
+    \frac{1}{2}&\frac{1}{2}\\\\
+    \frac{1}{2i}&-\frac{1}{2i}
+\end{pmatrix}
+\begin{pmatrix}
+    2 & 1 & -1 \\
+    i & i & 1+i
+\end{pmatrix}
+\begin{pmatrix}
+    \frac{1}{2}&0&-\frac{i}{2}\\
+    -\frac{i}{2}&0&\frac{1}{2}\\
+    -\frac{1+i}{2}&-i&-\frac{1+i}{2}
+\end{pmatrix}=
+\begin{pmatrix}
+    2 & 1 & -1 \\
+    i & i & 1+i
+\end{pmatrix}
+\]
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+Per ognuna delle seguenti coppie di basi \( \mathbf{b} \) e \( \mathbf{b}' \) di \( \mathbb{R}^2 \), determinare \( M_{\mathbf{b},\mathbf{b}'}(\mathbf{1}) \):
+\begin{enumerate}
+    \item \[ \mathbf{b} = \left\{\begin{pmatrix}1\\0\end{pmatrix}, \begin{pmatrix}0\\1\end{pmatrix} \right\}, \quad  \mathbf{b}' = \left\{\begin{pmatrix}1\\\sqrt{3}\end{pmatrix}, \begin{pmatrix}\sqrt{3}\\1\end{pmatrix}\right\} \]
+    \item \[ \mathbf{b} = \left\{\begin{pmatrix}1\\-1\end{pmatrix}, \begin{pmatrix}1\\1\end{pmatrix}\right\}, \quad \mathbf{b}' =  \left\{\begin{pmatrix}1\\0\end{pmatrix}, \begin{pmatrix}1\\1\end{pmatrix}\right\} \]
+    \item \[ \mathbf{b} = \left\{\begin{pmatrix}2\\1\end{pmatrix}, \begin{pmatrix}2\\2\end{pmatrix} \right\}, \quad  \mathbf{b}' = \left\{\begin{pmatrix}\sqrt{5}\\-\sqrt{5}\end{pmatrix}, \begin{pmatrix}\sqrt{5}\\\sqrt{5}\end{pmatrix}\right\} \]
+\end{enumerate}
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+\begin{enumerate}
+    \item \[M_{\mathbf{b},\mathbf{b}'}(\mathbf{1})=
+    \begin{pmatrix}
+         1&\sqrt{3} \\
+         \sqrt{3}&1
+    \end{pmatrix} 
+    \]
+
+    \item \[M_{\mathbf{b},\mathbf{b}'}(\mathbf{1})=
+    \begin{pmatrix}
+         \frac{1}{2}&0 \\
+         \frac{1}{2}&1
+    \end{pmatrix} 
+    \]
+
+    \item \[M_{\mathbf{b},\mathbf{b}'}(\mathbf{1})=
+    \begin{pmatrix}
+         2\sqrt{5}&0 \\
+         -\frac{3\sqrt{5}}{2}&\frac{\sqrt{5}}{2}
+    \end{pmatrix} 
+    \]
+\end{enumerate}
+
+\vspace{10pt}
+
+\begin{note}
+    Dunque per ogni spazio vettoriale $\mathbf{V}$, prese la base canonica $\psi$ e una qualsiasi altra base $\phi$ e l'applicazione identità $\mathbf{1_V}$, la matrice:
+    $M_{\psi,\phi}(\mathbf{1})$ ha come colonne i vettori di $\phi$.
+\end{note}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+Per ognuna delle seguenti coppie di basi \( \mathbf{b} \) e \( \mathbf{b}' \) di \( \mathbb{C}^2 \), determinare \( M_{\mathbf{b},\mathbf{b}'}(\mathbf{1}) \):
+\begin{enumerate}
+    \item \[ \mathbf{b} = \left\{\begin{pmatrix}1\\ i\end{pmatrix}, \begin{pmatrix}i \\ 1 \end{pmatrix}\right\}, \quad  \mathbf{b}' = \left\{\begin{pmatrix}2\\ 1\end{pmatrix}, \begin{pmatrix}1\\ 2\end{pmatrix} \right\} \]
+    \item \[ \mathbf{b} = \left\{\begin{pmatrix}i\\ i\end{pmatrix}, \begin{pmatrix}-1\\ 1\end{pmatrix} \right\}, \quad \mathbf{b}' =   \left\{\begin{pmatrix}i\\ 0\end{pmatrix}, \begin{pmatrix}0\\ i\end{pmatrix}\right\} \]
+\end{enumerate}
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+\begin{enumerate}
+    \item \[M_{\mathbf{b},\mathbf{b}'}(\mathbf{1})=\frac{1}{2}
+    \begin{pmatrix}
+         2-i&1-2i \\
+         1-2i&2-i
+    \end{pmatrix} 
+    \]
+    \item \[M_{\mathbf{b},\mathbf{b}'}(\mathbf{1})=\frac{1}{2}
+    \begin{pmatrix}
+         1&1 \\
+         -i&i
+    \end{pmatrix} 
+    \]
+\end{enumerate}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+    Per ognuna delle seguenti coppie di basi \( \mathbf{b} \) e \( \mathbf{b}' \) di \( \mathbb{Q}^3 \), determinare \( M_{\mathbf{b},\mathbf{b}'}(\mathbf{1}) \):
+\begin{enumerate}
+    \item \[ \mathbf{b} = \left\{\begin{pmatrix}1\\0\\1\end{pmatrix}, \begin{pmatrix}1\\1\\0\end{pmatrix}, \begin{pmatrix}0\\1\\1\end{pmatrix}\right\}, \quad  \mathbf{b}' = \left\{\begin{pmatrix}1\\1\\1\end{pmatrix}, \begin{pmatrix}0\\1\\1\end{pmatrix}, \begin{pmatrix}0\\0\\1\end{pmatrix} \right\} \]
+    \item \[ \mathbf{b} = \left\{\begin{pmatrix}1\\ -1 \\1\end{pmatrix}, \begin{pmatrix}-1\\ 1\\1\end{pmatrix}, \begin{pmatrix}1\\ 1\\1\end{pmatrix} \right\}, \quad \mathbf{b}' =   \left\{\begin{pmatrix}13\\ 5\\-6\end{pmatrix}, \begin{pmatrix}8\\-10\\-4\end{pmatrix}, \begin{pmatrix}-17\\0\\-7\end{pmatrix}\right\} \]
+\end{enumerate}
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+\begin{enumerate}
+    \item \[M_{\mathbf{b},\mathbf{b}'}(\mathbf{1})=\frac{1}{2}
+    \begin{pmatrix}
+         1&0&1\\
+         1&0&-1\\
+         1&2&1
+    \end{pmatrix} 
+    \]
+    \item \[M_{\mathbf{b},\mathbf{b}'}(\mathbf{1})=-\frac{1}{2}
+    \begin{pmatrix}
+         8&-6&7\\
+         19&12&-10\\
+         -18&2&17
+    \end{pmatrix} 
+    \]
+\end{enumerate}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+    In un piano affine reale \( \mathbf{A} \) si supponga fissato un riferimento affine \( O\mathbf{ij} \). 
+    Determinare le formule di cambiamento di coordinate dal riferimento \( O\mathbf{ij} \) al riferimento 
+    \( O'\mathbf{i}'\mathbf{j}' \) 
+    dove \( O' = O'(1,2), \mathbf{i}' = \mathbf{i} + 3\mathbf{j}, \mathbf{j}' = \mathbf{i} + \mathbf{j} \).
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+\[x'=-\dfrac{x}{2}+\dfrac{y}{2}-\dfrac{1}{2}\quad\quad y'=\dfrac{3x}{2}-\dfrac{y}{2}-\dfrac{1}{2}.\]
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+In un piano affine reale \( \mathbf{A} \) si supponga fissato un riferimento affine \( O\mathbf{ij} \), e siano 
+\( \nu, \nu', \nu'' \) le rette di equazioni
+\[
+\nu: X + Y = 0, \quad \nu': X - Y - 1 = 0, \quad \nu'': 2X + Y + 2 = 0.
+\]
+Posto \( O' = \nu \cap \nu', \quad U = \nu \cap \nu'', \quad U' = \nu' \cap \nu'' \), 
+siano \( \mathbf{i}' = \overrightarrow{O'U}, \quad \mathbf{j}' = \overrightarrow{O'U'} \). 
+Dopo aver verificato che i vettori \( \mathbf{i}' \) e \( \mathbf{j}' \) sono linearmente indipendenti, determinare le formule 
+del cambiamento di coordinate dal riferimento \( O\mathbf{ij} \) al riferimento \( O'\mathbf{i}'\mathbf{j}'\).
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+\[x'=\dfrac{x}{5}+\dfrac{y}{5}+\dfrac{1}{5}\quad\quad y'=-\dfrac{3x}{5}-\dfrac{3y}{5}.\]
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+Sia \( \mathbf{A} \) un $\mathbb{R}$-spazio affine di dimensione $3$, in cui sia fissato un riferimento affine 
+\( O\mathbf{ijk} \). Determinare le formule del cambiamento di coordinate dal riferimento \( O\mathbf{ijk} \) al 
+riferimento \( O'\mathbf{i}'\mathbf{j}'\mathbf{k}' \), dove
+\[
+O' = O\left(\frac{\pi}{3}, -\pi, \frac{\pi}{3}\right), \quad \mathbf{i}' = \mathbf{i} + \mathbf{k}, \quad \mathbf{j}' = \mathbf{j} - \mathbf{k}, \quad \mathbf{k}' = \mathbf{i} + \mathbf{j} + \mathbf{k}.
+\]
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+\[x' = 2x-y-z-\dfrac{4\pi}{3}\quad\quad y' = x-z\quad\quad z' = -x+y+z+\pi.\]
+
+\newpage
+\subsection{Operatori Lineari}
+\vspace{20pt}
+
+\begin{bxthm}
+\begin{xca}
+    Sia 
+    \[F\in\mathrm{end}(\mathbb{R}^3),\quad \begin{pmatrix}x\\y\\z\end{pmatrix}\mapsto\begin{pmatrix}x+y-z\\y+z\\2x\end{pmatrix}.\]
+    Determinare la matrice $M_\mathbf{b}(F)$, dove 
+    \[\mathbf{b}=\left\{\begin{pmatrix}1\\1\\0\end{pmatrix},\begin{pmatrix}-1\\0\\1\end{pmatrix},\begin{pmatrix}1\\1\\1\end{pmatrix}\right\}.\]
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+\[M_\mathbf{b}(F)=
+\begin{pmatrix}
+    -2&6&1\\
+    -1&3&1\\
+    3&-5&1
+\end{pmatrix}\;.\]
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+    Sia 
+    \[F\in\mathrm{end}(\mathbb{R}^3),\quad \begin{pmatrix}2x\\x-y\\y-z\end{pmatrix}\mapsto\begin{pmatrix}x+y-z\\y+z\\2x\end{pmatrix}.\]
+    Determinare la matrice $M_\mathbf{b}(F^2)$, dove 
+    \[\mathbf{b}=\left\{\begin{pmatrix}1\\1\\0\end{pmatrix},\begin{pmatrix}2\\-1\\1\end{pmatrix},\begin{pmatrix}0\\1\\-1\end{pmatrix}\right\}.\]
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+    Sia $F\in\mathrm{end}(\mathbb{C}^3)$ tale che 
+    \[M_\mathbf{E}(F)=
+    \begin{pmatrix}
+        1&1&0\\
+        1&-1&-2\\
+        2&2&-3
+    \end{pmatrix}\]
+    con $\mathbf{E}$ base canonica. Determinare la matrice $M_\mathbf{b}(F)$, dove
+    \[\mathbf{b}=\left\{\begin{pmatrix}-2i\\i\\i\end{pmatrix},\begin{pmatrix}-1\\-1\\1\end{pmatrix},\begin{pmatrix}1\\0\\-1\end{pmatrix}\right\}.\]
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+\[M_\mathbf{b}(F)=
+\begin{pmatrix}
+    7&-8i&6i\\
+    12i&10&-9\\
+    25i&24&-20
+\end{pmatrix}\;.\]
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+    Sia $F\in\mathrm{end}(\mathbb{R}^3)$ tale che 
+    \[M_\mathbf{E}(F)=
+    \begin{pmatrix}
+        2&1&1\\
+        0&1&2\\
+        0&0&3
+    \end{pmatrix}\]
+    con $\mathbf{E}$ base canonica. Determinare la matrice $M_\mathbf{b}(F)$, dove
+    \[\mathbf{b}=\left\{\begin{pmatrix}1\\1\\0\end{pmatrix},\begin{pmatrix}-1\\0\\1\end{pmatrix},\begin{pmatrix}1\\1\\1\end{pmatrix}\right\}.\]
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+\[M_\mathbf{b}(F)=
+\begin{pmatrix}
+    -1&2&-1\\
+    -2&3&-1\\
+    2&0&4
+\end{pmatrix}\;.\]
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+    Sia $F\in\mathrm{end}(\mathbb{R}^3)$ tale che 
+    \[M_\mathbf{E}(F)=
+    \begin{pmatrix}
+        1&2&1\\
+        1&-1&3\\
+        1&0&2
+    \end{pmatrix}\]
+    con $\mathbf{E}$ base canonica. Determinare la matrice $M_\mathbf{b}(F)$, dove
+    \[\mathbf{b}=\left\{\begin{pmatrix}-1\\0\\-1\end{pmatrix},\begin{pmatrix}1\\1\\1\end{pmatrix},\begin{pmatrix}1\\-1\\0\end{pmatrix}\right\}.\]
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+A me esce
+\[M_\mathbf{b}(F)=
+\begin{pmatrix}
+    0&1&-1\\
+    -3&4&0\\
+    1&1&-2
+\end{pmatrix}\;.\]
+Sul libro 
+\[M_\mathbf{b}(F)=
+\begin{pmatrix}
+    0&1&-1\\
+    -3&1&-1\\
+    1&1&-2
+\end{pmatrix}\;.\]
+
+\vspace{10pt}
+
+\begin{bxthm}
+    Sia $F\in\mathrm{end}(\mathbb{C}^3)$ tale che 
+    \[M_\mathbf{E}(F)=
+    \begin{pmatrix}
+        -1&-1&1\\
+        2&1&2i\\
+        1+i&0&0
+    \end{pmatrix}\]
+    con $\mathbf{E}$ base canonica. Determinare la matrice $M_\mathbf{b}(F)$, dove
+    \[\mathbf{b}=\left\{\begin{pmatrix}i\\1\\-1\end{pmatrix},\begin{pmatrix}-2\\i\\0\end{pmatrix},\begin{pmatrix}2i\\1\\i\end{pmatrix}\right\}.\]
+\end{bxthm}
+\paragraph{Soluzione}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+    Determinare autovalori e autovettori di ciascuna delle seguenti matrici di $M_2(\mathbb{R})$:
+    \begin{enumerate}
+        \item \[\begin{pmatrix}1&0\\0&-1\end{pmatrix}\]
+        \item \[\begin{pmatrix}1&1\\0&1\end{pmatrix}\]
+        \item \[\begin{pmatrix}1&0\\1&1\end{pmatrix}\]
+        \item \[\begin{pmatrix}1&1\\1&1\end{pmatrix}\]
+    \end{enumerate}
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+\begin{enumerate}
+    \item \[P_A(\lambda)=0\implies\begin{vmatrix}1-\lambda&0\\0&-1-\lambda\end{vmatrix}=\lambda^2-1=0\implies \lambda=\pm1\]
+    \begin{itemize}
+        \item Autovettore relativo a \( \lambda = 1 \): \[\begin{pmatrix}0&0\\0&-2\end{pmatrix}\begin{pmatrix}x\\y\end{pmatrix}=\begin{pmatrix}0\\-2y\end{pmatrix}=\begin{pmatrix}0\\0\end{pmatrix}\implies \mathbf{V}_1(A)=\langle\begin{pmatrix}1\\0\end{pmatrix}\rangle\implies \dim(\mathbf{V}_1(A))=1;\]
+        \item Autovettore relativo a \( \lambda = -1 \): \[\begin{pmatrix}2&0\\0&0\end{pmatrix}\begin{pmatrix}x\\y\end{pmatrix}=\begin{pmatrix}2x\\0\end{pmatrix}=\begin{pmatrix}0\\0\end{pmatrix}\implies \mathbf{V}_{-1}(A)=\langle\begin{pmatrix}0\\1\end{pmatrix}\rangle\implies \dim(\mathbf{V}_{-1}(A))=1.\]
+    \end{itemize}
+    \item \[\begin{pmatrix}1&1\\0&1\end{pmatrix}\]
+    \item \[\begin{pmatrix}1&0\\1&1\end{pmatrix}\]
+    \item \[\begin{pmatrix}1&1\\1&1\end{pmatrix}\]
+\end{enumerate}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+    Determinare autovalori e autovettori della matrice
+    \[\begin{pmatrix}1&a\\b&1\end{pmatrix}\in M_2(\mathbb{C}),\quad a,b\in\mathbb{R}.\]
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+    Sia 
+    \[F\in\mathrm{end}(\mathbb{R}^3),\quad \begin{pmatrix}x\\y\\z\end{pmatrix}\mapsto \begin{pmatrix}y-z\\-x+2y-z\\x-y+2z\end{pmatrix}.\]
+    Dimostrare che $F$ è diagonalizzabile, trovando una base $\psi$ di $\mathbb{R}^3$ formata da autovettori di $F$. Determinare la matrice che rappresenta $F$ in tale base.
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+\[A=M_{\mathbf{E}}(F)=\begin{pmatrix}
+    0&1&-1\\
+    -1&2&-1\\
+    1&-1&2
+\end{pmatrix}\implies A-\lambda\mathbf{I}_3=\begin{pmatrix}
+    -\lambda&1&-1\\
+    -1&2-\lambda&-1\\
+    1&-1&2-\lambda
+\end{pmatrix}\implies P_A(\lambda)=-\lambda^3+4\lambda^2-5\lambda+2\implies\lambda=\{1,2\}\]
+\[\mathbf{V}_1(F)=\langle\begin{pmatrix}1\\1\\0\end{pmatrix},\begin{pmatrix}-1\\0\\1\end{pmatrix}\rangle,\quad\mathbf{V}_2(F)=\langle\begin{pmatrix}1\\1\\-1\end{pmatrix}\rangle\]
+Dunque
+\[\phi=\left\{\begin{pmatrix}1\\1\\0\end{pmatrix},\begin{pmatrix}-1\\0\\1\end{pmatrix},\begin{pmatrix}1\\1\\-1\end{pmatrix}\right\}\]
+è una base di $\mathbb{R}^3$ formata da autovalori e dunque $F$ è diagonalizzabile. Anche perchè la somma delle molteplicità geometriche degli autovalori è uguale a $3$.
+Ora dobbiamo trovare $M_\phi(F)$ che sappiamo essere uguale a 
+\[M_{\phi\psi}(\mathbf{1})M_\psi(F)M_{\psi,\phi}(\mathbf{1})=\begin{pmatrix}
+    1&0&0\\
+    0&1&0\\
+    0&0&2
+\end{pmatrix}.\]
+
+\newpage
+\part{Geometria Euclidea}
+\newpage
+
+\newpage
+\section{Forme bilineari e quadratiche}
+\vspace{20pt}
+
+\begin{bxthm}
+\begin{xca}
+    Stabilire quale delle seguenti sono forme bilineari su $\mathbb{R}^n$:
+    \begin{enumerate}
+        \item \[\langle\mathbf{x},\mathbf{y}\rangle = \]
+        \item \[\langle\mathbf{x},\mathbf{y}\rangle = \]
+        \item \[\langle\mathbf{x},\mathbf{y}\rangle = \]
+        \item \[\langle\mathbf{x},\mathbf{y}\rangle = \]
+        \item \[\langle\mathbf{x},\mathbf{y}\rangle = \]
+    \end{enumerate}
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+    In ciascuno dei seguenti casi determinare la forma bilineare polare della forma quadratica $q:\mathbb{R}^2\to\mathbb{R}$:
+    \begin{enumerate}
+        \item $q\begin{pmatrix}x\\y\end{pmatrix}=$
+        \item $q\begin{pmatrix}x\\y\end{pmatrix}=$
+        \item $q\begin{pmatrix}x\\y\end{pmatrix}=$
+        \item $q\begin{pmatrix}x\\y\end{pmatrix}=$
+        \item $q\begin{pmatrix}x\\y\end{pmatrix}=$
+        \item $q\begin{pmatrix}x\\y\end{pmatrix}=$
+    \end{enumerate}
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+    Determinare la matrice e il rango di ciascuna delle forme quadratiche dell'esercizio precedente.
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+    In ciascuno dei seguenti casi determinare la forma bilineare polare della forma quadratica $q:\mathbb{R}^3\to\mathbb{R}$:
+    \begin{enumerate}
+        \item $q\begin{pmatrix}x\\y\\z\end{pmatrix}=$
+        \item $q\begin{pmatrix}x\\y\\z\end{pmatrix}=$
+        \item $q\begin{pmatrix}x\\y\\z\end{pmatrix}=$
+        \item $q\begin{pmatrix}x\\y\\z\end{pmatrix}=$
+        \item $q\begin{pmatrix}x\\y\\z\end{pmatrix}=$
+        \item $q\begin{pmatrix}x\\y\\z\end{pmatrix}=$
+    \end{enumerate}
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+    Determinare la matrice e il rango di ciascuna delle forme quadratiche dell'esercizio precedente.
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+
+
+\newpage
+\section{Diagonalizzazione delle forme quadratiche}
+\vspace{20pt}
+
+\begin{bxthm}
+\begin{xca}
+    In ciascuno dei seguenti casi determinare una base rispetto alla quale la forma quadratica assegnata su $\mathbb{C}^2$ assume la forma \ref{sediciduee}, e la relativa 
+    formula di cambiamento di coordinate:
+    \begin{multicols}{4}
+        \begin{enumerate}
+            \item $-x^2+y^2$
+            \item $ix^2-2y^2$
+            \item $4x^2+9y^2$
+            \item $-x^2-25y^2$
+        \end{enumerate}
+    \end{multicols}
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+Posta la base canonica $\psi=\{\mathbf{E}_1,\mathbf{E}_2\}$ di $\mathbb{C}^2$
+\begin{enumerate}
+    \item Consideriamo la forma quadratica:
+\[
+q(x, y) = -x^2 + y^2 \quad \Rightarrow \quad A = 
+\begin{pmatrix}
+-1 & 0 \\
+0 & 1
+\end{pmatrix}.
+\]
+
+Il rango della forma è \(r(A) = 2\), e la matrice è già diagonale.
+
+Poiché lavoriamo su \(\mathbb{C}\), che è un campo algebricamente chiuso, possiamo applicare il teorema che garantisce l'esistenza di una base ortogonale rispetto alla quale la forma assume matrice identità \(\mathrm{I}_2\).
+
+Scegliamo:
+\[
+\alpha_1 = i \quad \text{(poiché \(i^2 = -1\))}, \qquad
+\alpha_2 = 1 \quad \text{(poiché \(1^2 = 1\))}.
+\]
+
+Costruiamo allora la base ortogonale:
+\[
+\left\{
+\begin{pmatrix}
+-i \\
+0
+\end{pmatrix},
+\begin{pmatrix}
+0 \\
+1
+\end{pmatrix}
+\right\}.
+\]
+
+La matrice di cambiamento di base \(P\), da \((x', y')\) a \((x, y)\), è:
+\[
+P = \begin{pmatrix}
+-i & 0 \\
+0 & 1
+\end{pmatrix}.
+\]
+
+La formula di cambiamento di coordinate è quindi:
+\[
+\begin{pmatrix}
+x \\
+y
+\end{pmatrix}
+= P \begin{pmatrix}
+x' \\
+y'
+\end{pmatrix}
+=
+\begin{pmatrix}
+-i x' \\
+y'
+\end{pmatrix},
+\quad \text{cioè} \quad
+\begin{cases}
+x = -i x' \\
+y = y'
+\end{cases}.
+\]
+
+Pertanto, nella nuova base, la forma quadratica assume la forma standard:
+\[
+q(x', y') = x'^2 + y'^2.
+\]
+
+    \item La forma quadratica è:
+\[
+q(x, y) = ix^2 - 2y^2 \quad \Rightarrow \quad A = 
+\begin{pmatrix}
+i & 0 \\
+0 & -2
+\end{pmatrix},
+\quad r(A) = 2.
+\]
+
+Poiché \(\mathbb{C}\) è algebricamente chiuso, possiamo trovare una base in cui la forma diventa:
+\[
+q(x', y') = x'^2 + y'^2.
+\]
+
+Cerchiamo quindi \(\alpha_1, \alpha_2 \in \mathbb{C}\) tali che:
+\[
+\alpha_1^2 = i, \quad \alpha_2^2 = -2.
+\]
+
+Una possibile scelta è:
+\[
+\alpha_1 = \sqrt{i}, \quad \alpha_2 = i\sqrt{2}.
+\]
+
+Allora poniamo:
+\[
+\mathbf{e}_1 = \frac{1}{\sqrt{i}} \begin{pmatrix}1\\0\end{pmatrix}, \quad
+\mathbf{e}_2 = \frac{1}{i\sqrt{2}} \begin{pmatrix}0\\1\end{pmatrix}.
+\]
+
+La matrice di cambiamento di coordinate da \((x', y')\) a \((x, y)\) è:
+\[
+P = 
+\begin{pmatrix}
+\frac{1}{\sqrt{i}} & 0 \\
+0 & \frac{1}{i\sqrt{2}}
+\end{pmatrix}.
+\]
+
+La formula del cambiamento di coordinate è:
+\[
+\begin{pmatrix}
+x \\
+y
+\end{pmatrix}
+= P
+\begin{pmatrix}
+x' \\
+y'
+\end{pmatrix}
+=
+\begin{pmatrix}
+\frac{x'}{\sqrt{i}}  \\
+\frac{y'}{i\sqrt{2}} 
+\end{pmatrix}.
+\]
+
+Quindi la forma quadratica nella nuova base è:
+\[
+q(x', y') = x'^2 + y'^2.
+\]
+
+    \item \[
+4x^2 + 9y^2 \;\Rightarrow\;
+A = \begin{pmatrix}
+4 & 0 \\
+0 & 9
+\end{pmatrix}
+\quad \text{(già diagonale)}.
+\]
+
+Il rango della forma è \(r = 2\). Scegliamo:
+\[
+\alpha_1 = \sqrt{4} = 2, \quad \alpha_2 = \sqrt{9} = 3.
+\]
+
+Costruiamo la base ortogonale:
+\[
+\left\{
+\begin{pmatrix}
+\frac{1}{2} \\
+0
+\end{pmatrix},
+\begin{pmatrix}
+0 \\
+\frac{1}{3}
+\end{pmatrix}
+\right\}.
+\]
+
+La matrice di cambiamento di base (da \((x', y')\) a \((x, y)\)) è:
+\[
+P = \begin{pmatrix}
+\frac{1}{2} & 0 \\
+0 & \frac{1}{3}
+\end{pmatrix}.
+\]
+
+La formula di cambiamento di coordinate è quindi:
+\[
+\begin{pmatrix}
+x \\
+y
+\end{pmatrix}
+=
+P \begin{pmatrix}
+x' \\
+y'
+\end{pmatrix}
+=
+\begin{pmatrix}
+\frac{1}{2}x' \\
+\frac{1}{3}y'
+\end{pmatrix}
+\quad \Rightarrow \quad
+\begin{cases}
+x = \frac{1}{2}x' \\
+y = \frac{1}{3}y'
+\end{cases}.
+\]
+
+Pertanto, nella nuova base la forma quadratica è:
+\[
+q(x', y') = x'^2 + y'^2.
+\]
+
+
+    \item \[
+-x^2 - 25y^2 \;\Rightarrow\;
+A = \begin{pmatrix}
+-1 & 0 \\
+0 & -25
+\end{pmatrix}
+\quad \text{(già diagonale)}.
+\]
+
+Il rango della forma è \(r = 2\). Scegliamo:
+\[
+\alpha_1 = \sqrt{-1} = i, \quad \alpha_2 = \sqrt{-25} = 5i.
+\]
+
+Costruiamo la base ortogonale:
+\[
+\left\{
+\begin{pmatrix}
+\frac{1}{i} \\
+0
+\end{pmatrix},
+\begin{pmatrix}
+0 \\
+\frac{1}{5i}
+\end{pmatrix}
+\right\}
+=
+\left\{
+\begin{pmatrix}
+-i \\
+0
+\end{pmatrix},
+\begin{pmatrix}
+0 \\
+\frac{-i}{5}
+\end{pmatrix}
+\right\}.
+\]
+
+La matrice di cambiamento di base (da \((x', y')\) a \((x, y)\)) è:
+\[
+P = \begin{pmatrix}
+-i & 0 \\
+0 & \frac{-i}{5}
+\end{pmatrix}.
+\]
+
+La formula di cambiamento di coordinate è quindi:
+\[
+\begin{pmatrix}
+x \\
+y
+\end{pmatrix}
+=
+P \begin{pmatrix}
+x' \\
+y'
+\end{pmatrix}
+=
+\begin{pmatrix}
+-i x' \\
+\frac{-i}{5} y'
+\end{pmatrix}
+\quad \Rightarrow \quad
+\begin{cases}
+x = -i x' \\
+y = \frac{-i}{5} y'
+\end{cases}.
+\]
+
+Pertanto, nella nuova base la forma quadratica è:
+\[
+q(x', y') = x'^2 + y'^2.
+\]
+\end{enumerate}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+    In ciascuno dei seguenti casi determinare una base rispetto alla quale la forma quadratica assegnata su $\mathbb{R}^3$ 
+    assuma la forma canonica, e calcolarne la relativa segnatura:
+    \begin{enumerate}
+        \item $4x^2-5y^2+12z^2$;
+        \item $-x^2+9z^2$;
+        \item $-x^2-y^2+z^2$;
+        \item $y^2+16z^2$.
+    \end{enumerate}
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+
+
+\newpage
+\section{Prodotti scalari}
+\vspace{20pt}
+
+\newpage
+\section{Spazi euclidei}
+\vspace{20pt}
+
+\newpage
+\section{Diagonalizzazione di operatori simmetrici}
+\vspace{20pt}
+
+
+\end{document}
