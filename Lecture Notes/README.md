@@ -4,19 +4,24 @@ Welcome to the **Lecture Notes** section of the MATEMATICA repository! This fold
 
 ## Folder Structure
 
-### BSC - Year 1
-- **Calculus I**
-- **Geometry I**
+### BSC - Anno 1
+- **Analisi Matematica 1**
+- **Geometria 1**
 - **Algebra**
-### BSC - Year 2
-- **Calculus II**
-- **Physics I**
-- **Rational Mechanics**
-- **Numerical Methods**
+- **Fondamenti di Informatica**
+### BSC - Anno 2
+- **Analisi Matematica 2**
+- **Geometria 2**
+- **Fisica 1**
+- **Meccanica Razionale**
+- **Calcolo Scientifico**
 
-### BSC - Year 3
-- **Advanced Calculus**
-- **Advanced Geometry**
-- **Advanced Algebra**
-- **Physics II**
-- **Probability Theory**
+### BSC - Anno 3
+- **Complementi di Analisi**
+- **Complementi di Geometria**
+- **Complementi di Algebra**
+- **Fisica 2**
+- **Fisica Moderna**
+- **Calcolo delle Probabilità**
+- **Complementi di Calcolo Scientifico**
+- **Analisi Complessa0**
