@@ -1,0 +1,575 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsfonts, amsthm}
+\usepackage{mathtools}
+\usepackage{mdframed}
+\usepackage{cancel}
+\usepackage{import, xifthen, pdfpages, transparent}
+\usepackage{enumitem}
+\usepackage{geometry}
+\usepackage{multicol}
+\usepackage{hyperref}
+\usepackage{mathrsfs}
+\usepackage{float}
+\usepackage{tikz, pgfplots}
+\usetikzlibrary{positioning}
+\pgfplotsset{compat=1.18}
+\geometry{a4paper, margin=1.5cm}
+
+\newmdenv[
+  linecolor=black,
+  linewidth=1pt,
+  roundcorner=5pt,
+  innertopmargin=4pt,
+  innerbottommargin=10pt,
+  innerleftmargin=10pt,
+  innerrightmargin=10pt
+]{bxthm}
+
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[section]
+\newtheorem{exmp}{Example}[section]
+\newtheorem{xca}[exmp]{Exercise}
+
+\theoremstyle{remark}
+\newtheorem{rem}{Remark}
+\newtheorem{note}{Note}
+\newtheorem{case}{Case}
+
+\newcommand{\incfig}[2][\columnwidth]{%
+    \def\svgwidth{#1}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\begin{document}
+\begin{titlepage}
+    \centering
+	{\textsc{Università degli Studi della Basilicata} \par}
+	\vspace{2cm}
+    {\huge\bfseries Eserciziario di Algebra\par}
+    \vfill
+	{\Large\itshape Donato Martinelli\par}
+	{\large \today\par}
+\end{titlepage}
+
+\tableofcontents
+
+\part{Dikranjan, Lucido - Aritmetica e Algebra}
+
+\newpage
+\section{Insiemi, Relazioni, e Funzioni}
+\vspace{20pt}
+
+\begin{bxthm}
+\begin{xca}
+Si descriva l'insieme $\mathcal{P}(\{1,2,3\})$.
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+
+\begin{bxthm}
+\begin{xca}
+Siano $A$ e $B$ due insiemi. Si dimostri che
+\[
+A \subseteq B \quad \text{se e solo se} \quad \mathcal{P}(A) \subseteq \mathcal{P}(B).
+\]
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+
+\begin{bxthm}
+\begin{xca}
+Dimostrare che l'intersezione $X \cap Y$ è il più grande insieme che soddisfa 
+$Z \subseteq X$ e $Z \subseteq Y$. Più precisamente, se $Z \subseteq X$ e $Z \subseteq Y$, allora anche 
+$Z \subseteq X \cap Y$.
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+
+\begin{bxthm}
+\begin{xca}
+Provare che, dati due insiemi $S$ e $T$, risulta
+\begin{itemize}
+    \item[(a)] $\mathcal{P}(S \cap T) = \mathcal{P}(S) \cap \mathcal{P}(T)$
+    \item[(b)] $\mathcal{P}(S) \cup \mathcal{P}(T) \subseteq \mathcal{P}(S \cup T)$
+    \item[(c)] $\mathcal{P}(S) \cup \mathcal{P}(T) = \mathcal{P}(S \cup T)$ se e solo se $S \subseteq T$ oppure $T \subseteq S$.
+\end{itemize}
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+
+\begin{bxthm}
+\begin{xca}
+Siano $S, T$ e $V$ insiemi. Provare che valgono le proprietà distributive 
+della differenza rispetto all'intersezione e all'unione:
+\begin{itemize}
+    \item[(a)] $(S \cap T) \setminus V = (S \setminus V) \cap (T \setminus V)$;
+    \item[(b)] $(S \cup T) \setminus V = (S \setminus V) \cup (T \setminus V)$;
+    \item[(c)] mostrare con un esempio che non valgono per la differenza le proprietà associativa e commutativa.
+\end{itemize}
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+
+\begin{bxthm}
+\begin{xca}
+Siano $A$ e $B$ due insiemi. Si dimostri che 
+$\{A \setminus B, B \setminus A, A \cap B\}$ è una partizione di $A \cup B$.
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+
+\begin{bxthm}
+\begin{xca}
+Sia $f : \mathbb{R} \to \mathbb{R}$ l'applicazione definita da
+\[
+f(x) = 
+\begin{cases}
+x + \frac{x+1}{x-1}, & \text{se } x \neq 1\\[1.2ex]
+0, & \text{se } x = 1.
+\end{cases}
+\]
+Si determini se $f$ è iniettiva e se $f$ è suriettiva.
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+
+\begin{bxthm}
+\begin{xca}
+Si dica quali delle applicazioni definite negli esempi 1.12 e 1.13 sono 
+iniettive, suriettive o biettive.
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+
+\begin{bxthm}
+\begin{xca}
+Sia $f : \mathbb{R} \to \mathbb{R}$ una delle seguenti funzioni. Si dica quale di queste 
+funzioni è iniettiva, suriettiva o biettiva:
+\[
+f(x) = 2^x; \quad f(x) = 3x^2 - \sqrt{5}; \quad f(x) = \sin(x);
+\]
+\[
+f(x) = 
+\begin{cases}
+x, & \text{se } x < 0\\[1.2ex]
+x^2, & \text{se } x \ge 0
+\end{cases}
+\]
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+
+\begin{bxthm}
+\begin{xca}
+Sia $f : X \longrightarrow Y$ una funzione e $B \subseteq Y$.
+\begin{itemize}
+    \item[(a)] Si provi che in generale $f(f^{-1}(B)) \subseteq B$.
+    \item[(b)] Si costruisca un esempio per cui $f(f^{-1}(B)) \neq B$.
+    \item[(c)] Quando vale $f(f^{-1}(B)) = B$?
+\end{itemize}
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+
+\begin{bxthm}
+\begin{xca}
+Siano $A$ un insieme e $B$ un sottoinsieme di $A$, $\emptyset \neq B \neq A$. Sia
+\[
+f : \mathcal{P}(A) \longrightarrow \mathcal{P}(A)
+\]
+la funzione definita da $f(X) = B \setminus X$.
+\begin{itemize}
+    \item[(a)] Si provi che $f$ non è né iniettiva né suriettiva;
+    \item[(b)] si descriva $f^{-1}(\{B\})$.
+\end{itemize}
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+
+\begin{bxthm}
+\begin{xca}
+Siano $A$ un insieme e $B$ un sottoinsieme di $A$, $\emptyset \neq B \neq A$. 
+\[
+f : \mathcal{P}(A) \longrightarrow \mathcal{P}(A)
+\]
+la funzione definita da $f(X) = B \cap X$.
+\begin{itemize}
+    \item[(a)] Si dica se $f$ è iniettiva;
+    \item[(b)] si trovi l'immagine di $f$;
+    \item[(c)] si descriva $f^{-1}(\{B, A, \emptyset\})$.
+\end{itemize}
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+
+\begin{bxthm}
+\begin{xca}
+Sia $f$ una funzione da un insieme $A$ in sé. Si supponga che 
+$f \circ f \circ f = id_A$. Si può concludere che $f$ è biettiva?
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+
+\begin{bxthm}
+\begin{xca}
+Sia $X$ un insieme e sia $i_X : X \to \mathcal{P}(X)$ l'applicazione definita da 
+$i_X(x) = \{x\}$. Sia $f : X \to Y$ un'applicazione e sia $f_* : \mathcal{P}(X) \to \mathcal{P}(Y)$ 
+la funzione così definita $f_*(B) = f(B)$. Si provi che:
+\begin{itemize}
+    \item[(a)] $i_X$ è iniettiva e che $f_* \circ i_X = i_Y \circ f$;
+    \item[(b)] $f$ è iniettiva se e solo se $f_*$ è iniettiva;
+    \item[(c)] $f$ è suriettiva se e solo se $f_*$ è suriettiva.
+\end{itemize}
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+
+\begin{bxthm}
+\begin{xca}
+Sia $f : X \to Y$ un'applicazione e sia 
+$f^* : \mathcal{P}(Y) \to \mathcal{P}(X)$ la funzione così definita 
+$f^*(B) = f^{-1}(B) = \{a \in X : f(a) \in B\}$. Si provi che:
+\begin{itemize}
+    \item[(a)] $f^*$ è iniettiva se e solo se $f$ è suriettiva,
+    \item[(b)] $f^*$ è suriettiva se e solo se $f$ è iniettiva.
+\end{itemize}
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+
+\begin{bxthm}
+\begin{xca}
+Siano $(N_1, s_1)$ e $(N_2, s_2)$ due insiemi che soddisfano gli assiomi di 
+Peano, allora esiste un'unica biezione $f : N_1 \to N_2$, tale che se 
+$\{a_1\} = N_1 \setminus s_1(N_1)$ e $\{a_2\} = N_2 \setminus s_2(N_2)$, 
+si ha $f(a_1) = a_2$ e $f(s_1(n)) = s_2(f(n))$ per ogni $n \in N_1$.
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+
+\begin{bxthm}
+\begin{xca}
+Dimostrare che per ogni numero naturale $k > 0$ esiste un'unica 
+coppia $(m,n)$ di numeri naturali tali che $k = 2^m(2n+1)$.
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+
+\begin{bxthm}
+\begin{xca}
+Usando il principio di induzione, provare che per ogni numero 
+naturale $n \ge 1$ risulta:
+\begin{itemize}
+    \item[(a)] $1 + 2 + 3 + \dots + n = \frac{n(n+1)}{2}$
+    \item[(b)] $1^2 + 2^2 + 3^2 + \dots + n^2 = \frac{n(n+1)(2n+1)}{6}$
+    \item[(c)] $1^3 + 2^3 + 3^3 + \dots + n^3 = \left(\frac{n(n+1)}{2}\right)^2$
+    \item[(d)] $1^4 + 2^4 + 3^4 + \dots + n^4 = \frac{n(n+1)(2n+1)(3n^2+3n-1)}{30}$
+    \item[(e)] $1^5 + 2^5 + 3^5 + \dots + n^5 = \frac{n^2(n+1)^2(2n^2+2n-1)}{12}$
+    \item[(f)] $1^6 + 2^6 + 3^6 + \dots + n^6 = \frac{n(n+1)(2n+1)(3n^4+6n^3-3n+1)}{42}$
+    \item[(g)] $1^7 + 2^7 + 3^7 + \dots + n^7 = \frac{n^2(n+1)^2(3n^4+6n^3-2n^2-4n+2)}{24}$
+\end{itemize}
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+
+\begin{bxthm}
+\begin{xca}
+Usando il principio di induzione, provare che per ogni numero 
+naturale $n$ risulta:
+\[
+\frac{1}{2^0} + \frac{1}{2^1} + \frac{1}{2^2} + \dots + \frac{1}{2^n} 
+= 2 - \frac{1}{2^n}.
+\]
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+
+\begin{bxthm}
+\begin{xca}
+Scrivere nella forma abbreviata tutte le somme degli esercizi 1.18 e 1.19.
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+
+\begin{bxthm}
+\begin{xca}
+Provare che per ogni numero naturale $n \ge 1$, si ha:
+\[
+\sum_{k=1}^n \frac{1}{\sqrt{k}} \ge \sqrt{n}.
+\]
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+
+\begin{bxthm}
+\begin{xca}
+Usando il principio di induzione, provare che per ogni numero 
+naturale $n \ge 1$, si ha:
+\begin{itemize}
+    \item[(a)] $\displaystyle 
+    \sum_{k=1}^n k q^{k-1} = \frac{nq^{n+1} - (n+1)q^n + 1}{(1-q)^2},
+    $
+    dove $q$ è un numero reale fisso diverso da 1;
+    \item[(b)] $\displaystyle 
+    \sum_{k=2}^n \frac{1}{k^2 - 1} = \frac{3}{4} - \frac{2n+1}{2n(n+1)}
+    \quad \text{per } n \ge 2;
+    $
+    \item[(c)] $\displaystyle 
+    \sum_{k=1}^n \frac{1}{n+k} \ge \frac{7}{12}
+    \quad \text{per } n \ge 2.
+    $
+\end{itemize}
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+
+
+\newpage
+\section{I Numeri Interi, Razionali, Reali, e Complessi}
+\vspace{20pt}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+
+\newpage
+\section{Aritmetica dei Numeri Primi}
+\vspace{20pt}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+
+\newpage
+\section{Strutture Algebriche}
+\vspace{20pt}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+
+\newpage
+\section{Gruppi e Sottogruppi}
+\vspace{20pt}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+
+\newpage
+\section{Omomorfismi e Prodotti Diretti di Gruppi}
+\vspace{20pt}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+
+\newpage
+\section{Gruppi Abeliani}
+\vspace{20pt}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+
+\newpage
+\section{Gruppi non Abeliani}
+\vspace{20pt}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+
+\newpage
+\section{Anelli e Ideali}
+\vspace{20pt}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+
+\newpage
+\section{Omomorfismi e Prodotti Diretti di Anelli}
+\vspace{20pt}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+
+\newpage
+\section{Anelli di Polinomi}
+\vspace{20pt}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+
+\newpage
+\section{Estensioni di Campi}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+
+\end{xca}
+\end{bxthm}
+\paragraph{Soluzione}
+
+\end{document}
