@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="190mm"
+   height="119mm"
+   viewBox="0 0 190 119"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3 (0e150ed6c4, 2023-07-21)"
+   sodipodi:docname="fourier.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="1.4627806"
+     inkscape:cx="370.86901"
+     inkscape:cy="204.06341"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1">
+    <marker
+       style="overflow:visible"
+       id="DartArrow"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Dart arrow"
+       markerWidth="2"
+       markerHeight="2"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         transform="scale(-0.5)"
+         id="path6" />
+    </marker>
+  </defs>
+  <g
+     inkscape:label="Livello 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <text
+       xml:space="preserve"
+       style="font-size:4.22616px;font-family:Arial;-inkscape-font-specification:Arial;opacity:1;fill:#000000;stroke:#000000;stroke-width:0.133107;stroke-miterlimit:3.9;stroke-dasharray:none"
+       x="7.9250164"
+       y="81.149658"
+       id="text1"><tspan
+         sodipodi:role="line"
+         id="tspan1"
+         style="font-size:4.22616px;stroke-width:0.133107;stroke-dasharray:none"
+         x="7.9250164"
+         y="81.149658">$O$</tspan></text>
+    <path
+       style="fill:#000000;stroke:#000000;stroke-width:0.266215;stroke-miterlimit:3.9;stroke-dasharray:none;marker-end:url(#DartArrow)"
+       d="M 17.743883,79.605636 101.39609,22.378946"
+       id="path1"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:#000000;stroke:#000000;stroke-width:0.266215;stroke-miterlimit:3.9;stroke-dasharray:none;marker-end:url(#DartArrow)"
+       d="M 17.743883,79.605636 166.93978,78.899743"
+       id="path2"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:#000000;stroke:#000000;stroke-width:0.266215;stroke-miterlimit:3.9;stroke-dasharray:none;marker-start:url(#DartArrow)"
+       d="M 104.14259,75.784922 V 20.500059"
+       id="path3"
+       sodipodi:nodetypes="cc" />
+    <text
+       xml:space="preserve"
+       style="font-size:4.22616px;font-family:Arial;-inkscape-font-specification:Arial;opacity:1;fill:#000000;stroke:#000000;stroke-width:0.133107;stroke-miterlimit:3.9;stroke-dasharray:none"
+       x="172.07057"
+       y="80.453705"
+       id="text3"><tspan
+         sodipodi:role="line"
+         id="tspan3"
+         style="font-size:4.22616px;stroke-width:0.133107;stroke-dasharray:none"
+         x="172.07057"
+         y="80.453705">$A$</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.22616px;font-family:Arial;-inkscape-font-specification:Arial;opacity:1;fill:#000000;stroke:#000000;stroke-width:0.133107;stroke-miterlimit:3.9;stroke-dasharray:none"
+       x="100.40652"
+       y="18.516043"
+       id="text4"><tspan
+         sodipodi:role="line"
+         id="tspan4"
+         style="font-size:4.22616px;stroke-width:0.133107;stroke-dasharray:none"
+         x="100.40652"
+         y="18.516043">$B$</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.22616px;font-family:Arial;-inkscape-font-specification:Arial;opacity:1;fill:#000000;stroke:#000000;stroke-width:0.133107;stroke-miterlimit:3.9;stroke-dasharray:none"
+       x="100.40652"
+       y="86.282356"
+       id="text5"><tspan
+         sodipodi:role="line"
+         id="tspan5"
+         style="font-size:4.22616px;stroke-width:0.133107;stroke-dasharray:none"
+         x="100.40652"
+         y="86.282356">$P$</tspan></text>
+    <path
+       style="fill:#000000;stroke:#000000;stroke-width:0.266215;stroke-miterlimit:3.9;stroke-dasharray:none;marker-end:url(#DartArrow)"
+       d="M 17.743883,79.605636 101.08813,79.211308"
+       id="path5"
+       sodipodi:nodetypes="cc" />
+    <text
+       xml:space="preserve"
+       style="font-size:4.22616px;font-family:Arial;-inkscape-font-specification:Arial;opacity:1;fill:#000000;stroke:#000000;stroke-width:0.133107;stroke-miterlimit:3.9;stroke-dasharray:none"
+       x="56.09166"
+       y="45.285835"
+       id="text6"><tspan
+         sodipodi:role="line"
+         id="tspan6"
+         style="font-size:4.22616px;stroke-width:0.133107;stroke-dasharray:none"
+         x="56.09166"
+         y="45.285835">$\mathbf{w}$</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.22616px;font-family:Arial;-inkscape-font-specification:Arial;opacity:1;fill:#000000;stroke:#000000;stroke-width:0.133107;stroke-miterlimit:3.9;stroke-dasharray:none"
+       x="87.564247"
+       y="102.62383"
+       id="text7"><tspan
+         sodipodi:role="line"
+         id="tspan7"
+         style="font-size:4.22616px;stroke-width:0.133107;stroke-dasharray:none"
+         x="87.564247"
+         y="102.62383">$\mathbf{v}$</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.22616px;font-family:Arial;-inkscape-font-specification:Arial;opacity:1;fill:#000000;stroke:#000000;stroke-width:0.133107;stroke-miterlimit:3.9;stroke-dasharray:none"
+       x="44.334652"
+       y="90.154625"
+       id="text8"><tspan
+         sodipodi:role="line"
+         id="tspan8"
+         style="font-size:4.22616px;stroke-width:0.133107;stroke-dasharray:none"
+         x="44.334652"
+         y="90.154625">$a_\mathbf{v}(\mathbf{w})\mathbf{v}$</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.22616px;font-family:Arial;-inkscape-font-specification:Arial;opacity:1;fill:#000000;stroke:#000000;stroke-width:0.133107;stroke-miterlimit:3.9;stroke-dasharray:none"
+       x="106.91808"
+       y="51.013512"
+       id="text9"><tspan
+         sodipodi:role="line"
+         id="tspan9"
+         style="font-size:4.22616px;stroke-width:0.133107;stroke-dasharray:none"
+         x="106.91808"
+         y="51.013512">$\mathbf{w}-a_\mathbf{v}(\mathbf{w})\mathbf{v}$</tspan></text>
+  </g>
+</svg>

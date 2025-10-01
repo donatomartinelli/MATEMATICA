@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="190mm"
+   height="130mm"
+   viewBox="0 0 190 130"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3 (0e150ed6c4, 2023-07-21)"
+   sodipodi:docname="spazio.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="1.0343421"
+     inkscape:cx="727.0322"
+     inkscape:cy="421.04059"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1">
+    <marker
+       style="overflow:visible"
+       id="ConcaveTriangle"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Concave triangle arrow"
+       markerWidth="1.5"
+       markerHeight="1.5"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.7)"
+         d="M -2,-4 9,0 -2,4 c 2,-2.33 2,-5.66 0,-8 z"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         id="path7" />
+    </marker>
+  </defs>
+  <g
+     inkscape:label="Livello 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="fill:#000000;stroke:#000000;stroke-width:0.2;stroke-miterlimit:3.9;stroke-dasharray:none"
+       d="M 69.625939,83.101183 69.88819,10.625346"
+       id="path3"
+       sodipodi:nodetypes="cc" />
+    <text
+       xml:space="preserve"
+       style="font-size:3.175px;font-family:Arial;-inkscape-font-specification:Arial;fill:#000000;stroke:#000000;stroke-width:0.1;stroke-miterlimit:3.9;stroke-dasharray:none"
+       x="63.706734"
+       y="70.880165"
+       id="text3"><tspan
+         sodipodi:role="line"
+         id="tspan3"
+         style="font-size:3.175px;stroke-width:0.1;stroke-dasharray:none"
+         x="63.706734"
+         y="70.880165">$O$</tspan></text>
+    <path
+       style="fill:#000000;stroke:#000000;stroke-width:0.3;stroke-miterlimit:3.9;stroke-dasharray:none;marker-end:url(#ConcaveTriangle)"
+       d="M 69.662823,72.907823 112.91127,62.332853"
+       id="path9"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:#000000;stroke:#000000;stroke-width:0.2;stroke-miterlimit:3.9;stroke-dasharray:none"
+       d="M 26.606369,110.56156 81.674345,62.504122"
+       id="path1"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:#000000;stroke:#000000;stroke-width:0.2;stroke-miterlimit:3.9;stroke-dasharray:none"
+       d="M 166.75687,89.431871 54.332771,70.314748"
+       id="path2"
+       sodipodi:nodetypes="cc" />
+    <text
+       xml:space="preserve"
+       style="font-size:3.175px;font-family:Arial;-inkscape-font-specification:Arial;fill:#000000;stroke:#000000;stroke-width:0.1;stroke-miterlimit:3.9;stroke-dasharray:none"
+       x="20.638262"
+       y="107.71517"
+       id="text6"><tspan
+         sodipodi:role="line"
+         id="tspan6"
+         style="font-size:3.175px;stroke-width:0.1;stroke-dasharray:none"
+         x="20.638262"
+         y="107.71517">$\mathfrak{r}_1$</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:3.175px;font-family:Arial;-inkscape-font-specification:Arial;fill:#000000;stroke:#000000;stroke-width:0.1;stroke-miterlimit:3.9;stroke-dasharray:none"
+       x="158.64165"
+       y="85.63356"
+       id="text7"><tspan
+         sodipodi:role="line"
+         id="tspan7"
+         style="font-size:3.175px;stroke-width:0.1;stroke-dasharray:none"
+         x="158.64165"
+         y="85.63356">$\mathfrak{r}_2$</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:3.175px;font-family:Arial;-inkscape-font-specification:Arial;fill:#000000;stroke:#000000;stroke-width:0.1;stroke-miterlimit:3.9;stroke-dasharray:none"
+       x="58.978432"
+       y="9.9068079"
+       id="text8"><tspan
+         sodipodi:role="line"
+         id="tspan8"
+         style="font-size:3.175px;stroke-width:0.1;stroke-dasharray:none"
+         x="58.978432"
+         y="9.9068079">$\mathfrak{r}_3$</tspan></text>
+    <path
+       style="fill:#000000;stroke:#000000;stroke-width:0.2;stroke-miterlimit:3.9;stroke-dasharray:0.2, 0.2;stroke-dashoffset:0"
+       d="M 115.69585,95.263829 55.83035,85.057996"
+       id="path8"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:#000000;stroke:#000000;stroke-width:0.2;stroke-miterlimit:3.9;stroke-dasharray:0.2,0.2;stroke-dashoffset:0"
+       d="M 115.69585,95.263829 129.63126,83.118858"
+       id="path10"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:#000000;stroke:#000000;stroke-width:0.2;stroke-miterlimit:3.9;stroke-dasharray:0.2, 0.2;stroke-dashoffset:0"
+       d="m 115.78324,61.526558 -0.0874,33.737271"
+       id="path12"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:#000000;stroke:#000000;stroke-width:0.2;stroke-miterlimit:3.9;stroke-dasharray:none"
+       d="M 124.63373,63.165276 106.89512,60.10605"
+       id="path13"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:#000000;stroke:#000000;stroke-width:0.2;stroke-miterlimit:3.9;stroke-dasharray:none"
+       d="m 109.04849,67.496608 13.43186,-11.72189"
+       id="path14"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:#000000;stroke:#000000;stroke-width:0.2;stroke-miterlimit:3.9;stroke-dasharray:none"
+       d="m 115.73954,70.527368 0.0874,-18.00162"
+       id="path15"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:#000000;stroke:#000000;stroke-width:0.3;stroke-miterlimit:3.9;stroke-dasharray:none;marker-end:url(#ConcaveTriangle)"
+       d="M 69.662823,72.907823 49.577361,90.514936"
+       id="path16"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:#000000;stroke:#000000;stroke-width:0.3;stroke-miterlimit:3.9;stroke-dasharray:none;marker-end:url(#ConcaveTriangle)"
+       d="M 69.662823,72.907823 110.54482,79.87331"
+       id="path17"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:#000000;stroke:#000000;stroke-width:0.3;stroke-miterlimit:3.9;stroke-dasharray:none;marker-end:url(#ConcaveTriangle)"
+       d="m 69.662823,72.907823 0.09424,-36.218891"
+       id="path18"
+       sodipodi:nodetypes="cc" />
+    <text
+       xml:space="preserve"
+       style="font-size:3.175px;font-family:Arial;-inkscape-font-specification:Arial;fill:#000000;stroke:#000000;stroke-width:0.1;stroke-miterlimit:3.9;stroke-dasharray:none"
+       x="41.006672"
+       y="90.60791"
+       id="text18"><tspan
+         sodipodi:role="line"
+         id="tspan18"
+         style="font-size:3.175px;stroke-width:0.1;stroke-dasharray:none"
+         x="41.006672"
+         y="90.60791">$P_1$</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:3.175px;font-family:Arial;-inkscape-font-specification:Arial;fill:#000000;stroke:#000000;stroke-width:0.1;stroke-miterlimit:3.9;stroke-dasharray:none"
+       x="105.99998"
+       y="84.729408"
+       id="text19"><tspan
+         sodipodi:role="line"
+         id="tspan19"
+         style="font-size:3.175px;stroke-width:0.1;stroke-dasharray:none"
+         x="105.99998"
+         y="84.729408">$P_2$</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:3.175px;font-family:Arial;-inkscape-font-specification:Arial;fill:#000000;stroke:#000000;stroke-width:0.1;stroke-miterlimit:3.9;stroke-dasharray:none"
+       x="58.700649"
+       y="34.931396"
+       id="text20"><tspan
+         sodipodi:role="line"
+         id="tspan20"
+         style="font-size:3.175px;stroke-width:0.1;stroke-dasharray:none"
+         x="58.700649"
+         y="34.931396">$P_3$</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:3.175px;font-family:Arial;-inkscape-font-specification:Arial;fill:#000000;stroke:#000000;stroke-width:0.1;stroke-miterlimit:3.9;stroke-dasharray:none"
+       x="105.97223"
+       y="57.927162"
+       id="text21"><tspan
+         sodipodi:role="line"
+         id="tspan21"
+         style="font-size:3.175px;stroke-width:0.1;stroke-dasharray:none"
+         x="105.97223"
+         y="57.927162">$P$</tspan></text>
+  </g>
+</svg>
