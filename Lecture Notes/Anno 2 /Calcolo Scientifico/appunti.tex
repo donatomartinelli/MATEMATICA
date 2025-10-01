@@ -1,0 +1,120 @@
+\documentclass[a4paper,12pt]{article}
+
+% === Basic packages for text and math ===
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}                               % Modern font
+\usepackage{geometry}                              % Page layout
+\geometry{a4paper, margin=1.5cm}
+\usepackage{hyperref}                              % Links and references
+
+% === Math packages ===
+\usepackage{amsmath, amssymb, amsfonts, amsthm}    % AMS mathematics
+\usepackage{mathtools}                             % Enhanced math tools
+\usepackage{mathrsfs}                              % Script fonts
+\usepackage{cancel}                                % Cancellation in equations
+
+% === Graphics and colors ===
+\usepackage{tikz, pgfplots}                        % Drawing tools
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usetikzlibrary{positioning}
+\pgfplotsset{compat=1.18}
+
+% === Utilities ===
+\usepackage{mdframed}                              % Framed environments
+\usepackage{import, xifthen, pdfpages, transparent}% Import and conditional tools
+\usepackage{enumitem}                              % List customization
+\usepackage{multicol}                              % Multiple columns
+\usepackage{float}                                 % Float control
+
+% === Code listing setup ===
+\usepackage{listings, xcolor}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    numbers=left,
+    numberstyle=\tiny\color{codegray},
+    numbersep=5pt,
+    breaklines=true,
+    breakatwhitespace=false,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2
+}
+\lstset{style=mystyle}
+
+% === Theorem environments ===
+\newmdenv[
+  linecolor=black,
+  linewidth=1pt,
+  roundcorner=5pt,
+  innertopmargin=4pt,
+  innerbottommargin=10pt,
+  innerleftmargin=10pt,
+  innerrightmargin=10pt
+]{bxthm}
+
+% Theorem-like environments
+\theoremstyle{plain}
+\newtheorem{thm}{Teorema}[section]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposizione}
+\newtheorem{cor}{Corollario}
+
+\theoremstyle{definition}
+\newtheorem{defn}{Definizione}[section]
+\newtheorem{exmp}{Esempio}[section]
+\newtheorem{xca}[exmp]{Esercizio}
+
+\theoremstyle{remark}
+\newtheorem{rem}{Osservazione}
+\newtheorem{note}{Nota}
+\newtheorem{case}{Caso}
+
+% === Custom commands ===
+\newcommand{\incfig}[2][\columnwidth]{%
+    \def\svgwidth{#1}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+% === Document content ===
+\begin{document}
+\begin{titlepage}
+    \centering
+    {\textsc{Università degli Studi della Basilicata} \par}
+    \vspace{2cm}
+    {\huge\bfseries Calcolo Scientifico\par}
+    
+    \vfill
+    {\Large\itshape Donato Martinelli\par}
+    {\large \today\par}
+\end{titlepage}
+
+\tableofcontents
+
+\section{Introduzione}
+
+La matematica è alla base delle scienze perché permette di modellizzare i fenomeni reali tramite 
+variabili e relazioni. Molti problemi, però, non hanno soluzioni analitiche semplici o calcolabili 
+a mano, e quindi si ricorre ai metodi numerici, che consentono di ottenere approssimazioni con 
+l'aiuto dei calcolatori. Non tutti i metodi sono praticabili: ad esempio il metodo di Cramer diventa 
+proibitivo per sistemi di grandi dimensioni, mentre l'eliminazione di Gauss è molto più efficiente. 
+La scelta del metodo si basa su criteri di efficienza, precisione e stabilità, tenendo conto che i 
+calcolatori introducono inevitabilmente errori dovuti alla rappresentazione finita dei numeri, i 
+quali possono propagarsi e compromettere i risultati.
+Il Calcolo Scientifico studia proprio come sviluppare metodi 
+rapidi, precisi e stabili per affrontare tali problemi.
+
+\section{Rappresentazione dei numeri in un calcolatore}
+
+
+\end{document}
