@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="190mm"
+   height="130mm"
+   viewBox="0 0 190 130"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3 (0e150ed6c4, 2023-07-21)"
+   sodipodi:docname="circonferenza.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="2.0686842"
+     inkscape:cx="279.88806"
+     inkscape:cy="200.36891"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1">
+    <marker
+       style="overflow:visible"
+       id="marker4"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Dart arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         transform="scale(-0.5)"
+         id="path4" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="DartArrow"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Dart arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         transform="scale(-0.5)"
+         id="path6" />
+    </marker>
+  </defs>
+  <g
+     inkscape:label="Livello 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="fill:#000000;stroke:#000000;stroke-width:0.2;stroke-miterlimit:3.9;stroke-dasharray:none;marker-start:url(#marker4);marker-end:url(#DartArrow)"
+       d="M 45.869003,120.39875 V 68.758372 17.117994"
+       id="path2"
+       sodipodi:nodetypes="ccc" />
+    <path
+       style="fill:#000000;stroke:#000000;stroke-width:0.23299;stroke-miterlimit:3.9;stroke-dasharray:none;marker-start:url(#marker4);marker-end:url(#DartArrow)"
+       d="m 34.841606,101.4377 120.316784,0.1258"
+       id="path3" />
+    <text
+       xml:space="preserve"
+       style="font-size:3.175px;font-family:Arial;-inkscape-font-specification:Arial;opacity:1;fill:#000000;stroke:#000000;stroke-width:0.1;stroke-miterlimit:3.9;stroke-dasharray:none"
+       x="155.15617"
+       y="106.04516"
+       id="text8"><tspan
+         sodipodi:role="line"
+         id="tspan8"
+         style="font-size:3.175px;stroke-width:0.1;stroke-dasharray:none"
+         x="155.15617"
+         y="106.04516">$x$</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:3.175px;font-family:Arial;-inkscape-font-specification:Arial;opacity:1;fill:#000000;stroke:#000000;stroke-width:0.1;stroke-miterlimit:3.9;stroke-dasharray:none"
+       x="45.305836"
+       y="12.051209"
+       id="text1"><tspan
+         sodipodi:role="line"
+         id="tspan1"
+         style="font-size:3.175px;stroke-width:0.1;stroke-dasharray:none"
+         x="45.305836"
+         y="12.051209">$y$</tspan></text>
+    <path
+       style="fill:none;fill-opacity:0.139053;stroke:#000000;stroke-width:0.2;stroke-miterlimit:3.9;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path1"
+       sodipodi:type="arc"
+       sodipodi:cx="95.5"
+       sodipodi:cy="60.346569"
+       sodipodi:rx="27.131548"
+       sodipodi:ry="27.131548"
+       sodipodi:start="5.3853502"
+       sodipodi:end="5.3853273"
+       sodipodi:open="true"
+       sodipodi:arc-type="arc"
+       d="m 112.41121,39.130259 a 27.131548,27.131548 0 0 1 4.3052,38.1274 27.131548,27.131548 0 0 1 -38.127378,4.305414 27.131548,27.131548 0 0 1 -4.305633,-38.127351 27.131548,27.131548 0 0 1 38.127331,-4.305851" />
+  </g>
+</svg>
