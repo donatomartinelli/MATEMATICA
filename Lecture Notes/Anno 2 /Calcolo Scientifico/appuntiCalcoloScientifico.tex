@@ -116,5 +116,144 @@ rapidi, precisi e stabili per affrontare tali problemi.
 
 \section{Rappresentazione dei numeri in un calcolatore}
 
+Il numero è un concetto indipendente dai simboli usati per rappresentarlo. 
+I sistemi di numerazione servono a rappresentare i numeri tramite segni e a 
+definire regole per le operazioni.
+
+Le prime civiltà contarono per necessità pratiche, inizialmente associando oggetti concreti ai 
+numeri e poi usando segni come barrette “|”. Questo metodo, però, era poco pratico perché richiedeva 
+tante barrette quante erano le unità.
+
+Per semplificare, si introdussero le cifre e il concetto di base di numerazione, scelta spesso 
+come 10 per via delle dita delle mani.
+
+Si distinguono due tipi di sistemi:
+
+Additivo, in cui il numero è la somma dei valori dei simboli (es. sistema romano ed egizio, 
+non richiede lo zero).
+
+Posizionale, in cui il valore dipende dalla posizione del simbolo (introdotto da indiani e arabi).
+
+Il sistema oggi più usato è quello decimale, basato su 10 cifre (0-9). Gli indiani introdussero 
+anche lo zero (“sunya”), e gli arabi diffusero questo sistema in Occidente nel XII secolo, grazie 
+alle opere di matematici come al-Khwarizmi.
+
+La base del sistema decimale è 10 e ogni numero viene rappresentato come 
+\[a=\pm\, a_m\,a_{m-1}\,\cdots\, a_1\,a_0\,a_{-1}\,\cdots \,a_{-M}\quad\quad 0\leq a_i\leq 9.\]
+Il sistema è posizionale perchè il valore di ogni cifra varia in funzione della sua posizione nella rappresentazione decimale del numero:
+\[a=\pm\, a_m10^m+a_{m-1}10^{m-1}+\cdots+ a_110^1+a_010^0+a_{-1}10^{-1}+\cdots +a_{-M}10^{-M}\quad\quad 0\leq a_i\leq 9.\]
+La rappresentazione decimale di ogni numero reale è unica, eccetto quando la parte frazionaria contiene una sequenza di 9 consecutivi.
+Ad esempio $0.31\bar{9}=0.32$.
+
+Qualunque intero $N > 1$ può essere scelto come base ed ogni numero reale $a$ può essere scritto nella forma
+\[a=\pm\, a_mN^m+a_{m-1}N^{m-1}+\cdots+ a_1N^1+a_0N^0+a_{-1}N^{-1}+\cdots +a_{-M}N^{-M}\quad\quad 0\leq a_i\leq N-1.\]
+La rappresentazione di ogni numero reale in base N è unica, eccetto quando la parte frazionaria contiene una sequenza di cifre $a_k=N-1$ consecutive.
+Più piccola è la base scelta, più è lunga la stringa di caratteri necessari per rappresentare lo stesso numero.
+
+La base del sistema binario è 2.
+Le cifre utilizzate da questo sistema sono 0 e 1 e vengono dette bit da
+binary digit.
+Ogni numero reale $a$ è rappresentato come una sequenza di 0 e 1,
+ovvero
+\[a=\pm\, a_m2^m+a_{m-1}2^{m-1}+\cdots+ a_12^1+a_02^0+a_{-1}2^{-1}+\cdots +a_{-M}2^{-M}\quad\quad 0\leq a_i\leq 1.\]
+
+Questo sistema è particolarmente interessante perchè può essere
+realizzato con qualsiasi oggetto capace di assumere due stati diversi,
+uno per la cifra 0 e l'altro per la cifra 1.
+Per queste sue caratteristiche è stato adottato per la rappresentazione
+dei dati e, in particolare, dei numeri in un calcolatore.
+
+I numeri vengono rappresentati nel calcolatore secondo il sistema
+binario e, quindi, come una sequenza di bit.
+Per ovvie ragioni, ad ogni numero reale viene riservato uno spazio
+finito di memoria, capace di contenere un numero finito di bit detto
+parola.
+Di conseguenza, non tutti i numeri reali sono rappresentabili in modo
+esatto.
+Detta $l$ la lunghezza della parola, si possono rappresentare
+esattamente solo quei numeri la cui rappresentazione binaria consta di
+un numero di bit inferiore o uguale ad $l$.
+Si parla di numeri macchina.
+Tutte le operazioni fra i numeri macchina vengono effettuate
+utilizzando l'aritmetica binaria.
+Con parole di lunghezza $l$ è possibile rappresentare tutti i numeri
+interi appartenenti all'intervallo 
+\[\left[-\dfrac{2^l}{2},\dfrac{2^l}{2}-1\right]\]
+
+Ogni numero reale $a$ può essere scritto nella forma
+\[a = pNq\]
+dove $p$ è un numero reale, $N$ è la base del sistema di numerazione e $q$
+è un numero intero positivo o negativo
+Questa rappresentazione, detta in virgola mobile (floating-point), non
+è unica, infatti
+\[321.25 = 32.125 \times 10^1 = 0.32125 \times 10^3\]
+La rappresentazione di $a$ si dice normalizzata quando
+\[N^{-1} \leq |p| < 1.\]
+Le cifre di $p$ si dicono cifre significative.
+Ad esempio la rappresentazione normalizzata di $a = 92.25$ è
+$a = 0.9225\,10^2$.
+Fissata la base $N$, ogni numero reale $a$ è univocamente definito dalla
+coppia
+\[a = (p, q)\]
+$p$ viene detta \textbf{mantissa} di $a$, $q$ viene detto \textbf{esponente} di $a$
+I numeri reali in virgola mobile vengono rappresentati in un
+calcolatore in forma normalizzata secondo lo Standard IEEE 754.
+
+Nello standard singola precisione è possibile rappresentare tutti i numeri reali della seguente forma 
+\[\pm0.d_1d_2d_3d_4d_5d_6\times10^q,\]
+dove $0<d_1\leq9,\;0\leq d_i\leq9,\;i=2,\ldots,6$, e $-38\leq q\leq 38$.
+Nella doppia precisione invece è possibile rappresentare tutti i numeri reali della seguente forma 
+\[\pm0.d_1d_2\cdots d_{16}\times10^q,\]
+dove $0<d_1\leq9,\;0\leq d_i\leq9,\;i=2,\ldots,16$, e $-308\leq q\leq 308$.
+
+Nello standard IEEE 754 in Doppia Precisione, benchè lo spazio
+riservato alla mantissa di un numero reale sia di 52 bit, viene
+recuperato un bit in più non rappresentando il primo bit che è sempre
+uguale a 1.
+Pertanto le mantisse p dei numeri reali vengono rappresentate in
+doppia precisione con 53 bit.
+
+
+Supponendo di utilizzare un calcolatore che lavora in \textbf{doppia precisione}, dato
+
+\[
+a = \pm 0.d_1 d_2 \ldots \, 10^q, \quad d_1 \neq 0
+\]
+
+un numero reale non nullo, si possono presentare i seguenti casi:
+
+\begin{enumerate}
+    \item L’esponente $q$ è tale che $-308 \leq q \leq 308$ e le cifre dopo la 16-esima sono tutte nulle, ovvero $d_i = 0$ per ogni $i > 16$, cioè
+    \[
+    a = \pm 0.d_1 d_2 \ldots d_{16}\, 10^q.
+    \]
+    Allora $a$ è \textbf{esattamente rappresentabile}.
+    
+    \item L’esponente $q$ non appartiene all’intervallo $[-308,308]$. \\
+    Se $q < -308$, si associa 0 ad $a$ e il calcolatore segnala \textit{underflow}. \\
+    Se $q > 308$, $a$ non viene rappresentato e il calcolatore segnala \textit{overflow}.
+\end{enumerate}
+
+
+Nei computer di ultima generazione è possibile rappresentare anche numeri il cui esponente $q$ è tale che
+\[
+-324 < q < -308.
+\]
+
+Tali numeri riempiono l’intervallo tra lo zero ed il più piccolo numero normalizzato rappresentabile
+\[
+\text{realmin} = 2^{-1022} \sim 2.22 \times 10^{-308}
+\]
+e vengono chiamati \textbf{denormalizzati} (o \textbf{subnormalizzati}).
+
+
+
+Il più grande numero normalizzato rappresentabile in doppia precisione è
+\[
+\text{realmax} \sim 1.79 \times 10^{308}.
+\]
+
+Esso è un bit meno di $2^{1024}$.
+
 
 \end{document}
