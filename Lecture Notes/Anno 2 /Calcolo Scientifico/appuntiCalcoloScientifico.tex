@@ -223,13 +223,13 @@ a = \pm 0.d_1 d_2 \ldots \, 10^q, \quad d_1 \neq 0
 un numero reale non nullo, si possono presentare i seguenti casi:
 
 \begin{enumerate}
-    \item L’esponente $q$ è tale che $-308 \leq q \leq 308$ e le cifre dopo la 16-esima sono tutte nulle, ovvero $d_i = 0$ per ogni $i > 16$, cioè
+    \item L'esponente $q$ è tale che $-308 \leq q \leq 308$ e le cifre dopo la 16-esima sono tutte nulle, ovvero $d_i = 0$ per ogni $i > 16$, cioè
     \[
     a = \pm 0.d_1 d_2 \ldots d_{16}\, 10^q.
     \]
     Allora $a$ è \textbf{esattamente rappresentabile}.
     
-    \item L’esponente $q$ non appartiene all’intervallo $[-308,308]$. \\
+    \item L'esponente $q$ non appartiene all'intervallo $[-308,308]$. \\
     Se $q < -308$, si associa 0 ad $a$ e il calcolatore segnala \textit{underflow}. \\
     Se $q > 308$, $a$ non viene rappresentato e il calcolatore segnala \textit{overflow}.
 \end{enumerate}
@@ -240,7 +240,7 @@ Nei computer di ultima generazione è possibile rappresentare anche numeri il cu
 -324 < q < -308.
 \]
 
-Tali numeri riempiono l’intervallo tra lo zero ed il più piccolo numero normalizzato rappresentabile
+Tali numeri riempiono l'intervallo tra lo zero ed il più piccolo numero normalizzato rappresentabile
 \[
 \text{realmin} = 2^{-1022} \sim 2.22 \times 10^{-308}
 \]
@@ -255,5 +255,51 @@ Il più grande numero normalizzato rappresentabile in doppia precisione è
 
 Esso è un bit meno di $2^{1024}$.
 
+L'esponente $q$ appartiene all'intervallo $[-308, 308]$ ma le cifre
+$d_i,\; i > 16$, non sono tutte nulle.
+In questo caso è possibile associare al numero a un numero di
+macchina $fl(a)$ seguendo due criteri diversi:
+-troncamento
+-arrotondamento
+
+Per troncare un numero
+$$ a = 0.d_1d_2 \dots d_{t-1}d_t d_{t+1}d_{t+2} \dots N^q $$
+fino a $t$ cifre significative, si eliminano tutte le cifre $d_{t+1}d_{t+2} \dots$ a destra della $t-$esima.
+
+Dunque
+
+$$ fl(a) = \text{trn}(a) = 0.d_1d_2 \dots d_{t-1}d_t N^q$$
+
+Per arrotondare un numero
+$$ a = 0.d_1 d_2 \dots d_{t-1} d_t d_{t+1} d_{t+2} \dots N^q $$
+fino a $t$ cifre significative, si eliminano tutte le cifre $d_{t+1}d_{t+2} \dots$ a destra della $t$-esima e si rimpiazza $d_t$ con la cifra $c$, dove
+$$
+\begin{cases}
+c = d_t & \text{se } 0 \le d_{t+1} \le 4 \\
+c = d_t + 1 & \text{se } 5 \le d_{t+1} \le 9
+\end{cases}
+$$
+Dunque
+$$ fl(a) = arr(a) = 0.d_1 d_2 \dots d_{t-1} c \, N^q $$
+
+ Consideriamo il numero
+$$ \pi = 3.1415926536\dots = 0.31415926536\dots \cdot 10^1. $$
+
+\begin{tabular}{ll}
+${\color{blue}t=6} \quad \mathrm{trn}(\pi) = 0.314159 \ 10^1$ & $\mathrm{arr}(\pi) = 0.314159 \ 10^1$ \\
+${\color{blue}t=5} \quad \mathrm{trn}(\pi) = 0.31415 \ 10^1$ & $\mathrm{arr}(\pi) = 0.31416 \ 10^1$ \\
+${\color{blue}t=4} \quad \mathrm{trn}(\pi) = 0.3141 \ 10^1$ & $\mathrm{arr}(\pi) = 0.3142 \ 10^1$ \\
+\end{tabular}
+
+\vspace{1cm}
+
+ Consideriamo il numero
+$$ a = 2\sqrt{2} = 2.828427124746190\dots = 0.2828427124746190\dots \cdot 10^1. $$
+
+\begin{tabular}{ll}
+${\color{blue}t=6} \quad \mathrm{trn}(a) = 0.282842 \ 10^1$ & $\mathrm{arr}(a) = 0.282843 \ 10^1$ \\
+${\color{blue}t=5} \quad \mathrm{trn}(a) = 0.28284 \ 10^1$ & $\mathrm{arr}(a) = 0.28284 \ 10^1$ \\
+${\color{blue}t=4} \quad \mathrm{trn}(a) = 0.2828 \ 10^1$ & $\mathrm{arr}(a) = 0.2828 \ 10^1$ \\
+\end{tabular}
 
 \end{document}
