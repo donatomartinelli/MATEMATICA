@@ -1,0 +1,156 @@
+\documentclass[a4paper,12pt]{article}
+
+% === Basic packages for text and math ===
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}                               % Modern font
+\usepackage{geometry}                              % Page layout
+\geometry{a4paper, margin=1.5cm}
+\usepackage{hyperref}                              % Links and references
+
+% === Math packages ===
+\usepackage{amsmath, amssymb, amsfonts, amsthm}    % AMS mathematics
+\usepackage{mathtools}                             % Enhanced math tools
+\usepackage{mathrsfs}                              % Script fonts
+\usepackage{cancel}                                % Cancellation in equations
+
+% === Graphics and colors ===
+\usepackage{tikz, pgfplots}                        % Drawing tools
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usetikzlibrary{positioning}
+\pgfplotsset{compat=1.18}
+
+% === Utilities ===
+\usepackage{mdframed}                              % Framed environments
+\usepackage{import, xifthen, pdfpages, transparent}% Import and conditional tools
+\usepackage{enumitem}                              % List customization
+\usepackage{multicol}                              % Multiple columns
+\usepackage{float}                                 % Float control
+
+% === Code listing setup ===
+\usepackage{listings, xcolor}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    numbers=left,
+    numberstyle=\tiny\color{codegray},
+    numbersep=5pt,
+    breaklines=true,
+    breakatwhitespace=false,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2
+}
+\lstset{style=mystyle}
+
+% === Theorem environments ===
+\newmdenv[
+  linecolor=black,
+  linewidth=1pt,
+  roundcorner=5pt,
+  innertopmargin=4pt,
+  innerbottommargin=10pt,
+  innerleftmargin=10pt,
+  innerrightmargin=10pt
+]{bxthm}
+
+% Theorem-like environments
+\theoremstyle{plain}
+\newtheorem{thm}{Teorema}[section]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposizione}
+\newtheorem{cor}{Corollario}
+
+\theoremstyle{definition}
+\newtheorem{defn}{Definizione}[section]
+\newtheorem{exmp}{Esempio}[section]
+\newtheorem{xca}[exmp]{Esercizio}
+
+\theoremstyle{remark}
+\newtheorem{rem}{Osservazione}
+\newtheorem{note}{Nota}
+\newtheorem{case}{Caso}
+
+% === Custom commands ===
+\newcommand{\incfig}[2][\columnwidth]{%
+    \def\svgwidth{#1}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+% === Document content ===
+\begin{document}
+\begin{titlepage}
+    \centering
+    {\textsc{Università degli Studi della Basilicata} \par}
+    \vspace{2cm}
+    {\huge\bfseries Fisica 1\par}
+    
+    \vfill
+    {\Large\itshape Donato Martinelli\par}
+    {\large \today\par}
+\end{titlepage}
+
+\tableofcontents
+
+
+\section{Il sistema internazionale}
+
+Il Sistema Internazionale di unità di misura (SI) è il sistema di misura più diffuso e accettato a livello mondiale. Adottato nel 1960 dalla Conferenza Generale dei Pesi e Misure, stabilisce un insieme 
+coerente di unità di misura fondamentali dalle quali è possibile derivare tutte le altre grandezze fisiche.
+
+Nonostante la sua diffusione globale, alcuni paesi (principalmente quelli anglosassoni come gli Stati Uniti e il Regno Unito) utilizzano ancora sistemi di misura alternativi come il sistema 
+imperiale o il sistema consuetudinario statunitense.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|c|c|c|}
+\hline
+\textbf{Grandezza} & \textbf{Simbolo} & \textbf{Unità SI} & \textbf{Costante di riferimento} \\
+\hline
+Tempo & $t$ & secondo (s) & Periodo della radiazione Cs-133 ($9.192.631.770$ Hz) \\
+Lunghezza & $l$ & metro (m) & Velocità della luce ($299.792.458$ m/s) \\
+Massa & $m$ & chilogrammo (kg) & Costante di Planck ($6,626 \times 10^{-34}$ J$\cdot$s) \\
+Corrente elettrica & $I$ & ampere (A) & Carica elementare ($1,602 \times 10^{-19}$ C) \\
+Temperatura termodinamica & $T$ & kelvin (K) & Costante di Boltzmann ($1,380 \times 10^{-23}$ J/K) \\
+Quantità di sostanza & $n$ & mole (mol) & Numero di Avogadro ($6,022 \times 10^{23}$ mol$^{-1}$) \\
+Intensità luminosa & $I_v$ & candela (cd) & Efficacia luminosa ($683$ lm/W) \\
+\hline
+\end{tabular}
+\caption{Grandezze fondamentali del Sistema Internazionale e relative costanti}
+\label{tab:si_units}
+\end{table}
+
+Le altre grandezze fisiche, dette derivate, si ottengono mediante combinazioni delle grandezze fondamentali attraverso relazioni matematiche ben definite.
+
+A partire dalle grandezze fondamentali, si posono ricavare le unità di grandezza di tante altre misure.
+
+Supponiamo di voler misurare la velocità, quale sarà l'unità di misura della velocità? per capirlo dobbiamo esprimerla in termini delle grandezze fondamentali, la velocità sappiamo che è uno spazio fratto un tempo, entrambe grandezze fondamentali. 
+\[velocita' = \dfrac{spazio}{tempo};\]
+\[velocita' = \dfrac{metri}{secondo};\]
+per indicare le dimensioni di una variabile si mettono tra parentesi quadre, e significa la dimensione di questa variabile.
+Dunque quali sono queste dimensioni, lo spazio si misura in metri, e il tempo si misura in secondi
+\[[v] = \dfrac{[m]}{[s]};\]
+e quindi nel sistema internazionale la velocità è indicata con la misura di metri al secondo.
+Altro esempio, l'accelerazione. Scopriremo che l'accelerazione è una variazione di velocità, 
+la possiamo vedere come un rapporto tra la velocità e il tempo
+\[accelerazione = \dfrac{velocita'}{tempo};\]
+, come si misurerà nel sistema internazionale ?
+\[[a] = \dfrac{\frac{[m]}{[s]}}{[s]}= \dfrac{[m]}{[s]^2};\]
+Ancora un altro esempio, la forza, vedremo più in là come definirla in modo approfondito, in generale questa forza 
+è espressa in fisica da quello che vedremo essere il secondo principio della dinamica, 
+cioè massa per accelerazione, in simboli
+\[F=ma\]
+come si misura dunque la forza nel sistema internazionale ? quali saranno le unità di misura? 
+\[[F]=[Kg]\dfrac{[m]}{[s]^2}\]
+
+
+\end{document}
