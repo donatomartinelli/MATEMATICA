@@ -1,69 +1,19 @@
-\documentclass[a4paper,12pt]{article}
-
-% === Basic packages for text and math ===
+\documentclass{article}
 \usepackage[utf8]{inputenc}
-\usepackage{lmodern}                               % Modern font
-\usepackage{geometry}                              % Page layout
-\geometry{a4paper, margin=1.5cm}
-\usepackage{hyperref}                              % Links and references
-
-% === Math packages ===
-\usepackage{amsmath, amssymb, amsfonts, amsthm}    % AMS mathematics
-\usepackage{mathtools}                             % Enhanced math tools
-\usepackage{mathrsfs}                              % Script fonts
-\usepackage{cancel}                                % Cancellation in equations
-
-% === Graphics and colors ===
-\usepackage{tikz, pgfplots}                        % Drawing tools
-\usepackage{graphicx}
-\graphicspath{{./images/}}
-\usetikzlibrary{positioning}
+\usepackage{amsmath, amssymb, amsfonts, amsthm}
+\usepackage{mdframed}
+\usepackage{cancel}
+\usepackage{import, xifthen, pdfpages, transparent}
+\usepackage{enumitem}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{multicol}
+\usepackage{tikz, pgfplots}
 \pgfplotsset{compat=1.18}
+\usetikzlibrary{positioning}
+\geometry{a4paper, margin=1.5cm}
 
-% === Utilities ===
-\usepackage{mdframed}                              % Framed environments
-\usepackage{import, xifthen, pdfpages, transparent}% Import and conditional tools
-\usepackage{enumitem}                              % List customization
-\usepackage{multicol}                              % Multiple columns
-\usepackage{float}                                 % Float control
-
-% === Code listing setup ===
-\usepackage{listings, xcolor}
-\definecolor{codegreen}{rgb}{0,0.6,0}
-\definecolor{codegray}{rgb}{0.5,0.5,0.5}
-\definecolor{codepurple}{rgb}{0.58,0,0.82}
-\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
-
-\lstdefinestyle{mystyle}{
-    backgroundcolor=\color{backcolour},   
-    commentstyle=\color{codegreen},
-    keywordstyle=\color{magenta},
-    stringstyle=\color{codepurple},
-    basicstyle=\ttfamily\footnotesize,
-    numbers=left,
-    numberstyle=\tiny\color{codegray},
-    numbersep=5pt,
-    breaklines=true,
-    breakatwhitespace=false,
-    showspaces=false,
-    showstringspaces=false,
-    showtabs=false,
-    tabsize=2
-}
-\lstset{style=mystyle}
-
-% === Theorem environments ===
-\newmdenv[
-  linecolor=black,
-  linewidth=1pt,
-  roundcorner=5pt,
-  innertopmargin=4pt,
-  innerbottommargin=10pt,
-  innerleftmargin=10pt,
-  innerrightmargin=10pt
-]{bxthm}
-
-% Theorem-like environments
 \theoremstyle{plain}
 \newtheorem{thm}{Teorema}[section]
 \newtheorem{lem}[thm]{Lemma}
@@ -73,233 +23,360 @@
 \theoremstyle{definition}
 \newtheorem{defn}{Definizione}[section]
 \newtheorem{exmp}{Esempio}[section]
-\newtheorem{xca}[exmp]{Esercizio}
+\newtheorem{xca}{Esercizio}[exmp]
 
 \theoremstyle{remark}
 \newtheorem{rem}{Osservazione}
 \newtheorem{note}{Nota}
 \newtheorem{case}{Caso}
 
-% === Custom commands ===
 \newcommand{\incfig}[2][\columnwidth]{%
     \def\svgwidth{#1}
     \import{./figures/}{#2.pdf_tex}
 }
 
-% === Document content ===
 \begin{document}
 \begin{titlepage}
     \centering
-    {\textsc{Università degli Studi della Basilicata} \par}
-    \vspace{2cm}
-    {\huge\bfseries Calcolo Scientifico\par}
-    
-    \vfill
-    {\Large\itshape Donato Martinelli\par}
-    {\large \today\par}
+	{\textsc{Università degli Studi della Basilicata} \par}
+	\vspace{2cm}
+    {\huge\bfseries Calcolo Scientifico \par}
+	\vfill
+	{\Large\itshape Donato Martinelli\par}
+	{\large \today\par}
 \end{titlepage}
 
 \tableofcontents
 
+\vspace{10pt}
+
+
 \section{Introduzione}
 
-La matematica è alla base delle scienze perché permette di modellizzare i fenomeni reali tramite 
-variabili e relazioni. Molti problemi, però, non hanno soluzioni analitiche semplici o calcolabili 
-a mano, e quindi si ricorre ai metodi numerici, che consentono di ottenere approssimazioni con 
-l'aiuto dei calcolatori. Non tutti i metodi sono praticabili: ad esempio il metodo di Cramer diventa 
-proibitivo per sistemi di grandi dimensioni, mentre l'eliminazione di Gauss è molto più efficiente. 
-La scelta del metodo si basa su criteri di efficienza, precisione e stabilità, tenendo conto che i 
-calcolatori introducono inevitabilmente errori dovuti alla rappresentazione finita dei numeri, i 
-quali possono propagarsi e compromettere i risultati.
-Il Calcolo Scientifico studia proprio come sviluppare metodi 
-rapidi, precisi e stabili per affrontare tali problemi.
 
-\section{Rappresentazione dei numeri in un calcolatore}
+La \textbf{MATEMATICA} è uno strumento indispensabile per l'interpretazione e la predizione dei fenomeni che si verificano nel mondo reale ed è quindi alla base di tutte le scienze. Studiando i fenomeni della natura, gli scienziati cercano di ricavare un modello matematico, cioè una rappresentazione del fenomeno in termini di variabili, parametri e relazioni, che sia quanto più possibile rigoroso e coerente con il fenomeno reale. Quanto più un fenomeno è complesso, tanto maggiore è la quantità dei dati necessari per descriverlo e, quindi, tanto maggiore è il numero di variabili del conseguente modello matematico. Le proprietà incognite del fenomeno si deducono risolvendo il modello matematico che lo descrive. Spesso, però, la soluzione del modello matematico non è data in forma esplicita o direttamente utilizzabile o, addirittura, non è proprio calcolabile per via analitica, e si rende necessario approssimarla con un metodo numerico. Inoltre, anche quando la risoluzione del modello può essere affrontata con tecniche esclusivamente analitiche, il calcolo della soluzione può risultare troppo “oneroso” all'aumentare delle dimensioni del problema.
 
-Il numero è un concetto indipendente dai simboli usati per rappresentarlo. 
-I sistemi di numerazione servono a rappresentare i numeri tramite segni e a 
-definire regole per le operazioni.
+Per chiarire meglio le idee, consideriamo un problema matematico molto semplice che viene fuori dalla modellizzazione di numerosi problemi fisici. L'espressione generica di una equazione di secondo grado è
+\[ ax^2 + bx + c = 0. \]
+È ben noto che le sue soluzioni, cioè gli zeri del polinomio \( ax^2 + bx + c \), si possono calcolare nel seguente modo:
+\[ x_1 = \frac{-b + \sqrt{b^2 - 4ac}}{2a}, \quad x_2 = \frac{-b - \sqrt{b^2 - 4ac}}{2a}. \]
+Se \( a = 1 \), \( b = -3 \) e \( c = 2 \) si ha \( x_1 = 1 \) e \( x_2 = 2 \).
+Ma se \( a = 1 \), \( b = 1 \) e \( c = -1 \) si ha
+\[ x_1 = \frac{-1 - \sqrt{5}}{2} \quad \text{e} \quad x_2 = \frac{-1 + \sqrt{5}}{2} \]
+e, per poter individuare il valore numerico delle due radici, è necessario approssimare il numero \( \sqrt{5} \).
 
-Le prime civiltà contarono per necessità pratiche, inizialmente associando oggetti concreti ai 
-numeri e poi usando segni come barrette “|”. Questo metodo, però, era poco pratico perché richiedeva 
-tante barrette quante erano le unità.
-
-Per semplificare, si introdussero le cifre e il concetto di base di numerazione, scelta spesso 
-come 10 per via delle dita delle mani.
-
-Si distinguono due tipi di sistemi:
-
-Additivo, in cui il numero è la somma dei valori dei simboli (es. sistema romano ed egizio, 
-non richiede lo zero).
-
-Posizionale, in cui il valore dipende dalla posizione del simbolo (introdotto da indiani e arabi).
-
-Il sistema oggi più usato è quello decimale, basato su 10 cifre (0-9). Gli indiani introdussero 
-anche lo zero (“sunya”), e gli arabi diffusero questo sistema in Occidente nel XII secolo, grazie 
-alle opere di matematici come al-Khwarizmi.
-
-La base del sistema decimale è 10 e ogni numero viene rappresentato come 
-\[a=\pm\, a_m\,a_{m-1}\,\cdots\, a_1\,a_0\,a_{-1}\,\cdots \,a_{-M}\quad\quad 0\leq a_i\leq 9.\]
-Il sistema è posizionale perchè il valore di ogni cifra varia in funzione della sua posizione nella rappresentazione decimale del numero:
-\[a=\pm\, a_m10^m+a_{m-1}10^{m-1}+\cdots+ a_110^1+a_010^0+a_{-1}10^{-1}+\cdots +a_{-M}10^{-M}\quad\quad 0\leq a_i\leq 9.\]
-La rappresentazione decimale di ogni numero reale è unica, eccetto quando la parte frazionaria contiene una sequenza di 9 consecutivi.
-Ad esempio $0.31\bar{9}=0.32$.
-
-Qualunque intero $N > 1$ può essere scelto come base ed ogni numero reale $a$ può essere scritto nella forma
-\[a=\pm\, a_mN^m+a_{m-1}N^{m-1}+\cdots+ a_1N^1+a_0N^0+a_{-1}N^{-1}+\cdots +a_{-M}N^{-M}\quad\quad 0\leq a_i\leq N-1.\]
-La rappresentazione di ogni numero reale in base N è unica, eccetto quando la parte frazionaria contiene una sequenza di cifre $a_k=N-1$ consecutive.
-Più piccola è la base scelta, più è lunga la stringa di caratteri necessari per rappresentare lo stesso numero.
-
-La base del sistema binario è 2.
-Le cifre utilizzate da questo sistema sono 0 e 1 e vengono dette bit da
-binary digit.
-Ogni numero reale $a$ è rappresentato come una sequenza di 0 e 1,
-ovvero
-\[a=\pm\, a_m2^m+a_{m-1}2^{m-1}+\cdots+ a_12^1+a_02^0+a_{-1}2^{-1}+\cdots +a_{-M}2^{-M}\quad\quad 0\leq a_i\leq 1.\]
-
-Questo sistema è particolarmente interessante perchè può essere
-realizzato con qualsiasi oggetto capace di assumere due stati diversi,
-uno per la cifra 0 e l'altro per la cifra 1.
-Per queste sue caratteristiche è stato adottato per la rappresentazione
-dei dati e, in particolare, dei numeri in un calcolatore.
-
-I numeri vengono rappresentati nel calcolatore secondo il sistema
-binario e, quindi, come una sequenza di bit.
-Per ovvie ragioni, ad ogni numero reale viene riservato uno spazio
-finito di memoria, capace di contenere un numero finito di bit detto
-parola.
-Di conseguenza, non tutti i numeri reali sono rappresentabili in modo
-esatto.
-Detta $l$ la lunghezza della parola, si possono rappresentare
-esattamente solo quei numeri la cui rappresentazione binaria consta di
-un numero di bit inferiore o uguale ad $l$.
-Si parla di numeri macchina.
-Tutte le operazioni fra i numeri macchina vengono effettuate
-utilizzando l'aritmetica binaria.
-Con parole di lunghezza $l$ è possibile rappresentare tutti i numeri
-interi appartenenti all'intervallo 
-\[\left[-\dfrac{2^l}{2},\dfrac{2^l}{2}-1\right]\]
-
-Ogni numero reale $a$ può essere scritto nella forma
-\[a = pNq\]
-dove $p$ è un numero reale, $N$ è la base del sistema di numerazione e $q$
-è un numero intero positivo o negativo
-Questa rappresentazione, detta in virgola mobile (floating-point), non
-è unica, infatti
-\[321.25 = 32.125 \times 10^1 = 0.32125 \times 10^3\]
-La rappresentazione di $a$ si dice normalizzata quando
-\[N^{-1} \leq |p| < 1.\]
-Le cifre di $p$ si dicono cifre significative.
-Ad esempio la rappresentazione normalizzata di $a = 92.25$ è
-$a = 0.9225\,10^2$.
-Fissata la base $N$, ogni numero reale $a$ è univocamente definito dalla
-coppia
-\[a = (p, q)\]
-$p$ viene detta \textbf{mantissa} di $a$, $q$ viene detto \textbf{esponente} di $a$
-I numeri reali in virgola mobile vengono rappresentati in un
-calcolatore in forma normalizzata secondo lo Standard IEEE 754.
-
-Nello standard singola precisione è possibile rappresentare tutti i numeri reali della seguente forma 
-\[\pm0.d_1d_2d_3d_4d_5d_6\times10^q,\]
-dove $0<d_1\leq9,\;0\leq d_i\leq9,\;i=2,\ldots,6$, e $-38\leq q\leq 38$.
-Nella doppia precisione invece è possibile rappresentare tutti i numeri reali della seguente forma 
-\[\pm0.d_1d_2\cdots d_{16}\times10^q,\]
-dove $0<d_1\leq9,\;0\leq d_i\leq9,\;i=2,\ldots,16$, e $-308\leq q\leq 308$.
-
-Nello standard IEEE 754 in Doppia Precisione, benchè lo spazio
-riservato alla mantissa di un numero reale sia di 52 bit, viene
-recuperato un bit in più non rappresentando il primo bit che è sempre
-uguale a 1.
-Pertanto le mantisse p dei numeri reali vengono rappresentate in
-doppia precisione con 53 bit.
-
-
-Supponendo di utilizzare un calcolatore che lavora in \textbf{doppia precisione}, dato
-
-\[
-a = \pm 0.d_1 d_2 \ldots \, 10^q, \quad d_1 \neq 0
-\]
-
-un numero reale non nullo, si possono presentare i seguenti casi:
-
+La soluzione dell'equazione
+\[ 2^x = 100 \]
+è
+\[ x = \log_2(100). \]
+La soluzione è espressa in simboli, ma \( \log_2(100) \) a quale numero corrisponde?
+Anche in questo caso la risposta è un numero approssimato.
+Consideriamo l'equazione
+\[ 2x + x^2 - 3 = 0. \]
+Essa non è risolvibile analiticamente, cioè non si riesce ad esplicitarla rispetto alla variabile \( x \).
+Per sapere se è risolvibile, cioè se ammette soluzioni, la si può studiare graficamente.
+Ma il calcolo delle sue soluzioni può essere fatto soltanto con un metodo numerico che permette di ottenere direttamente un'approssimazione dei numeri a cui esse corrispondono.
+Ovviamente si possono fare innumerevoli esempi di problemi matematici che possono essere risolti soltanto con un metodo numerico: un processo, implementabile su un calcolatore, che fornisce una soluzione numerica in un numero finito di passi.
+In generale, esistono diversi metodi per la risoluzione dello stesso problema numerico ma non tutti sono implementabili in un calcolatore.
+La risoluzione di un sistema di equazioni lineari è un problema centrale nella risoluzione di numerosi modelli matematici.
+Tra i metodi più conosciuti per la risoluzione di un sistema lineare c'è sicuramente il metodo di Cramer.
+Esso viene utilizzato per la risoluzione analitica di sistemi di piccole dimensioni ma la sua implementazione su un calcolatore non è praticabile.
+Consideriamo un sistema di equazioni lineari di 20 equazioni in 20 incognite.
+Se lo volessimo risolvere “a mano” utilizzando il metodo di Cramer, dovremmo calcolare 21 determinanti ciascuno di ordine 20.
+Sono sicura che, anche il matematico più volenteroso, si scoraggerebbe solo a pensarci!
+Stimiamo il tempo che ci occorrerebbe per risolverlo implementando il metodo di Cramer in un calcolatore.
+Per calcolare un determinante di ordine \( n \) con la regola di Laplace, occorrono circa \( n! \) operazioni.
+Con \( n = 20 \) le operazioni richieste sono \( 21 \cdot 20! = 21! \approx 5.2 \times 10^{19} \).
+Tenendo conto che un processore da 3GHz esegue \( 3 \times 10^9 \) operazioni elementari al secondo, per eseguire \( 21! \) operazioni occorrono poco più di 5 secoli!
+Si parla in tal caso di procedura non implementabile perché ha un tempo di esecuzione proibitivo.
+Il metodo di eliminazione di Gauss, invece, per risolvere un sistema di ordine \( n \) richiede circa \( \frac{n^3}{3} \) operazioni.
+Nel caso \( n = 20 \) le operazioni necessarie sono 2667 ed esse vengono eseguite in \( 0.88 \times 10^{-6} \) secondi.
+Se \( n = 1000 \) le operazioni necessarie sono 334 milioni ed esse vengono eseguite in 1 decimo di secondo.
+La scelta del metodo per la risoluzione numerica di un problema matematico viene fatta utilizzando i seguenti criteri:
+\begin{itemize}
+    \item \textbf{Efficienza}: minor numero di operazioni richieste.
+    \item \textbf{Efficacia}: maggiore precisione di calcolo.
+\end{itemize}
+L'introduzione e la vasta utilizzazione dei calcolatori nel campo scientifico ha accresciuto lo sviluppo di metodi numerici che permettono di risolvere dei problemi matematici in maniera sempre più rapida e precisa.
+Inoltre, l'utilizzo di calcolatori sempre più potenti ha permesso di risolvere numericamente problemi di grandi dimensioni in tempi sempre più rapidi.
+L'opinione assai diffusa sull'onnipotenza dei calcolatori odierni genera spesso l'impressione che i matematici non abbiano più alcuna difficoltà nella soluzione numerica dei problemi, e che debbano soltanto elaborare nuovi metodi di calcolo.
+In realtà le cose stanno diversamente.
+I numeri vengono rappresentati in un calcolatore secondo il sistema binario e, quindi, come una sequenza di bit.
+Poiché la memoria è limitata, ad ogni numero reale viene riservato uno spazio finito di memoria, capace di contenere un numero finito di bit.
+Questo vuol dire che quando un numero viene memorizzato in un calcolatore si commette necessariamente un errore.
+Uno dei temi centrali del Calcolo Scientifico, quella branca della matematica che si occupa della risoluzione numerica dei problemi matematici, è avere consapevolezza dell'esistenza di questo errore e di come esso può propagarsi durante l'esecuzione della sequenza dei calcoli prevista dal metodo.
+Ci sono alcuni metodi che, se implementati in un calcolatore, propagano talmente tanto gli errori introdotti durante la rappresentazione dei dati da fornire delle soluzioni del problema matematico considerato che sono addirittura completamente sbagliate.
+Dunque, nell'analisi dell'efficacia e dell'efficienza di un metodo per la risoluzione numerica di un problema matematico si studia anche la sua capacità di propagazione degli errori introdotti durante la rappresentazione dei dati iniziali.
+Nelle prime lezioni del corso saranno illustrate, con semplici esempi, le problematiche inerenti l'utilizzo di un calcolatore nella risoluzione di un problema matematico.
+La trattazione sarà articolata come segue:
 \begin{enumerate}
-    \item L'esponente $q$ è tale che $-308 \leq q \leq 308$ e le cifre dopo la 16-esima sono tutte nulle, ovvero $d_i = 0$ per ogni $i > 16$, cioè
-    \[
-    a = \pm 0.d_1 d_2 \ldots d_{16}\, 10^q.
-    \]
-    Allora $a$ è \textbf{esattamente rappresentabile}.
-    
-    \item L'esponente $q$ non appartiene all'intervallo $[-308,308]$. \\
-    Se $q < -308$, si associa 0 ad $a$ e il calcolatore segnala \textit{underflow}. \\
-    Se $q > 308$, $a$ non viene rappresentato e il calcolatore segnala \textit{overflow}.
+    \item Rappresentazione dei numeri in un calcolatore;
+    \item Errore assoluto ed errore relativo;
+    \item Operazioni macchina e Cancellazione numerica;
+    \item Propagazione degli errori introdotti nei dati iniziali.
 \end{enumerate}
 
 
-Nei computer di ultima generazione è possibile rappresentare anche numeri il cui esponente $q$ è tale che
-\[
--324 < q < -308.
-\]
+\section{Rappresentazione dei dati in un computer}
 
+\subsection{Singola e Doppia Precisione}
+
+\paragraph{Sistemi di Numerazione}
+Il numero è un concetto che esiste indipendentemente dall'insieme dei simboli o segni che si utilizzano per rappresentarlo.
+Un sistema di numerazione non è altro che uno schema che permette di rappresentare i numeri “ideali” attraverso un insieme di simboli per i quali vengono definite delle tecniche di manipolazione (operazioni aritmetiche).
+È indubbio che tutti i popoli impararono a contare, spinti dalle necessità della vita quotidiana, per quantificare un insieme di elementi.
+Gli uomini primitivi limitarono la propria conoscenza ai primi numeri naturali, per indicare i quali ricorsero a nomi di oggetti concreti, “io” per indicare 1, “ali” per indicare 2, “mano” per indicare 5.
+In seguito incominciarono a rappresentare i numeri con delle barrette verticali “|”. Ogni intero era rappresentato con un numero di barrette pari alle unità in esso contenute. Per esempio il numero 7 era rappresentato con “|||||||”.
+Questo sistema, benché sia il più semplice possibile (utilizza solo il simbolo “|”), presenta lo svantaggio di assegnare a ciascun numero una rappresentazione la cui lunghezza è proporzionale al numero stesso.
+Così, ben presto, si ebbe la necessità di rappresentare l'infinità dei numeri con un numero limitato di segni particolari, detti cifre e di fissare alcuni numeri “fondamentali” che facevano da riferimento.
+Nacque così l'idea di quella che viene chiamata base di numerazione.
+Quasi tutti i popoli scelsero come base di numerazione il 10. Scelta dovuta sicuramente al numero delle dita delle mani.
+I sistemi di numerazione delle civiltà conosciute, a partire dalle popolazioni primitive, si classificano in:
+\begin{itemize}
+    \item sistema di numerazione additivo
+    \item sistema di numerazione posizionale
+\end{itemize}
+
+Un sistema di numerazione additivo è un sistema di numerazione basato su una legge additiva applicata a determinati simboli numerici fondamentali. Ogni numero è rappresentato attraverso una successione di tali simboli ed il suo valore è dato dalla somma dei valori attribuiti a ciascuno di essi. Nei sistemi additivi non serve un simbolo per lo zero.
+Tra i più famosi sistemi additivi, oltre a quello delle “barrette”, figurano quello romano e quello egizio.
+Solo verso il X secolo il sistema di numerazione additivo incominciò ad essere soppiantato dal sistema di numerazione posizionale introdotto dai matematici indiani ed arabi.
+Un sistema di numerazione si dice posizionale se i simboli usati per scrivere i numeri assumono valori diversi a seconda della posizione che occupano nella notazione.
+
+\paragraph{Sistema decimale}
+Il sistema di numerazione da noi comunemente usato per rappresentare i numeri è quello decimale.
+Esso è un sistema di numerazione posizionale basato sull'impiego di 10 cifre 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, ed è stato inventato dagli Indiani.
+Agli Indiani si deve l'introduzione dello zero che essi chiamavano “sunya” (nulla) anche se alcuni studiosi affermano che già i Cinesi conoscevano il metodo posizionale fin da tempi antichissimi.
+Questo sistema di numerazione venne introdotto in occidente dagli Arabi probabilmente nel XII secolo quando venne tradotta \textit{Algoritmi de numero Indorum} del grande matematico arabo al-Khuwarizmi (IX secolo).
+La base del sistema decimale è 10 e ogni numero viene rappresentato come
+\[ a = \pm a_m a_{m-1} \cdots a_1 a_0.a_{-1} a_{-2} \cdots a_{-M} \]
+con \(0 \leq a_i \leq 9\).
+Il sistema è posizionale perché il valore di ogni cifra varia in funzione della sua posizione nella rappresentazione decimale del numero
+\[ a = \pm a_m 10^m + a_{m-1} 10^{m-1} + \cdots + a_1 10^1 + a_0 10^0 + a_{-1} 10^{-1} + a_{-2} 10^{-2} + \cdots \]
+\begin{exmp}
+\[
+\begin{aligned}
+    931.57 & = 9 \times 10^2 + 3 \times 10^1 + 1 \times 10^0 + 5 \times 10^{-1} + 7 \times 10^{-2} \\
+    34.002 & = 3 \times 10^1 + 4 \times 10^0 + 0 \times 10^{-1} + 0 \times 10^{-2} + 2 \times 10^{-3} \\
+    12600.09 & = 1 \times 10^4 + 2 \times 10^3 + 6 \times 10^2 + 0 \times 10^1 + 0 \times 10^0 + 0 \times 10^{-1} + 9 \times 10^{-2}
+\end{aligned}
+\]
+\end{exmp}
+La rappresentazione decimale di ogni numero reale è unica, eccetto quando la parte frazionaria contiene una sequenza di 9 consecutivi. 
+
+\begin{exmp}
+\[
+\begin{aligned}
+    0.319999\ldots 9\ldots & = 0.32 \\
+    10.99999\ldots 9\ldots & = 11 \\
+    199.99999\ldots 9\ldots & = 200
+\end{aligned}
+\]
+\end{exmp}
+
+\paragraph{Sistema in base $N$}
+Qualunque intero \(N > 1\) può essere scelto come base ed ogni numero reale \(a\) può essere scritto nella forma
+\[ a = \pm a_m N^m + a_{m-1} N^{m-1} + \cdots + a_1 N^1 + a_0 N^0 + a_{-1} N^{-1} + a_{-2} N^{-2} + \cdots \]
+ovvero
+\[ a = \pm a_m a_{m-1} \cdots a_1 a_0.a_{-1} a_{-2} \cdots a_{-M} \]
+con \(0 \leq a_i \leq N - 1\).
+La rappresentazione di ogni numero reale in base \(N\) è unica, eccetto quando la parte frazionaria contiene una sequenza di cifre \(a_k = N - 1\) consecutive.
+Più piccola è la base scelta, più è lunga la stringa di caratteri necessari per rappresentare lo stesso numero.
+La base del sistema binario è 2.
+Le cifre utilizzate da questo sistema sono 0 e 1 e vengono dette bit da \textit{binary digit}.
+Ogni numero reale \(a\) è rappresentato come una sequenza di 0 e 1, ovvero
+\[ a = \pm a_m 2^m + a_{m-1} 2^{m-1} + \cdots + a_1 2^1 + a_0 2^0 + a_{-1} 2^{-1} + a_{-2} 2^{-2} + \cdots \]
+con \(0 \leq a_i \leq 1\).
+Questo sistema è particolarmente interessante perché può essere realizzato con qualsiasi oggetto capace di assumere due stati diversi, uno per la cifra 0 e l'altro per la cifra 1.
+Per queste sue caratteristiche è stato adottato per la rappresentazione dei dati e, in particolare, dei numeri in un calcolatore.
+
+\paragraph{Rappresentazione dei numeri in un calcolatore}
+I numeri vengono rappresentati nel calcolatore secondo il sistema binario e, quindi, come una sequenza di bit.
+Per ovvie ragioni, ad ogni numero reale viene riservato uno spazio finito di memoria, capace di contenere un numero finito di bit detto parola.
+Di conseguenza, non tutti i numeri reali sono rappresentabili in modo esatto.
+Detta \(l\) la lunghezza della parola, si possono rappresentare esattamente solo quei numeri la cui rappresentazione binaria consta di un numero di bit inferiore o uguale ad \(l\).
+Si parla di numeri macchina.
+Tutte le operazioni fra i numeri macchina vengono effettuate utilizzando l'aritmetica binaria.
+
+\paragraph{Numeri interi}
+Con parole di lunghezza \(l\) è possibile rappresentare tutti i numeri interi appartenenti all'intervallo
+\[ \left[ -2^{\frac{l}{2}}, 2^{\frac{l}{2}} - 1 \right] \]
+Esempio: Se \(l = 16\) sono rappresentabili tutti i numeri interi appartenenti all'intervallo \([-32768, 32767]\).
+
+\paragraph{Numeri reali}
+Ogni numero reale \(a\) può essere scritto nella forma
+\[ a = pN^q \]
+dove \(p\) è un numero reale, \(N\) è la base del sistema di numerazione e \(q\) è un numero intero positivo o negativo.
+Questa rappresentazione, detta in virgola mobile (floating-point), non è unica, infatti
+\[ 321.25 = 32.125 \times 10^1 = 0.32125 \times 10^3 \]
+La rappresentazione di \(a\) si dice normalizzata quando
+\[ N^{-1} \leq |p| < 1 \]
+Le cifre di \(p\) si dicono cifre significative.
+
+\begin{exmp}
+Rappresentazioni normalizzate:
+\begin{align*}
+92.25 &= 0.9225 \times 10^2 \\
+0.000718 &= 0.718 \times 10^{-3} \\
+4152.0002156 &= 0.41520002156 \times 10^4 \\
+0.0215600000 &= 0.2156 \times 10^{-1}
+\end{align*}
+\end{exmp}
+
+
+Fissata la base \(N\), ogni numero reale \(a\) è univocamente definito dalla coppia
+\[ a = (p, q) \]
+\(p\) viene detta mantissa di \(a\), \(q\) viene detto esponente di \(a\).
+I numeri reali in virgola mobile vengono rappresentati in un calcolatore in forma normalizzata secondo lo Standard IEEE 754 (Institute of Electrical and Electronical Engineering).
+
+
+\paragraph{Standard IEEE 754: Singola Precisione}
+\paragraph{Standard IEEE 754: Doppia Precisione}
+
+
+\paragraph{Osservazione}
+Nello standard IEEE 754 in Doppia Precisione, benché lo spazio riservato alla mantissa di un numero reale sia di 52 bit, viene recuperato un bit in più non rappresentando il primo bit che è sempre uguale a 1. Pertanto le mantisse \(p\) dei numeri reali vengono rappresentate in doppia precisione con 53 bit.
+Supponendo di utilizzare un calcolatore che lavora in doppia precisione, dato
+\[ a = \pm 0.d_1 d_2 \ldots 10^q, \quad d_1 \neq 0 \]
+un numero reale non nullo, si possono presentare i seguenti casi:
+1. L'esponente \(q\) è tale che \(-308 \leq q \leq 308\) e le cifre dopo la 16-esima sono tutte nulle ovvero \(d_i = 0\) per ogni \(i > 16\), cioè
+\[ a = \pm 0.d_1 d_2 \ldots d_{16} 10^q \]
+Allora \(a\) è esattamente rappresentabile.
+2. L'esponente \(q\) non appartiene all'intervallo \([-308, 308]\).
+   - Se \(q < -308\), si associa 0 ad \(a\) e il calcolatore segnala underflow.
+   - Se \(q > 308\), \(a\) non viene rappresentato e il calcolatore segnala overflow.
+Nei computer di ultima generazione è possibile rappresentare anche numeri il cui esponente \(q\) è tale che
+\[ -324 < q < -308 \]
 Tali numeri riempiono l'intervallo tra lo zero ed il più piccolo numero normalizzato rappresentabile
-\[
-\text{realmin} = 2^{-1022} \sim 2.22 \times 10^{-308}
-\]
-e vengono chiamati \textbf{denormalizzati} (o \textbf{subnormalizzati}).
-
-
-
+\[ \text{realmin} = 2^{-1022} \approx 2.22 \times 10^{-308} \]
+e vengono chiamati denormalizzati (o subnormalizzati).
 Il più grande numero normalizzato rappresentabile in doppia precisione è
+\[ \text{realmax} \approx 1.79 \times 10^{308} \]
+Esso è un bit meno di \(2^{1024}\).
+
+3. L'esponente \(q\) appartiene all'intervallo \([-308, 308]\) ma le cifre \(d_i, i > 16,\) non sono tutte nulle. In questo caso è possibile associare al numero \(a\) un numero di macchina \(\text{fl}(a)\) seguendo due criteri diversi:
+   - Troncamento
+   - Arrotondamento
+
+\paragraph{Regola di troncamento}
+Per troncare un numero
+\[ a = 0.d_1 d_2 \ldots d_{t-1} d_t d_{t+1} d_{t+2} \ldots 10^q \]
+fino a \(t\) cifre significative, si eliminano tutte le cifre \(d_{t+1} d_{t+2} \ldots\) a destra della \(t\)-esima.
+Dunque
+\[ \text{fl}(a) = \text{trn}(a) = 0.d_1 d_2 \ldots d_{t-1} d_t 10^q \]
+Per arrotondare un numero
+\[ a = 0.d_1 d_2 \ldots d_{t-1} d_t d_{t+1} d_{t+2} \ldots 10^q \]
+fino a \(t\) cifre significative, si eliminano tutte le cifre \(d_{t+1} d_{t+2} \ldots\) a destra della \(t\)-esima e si rimpiazza \(d_t\) con la cifra \(c\), dove
+\[ c = \begin{cases} 
+d_t & \text{se } 0 \leq d_{t+1} \leq 4 \\
+d_t + 1 & \text{se } 5 \leq d_{t+1} \leq 9 
+\end{cases} \]
+Dunque
+\[ \text{fl}(a) = \text{arr}(a) = 0.d_1 d_2 \ldots d_{t-1} c 10^q \]
+
+\paragraph{Esempi}
+1. Consideriamo il numero
+\[ \pi = 3.1415926536 \ldots = 0.31415926536 \ldots \times 10^1 \]
+   - \(t=6\): \(\text{trn}(\pi) = 0.314159 \times 10^1\), \(\text{arr}(\pi) = 0.314159 \times 10^1\)
+   - \(t=5\): \(\text{trn}(\pi) = 0.31415 \times 10^1\), \(\text{arr}(\pi) = 0.31416 \times 10^1\)
+   - \(t=4\): \(\text{trn}(\pi) = 0.3141 \times 10^1\), \(\text{arr}(\pi) = 0.3142 \times 10^1\)
+
+2. Consideriamo il numero
+\[ a = 2\sqrt{2} = 2.828427124746190 \ldots = 0.2828427124746190 \ldots \times 10^1 \]
+   - \(t=6\): \(\text{trn}(a) = 0.282842 \times 10^1\), \(\text{arr}(a) = 0.282843 \times 10^1\)
+   - \(t=5\): \(\text{trn}(a) = 0.28284 \times 10^1\), \(\text{arr}(a) = 0.28284 \times 10^1\)
+   - \(t=4\): \(\text{trn}(a) = 0.2828 \times 10^1\), \(\text{arr}(a) = 0.2828 \times 10^1\)
+
+Consideriamo il numero
 \[
-\text{realmax} \sim 1.79 \times 10^{308}.
+a = \frac{1}{7000}.
 \]
 
-Esso è un bit meno di $2^{1024}$.
+Poniamo
+\[
+\bar{a} = 0.000142857142857\ldots \quad \text{rappresentazione non normalizzata}
+\]
+\[
+\tilde{a} = 0.142857142857142\ldots \times 10^{-3} \quad \text{rappresentazione normalizzata.}
+\]
 
-L'esponente $q$ appartiene all'intervallo $[-308, 308]$ ma le cifre
-$d_i,\; i > 16$, non sono tutte nulle.
-In questo caso è possibile associare al numero a un numero di
-macchina $fl(a)$ seguendo due criteri diversi:
--troncamento
--arrotondamento
+Applichiamo le regole di troncamento e arrotondamento ad $\bar{a}$:
+\[
+t = 6 \quad \Rightarrow \quad \text{trn}(\bar{a}) = 0.000142 \quad \text{arr}(\bar{a}) = 0.000143
+\]
+\[
+t = 3 \quad \Rightarrow \quad \text{trn}(\bar{a}) = 0 \quad \text{arr}(\bar{a}) = 0
+\]
 
-Per troncare un numero
-$$ a = 0.d_1d_2 \dots d_{t-1}d_t d_{t+1}d_{t+2} \dots N^q $$
-fino a $t$ cifre significative, si eliminano tutte le cifre $d_{t+1}d_{t+2} \dots$ a destra della $t-$esima.
+Applichiamo le regole di troncamento e arrotondamento ad $\tilde{a}$:
+\[
+t = 6 \quad \Rightarrow \quad \text{trn}(\tilde{a}) = 0.142857 \times 10^{-3} \quad \text{arr}(\tilde{a}) = 0.142857 \times 10^{-3}
+\]
+\[
+t = 3 \quad \Rightarrow \quad \text{trn}(\tilde{a}) = 0.142 \times 10^{-3} \quad \text{arr}(\tilde{a}) = 0.143 \times 10^{-3}
+\]
+Dunque, la normalizzazione permette di ridurre l'errore di rappresentazione dovuto al troncamento o all'arrotondamento ad un numero finito di cifre. 
+Inoltre, l'informazione contenuta negli zeri dopo il punto può essere memorizzata, con minor spreco di memoria, in termini di esponente.
 
-Dunque
+L'insieme $\mathbb{R}$ dei numeri reali è infinito, ma, soltanto un sottoinsieme di $\mathbb{R}$, limitato inferiormente e superiormente, è rappresentabile in un calcolatore.
 
-$$ fl(a) = \text{trn}(a) = 0.d_1d_2 \dots d_{t-1}d_t N^q$$
+In seguito denoteremo con $\mathbb{F}$ il sottoinsieme dei numeri reali rappresentabili in un calcolatore.
 
-Per arrotondare un numero
-$$ a = 0.d_1 d_2 \dots d_{t-1} d_t d_{t+1} d_{t+2} \dots N^q $$
-fino a $t$ cifre significative, si eliminano tutte le cifre $d_{t+1}d_{t+2} \dots$ a destra della $t$-esima e si rimpiazza $d_t$ con la cifra $c$, dove
-$$
-\begin{cases}
-c = d_t & \text{se } 0 \le d_{t+1} \le 4 \\
-c = d_t + 1 & \text{se } 5 \le d_{t+1} \le 9
-\end{cases}
-$$
-Dunque
-$$ fl(a) = arr(a) = 0.d_1 d_2 \dots d_{t-1} c \, N^q $$
+\[
+\mathbb{F} = \{0\} \cup \{\pm 0.d_1 d_2 \cdots d_{16} \times 10^q \in \mathbb{R} : -308 \leq q \leq 308, \}
+\]
+\[
+0 < d_1 \leq 9, \quad 0 \leq d_i \leq 9, i=2, \dots, 16.
+\]
 
- Consideriamo il numero
-$$ \pi = 3.1415926536\dots = 0.31415926536\dots \cdot 10^1. $$
+L'insieme $\mathbb{R}$ dei numeri reali è denso, cioè tra due numeri reali $r_1$ e $r_2$ esiste sempre un numero reale $r_3$ tale che
+\[
+r_1 < r_3 < r_2.
+\]
 
-\begin{tabular}{ll}
-${\color{blue}t=6} \quad \mathrm{trn}(\pi) = 0.314159 \ 10^1$ & $\mathrm{arr}(\pi) = 0.314159 \ 10^1$ \\
-${\color{blue}t=5} \quad \mathrm{trn}(\pi) = 0.31415 \ 10^1$ & $\mathrm{arr}(\pi) = 0.31416 \ 10^1$ \\
-${\color{blue}t=4} \quad \mathrm{trn}(\pi) = 0.3141 \ 10^1$ & $\mathrm{arr}(\pi) = 0.3142 \ 10^1$ \\
-\end{tabular}
+Invece, il sottoinsieme $\mathbb{F}$, oltre ad essere limitato inferiormente e superiormente, è anche \textbf{bucato}.
 
-\vspace{1cm}
+Utilizzando la rappresentazione in doppia precisione, i numeri macchina
+\[
+a = 1.123456789123456 \quad \text{e} \quad b = 1.123456789123457
+\]
+sono consecutivi e tra di essi non esiste alcun altro numero macchina.
 
- Consideriamo il numero
-$$ a = 2\sqrt{2} = 2.828427124746190\dots = 0.2828427124746190\dots \cdot 10^1. $$
+Tutti i calcoli vengono effettuati in doppia precisione, mentre diversa è la visualizzazione delle variabili che viene determinata con il comando \texttt{format}:
 
-\begin{tabular}{ll}
-${\color{blue}t=6} \quad \mathrm{trn}(a) = 0.282842 \ 10^1$ & $\mathrm{arr}(a) = 0.282843 \ 10^1$ \\
-${\color{blue}t=5} \quad \mathrm{trn}(a) = 0.28284 \ 10^1$ & $\mathrm{arr}(a) = 0.28284 \ 10^1$ \\
-${\color{blue}t=4} \quad \mathrm{trn}(a) = 0.2828 \ 10^1$ & $\mathrm{arr}(a) = 0.2828 \ 10^1$ \\
-\end{tabular}
+\begin{itemize}
+    \item \texttt{format short}: virgola fissa con 5 cifre (è il formato di default):
+    
+    \begin{verbatim}
+    >> pi
+    ans =
+           3.1416
+    \end{verbatim}
+
+    \item \texttt{format long}: virgola fissa con 16 cifre:
+
+    \begin{verbatim}
+    >> pi
+    ans =
+           3.141592653589793
+    \end{verbatim}
+\end{itemize}
+
+
+\subsection{Errori}
+
+
+\subsection{Operazioni Macchina e Cancellazione Numerica}
+
+
+
+
+
+
+
+
+
+
+
+
 
 \end{document}
