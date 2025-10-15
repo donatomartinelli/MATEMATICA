@@ -64,117 +64,114 @@
 
 \newpage
 \part{Geometria Affine}
-\newpage
+\vspace{50pt}
 
-\section{Vettori Geometrici}
-\vspace{20pt}
+%\section{Vettori Geometrici}
+%\vspace{20pt}
+%
+%\paragraph{Vettore applicato}
+%\begin{bxthm}
+%\begin{defn}
+%    Un \textbf{vettore applicato} (o \textbf{segmento orientato}) dello spazio ordinario è individuato da un \textbf{punto iniziale} $A$ e da un \textbf{punto finale} $B$ e viene denotato con il simbolo $(A,B)$.
+%    Due vettori applicati $(A,B)$ e $(C,D)$ si dicono \textbf{equipollenti} se hanno la stessa \textbf{direzione}, la stessa \textbf{lunghezza}, e lo stesso \textbf{verso}, cioè se giacciono su rette parallele (eventualmente coincidenti) e se, movendo una delle due rette parallelamente a sè stessa, è possibile portare i due segmenti a sovrapporsi in modo che i loro punti iniziali e i loro punti finali coincidano.
+%\end{defn}
+%\end{bxthm}
+%
+%\vspace{10pt}
+%
+%\begin{note}
+%    Nell'insieme dei vettori applicati l'equipollenza è una relazione di equivalenza, perchè riflessiva, simmetrica e transitiva. 
+%\end{note}
+%
+%\vspace{10pt}
+%
+%\paragraph{Vettore geometrico}
+%\begin{bxthm}
+%\begin{defn}
+%    Un \textbf{vettore geometrico} (o \textbf{vettore}) è una classe di equipollenza di vettori applicati, cioè è l'insieme di tutti i segmenti orientati equipollenti a un segmento orientato assegnato.
+%    Ogni vettore applicato che individua il vettore $\mathbf{a}$ si dirà \textbf{rappresentante di }$\mathbf{a}$.
+%    Il vettore avente rappresentante $(A,B)$ verrà anche denotato con $\overrightarrow{AB}$.
+%    Dato un punto $A$, ogni vettore $\mathbf{a}$ ha un rappresentate, e uno solo, applicato in $A$.    
+%\end{defn}
+%\end{bxthm}
+%
+%\vspace{10pt}
+%
+%\paragraph{Vettore nullo}
+%\begin{bxthm}
+%\begin{defn}
+%    Se $A=B$, il vettore individuato da uno qualunque dei segmenti orientati $(A,A)$ si chiama \textbf{vettore nullo}: esso ha lunghezza nulla, direzione e verso indeterminati e si denota con $\mathbf{0}$.    
+%\end{defn}
+%\end{bxthm}
+%
+%\vspace{10pt}
+%
+%\paragraph{Somma di due vettori}
+%Si può definire la \textbf{somma di due vettori} mediante loro rappresentanti nel modo seguente.
+%Siano \[\mathbf{a}=\overrightarrow{AB}\;\land\;\mathbf{b}=\overrightarrow{BC};\] allora \[\mathbf{a}+\mathbf{b}=\overrightarrow{AC}.\]
+%\begin{center}
+%    \begin{figure}[H]
+%        \centering
+%        \begin{tikzpicture}[scale=0.5]    
+%            \draw[->] (0,0) node[left] {$A$} -- (1,3) node[above] {$B$};
+%            \draw[->] (1,3) -- (5,4) node[right] {$C$};
+%            \draw[->] (0,0) -- (5,4);
+%        \end{tikzpicture}
+%    \end{figure}
+%\end{center}
+%Se invece i vettori $\mathbf{a}$ e $\mathbf{b}$ sono dati mediante loro rappresentati applicati nello stesso punto, cioè \[\mathbf{a}=\overrightarrow{AB} \;\land\; \mathbf{b}=\overrightarrow{AD}\] rispettivamente, allora \[\mathbf{a}+\mathbf{b}=\overrightarrow{AC},\] dove il punto $C$ è il quarto vertice del parallelogramma i cui altri vertici sono $A,B,D$.
+%Questo modo di costruire $\mathbf{a}+\mathbf{b}$ è chiamato \textbf{regola del parallelogramma}.
+%\begin{center}
+%    \begin{figure}[H]
+%        \centering
+%        \begin{tikzpicture}[scale=0.5]    
+%            \draw[->] (0,0) node[left] {$A$} -- (1,3) node[above] {$B$};
+%            \draw[dashed] (1,3) -- (6,5) ;
+%            \draw[dashed] (5,2) -- (6,5) node[above] {$C$};
+%            \draw[->] (0,0) -- (6,5) ;
+%            \draw[->] (0,0) -- (5,2) node[below] {$D$};
+%        \end{tikzpicture}
+%    \end{figure}
+%\end{center}
+%
+%\vspace{10pt}
+%
+%\paragraph{Associatività}
+%L'operazione di somma di due vettori è \textbf{associativa}, cioè 
+%\[\forall\,\mathbf{a},\mathbf{b},\mathbf{c},\quad\mathbf{a}+(\mathbf{b}+\mathbf{c})=(\mathbf{a}+\mathbf{b})+\mathbf{c}.\]
+%Ciò implica che sommando tre vettori si possono omettere le parentesi perchè la scrittura $\mathbf{a}+\mathbf{b}+\mathbf{c}$ ha un solo significato, e questo ragionamento si estende a un numero finito qualunque di vettori.
+%
+%\vspace{10pt}
+%
+%\paragraph{Commutatività}
+%L'operazione di somma è \textbf{commutativa}, cioè
+%\[\forall\,\mathbf{a},\mathbf{b},\quad\mathbf{a}+\mathbf{b}=\mathbf{b}+\mathbf{a}.\]
+%Il vettore $\mathbf{0}$ soddisfa 
+%\[\forall\,\mathbf{a},\quad\mathbf{a}+\mathbf{0}=\mathbf{0}+\mathbf{a}.\]
+%Se $\mathbf{a}=\overrightarrow{AB}$ denoteremo con $-\mathbf{a}$ il vettore $\overrightarrow{BA}$.
+%Esso verifica l'identità
+%\[\mathbf{a}+(-\mathbf{a})=\mathbf{0}.\]
+%
+%\vspace{10pt}
+%
+%\paragraph{Prodotto di un vettore $\mathbf{a}$ per un numero reale $k$}
+%Esso è, per definizione, il vettore $k\mathbf{a}$ che ha la stessa direzione di $\mathbf{a}$, lunghezza uguale a quella di $\mathbf{a}$ moltiplicata per $|k|$, e verso discorde o concorde con $\mathbf{a}$ a seconda che $k$ abbia segno positivo o negativo; se $k=0$ oppure $\mathbf{a}=0$.
+%L'operazione di moltiplicazione di un vettore per uno scalare è compatibile con quella di somma di vettori e con le operazioni di somma e di prodotto tra scalari.
+%Ad esempio la seguente identità è di immediata verifica:
+%\[\forall\,\mathbf{a},\;\forall\,n\in\mathbb{N},\quad n\mathbf{a}=\underbrace{\mathbf{a}+...+\mathbf{a}}_{n\textup{ volte}}.\]
+%In particolare 
+%\[1\mathbf{a}=\mathbf{a}\quad\textup{e}\quad(-1)\mathbf{a}=-\mathbf{a}.\]
+%
+%\vspace{10pt}
+%
+%\paragraph{Distributività}
+%Si può verificare facilmente che 
+%\[\forall\,\mathbf{a},\;\forall\,k,h,\quad(k+h)\mathbf{a}=k\mathbf{a}+h\mathbf{a}\quad\land\quad (kh)\mathbf{a}=k(h\mathbf{a})\]
+%Inoltre, abbiamo anche
+%\[\forall\,\mathbf{a},\mathbf{b},\quad\forall\, k,\quad k(\mathbf{a}+\mathbf{b})=k\mathbf{a}+k\mathbf{b}.\]
+%
+%\vspace{10pt}
 
-\paragraph{Vettore applicato}
-\begin{bxthm}
-\begin{defn}
-    Un \textbf{vettore applicato} (o \textbf{segmento orientato}) dello spazio ordinario è individuato da un \textbf{punto iniziale} $A$ e da un \textbf{punto finale} $B$ e viene denotato con il simbolo $(A,B)$.
-    Due vettori applicati $(A,B)$ e $(C,D)$ si dicono \textbf{equipollenti} se hanno la stessa \textbf{direzione}, la stessa \textbf{lunghezza}, e lo stesso \textbf{verso}, cioè se giacciono su rette parallele (eventualmente coincidenti) e se, movendo una delle due rette parallelamente a sè stessa, è possibile portare i due segmenti a sovrapporsi in modo che i loro punti iniziali e i loro punti finali coincidano.
-\end{defn}
-\end{bxthm}
-
-\vspace{10pt}
-
-\begin{note}
-    Nell'insieme dei vettori applicati l'equipollenza è una relazione di equivalenza, perchè riflessiva, simmetrica e transitiva. 
-\end{note}
-
-\vspace{10pt}
-
-\paragraph{Vettore geometrico}
-\begin{bxthm}
-\begin{defn}
-    Un \textbf{vettore geometrico} (o \textbf{vettore}) è una classe di equipollenza di vettori applicati, cioè è l'insieme di tutti i segmenti orientati equipollenti a un segmento orientato assegnato.
-    Ogni vettore applicato che individua il vettore $\mathbf{a}$ si dirà \textbf{rappresentante di }$\mathbf{a}$.
-    Il vettore avente rappresentante $(A,B)$ verrà anche denotato con $\overrightarrow{AB}$.
-    Dato un punto $A$, ogni vettore $\mathbf{a}$ ha un rappresentate, e uno solo, applicato in $A$.    
-\end{defn}
-\end{bxthm}
-
-\vspace{10pt}
-
-\paragraph{Vettore nullo}
-\begin{bxthm}
-\begin{defn}
-    Se $A=B$, il vettore individuato da uno qualunque dei segmenti orientati $(A,A)$ si chiama \textbf{vettore nullo}: esso ha lunghezza nulla, direzione e verso indeterminati e si denota con $\mathbf{0}$.    
-\end{defn}
-\end{bxthm}
-
-\vspace{10pt}
-
-\paragraph{Somma di due vettori}
-Si può definire la \textbf{somma di due vettori} mediante loro rappresentanti nel modo seguente.
-Siano \[\mathbf{a}=\overrightarrow{AB}\;\land\;\mathbf{b}=\overrightarrow{BC};\] allora \[\mathbf{a}+\mathbf{b}=\overrightarrow{AC}.\]
-\begin{center}
-    \begin{figure}[H]
-        \centering
-        \begin{tikzpicture}[scale=0.5]    
-            \draw[->] (0,0) node[left] {$A$} -- (1,3) node[above] {$B$};
-            \draw[->] (1,3) -- (5,4) node[right] {$C$};
-            \draw[->] (0,0) -- (5,4);
-        \end{tikzpicture}
-    \end{figure}
-\end{center}
-Se invece i vettori $\mathbf{a}$ e $\mathbf{b}$ sono dati mediante loro rappresentati applicati nello stesso punto, cioè \[\mathbf{a}=\overrightarrow{AB} \;\land\; \mathbf{b}=\overrightarrow{AD}\] rispettivamente, allora \[\mathbf{a}+\mathbf{b}=\overrightarrow{AC},\] dove il punto $C$ è il quarto vertice del parallelogramma i cui altri vertici sono $A,B,D$.
-Questo modo di costruire $\mathbf{a}+\mathbf{b}$ è chiamato \textbf{regola del parallelogramma}.
-\begin{center}
-    \begin{figure}[H]
-        \centering
-        \begin{tikzpicture}[scale=0.5]    
-            \draw[->] (0,0) node[left] {$A$} -- (1,3) node[above] {$B$};
-            \draw[dashed] (1,3) -- (6,5) ;
-            \draw[dashed] (5,2) -- (6,5) node[above] {$C$};
-            \draw[->] (0,0) -- (6,5) ;
-            \draw[->] (0,0) -- (5,2) node[below] {$D$};
-        \end{tikzpicture}
-    \end{figure}
-\end{center}
-
-\vspace{10pt}
-
-\paragraph{Associatività}
-L'operazione di somma di due vettori è \textbf{associativa}, cioè 
-\[\forall\,\mathbf{a},\mathbf{b},\mathbf{c},\quad\mathbf{a}+(\mathbf{b}+\mathbf{c})=(\mathbf{a}+\mathbf{b})+\mathbf{c}.\]
-Ciò implica che sommando tre vettori si possono omettere le parentesi perchè la scrittura $\mathbf{a}+\mathbf{b}+\mathbf{c}$ ha un solo significato, e questo ragionamento si estende a un numero finito qualunque di vettori.
-
-\vspace{10pt}
-
-\paragraph{Commutatività}
-L'operazione di somma è \textbf{commutativa}, cioè
-\[\forall\,\mathbf{a},\mathbf{b},\quad\mathbf{a}+\mathbf{b}=\mathbf{b}+\mathbf{a}.\]
-Il vettore $\mathbf{0}$ soddisfa 
-\[\forall\,\mathbf{a},\quad\mathbf{a}+\mathbf{0}=\mathbf{0}+\mathbf{a}.\]
-Se $\mathbf{a}=\overrightarrow{AB}$ denoteremo con $-\mathbf{a}$ il vettore $\overrightarrow{BA}$.
-Esso verifica l'identità
-\[\mathbf{a}+(-\mathbf{a})=\mathbf{0}.\]
-
-\vspace{10pt}
-
-\paragraph{Prodotto di un vettore $\mathbf{a}$ per un numero reale $k$}
-Esso è, per definizione, il vettore $k\mathbf{a}$ che ha la stessa direzione di $\mathbf{a}$, lunghezza uguale a quella di $\mathbf{a}$ moltiplicata per $|k|$, e verso discorde o concorde con $\mathbf{a}$ a seconda che $k$ abbia segno positivo o negativo; se $k=0$ oppure $\mathbf{a}=0$.
-L'operazione di moltiplicazione di un vettore per uno scalare è compatibile con quella di somma di vettori e con le operazioni di somma e di prodotto tra scalari.
-Ad esempio la seguente identità è di immediata verifica:
-\[\forall\,\mathbf{a},\;\forall\,n\in\mathbb{N},\quad n\mathbf{a}=\underbrace{\mathbf{a}+...+\mathbf{a}}_{n\textup{ volte}}.\]
-In particolare 
-\[1\mathbf{a}=\mathbf{a}\quad\textup{e}\quad(-1)\mathbf{a}=-\mathbf{a}.\]
-
-\vspace{10pt}
-
-\paragraph{Distributività}
-Si può verificare facilmente che 
-\[\forall\,\mathbf{a},\;\forall\,k,h,\quad(k+h)\mathbf{a}=k\mathbf{a}+h\mathbf{a}\quad\land\quad (kh)\mathbf{a}=k(h\mathbf{a})\]
-Inoltre, abbiamo anche
-\[\forall\,\mathbf{a},\mathbf{b},\quad\forall\, k,\quad k(\mathbf{a}+\mathbf{b})=k\mathbf{a}+k\mathbf{b}.\]
-
-\vspace{10pt}
-
-\textbf{Questa parte può essere allargata con un capitolo sulla geometria nel piano e nello spazio.}
-
-\newpage
 \section{Algebra Lineare}
 \vspace{20pt}
 
@@ -423,7 +420,7 @@ Supponiamo ora \( k < j \). Per l'ipotesi induttiva si ha
 e quindi 
 \( \alpha + \beta = \alpha + (\mathbf{v_{k+1}} + \ldots + \mathbf{v_j}) + \delta = \gamma + \delta \).
 
-\newpage
+\vspace{50pt}
 \subsection{Matrici}
 \vspace{20pt}
 
@@ -881,7 +878,7 @@ A_{h1} & A_{h2} & \ldots & A_{hk}
 \]
 dove le \( A_{ij} \) sono la loro volta matrici di ordini opportuni: precisamente \( A_{ij} \in M_{m_i,n_j}(K) \), dove \( m_1 + m_2 + \ldots + m_h = m \), e  \(\  n_1 + n_2 + \ldots + n_k = n \).\\
 
-\newpage
+\vspace{50pt}
 \subsection{Sistemi di Equazioni Lineari}
 \vspace{20pt}
 
@@ -1454,7 +1451,7 @@ Si ottiene così il seguente metodo pratico per stabilire se una matrice data \(
 Si considera la matrice \( (A \ | \ \mathbf{I}_n) \): effettuando operazioni elementari sulle sue righe, è possibile ottenere una matrice della forma \( (\mathbf{I}_n \ |\  B) \), allora \( A \) è invertibile e la matrice \( B \) così ottenuta necessariamente coincide con \( A^{-1} \). 
 Se invece ciò non è possibile, allora \( A \) non è invertibile.
 
-\newpage
+\vspace{50pt}
 \subsection{Sottospazi Vettoriali}
 \vspace{20pt}
 
@@ -2448,7 +2445,7 @@ a_{21} & a_{22} & a_{23}
 La (\ref{formula:grassmann_vett}) è detta \textbf{formula di Grassmann vettoriale}.
 
 
-\newpage
+\vspace{50pt}
 \subsection{Rango}
 \vspace{20pt}
 
@@ -2757,7 +2754,7 @@ $A$ sono linearmente indipendenti. Similmente, le colonne $A_{(j_1)}, A_{(j_2)},
     Quindi il sistema (\ref{alternativa}) si può trasformare in un sistema a gradini di $r$ equazioni; ciò significa che (\ref{alternativa}), e quindi (\ref{ilsistema}), possiede $\infty^{n-r}$ soluzioni.
 \end{proof}
 
-\newpage
+\vspace{50pt}
 \subsection{Determinanti}
 \vspace{20pt}
 
@@ -3332,7 +3329,7 @@ non nulla (cioè tale che \( r(M) \ge 1 \)). Per determinare il rango di \( M \)
     Allora \[\forall\,\mathbf{A}\in M_n(\mathbb{K}),\quad D(\mathbf{A})=\det(\mathbf{A}).\]
 \end{exmp}
 
-\newpage
+\vspace{50pt}
 \section{Spazi Affini}
 \vspace{20pt}
 
@@ -4195,7 +4192,7 @@ Dalla \eqref{eq:8.13} segue che $\mathbf{S}\,\cap \mathbf{T}_{P,\mathbf{U}}=\{Q\
 L'applicazione $p_{\mathbf{S},\mathbf{U}}:\mathbf{A}\to \mathbf{S}$, definita ponendo $p_{\mathbf{S},\mathbf{U}}(P)=Q$, è chiamata \textbf{proiezione di $\mathbf{A}$ su $\mathbf{S}$ parallela a $\mathbf{U}$}. 
 Se $\dim(\mathbf{U})=1$, allora $\mathbf{S}$ è un iperpiano e $p_{\mathbf{S},\mathbf{U}}$ è la proiezione di $\mathbf{A}$ su $\mathbf{S}$ nella direzione $\mathbf{U}$. 
 
-\newpage
+\vspace{50pt}
 \subsection{Geometria in un Piano Affine}
 \vspace{20pt}
 
@@ -5061,7 +5058,7 @@ Esiste una e una sola retta contenente $P$ e complanare sia con $\mathfrak{r}$ c
 Si noti che certamente $\mathfrak{r}$ non è parallela sia a $\mathfrak{r}$ che a $\mathfrak{r}'$, perché in tal caso $\mathfrak{r}$ ed $\mathfrak{r}'$ sarebbero parallele tra loro. Quindi $\mathfrak{r}$ interseca almeno una delle due rette.
 
 
-\newpage
+\vspace{50pt}
 \section{Applicazioni Lineari}
 \vspace{20pt}
 
@@ -6096,7 +6093,7 @@ F(c\mathbf{v} + c'\mathbf{v}') = \bar{c} F(\mathbf{v}) + \bar{c}' F(\mathbf{v}')
 per ogni $\mathbf{v}, \mathbf{v}'\in \mathbf{V},\;c, c' \in \mathbb{C}$. 
 La verifica dell'equivalenza è lasciata al lettore.
 
-\newpage
+\vspace{50pt}
 \subsection{Applicazioni Lineari e matrici, cambiamenti di coordinate affini}
 \vspace{20pt}
 
@@ -7163,7 +7160,7 @@ M_{\beta, \eta}(\mathbf{1_{V^*}}) = \left[ M_{\psi, \phi}(\mathbf{1_V}) \right]^
     Da fare.
 \end{proof}
 
-\newpage
+\vspace{50pt}
 \subsection{Operatori Lineari}
 \vspace{20pt}
 
@@ -7949,11 +7946,10 @@ Questa proposizione dimostra che per ogni polinomio monico di grado $n \geq 1$ i
 matrici quadrate di ordine $n$ di cui esso, o il suo opposto, a seconda che $n$ sia pari o dispari, è il 
 polinomio caratteristico.
 
-\newpage
+\vspace{50pt}
 \part{Geometria Euclidea}
-\newpage
+\vspace{50pt}
 
-\newpage
 \section{Forme bilineari e quadratiche}
 \vspace{20pt}
 
@@ -8970,7 +8966,7 @@ abbiamo
 \[\dim(\mathbf{U}) \leq \dim(\mathbf{U}^\perp) = \dim(\mathbf{V}) - \dim(\mathbf{U}),\]
 cioè la \ref{quindiciquattordici}.
 
-\newpage
+\vspace{50pt}
 \section{Diagonalizzazione delle forme quadratiche}
 \vspace{20pt}
 
@@ -9267,7 +9263,7 @@ Le forme bilineari simmetriche definite positive sugli spazi vettoriali reali so
 che si chiama \textbf{forma di Minkowski}. $\lambda$ è non degenere indefinita, di segnatura $(3, 1)$. 
 La coppia $(\mathbb{R}^4, \lambda)$ è detta \textbf{spazio di Minkowski} e ha importanza fondamentale in relatività ristretta.
 
-\newpage
+\vspace{50pt}
 \section{Prodotti scalari}
 \vspace{20pt}
 
@@ -10175,7 +10171,7 @@ Per ogni $f(X), g(X) \in \mathbb{R}[X]$ poniamo
 Dalle proprietà dell'integrale definito segue subito che $\langle , \rangle$ è un prodotto scalare. 
 Dotato di questo prodotto scalare, $\mathbb{R}[X]$ è uno spazio vettoriale euclideo che non ha dimensione finita.
 
-\newpage
+\vspace{50pt}
 \section{Prodotto vettoriale}
 \vspace{20pt}
 
@@ -10507,7 +10503,7 @@ il secondo membro è
 L'identità \ref{diciottouno} si verifica svolgendo i calcoli e confrontando le due espressioni.    
 \end{proof}
 
-\newpage
+\vspace{50pt}
 \section{Spazi euclidei}
 \vspace{20pt}
 
@@ -11363,7 +11359,7 @@ Platone ne parla nel \textit{Timeo}, essi vengono anche chiamati \textit{solidi 
 studiò sistematicamente attorno al 380 a.C. e di essi tratta il XIII libro degli \textit{Elementi} di 
 Euclide. (Per maggiori dettagli rimandiamo il lettore a [7]).
 
-\newpage
+\vspace{50pt}
 \section{Diagonalizzazione di operatori simmetrici}
 \vspace{20pt}
 
