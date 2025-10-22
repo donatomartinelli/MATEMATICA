@@ -26,20 +26,20 @@
 ]{bxthm}
 
 \theoremstyle{plain}
-\newtheorem{thm}{Theorem}[section]
+\newtheorem{thm}{Teorema}[section]
 \newtheorem{lem}[thm]{Lemma}
-\newtheorem{prop}[thm]{Proposition}
-\newtheorem{cor}{Corollary}
+\newtheorem{prop}[thm]{Proposizione}
+\newtheorem{cor}{Corollario}
 
 \theoremstyle{definition}
-\newtheorem{defn}{Definition}[section]
-\newtheorem{exmp}{Example}[section]
-\newtheorem{xca}[exmp]{Exercise}
+\newtheorem{defn}{Definizione}[section]
+\newtheorem{exmp}{Esempio}[section]
+\newtheorem{xca}[exmp]{Esercizio}
 
 \theoremstyle{remark}
-\newtheorem{rem}{Remark}
-\newtheorem{note}{Note}
-\newtheorem{case}{Case}
+\newtheorem{rem}{Osservazione}
+\newtheorem{note}{Nota}
+\newtheorem{case}{Caso}
 
 \newcommand{\incfig}[2][\columnwidth]{%
     \def\svgwidth{#1}
@@ -57,136 +57,130 @@
 	{\Large\itshape Donato Martinelli\par}
 	{\large \today\par}
 \end{titlepage}
-\tableofcontents
+%\tableofcontents
 
 \newpage 
 
-\section{Applicazioni multivariabili e prodotti cartesiani di $\mathbb{R}$}
-
-\vspace{10pt}
-
-\paragraph{Funzione a due variabili}
-Una funzione di $2$ variabili è una un'applicazione \[f:(x,y)\mapsto f(x,y)\in\mathbb{R}.\]
-Ad esempio
-\[f(x,y)=\sqrt{x^2+y^2}\]
-
-\vspace{10pt}
-
-\paragraph{Funzione a tre variabili}
-Analogalmente una funzione di 3 variabili può essere vista come un'applicazione 
-\[f:(x,y,z)\mapsto f(x,y,z)\in\mathbb{R}\]
-Ad esempio
-\[f(x,y,z)=\sqrt{x^2+y^2-z}\]
-
-\vspace{10pt}
-
-\paragraph{Funzione a $n$ variabili}
-Più in generale una funzione di $n$ variabili è un'applicazione 
-\[f:(x_1,\ldots,x_n)\mapsto f(x_1,\ldots,x_n)\in\mathbb{R}.\]
-
-\vspace{10pt}
-
-Andiamo a studiare gli insiemi delle $n$-uple.
-
-\vspace{10pt}
-
-Nel caso $n=2$, denotiamo con $\mathbb{R}^2$ l'insieme delle coppie ordinate di numeri reali.
-Un elemento $v\in\mathbb{R}^2$ è una coppia ordinata $(x,y)$ di numeri reali dove $x$ e $y$ sono dette componenti di $v$.
-In $\mathbb{R}^2$ definiamo due operazioni di somma e prodotto.
-Definiamo la somma al seguente modo 
-\[(x,y)+(x',y')=(x+x',y+y')\in\mathbb{R}^2\]
-Definiamo il prodotto invece 
-\[\alpha(x,y)=(\alpha x, \alpha y)\in\mathbb{R}^2\]
-Vediamo che con queste operazioni, $\mathbb{R}^2$ è uno spazio vettoriale di dimensione $2$, con base canonica $E=\{e_1,e_2\}$
-formata dai vettori $e_1=(1,0)$ e $e_2=(0,1)$. 
-L'elemento neutro rispetto alla somma è la coppia $(0,0)$ che viene chiamato lo $0$ di $\mathbb{R}^2$
-Sia $(x,y)\in\mathbb{R}^2$, allora \[(x,y)+(0,0)=(x,y).\]
-L'elemento opposto invece è l'elemento che ha come componenti gli opposti di $x$ e $y$.
-Sia $(x,y)\in\mathbb{R}^2$, allora \[(x,y)+(-x,-y)=(0,0).\]
-L'esistenza dell'opposto introduce anche l'operazione della differenza che è un caso specifico della somma. 
-Si definisce infatti 
-\[(x,y)-(x',y')=(x,y)+(-(x',y'))=(x,y)+(-x',-y')=(x-x',y-y').\]
-Si può stabilire una corrispondenza biunivoca tra $\mathbb{R}^2$ e il piano ordinario mediante la seguente applicazione:
-\[\phi: v=(x,y)\in\mathbb{R}^2\mapsto p=(x,y),\] chiamiamo $x$ e $y$ rispettivamente ascissa e ordinate.
-Quest'applicazione è biunivoca perchè se $p=(x,y)$ è un punto del piano, allora 
-\[\exists!\,v\in\mathbb{R}^2\,:\;\phi(v)=p\quad\textup{con}\;v=(x,y).\]
-
-\vspace{10pt}
-
-Vale lo stesso discorso per $n=3$,
-\[\mathbb{R}^3=\{(x,y,z): x,y,z\in\mathbb{R}\}\]
-Andando veloci,
-\begin{itemize}
-    \item Operazione di somma:
-    \[(x,y,z)+(x',y',z')=(x+x',y+y',z+z')\in\mathbb{R}^3\]
-    \item Operazione di prodotto ($\alpha\in\mathbb{R}$):
-    \[\alpha(x,y,z)=(\alpha x,\alpha y, \alpha z)\in\mathbb{R}^3\]
-    \item $\mathbb{R}^3$ è uno spazio vettoriale di dimensione $3$ con:
-    \begin{itemize}
-        \item Base canonica \[E=\{e_1,e_2,e_3\}=\{(1,0,0),(0,1,0),(0,0,1)\}\]
-        \item Elemento neutro rispetto alla somma $(0,0,0)$ che è lo $0$ di $\mathbb{R}^3$
-        \item L'opposto di $(x,y,z)$ è $(-x,-y,-z)$
-    \end{itemize}
-    \item Possiamo definire una corrisponenza biunivoca tra $\mathbb{R}^3$ e lo spazio ordinario mediante la seguente applicazione
-    \[\phi:v=(x,y,z)\in\mathbb{R}^3\to p=(x,y,z)\in \textup{spazio}\]
-    $x,y,z$ sono rispettivamente ascissa, ordinata, e quota.
-    $\phi$ è biunivoca perchè, preso un punto $p=(x,y,z)$ dello spazio, \[\exists!v\in\mathbb{R}^3\,:\;\phi(v)=p\quad\textup{con}\;v=(x,y,z).\]
-\end{itemize}
-
-\vspace{10pt}
-
-Segue immediatamente la generalizzazione per un $n$-qualsiasi. 
-\[\mathbb{R}^n=\{(x_1,\ldots,x_n)\,:\;x_1\ldots,x_n\in\mathbb{R}\}\]
-Se $v\in\mathbb{R}^n$, allora 
-\[\exists\, n\;\textup{numeri reali}\,x_1,\ldots,x_n\,:\; v=(x_1,\ldots,x_n)\]
-$\forall\,i=1,\ldots,n,\;x_i$ si dice componente di $v$.
-$\mathbb{R}^n$ è uno spazio vettoriale di dimensione $n$ con base canonica \[E=\{e_1,e_2,e_3\}=\{(1,0,\ldots,0),(0,1,\ldots,0),(0,\ldots,0,1)\}.\]
-Vale stesso discorso per somma, prodotto, elemento neutro, opposto e differenza.
-
-\vspace{10pt}
-
-In queste strutture non ci sono proprietà di ordinamento, quantomeno non paragonabili a quelle presenti in $\mathbb{R}$. 
-
-\vspace{10pt}
-
-Segue ovviamente che 
-\[\mathbb{R}\thicksim \mathbb{R}^1.\]
-
-\vspace{10pt}
+% \section{Applicazioni multivariabili e prodotti cartesiani di $\mathbb{R}$}
+% 
+% \vspace{10pt}
+% 
+% \paragraph{Funzione a due variabili}
+% Una funzione di $2$ variabili è una un'applicazione \[f:(x,y)\mapsto f(x,y)\in\mathbb{R}.\]
+% Ad esempio
+% \[f(x,y)=\sqrt{x^2+y^2}\]
+% 
+% \vspace{10pt}
+% 
+% \paragraph{Funzione a tre variabili}
+% Analogalmente una funzione di 3 variabili può essere vista come un'applicazione 
+% \[f:(x,y,z)\mapsto f(x,y,z)\in\mathbb{R}\]
+% Ad esempio
+% \[f(x,y,z)=\sqrt{x^2+y^2-z}\]
+% 
+% \vspace{10pt}
+% 
+% \paragraph{Funzione a $n$ variabili}
+% Più in generale una funzione di $n$ variabili è un'applicazione 
+% \[f:(x_1,\ldots,x_n)\mapsto f(x_1,\ldots,x_n)\in\mathbb{R}.\]
+% 
+% \vspace{10pt}
+% 
+% Andiamo a studiare gli insiemi delle $n$-uple.
+% 
+% \vspace{10pt}
+% 
+% Nel caso $n=2$, denotiamo con $\mathbb{R}^2$ l'insieme delle coppie ordinate di numeri reali.
+% Un elemento $v\in\mathbb{R}^2$ è una coppia ordinata $(x,y)$ di numeri reali dove $x$ e $y$ sono dette componenti di $v$.
+% In $\mathbb{R}^2$ definiamo due operazioni di somma e prodotto.
+% Definiamo la somma al seguente modo 
+% \[(x,y)+(x',y')=(x+x',y+y')\in\mathbb{R}^2\]
+% Definiamo il prodotto invece 
+% \[\alpha(x,y)=(\alpha x, \alpha y)\in\mathbb{R}^2\]
+% Vediamo che con queste operazioni, $\mathbb{R}^2$ è uno spazio vettoriale di dimensione $2$, con base canonica $E=\{e_1,e_2\}$
+% formata dai vettori $e_1=(1,0)$ e $e_2=(0,1)$. 
+% L'elemento neutro rispetto alla somma è la coppia $(0,0)$ che viene chiamato lo $0$ di $\mathbb{R}^2$
+% Sia $(x,y)\in\mathbb{R}^2$, allora \[(x,y)+(0,0)=(x,y).\]
+% L'elemento opposto invece è l'elemento che ha come componenti gli opposti di $x$ e $y$.
+% Sia $(x,y)\in\mathbb{R}^2$, allora \[(x,y)+(-x,-y)=(0,0).\]
+% L'esistenza dell'opposto introduce anche l'operazione della differenza che è un caso specifico della somma. 
+% Si definisce infatti 
+% \[(x,y)-(x',y')=(x,y)+(-(x',y'))=(x,y)+(-x',-y')=(x-x',y-y').\]
+% Si può stabilire una corrispondenza biunivoca tra $\mathbb{R}^2$ e il piano ordinario mediante la seguente applicazione:
+% \[\phi: v=(x,y)\in\mathbb{R}^2\mapsto p=(x,y),\] chiamiamo $x$ e $y$ rispettivamente ascissa e ordinate.
+% Quest'applicazione è biunivoca perchè se $p=(x,y)$ è un punto del piano, allora 
+% \[\exists!\,v\in\mathbb{R}^2\,:\;\phi(v)=p\quad\textup{con}\;v=(x,y).\]
+% 
+% \vspace{10pt}
+% 
+% Vale lo stesso discorso per $n=3$,
+% \[\mathbb{R}^3=\{(x,y,z): x,y,z\in\mathbb{R}\}\]
+% Andando veloci,
+% \begin{itemize}
+%     \item Operazione di somma:
+%     \[(x,y,z)+(x',y',z')=(x+x',y+y',z+z')\in\mathbb{R}^3\]
+%     \item Operazione di prodotto ($\alpha\in\mathbb{R}$):
+%     \[\alpha(x,y,z)=(\alpha x,\alpha y, \alpha z)\in\mathbb{R}^3\]
+%     \item $\mathbb{R}^3$ è uno spazio vettoriale di dimensione $3$ con:
+%     \begin{itemize}
+%         \item Base canonica \[E=\{e_1,e_2,e_3\}=\{(1,0,0),(0,1,0),(0,0,1)\}\]
+%         \item Elemento neutro rispetto alla somma $(0,0,0)$ che è lo $0$ di $\mathbb{R}^3$
+%         \item L'opposto di $(x,y,z)$ è $(-x,-y,-z)$
+%     \end{itemize}
+%     \item Possiamo definire una corrisponenza biunivoca tra $\mathbb{R}^3$ e lo spazio ordinario mediante la seguente applicazione
+%     \[\phi:v=(x,y,z)\in\mathbb{R}^3\to p=(x,y,z)\in \textup{spazio}\]
+%     $x,y,z$ sono rispettivamente ascissa, ordinata, e quota.
+%     $\phi$ è biunivoca perchè, preso un punto $p=(x,y,z)$ dello spazio, \[\exists!v\in\mathbb{R}^3\,:\;\phi(v)=p\quad\textup{con}\;v=(x,y,z).\]
+% \end{itemize}
+% 
+% \vspace{10pt}
+% 
+% Segue immediatamente la generalizzazione per un $n$-qualsiasi. 
+% \[\mathbb{R}^n=\{(x_1,\ldots,x_n)\,:\;x_1\ldots,x_n\in\mathbb{R}\}\]
+% Se $v\in\mathbb{R}^n$, allora 
+% \[\exists\, n\;\textup{numeri reali}\,x_1,\ldots,x_n\,:\; v=(x_1,\ldots,x_n)\]
+% $\forall\,i=1,\ldots,n,\;x_i$ si dice componente di $v$.
+% $\mathbb{R}^n$ è uno spazio vettoriale di dimensione $n$ con base canonica \[E=\{e_1,e_2,e_3\}=\{(1,0,\ldots,0),(0,1,\ldots,0),(0,\ldots,0,1)\}.\]
+% Vale stesso discorso per somma, prodotto, elemento neutro, opposto e differenza.
+% 
+% \vspace{10pt}
+% 
+% In queste strutture non ci sono proprietà di ordinamento, quantomeno non paragonabili a quelle presenti in $\mathbb{R}$. 
+% 
+% \vspace{10pt}
+% 
+% Segue ovviamente che 
+% \[\mathbb{R}\thicksim \mathbb{R}^1.\]
+% 
+% \vspace{10pt}
 
 \section{Topologia di $\mathbb{R}^n$}
 
 \vspace{10pt}
 
-Passiamo ora a introdurre dei concetti importanti per strutturare una topologia degli spazi $\mathbb{R}^n$.
+Passiamo ora a introdurre dei concetti importanti per strutturare una topologia di $\mathbb{R}^n$.
 
 \vspace{10pt}
 
 \paragraph{Norma di una $n$-upla}
 \begin{bxthm}
 \begin{defn}
-    Sia $x=(x_1,\ldots,x_n)\in\mathbb{R}^n$. Si definisce \textbf{norma} di $x$ il numero reale 
-    \[||x||=\sqrt{x_1^2+x_2^2+\ldots+x_n^2}.\]
+    Sia $\mathbf{x}=(x_1,\ldots,x_n)\in\mathbb{R}^n$. Si definisce \textbf{norma} di $\mathbf{x}$ il numero reale 
+    \[\|\mathbf{x}\|=\sqrt{\sum_{i=1}^{n}x_i^2}.\]
 \end{defn}
 \end{bxthm}
-
-\vspace{10pt}
-
-\begin{exmp}
-    \[||(2,4)||=\sqrt{4+16}=\sqrt{20}.\]
-\end{exmp}
 
 \vspace{10pt}
 
 \paragraph{Proprietà della norma}
 \begin{bxthm}
 \begin{thm}
-    Sia $x=(x_1,\ldots,x_n)\in\mathbb{R}^n$, allora
+    Sia $\mathbf{x}=(x_1,\ldots,x_n)\in\mathbb{R}^n$, allora
     \begin{itemize}
-        \item $||x||\geq0$ e $||x||=0 \iff x=0$
-        \item Se $\alpha\in\mathbb{R}, ||\alpha x||=|\alpha|\cdot||x||$
-        \item Se $x,y\in\mathbb{R}^n$, $||x+y||\leq||x||+||y||$
-        \item Se $x,y\in\mathbb{R}^n$, $||x||-||y||\leq||x-y||$
+        \item $\|\mathbf{x}\|\geq0$ e $\|\mathbf{x}\|=0 \iff \mathbf{x}=\mathbf{0};$
+        \item Se $\alpha\in\mathbb{R}, \|\alpha \mathbf{x}\|=|\alpha|\cdot\|\mathbf{x}\|;$
+        \item Se $\mathbf{x},\mathbf{y}\in\mathbb{R}^n$, $\|\mathbf{x}+\mathbf{y}\|\leq\|\mathbf{x}\|+\|\mathbf{y}\|;$
+        \item Se $\mathbf{x},\mathbf{y}\in\mathbb{R}^n$, $\|\mathbf{x}\|-\|\mathbf{y}\|\leq\|\mathbf{x}-\mathbf{y}\|.$
     \end{itemize}
 \end{thm}
 \end{bxthm}
@@ -194,7 +188,7 @@ Passiamo ora a introdurre dei concetti importanti per strutturare una topologia 
 \vspace{10pt}
 
 \begin{note}
-    Se $x\in\mathbb{R}$, \[||x||=\sqrt{x^2}=|x|.\]
+    Se $x\in\mathbb{R}$, \[\|x\|=\sqrt{x^2}=|x|.\]
     Quindi nei reali la norma coincide con il valore assoluto
 \end{note}
 
@@ -203,21 +197,16 @@ Passiamo ora a introdurre dei concetti importanti per strutturare una topologia 
 \paragraph{Prodotto scalare}
 \begin{bxthm}
 \begin{defn}
-    Siano $x,y\in\mathbb{R}^n$, si definisce \textbf{prodotto scalare} di $x$ e $y$ il numero reale 
-    \[x\cdot y=\sum_{i=1}^{n}x_iy_i.\]
+    Siano $\mathbf{x},\mathbf{y}\in\mathbb{R}^n$, si definisce \textbf{prodotto scalare} di $\mathbf{x}$ e $\mathbf{y}$ il numero reale 
+    \[\mathbf{x}\cdot \mathbf{y}=\sum_{i=1}^{n}x_iy_i.\]
 \end{defn}
 \end{bxthm}
 
 \vspace{10pt}
 
-\begin{exmp}
-    \[x=(2,4),\;y=(1,3),\quad x\cdot y=2\cdot1+4\cdot3=2+12=14.\]
-\end{exmp}
-
-\vspace{10pt}
-
 \begin{note}
-    Se $x,y\in\mathbb{R}$, il prodotto scalare coincide con l'operazione di prodotto ordinaria. 
+    Se $x\in\mathbb{R}$, \[x\cdot y= xy.\]
+    Quindi nei reali il prodotto scalare coincide con l'operazione di prodotto ordinaria. 
 \end{note}
 
 \vspace{10pt}
@@ -225,7 +214,7 @@ Passiamo ora a introdurre dei concetti importanti per strutturare una topologia 
 \paragraph{Disuguaglianza di Cauchy-Schwartz}
 \begin{bxthm}
 \begin{prop}
-    Se $x,y\in\mathbb{R}^n$, \[|x\cdot y|\leq ||x||\cdot||y||.\]
+    Se $x,y\in\mathbb{R}^n$, \[|x\cdot y|\leq \|x\|\cdot\|y\|.\]
 \end{prop}
 \end{bxthm}
 
@@ -237,7 +226,7 @@ Passiamo ora a introdurre dei concetti importanti per strutturare una topologia 
 \begin{defn}
     Siano $\overline{x}\in\mathbb{R}^n$ e $\delta\in\mathbb{R}^+$. 
     Si chiama \textbf{cerchio} in $\mathbb{R}^n$ di centro $\overline{x}$ e raggio $\delta$ l'insieme 
-    \[C_{\overline{x}}(\delta)=\{x\in\mathbb{R}^n:||x-\overline{x}||<\delta\}.\]
+    \[C_{\overline{x}}(\delta)=\{x\in\mathbb{R}^n:\|x-\overline{x}\|<\delta\}.\]
     L'insieme \[\mathcal{C}_{\overline{x}}=\{C_{\overline{x}}(\delta) \,|\, \delta>0\}\] è detto \textbf{collezione dei cerchi di} $\overline{x}$.
 \end{defn}
 \end{bxthm}
@@ -247,9 +236,9 @@ Passiamo ora a introdurre dei concetti importanti per strutturare una topologia 
 \begin{xca}
     Se prendiamo $n=2$, avremo $\overline{x}=(x_0,y_0)\in\mathbb{R}^2$. 
     Dunque l'insieme $C_{\overline{x}}(\delta)$ sarà
-    \[C_{\overline{x}}(\delta)=\{(x,y)\in\mathbb{R}^2\,:\;||(x,y)-(x_0,y_0)||<\delta\}.\]
+    \[C_{\overline{x}}(\delta)=\{(x,y)\in\mathbb{R}^2\,:\;\|(x,y)-(x_0,y_0)\|<\delta\}.\]
     Dalla definizione di differenza in $\mathbb{R}^2$ e di norma, abbiamo:
-    \[||(x,y)-(x_0,y_0)||=||(x-x_0,y-y_0)||=\sqrt{(x-x_0)^2+(y-y_0)^2}\]
+    \[\|(x,y)-(x_0,y_0)\|=\|(x-x_0,y-y_0)\|=\sqrt{(x-x_0)^2+(y-y_0)^2}\]
     Perciò
     \[C_{\overline{x}}(\delta)=\{(x,y)\in\mathbb{R}^2\,:\;\sqrt{(x-x_0)^2+(y-y_0)^2}<\delta\}.\]
 
@@ -257,15 +246,7 @@ Passiamo ora a introdurre dei concetti importanti per strutturare una topologia 
     % fai vari disegni
     \begin{itemize}
         \item $\sqrt{(x-x_0)^2+(y-y_0)^2}=\delta$ rappresenta la circonferenza;
-        \begin{figure}[H]
-            \centering
-            \incfig[0.5\linewidth]{circonferenza}
-        \end{figure}
         \item $\sqrt{(x-x_0)^2+(y-y_0)^2}<\delta$ rappresenta il cerchio, diremo anche \textbf{cerchio aperto};
-        \begin{figure}[H]
-            \centering
-            \incfig[0.5\linewidth]{cerchio}
-        \end{figure}
         \item $\sqrt{(x-x_0)^2+(y-y_0)^2}\leq \delta$ rappresenta il cerchio e circonferenza, diremo anche \textbf{cerchio chiuso};
         \item $\sqrt{(x-x_0)^2+(y-y_0)^2}> \delta$ rappresenta la parte esterna a cerchio e circonferenza;
         \item $\sqrt{(x-x_0)^2+(y-y_0)^2}\geq \delta$ rappresenta la parte esterna a cerchio.
@@ -406,7 +387,7 @@ Riprendiamo allo stesso modo la definizione di limite di una successione reale p
     Si dice che 
     \[\lim_{k\to+\infty} x_k = x \in \mathbb{R}^n\]
     se
-    \[\forall\,\varepsilon>0\,,\; \exists\, u\in\mathbb{N}\,:\;\forall\, k>u,\quad ||x_k-x||<\varepsilon.\]
+    \[\forall\,\varepsilon>0\,,\; \exists\, u\in\mathbb{N}\,:\;\forall\, k>u,\quad \|x_k-x\|<\varepsilon.\]
 \end{defn}
 \end{bxthm}
 
@@ -418,7 +399,7 @@ E dunque la definizione di limite per una successione reale diventa
 \forall\,I\in\mathcal{I}_y,\; \exists\, u\in\mathbb{N}\,:\; \forall\, k>u,\; y_k\in I.
 \]
 In altre parole, per $k$ sufficientemente grande, i termini $y_k$ si avvicinano arbitrariamente a $y$, ovvero $y_k \sim y$ asintoticamente.
-Nel caso di successione vettoriale, si ha che la scrittura $\| x_k - x \| < \varepsilon$  $|| x_k - x || < \varepsilon$ vuol dire $x_k \in C_{x}(\varepsilon),$
+Nel caso di successione vettoriale, si ha che la scrittura $\| x_k - x \| < \varepsilon$  $\| x_k - x \| < \varepsilon$ vuol dire $x_k \in C_{x}(\varepsilon),$
 dove $C_{x}(\varepsilon)$ denota il cerchio aperto di centro $x$ e raggio $\varepsilon$. E dunque la definizione di limite per una successione vettoriale diventa
 \[
 \forall\, C\in\mathcal{C}_x,\; \exists\, u\in\mathbb{N}\,:\; \forall\, k>u,\; x_k\in C.
@@ -827,27 +808,27 @@ si ha che il limite $x$ appartiene ad $A$. In altre parole, $A$ contiene tutti i
 \begin{bxthm}
 \begin{prop}
     $A$ è limitato se e solo se 
-    \[\exists c>0 \,:\;\forall\,x\in A,\quad(||x||\leq c\;\land\; || x ||-|| \overline{x} ||\leq || x-\overline{x} ||).\]
+    \[\exists c>0 \,:\;\forall\,x\in A,\quad(\|x\|\leq c\;\land\; \| x \|-\| \overline{x} \|\leq \| x-\overline{x} \|).\]
 \end{prop}
 \end{bxthm}
 \begin{proof}\hfill 
     \begin{itemize}
         \item[$\implies$] Dalle ipotesi esiste un cerchio $C$ tale che $A\subseteq C$. Sia $\overline{x}$ il centro di $C$ e $r$ il suo raggio, avremo allora 
-        \[C_{\overline{x}}(r)=\{x\in\mathbb{R}^n\,:\;|| x-\overline{x} ||<r\}.\]
+        \[C_{\overline{x}}(r)=\{x\in\mathbb{R}^n\,:\;\| x-\overline{x} \|<r\}.\]
         Poichè $A\subseteq C$, segue immediatamente che 
-        \[\forall\, x\in A,\quad || x-\overline{x} ||<r.\]
+        \[\forall\, x\in A,\quad \| x-\overline{x} \|<r.\]
         Dalla disuguaglianza triangolare 
-        \[|| x || -|| \overline{x} ||\leq|| x-\overline{x} ||<r \implies || x ||-|| \overline{x} ||<r \implies || x ||<|| \overline{x} ||+r.\]
-        Ponendo $|| \overline{x} ||+r=r$, ci troviamo con 
-        \[\forall x\in A, || x || < c.\]
+        \[\| x \| -\| \overline{x} \|\leq\| x-\overline{x} \|<r \implies \| x \|-\| \overline{x} \|<r \implies \| x \|<\| \overline{x} \|+r.\]
+        Ponendo $\| \overline{x} \|+r=r$, ci troviamo con 
+        \[\forall x\in A, \| x \| < c.\]
 
         \item[$\impliedby$] Dall'ipotesi si ha che esiste $c>0$ tale che
         \[
-        \forall\, x\in A,\quad ||x||\leq c.
+        \forall\, x\in A,\quad \|x\|\leq c.
         \]
         Consideriamo il cerchio chiuso centrato nell'origine di raggio $c$, definito da
         \[
-        C_{0}(c)=\{x\in\mathbb{R}^n\,:\; ||x||\leq c\}.
+        C_{0}(c)=\{x\in\mathbb{R}^n\,:\; \|x\|\leq c\}.
         \]
         Essendo che ogni elemento di $A$ ha norma minore o uguale a $c$, segue 
         \[
@@ -861,8 +842,8 @@ si ha che il limite $x$ appartiene ad $A$. In altre parole, $A$ contiene tutti i
 
 \begin{note}
     La prima parte della proposizione esprime la definizione classica di insieme limitato: esiste una costante $c>0$ tale che per ogni elemento $x\in A$ 
-    la sua norma soddisfa $||x||\leq c$, cioè $A$ è contenuto in una palla centrata nell'origine di raggio $c$. La seconda disuguaglianza, 
-    $||x||-|| \overline{x} ||\leq || x-\overline{x} ||$, è una conseguenza della disuguaglianza triangolare (nella sua forma inversa) e indica che la 
+    la sua norma soddisfa $\|x\|\leq c$, cioè $A$ è contenuto in una palla centrata nell'origine di raggio $c$. La seconda disuguaglianza, 
+    $\|x\|-\| \overline{x} \|\leq \| x-\overline{x} \|$, è una conseguenza della disuguaglianza triangolare (nella sua forma inversa) e indica che la 
     differenza tra la norma di $x$ e quella di un punto fisso $\overline{x}$ è sempre minore o uguale alla distanza tra $x$ e $\overline{x}$. 
     Questo fatto evidenzia come la "variazione" della norma, rispetto ad un punto fisso, sia controllata dalla distanza effettiva in $\mathbb{R}^n$. 
     Insieme, queste condizioni garantiscono che gli elementi di $A$ non "si allontanano" indefinitamente, cioè $A$ risulta limitato.
@@ -1069,7 +1050,7 @@ Questa espressione evidenzia il fatto che, avvicinandosi a \(x_0\), i valori di 
 
 % Definizioni riguardanti il limite di una funzione
 
-% La condizione 0 < ||x - x₀|| < δ significa che:
+% La condizione 0 < \|x - x₀\| < δ significa che:
 \[
 0 < \|x - x_0\| < \delta \quad \iff \quad x \in C_{x_0}(\delta) \setminus \{x_0\},
 \]
@@ -1101,7 +1082,7 @@ Analogamente, si dice che
 \begin{defn}
     Sia $f:A\subseteq\mathbb{R}^n\to\mathbb{R}$ e sia $x_0\in A$. 
     Si dice che $f$ è \textbf{continua} in $x_0$ se 
-    \[\forall\,\varepsilon>0,\;\exists\,\delta>0\,:\;\forall\, x\in A,\quad|| x-x_0 ||<\delta \implies|f(x)-f(x_0)|<\varepsilon.\]
+    \[\forall\,\varepsilon>0,\;\exists\,\delta>0\,:\;\forall\, x\in A,\quad\| x-x_0 \|<\delta \implies|f(x)-f(x_0)|<\varepsilon.\]
     Alternativamente, 
     \[\forall\,\varepsilon>0,\;\exists\,C\in\mathcal{C}_{x_0}\,:\;\forall\, x\in A\cap C,\quad|f(x)-f(x_0)|<\varepsilon.\]
 \end{defn}
@@ -1131,8 +1112,8 @@ Se $x\sim x_0$, $f(x)\sim f(x_0)$
         \[\exists\,\overline{C}\in\mathcal{C}_{x_0}\,:\;\overline{C}\cap A=\{x_0\}.\]
         Siano $\varepsilon>0$ e  $C=\overline{C}$. Poichè $C\cap A=\{x_0\}$, avremo che $|f(x_0)-f(x_0)|=0<\varepsilon$.
         \item Sia $x_0$ di accumulazione per $A$. Allora 
-        \[\lim_{x\to x_0} f(x)=f(x_0)\iff \forall\,\varepsilon>0,\;\exists\,\delta>0\,:\; \forall\, x\in A,\quad 0<||x-x_0||<\delta\implies |f(x)-f(x_0)|<\varepsilon.\] 
-        La condizione $|f(x)-f(x_0)|<\varepsilon$ vale $\forall\, x\in A$ con $|| x-x_0 ||<\delta$, cioè $f$ è continua in $x_0$.
+        \[\lim_{x\to x_0} f(x)=f(x_0)\iff \forall\,\varepsilon>0,\;\exists\,\delta>0\,:\; \forall\, x\in A,\quad 0<\|x-x_0\|<\delta\implies |f(x)-f(x_0)|<\varepsilon.\] 
+        La condizione $|f(x)-f(x_0)|<\varepsilon$ vale $\forall\, x\in A$ con $\| x-x_0 \|<\delta$, cioè $f$ è continua in $x_0$.
     \end{enumerate}
 \end{proof}
 
@@ -1143,7 +1124,7 @@ Se $x\sim x_0$, $f(x)\sim f(x_0)$
 \begin{defn}
     Si dice che $f$ è continua in $A$ se è continua in ogni punto di $A$.
     In simboli,
-    \[\forall\, x_0\in A,\;\forall\,\varepsilon>0,\;\exists\,\delta>0\,:\;\forall\, x\in A,\quad|| x-x_0 ||<\delta \implies|f(x)-f(x_0)|<\varepsilon.\]
+    \[\forall\, x_0\in A,\;\forall\,\varepsilon>0,\;\exists\,\delta>0\,:\;\forall\, x\in A,\quad\| x-x_0 \|<\delta \implies|f(x)-f(x_0)|<\varepsilon.\]
 \end{defn}
 \end{bxthm}
 
@@ -1153,7 +1134,7 @@ Se $x\sim x_0$, $f(x)\sim f(x_0)$
 \begin{bxthm}
 \begin{defn}
     Si dice che $f$ è uniformemente continua in $A$ se 
-    \[\forall\,\varepsilon>0,\;\exists\,\delta>0\,:\;\forall\, x,y\in A,\quad|| x-y ||<\delta\implies |f(x)-f(y)|<\varepsilon.\]
+    \[\forall\,\varepsilon>0,\;\exists\,\delta>0\,:\;\forall\, x,y\in A,\quad\| x-y \|<\delta\implies |f(x)-f(y)|<\varepsilon.\]
 \end{defn}
 \end{bxthm}
 
@@ -1301,7 +1282,7 @@ Questo ci permette di introdurre le funzioni parziali.
     Dimostriamo che $[x_0-r,x_0+r]\subseteq A_\varphi$. 
     Da $x\in [x_0-r,x_0+r]$ abbiamo $|x-x_0|\leq r$.
     Dimostriamo che $(x,y_0)\in C$.
-    \[|| (x,y_0)-(x_0,y_0) ||=|| (x-x_0,0) ||=\sqrt{(x-x_0)^2}=|x-x_0|\leq r\implies (x,y_0)\in C.\]
+    \[\| (x,y_0)-(x_0,y_0) \|=\| (x-x_0,0) \|=\sqrt{(x-x_0)^2}=|x-x_0|\leq r\implies (x,y_0)\in C.\]
     Poichè $C\subseteq A$, avremo che $(x,y_0)\in A$ da cui $x\in A_\varphi$.
     In maniera analoga si dimostra che $[y_0-r,y_0+r]\subseteq A_\psi$.
 \end{proof}
@@ -1334,13 +1315,13 @@ Questo ci permette di introdurre le funzioni parziali.
     cioè che
     \[\forall\,\varepsilon>0,\;\exists\,\delta>0\,:\;\forall\, x\in A_\varphi,\quad 0<|x-x_0|<\delta\implies|\varphi(x)-l|<\varepsilon.\]
     Per ipotesi, 
-    \[\forall\,\varepsilon>0,\;\exists\,\delta>0\,:\;\forall\,(x,y)\in A,\quad 0<||(x,y)-(x_0,y_0)||<\delta\implies|f(x,y)-l|<\varepsilon.\]
+    \[\forall\,\varepsilon>0,\;\exists\,\delta>0\,:\;\forall\,(x,y)\in A,\quad 0<\|(x,y)-(x_0,y_0)\|<\delta\implies|f(x,y)-l|<\varepsilon.\]
     Prendiamo $\varepsilon>0$ e $\delta$ come nell'ipotesi. 
     Sia $x\in A_\varphi$ con $0<|x-x_0|<\delta$ e ricordiamo che $x\in A_\varphi\implies(x,y_0)\in A$.
     Abbiamo dunque 
-    \[|| (x,y_0)-(x_0,y_0) ||=||(x-x_0)||=\sqrt{(x-x_0)^2}=|x-x_0|\implies 0<||(x,y)-(x_0,y_0)||<\delta.\]
+    \[\| (x,y_0)-(x_0,y_0) \|=\|(x-x_0)\|=\sqrt{(x-x_0)^2}=|x-x_0|\implies 0<\|(x,y)-(x_0,y_0)\|<\delta.\]
     In conclusione,
-    \[((x,y_0)\in A \;\land\; 0<|| (x,y)-(x_0,y_0) ||<\delta)\implies |f(x,y_0)-l|<\varepsilon\implies |\varphi(x)-l|<\varepsilon\implies f(x,y_0)=\varphi(x).\]
+    \[((x,y_0)\in A \;\land\; 0<\| (x,y)-(x_0,y_0) \|<\delta)\implies |f(x,y_0)-l|<\varepsilon\implies |\varphi(x)-l|<\varepsilon\implies f(x,y_0)=\varphi(x).\]
 \end{proof}
 
 \vspace{10pt}
@@ -1492,9 +1473,9 @@ Se $\varphi$ è continua in $x_0$ e $\psi$ è continua in $y_0$, si dice che $f$
     da cui possiamo estrarre
     \[\{x_0\}\subseteq[x_0-r,x_0+r]\cap A_\varphi.\]
     Sia ora $x\in[x_0-r,x_0+r]\cap A_\varphi$, da \ref{funzparz} sappiamo che $x\in A_\varphi\implies(x,y_0)\in A$.
-    Poichè $x\in[x_0-r,x_0+r]$, avremo che $|| (x,y_0)-(x_0,y_0) ||=||(x-x_0,0)||=|x-x_0|\leq r$.
+    Poichè $x\in[x_0-r,x_0+r]$, avremo che $\| (x,y_0)-(x_0,y_0) \|=\|(x-x_0,0)\|=|x-x_0|\leq r$.
     Dunque $(x,y_0)\in C\implies x=x_0$.
-    %\[|| (x,y_0)-(x_0,y_0) ||=|x-x_0|\leq r\implies (x,y_0)\in C. (x,y_0)\in C\cap A=\{(x_0,y_0)\}\implies x=x_0.\]
+    %\[\| (x,y_0)-(x_0,y_0) \|=|x-x_0|\leq r\implies (x,y_0)\in C. (x,y_0)\in C\cap A=\{(x_0,y_0)\}\implies x=x_0.\]
 \end{proof}
 
 \vspace{10pt}
@@ -1564,7 +1545,7 @@ $\varphi$ e $\psi$ sono continue in $0$, ma $f$ non è continua in $(0,0)$ perch
 \end{bxthm}
 \begin{proof}
     Sia $l\in\mathbb{R}$. Per ipotesi 
-    \[\forall\,\varepsilon>0\,,\;\exists\,\delta>0\,:\;\forall\,(x,y)\in A,\quad 0<||(x,y)-(x_0,y_0)||<\delta\implies|f(x,y)-l|<\varepsilon.\]
+    \[\forall\,\varepsilon>0\,,\;\exists\,\delta>0\,:\;\forall\,(x,y)\in A,\quad 0<\|(x,y)-(x_0,y_0)\|<\delta\implies|f(x,y)-l|<\varepsilon.\]
     Dobbiamo dimostrare che 
     \[\forall\,\varepsilon>0\,,\;\exists\,\delta>0\,:\;\forall\,x\in I\setminus\{x_0\},\quad|x-x_0|<\delta\implies|f(x,\rho(x))-l|<\varepsilon.\]
     Siano $\varepsilon>0$ e $\delta$ il $\delta$ di ($*$). 
@@ -1572,12 +1553,12 @@ $\varphi$ e $\psi$ sono continue in $0$, ma $f$ non è continua in $(0,0)$ perch
     \[\exists\,\overline{\delta}\;(\overline{\delta}<\frac{\delta}{2})\,:\;\forall\, x\in I,\quad |x-x_0|<\overline{\delta}\implies|\rho(x)-\rho(x_0)|=|\rho(x)-y_0|<\frac{\delta}{2}.\]
     Sia $x\in I\setminus\{x_0\}$ con $|x-x_0|<\overline{\delta}$.
     Per ipotesi, poichè $x\in I\setminus\{x_0\}$, allora $(x,\rho(x))\in A$, e dunque
-    \[ || (x,\rho(x))-(x_0,y_0) ||=|| (x-x_0, \rho(x)-y_0) ||=\sqrt{(x-x_0)^2+(\rho(x)-y_0)^2}\]
+    \[ \| (x,\rho(x))-(x_0,y_0) \|=\| (x-x_0, \rho(x)-y_0) \|=\sqrt{(x-x_0)^2+(\rho(x)-y_0)^2}\]
     Per $x\neq x_0$, sappiamo che 
     \[|x-x_0|<\overline{\delta}<\frac{\delta}{2}\quad\textup{e}\quad |\rho(x)-y_0|<\frac{\delta}{2},\]
     e dunque
     \[\sqrt{(x-x_0)^2+(\rho(x)-y_0)^2}<\sqrt{\frac{\delta^2}{4}+\frac{\delta^2}{4}}=\frac{\delta}{\sqrt{2}}<\delta.\]
-    In definitiva, abbiamo ottenuto che se $x\in I\setminus\{x_0\}$ con $|x-x_0|<\overline{\delta}$, $(x,\rho(x))\in A$ e $0<||(x,\rho(x))-(x_0,y_0)||<\delta$, per ($2$) otteniamo che $|f(x,\rho(x))-l|<\varepsilon$.
+    In definitiva, abbiamo ottenuto che se $x\in I\setminus\{x_0\}$ con $|x-x_0|<\overline{\delta}$, $(x,\rho(x))\in A$ e $0<\|(x,\rho(x))-(x_0,y_0)\|<\delta$, per ($2$) otteniamo che $|f(x,\rho(x))-l|<\varepsilon$.
 \end{proof}
 
 \vspace{10pt}
@@ -1918,7 +1899,7 @@ Quando scriviamo che $\lim_{\rho\to0}F(\rho,\theta)=l$ è uniforme rispetto a $\
 
     \begin{itemize}
         \item[$\implies$] Supponiamo che esista $\lim\limits_{(x,y)\to(x_0,y_0)}f(x,y)=l$. Per definizione di limite, questo significa che:
-        \[\forall\,\varepsilon>0,\;\exists\,\delta>0\,:\;\forall\,(x,y)\in A,\quad 0<||(x,y)-(x_0,y_0)||<\delta\implies|f(x,y)-l|<\varepsilon.\]
+        \[\forall\,\varepsilon>0,\;\exists\,\delta>0\,:\;\forall\,(x,y)\in A,\quad 0<\|(x,y)-(x_0,y_0)\|<\delta\implies|f(x,y)-l|<\varepsilon.\]
         
         Dobbiamo dimostrare che il limite in coordinate polari è uniforme rispetto a $\theta$, ovvero:
         \[\forall\,\theta\in[0,2\pi],\;\forall\,\varepsilon>0,\; \exists\,\delta>0\;(\delta\leq r)\,:\quad 0<\rho<\delta\implies |F(\rho,\theta)-l|<\varepsilon.\]
@@ -1934,7 +1915,7 @@ Quando scriviamo che $\lim_{\rho\to0}F(\rho,\theta)=l$ è uniforme rispetto a $\
         \begin{itemize}
             \item $(x,y)\in A$ poiché $(\rho,\theta)\in A^*$ 
             \item La distanza di $(x,y)$ da $(x_0,y_0)$ è esattamente $\rho$:
-            \[||(x,y)-(x_0,y_0)||=\sqrt{(x-x_0)^2+(y-y_0)^2}=\rho\]
+            \[\|(x,y)-(x_0,y_0)\|=\sqrt{(x-x_0)^2+(y-y_0)^2}=\rho\]
         \end{itemize}
         
         Poiché $0<\rho<\delta$, le ipotesi del limite in coordinate cartesiane sono soddisfatte, quindi:
@@ -1950,11 +1931,11 @@ Quando scriviamo che $\lim_{\rho\to0}F(\rho,\theta)=l$ è uniforme rispetto a $\
         
         Dobbiamo dimostrare che esiste il limite in coordinate cartesiane.
         
-        Sia $\varepsilon>0$ e sia $\delta>0$ come nell'ipotesi di uniformità. Consideriamo un punto $(x,y)\in A$ tale che $0<||(x,y)-(x_0,y_0)||<\delta$.
+        Sia $\varepsilon>0$ e sia $\delta>0$ come nell'ipotesi di uniformità. Consideriamo un punto $(x,y)\in A$ tale che $0<\|(x,y)-(x_0,y_0)\|<\delta$.
         
         Passando alle coordinate polari di questo punto:
         \begin{itemize}
-            \item $\rho=||(x,y)-(x_0,y_0)||$ quindi $0<\rho<\delta$
+            \item $\rho=\|(x,y)-(x_0,y_0)\|$ quindi $0<\rho<\delta$
             \item Esiste $\theta\in[0,2\pi]$ tale che:
             \[\begin{cases}
                 x=x_0+\rho\cos\theta\\
