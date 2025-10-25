@@ -188,7 +188,7 @@ Passiamo ora a introdurre dei concetti importanti per strutturare una topologia 
 \vspace{10pt}
 
 \begin{note}
-    Se $x\in\mathbb{R}$, \[\|x\|=\sqrt{x^2}=|x|.\]
+    Se $x\in\mathbb{R}$, allora \[\|x\|=\sqrt{x^2}=|x|.\]
     Quindi nei reali la norma coincide con il valore assoluto
 \end{note}
 
@@ -205,7 +205,7 @@ Passiamo ora a introdurre dei concetti importanti per strutturare una topologia 
 \vspace{10pt}
 
 \begin{note}
-    Se $x\in\mathbb{R}$, \[x\cdot y= xy.\]
+    Siano $x,y\in\mathbb{R}$, allora \[x\cdot y= xy.\]
     Quindi nei reali il prodotto scalare coincide con l'operazione di prodotto ordinaria. 
 \end{note}
 
@@ -214,7 +214,7 @@ Passiamo ora a introdurre dei concetti importanti per strutturare una topologia 
 \paragraph{Disuguaglianza di Cauchy-Schwartz}
 \begin{bxthm}
 \begin{prop}
-    Se $x,y\in\mathbb{R}^n$, \[|x\cdot y|\leq \|x\|\cdot\|y\|.\]
+    Se $\mathbf{x},\mathbf{y}\in\mathbb{R}^n$, \[|\mathbf{x}\cdot \mathbf{y}|\leq \|\mathbf{x}\|\cdot\|\mathbf{y}\|.\]
 \end{prop}
 \end{bxthm}
 
@@ -224,34 +224,31 @@ Passiamo ora a introdurre dei concetti importanti per strutturare una topologia 
 \paragraph{Cerchio e collezione dei cerchi di un punto}
 \begin{bxthm}
 \begin{defn}
-    Siano $\overline{x}\in\mathbb{R}^n$ e $\delta\in\mathbb{R}^+$. 
-    Si chiama \textbf{cerchio} in $\mathbb{R}^n$ di centro $\overline{x}$ e raggio $\delta$ l'insieme 
-    \[C_{\overline{x}}(\delta)=\{x\in\mathbb{R}^n:\|x-\overline{x}\|<\delta\}.\]
-    L'insieme \[\mathcal{C}_{\overline{x}}=\{C_{\overline{x}}(\delta) \,|\, \delta>0\}\] è detto \textbf{collezione dei cerchi di} $\overline{x}$.
+    Siano $\overline{\mathbf{x}}\in\mathbb{R}^n$ e $\delta\in\mathbb{R}^+$. 
+    Si chiama \textbf{cerchio} in $\mathbb{R}^n$ di centro $\overline{\mathbf{x}}$ e raggio $\delta$ l'insieme 
+    \[C_{\overline{\mathbf{x}}}(\delta)=\{\mathbf{x}\in\mathbb{R}^n:\|\mathbf{x}-\overline{\mathbf{x}}\|<\delta\}.\]
+    L'insieme \[\mathcal{C}_{\overline{\mathbf{x}}}=\{C_{\overline{\mathbf{x}}}(\delta) \,|\, \delta>0\}\] è detto \textbf{collezione dei cerchi di} $\overline{\mathbf{x}}$.
 \end{defn}
 \end{bxthm}
 
 \vspace{10pt}
 
-\begin{xca}
-    Se prendiamo $n=2$, avremo $\overline{x}=(x_0,y_0)\in\mathbb{R}^2$. 
-    Dunque l'insieme $C_{\overline{x}}(\delta)$ sarà
-    \[C_{\overline{x}}(\delta)=\{(x,y)\in\mathbb{R}^2\,:\;\|(x,y)-(x_0,y_0)\|<\delta\}.\]
-    Dalla definizione di differenza in $\mathbb{R}^2$ e di norma, abbiamo:
-    \[\|(x,y)-(x_0,y_0)\|=\|(x-x_0,y-y_0)\|=\sqrt{(x-x_0)^2+(y-y_0)^2}\]
-    Perciò
-    \[C_{\overline{x}}(\delta)=\{(x,y)\in\mathbb{R}^2\,:\;\sqrt{(x-x_0)^2+(y-y_0)^2}<\delta\}.\]
+Se prendiamo $n=2$, avremo $\overline{\mathbf{x}}=(x_0,y_0), \mathbf{x}=(x,y)\in\mathbb{R}^2$. 
+Dunque l'insieme $C_{\overline{\mathbf{x}}}(\delta)$ sarà
+\[C_{\overline{\mathbf{x}}}(\delta)=\{(x,y)\in\mathbb{R}^2\,:\;\|(x,y)-(x_0,y_0)\|<\delta\}.\]
+Dalla definizione di differenza in $\mathbb{R}^2$ e di norma, abbiamo:
+\[\|(x,y)-(x_0,y_0)\|=\|(x-x_0,y-y_0)\|=\sqrt{(x-x_0)^2+(y-y_0)^2}\]
+Perciò
+\[C_{\overline{\mathbf{x}}}(\delta)=\{(x,y)\in\mathbb{R}^2\,:\;\sqrt{(x-x_0)^2+(y-y_0)^2}<\delta\}.\]
 
-    Possiamo dire dunque che, dato $(x_0,y_0)\in\mathbb{R}^2$ e $\delta\in\mathbb{R}^+$, il sottoinsieme di $\mathbb{R}^2$ tale che:
-    % fai vari disegni
-    \begin{itemize}
-        \item $\sqrt{(x-x_0)^2+(y-y_0)^2}=\delta$ rappresenta la circonferenza;
-        \item $\sqrt{(x-x_0)^2+(y-y_0)^2}<\delta$ rappresenta il cerchio, diremo anche \textbf{cerchio aperto};
-        \item $\sqrt{(x-x_0)^2+(y-y_0)^2}\leq \delta$ rappresenta il cerchio e circonferenza, diremo anche \textbf{cerchio chiuso};
-        \item $\sqrt{(x-x_0)^2+(y-y_0)^2}> \delta$ rappresenta la parte esterna a cerchio e circonferenza;
-        \item $\sqrt{(x-x_0)^2+(y-y_0)^2}\geq \delta$ rappresenta la parte esterna a cerchio.
-    \end{itemize}
-\end{xca}
+Possiamo dire dunque che, dato $(x_0,y_0)\in\mathbb{R}^2$ e $\delta\in\mathbb{R}^+$, il sottoinsieme di $\mathbb{R}^2$ tale che:
+\begin{itemize}
+    \item $\sqrt{(x-x_0)^2+(y-y_0)^2}=\delta$ rappresenta la circonferenza;
+    \item $\sqrt{(x-x_0)^2+(y-y_0)^2}<\delta$ rappresenta il cerchio, diremo anche \textbf{cerchio aperto};
+    \item $\sqrt{(x-x_0)^2+(y-y_0)^2}\leq \delta$ rappresenta il cerchio e circonferenza, diremo anche \textbf{cerchio chiuso};
+    \item $\sqrt{(x-x_0)^2+(y-y_0)^2}> \delta$ rappresenta la parte esterna a cerchio e circonferenza;
+    \item $\sqrt{(x-x_0)^2+(y-y_0)^2}\geq \delta$ rappresenta la parte esterna a cerchio.
+\end{itemize}
 
 \vspace{10pt}
 
@@ -274,8 +271,8 @@ Passiamo ora a introdurre dei concetti importanti per strutturare una topologia 
     \item Se $n=1$, $I=[a_1,b_1]$ è un intervallo reale;
     \item Se $n=2$, 
     \[I=[a_1,b_1]\times[a_2,b_2]=\{(x,y)\in\mathbb{R}^2\,:\;a_1\leq x\leq b_1\,\textup{ e }\,a_2\leq y\leq b_2\}\]
-    si chiama rettangolo.
-    \item Se $n=3$, \(I=[a_1,b_1]\times[a_2,b_2]\times[a_3,b_3]\) si chiama parallelepipedo.
+    si chiama \textbf{rettangolo}.
+    \item Se $n=3$, \(I=[a_1,b_1]\times[a_2,b_2]\times[a_3,b_3]\) si chiama \textbf{parallelepipedo}.
 \end{itemize}
 \end{note}
 
@@ -284,54 +281,54 @@ Passiamo ora a introdurre dei concetti importanti per strutturare una topologia 
 \paragraph{Rettangolo centrato}
 \begin{bxthm}
 \begin{defn}
-    Si dice che $I\subseteq\mathbb{R}^n$ è un rettangolo di centro $\overline{x}\in\mathbb{R}^n$ se esistono $n$ numeri reali positivi $\alpha_1,\ldots,\alpha_n$ tali che
-    \[I=[\overline{x}_1-\alpha_1,\overline{x}_1+\alpha_1]\times [\overline{x}_2-\alpha_2,\overline{x}_2+\alpha_2]\times\ldots\times [\overline{x}_n-\alpha_n,\overline{x}_n+\alpha_n]\]
-    Un intervallo di $\mathbb{R}^2$ di centro $\overline{x}$ è del tipo $I=[x_0-\alpha_1,x_0+\alpha_1]\times[y_0-\alpha_2,y_0+\alpha_2]$
-    % fai disegni e fai anche esempio in 3 dimensioni
+    Si dice che $I\subseteq\mathbb{R}^n$ è un rettangolo di centro $\overline{\mathbf{x}}\in\mathbb{R}^n$ se esistono $n$ numeri reali positivi $\alpha_1,\ldots,\alpha_n$ tali che
+    \[I=[\overline{\mathbf{x}}_1-\alpha_1,\overline{\mathbf{x}}_1+\alpha_1]\times [\overline{\mathbf{x}}_2-\alpha_2,\overline{\mathbf{x}}_2+\alpha_2]\times\ldots\times [\overline{\mathbf{x}}_n-\alpha_n,\overline{\mathbf{x}}_n+\alpha_n]\]
 \end{defn}
 \end{bxthm}
+
+\vspace{10pt}
+
+Un intervallo di $\mathbb{R}^2$ di centro $\overline{\mathbf{x}}$ è del tipo $I=[x_0-\alpha_1,x_0+\alpha_1]\times[y_0-\alpha_2,y_0+\alpha_2]$
 
 \vspace{10pt}
 
 \paragraph{Segmento}
 \begin{bxthm}
 \begin{defn}
-    Siano $y,z\in\mathbb{R}^n$. Si chiama \textbf{segmento} in $\mathbb{R}^n$ di estremi $y$ e $z$ l'insieme 
-    \[\overline{yz}=\{x\in\mathbb{R}^n\,:\;\exists\, t\in[0,1]\, :\; x=y+t(z-y)\}.\]
-    %fai disegno in R^2 e R^3
+    Siano $\mathbf{y},\mathbf{z}\in\mathbb{R}^n$. Si chiama \textbf{segmento} in $\mathbb{R}^n$ di estremi $\mathbf{y}$ e $\mathbf{z}$ l'insieme 
+    \[\overline{\mathbf{yz}}=\{\mathbf{x}\in\mathbb{R}^n\,:\;\exists\, t\in[0,1]\, :\; \mathbf{x}=\mathbf{y}+t(\mathbf{z}-\mathbf{y})\}.\]
 \end{defn}
 \end{bxthm}
 
 \vspace{10pt}
 
-Nel caso $n=2$, dati $y=(y_1,y_2)$ e $z=(z_1,z_2)$, il segmento $\overline{yz}$ è l'insieme dei punti $(x,y)\in\mathbb{R}^2$ tali che
+Nel caso $n=2$, dati $\mathbf{y}=(y_1,y_2)$ e $\mathbf{z}=(z_1,z_2)$, il segmento $\overline{\mathbf{yz}}$ è l'insieme dei punti 
+$\mathbf{x}=(x,y)\in\mathbb{R}^2$ tali che
 \[\exists\, t\in[0,1]\,:\;(x,y)=(y_1,y_2)+t((z_1,z_2)-(y_1,y_2)).\]
 Dunque abbiamo che 
 \[(x,y)=(y_1,y_2)+t((z_1-y_1,z_2-y_2))=(y_1,y_2)+(t(z_1-y_1), t(z_2-y_2))=(y_1+t(z_1-y_1), y_2+t(z_2-y_2))\]
-e quindi $x=y_1+t(z_1-y_1)$ e $y = y_2+t(z_2-y_2)$, cosicchè possiamo riscrivere
-\[\overline{yz}=\{(x,y)\in\mathbb{R}^2\,:\;\exists\, t\in[0,1]\,:\;x=y_1+t(z_1-y_1)\;\land\;y=y_2+t(z_2-y_2)\}.\]
+e quindi $\mathbf{x}=y_1+t(z_1-y_1)$ e $\mathbf{y} = y_2+t(z_2-y_2)$, cosicchè possiamo riscrivere
+\[\overline{\mathbf{yz}}=\{\mathbf{x}=(x,y)\in\mathbb{R}^2\,:\;\exists\, t\in[0,1]\,:\;\mathbf{x}=y_1+t(z_1-y_1)\;\land\;y=y_2+t(z_2-y_2)\}.\]
 
 \vspace{10pt}
 
 \paragraph{Poligonale}
 \begin{bxthm}
 \begin{defn}
-    Siano \( x_1, \ldots, x_n \) punti di \( \mathbb{R}^n \).  
-    Si chiama \textbf{poligonale aperta} di vertici \( x_1, \ldots, x_n \) l'insieme  
+    Siano \( \mathbf{x}_1, \ldots, \mathbf{x}_n \) punti di \( \mathbb{R}^n \).  
+    Si chiama \textbf{poligonale aperta} di vertici \( \mathbf{x}_1, \ldots, \mathbf{x}_n \) l'insieme  
 
     \[
-        \mathcal{P} = \bigcup\limits_{i=1}^{n-1} \overline{x_i x_{i+1}}
+        \mathcal{P} = \bigcup\limits_{i=1}^{n-1} \overline{\mathbf{x}_i\mathbf{x}_{i+1}}
     \]
 
-    dove \( x_1 \) e \( x_n \) sono detti \textbf{estremi} di \( P \).  
-    %fai disegno
+    dove \( \mathbf{x}_1 \) e \( \mathbf{x}_n \) sono detti \textbf{estremi} di \( P \).
 
-    Se si aggiunge il segmento \( \overline{x_n x_1} \), si ottiene una \textbf{poligonale chiusa}:
+    Se si aggiunge il segmento \( \overline{\mathbf{x}_n \mathbf{x}_1} \), si ottiene una \textbf{poligonale chiusa}:
 
     \[
-    \mathcal{P} = \bigcup\limits_{i=1}^{n} \overline{x_i x_{i+1}}, \quad \text{dove } x_{n+1} := x_1.
+    \mathcal{P} = \bigcup\limits_{i=1}^{n} \overline{\mathbf{x}_i \mathbf{x}_{i+1}}, \quad \text{dove } \mathbf{x}_{n+1} := \mathbf{x}_1.
     \]
-    %fai disegno
 
     In entrambi i casi, una poligonale è l'unione di un numero finito di segmenti consecutivi.
 \end{defn}
@@ -354,7 +351,7 @@ Ricordiamo la definizione di successione.
 
 \vspace{10pt}
 
-\paragraph{Successioni in $\mathbb{R}^n$}
+\paragraph{Successione vettoriale reale}
 \begin{bxthm}
 \begin{defn}
     Si definisce \textbf{successione vettoriale} o \textbf{successione a valori in $\mathbb{R}^n$} un'applicazione dalla forma
@@ -369,9 +366,10 @@ Riprendiamo allo stesso modo la definizione di limite di una successione reale p
 
 \vspace{10pt}
 
+\paragraph{Limite di una successione numerica reale}
 \begin{bxthm}
 \begin{defn}
-    Sia $(y_k)_{k\in\mathbb{N}}$ una successione di numeri reali. Si dice che 
+    Sia $(y_k)_{k\in\mathbb{N}}$ una successione numerica reale. Si dice che 
     \[\lim_{k\to+\infty} y_k = y \in \mathbb{R}\]
     se \[\forall\,\varepsilon>0,\; \exists\, u\in\mathbb{N}\,:\;\forall\, k>u,\quad |y_k-y|<\varepsilon.\]
 \end{defn}
@@ -379,10 +377,10 @@ Riprendiamo allo stesso modo la definizione di limite di una successione reale p
 
 \vspace{10pt}
 
-\paragraph{Limite di una successione vettoriale}
+\paragraph{Limite di una successione vettoriale reale}
 \begin{bxthm}
 \begin{defn}
-    Sia $(x_k)_{k\in\mathbb{N}}$ una successione di elementi in $\mathbb{R}^n$, dove 
+    Sia $(x_k)_{k\in\mathbb{N}}$ una successione vettoriale reale, dove 
     \[x_k=(x_{k1}, x_{k2}, \dots, x_{kn}). \]
     Si dice che 
     \[\lim_{k\to+\infty} x_k = x \in \mathbb{R}^n\]
@@ -464,8 +462,9 @@ Per visualizzare graficamente la successione, riportiamo i primi dieci termini:
 \paragraph{Punto interno}
 \begin{bxthm}
 \begin{defn}
-    Siano $A\subseteq\mathbb{R}^n$ e $\overline{x}\in A$. Si dice che $\overline{x}$ è \textbf{interno} ad $A$ se 
-    \[\exists\,C\in\mathcal{C}_{\overline{x}}\,:\;C\subseteq A.\]
+    Siano $A\subseteq\mathbb{R}^n$ e $\overline{\mathbf{x}}\in A$. 
+    Si dice che $\overline{\mathbf{x}}$ è \textbf{interno} ad $A$ se 
+    \[\exists\,C\in\mathcal{C}_{\overline{\mathbf{x}}}\,:\;C\subseteq A.\]
 \end{defn}
 \end{bxthm}
 
@@ -480,21 +479,21 @@ completamente incluso nel rettangolo.
 
 \begin{bxthm}
 \begin{prop}
-    Siano $A\subseteq\mathbb{R}^n$ e $x_0\in A$.
-    Allora $x_0$ è interno ad $A$ se e solo se esiste un rettangolo di centro $x_0$ tale che $I\subseteq A$.
+    Siano $A\subseteq\mathbb{R}^n$ e $\overline{\mathbf{x}}\in A$.
+    Allora $\overline{\mathbf{x}}$ è interno ad $A$ se e solo se esiste un rettangolo di centro $\overline{\mathbf{x}}$ tale che $I\subseteq A$.
 \end{prop}
 \end{bxthm}
 \begin{proof}\hfill
     \begin{itemize}
         \item[$\implies$]
-        Per ipotesi, $x_0$ è interno ad $A$. Quindi 
-        \[\exists\,C\in\mathcal{C}_{x_0}\,:\;C\subseteq A.\]
-        Allora esiste un rettangolo $I$ di $\mathbb{R}^n$ di centro $x_0$ tale che $I\subseteq C$. 
+        Per ipotesi, $\overline{\mathbf{x}}$ è interno ad $A$. Quindi 
+        \[\exists\,C\in\mathcal{C}_{\overline{\mathbf{x}}}\,:\;C\subseteq A.\]
+        Allora esiste un rettangolo $I$ di $\mathbb{R}^n$ di centro $\overline{\mathbf{x}}$ tale che $I\subseteq C$. 
         Poichè $C\subseteq A$, anche $I\subseteq A$.
         \item[$\impliedby$] 
-        Per ipotesi, esiste un rettangolo $I$ di centro $x_0$ tale che $I\subseteq A$. 
-        Allora \[\exists\,C\in\mathcal{C}_{x_0}\,:\;C\subseteq I.\]
-        Poichè $I\subseteq A$, anche $C\subseteq A$. Allora $x_0$ è interno ad $A$.
+        Per ipotesi, esiste un rettangolo $I$ di centro $\overline{\mathbf{x}}$ tale che $I\subseteq A$. 
+        Allora \[\exists\,C\in\mathcal{C}_{\overline{\mathbf{x}}}\,:\;C\subseteq I.\]
+        Poichè $I\subseteq A$, anche $C\subseteq A$. Allora $\overline{\mathbf{x}}$ è interno ad $A$.
     \end{itemize}
 \end{proof}
 
@@ -512,7 +511,7 @@ completamente incluso nel rettangolo.
 \paragraph{Insieme aperto}
 \begin{bxthm}
 \begin{defn}
-    Si dice che $A$ è \textbf{aperto} se $A=\dot{A}$.
+    Diciamo che un insieme $A\subseteq\mathbb{R}^n$ è \textbf{aperto} se $A=\dot{A}$.
 \end{defn}
 \end{bxthm}
 
@@ -523,12 +522,6 @@ completamente incluso nel rettangolo.
     Un insieme $A\subseteq\mathbb{R}^n$ è aperto se e solo se ogni punto di $A$ è interno ad $A$.
     \end{prop}
 \end{bxthm}
-\begin{proof}\hfill
-    \begin{itemize}
-        \item[$\implies$] $\dot{A}\subseteq A$ perchè ogni punto interno ad $A$ appartiene ad $A$ per definizione. 
-        \item[$\impliedby$] $A$ è aperto se e solo se $A\subseteq\dot{A}$ se e solo se ogni punto di $A$ è interno ad $A$.
-    \end{itemize}
-\end{proof}
 \begin{proof}\hfill
 \begin{itemize}
     \item[$\implies$] Se $A$ è aperto, per definizione si ha $A=\dot{A}$; dunque ogni punto di $A$ è interno ad $A$.
@@ -548,11 +541,12 @@ completamente incluso nel rettangolo.
 \paragraph{Punto di frontiera}
 \begin{bxthm}
 \begin{defn}
-    Siano $A\subseteq\mathbb{R}^n$ e $x_0\in\mathbb{R}^n$.
-    Allora si dice che $x_0$ è un punto di \textbf{frontiera} per $A$ se per ogni cerchio di $x_0$, esistono sia punti di $A$ sia punti non appartenenti ad $A$.
+    Siano $A\subseteq\mathbb{R}^n$ e $\overline{\mathbf{x}}\in\mathbb{R}^n$.
+    Allora si dice che $\overline{\mathbf{x}}$ è un punto di \textbf{frontiera} per $A$ se per ogni cerchio 
+    di $\overline{\mathbf{x}}$, esistono sia punti di $A$ sia punti non appartenenti ad $A$.
     In simboli:
     \[
-    \forall\, C\in\mathcal{C}_{x_0},\quad C\cap A\neq\varnothing \quad \land \quad C\cap (\mathbb{R}^n\setminus A)\neq\varnothing.
+    \forall\, C\in\mathcal{C}_{\overline{\mathbf{x}}},\quad C\cap A\neq\emptyset \quad \land \quad C\cap (\mathbb{R}^n\setminus A)\neq\emptyset.
     \]
 \end{defn}
 \end{bxthm}
@@ -561,16 +555,15 @@ completamente incluso nel rettangolo.
 
 \begin{exmp}
     Tutti i punti sul bordo di un rettangolo sono di frontiera perchè in ogni cerchio di centro un punto del bordo ci sono sia punti del rettangolo sia punti non appartenenti al rettangolo.
-    %anche nel caso del disegno 2 tutti i punti sono punti di frontiera. nel 3 caso sono punti di frontiera tutti i punti che giacciono sugli assi. 
 \end{exmp}
 
 \vspace{10pt}
 
 \begin{exmp}
-    Se si consideri l'insieme 
+    Consideriamo l'insieme
     \[ A=\{(x,y)\in\mathbb{R}^2 : x>0 \ \text{e} \ y>0\}, \]
     allora i punti appartenenti al semiasse definito da \(x>0\) e quelli appartenenti al semiasse definito da \(y>0\) costituiscono punti di frontiera per \(A\). 
-    Infatti, per ogni punto di tali semiasse, ogni intorno (ossia, ogni cerchio centrato in quel punto) interseca sia l'insieme \(A\) sia il suo complementare.
+    Infatti, per ogni punto di tali semiasse, ogni cerchio (ossia, ogni cerchio centrato in quel punto) interseca sia l'insieme \(A\) sia il suo complementare.
 \end{exmp}
 
 \vspace{10pt}
@@ -584,13 +577,14 @@ completamente incluso nel rettangolo.
 
 \vspace{10pt}
 
-\begin{exmp}
-    Consideriamo un rettangolo definito come
-    \[
-    A = [a,b] \times [c,d] \subset \mathbb{R}^2.
-    \]
-    La frontiera di \( A \) è data dall'unione dei segmenti che costituiscono i lati del rettangolo.
-\end{exmp}
+% credo questo esempio sia sbagliato
+%\begin{exmp}
+%    Consideriamo un rettangolo definito come
+%    \[
+%    A = [a,b] \times [c,d] \subset \mathbb{R}^2.
+%    \]
+%    La frontiera di \( A \) è data dall'unione dei segmenti che costituiscono i lati del rettangolo.
+%\end{exmp}
 
 \vspace{10pt}
 
@@ -628,7 +622,7 @@ completamente incluso nel rettangolo.
 \paragraph{Insieme chiuso}
 \begin{bxthm}
 \begin{defn}
-    Si dice che $A\subseteq\mathbb{R}^n$ è \textbf{chiuso} se $A=\overline{A}$.
+    Diciamo che un insieme $A\subseteq\mathbb{R}^n$ è \textbf{chiuso} se $A=\overline{A}$.
 \end{defn}
 \end{bxthm}
 
@@ -693,16 +687,12 @@ Un altro concetto che ci serve è quello di punto di accumulazione e quello di p
 \paragraph{Punto di accumulazione e punto isolato}
 \begin{bxthm}
 \begin{defn}
-    Siano $A\subseteq\mathbb{R}^n$ e $x_0\in\mathbb{R}^n$. Diciamo che $x_0$ è un \textbf{punto di accumulazione} per $A$ se \[\forall\,C\in\mathcal{C}_{x_0},\;A\cap C\setminus\{x_0\}\neq\emptyset.\]
-    L'insieme dei punti di accumulazione si indica con \[\mathcal{D}(A)=\{\,x_0\in\mathbb{R} \ | \ x_0 \textup{ è di accumulazione per }A\,\}.\]
-    % Sia $x_0\in\mathbb{R}^n$. Si dice che $x_0$ è un punto di accumulazione per $A$ se in ogni cerchio di centro $x_0$, $\exists$ almeno un punto di $A$ diverso da $x_0$.
-    %\begin{figure}[H]
-    %    \centering
-    %    \incfig[0.5\linewidth]{disegno}
-    %\end{figure}
-    Se $x_0\in A$ non è di accumulazione per $A$, cioè se 
-    \[\exists\,C\in\mathcal{C}_{x_0}\,:\;A\cap C=\{x_0\} \quad (\textup{o }A\cap C\setminus\{x_0\}=\emptyset), \]
-    allora si dice che $x_0$ è \textbf{isolato}.
+    Siano $A\subseteq\mathbb{R}^n$ e $\overline{\mathbf{x}}\in\mathbb{R}^n$. Diciamo che $\overline{\mathbf{x}}$ 
+    è un \textbf{punto di accumulazione} per $A$ se \[\forall\,C\in\mathcal{C}_{\overline{\mathbf{x}}},\;A\cap C\setminus\{\overline{\mathbf{x}}\}\neq\emptyset.\]
+    L'insieme dei punti di accumulazione si indica con \[\mathcal{D}(A)=\{\overline{\mathbf{x}}\in\mathbb{R}^n \ | \ \overline{\mathbf{x}} \textup{ è di accumulazione per }A\,\}.\]
+    Se $\overline{\mathbf{x}}\in A$ non è di accumulazione per $A$, cioè se 
+    \[\exists\,C\in\mathcal{C}_{\overline{\mathbf{x}}}\,:\;A\cap C=\{\overline{\mathbf{x}}\} \quad (\textup{o }A\cap C\setminus\{\overline{\mathbf{x}}\}=\emptyset), \]
+    allora si dice che $\overline{\mathbf{x}}$ è \textbf{isolato}.
 \end{defn}
 \end{bxthm}
 
@@ -710,8 +700,9 @@ Un altro concetto che ci serve è quello di punto di accumulazione e quello di p
 
 \begin{bxthm}
 \begin{prop}
-    Siano $A\subseteq\mathbb{R}^n$ e $x_0\in\mathbb{R}^n$.
-    Allora $x_0\in\mathcal{D}(A)$ se e solo se $\forall\,C\in\mathcal{C}_{x_0}$, esistono infiniti punti di $A$.
+    Siano $A\subseteq\mathbb{R}^n$ e $\overline{\mathbf{x}}\in\mathbb{R}^n$.
+    Allora $\overline{\mathbf{x}}\in\mathcal{D}(A)$ se e solo se $\forall\,C\in\mathcal{C}_{\overline{\mathbf{x}}}$, 
+    esistono infiniti punti di $A$.
 \end{prop}
 \end{bxthm}
 
@@ -726,20 +717,11 @@ Un altro concetto che ci serve è quello di punto di accumulazione e quello di p
 \vspace{10pt}
 
 \begin{bxthm}
-\begin{prop}
-    $A$ è chiuso se e solo se contiene tutti i propri punti di accumulazione. 
-    Inoltre $x_0\in\partial A$ non implica che $x_0$ è di accumulazione, $x_0$ è di accumulazione non implica che $x_0\in \partial A$
-\end{prop}
-\end{bxthm}
-
-\vspace{10pt}
-
-\begin{bxthm}
 \begin{prop}\hfill
     \begin{enumerate}
-        \item $A\textup{ è chiuso}\iff\forall\,x\in\mathcal{D}(A),\;x\in A\iff\mathcal{D}(A)\subseteq A$;
-        \item $x_0\in\partial A\cancel{\implies}x_0\in\mathcal{D}(A)$;
-        \item $x_0\in\mathcal{D}(A)\cancel{\implies}x_0\in\partial A$.
+        \item $A\textup{ è chiuso}\iff\forall\,\mathbf{x}\in\mathcal{D}(A),\;\mathbf{x}\in A\;(\iff\mathcal{D}(A)\subseteq A)$;
+        \item $\overline{\mathbf{x}}\in\partial A\,\cancel{\implies}\,\overline{\mathbf{x}}\in\mathcal{D}(A)$;
+        \item $\overline{\mathbf{x}}\in\mathcal{D}(A)\,\cancel{\implies}\,\overline{\mathbf{x}}\in\partial A$.
     \end{enumerate}
 \end{prop}
 \end{bxthm}
@@ -750,11 +732,11 @@ Un altro concetto che ci serve è quello di punto di accumulazione e quello di p
 Consideriamo due casi:
 \begin{enumerate}
     \item \textbf{Il caso del rettangolo.}  
-    Se $A$ è un rettangolo (cioè un prodotto di intervalli chiusi) in $\mathbb{R}^n$, ogni punto interno (cioè ogni punto che non appartiene al bordo) gode della proprietà che esiste un intorno interamente contenuto in $A$.  
+    Se $A$ è un rettangolo (cioè un prodotto di intervalli chiusi) in $\mathbb{R}^n$, ogni punto interno (cioè ogni punto che non appartiene al bordo) gode della proprietà che esiste un cerchio interamente contenuto in $A$.  
     In particolare, questo implica che:
     \begin{itemize}
-        \item Ogni punto interno è un \textbf{punto di accumulazione} per $A$, poiché in ogni intorno esso si trova insieme ad altri punti di $A$.
-        \item Tuttavia, questi punti non sono punti di frontiera, perché non si ha l'intersezione dell'intorno con $\mathbb{R}^n\setminus A$.
+        \item Ogni punto interno è un \textbf{punto di accumulazione} per $A$, poiché in ogni cerchio esso si trova insieme ad altri punti di $A$.
+        \item Tuttavia, questi punti non sono punti di frontiera, perché non si ha l'intersezione dell'cerchio con $\mathbb{R}^n\setminus A$.
     \end{itemize}
 
     \item \textbf{Il caso degli isolati.}  
@@ -776,8 +758,8 @@ Consideriamo due casi:
 Questi esempi evidenziano alcune differenze chiave:
 \begin{itemize}
     \item Un \textbf{punto interno} possiede intorni interamente contenuti in $A$ ed è automaticamente di accumulazione, ma non rientra nella frontiera.
-    \item Un \textbf{punto di accumulazione} richiede che ogni intorno contenga altri punti di $A$, mentre questo non implica che il punto sia di frontiera (dato che, se è interno, non si incontrano punti esterni).
-    \item Un \textbf{punto isolato} è tale che esiste almeno un intorno in cui non vi sono altri punti di $A$. Tali punti possono comunque appartenere alla frontiera, perché in ogni intorno del punto si trovano anche punti di $\mathbb{R}^n\setminus A$, ma non sono di accumulazione.
+    \item Un \textbf{punto di accumulazione} richiede che ogni cerchio contenga altri punti di $A$, mentre questo non implica che il punto sia di frontiera (dato che, se è interno, non si incontrano punti esterni).
+    \item Un \textbf{punto isolato} è tale che esiste almeno un cerchio in cui non vi sono altri punti di $A$. Tali punti possono comunque appartenere alla frontiera, perché in ogni cerchio del punto si trovano anche punti di $\mathbb{R}^n\setminus A$, ma non sono di accumulazione.
 \end{itemize}
 \end{rem}
 
@@ -787,10 +769,9 @@ Questi esempi evidenziano alcune differenze chiave:
 \begin{prop}
 Sia $A\subseteq\mathbb{R}^n$. Allora $A$ è chiuso se e solo se per ogni successione $(x_k)_{k\in\mathbb{N}}$ tale che 
 \[
-    \forall\, k\in\mathbb{N},\;x_k\in A \quad \land\quad \lim_{k\to+\infty} x_k = x,
+    \forall\, k\in\mathbb{N},\;x_k\in A \quad \textup{ e } \quad \lim_{k\to+\infty} x_k = \mathbf{x},
 \]
-si ha che il limite $x$ appartiene ad $A$. In altre parole, $A$ contiene tutti i limiti delle successioni di punti in $A$.
-% Quì il disegno può uscire molto figo
+si ha che il limite $\mathbf{x}$ appartiene ad $A$. In altre parole, $A$ contiene tutti i limiti delle successioni di punti in $A$.
 \end{prop}
 \end{bxthm}
 
@@ -807,19 +788,20 @@ si ha che il limite $x$ appartiene ad $A$. In altre parole, $A$ contiene tutti i
 
 \begin{bxthm}
 \begin{prop}
-    $A$ è limitato se e solo se 
-    \[\exists c>0 \,:\;\forall\,x\in A,\quad(\|x\|\leq c\;\land\; \| x \|-\| \overline{x} \|\leq \| x-\overline{x} \|).\]
+    $A\subseteq\mathbb{R}^n$ è limitato se e solo se 
+    \[\exists\, c>0 \,:\;\forall\,x\in A,\quad(\|x\|\leq c\;\textup{ e }\; \| x \|-\| \overline{\mathbf{x}} \|\leq \| x-\overline{\mathbf{x}} \|).\]
 \end{prop}
 \end{bxthm}
 \begin{proof}\hfill 
     \begin{itemize}
-        \item[$\implies$] Dalle ipotesi esiste un cerchio $C$ tale che $A\subseteq C$. Sia $\overline{x}$ il centro di $C$ e $r$ il suo raggio, avremo allora 
-        \[C_{\overline{x}}(r)=\{x\in\mathbb{R}^n\,:\;\| x-\overline{x} \|<r\}.\]
+        \item[$\implies$] Dalle ipotesi esiste un cerchio $C$ tale che $A\subseteq C$. 
+        Sia $\overline{\mathbf{x}}$ il centro di $C$ e $r$ il suo raggio, avremo allora 
+        \[C_{\overline{\mathbf{x}}}(r)=\{x\in\mathbb{R}^n\,:\;\| x-\overline{\mathbf{x}} \|<r\}.\]
         Poichè $A\subseteq C$, segue immediatamente che 
-        \[\forall\, x\in A,\quad \| x-\overline{x} \|<r.\]
+        \[\forall\, x\in A,\quad \| x-\overline{\mathbf{x}} \|<r.\]
         Dalla disuguaglianza triangolare 
-        \[\| x \| -\| \overline{x} \|\leq\| x-\overline{x} \|<r \implies \| x \|-\| \overline{x} \|<r \implies \| x \|<\| \overline{x} \|+r.\]
-        Ponendo $\| \overline{x} \|+r=r$, ci troviamo con 
+        \[\| x \| -\| \overline{\mathbf{x}} \|\leq\| x-\overline{\mathbf{x}} \|<r \implies \| x \|-\| \overline{\mathbf{x}} \|<r \implies \| x \|<\| \overline{\mathbf{x}} \|+r.\]
+        Ponendo $\| \overline{\mathbf{x}} \|+r=r$, ci troviamo con 
         \[\forall x\in A, \| x \| < c.\]
 
         \item[$\impliedby$] Dall'ipotesi si ha che esiste $c>0$ tale che
@@ -843,8 +825,8 @@ si ha che il limite $x$ appartiene ad $A$. In altre parole, $A$ contiene tutti i
 \begin{note}
     La prima parte della proposizione esprime la definizione classica di insieme limitato: esiste una costante $c>0$ tale che per ogni elemento $x\in A$ 
     la sua norma soddisfa $\|x\|\leq c$, cioè $A$ è contenuto in una palla centrata nell'origine di raggio $c$. La seconda disuguaglianza, 
-    $\|x\|-\| \overline{x} \|\leq \| x-\overline{x} \|$, è una conseguenza della disuguaglianza triangolare (nella sua forma inversa) e indica che la 
-    differenza tra la norma di $x$ e quella di un punto fisso $\overline{x}$ è sempre minore o uguale alla distanza tra $x$ e $\overline{x}$. 
+    $\|x\|-\| \overline{\mathbf{x}} \|\leq \| x-\overline{\mathbf{x}} \|$, è una conseguenza della disuguaglianza triangolare (nella sua forma inversa) e indica che la 
+    differenza tra la norma di $x$ e quella di un punto fisso $\overline{\mathbf{x}}$ è sempre minore o uguale alla distanza tra $x$ e $\overline{\mathbf{x}}$. 
     Questo fatto evidenzia come la "variazione" della norma, rispetto ad un punto fisso, sia controllata dalla distanza effettiva in $\mathbb{R}^n$. 
     Insieme, queste condizioni garantiscono che gli elementi di $A$ non "si allontanano" indefinitamente, cioè $A$ risulta limitato.
 \end{note}
@@ -864,7 +846,7 @@ si ha che il limite $x$ appartiene ad $A$. In altre parole, $A$ contiene tutti i
 \begin{bxthm}
 \begin{defn}
     Si dice che $A\subseteq\mathbb{R}^n$ è \textbf{convesso} se 
-    \[\forall\, x,y\in A,\quad \overline{xy}\subseteq A.\]
+    \[\forall\, \mathbf{x},\mathbf{y}\in A,\quad \overline{\mathbf{xy}}\subseteq A.\]
 \end{defn}
 \end{bxthm}
 
@@ -873,8 +855,8 @@ si ha che il limite $x$ appartiene ad $A$. In altre parole, $A$ contiene tutti i
 \paragraph{Insieme convesso per poligonali}
 \begin{bxthm}
 \begin{defn}
-    Si dice che $A\subseteq\mathbb{R}^n$ è \textbf{convesso per poligonali} se per ogni coppia di punti $x,y$ di $A$ esiste 
-    una poligonale $P$ di estremi $x$ e $y$ tale che $P\subseteq A$.
+    Si dice che $A\subseteq\mathbb{R}^n$ è \textbf{convesso per poligonali} se per ogni coppia di punti 
+    $\mathbf{x},\mathbf{y}$ di $A$ esiste una poligonale $P$ di estremi $\mathbf{x}$ e $\mathbf{y}$ tale che $P\subseteq A$.
 \end{defn}
 \end{bxthm}
 
@@ -948,7 +930,7 @@ f: A \subseteq \mathbb{R}^3 \to \mathbb{R},\quad (x, y, z) \mapsto f(x, y, z),
 \]
 mentre nel caso generale di una funzione di $n$ variabili si scrive
 \[
-f: A \subseteq \mathbb{R}^n \to \mathbb{R},\quad x = (x_1, x_2, \dots, x_n) \mapsto f(x_1, x_2, \dots, x_n) = f(x).
+f: A \subseteq \mathbb{R}^n \to \mathbb{R},\quad \mathbf{x} = (x_1, x_2, \dots, x_n) \mapsto f(x_1, x_2, \dots, x_n) = f(\mathbf{x}).
 \]
 
 \vspace{10pt}
@@ -1025,7 +1007,7 @@ se
 \[
 \forall\,\varepsilon>0,\ \exists\,\delta>0 \text{ tale che } \forall\, x\in I \text{ con } 0<|x-x_0|<\delta,\quad |f(x)-l|<\varepsilon\,.
 \]
-In altre parole, per ogni intorno di \(l\) (cioè, per ogni intervallo aperto centrato in \(l\) di ampiezza \(\varepsilon\)), si può trovare un intorno di \(x_0\) (cioè un intervallo aperto centrato in \(x_0\) di raggio \(\delta\)) tale che ogni \(x\neq x_0\) in tale intorno soddisfi \(f(x)\in (l-\varepsilon,l+\varepsilon)\).
+In altre parole, per ogni cerchio di \(l\) (cioè, per ogni intervallo aperto centrato in \(l\) di ampiezza \(\varepsilon\)), si può trovare un cerchio di \(x_0\) (cioè un intervallo aperto centrato in \(x_0\) di raggio \(\delta\)) tale che ogni \(x\neq x_0\) in tale cerchio soddisfi \(f(x)\in (l-\varepsilon,l+\varepsilon)\).
 
 Un'alternativa sintetica per esprimere la definizione è:
 \[
@@ -1038,11 +1020,11 @@ Questa espressione evidenzia il fatto che, avvicinandosi a \(x_0\), i valori di 
 \paragraph{Limite per una funzione a $n$ variabili}
 \begin{bxthm}
 \begin{defn}
-    Siano $f:A\subseteq\mathbb{R}^n\to\mathbb{R}$ e $x_0\in\mathcal{D}(A)$. 
+    Siano $f:A\subseteq\mathbb{R}^n\to\mathbb{R}$ e $\overline{\mathbf{x}}\in\mathcal{D}(A)$. 
     Si dice che 
-    \[\lim_{x\to x_0}=l\in\mathbb{R}\]
+    \[\lim_{\mathbf{x}\to \overline{\mathbf{x}}}=l\in\mathbb{R}\]
     se 
-    \[\forall\, \varepsilon>0\,,\; \exists\, \delta>0\,:\;\forall\, x\in A,\quad 0<\| x-x_0 \|<\delta\implies | f(x)-l |<\varepsilon.\]
+    \[\forall\, \varepsilon>0\,,\; \exists\, \delta>0\,:\;\forall\, \mathbf{x}\in A,\quad 0<\| \mathbf{x}-\overline{\mathbf{x}} \|<\delta\implies | f(\mathbf{x})-l |<\varepsilon.\]
 \end{defn}
 \end{bxthm}
 
@@ -1052,9 +1034,9 @@ Questa espressione evidenzia il fatto che, avvicinandosi a \(x_0\), i valori di 
 
 % La condizione 0 < \|x - x₀\| < δ significa che:
 \[
-0 < \|x - x_0\| < \delta \quad \iff \quad x \in C_{x_0}(\delta) \setminus \{x_0\},
+0 < \|\mathbf{x}-\overline{\mathbf{x}}\| < \delta \quad \iff \quad \mathbf{x} \in C_{\overline{\mathbf{x}}}(\delta) \setminus \{\overline{\mathbf{x}}\},
 \]
-dove \(C_{x_0}(\delta)\) è un cerchio di centro \(x_0\) e raggio \(\delta\).
+dove \(C_{\overline{\mathbf{x}}}(\delta)\) è un cerchio di centro \(\overline{\mathbf{x}}\) e raggio \(\delta\).
 
 % Definizione del limite finito
 Definiamo il limite di \(f\) in \(x_0\) nel seguente modo:
@@ -1080,20 +1062,20 @@ Analogamente, si dice che
 \paragraph{Funzione continua in un punto}
 \begin{bxthm}
 \begin{defn}
-    Sia $f:A\subseteq\mathbb{R}^n\to\mathbb{R}$ e sia $x_0\in A$. 
-    Si dice che $f$ è \textbf{continua} in $x_0$ se 
-    \[\forall\,\varepsilon>0,\;\exists\,\delta>0\,:\;\forall\, x\in A,\quad\| x-x_0 \|<\delta \implies|f(x)-f(x_0)|<\varepsilon.\]
+    Sia $f:A\subseteq\mathbb{R}^n\to\mathbb{R}$ e sia $\overline{\mathbf{x}}\in A$. 
+    Si dice che $f$ è \textbf{continua} in $\overline{\mathbf{x}}$ se 
+    \[\forall\,\varepsilon>0,\;\exists\,\delta>0\,:\;\forall\, \mathbf{x}\in A,\quad\| \mathbf{x}-\overline{\mathbf{x}} \|<\delta \implies|f(\mathbf{x})-f(\overline{\mathbf{x}})|<\varepsilon.\]
     Alternativamente, 
-    \[\forall\,\varepsilon>0,\;\exists\,C\in\mathcal{C}_{x_0}\,:\;\forall\, x\in A\cap C,\quad|f(x)-f(x_0)|<\varepsilon.\]
+    \[\forall\,\varepsilon>0,\;\exists\,C\in\mathcal{C}_{\overline{\mathbf{x}}}\,:\;\forall\, \mathbf{x}\in A\cap C,\quad|f(\mathbf{x})-f(\overline{\mathbf{x}})|<\varepsilon.\]
 \end{defn}
 \end{bxthm}
 
 \vspace{10pt}
 
 \begin{note}
-$f$ è continua in $x_0 \iff \forall\varepsilon>0,\exists$ un cerchio $C$ di centro $x_0$: 
-$\forall x\in A\cap C, |f(x)-f(x_0)|<\varepsilon.$
-Se $x\sim x_0$, $f(x)\sim f(x_0)$
+$f$ è continua in $\overline{\mathbf{x}} \iff \forall\varepsilon>0,\;\exists\,C\in\mathcal{C}_{\overline{\mathbf{x}}}\,:\; 
+\forall\, \mathbf{x}\in A\cap C, |f(\mathbf{x})-f(\overline{\mathbf{x}})|<\varepsilon.$
+Se $\mathbf{x}\sim \overline{\mathbf{x}}$, $f(\mathbf{x})\sim f(\overline{\mathbf{x}})$
 \end{note}
 
 \vspace{10pt}
@@ -1101,19 +1083,19 @@ Se $x\sim x_0$, $f(x)\sim f(x_0)$
 \begin{bxthm}
 \begin{prop}\hfill
 \begin{enumerate}
-    \item Se $x_0$ è un punto isolato per $A$, ogni funzione è continua in $x_0$;
-    \item Se $x_0$ è un punto di accumulazione per $A$, $f$ è continua in $x_0 \iff \lim\limits_{x\to x_0}f(x)=f(x_0)$.
+    \item Se $\overline{\mathbf{x}}$ è un punto isolato per $A$, ogni funzione è continua in $\overline{\mathbf{x}}$;
+    \item Se $\overline{\mathbf{x}}\in\mathcal{D}(A)$, $f$ è continua in $\overline{\mathbf{x}} \iff \lim\limits_{\mathbf{x}\to \overline{\mathbf{x}}}f(\mathbf{x})=f(\overline{\mathbf{x}})$.
 \end{enumerate}
 \end{prop}
 \end{bxthm}
 \begin{proof}\hfill 
     \begin{enumerate}
-        \item Sia $x_0$ un punto isolato. Allora 
-        \[\exists\,\overline{C}\in\mathcal{C}_{x_0}\,:\;\overline{C}\cap A=\{x_0\}.\]
-        Siano $\varepsilon>0$ e  $C=\overline{C}$. Poichè $C\cap A=\{x_0\}$, avremo che $|f(x_0)-f(x_0)|=0<\varepsilon$.
-        \item Sia $x_0$ di accumulazione per $A$. Allora 
-        \[\lim_{x\to x_0} f(x)=f(x_0)\iff \forall\,\varepsilon>0,\;\exists\,\delta>0\,:\; \forall\, x\in A,\quad 0<\|x-x_0\|<\delta\implies |f(x)-f(x_0)|<\varepsilon.\] 
-        La condizione $|f(x)-f(x_0)|<\varepsilon$ vale $\forall\, x\in A$ con $\| x-x_0 \|<\delta$, cioè $f$ è continua in $x_0$.
+        \item Sia $\overline{\mathbf{x}}$ un punto isolato. Allora 
+        \[\exists\,\overline{C}\in\mathcal{C}_{\overline{\mathbf{x}}}\,:\;\overline{C}\cap A=\{\overline{\mathbf{x}}\}.\]
+        Siano $\varepsilon>0$ e  $C=\overline{C}$. Poichè $C\cap A=\{\overline{\mathbf{x}}\}$, avremo che $|f(\overline{\mathbf{x}})-f(\overline{\mathbf{x}})|=0<\varepsilon$.
+        \item Sia $\overline{\mathbf{x}}$ di accumulazione per $A$. Allora 
+        \[\lim_{\mathbf{x}\to \overline{\mathbf{x}}} f(\mathbf{x})=f(\overline{\mathbf{x}})\iff \forall\,\varepsilon>0,\;\exists\,\delta>0\,:\; \forall\, \mathbf{x}\in A,\quad 0<\|\mathbf{x}-\overline{\mathbf{x}}\|<\delta\implies |f(\mathbf{x})-f(\overline{\mathbf{x}})|<\varepsilon.\] 
+        La condizione $|f(\mathbf{x})-f(\overline{\mathbf{x}})|<\varepsilon$ vale $\forall\, \mathbf{x}\in A$ con $\| \mathbf{x}-\overline{\mathbf{x}} \|<\delta$, cioè $f$ è continua in $\overline{\mathbf{x}}$.
     \end{enumerate}
 \end{proof}
 
@@ -1124,7 +1106,7 @@ Se $x\sim x_0$, $f(x)\sim f(x_0)$
 \begin{defn}
     Si dice che $f$ è continua in $A$ se è continua in ogni punto di $A$.
     In simboli,
-    \[\forall\, x_0\in A,\;\forall\,\varepsilon>0,\;\exists\,\delta>0\,:\;\forall\, x\in A,\quad\| x-x_0 \|<\delta \implies|f(x)-f(x_0)|<\varepsilon.\]
+    \[\forall\, \overline{\mathbf{x}}\in A,\;\forall\,\varepsilon>0,\;\exists\,\delta>0\,:\;\forall\, \mathbf{x}\in A,\quad\| \mathbf{x}-\overline{\mathbf{x}} \|<\delta \implies|f(\mathbf{x})-f(\overline{\mathbf{x}})|<\varepsilon.\]
 \end{defn}
 \end{bxthm}
 
@@ -1170,8 +1152,8 @@ Se $x\sim x_0$, $f(x)\sim f(x_0)$
 \paragraph{Teorema della permanenza del segno}
 \begin{bxthm}
 \begin{thm}
-    Sia $f:A\subseteq\mathbb{R}^n\to\mathbb{R}$ continua con $f(x_0)>0$. Allora 
-    \[\exists\,C\in\mathcal{C}_{x_0}\,:\;\forall x\in A\cap C,\; f(x)>0.\]
+    Sia $f:A\subseteq\mathbb{R}^n\to\mathbb{R}$ continua con $f(\overline{\mathbf{x}})>0$. Allora 
+    \[\exists\,C\in\mathcal{C}_{\overline{\mathbf{x}}}\,:\;\forall x\in A\cap C,\; f(x)>0.\]
 \end{thm}
 \end{bxthm}
 
@@ -1183,7 +1165,7 @@ Se $x\sim x_0$, $f(x)\sim f(x_0)$
     Sia $f:A\subseteq\mathbb{R}^n\to\mathbb{R}$ continua con $A$ limitato e connesso.
     Allora $f$ assume tutti i valori compresi tra l'estremo inferiore e l'estremo superiore.
     Cioè ponendo $m=\inf\{f(x):x\in A\}$ e $M=\sup\{f(x):x\in A\}$, avremo che 
-    \[\forall\,\alpha\in\,]m,M[\,,\;\exists\,\overline{x}\in A\,:\;f(\overline{x})=\alpha.\]
+    \[\forall\,\alpha\in\,]m,M[\,,\;\exists\,\overline{\mathbf{x}}\in A\,:\;f(\overline{\mathbf{x}})=\alpha.\]
 \end{thm}
 \end{bxthm}
 
