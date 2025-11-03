@@ -4925,52 +4925,60 @@ Passiamo ora a considerare due rette e le loro posizioni relative.
 
 Due rette $\mathfrak{r}$ e $\mathfrak{r}_1$ di $\Delta$ si dicono \textbf{complananari} se esiste un piano che le contiene entrambe.
 
-\subsection*{10.3 Proposizione}
-\textit{Due rette $\mathfrak{r}$ ed $\mathfrak{r}_1$ di $\Delta$ sono complanari se e solo se una delle condizioni seguenti è verificata:}
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{prop}
+Due rette $\mathfrak{r}$ ed $\mathfrak{r}_1$ di $\Delta$ sono complanari se e solo se una delle condizioni seguenti è verificata:
 \begin{enumerate}
     \item $\mathfrak{r}$ ed $\mathfrak{r}_1$ sono parallele;
     \item $\mathfrak{r}$ ed $\mathfrak{r}_1$ sono incidenti.
 \end{enumerate}
-\textit{In particolare $\mathfrak{r}$ ed $\mathfrak{r}_1$ sono complanari se e solo se non sono sghembe.}
+In particolare $\mathfrak{r}$ ed $\mathfrak{r}_1$ sono complanari se e solo se non sono sghembe.    
+\end{prop}
+\end{bxthm}
+\begin{proof}
+Poiché due rette di un piano affine che non sono incidenti sono necessariamente parallele, se $\mathfrak{r}$ 
+ed $\mathfrak{r}_1$ sono complanari, allora o sono parallele o sono incidenti.
+Viceversa, se $\mathfrak{r} = \mathfrak{r}_1$, allora ovviamente $\mathfrak{r}$ ed $\mathfrak{r}_1$ sono complanari. 
+Se $\mathfrak{r}$ ed $\mathfrak{r}_1$ sono parallele e distinte sono contenute nel piano che passa per un 
+punto qualsiasi $Q \in \mathfrak{r}$ e di giacitura $\langle \vec{v}, \overrightarrow{OQ_1} \rangle$, 
+dove $\vec{v}$ è un vettore di direzione di $\mathfrak{r}$ e di $\mathfrak{r}_1$, e $Q_1 \in \mathfrak{r}_1 \setminus \mathfrak{r}$. 
+Se $\mathfrak{r}$ ed $\mathfrak{r}_1$ sono incidenti e distinte sono contenute nel piano passante per il punto 
+$\mathfrak{r} \cap \mathfrak{r}_1$ e di giacitura $\langle \vec{v}, \vec{v}_1 \rangle$, dove $\vec{v}$ e $\vec{v}_1$ 
+sono vettori di direzione di $\mathfrak{r}$ e di $\mathfrak{r}_1$, rispettivamente.    
+\end{proof}
 
-\textbf{Dimostrazione.}
-Poiché due rette di un piano affine che non sono incidenti sono necessariamente parallele, se $\mathfrak{r}$ ed $\mathfrak{r}_1$ sono complanari, allora o sono parallele o sono incidenti.
+\vspace{10pt}
 
-Viceversa, se $\mathfrak{r} = \mathfrak{r}_1$, allora ovviamente $\mathfrak{r}$ ed $\mathfrak{r}_1$ sono complanari. Se $\mathfrak{r}$ ed $\mathfrak{r}_1$ sono parallele e distinte sono contenute nel piano che passa per un punto qualsiasi $Q \in \mathfrak{r}$ e di giacitura $\langle \vec{v}, \overrightarrow{OQ_1} \rangle$, dove $\vec{v}$ è un vettore di direzione di $\mathfrak{r}$ e di $\mathfrak{r}_1$, e $Q_1 \in \mathfrak{r}_1 \setminus \mathfrak{r}$. Se $\mathfrak{r}$ ed $\mathfrak{r}_1$ sono incidenti e distinte sono contenute nel piano passante per il punto $\mathfrak{r} \cap \mathfrak{r}_1$ e di giacitura $\langle \vec{v}, \vec{v}_1 \rangle$, dove $\vec{v}$ e $\vec{v}_1$ sono vettori di direzione di $\mathfrak{r}$ e di $\mathfrak{r}_1$, rispettivamente.
 
 La proposizione che segue dà dei criteri per riconoscere la complanarità di due rette assegnate.
 
-\subsection*{10.4 Proposizione}
-\textit{Siano $\mathfrak{r}$ ed $\mathfrak{r}_1$ due rette di $\Delta$; supponiamo che $\mathfrak{r}$ abbia equazioni cartesiane [10.10] e che $\mathfrak{r}_1$ abbia equazioni cartesiane}
+\begin{bxthm}
+\begin{prop}
+Siano $\mathfrak{r}$ ed $\mathfrak{r}_1$ due rette di $\Delta$; supponiamo che $\mathfrak{r}$ abbia equazioni cartesiane [10.10] e che $\mathfrak{r}_1$ abbia equazioni cartesiane
 \begin{align*}
     A_1 X + B_1 Y + C_1 Z + D_1 &= 0 \\
     A_1' X + B_1' Y + C_1' Z + D_1' &= 0. \tag{10.27}
 \end{align*}
-
-\textit{Siano $Q(a, b, c) \in \mathfrak{r}$, $Q_1(a_1, b_1, c_1) \in \mathfrak{r}_1$; siano inoltre $\vec{v}(m, n, v) \in \nu(\mathfrak{r})$, $\vec{v}_1(m_1, n_1, v_1) \in \nu(\mathfrak{r}_1)$ vettori di direzione di $\mathfrak{r}$ e di $\mathfrak{r}_1$ rispettivamente. Le seguenti condizioni sono equivalenti:}
+Siano $Q(a, b, c) \in \mathfrak{r}$, $Q_1(a_1, b_1, c_1) \in \mathfrak{r}_1$; siano inoltre $\vec{v}(m, n, v) \in \nu(\mathfrak{r})$, $\vec{v}_1(m_1, n_1, v_1) \in \nu(\mathfrak{r}_1)$ vettori di direzione di $\mathfrak{r}$ e di $\mathfrak{r}_1$ rispettivamente. Le seguenti condizioni sono equivalenti:
 \begin{enumerate}
     \item $\mathfrak{r}$ ed $\mathfrak{r}_1$ sono complanari;
-\end{enumerate}
-
-
-\begin{enumerate}
-    \setcounter{enumi}{1}
     \item $\begin{vmatrix}
         a - a_1 & b - b_1 & c - c_1 \\
         l & m & n \\
         l_1 & m_1 & n_1
     \end{vmatrix} = 0;$
-
     \item $\begin{vmatrix}
         A & B & C & D \\
         A' & B' & C' & D' \\
         A_1 & B_1 & C_1 & D_1 \\
         A_1' & B_1' & C_1' & D_1'
     \end{vmatrix} = 0.$
-\end{enumerate}
-
-\textbf{Dimostrazione}
-
+\end{enumerate}    
+\end{prop}
+\end{bxthm}
+\begin{proof}
 (1) $\Rightarrow$ (2) \quad Se $\nu$ ed $\nu_1$ sono parallele, allora $\vec{v}$ e $\vec{v}_1$ sono proporzionali, e quindi la (2) è soddisfatta. Se $\nu$ ed $\nu_1$ sono incidenti, allora sono contenute in uno stesso piano $\mathscr{G}$: il vettore $\overrightarrow{QQ_1}$ appartiene alla giacitura di $\mathscr{G}$, che è generata da $\vec{v}$ e da $\vec{v}_1$, e di nuovo la (2) è soddisfatta.
 
 (2) $\Rightarrow$ (1) \quad Se la (2) è soddisfatta, allora o le ultime due righe della matrice
@@ -5015,6 +5023,9 @@ A_1' & B_1' & C_1'
 è almeno 2, si deve avere $R = 3$ ed $r = 2$. La condizione $r = 2$ implica che le due ultime righe della [10.30] sono combinazione lineare delle prime due; e quindi $\nu$, $\nu_1$ hanno pertanto la stessa direzione, cioè sono parallele, e in particolare complanari.
 
 (3) $\Rightarrow$ (3') \quad Se $\nu$ ed $\nu_1$ sono incidenti il sistema costituito dalle [10.10] e dalle [10.27] è compatibile, e quindi la [10.29] ha rango minore di 4. Se invece $\nu$ ed $\nu_1$ sono parallele, la [10.30] ha rango 2 e conseguentemente la [10.29] ha rango al più 3. In entrambi i casi la (3) è verificata.
+\end{proof}
+
+\vspace{10pt}
 
 Sia $\nu$ una retta di $\mathbb{A}$. L'insieme $\Phi$ dei piani di $\mathbb{A}$ che contengono $\nu$ si dice \textit{fascio proprio di piani}, ed $\nu$ è detta \textit{asse del fascio} (fig. 10.2).
 
@@ -5856,7 +5867,15 @@ Otteniamo così $n$ funzionali lineari $\eta_1,\ldots,\eta_n$.
 
 \vspace{10pt}
 
-L'insieme dei funzionali lineari $\{\eta_1,\ldots,\eta_n\}$ è la \textbf{base duale} della base $\{\mathbf{e}_1,\ldots,\mathbf{e}_n\}$ di $\mathbf{V}$.
+\paragraph{Base Duale}
+\begin{bxthm}
+\begin{defn}
+L'insieme dei funzionali lineari $\{\eta_1,\ldots,\eta_n\}$ è chiamato \textbf{base duale} della base $\{\mathbf{e}_1,\ldots,\mathbf{e}_n\}$ di $\mathbf{V}$.
+\end{defn}
+\end{bxthm}
+
+\vspace{10pt}
+
 Se $L=\sum\limits_{k=1}^{n}a_k\eta_k\in\mathbf{V}^\smallsmile$, si ha 
 \[L\left(\sum_{i=1}^{n}x_i\mathbf{e}_i\right)=\sum\limits_{k=1}^{n}a_k\eta_k\sum_{i=1}^{n}x_i\mathbf{e}_i=\sum\limits_{k=1}^{n}\sum_{i=1}^{n}a_k\eta_kx_i\mathbf{e}_i=a_1x_1+a_2x_2+\ldots+a_nx_n,\]
 perchè \[\eta_i\left(\sum_{k=1}^{n}x_k\mathbf{e}_k\right)=x_i\quad\forall\,i=1,\ldots,n.\]
@@ -5967,7 +5986,7 @@ Se $\dim(\mathbf{V}) = n$, allora segue dal teorema 11.12 che
 e i tre spazi $\mathbf{V},\,\mathbf{V}^{\smallsmile},\,\mathbf{V}^{\smallsmile\smallsmile}$ sono tra loro isomorfi.
 
 Se si sceglie una base $\{\mathbf{e}_1, \dots, \mathbf{e}_n\}$ di $\mathbf{V}$, resta definita la base duale $\{\eta_1, \dots, \eta_n\}$ di $\mathbf{V}^{\smallsmile}$, e 
-un isomorfismo $\varphi : \mathbf{V} \to \mathbf{V}^{\smallsmile\smallsmile}$ è definito ponendo $\varphi(\mathbf{e}_i) = \eta_i,\;i = 1, \dots, n$.
+un isomorfismo $\varphi : \mathbf{V} \to \mathbf{V}^{\smallsmile\smallsmile}$ è definito ponendo $\varphi(\mathbf{e}_i) = \eta_i,\;i \in \{1, \dots, n\}$.
 
 L'isomorfismo $\varphi$ dipende dalla base assegnata, cioè se si sceglie un'altra base di $\mathbf{V}$, si ottiene un isomorfismo diverso da $\varphi$.
 
@@ -6023,12 +6042,12 @@ dà una contraddizione.
 
 \vspace{10pt}
 
-Sia $\mathbf{V}$ un $\mathbb{K}$-spazio vettoriale, $\dim(\mathbf{V}) = n$. 
-Se $L \in \mathbf{V}^{\smallsmile}$, i vettori del nucleo di $L$, cioè i $\mathbf{v}\in\mathbf{V}$ tali che $L(\mathbf{v}) = 0$, si dicono talvolta \textbf{ortogonali} a $L$. 
+Sia $\mathbf{V}$ un $\mathbb{K}$-spazio vettoriale con $\dim(\mathbf{V}) = n$. 
+Preso $L \in \mathbf{V}^{\smallsmile}$, i vettori del nucleo di $L$ si dicono talvolta \textbf{ortogonali} a $L$. 
 Se $\Phi$ è un sottoinsieme di $\mathbf{V}^{\smallsmile}$, un vettore $\mathbf{v}\in\mathbf{V}$ si dirà \textbf{ortogonale a} $\Phi$ se $\mathbf{v}$ è ortogonale ad ogni $L \in \Phi$, cioè se $L(\mathbf{v}) = 0$ per ogni $L \in \Phi$. 
 L'insieme
 \[
-\Phi^\perp = \{\mathbf{v}\in\mathbf{V} :\mathbf{v}\text{ è ortogonale a } \Phi\} = \bigcap_{L \in \Phi} \mathrm{N}(L) \subset \mathbf{V}
+\Phi^\perp = \{\mathbf{v}\in\mathbf{V} :\mathbf{v}\text{ è ortogonale a } \Phi\} = \bigcap_{L \in \Phi} \ker(L) \subset \mathbf{V}
 \]
 è un sottospazio vettoriale perché è l'intersezione di una famiglia di sottospazi vettoriali di $\mathbf{V}$. 
 Chiameremo $\Phi^\perp$ \textbf{il sottospazio di $\mathbf{V}$ ortogonale a} $\Phi$.
@@ -6036,18 +6055,18 @@ Chiameremo $\Phi^\perp$ \textbf{il sottospazio di $\mathbf{V}$ ortogonale a} $\P
 Supponiamo in particolare che $\Phi$ sia un sottospazio vettoriale di $\mathbf{V}^{\smallsmile}$. 
 Sia $\dim(\Phi) = t$ e $\{L_1, \dots, L_t\}$ una base di $\Phi$. Allora si ha
 \begin{equation}\label{undicidodici}
-    \Phi^\perp = \mathrm{N}(L_1) \cap \dots \cap \mathrm{N}(L_t)
+    \Phi^\perp = \bigcap_{i=1}^{t}\ker(L_i)
 \end{equation}
 e
 \begin{equation}\label{undicitredici}
 \dim(\Phi^\perp) = n - t.    
 \end{equation}
 
-Infatti, se $v \in \mathrm{N}(L_1) \cap \dots \cap \mathrm{N}(L_t)$, allora per ogni $L = a_1L_1 + a_2L_2 + \dots + a_tL_t$ si ha
+Infatti, se $v \in \bigcap_{i=1}^{t}\ker(L_i)$, allora per ogni $L = \sum_{i=1}^{t}a_iL_i$ si ha
 \[
-L(\mathbf{v}) = a_1L_1(\mathbf{v}) + a_2L_2(\mathbf{v}) + \dots + a_tL_t(\mathbf{v}) = 0,
+L(\mathbf{v}) = \sum_{i=1}^{t}a_iL_i(\mathbf{v})= 0,
 \]
-cioè $\mathbf{v} \in \mathrm{N}(L)$. Pertanto $\mathrm{N}(L_1) \cap \dots \cap \mathrm{N}(L_t) \subset \Phi^\perp$. 
+cioè $\mathbf{v} \in \ker(L)$. Pertanto $\bigcap_{i=1}^{t}\ker(L_i) \subset \Phi^\perp$. 
 L'inclusione opposta è ovviamente vera, e da \ref{undicidodici} segue.
 
 Sia $m = \dim(\Phi^\perp)$. Osserviamo che $\Phi^\perp$ coincide con il nucleo dell'applicazione lineare
@@ -6074,10 +6093,10 @@ Abbiamo una contraddizione, e quindi dev'essere $m = n - t$.
 
 \vspace{10pt}
 
-Siano dati due spazi vettoriali complessi $\mathbf{V},\,\mathbf{W}$. Un'applicazione
-\[
-F \colon \mathbf{V} \to \mathbf{W}
-\]
+\paragraph{Applicazione complessa antilineare}
+\begin{bxthm}
+\begin{defn}
+Siano dati due spazi vettoriali complessi $\mathbf{V}$ e $\mathbf{W}$. Un'applicazione \(F \colon \mathbf{V} \to \mathbf{W}\)
 si dice \textbf{antilineare} se soddisfa le seguenti condizioni:
 \begin{equation}\label{undiciquattordici}
 F(\mathbf{v} + \mathbf{v}') = F(\mathbf{v}) + F(\mathbf{v}'),    
@@ -6085,13 +6104,25 @@ F(\mathbf{v} + \mathbf{v}') = F(\mathbf{v}) + F(\mathbf{v}'),
 \begin{equation}\label{undiciquindicii}
 F(c\mathbf{v}) = \bar{c} F(\mathbf{v}),    
 \end{equation}
-per ogni $\mathbf{v}, \mathbf{v}'\in \mathbf{V}$, $c \in \mathbb{C}$. 
+per ogni $\mathbf{v}, \mathbf{v}'\in \mathbf{V}$, $c \in \mathbb{C}$.     
+\end{defn}
+\end{bxthm}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{prop}
 Una condizione equivalente alle \ref{undiciquattordici}, \ref{undiciquindicii} è la seguente:
 \[
 F(c\mathbf{v} + c'\mathbf{v}') = \bar{c} F(\mathbf{v}) + \bar{c}' F(\mathbf{v}')
 \]
-per ogni $\mathbf{v}, \mathbf{v}'\in \mathbf{V},\;c, c' \in \mathbb{C}$. 
-La verifica dell'equivalenza è lasciata al lettore.
+per ogni $\mathbf{v}, \mathbf{v}'\in \mathbf{V},\;c, c' \in \mathbb{C}$.     
+\end{prop}
+\end{bxthm}
+\begin{proof}
+    Da fare.
+\end{proof}
+
 
 \vspace{50pt}
 \subsection{Applicazioni Lineari e matrici, cambiamenti di coordinate affini}
@@ -6327,155 +6358,155 @@ M_{\psi,\psi}(F^{-1}) = M_{\psi,\psi}(F)^{-1}.
 Inoltre 
 \[M_{\psi,\psi}(F) = \mathbf{I}_n\iff F = \mathbf{1_V}.\]
 
-\begin{bxthm}
-\begin{prop}\label{prop:matrice-invertibile}
-Sia \(\mathbf{V}\) un \(\mathbb{K}\)-spazio vettoriale con \(\dim(\mathbf{V})=n\). Sia 
-\[
-  \psi \;=\; \{\mathbf{v}_1,\dots,\mathbf{v}_n\}
-\]
-una base di \(\mathbf{V}\). Per ogni $F\in\mathrm{end}(\mathbf{V})$ indichiamo con \(M_{\psi,\psi}(F)\in M_n(\mathbb{K})\) la matrice di \(F\) rispetto alla base \(\psi\) sia in dominio sia in codominio. 
-Allora valgono:
-
-\begin{enumerate}
-  \item \[
-    F \in \mathrm{GL}(\mathbf{V})
-    \quad\Longleftrightarrow\quad
-    M_{\psi,\psi}(F) \in \mathrm{GL}_n(\mathbb{K});
-  \]
-  \item 
-    \[ F\in \mathrm{GL}(\mathbf{V})\implies
-      M_{\psi,\psi}\bigl(F^{-1}\bigr)
-      \;=\;
-      \Bigl[M_{\psi,\psi}(F)\Bigr]^{-1};
-    \]
-  \item \[
-    M_{\psi,\psi}(F) = \mathbf{I}_n 
-    \;\Longleftrightarrow\;
-    F = \mathbf{1_V}.
-  \]
-\end{enumerate}
-\end{prop}
-\end{bxthm}
-\begin{proof}\hfill
-\begin{enumerate}
-    \item 
-    \begin{itemize}
-        \item[$\implies$] 
-            Dall'ipotesi \(F\in \mathrm{GL}(\mathbf{V})\) segue che 
-            \[
-            \exists\,F^{-1}\in \mathrm{GL}(\mathbf{V})\,:\;
-              F^{-1}\circ F \;=\; \mathbf{1_V}
-              \quad\land\quad
-              F\circ F^{-1} \;=\; \mathbf{1_V}.
-            \]
-            Applicando la proposizione di composizione (con la stessa base \(\psi\) in ogni spazio), otteniamo
-            \[
-              M_{\psi,\psi}\bigl(F^{-1}\circ F\bigr)
-              \;=\;
-              M_{\psi,\psi}(F^{-1})\,M_{\psi,\psi}(F)
-              \;=\;
-              M_{\psi,\psi}\bigl(\mathbf{1_V}\bigr)
-              \;=\;
-              \mathbf{I}_n.
-            \]
-            Analogamente,
-            \[
-              M_{\psi,\psi}\bigl(F\circ F^{-1}\bigr)
-              \;=\;
-              M_{\psi,\psi}(F)\,M_{\psi,\psi}(F^{-1})
-              \;=\;
-              \mathbf{I}_n.
-            \]
-            Ne segue che \(M_{\psi,\psi}(F)\) ammette per inversa \(M_{\psi,\psi}(F^{-1})\), quindi 
-            \[
-              M_{\psi,\psi}(F)\in \mathrm{GL}_n(\mathbb{K}).
-            \]
-        \item[$\impliedby$] 
-            Viceversa, supponiamo \(M_{\psi,\psi}(F)\in \mathrm{GL}_n(\mathbb{K})\). Denotiamo $A = M_{\psi,\psi}(F)$
-            e sia \(A^{-1}\) la matrice inversa di \(A\). Definiamo un operatore lineare $G\in \mathrm{GL}(\mathbf{V})$
-            in questo modo:
-            \begin{itemize}
-              \item Ad ogni vettore \(\mathbf{v}\in \mathbf{V}\) facciamo corrispondere il vettore colonna \(\mathbf{z}\in \mathbb{K}^n\) delle sue coordinate in base \(\psi\).
-              \item Poniamo \(G(\mathbf{v})\) uguale al vettore di \(\mathbf{V}\) le cui coordinate in base \(\psi\) sono \(A^{-1}\,\mathbf{z}\).
-            \end{itemize}
-            Per costruzione, \(M_{\psi,\psi}(G) = A^{-1}\). Ora consideriamo 
-            \(
-              F\circ G
-            \). Poiché 
-            \[
-              M_{\psi,\psi}(F\circ G)
-              \;=\;
-              M_{\psi,\psi}(F)\,\cdot\,M_{\psi,\psi}(G)
-              \;=\;
-              A\,A^{-1}
-              \;=\;
-              \mathbf{I}_n,
-            \]
-            si ottiene \(F\circ G = \mathbf{1_V}\). Allo stesso modo \(G\circ F = \mathbf{1_V}\). Quindi \(G = F^{-1}\) e \(F\) è invertibile.  
-    \end{itemize}
-    Pertanto 
-            \[
-              F\in \mathrm{GL}(\mathbf{V})
-              \;\Longleftrightarrow\;
-              M_{\psi,\psi}(F)\in \mathrm{GL}_n(\mathbb{K}).
-            \]
-    \item Se \(F\in \mathrm{GL}(\mathbf{V})\), poniamo \(A = M_{\psi,\psi}(F)\). Dal punto precedente sappiamo che \(A\) è invertibile e che l'inversa \(A^{-1}\) corrisponde alla matrice di \(F^{-1}\). Più precisamente:
-        \[
-          F^{-1}\circ F = \mathbf{1_V}
-          \quad\Longrightarrow\quad
-          M_{\psi,\psi}\bigl(F^{-1}\circ F\bigr) 
-          = 
-          M_{\psi,\psi}(F^{-1})\,M_{\psi,\psi}(F) 
-          = 
-          \mathbf{I}_n.
-        \]
-        Analogamente 
-        \(
-          F\circ F^{-1} = \mathbf{1_V}
-        \)
-        implica
-        \(
-          M_{\psi,\psi}(F)\,M_{\psi,\psi}(F^{-1}) = \mathbf{I}_n
-        \). 
-        Poiché l'inversa di \(A\) in \(M_n(\mathbb{K})\) è unica, si conclude:
-        \[
-          M_{\psi,\psi}\bigl(F^{-1}\bigr)
-          \;=\;
-          A^{-1}
-          \;=\;
-          \bigl[M_{\psi,\psi}(F)\bigr]^{-1}.
-        \]
-
-        In simboli,
-        \[
-          M_{\psi,\psi}(F^{-1})
-          \;=\;
-          \bigl[M_{\psi,\psi}(F)\bigr]^{-1}.
-        \]
-    \item 
-    \begin{itemize}
-        \item[$\implies$] 
-            Se \(F = \mathbf{1_V}\), allora per ciascun \(\mathbf{v}_j\in\psi\) vale 
-            \(\mathbf{1_V}(\mathbf{v}_j) = \mathbf{v}_j\). Le colonne della matrice \(M_{\psi,\psi}(F)\) sono le coordinate di \(\mathbf{1_V}(\mathbf{v}_j)\) nella base \(\psi\). Poiché \(\mathbf{1_V}(\mathbf{v}_j) = \mathbf{v}_j\), la colonna \(j\)-esima è il vettore colonna con uno in posizione \(j\) e zeri altrove. Pertanto la matrice è \(\mathbf{I}_n\).  
-        \item[$\impliedby$] 
-            Viceversa, se \(M_{\psi,\psi}(F) = \mathbf{I}_n\), allora per ogni vettore con coordinate \(\mathbf{z}\) si ha
-            \[
-              \text{coordinate di }F(\mathbf{v}) 
-              \;=\; 
-              \mathbf{I}_n\,\mathbf{z} 
-              \;=\; 
-              \mathbf{z}.
-            \]
-            Ne segue \(F(\mathbf{v}) = \mathbf{v}\) per ogni \(\mathbf{v}\in \mathbf{V}\), cioè \(F = \mathbf{1_V}\).
-    \end{itemize}
-    Così dimostriamo che
-    \[
-      M_{\psi,\psi}(F) = \mathbf{I}_n 
-      \;\Longleftrightarrow\;
-      F = \mathbf{1_V}.
-    \]
-\end{enumerate}    
-\end{proof}
+% \begin{bxthm}
+% \begin{prop}\label{prop:matrice-invertibile}
+% Sia \(\mathbf{V}\) un \(\mathbb{K}\)-spazio vettoriale con \(\dim(\mathbf{V})=n\). Sia 
+% \[
+%   \psi \;=\; \{\mathbf{v}_1,\dots,\mathbf{v}_n\}
+% \]
+% una base di \(\mathbf{V}\). Per ogni $F\in\mathrm{end}(\mathbf{V})$ indichiamo con \(M_{\psi,\psi}(F)\in M_n(\mathbb{K})\) la matrice di \(F\) rispetto alla base \(\psi\) sia in dominio sia in codominio. 
+% Allora valgono:
+% 
+% \begin{enumerate}
+%   \item \[
+%     F \in \mathrm{GL}(\mathbf{V})
+%     \quad\Longleftrightarrow\quad
+%     M_{\psi,\psi}(F) \in \mathrm{GL}_n(\mathbb{K});
+%   \]
+%   \item 
+%     \[ F\in \mathrm{GL}(\mathbf{V})\implies
+%       M_{\psi,\psi}\bigl(F^{-1}\bigr)
+%       \;=\;
+%       \Bigl[M_{\psi,\psi}(F)\Bigr]^{-1};
+%     \]
+%   \item \[
+%     M_{\psi,\psi}(F) = \mathbf{I}_n 
+%     \;\Longleftrightarrow\;
+%     F = \mathbf{1_V}.
+%   \]
+% \end{enumerate}
+% \end{prop}
+% \end{bxthm}
+% \begin{proof}\hfill
+% \begin{enumerate}
+%     \item 
+%     \begin{itemize}
+%         \item[$\implies$] 
+%             Dall'ipotesi \(F\in \mathrm{GL}(\mathbf{V})\) segue che 
+%             \[
+%             \exists\,F^{-1}\in \mathrm{GL}(\mathbf{V})\,:\;
+%               F^{-1}\circ F \;=\; \mathbf{1_V}
+%               \quad\land\quad
+%               F\circ F^{-1} \;=\; \mathbf{1_V}.
+%             \]
+%             Applicando la proposizione di composizione (con la stessa base \(\psi\) in ogni spazio), otteniamo
+%             \[
+%               M_{\psi,\psi}\bigl(F^{-1}\circ F\bigr)
+%               \;=\;
+%               M_{\psi,\psi}(F^{-1})\,M_{\psi,\psi}(F)
+%               \;=\;
+%               M_{\psi,\psi}\bigl(\mathbf{1_V}\bigr)
+%               \;=\;
+%               \mathbf{I}_n.
+%             \]
+%             Analogamente,
+%             \[
+%               M_{\psi,\psi}\bigl(F\circ F^{-1}\bigr)
+%               \;=\;
+%               M_{\psi,\psi}(F)\,M_{\psi,\psi}(F^{-1})
+%               \;=\;
+%               \mathbf{I}_n.
+%             \]
+%             Ne segue che \(M_{\psi,\psi}(F)\) ammette per inversa \(M_{\psi,\psi}(F^{-1})\), quindi 
+%             \[
+%               M_{\psi,\psi}(F)\in \mathrm{GL}_n(\mathbb{K}).
+%             \]
+%         \item[$\impliedby$] 
+%             Viceversa, supponiamo \(M_{\psi,\psi}(F)\in \mathrm{GL}_n(\mathbb{K})\). Denotiamo $A = M_{\psi,\psi}(F)$
+%             e sia \(A^{-1}\) la matrice inversa di \(A\). Definiamo un operatore lineare $G\in \mathrm{GL}(\mathbf{V})$
+%             in questo modo:
+%             \begin{itemize}
+%               \item Ad ogni vettore \(\mathbf{v}\in \mathbf{V}\) facciamo corrispondere il vettore colonna \(\mathbf{z}\in \mathbb{K}^n\) delle sue coordinate in base \(\psi\).
+%               \item Poniamo \(G(\mathbf{v})\) uguale al vettore di \(\mathbf{V}\) le cui coordinate in base \(\psi\) sono \(A^{-1}\,\mathbf{z}\).
+%             \end{itemize}
+%             Per costruzione, \(M_{\psi,\psi}(G) = A^{-1}\). Ora consideriamo 
+%             \(
+%               F\circ G
+%             \). Poiché 
+%             \[
+%               M_{\psi,\psi}(F\circ G)
+%               \;=\;
+%               M_{\psi,\psi}(F)\,\cdot\,M_{\psi,\psi}(G)
+%               \;=\;
+%               A\,A^{-1}
+%               \;=\;
+%               \mathbf{I}_n,
+%             \]
+%             si ottiene \(F\circ G = \mathbf{1_V}\). Allo stesso modo \(G\circ F = \mathbf{1_V}\). Quindi \(G = F^{-1}\) e \(F\) è invertibile.  
+%     \end{itemize}
+%     Pertanto 
+%             \[
+%               F\in \mathrm{GL}(\mathbf{V})
+%               \;\Longleftrightarrow\;
+%               M_{\psi,\psi}(F)\in \mathrm{GL}_n(\mathbb{K}).
+%             \]
+%     \item Se \(F\in \mathrm{GL}(\mathbf{V})\), poniamo \(A = M_{\psi,\psi}(F)\). Dal punto precedente sappiamo che \(A\) è invertibile e che l'inversa \(A^{-1}\) corrisponde alla matrice di \(F^{-1}\). Più precisamente:
+%         \[
+%           F^{-1}\circ F = \mathbf{1_V}
+%           \quad\Longrightarrow\quad
+%           M_{\psi,\psi}\bigl(F^{-1}\circ F\bigr) 
+%           = 
+%           M_{\psi,\psi}(F^{-1})\,M_{\psi,\psi}(F) 
+%           = 
+%           \mathbf{I}_n.
+%         \]
+%         Analogamente 
+%         \(
+%           F\circ F^{-1} = \mathbf{1_V}
+%         \)
+%         implica
+%         \(
+%           M_{\psi,\psi}(F)\,M_{\psi,\psi}(F^{-1}) = \mathbf{I}_n
+%         \). 
+%         Poiché l'inversa di \(A\) in \(M_n(\mathbb{K})\) è unica, si conclude:
+%         \[
+%           M_{\psi,\psi}\bigl(F^{-1}\bigr)
+%           \;=\;
+%           A^{-1}
+%           \;=\;
+%           \bigl[M_{\psi,\psi}(F)\bigr]^{-1}.
+%         \]
+% 
+%         In simboli,
+%         \[
+%           M_{\psi,\psi}(F^{-1})
+%           \;=\;
+%           \bigl[M_{\psi,\psi}(F)\bigr]^{-1}.
+%         \]
+%     \item 
+%     \begin{itemize}
+%         \item[$\implies$] 
+%             Se \(F = \mathbf{1_V}\), allora per ciascun \(\mathbf{v}_j\in\psi\) vale 
+%             \(\mathbf{1_V}(\mathbf{v}_j) = \mathbf{v}_j\). Le colonne della matrice \(M_{\psi,\psi}(F)\) sono le coordinate di \(\mathbf{1_V}(\mathbf{v}_j)\) nella base \(\psi\). Poiché \(\mathbf{1_V}(\mathbf{v}_j) = \mathbf{v}_j\), la colonna \(j\)-esima è il vettore colonna con uno in posizione \(j\) e zeri altrove. Pertanto la matrice è \(\mathbf{I}_n\).  
+%         \item[$\impliedby$] 
+%             Viceversa, se \(M_{\psi,\psi}(F) = \mathbf{I}_n\), allora per ogni vettore con coordinate \(\mathbf{z}\) si ha
+%             \[
+%               \text{coordinate di }F(\mathbf{v}) 
+%               \;=\; 
+%               \mathbf{I}_n\,\mathbf{z} 
+%               \;=\; 
+%               \mathbf{z}.
+%             \]
+%             Ne segue \(F(\mathbf{v}) = \mathbf{v}\) per ogni \(\mathbf{v}\in \mathbf{V}\), cioè \(F = \mathbf{1_V}\).
+%     \end{itemize}
+%     Così dimostriamo che
+%     \[
+%       M_{\psi,\psi}(F) = \mathbf{I}_n 
+%       \;\Longleftrightarrow\;
+%       F = \mathbf{1_V}.
+%     \]
+% \end{enumerate}    
+% \end{proof}
 
 \vspace{10pt}
 
@@ -6484,7 +6515,7 @@ Allora valgono:
 \begin{defn}
 Siano alternativamente $\psi\neq\phi$ basi distinte di $\mathbf{V}$ e $F = \mathbf{1_V}$. 
 In questo caso $M_{\phi,\psi}(\mathbf{1_V})$ è detta \textbf{matrice del cambiamento di coordinate dalla base $\psi$ alla base $\phi$}.
-Per definizione la $j$-esima colonna di $M_{\phi,\psi}(\mathbf{1_V})$ è costituita dalle coordinate di $\mathbf{v}_j$ rispetto alla base $\phi$, per ogni $j = 1, \dots, n$. 
+Per definizione la $j$-esima colonna di $M_{\phi,\psi}(\mathbf{1_V})$ è costituita dalle coordinate di $\mathbf{v}_j$ rispetto alla base $\phi$, per ogni $j \in \{1, \dots, n\}$. 
 Per ogni vettore $\mathbf{v} \in \mathbf{V}$ si ha
 \[
 \mathbf{v} = \sum_{j=1}^{n}x_j \mathbf{v}_j = \sum_{j=1}^{n}y_j \mathbf{w}_j,
@@ -6734,12 +6765,13 @@ In questo modo abbiamo ottenuto una nuova dimostrazione del teorema di Kronecker
 Sappiamo che, se è compatibile, il sistema \ref{dodicidue} possiede $\infty^{n-r}$ soluzioni, dove $r = r(A)$. Ciò può essere dimostrato anche osservando che il sistema \ref{dodicidue} possiede 
 un'infinità di soluzioni uguali alla dimensione dello spazio delle soluzioni del sistema omogeneo associato
 \[A\mathbf{x} = \mathbf{0},\]
-e che tale spazio coincide con $N(F_A)$. 
+e che tale spazio coincide con $\ker(F_A)$. 
 Per il teorema \ref{undicisei} abbiamo
-\[\dim[N(F_A)] = n - r(F) = n - r.\]
+\[\dim[\ker(F_A)] = n - r(F) = n - r.\]
 
 \vspace{10pt}
 
+\begin{exmp}
 Sia $\mathbf{V}$ uno spazio vettoriale reale di dimensione 3, e sia $\psi = \{\mathbf{e}_1, \mathbf{e}_2, \mathbf{e}_3\}$ una base di $\mathbf{V}$. 
 Consideriamo le seguenti basi, i cui vettori assegnamo in coordinate rispetto a $\psi$:
 \[\alpha = \left\{\mathbf{a}_1\begin{pmatrix}1\\1\\0\end{pmatrix}, \mathbf{a}_2\begin{pmatrix}2\\1\\1\end{pmatrix}, \mathbf{a}_3\begin{pmatrix}0\\-1\\1\end{pmatrix}\right\},\quad \beta = \left\{\mathbf{b}_1\begin{pmatrix}-1\\0\\1\end{pmatrix}, \mathbf{b}_2\begin{pmatrix}1\\-2\\-3\end{pmatrix}, \mathbf{b}_3\begin{pmatrix}1\\1\\1\end{pmatrix}\right\}.\]
@@ -6753,15 +6785,16 @@ Si ha
 Infine, per calcolare $M_{\alpha,\beta}(\mathbf{1_V})$ possiamo utilizzare l'identità
 \[M_{\alpha,\beta}(\mathbf{1_V}) = M_{\beta,\alpha}(\mathbf{1_V})^{-1}\]
 e calcolare l'inversa di $M_{\beta,\alpha}(\mathbf{1_V})$, oppure scrivere
-\[M_{\alpha,\beta}(\mathbf{1_V}) = M_{\alpha,\psi}(\mathbf{1_V})M_{\psi,\beta}(\mathbf{1_V}) =\begin{pmatrix} 3 & -2 & -4 \\ -1 & 1 & 2 \\ 1 & -1 & -1 \end{pmatrix} \begin{pmatrix} -1 & 1 & 1 \\ 0 & -2 & 1 \\ 1 & -3 & 1 \end{pmatrix} = \begin{pmatrix} -7 & 19 & -3 \\ 3 & -9 & 2 \\ -2 & 6 & -1 \end{pmatrix}.\]
+\[M_{\alpha,\beta}(\mathbf{1_V}) = M_{\alpha,\psi}(\mathbf{1_V})M_{\psi,\beta}(\mathbf{1_V}) =\begin{pmatrix} 3 & -2 & -4 \\ -1 & 1 & 2 \\ 1 & -1 & -1 \end{pmatrix} \begin{pmatrix} -1 & 1 & 1 \\ 0 & -2 & 1 \\ 1 & -3 & 1 \end{pmatrix} = \begin{pmatrix} -7 & 19 & -3 \\ 3 & -9 & 2 \\ -2 & 6 & -1 \end{pmatrix}.\]    
+\end{exmp}
 
 \vspace{10pt}
 
+\begin{exmp}
 Siano $\mathbf{V}$ e $\mathbf{W}$ $\mathbb{R}$-spazi vettoriali con $\dim(\mathbf{V}) = 4,\,\dim(\mathbf{W}) = 2$, 
 \[\psi = \{\mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3, \mathbf{v}_4\},\;\textup{e}\;\phi = \{\mathbf{w}_1, \mathbf{w}_2\}\]
 basi di $\mathbf{V}$ e $\mathbf{W}$ rispettivamente, e $F: \mathbf{V} \to \mathbf{W}$ l'applicazione lineare tale che
 \[M_{\phi,\psi}(F) = \begin{pmatrix} 1 & 3 & -2 & \frac{1}{2} \\ 2 & 0 & 1 & 0 \end{pmatrix}.\]
-
 Siano
 \[\alpha = \left\{\mathbf{a}_1\begin{pmatrix}1\\1\\1\\2\end{pmatrix}, \mathbf{a}_2\begin{pmatrix}2\\-1\\3\\0\end{pmatrix}, \mathbf{a}_3\begin{pmatrix}\sqrt{2}\\1\\0\\0\end{pmatrix}, \mathbf{a}_4\begin{pmatrix}1\\-\frac{1}{2}\\1\\5\end{pmatrix}\right\},\quad\beta = \left\{\mathbf{b}_1\begin{pmatrix}2\\-3\end{pmatrix}, \mathbf{b}_2\begin{pmatrix}-1\\3\end{pmatrix}\right\}\]
 nuove basi di $\mathbf{V}$ e $\mathbf{W}$ rispettivamente, assegnate mediante le loro coordinate nelle basi $\psi$ e $\phi$. Per la proposizione \ref{dodicitre} si ha
@@ -6820,11 +6853,12 @@ M_{\beta,\alpha}(F) &=
 1 & 7 & \sqrt{2}-1 & 2 
 \end{pmatrix}
 \end{align*}
+\end{exmp}
 
 \vspace{10pt}
 
+\begin{exmp}
 Nello spazio vettoriale \( M_2(\mathbb{C}) \), consideriamo le basi:
-
 \[
 \psi = \left\{ 
 \mathbf{1}_{11} = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}, \quad 
@@ -6861,7 +6895,8 @@ M_{\psi,\phi}(\mathbf{1}) =
 0 & -\frac{i}{2} & \frac{i}{2} & 0 \\
 \frac{1}{2} & 0 & 0 & -\frac{1}{2}
 \end{pmatrix}.
-\]
+\]    
+\end{exmp}
 
 \vspace{10pt}
 
