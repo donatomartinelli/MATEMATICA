@@ -927,46 +927,6 @@ La (\ref{eqlin}) si dice \textbf{omogenea} (\textbf{non omogenea}) se \( b = 0 \
 
 \vspace{10pt}
 
-\begin{exmp}
-    Il sistema di equazioni a coefficienti reali
-    \[
-        \begin{aligned}
-            X_1 + 2X_2 &= 1 \\
-            X_1 + 2X_2 &= 0
-        \end{aligned}
-    \]
-    è incompatibile, perché i primi membri delle due equazioni sono uguali, ma non lo sono i secondi membri e quindi non esiste alcun \( (x_1, x_2) \) in \( \mathbb{R}^2 \) che soddisfi entrambe le equazioni.
-\end{exmp}
-
-\vspace{10pt}
-
-\begin{exmp}
-    Il sistema
-    \[
-        \begin{aligned}
-            X_1 + X_2 &= 1 \\
-            X_1 - X_2 &= 3
-        \end{aligned}
-    \]
-    è compatibile e ammette l'unica soluzione \( (2, -1) \), che si ottiene nel modo seguente.
-    Sommando membro a membro le due equazioni, si ottiene la nuova equazione \( 2X_1 = 4 \), che è soddisfatta dall'unico valore \( X_1 = 2 \); sostituendo questo valore nella prima equazione si ottiene l'unico valore \( X_2 = -1 \) che la soddisfa. Inoltre la coppia \( (2, -1) \) è soluzione anche della seconda equazione, e quindi è l'unica soluzione del sistema.
-\end{exmp}
-
-\vspace{10pt}
-
-\begin{exmp}
-    Il sistema
-    \[
-        \begin{aligned}
-            X_1 + 3X_2 &= -1 \\
-            2X_1 + 6X_2 &= -2
-        \end{aligned}
-    \]
-    è compatibile ed ammette le infinite soluzioni \( (-1 - 3t, t) \) al variare del parametro \( t \) in \( \mathbb{R} \). Infatti le due equazioni sono proporzionali e quindi hanno le stesse soluzioni: risolvendo per esempio la prima si trovano le soluzioni dette.
-\end{exmp}
-
-\vspace{10pt}
-
 \paragraph{Sistema omogeneo associato}
 \begin{bxthm}
 \begin{defn}
@@ -2219,95 +2179,6 @@ Più in generale, poiché ogni sistema di equazioni lineari omogenee (\ref{eq:si
 
 \vspace{10pt}
 
-\begin{exmp}
-Consideriamo una matrice \(2 \times 3\) \( A \):
-
-\[
-A = \begin{pmatrix}
-a_{11} & a_{12} & a_{13} \\
-a_{21} & a_{22} & a_{23}
-\end{pmatrix}
-\]
-
-Le matrici \(1_{ij}\) per una matrice \(2 \times 3\) sono:
-
-\[
-1_{11} = \begin{pmatrix}
-1 & 0 & 0 \\
-0 & 0 & 0
-\end{pmatrix}, \quad
-1_{12} = \begin{pmatrix}
-0 & 1 & 0 \\
-0 & 0 & 0
-\end{pmatrix}, \quad
-1_{13} = \begin{pmatrix}
-0 & 0 & 1 \\
-0 & 0 & 0
-\end{pmatrix}
-\]
-
-\[
-1_{21} = \begin{pmatrix}
-0 & 0 & 0 \\
-1 & 0 & 0
-\end{pmatrix}, \quad
-1_{22} = \begin{pmatrix}
-0 & 0 & 0 \\
-0 & 1 & 0
-\end{pmatrix}, \quad
-1_{23} = \begin{pmatrix}
-0 & 0 & 0 \\
-0 & 0 & 1
-\end{pmatrix}
-\]
-
-La matrice \( A \) può essere espressa come combinazione lineare delle matrici \(1_{ij}\):
-
-\[
-A = a_{11}1_{11} + a_{12}1_{12} + a_{13}1_{13} + a_{21}1_{21} + a_{22}1_{22} + a_{23}1_{23} = \sum_{i=1}^{m}\sum_{j=1}^{n}a_{ij}1_{ij}.
-\]
-
-Esplicitamente:
-
-\[
-A = a_{11} \begin{pmatrix}
-1 & 0 & 0 \\
-0 & 0 & 0
-\end{pmatrix}
-+ a_{12} \begin{pmatrix}
-0 & 1 & 0 \\
-0 & 0 & 0
-\end{pmatrix}
-+ a_{13} \begin{pmatrix}
-0 & 0 & 1 \\
-0 & 0 & 0
-\end{pmatrix}
-+ a_{21} \begin{pmatrix}
-0 & 0 & 0 \\
-1 & 0 & 0
-\end{pmatrix}
-+ a_{22} \begin{pmatrix}
-0 & 0 & 0 \\
-0 & 1 & 0
-\end{pmatrix}
-+ a_{23} \begin{pmatrix}
-0 & 0 & 0 \\
-0 & 0 & 1
-\end{pmatrix}
-\]
-
-Questa combinazione lineare produce esattamente la matrice \( A \):
-
-\[
-A = \begin{pmatrix}
-a_{11} & a_{12} & a_{13} \\
-a_{21} & a_{22} & a_{23}
-\end{pmatrix}
-\]
-\end{exmp}
-
-\vspace{10pt}
-
 \begin{bxthm}
 \begin{prop}\label{prop:quattrosedici}
     Supponiamo che \(\dim(\mathbf{V}) = n\).
@@ -3273,61 +3144,61 @@ non nulla (cioè tale che \( r(M) \ge 1 \)). Per determinare il rango di \( M \)
     e in ogni caso l'infinità delle soluzioni, si procederà a risolverlo in ciascun caso.
 \end{exmp}
 
-\vspace{10pt}
+% \vspace{10pt}
 
-\begin{exmp}
-    Siano $x_1,x_2,\ldots,x_n\in\mathbb{K}$. Il determinante $\mathcal{V}(x_1,x_2,\ldots,x_n)$ della \textbf{matrice di Vandermonde}
-    \[\begin{pmatrix}
-        1&1&\dots&1\\
-        x_1&x_2&\dots&x_n\\
-        x^2_1&x^2_2&\dots&x^2_n\\
-        \vdots&\vdots&&\vdots\\
-        x^{n-1}_1&x^{n-1}_2&\dots&x^{n-1}_n\\
-    \end{pmatrix}\]
-    è detto \textbf{determinante di Vandermonde} relativo a $x_1, x_2, \ldots, x_n$.
-    Si ha 
-    \begin{equation}
-        \mathcal{V}(x_1,x_2,\ldots,x_n)=(x_2-x_1)\ldots(x_n-x_1)(x_3-x_2)\ldots(x_n-x_n)(x_4-x_3)\ldots(x_n-x_{n-1})\label{seisedi}
-    \end{equation}
-    il secondo membro essendo il prodotto di tutti i termini della forma $(x_i-x_j)$, con $1\leq j<i\leq n$.
-    La (\ref{seisedi}) si dimostra per induzione su $n$, il caso $n=2$ essendo ovvio. Supponiamo $n\geq 3$ e che la (\ref{seisedi}) sia stata dimostrata per $n-1$. 
-    Operiamo sulle righe della matrice di Vandermonde, sottraendo dalla $n$-esima riga la $(n-1)$-esima moltiplicata per $x_1$, dalla $(n-1)$-esima la $(n-2)$-esima moltiplicata per $x_1$ ecc. Si ottiene
-    \begin{align*}
-        &\mathcal{V}(x_1,x_2,\ldots,x_n)=
-        \begin{vmatrix}
-            1&1&\dots&1\\
-            0&x_2-x_1&\dots&x_n-x_1\\
-            0&x^2(x_2-x_1)&\dots&x^n(x_n-x_1)\\
-            \vdots&\vdots&&\vdots\\
-            0&x_2^{n-2}(x_2-x_1)&\dots&x_n^{n-2}(x_n-x_1)\\
-        \end{vmatrix}\\
-        &=(x_2-x_1)(x_3-x_1)\ldots(x_n-x_1)\begin{pmatrix}
-            1&1&\dots&1\\
-            x_2&x_3&\dots&x_n\\
-            x^2_2&x^2_3&\dots&x^2_n\\
-            \vdots&\vdots&&\vdots\\
-            x^{n-2}_2&x^{n-2}_3&\dots&x^{n-2}_n\\
-        \end{pmatrix}\\
-        &=(x_2-x_1)(x_3-x_1)\ldots(x_n-x_1)\mathcal{V}(x_2,\ldots,x_n)=\mathcal{V}(x_1,x_2,\ldots,x_n).\\
-    \end{align*}
-\end{exmp}
+% \begin{exmp}
+%     Siano $x_1,x_2,\ldots,x_n\in\mathbb{K}$. Il determinante $\mathcal{V}(x_1,x_2,\ldots,x_n)$ della \textbf{matrice di Vandermonde}
+%     \[\begin{pmatrix}
+%         1&1&\dots&1\\
+%         x_1&x_2&\dots&x_n\\
+%         x^2_1&x^2_2&\dots&x^2_n\\
+%         \vdots&\vdots&&\vdots\\
+%         x^{n-1}_1&x^{n-1}_2&\dots&x^{n-1}_n\\
+%     \end{pmatrix}\]
+%     è detto \textbf{determinante di Vandermonde} relativo a $x_1, x_2, \ldots, x_n$.
+%     Si ha 
+%     \begin{equation}
+%         \mathcal{V}(x_1,x_2,\ldots,x_n)=(x_2-x_1)\ldots(x_n-x_1)(x_3-x_2)\ldots(x_n-x_n)(x_4-x_3)\ldots(x_n-x_{n-1})\label{seisedi}
+%     \end{equation}
+%     il secondo membro essendo il prodotto di tutti i termini della forma $(x_i-x_j)$, con $1\leq j<i\leq n$.
+%     La (\ref{seisedi}) si dimostra per induzione su $n$, il caso $n=2$ essendo ovvio. Supponiamo $n\geq 3$ e che la (\ref{seisedi}) sia stata dimostrata per $n-1$. 
+%     Operiamo sulle righe della matrice di Vandermonde, sottraendo dalla $n$-esima riga la $(n-1)$-esima moltiplicata per $x_1$, dalla $(n-1)$-esima la $(n-2)$-esima moltiplicata per $x_1$ ecc. Si ottiene
+%     \begin{align*}
+%         &\mathcal{V}(x_1,x_2,\ldots,x_n)=
+%         \begin{vmatrix}
+%             1&1&\dots&1\\
+%             0&x_2-x_1&\dots&x_n-x_1\\
+%             0&x^2(x_2-x_1)&\dots&x^n(x_n-x_1)\\
+%             \vdots&\vdots&&\vdots\\
+%             0&x_2^{n-2}(x_2-x_1)&\dots&x_n^{n-2}(x_n-x_1)\\
+%         \end{vmatrix}\\
+%         &=(x_2-x_1)(x_3-x_1)\ldots(x_n-x_1)\begin{pmatrix}
+%             1&1&\dots&1\\
+%             x_2&x_3&\dots&x_n\\
+%             x^2_2&x^2_3&\dots&x^2_n\\
+%             \vdots&\vdots&&\vdots\\
+%             x^{n-2}_2&x^{n-2}_3&\dots&x^{n-2}_n\\
+%         \end{pmatrix}\\
+%         &=(x_2-x_1)(x_3-x_1)\ldots(x_n-x_1)\mathcal{V}(x_2,\ldots,x_n)=\mathcal{V}(x_1,x_2,\ldots,x_n).\\
+%     \end{align*}
+% \end{exmp}
 
-\vspace{10pt}
+% \vspace{10pt}
 
-\begin{exmp}
-    Non è difficile dimostrare che le proprietà (2), (3) e (5) del teorema (\ref{quellolungo}) sono sufficienti a caratterizzare univocamente il determinante. Precisamente, si dimostra che, se 
-    \begin{align*}
-        D:M_n(\mathbb{K})&\to\mathbb{K}\\
-        \mathbf{A}=(\mathbf{A}_{(1)}\,\ldots\,\mathbf{A}_{(n)})&\mapsto\begin{cases}
-            D(\mathbf{A}_{(1)}\ldots cV+c'V'\,\ldots\,\mathbf{A}_{(n)})=cD(\mathbf{A}_{(1)}\,\ldots\,V\,\ldots\,\mathbf{A}_{(n)})+\\
-            \quad\quad\quad c'D(\mathbf{A}_{(1)}\,\ldots\,V'\,\ldots\,\mathbf{A}_{(n)})\quad \textup{se }\mathbf{A}_{(j)}=cV+c'V'\\
-            D(\mathbf{A}_{(1)}\,\ldots\,\mathbf{A}_{(i)}\,\ldots\,\mathbf{A}_{(j)}\,\ldots\,\mathbf{A}_{(n)})=\\
-            \quad\quad\quad -D(\mathbf{A}_{(1)}\,\ldots\,\mathbf{A}_{(j)}\,\ldots\,\mathbf{A}_{(i)}\,\ldots\,\mathbf{A}_{(n)})\quad 1\leq i<j\leq n,\\
-            D(\mathbf{I}_n)=1\\         
-        \end{cases}
-    \end{align*}
-    Allora \[\forall\,\mathbf{A}\in M_n(\mathbb{K}),\quad D(\mathbf{A})=\det(\mathbf{A}).\]
-\end{exmp}
+% \begin{exmp}
+%     Non è difficile dimostrare che le proprietà (2), (3) e (5) del teorema (\ref{quellolungo}) sono sufficienti a caratterizzare univocamente il determinante. Precisamente, si dimostra che, se 
+%     \begin{align*}
+%         D:M_n(\mathbb{K})&\to\mathbb{K}\\
+%         \mathbf{A}=(\mathbf{A}_{(1)}\,\ldots\,\mathbf{A}_{(n)})&\mapsto\begin{cases}
+%             D(\mathbf{A}_{(1)}\ldots cV+c'V'\,\ldots\,\mathbf{A}_{(n)})=cD(\mathbf{A}_{(1)}\,\ldots\,V\,\ldots\,\mathbf{A}_{(n)})+\\
+%             \quad\quad\quad c'D(\mathbf{A}_{(1)}\,\ldots\,V'\,\ldots\,\mathbf{A}_{(n)})\quad \textup{se }\mathbf{A}_{(j)}=cV+c'V'\\
+%             D(\mathbf{A}_{(1)}\,\ldots\,\mathbf{A}_{(i)}\,\ldots\,\mathbf{A}_{(j)}\,\ldots\,\mathbf{A}_{(n)})=\\
+%             \quad\quad\quad -D(\mathbf{A}_{(1)}\,\ldots\,\mathbf{A}_{(j)}\,\ldots\,\mathbf{A}_{(i)}\,\ldots\,\mathbf{A}_{(n)})\quad 1\leq i<j\leq n,\\
+%             D(\mathbf{I}_n)=1\\         
+%         \end{cases}
+%     \end{align*}
+%     Allora \[\forall\,\mathbf{A}\in M_n(\mathbb{K}),\quad D(\mathbf{A})=\det(\mathbf{A}).\]
+% \end{exmp}
 
 \vspace{50pt}
 \section{Spazi Affini}
@@ -4462,121 +4333,121 @@ Da ciò discende che al variare di $P \in \mathbf{r}$ il punto $\sigma_C(P)$ des
 che denotiamo con $\sigma_C(\mathbf{r})$. Si noti che $\sigma_C(\mathbf{r})$ passa per $\sigma_C(Q)$, dove $Q(a, b)\in\mathbf{r}$, ed è parallela a $\mathbf{r}$, avendo un vettore di direzione di coordinate $(-l, -m)$.    
 \end{exmp}
 
-\vspace{10pt}
+% \vspace{10pt}
 
-\paragraph{Teorema di Talete}
-\begin{bxthm}
-\begin{thm}
-Siano $\mathbf{H}, \mathbf{H}', \mathbf{H}''$ rette parallele e distinte del piano affine $\mathbf{A}$, ed $\mathbf{r}_1, \mathbf{r}_2$ due rette non parallele ad $\mathbf{H}, \mathbf{H}', \mathbf{H}''$. 
-Siano inoltre
-\[P_i = \mathbf{r}_i \cap \mathbf{H}, \quad P_i' = \mathbf{r}_i \cap \mathbf{H}', \quad P_i'' = \mathbf{r}_i \cap \mathbf{H}'', \quad i = 1, 2,\]
-e $k_1, k_2 \in \mathbb{K}$ tali che
-\[\overrightarrow{P_i P_i''} = k_i \overrightarrow{P_i P_i'}, \quad i = 1, 2.\]
-Allora $k_1 = k_2$.    
-\end{thm}
-\end{bxthm}
-\begin{proof}
-Supponiamo $\mathbf{r}_1 \neq \mathbf{r}_2$, perché se $\mathbf{r}_1 = \mathbf{r}_2$ il teorema è banalmente vero.  
-Salvo scambiare tra loro due delle rette $\mathbf{H}, \mathbf{H}', \mathbf{H}''$, possiamo supporre $P_1 \neq P_2$.
-\begin{figure}[H]
-    \centering
-    \incfig[0.7\linewidth]{talete}
-\end{figure}
-Poniamo $\mathbf{v} = \overrightarrow{P_1 P_2}$. Si ha
-\[\overrightarrow{P_2P_2'}-\overrightarrow{P_1P_1'}=\overrightarrow{P_1'P_2'}-\overrightarrow{P_1P_2}=\alpha\mathbf{v},\quad\quad \overrightarrow{P_2P_2''}-\overrightarrow{P_1P_1''}=\overrightarrow{P_1''P_2''}-\overrightarrow{P_1P_2}=\beta\mathbf{v}\]
-per opportuni $\alpha, \beta \in \mathbb{K}$.
-Se $\alpha = 0$, $\mathbf{r}_1$ ed $\mathbf{r}_2$ sono parallele; allora anche $\beta = 0$, perché se fosse $\beta \neq 0$ il vettore $\mathbf{v}$ sarebbe parallelo a $\mathbf{r}_1$ e a $\mathbf{r}_2$, contro l'ipotesi. 
-In questo caso:
-\[\overrightarrow{P_2P_2''}=k_2\overrightarrow{P_2P_2'}=k_2\overrightarrow{P_1P_1'}\quad\quad\overrightarrow{P_1P_1''}=k_1\overrightarrow{P_1P_1'}\]
-e poiché $\overrightarrow{P_1P_1''}=k_1\overrightarrow{P_1P_1'}$ otteniamo $k_1 = k_2$.
-Se $\alpha \neq 0$ allora
-\begin{equation}\label{novequindici}
-\overrightarrow{P_2P_2''} - \overrightarrow{P_1P_1''} = \beta \mathbf{v} = \alpha^{-1} \beta (\alpha \mathbf{v}) = \alpha^{-1} \beta \overrightarrow{P_2P_2'} - \alpha^{-1} \beta \overrightarrow{P_1P_1'}.
-\end{equation}
-D'altra parte si ha anche
-\begin{equation}\label{novesedici}
-\overrightarrow{P_2P_2''}-\overrightarrow{P_1P_1''}=k_2\overrightarrow{P_2P_2'}-k_1\overrightarrow{P_1P_1'}.
-\end{equation}
-Poiché $\alpha \neq 0$, $\overrightarrow{P_1P_1'}$ e $\overrightarrow{P_2P_2'}$ non sono paralleli, e quindi sono linearmente indipendenti. Confrontando \ref{novequindici} e \ref{novesedici} deduciamo che $k_2 = \alpha^{-1} \beta = k_1$.
-\end{proof}
+% \paragraph{Teorema di Talete}
+% \begin{bxthm}
+% \begin{thm}
+% Siano $\mathbf{H}, \mathbf{H}', \mathbf{H}''$ rette parallele e distinte del piano affine $\mathbf{A}$, ed $\mathbf{r}_1, \mathbf{r}_2$ due rette non parallele ad $\mathbf{H}, \mathbf{H}', \mathbf{H}''$. 
+% Siano inoltre
+% \[P_i = \mathbf{r}_i \cap \mathbf{H}, \quad P_i' = \mathbf{r}_i \cap \mathbf{H}', \quad P_i'' = \mathbf{r}_i \cap \mathbf{H}'', \quad i = 1, 2,\]
+% e $k_1, k_2 \in \mathbb{K}$ tali che
+% \[\overrightarrow{P_i P_i''} = k_i \overrightarrow{P_i P_i'}, \quad i = 1, 2.\]
+% Allora $k_1 = k_2$.    
+% \end{thm}
+% \end{bxthm}
+% \begin{proof}
+% Supponiamo $\mathbf{r}_1 \neq \mathbf{r}_2$, perché se $\mathbf{r}_1 = \mathbf{r}_2$ il teorema è banalmente vero.  
+% Salvo scambiare tra loro due delle rette $\mathbf{H}, \mathbf{H}', \mathbf{H}''$, possiamo supporre $P_1 \neq P_2$.
+% \begin{figure}[H]
+%     \centering
+%     \incfig[0.7\linewidth]{talete}
+% \end{figure}
+% Poniamo $\mathbf{v} = \overrightarrow{P_1 P_2}$. Si ha
+% \[\overrightarrow{P_2P_2'}-\overrightarrow{P_1P_1'}=\overrightarrow{P_1'P_2'}-\overrightarrow{P_1P_2}=\alpha\mathbf{v},\quad\quad \overrightarrow{P_2P_2''}-\overrightarrow{P_1P_1''}=\overrightarrow{P_1''P_2''}-\overrightarrow{P_1P_2}=\beta\mathbf{v}\]
+% per opportuni $\alpha, \beta \in \mathbb{K}$.
+% Se $\alpha = 0$, $\mathbf{r}_1$ ed $\mathbf{r}_2$ sono parallele; allora anche $\beta = 0$, perché se fosse $\beta \neq 0$ il vettore $\mathbf{v}$ sarebbe parallelo a $\mathbf{r}_1$ e a $\mathbf{r}_2$, contro l'ipotesi. 
+% In questo caso:
+% \[\overrightarrow{P_2P_2''}=k_2\overrightarrow{P_2P_2'}=k_2\overrightarrow{P_1P_1'}\quad\quad\overrightarrow{P_1P_1''}=k_1\overrightarrow{P_1P_1'}\]
+% e poiché $\overrightarrow{P_1P_1''}=k_1\overrightarrow{P_1P_1'}$ otteniamo $k_1 = k_2$.
+% Se $\alpha \neq 0$ allora
+% \begin{equation}\label{novequindici}
+% \overrightarrow{P_2P_2''} - \overrightarrow{P_1P_1''} = \beta \mathbf{v} = \alpha^{-1} \beta (\alpha \mathbf{v}) = \alpha^{-1} \beta \overrightarrow{P_2P_2'} - \alpha^{-1} \beta \overrightarrow{P_1P_1'}.
+% \end{equation}
+% D'altra parte si ha anche
+% \begin{equation}\label{novesedici}
+% \overrightarrow{P_2P_2''}-\overrightarrow{P_1P_1''}=k_2\overrightarrow{P_2P_2'}-k_1\overrightarrow{P_1P_1'}.
+% \end{equation}
+% Poiché $\alpha \neq 0$, $\overrightarrow{P_1P_1'}$ e $\overrightarrow{P_2P_2'}$ non sono paralleli, e quindi sono linearmente indipendenti. Confrontando \ref{novequindici} e \ref{novesedici} deduciamo che $k_2 = \alpha^{-1} \beta = k_1$.
+% \end{proof}
 
-\vspace{10pt}
+% \vspace{10pt}
 
-Il teorema di Talete afferma essenzialmente che lo scalare $k = k_1 = k_2$ dipende solo da $\mathbf{H}, \mathbf{H}', \mathbf{H}''$ e non dalle rette trasversali $\mathbf{r}_1$, $\mathbf{r}_2$. 
-Un caso particolare si ottiene prendendo $\mathbf{r}_1$ e $\mathbf{r}_2$ incidenti in un punto $O \in \mathbf{H}$. 
-In questo caso si ha $P_1 = O = P_2$ e il teorema afferma che $\overrightarrow{OP_1''} = k\overrightarrow{OP_1'}$, $\overrightarrow{OP_2''} = k\overrightarrow{OP_2'}$.
-\begin{figure}[H]
-    \centering
-    \incfig[0.7\linewidth]{taletedue}
-\end{figure}
+% Il teorema di Talete afferma essenzialmente che lo scalare $k = k_1 = k_2$ dipende solo da $\mathbf{H}, \mathbf{H}', \mathbf{H}''$ e non dalle rette trasversali $\mathbf{r}_1$, $\mathbf{r}_2$. 
+% Un caso particolare si ottiene prendendo $\mathbf{r}_1$ e $\mathbf{r}_2$ incidenti in un punto $O \in \mathbf{H}$. 
+% In questo caso si ha $P_1 = O = P_2$ e il teorema afferma che $\overrightarrow{OP_1''} = k\overrightarrow{OP_1'}$, $\overrightarrow{OP_2''} = k\overrightarrow{OP_2'}$.
+% \begin{figure}[H]
+%     \centering
+%     \incfig[0.7\linewidth]{taletedue}
+% \end{figure}
 
-\vspace{10pt}
+% \vspace{10pt}
 
-\paragraph{Teorema di Pappo}
-\begin{bxthm}
-\begin{thm}
-    Siano $\mathbf{H}$ e $\mathbf{H}'$ due rette distinte, del piano affine $\mathbf{A}$. 
-    Siano $P,Q,R \in \mathbf{H}$, $P',Q',R' \in \mathbf{H}'$ punti distinti, nessuno dei quali comune ad $\mathbf{H}$ e ad $\mathbf{H}'$. 
-    Allora 
-    \[\overline{PQ'} \parallel \overline{P'Q}\;\land\;\overline{QR'} \parallel \overline{Q'R}\implies\overline{PR'} \parallel \overline{P'R}.\]
-\end{thm}
-\end{bxthm}
-\begin{proof}
-Supponiamo che $\mathbf{H}$ e $\mathbf{H}'$ non siano parallele, e sia $\{O\} = \mathbf{H} \cap \mathbf{H}'$.
-\begin{figure}[H]
-    \centering
-    \incfig[0.7\linewidth]{pappo}
-\end{figure}
-Per il teorema di Talete si ha, per opportuni $h,k \in \mathbb{K}^*$:
-\[\begin{matrix}
-    \overrightarrow{OP'} = k\overrightarrow{OQ'}\\\\
-    \overrightarrow{OQ} = k\overrightarrow{OP}
-\end{matrix}\quad\because\quad \overline{PQ'} \parallel \overline{P'Q} \quad\quad\land\quad\quad \begin{matrix}
-\overrightarrow{OQ'} = h\overrightarrow{OR'}\\\\
-\overrightarrow{OR} = h\overrightarrow{OQ}
-\end{matrix}\quad\because\quad \overline{QR'} \parallel \overline{Q'R}.    \]
-Ma allora:
-\begin{align*}
-\overrightarrow{PR'} = \overrightarrow{OR'} - \overrightarrow{OP} = h^{-1}\overrightarrow{OQ'} - k^{-1}\overrightarrow{OQ} \\
-\overrightarrow{RP'} = \overrightarrow{OP'} - \overrightarrow{OR} = k\overrightarrow{OQ'} - h\overrightarrow{OQ},
-\end{align*}
+% \paragraph{Teorema di Pappo}
+% \begin{bxthm}
+% \begin{thm}
+%     Siano $\mathbf{H}$ e $\mathbf{H}'$ due rette distinte, del piano affine $\mathbf{A}$. 
+%     Siano $P,Q,R \in \mathbf{H}$, $P',Q',R' \in \mathbf{H}'$ punti distinti, nessuno dei quali comune ad $\mathbf{H}$ e ad $\mathbf{H}'$. 
+%     Allora 
+%     \[\overline{PQ'} \parallel \overline{P'Q}\;\land\;\overline{QR'} \parallel \overline{Q'R}\implies\overline{PR'} \parallel \overline{P'R}.\]
+% \end{thm}
+% \end{bxthm}
+% \begin{proof}
+% Supponiamo che $\mathbf{H}$ e $\mathbf{H}'$ non siano parallele, e sia $\{O\} = \mathbf{H} \cap \mathbf{H}'$.
+% \begin{figure}[H]
+%     \centering
+%     \incfig[0.7\linewidth]{pappo}
+% \end{figure}
+% Per il teorema di Talete si ha, per opportuni $h,k \in \mathbb{K}^*$:
+% \[\begin{matrix}
+%     \overrightarrow{OP'} = k\overrightarrow{OQ'}\\\\
+%     \overrightarrow{OQ} = k\overrightarrow{OP}
+% \end{matrix}\quad\because\quad \overline{PQ'} \parallel \overline{P'Q} \quad\quad\land\quad\quad \begin{matrix}
+% \overrightarrow{OQ'} = h\overrightarrow{OR'}\\\\
+% \overrightarrow{OR} = h\overrightarrow{OQ}
+% \end{matrix}\quad\because\quad \overline{QR'} \parallel \overline{Q'R}.    \]
+% Ma allora:
+% \begin{align*}
+% \overrightarrow{PR'} = \overrightarrow{OR'} - \overrightarrow{OP} = h^{-1}\overrightarrow{OQ'} - k^{-1}\overrightarrow{OQ} \\
+% \overrightarrow{RP'} = \overrightarrow{OP'} - \overrightarrow{OR} = k\overrightarrow{OQ'} - h\overrightarrow{OQ},
+% \end{align*}
+% 
+% e quindi $\overrightarrow{RP'} = hk\overrightarrow{PR'}$, cioè $\overline{RP'} \parallel \overline{PR'}$.
+% 
+% Se $\mathbf{H} \parallel \mathbf{H}'$, allora si ha
+% \[\overrightarrow{PQ} = \overrightarrow{Q'P'}\;  \because\;  \overline{PQ'} \parallel \overline{P'Q}, \quad\quad\overrightarrow{QR} = \overrightarrow{R'Q'}  \;\because\;  \overline{QR'} \parallel \overline{Q'R},\]
+% e quindi
+% $\overrightarrow{PR} = \overrightarrow{PQ} + \overrightarrow{QR} = \overrightarrow{Q'P'} + \overrightarrow{R'Q'} = \overrightarrow{R'P'}.$
+% 
+% Pertanto $\overline{PR'} \parallel \overline{P'R}$.
+% \end{proof}
 
-e quindi $\overrightarrow{RP'} = hk\overrightarrow{PR'}$, cioè $\overline{RP'} \parallel \overline{PR'}$.
+% \vspace{10pt}
 
-Se $\mathbf{H} \parallel \mathbf{H}'$, allora si ha
-\[\overrightarrow{PQ} = \overrightarrow{Q'P'}\;  \because\;  \overline{PQ'} \parallel \overline{P'Q}, \quad\quad\overrightarrow{QR} = \overrightarrow{R'Q'}  \;\because\;  \overline{QR'} \parallel \overline{Q'R},\]
-e quindi
-$\overrightarrow{PR} = \overrightarrow{PQ} + \overrightarrow{QR} = \overrightarrow{Q'P'} + \overrightarrow{R'Q'} = \overrightarrow{R'P'}.$
-
-Pertanto $\overline{PR'} \parallel \overline{P'R}$.
-\end{proof}
-
-\vspace{10pt}
-
-\paragraph{Teorema di Desargues}
-\begin{bxthm}
-\begin{thm}
-Siano $A,B,C,A',B',C' \in \mathbf{A}$ punti a tre a tre non allineati, tali che $\overline{AB} \parallel \overline{A'B'}$, $\overline{BC} \parallel \overline{B'C'}$, $\overline{AC} \parallel \overline{A'C'}$. 
-Allora le tre rette $\overline{AA'}, \overline{BB'}, \overline{CC'}$ sono parallele oppure hanno un punto in comune.
-\end{thm}
-\end{bxthm}
-\begin{proof}
-Supponiamo che $\overline{AA'}, \overline{BB'}, \overline{CC'}$ non siano parallele. Allora due di esse si incontrano, e possiamo quindi supporre che $\overline{AA'} \cap \overline{BB'} = \{O\}$ .
-
-Per il teorema di Talete applicato ad $\overline{AB}, \overline{A'B'}$ si ha
-\[\overrightarrow{OA'} = k\overrightarrow{OA}, \quad \overrightarrow{OB'} = k\overrightarrow{OB}, \quad k \in \mathbb{K}.\]
-
-Sia $\{C''\} = \overline{OC} \cap \overline{A'C'}$. Per il teorema di Talete applicato ad $\overline{AC}, \overline{A'C'}$ si ha
-\begin{equation}\label{novediciassette}
-    \overrightarrow{OC''} = k\overrightarrow{OC}
-\end{equation}
-perché $\overrightarrow{OA'} = k\overrightarrow{OA}$. D'altra parte, posto $\{C'''\} = \overline{OC} \cap \overline{B'C'}$, il teorema di Talete applicato alle rette $\overline{BC}, \overline{B'C'}$ implica che
-\begin{equation}\label{novediciotto}
-    \overrightarrow{OC'''} = k\overrightarrow{OC}
-\end{equation}
-perché $\overrightarrow{OB'} = k\overrightarrow{OB}$. 
-Confrontando le \ref{novediciassette} e \ref{novediciotto} vediamo che $C'' = C''' = C'$, e quindi $O, C, C'$ sono allineati.    
-\end{proof}
+% \paragraph{Teorema di Desargues}
+% \begin{bxthm}
+% \begin{thm}
+% Siano $A,B,C,A',B',C' \in \mathbf{A}$ punti a tre a tre non allineati, tali che $\overline{AB} \parallel \overline{A'B'}$, $\overline{BC} \parallel \overline{B'C'}$, $\overline{AC} \parallel \overline{A'C'}$. 
+% Allora le tre rette $\overline{AA'}, \overline{BB'}, \overline{CC'}$ sono parallele oppure hanno un punto in comune.
+% \end{thm}
+% \end{bxthm}
+% \begin{proof}
+% Supponiamo che $\overline{AA'}, \overline{BB'}, \overline{CC'}$ non siano parallele. Allora due di esse si incontrano, e possiamo quindi supporre che $\overline{AA'} \cap \overline{BB'} = \{O\}$ .
+% 
+% Per il teorema di Talete applicato ad $\overline{AB}, \overline{A'B'}$ si ha
+% \[\overrightarrow{OA'} = k\overrightarrow{OA}, \quad \overrightarrow{OB'} = k\overrightarrow{OB}, \quad k \in \mathbb{K}.\]
+% 
+% Sia $\{C''\} = \overline{OC} \cap \overline{A'C'}$. Per il teorema di Talete applicato ad $\overline{AC}, \overline{A'C'}$ si ha
+% \begin{equation}\label{novediciassette}
+%     \overrightarrow{OC''} = k\overrightarrow{OC}
+% \end{equation}
+% perché $\overrightarrow{OA'} = k\overrightarrow{OA}$. D'altra parte, posto $\{C'''\} = \overline{OC} \cap \overline{B'C'}$, il teorema di Talete applicato alle rette $\overline{BC}, \overline{B'C'}$ implica che
+% \begin{equation}\label{novediciotto}
+%     \overrightarrow{OC'''} = k\overrightarrow{OC}
+% \end{equation}
+% perché $\overrightarrow{OB'} = k\overrightarrow{OB}$. 
+% Confrontando le \ref{novediciassette} e \ref{novediciotto} vediamo che $C'' = C''' = C'$, e quindi $O, C, C'$ sono allineati.    
+% \end{proof}
 
 \vspace{50pt}
 \subsection{Geometria in uno Spazio Affine}
@@ -5900,228 +5771,228 @@ In particolare, se $\mathbf{V}=\mathbb{K}^n$, e $\{\mathbf{E}_1,\ldots,\mathbf{E
 
 Si osservi che se il funzionale $L:\mathbf{V}\to\mathbb{K}$ non è nullo, la sua immagine è un sottospazio vettoriale di $\mathbb{K}$ diverso da $\langle0\rangle$, e quindi $\mathrm{Im}(L)=\mathbb{K}$; da ciò e dal teorema (ancora da fare) segue che $\dim(\mathrm{N}(L))=n-1$.
 
-\vspace{10pt}
-
-\begin{exmp}
-    Siano 
-    \[\mathbf{e}=\left\{\begin{pmatrix}2\\0\\3\end{pmatrix},\begin{pmatrix}0\\-1\\4\end{pmatrix},\begin{pmatrix}5\\10\\0\end{pmatrix}\right\},\quad \mathbf{E}=\left\{\begin{pmatrix}1\\0\\0\end{pmatrix},\begin{pmatrix}0\\1\\0\end{pmatrix},\begin{pmatrix}0\\0\\1\end{pmatrix}\right\}\] 
-    due basi di $\mathbf{V}=\mathbb{K}^3$.
-    Siano $L_1,L_2\in\mathbf{V}^\smallsmile$ definite al seguente modo 
-    \[L_1:\mathbf{V}\to\mathbb{K},\quad \begin{pmatrix}
-        x\\y\\z
-    \end{pmatrix}\mapsto x+y+z, \quad\quad L_2:\mathbf{V}\to\mathbb{K},\quad \begin{pmatrix}
-        x\\y\\z
-    \end{pmatrix}\mapsto 2x+3y+4z.\]
-    Siano ora 
-    \[
-        \mathbf{v}=\begin{pmatrix}19\\31\\2\end{pmatrix}=2\begin{pmatrix}2\\0\\3\end{pmatrix}-\begin{pmatrix}0\\-1\\4\end{pmatrix}+3\begin{pmatrix}5\\10\\0\end{pmatrix}
-    \]
-    \begin{itemize}
-        \item base $\mathbf{e}$, funzionale $L_1$:
-        \[L_1(\mathbf{e}_1)=5 ,\; L_1(\mathbf{e}_2)=3 ,\; L_1(\mathbf{e}_3)=15 \quad\implies\quad L_1=5\eta_1+3\eta_2+15\eta_3\]
-        \[L_1(\mathbf{v})=19+31+2=52\quad\quad (5\eta_1+3\eta_2+15\eta_3)(2\mathbf{e}_1-\mathbf{e}_2+3\mathbf{e}_3)=5\cdot2+3\cdot(-1)+15\cdot3=52\]
-        \item base $\mathbf{e}$, funzionale $L_2$:
-        \[L_2(\mathbf{e}_1)=16 ,\; L_2(\mathbf{e}_2)=13 ,\; L_2(\mathbf{e}_3)=40 \quad\implies\quad L_2=16\eta_1+13\eta_2+40\eta_3\]
-        \item base $\mathbf{E}$, funzionale $L_1$:
-        \[L_1(\mathbf{E}_1)=1 ,\; L_1(\mathbf{E}_2)=1 ,\; L_1(\mathbf{E}_3)=1 \quad\implies\quad L_1=\eta_1+\eta_2+\eta_3\]
-        \item base $\mathbf{E}$, funzionale $L_2$:
-        \[L_2(\mathbf{E}_1)=2 ,\; L_2(\mathbf{E}_2)=3 ,\; L_2(\mathbf{E}_3)=4 \quad\implies\quad L_2=2\eta_1+3\eta_2+4\eta_3\]
-    \end{itemize}
-\end{exmp}
-
-\vspace{10pt}
-
-\begin{bxthm}
-\begin{prop}
-    Siano $\mathbf{V}$ un $\mathbb{K}$-spazio vettoriale ed $f,g\in\mathbf{V}^\smallsmile$ tali che si abbia $f(\mathbf{v})=0$ per ogni $\mathbf{v}\in \mathrm{N}(g)$, cioè $\ker(F)\supset \mathrm{N}(g)$. Allora \[\exists\,x\in\mathbb{K}\,:\;f=cg.\]
-\end{prop}
-\end{bxthm}
-\begin{proof}
-    Se $g=\mathit{0}$, allora $\mathrm{N}(g)=\mathbf{V}$ e quindi $\ker(F)=\mathbf{V}$, cioè $f=\mathit{0}=g$. Supponiamo viceversa $g\neq\mathit{0}$. In tal caso $\mathrm{N}(g)$ è un iperpiano. Fissiamo $\mathbf{e}\in\mathbf{V}\setminus \mathrm{N}(g)$, e sia $c\in\mathbb{K}$ tale che 
-    $f(\mathbf{e})=cg(\mathbf{e})$. Si ha $\mathbf{V}=\langle\mathbf{e}\rangle\oplus \mathrm{N}(g)$ e quindi ogni $\mathbf{v}\in\mathbf{V}$ è della forma $\mathbf{v}=x\mathbf{e}+\mathbf{w}$, per qualche $\mathbf{w}\in \mathrm{N}(g)$ e $x\in\mathbb{K}$. Pertanto 
-    \begin{align*}
-        f(\mathbf{v})&=f(x\mathbf{e}+\mathbf{w})=f(x\mathbf{e})+f(\mathbf{w})=xf(\mathbf{e})=xcg(\mathbf{e})=cg(x\mathbf{e})=\\
-        &=cg(x\mathbf{e})+c\mathbf{0}=cg(x\mathbf{e})+cg(\mathbf{w})=cg(x\mathbf{e}+\mathbf{w})=cg(\mathbf{v}).
-    \end{align*}
-    cioè $f=cg$.
-\end{proof}
-
-\vspace{10pt}
-
-Dati due $\mathbb{K}$-spazi vettoriali $\mathbf{V}$ e $\mathbf{W}$, è possibile introdurre in $\hom(\mathbf{V},\mathbf{W})$ una struttura di $\mathbb{K}$-spazio vettoriale definendo le seguenti operazioni.
-\[+:\hom(\mathbf{V},\mathbf{W})\times\hom(\mathbf{V},\mathbf{W})\to\hom(\mathbf{V},\mathbf{W}),\; (F,G)\mapsto F+G\quad\quad \cdot:\mathbb{K}\times\hom(\mathbf{V},\mathbf{W})\to\hom(\mathbf{V},\mathbf{W}),\; (\lambda,F)\mapsto cF.\]
-Ponendo rispettivamente
-\[F+G:\mathbf{V}\to\mathbf{W},\quad \mathbf{v}\mapsto(F+G)(\mathbf{v})=F(\mathbf{v})+G(\mathbf{v}),\]
-\[\lambda F:\mathbf{V}\to\mathbf{W},\quad \mathbf{v}\mapsto(\lambda F)(\mathbf{v})=\lambda F(\mathbf{v}).\]
-Verifichiamo la linearità di entrambi i funzionali, $\forall\,\mathbf{v},\mathbf{v}'\in\mathbf{V}$, $\lambda\in\mathbb{K}$,
-\begin{itemize}
-    \item[$F+G$] 
-    \begin{align*}
-        (F+G)(\mathbf{v}+\mathbf{v}')&=F(\mathbf{v}+\mathbf{v}')+G(\mathbf{v}+\mathbf{v}')=F(\mathbf{v})+F(\mathbf{v}')+G(\mathbf{v})+G(\mathbf{v}')\\
-        &=F(\mathbf{v})+G(\mathbf{v})+F(\mathbf{v}')+G(\mathbf{v}')=(F+G)(\mathbf{v})+(F+G)(\mathbf{v}')\\\\
-        (F+G)(\lambda\mathbf{v})&=F(\lambda\mathbf{v})+G(\lambda\mathbf{v})=\lambda F(\mathbf{v})+\lambda G(\mathbf{v})=\lambda(F(\mathbf{v})+G(\mathbf{v}))=\lambda(F+G)(\mathbf{v}).
-    \end{align*}
-    \item[$\lambda F$]
-    \begin{align*}
-        (\lambda F)(\mathbf{v}+\mathbf{v}')&=\lambda F(\mathbf{v}+\mathbf{v}')=\lambda(F(\mathbf{v})+F(\mathbf{v}'))=\lambda F(\mathbf{v})+\lambda F(\mathbf{v}')=(\lambda F)(\mathbf{v})+(\lambda F)(\mathbf{v}')\\\\
-        (\lambda F)(\mu\mathbf{v})&=\lambda F(\mu\mathbf{v})=\mu(\lambda F(\mathbf{v}))=\mu(\lambda F)(\mathbf{v}).
-    \end{align*}
-\end{itemize}
-L'applicazione nulla \(\mathbf{0}:\mathbf{V}\to\mathbf{W},\quad \mathbf{v}\mapsto \mathbf{0}\)
-soddisfa \(F+\mathbf{0}=F \quad\forall\,F\in\hom(\mathbf{V},\mathbf{W}).\)
-Con queste operazioni resta definita su $\hom(\mathbf{V},\mathbf{W})$ una struttura di $\mathbb{K}$-spazio vettoriale.
-
-\vspace{10pt}
-
-Nel caso particolare $\mathbf{V}=\mathbb{K}$, lo spazio $\hom(\mathbb{K},\mathbf{W})$ è isomorfo a $\mathbf{W}$: un isomorfismo $\lambda :\mathbf{W}\to\hom(\mathbb{K},\mathbf{W})$ è defnito associando a $\mathbf{w}\in\mathbf{W}$ 
-l'applicazione lineare $\lambda(\mathbf{w}):\mathbb{K}\to\mathbf{W}$ tale che $\lambda(\mathbf{w})(1)=\mathbf{w}$; verifica che $\lambda$ sia un isomorfismo. $\lambda$ si chiama \textbf{isomorfismo canonico} di $\mathbf{W}$ su $\hom(\mathbb{K},\mathbf{W})$, perchè è indicato univocamente da $\mathbf{W}$.
-
-\vspace{10pt}
-
-Sia $\mathbf{V}$ un $\mathbb{K}$-spazio vettoriale. Il duale di $\mathbf{V}^{\smallsmile}$, cioè lo spazio $\hom(\mathbf{V}^{\smallsmile}, \mathbf{K})$, si chiama \textbf{spazio biduale} di $\mathbf{V}$, e si denota con $V^{\smallsmile\smallsmile}$. 
-Se $\dim(\mathbf{V}) = n$, allora segue dal teorema 11.12 che
-\[
-\dim(\mathbf{V}^{\smallsmile\smallsmile}) = \dim(\mathbf{V}^{\smallsmile}) = \dim(\mathbf{V}) = n,
-\]
-e i tre spazi $\mathbf{V},\,\mathbf{V}^{\smallsmile},\,\mathbf{V}^{\smallsmile\smallsmile}$ sono tra loro isomorfi.
-
-Se si sceglie una base $\{\mathbf{e}_1, \dots, \mathbf{e}_n\}$ di $\mathbf{V}$, resta definita la base duale $\{\eta_1, \dots, \eta_n\}$ di $\mathbf{V}^{\smallsmile}$, e 
-un isomorfismo $\varphi : \mathbf{V} \to \mathbf{V}^{\smallsmile\smallsmile}$ è definito ponendo $\varphi(\mathbf{e}_i) = \eta_i,\;i \in \{1, \dots, n\}$.
-
-L'isomorfismo $\varphi$ dipende dalla base assegnata, cioè se si sceglie un'altra base di $\mathbf{V}$, si ottiene un isomorfismo diverso da $\varphi$.
-
-Per lo spazio $\mathbf{V}^{\smallsmile\smallsmile}$ si ha una situazione diversa: è infatti possibile definire un isomorfismo
-\[
-\beta : \mathbf{V} \to \mathbf{V}^{\smallsmile\smallsmile}
-\]
-in modo del tutto intrinseco, cioè indipendente da qualunque scelta ulteriore, il quale per questo motivo si dice \textbf{l'isomorfismo canonico} di $\mathbf{V}$ su $\mathbf{V}^{\smallsmile\smallsmile}$.
-
-$\beta$ è l'applicazione che ad ogni $\mathbf{v} \in \mathbf{V}$ associa il funzionale 
-$\beta(\mathbf{v}) : \mathbf{V}^{\smallsmile\smallsmile} \to \mathbb{K}$ definito nel modo seguente:
-\[
-\beta(\mathbf{v})(L) = L(\mathbf{v})
-\]
-per ogni $\mathbf{L} \in \mathbf{V}^{\smallsmile}$.
-
-Verifichiamo che $\beta(\mathbf{v})$ è lineare:
-
-\[
-\begin{aligned}
-\beta(\mathbf{v})(cL + c'L') &= (cL + c'L')(\mathbf{v}) = cL(\mathbf{v}) + c'L'(\mathbf{v}) \\
-&= c(L(\mathbf{v})) + c'(L'(\mathbf{v})) = c\beta(\mathbf{v})(L) + c'\beta(\mathbf{v})(L'),
-\end{aligned}
-\]
-per ogni $L, L' \in \mathbf{V}^{\smallsmile\smallsmile},\ c, c' \in \mathbb{K}$, e quindi $\beta(\mathbf{v})$ è un funzionale lineare su $\mathbf{V}^{\smallsmile\smallsmile}$.
-
-Verifichiamo ora che $\beta : \mathbf{V} \to \mathbf{V}^{\smallsmile\smallsmile}$ è lineare. 
-Per ogni $\mathbf{v}, \mathbf{v}'\in \mathbf{V},\ c, c' \in \mathbb{K}$, si ha:
-\[
-\begin{aligned}
-\beta(c\mathbf{v} + c'\mathbf{v}')(L) &= L(c\mathbf{v} + c'\mathbf{v}') = cL(\mathbf{v}) + c'L(\mathbf{v}') \\
-&= c \beta(\mathbf{v})(L) + c' \beta(\mathbf{v}')(L) = [c \beta(\mathbf{v}) + c' \beta(\mathbf{v}')](L)
-\end{aligned}
-\]
-per ogni $L \in \mathbf{V}^{\smallsmile}$, e quindi $\beta(c\mathbf{v} + c'\mathbf{v}') = c \beta(\mathbf{v}) + c' \beta(\mathbf{v}')$, cioè $\beta$ è lineare.
-
-Per dimostrare che $\beta$ è un isomorfismo è sufficiente far vedere che 
-\[
-\mathrm{N}(\beta) = \{0\},
-\]
-perché $\dim(\mathbf{V}) = \dim(\mathbf{V}^{\smallsmile\smallsmile})$. 
-Supponiamo per assurdo che esista $\mathbf{v} \in \mathbf{V}$, $\mathbf{v} \neq 0$, tale che $\beta(\mathbf{v}) = 0 \in \mathbf{V}^{\smallsmile\smallsmile}$. 
-Allora si ha:
-\[
-\beta(\mathbf{v})(L) = L(\mathbf{v}) = 0
-\]
-per ogni $L \in \mathbf{V}^{\smallsmile}$. Siano $\mathbf{v}_2, \dots, \mathbf{v}_n \in V$ tali che $\{\mathbf{v}, \mathbf{v}_2, \dots, \mathbf{v}_n\}$ sia una base di $\mathbf{V}$. 
-Il funzionale $L \in \mathbf{V}^{\smallsmile}$ definito da
-\[
-L(\mathbf{v}) = 1,\quad L(v_i) = 0,\quad i = 2, \dots, n,
-\]
-dà una contraddizione.
-
-\vspace{10pt}
-
-Sia $\mathbf{V}$ un $\mathbb{K}$-spazio vettoriale con $\dim(\mathbf{V}) = n$. 
-Preso $L \in \mathbf{V}^{\smallsmile}$, i vettori del nucleo di $L$ si dicono talvolta \textbf{ortogonali} a $L$. 
-Se $\Phi$ è un sottoinsieme di $\mathbf{V}^{\smallsmile}$, un vettore $\mathbf{v}\in\mathbf{V}$ si dirà \textbf{ortogonale a} $\Phi$ se $\mathbf{v}$ è ortogonale ad ogni $L \in \Phi$, cioè se $L(\mathbf{v}) = 0$ per ogni $L \in \Phi$. 
-L'insieme
-\[
-\Phi^\perp = \{\mathbf{v}\in\mathbf{V} :\mathbf{v}\text{ è ortogonale a } \Phi\} = \bigcap_{L \in \Phi} \ker(L) \subset \mathbf{V}
-\]
-è un sottospazio vettoriale perché è l'intersezione di una famiglia di sottospazi vettoriali di $\mathbf{V}$. 
-Chiameremo $\Phi^\perp$ \textbf{il sottospazio di $\mathbf{V}$ ortogonale a} $\Phi$.
-
-Supponiamo in particolare che $\Phi$ sia un sottospazio vettoriale di $\mathbf{V}^{\smallsmile}$. 
-Sia $\dim(\Phi) = t$ e $\{L_1, \dots, L_t\}$ una base di $\Phi$. Allora si ha
-\begin{equation}\label{undicidodici}
-    \Phi^\perp = \bigcap_{i=1}^{t}\ker(L_i)
-\end{equation}
-e
-\begin{equation}\label{undicitredici}
-\dim(\Phi^\perp) = n - t.    
-\end{equation}
-
-Infatti, se $v \in \bigcap_{i=1}^{t}\ker(L_i)$, allora per ogni $L = \sum_{i=1}^{t}a_iL_i$ si ha
-\[
-L(\mathbf{v}) = \sum_{i=1}^{t}a_iL_i(\mathbf{v})= 0,
-\]
-cioè $\mathbf{v} \in \ker(L)$. Pertanto $\bigcap_{i=1}^{t}\ker(L_i) \subset \Phi^\perp$. 
-L'inclusione opposta è ovviamente vera, e da \ref{undicidodici} segue.
-
-Sia $m = \dim(\Phi^\perp)$. Osserviamo che $\Phi^\perp$ coincide con il nucleo dell'applicazione lineare
-\[
-\varphi : \mathbf{V} \to \mathbb{K}^t
-\]
-definita da $\varphi(\mathbf{v}) = (L_1(\mathbf{v}), L_2(\mathbf{v}), \dots, L_t(\mathbf{v}))$. Dal teorema 11.6 segue che $m \geq n - t$.
-
-Supponiamo per assurdo che sia $m > n - t$. 
-Scegliamo una base $\{\mathbf{e}_1, \dots, \mathbf{e}_m\}$ di $\mathbf{V}$ tale che $\{\mathbf{e}_1, \dots, \mathbf{e}_m\}$ sia una base di $\Phi^\perp$.
-
-La matrice $t \times n$:
-\[ 
-\begin{pmatrix}
-0 & \dots & 0 & L_1(\mathbf{e}_{m+1}) & \dots & L_1(\mathbf{e}_n) \\
-0 & \dots & 0 & L_2(\mathbf{e}_{m+1}) & \dots & L_2(\mathbf{e}_n) \\
-\vdots & & \vdots & \vdots & & \vdots \\
-0 & \dots & 0 & L_t(\mathbf{e}_{m+1}) & \dots & L_t(\mathbf{e}_n)
-\end{pmatrix}
-\]
-ha rango non superiore a $t - 1$, perché ha $m > n - t$ colonne nulle. 
-D'altra parte le sue $t$ righe sono linearmente indipendenti, perché sono i vettori delle coordinate di $L_1, \dots, L_t$ rispetto alla base $\{\eta_1, \dots, \eta_n\}$, duale di $\{\mathbf{e}_1, \dots, \mathbf{e}_n\}$. 
-Abbiamo una contraddizione, e quindi dev'essere $m = n - t$.
-
-\vspace{10pt}
-
-\paragraph{Applicazione complessa antilineare}
-\begin{bxthm}
-\begin{defn}
-Siano dati due spazi vettoriali complessi $\mathbf{V}$ e $\mathbf{W}$. Un'applicazione \(F \colon \mathbf{V} \to \mathbf{W}\)
-si dice \textbf{antilineare} se soddisfa le seguenti condizioni:
-\begin{equation}\label{undiciquattordici}
-F(\mathbf{v} + \mathbf{v}') = F(\mathbf{v}) + F(\mathbf{v}'),    
-\end{equation}
-\begin{equation}\label{undiciquindicii}
-F(c\mathbf{v}) = \bar{c} F(\mathbf{v}),    
-\end{equation}
-per ogni $\mathbf{v}, \mathbf{v}'\in \mathbf{V}$, $c \in \mathbb{C}$.     
-\end{defn}
-\end{bxthm}
-
-\vspace{10pt}
-
-\begin{bxthm}
-\begin{prop}
-Una condizione equivalente alle \ref{undiciquattordici}, \ref{undiciquindicii} è la seguente:
-\[
-F(c\mathbf{v} + c'\mathbf{v}') = \bar{c} F(\mathbf{v}) + \bar{c}' F(\mathbf{v}')
-\]
-per ogni $\mathbf{v}, \mathbf{v}'\in \mathbf{V},\;c, c' \in \mathbb{C}$.     
-\end{prop}
-\end{bxthm}
-\begin{proof}
-    Da fare.
-\end{proof}
+% \vspace{10pt}
+% 
+% \begin{exmp}
+%     Siano 
+%     \[\mathbf{e}=\left\{\begin{pmatrix}2\\0\\3\end{pmatrix},\begin{pmatrix}0\\-1\\4\end{pmatrix},\begin{pmatrix}5\\10\\0\end{pmatrix}\right\},\quad \mathbf{E}=\left\{\begin{pmatrix}1\\0\\0\end{pmatrix},\begin{pmatrix}0\\1\\0\end{pmatrix},\begin{pmatrix}0\\0\\1\end{pmatrix}\right\}\] 
+%     due basi di $\mathbf{V}=\mathbb{K}^3$.
+%     Siano $L_1,L_2\in\mathbf{V}^\smallsmile$ definite al seguente modo 
+%     \[L_1:\mathbf{V}\to\mathbb{K},\quad \begin{pmatrix}
+%         x\\y\\z
+%     \end{pmatrix}\mapsto x+y+z, \quad\quad L_2:\mathbf{V}\to\mathbb{K},\quad \begin{pmatrix}
+%         x\\y\\z
+%     \end{pmatrix}\mapsto 2x+3y+4z.\]
+%     Siano ora 
+%     \[
+%         \mathbf{v}=\begin{pmatrix}19\\31\\2\end{pmatrix}=2\begin{pmatrix}2\\0\\3\end{pmatrix}-\begin{pmatrix}0\\-1\\4\end{pmatrix}+3\begin{pmatrix}5\\10\\0\end{pmatrix}
+%     \]
+%     \begin{itemize}
+%         \item base $\mathbf{e}$, funzionale $L_1$:
+%         \[L_1(\mathbf{e}_1)=5 ,\; L_1(\mathbf{e}_2)=3 ,\; L_1(\mathbf{e}_3)=15 \quad\implies\quad L_1=5\eta_1+3\eta_2+15\eta_3\]
+%         \[L_1(\mathbf{v})=19+31+2=52\quad\quad (5\eta_1+3\eta_2+15\eta_3)(2\mathbf{e}_1-\mathbf{e}_2+3\mathbf{e}_3)=5\cdot2+3\cdot(-1)+15\cdot3=52\]
+%         \item base $\mathbf{e}$, funzionale $L_2$:
+%         \[L_2(\mathbf{e}_1)=16 ,\; L_2(\mathbf{e}_2)=13 ,\; L_2(\mathbf{e}_3)=40 \quad\implies\quad L_2=16\eta_1+13\eta_2+40\eta_3\]
+%         \item base $\mathbf{E}$, funzionale $L_1$:
+%         \[L_1(\mathbf{E}_1)=1 ,\; L_1(\mathbf{E}_2)=1 ,\; L_1(\mathbf{E}_3)=1 \quad\implies\quad L_1=\eta_1+\eta_2+\eta_3\]
+%         \item base $\mathbf{E}$, funzionale $L_2$:
+%         \[L_2(\mathbf{E}_1)=2 ,\; L_2(\mathbf{E}_2)=3 ,\; L_2(\mathbf{E}_3)=4 \quad\implies\quad L_2=2\eta_1+3\eta_2+4\eta_3\]
+%     \end{itemize}
+% \end{exmp}
+% 
+% \vspace{10pt}
+% 
+% \begin{bxthm}
+% \begin{prop}
+%     Siano $\mathbf{V}$ un $\mathbb{K}$-spazio vettoriale ed $f,g\in\mathbf{V}^\smallsmile$ tali che si abbia $f(\mathbf{v})=0$ per ogni $\mathbf{v}\in \mathrm{N}(g)$, cioè $\ker(F)\supset \mathrm{N}(g)$. Allora \[\exists\,x\in\mathbb{K}\,:\;f=cg.\]
+% \end{prop}
+% \end{bxthm}
+% \begin{proof}
+%     Se $g=\mathit{0}$, allora $\mathrm{N}(g)=\mathbf{V}$ e quindi $\ker(F)=\mathbf{V}$, cioè $f=\mathit{0}=g$. Supponiamo viceversa $g\neq\mathit{0}$. In tal caso $\mathrm{N}(g)$ è un iperpiano. Fissiamo $\mathbf{e}\in\mathbf{V}\setminus \mathrm{N}(g)$, e sia $c\in\mathbb{K}$ tale che 
+%     $f(\mathbf{e})=cg(\mathbf{e})$. Si ha $\mathbf{V}=\langle\mathbf{e}\rangle\oplus \mathrm{N}(g)$ e quindi ogni $\mathbf{v}\in\mathbf{V}$ è della forma $\mathbf{v}=x\mathbf{e}+\mathbf{w}$, per qualche $\mathbf{w}\in \mathrm{N}(g)$ e $x\in\mathbb{K}$. Pertanto 
+%     \begin{align*}
+%         f(\mathbf{v})&=f(x\mathbf{e}+\mathbf{w})=f(x\mathbf{e})+f(\mathbf{w})=xf(\mathbf{e})=xcg(\mathbf{e})=cg(x\mathbf{e})=\\
+%         &=cg(x\mathbf{e})+c\mathbf{0}=cg(x\mathbf{e})+cg(\mathbf{w})=cg(x\mathbf{e}+\mathbf{w})=cg(\mathbf{v}).
+%     \end{align*}
+%     cioè $f=cg$.
+% \end{proof}
+% 
+% \vspace{10pt}
+% 
+% Dati due $\mathbb{K}$-spazi vettoriali $\mathbf{V}$ e $\mathbf{W}$, è possibile introdurre in $\hom(\mathbf{V},\mathbf{W})$ una struttura di $\mathbb{K}$-spazio vettoriale definendo le seguenti operazioni.
+% \[+:\hom(\mathbf{V},\mathbf{W})\times\hom(\mathbf{V},\mathbf{W})\to\hom(\mathbf{V},\mathbf{W}),\; (F,G)\mapsto F+G\quad\quad \cdot:\mathbb{K}\times\hom(\mathbf{V},\mathbf{W})\to\hom(\mathbf{V},\mathbf{W}),\; (\lambda,F)\mapsto cF.\]
+% Ponendo rispettivamente
+% \[F+G:\mathbf{V}\to\mathbf{W},\quad \mathbf{v}\mapsto(F+G)(\mathbf{v})=F(\mathbf{v})+G(\mathbf{v}),\]
+% \[\lambda F:\mathbf{V}\to\mathbf{W},\quad \mathbf{v}\mapsto(\lambda F)(\mathbf{v})=\lambda F(\mathbf{v}).\]
+% Verifichiamo la linearità di entrambi i funzionali, $\forall\,\mathbf{v},\mathbf{v}'\in\mathbf{V}$, $\lambda\in\mathbb{K}$,
+% \begin{itemize}
+%     \item[$F+G$] 
+%     \begin{align*}
+%         (F+G)(\mathbf{v}+\mathbf{v}')&=F(\mathbf{v}+\mathbf{v}')+G(\mathbf{v}+\mathbf{v}')=F(\mathbf{v})+F(\mathbf{v}')+G(\mathbf{v})+G(\mathbf{v}')\\
+%         &=F(\mathbf{v})+G(\mathbf{v})+F(\mathbf{v}')+G(\mathbf{v}')=(F+G)(\mathbf{v})+(F+G)(\mathbf{v}')\\\\
+%         (F+G)(\lambda\mathbf{v})&=F(\lambda\mathbf{v})+G(\lambda\mathbf{v})=\lambda F(\mathbf{v})+\lambda G(\mathbf{v})=\lambda(F(\mathbf{v})+G(\mathbf{v}))=\lambda(F+G)(\mathbf{v}).
+%     \end{align*}
+%     \item[$\lambda F$]
+%     \begin{align*}
+%         (\lambda F)(\mathbf{v}+\mathbf{v}')&=\lambda F(\mathbf{v}+\mathbf{v}')=\lambda(F(\mathbf{v})+F(\mathbf{v}'))=\lambda F(\mathbf{v})+\lambda F(\mathbf{v}')=(\lambda F)(\mathbf{v})+(\lambda F)(\mathbf{v}')\\\\
+%         (\lambda F)(\mu\mathbf{v})&=\lambda F(\mu\mathbf{v})=\mu(\lambda F(\mathbf{v}))=\mu(\lambda F)(\mathbf{v}).
+%     \end{align*}
+% \end{itemize}
+% L'applicazione nulla \(\mathbf{0}:\mathbf{V}\to\mathbf{W},\quad \mathbf{v}\mapsto \mathbf{0}\)
+% soddisfa \(F+\mathbf{0}=F \quad\forall\,F\in\hom(\mathbf{V},\mathbf{W}).\)
+% Con queste operazioni resta definita su $\hom(\mathbf{V},\mathbf{W})$ una struttura di $\mathbb{K}$-spazio vettoriale.
+% 
+% \vspace{10pt}
+% 
+% Nel caso particolare $\mathbf{V}=\mathbb{K}$, lo spazio $\hom(\mathbb{K},\mathbf{W})$ è isomorfo a $\mathbf{W}$: un isomorfismo $\lambda :\mathbf{W}\to\hom(\mathbb{K},\mathbf{W})$ è defnito associando a $\mathbf{w}\in\mathbf{W}$ 
+% l'applicazione lineare $\lambda(\mathbf{w}):\mathbb{K}\to\mathbf{W}$ tale che $\lambda(\mathbf{w})(1)=\mathbf{w}$; verifica che $\lambda$ sia un isomorfismo. $\lambda$ si chiama \textbf{isomorfismo canonico} di $\mathbf{W}$ su $\hom(\mathbb{K},\mathbf{W})$, perchè è indicato univocamente da $\mathbf{W}$.
+% 
+% \vspace{10pt}
+% 
+% Sia $\mathbf{V}$ un $\mathbb{K}$-spazio vettoriale. Il duale di $\mathbf{V}^{\smallsmile}$, cioè lo spazio $\hom(\mathbf{V}^{\smallsmile}, \mathbf{K})$, si chiama \textbf{spazio biduale} di $\mathbf{V}$, e si denota con $V^{\smallsmile\smallsmile}$. 
+% Se $\dim(\mathbf{V}) = n$, allora segue dal teorema 11.12 che
+% \[
+% \dim(\mathbf{V}^{\smallsmile\smallsmile}) = \dim(\mathbf{V}^{\smallsmile}) = \dim(\mathbf{V}) = n,
+% \]
+% e i tre spazi $\mathbf{V},\,\mathbf{V}^{\smallsmile},\,\mathbf{V}^{\smallsmile\smallsmile}$ sono tra loro isomorfi.
+% 
+% Se si sceglie una base $\{\mathbf{e}_1, \dots, \mathbf{e}_n\}$ di $\mathbf{V}$, resta definita la base duale $\{\eta_1, \dots, \eta_n\}$ di $\mathbf{V}^{\smallsmile}$, e 
+% un isomorfismo $\varphi : \mathbf{V} \to \mathbf{V}^{\smallsmile\smallsmile}$ è definito ponendo $\varphi(\mathbf{e}_i) = \eta_i,\;i \in \{1, \dots, n\}$.
+% 
+% L'isomorfismo $\varphi$ dipende dalla base assegnata, cioè se si sceglie un'altra base di $\mathbf{V}$, si ottiene un isomorfismo diverso da $\varphi$.
+% 
+% Per lo spazio $\mathbf{V}^{\smallsmile\smallsmile}$ si ha una situazione diversa: è infatti possibile definire un isomorfismo
+% \[
+% \beta : \mathbf{V} \to \mathbf{V}^{\smallsmile\smallsmile}
+% \]
+% in modo del tutto intrinseco, cioè indipendente da qualunque scelta ulteriore, il quale per questo motivo si dice \textbf{l'isomorfismo canonico} di $\mathbf{V}$ su $\mathbf{V}^{\smallsmile\smallsmile}$.
+% 
+% $\beta$ è l'applicazione che ad ogni $\mathbf{v} \in \mathbf{V}$ associa il funzionale 
+% $\beta(\mathbf{v}) : \mathbf{V}^{\smallsmile\smallsmile} \to \mathbb{K}$ definito nel modo seguente:
+% \[
+% \beta(\mathbf{v})(L) = L(\mathbf{v})
+% \]
+% per ogni $\mathbf{L} \in \mathbf{V}^{\smallsmile}$.
+% 
+% Verifichiamo che $\beta(\mathbf{v})$ è lineare:
+% 
+% \[
+% \begin{aligned}
+% \beta(\mathbf{v})(cL + c'L') &= (cL + c'L')(\mathbf{v}) = cL(\mathbf{v}) + c'L'(\mathbf{v}) \\
+% &= c(L(\mathbf{v})) + c'(L'(\mathbf{v})) = c\beta(\mathbf{v})(L) + c'\beta(\mathbf{v})(L'),
+% \end{aligned}
+% \]
+% per ogni $L, L' \in \mathbf{V}^{\smallsmile\smallsmile},\ c, c' \in \mathbb{K}$, e quindi $\beta(\mathbf{v})$ è un funzionale lineare su $\mathbf{V}^{\smallsmile\smallsmile}$.
+% 
+% Verifichiamo ora che $\beta : \mathbf{V} \to \mathbf{V}^{\smallsmile\smallsmile}$ è lineare. 
+% Per ogni $\mathbf{v}, \mathbf{v}'\in \mathbf{V},\ c, c' \in \mathbb{K}$, si ha:
+% \[
+% \begin{aligned}
+% \beta(c\mathbf{v} + c'\mathbf{v}')(L) &= L(c\mathbf{v} + c'\mathbf{v}') = cL(\mathbf{v}) + c'L(\mathbf{v}') \\
+% &= c \beta(\mathbf{v})(L) + c' \beta(\mathbf{v}')(L) = [c \beta(\mathbf{v}) + c' \beta(\mathbf{v}')](L)
+% \end{aligned}
+% \]
+% per ogni $L \in \mathbf{V}^{\smallsmile}$, e quindi $\beta(c\mathbf{v} + c'\mathbf{v}') = c \beta(\mathbf{v}) + c' \beta(\mathbf{v}')$, cioè $\beta$ è lineare.
+% 
+% Per dimostrare che $\beta$ è un isomorfismo è sufficiente far vedere che 
+% \[
+% \mathrm{N}(\beta) = \{0\},
+% \]
+% perché $\dim(\mathbf{V}) = \dim(\mathbf{V}^{\smallsmile\smallsmile})$. 
+% Supponiamo per assurdo che esista $\mathbf{v} \in \mathbf{V}$, $\mathbf{v} \neq 0$, tale che $\beta(\mathbf{v}) = 0 \in \mathbf{V}^{\smallsmile\smallsmile}$. 
+% Allora si ha:
+% \[
+% \beta(\mathbf{v})(L) = L(\mathbf{v}) = 0
+% \]
+% per ogni $L \in \mathbf{V}^{\smallsmile}$. Siano $\mathbf{v}_2, \dots, \mathbf{v}_n \in V$ tali che $\{\mathbf{v}, \mathbf{v}_2, \dots, \mathbf{v}_n\}$ sia una base di $\mathbf{V}$. 
+% Il funzionale $L \in \mathbf{V}^{\smallsmile}$ definito da
+% \[
+% L(\mathbf{v}) = 1,\quad L(v_i) = 0,\quad i = 2, \dots, n,
+% \]
+% dà una contraddizione.
+% 
+% \vspace{10pt}
+% 
+% Sia $\mathbf{V}$ un $\mathbb{K}$-spazio vettoriale con $\dim(\mathbf{V}) = n$. 
+% Preso $L \in \mathbf{V}^{\smallsmile}$, i vettori del nucleo di $L$ si dicono talvolta \textbf{ortogonali} a $L$. 
+% Se $\Phi$ è un sottoinsieme di $\mathbf{V}^{\smallsmile}$, un vettore $\mathbf{v}\in\mathbf{V}$ si dirà \textbf{ortogonale a} $\Phi$ se $\mathbf{v}$ è ortogonale ad ogni $L \in \Phi$, cioè se $L(\mathbf{v}) = 0$ per ogni $L \in \Phi$. 
+% L'insieme
+% \[
+% \Phi^\perp = \{\mathbf{v}\in\mathbf{V} :\mathbf{v}\text{ è ortogonale a } \Phi\} = \bigcap_{L \in \Phi} \ker(L) \subset \mathbf{V}
+% \]
+% è un sottospazio vettoriale perché è l'intersezione di una famiglia di sottospazi vettoriali di $\mathbf{V}$. 
+% Chiameremo $\Phi^\perp$ \textbf{il sottospazio di $\mathbf{V}$ ortogonale a} $\Phi$.
+% 
+% Supponiamo in particolare che $\Phi$ sia un sottospazio vettoriale di $\mathbf{V}^{\smallsmile}$. 
+% Sia $\dim(\Phi) = t$ e $\{L_1, \dots, L_t\}$ una base di $\Phi$. Allora si ha
+% \begin{equation}\label{undicidodici}
+%     \Phi^\perp = \bigcap_{i=1}^{t}\ker(L_i)
+% \end{equation}
+% e
+% \begin{equation}\label{undicitredici}
+% \dim(\Phi^\perp) = n - t.    
+% \end{equation}
+% 
+% Infatti, se $v \in \bigcap_{i=1}^{t}\ker(L_i)$, allora per ogni $L = \sum_{i=1}^{t}a_iL_i$ si ha
+% \[
+% L(\mathbf{v}) = \sum_{i=1}^{t}a_iL_i(\mathbf{v})= 0,
+% \]
+% cioè $\mathbf{v} \in \ker(L)$. Pertanto $\bigcap_{i=1}^{t}\ker(L_i) \subset \Phi^\perp$. 
+% L'inclusione opposta è ovviamente vera, e da \ref{undicidodici} segue.
+% 
+% Sia $m = \dim(\Phi^\perp)$. Osserviamo che $\Phi^\perp$ coincide con il nucleo dell'applicazione lineare
+% \[
+% \varphi : \mathbf{V} \to \mathbb{K}^t
+% \]
+% definita da $\varphi(\mathbf{v}) = (L_1(\mathbf{v}), L_2(\mathbf{v}), \dots, L_t(\mathbf{v}))$. Dal teorema 11.6 segue che $m \geq n - t$.
+% 
+% Supponiamo per assurdo che sia $m > n - t$. 
+% Scegliamo una base $\{\mathbf{e}_1, \dots, \mathbf{e}_m\}$ di $\mathbf{V}$ tale che $\{\mathbf{e}_1, \dots, \mathbf{e}_m\}$ sia una base di $\Phi^\perp$.
+% 
+% La matrice $t \times n$:
+% \[ 
+% \begin{pmatrix}
+% 0 & \dots & 0 & L_1(\mathbf{e}_{m+1}) & \dots & L_1(\mathbf{e}_n) \\
+% 0 & \dots & 0 & L_2(\mathbf{e}_{m+1}) & \dots & L_2(\mathbf{e}_n) \\
+% \vdots & & \vdots & \vdots & & \vdots \\
+% 0 & \dots & 0 & L_t(\mathbf{e}_{m+1}) & \dots & L_t(\mathbf{e}_n)
+% \end{pmatrix}
+% \]
+% ha rango non superiore a $t - 1$, perché ha $m > n - t$ colonne nulle. 
+% D'altra parte le sue $t$ righe sono linearmente indipendenti, perché sono i vettori delle coordinate di $L_1, \dots, L_t$ rispetto alla base $\{\eta_1, \dots, \eta_n\}$, duale di $\{\mathbf{e}_1, \dots, \mathbf{e}_n\}$. 
+% Abbiamo una contraddizione, e quindi dev'essere $m = n - t$.
+% 
+% \vspace{10pt}
+% 
+% \paragraph{Applicazione complessa antilineare}
+% \begin{bxthm}
+% \begin{defn}
+% Siano dati due spazi vettoriali complessi $\mathbf{V}$ e $\mathbf{W}$. Un'applicazione \(F \colon \mathbf{V} \to \mathbf{W}\)
+% si dice \textbf{antilineare} se soddisfa le seguenti condizioni:
+% \begin{equation}\label{undiciquattordici}
+% F(\mathbf{v} + \mathbf{v}') = F(\mathbf{v}) + F(\mathbf{v}'),    
+% \end{equation}
+% \begin{equation}\label{undiciquindicii}
+% F(c\mathbf{v}) = \bar{c} F(\mathbf{v}),    
+% \end{equation}
+% per ogni $\mathbf{v}, \mathbf{v}'\in \mathbf{V}$, $c \in \mathbb{C}$.     
+% \end{defn}
+% \end{bxthm}
+% 
+% \vspace{10pt}
+% 
+% \begin{bxthm}
+% \begin{prop}
+% Una condizione equivalente alle \ref{undiciquattordici}, \ref{undiciquindicii} è la seguente:
+% \[
+% F(c\mathbf{v} + c'\mathbf{v}') = \bar{c} F(\mathbf{v}) + \bar{c}' F(\mathbf{v}')
+% \]
+% per ogni $\mathbf{v}, \mathbf{v}'\in \mathbf{V},\;c, c' \in \mathbb{C}$.     
+% \end{prop}
+% \end{bxthm}
+% \begin{proof}
+%     Da fare.
+% \end{proof}
 
 
 \vspace{50pt}
@@ -6621,579 +6492,579 @@ e quindi
 \end{equation}    
 \end{note}
 
-\vspace{10pt}
+% \vspace{10pt}
 
-\paragraph{Basi orientate}
-\begin{bxthm}
-\begin{defn}
-Sia $\mathbf{V}$ un $\mathbb{R}$-spazio vettoriale.
-Due basi $\psi = \{\mathbf{e}_1, \ldots, \mathbf{e}_n\}$ ed $\phi = \{\mathbf{f}_1, \ldots, \mathbf{f}_n\}$ di $\mathbf{V}$ si 
-dicono \textbf{orientate concordemente} se $\det(M_{\psi,\phi}(\mathbf{1_V})) > 0$, e si scrive $e \sim f$. 
-Altrimenti le due basi si dicono \textbf{orientate discordemente}.    
-\end{defn}
-\end{bxthm}
+% \paragraph{Basi orientate}
+% \begin{bxthm}
+% \begin{defn}
+% Sia $\mathbf{V}$ un $\mathbb{R}$-spazio vettoriale.
+% Due basi $\psi = \{\mathbf{e}_1, \ldots, \mathbf{e}_n\}$ ed $\phi = \{\mathbf{f}_1, \ldots, \mathbf{f}_n\}$ di $\mathbf{V}$ si 
+% dicono \textbf{orientate concordemente} se $\det(M_{\psi,\phi}(\mathbf{1_V})) > 0$, e si scrive $e \sim f$. 
+% Altrimenti le due basi si dicono \textbf{orientate discordemente}.    
+% \end{defn}
+% \end{bxthm}
 
-\vspace{10pt}
+% \vspace{10pt}
 
-Ogni base è orientata concordemente a sé stessa perché 
-\[M_{\psi,\psi}(\mathbf{1_V}) = \mathbf{I}_n \quad\therefore\quad \det(M_{\psi,\psi}(\mathbf{1_V}))=1>0. \]
-Inoltre, poiché $M_{\psi,\phi}(\mathbf{1_V}) = M_{\phi,\psi}(\mathbf{1_V})^{-1}$, il fatto che due basi siano orientate concordemente o discordemente non dipende dall'ordine in cui esse sono state prese. 
-Infine, se $\psi$ ed $\phi$ sono orientate concordemente, e così pure $\phi$ e $\varphi = \{\mathbf{g}_1, \ldots, \mathbf{g}_n\}$, allora anche $\psi$ e $\varphi$ sono orientate concordemente. 
-Infatti si ha:
-\[
-\det(M_{\psi,\varphi}(\mathbf{1_V})) = \det(M_{\psi,\phi}(\mathbf{1_V}) M_{\phi,\varphi}(\mathbf{1_V})) = \det(M_{\psi,\phi}(\mathbf{1_V})) \det(M_{\phi,\varphi}(\mathbf{1_V})) > 0.
-\]
+% Ogni base è orientata concordemente a sé stessa perché 
+% \[M_{\psi,\psi}(\mathbf{1_V}) = \mathbf{I}_n \quad\therefore\quad \det(M_{\psi,\psi}(\mathbf{1_V}))=1>0. \]
+% Inoltre, poiché $M_{\psi,\phi}(\mathbf{1_V}) = M_{\phi,\psi}(\mathbf{1_V})^{-1}$, il fatto che due basi siano orientate concordemente o discordemente non dipende dall'ordine in cui esse sono state prese. 
+% Infine, se $\psi$ ed $\phi$ sono orientate concordemente, e così pure $\phi$ e $\varphi = \{\mathbf{g}_1, \ldots, \mathbf{g}_n\}$, allora anche $\psi$ e $\varphi$ sono orientate concordemente. 
+% Infatti si ha:
+% \[
+% \det(M_{\psi,\varphi}(\mathbf{1_V})) = \det(M_{\psi,\phi}(\mathbf{1_V}) M_{\phi,\varphi}(\mathbf{1_V})) = \det(M_{\psi,\phi}(\mathbf{1_V})) \det(M_{\phi,\varphi}(\mathbf{1_V})) > 0.
+% \]
 
-\vspace{10pt}
+% \vspace{10pt}
 
-Deduciamo che $\sim$ è una relazione di equivalenza nell'insieme $\mathcal{B}$ di tutte le basi di $\mathbf{V}$. 
-Ogni classe di equivalenza si chiama $\mathbf{orientazione}$ di $\mathbf{V}$.
+% Deduciamo che $\sim$ è una relazione di equivalenza nell'insieme $\mathcal{B}$ di tutte le basi di $\mathbf{V}$. 
+% Ogni classe di equivalenza si chiama $\mathbf{orientazione}$ di $\mathbf{V}$.
 
-\vspace{10pt}
+% \vspace{10pt}
 
-Quante sono le orientazioni di $\mathbf{V}$? Certamente almeno due, perché se $\psi = \{\mathbf{e}_1, \ldots, \mathbf{e}_n\}\in\mathcal{B}$, 
-esiste qualche base orientata discordemente da $\psi$, ad esempio la base $\phi = \{-\mathbf{e}_1, \mathbf{e}_2, \ldots, \mathbf{e}_n\}$. 
-Infatti
-\[
-M_{\psi,\phi}(\mathbf{1_V}) = 
-\begin{pmatrix}
--1 & 0 & 0 & \cdots & 0 \\
-0 & 1 & 0 & \cdots & 0 \\
-0 & 0 & 1 & \cdots & 0 \\
-\vdots & \vdots & \vdots & \ddots & \vdots \\
-0 & 0 & 0 & \cdots & 1
-\end{pmatrix}
-\]
+% Quante sono le orientazioni di $\mathbf{V}$? Certamente almeno due, perché se $\psi = \{\mathbf{e}_1, \ldots, \mathbf{e}_n\}\in\mathcal{B}$, 
+% esiste qualche base orientata discordemente da $\psi$, ad esempio la base $\phi = \{-\mathbf{e}_1, \mathbf{e}_2, \ldots, \mathbf{e}_n\}$. 
+% Infatti
+% \[
+% M_{\psi,\phi}(\mathbf{1_V}) = 
+% \begin{pmatrix}
+% -1 & 0 & 0 & \cdots & 0 \\
+% 0 & 1 & 0 & \cdots & 0 \\
+% 0 & 0 & 1 & \cdots & 0 \\
+% \vdots & \vdots & \vdots & \ddots & \vdots \\
+% 0 & 0 & 0 & \cdots & 1
+% \end{pmatrix}
+% \]
 
-D'altra parte, le orientazioni non sono più di due: infatti se esistessero tre basi $\psi,\,\phi,\,\varphi$ orientate discordemente a due a due, si avrebbe l'assurdo
+% D'altra parte, le orientazioni non sono più di due: infatti se esistessero tre basi $\psi,\,\phi,\,\varphi$ orientate discordemente a due a due, si avrebbe l'assurdo
 
-\[
-0 > \det(M_{\psi,\varphi}(\mathbf{1_V})) = \det(M_{\psi,\phi}(\mathbf{1_V})) \det(M_{\phi,\varphi}(\mathbf{1_V})) > 0.
-\]
+% \[
+% 0 > \det(M_{\psi,\varphi}(\mathbf{1_V})) = \det(M_{\psi,\phi}(\mathbf{1_V})) \det(M_{\phi,\varphi}(\mathbf{1_V})) > 0.
+% \]
 
-Quindi $\mathbf{V}$ \textbf{possiede due orientazioni}, cioè $\mathcal{B}$ è ripartito in due classi di equivalenza rispetto a $\sim$. 
-L'orientazione cui una data base $\psi \in \mathcal{B}$ appartiene è l'\textbf{orientazione di $\mathbf{V}$ definita da $\psi$}.
+% Quindi $\mathbf{V}$ \textbf{possiede due orientazioni}, cioè $\mathcal{B}$ è ripartito in due classi di equivalenza rispetto a $\sim$. 
+% L'orientazione cui una data base $\psi \in \mathcal{B}$ appartiene è l'\textbf{orientazione di $\mathbf{V}$ definita da $\psi$}.
 
-\vspace{10pt}
+% \vspace{10pt}
 
-Se $\mathbf{V} = \mathbb{K}^n$, $\mathbf{W} = \mathbb{K}^m$ e $\psi$ e $\phi$ sono le basi canoniche di $\mathbb{K}^n$ e di $\mathbb{K}^m$ rispettivamente, 
-l'applicazione $F_A$ associata a una matrice $A \in M_{m,n}(\mathbb{K})$ è data per ogni $\mathbf{x} \in \mathbb{K}^n$ da $F_A(\mathbf{x}) = A\mathbf{x}$,
-se gli elementi di $\mathbb{K}^n$ e di $\mathbb{K}^m$ sono visti come vettori colonna. 
-Poiché le colonne di $A$ sono i vettori $F_A(\mathbf{E}_1),\ldots,F_A(\mathbf{E}_n)$, si ha
-\[
-\mathrm{Im}(F_A) = \langle F_A(\mathbf{E}_1),\ldots,F_A(\mathbf{E}_n) \rangle.
-\]
-In particolare $r(F_A) = r(A)$.
+% Se $\mathbf{V} = \mathbb{K}^n$, $\mathbf{W} = \mathbb{K}^m$ e $\psi$ e $\phi$ sono le basi canoniche di $\mathbb{K}^n$ e di $\mathbb{K}^m$ rispettivamente, 
+% l'applicazione $F_A$ associata a una matrice $A \in M_{m,n}(\mathbb{K})$ è data per ogni $\mathbf{x} \in \mathbb{K}^n$ da $F_A(\mathbf{x}) = A\mathbf{x}$,
+% se gli elementi di $\mathbb{K}^n$ e di $\mathbb{K}^m$ sono visti come vettori colonna. 
+% Poiché le colonne di $A$ sono i vettori $F_A(\mathbf{E}_1),\ldots,F_A(\mathbf{E}_n)$, si ha
+% \[
+% \mathrm{Im}(F_A) = \langle F_A(\mathbf{E}_1),\ldots,F_A(\mathbf{E}_n) \rangle.
+% \]
+% In particolare $r(F_A) = r(A)$.
     
-\vspace{10pt}
+% \vspace{10pt}
 
-Si noti che le coordinate del vettore $A\mathbf{x}$ sono $m$ polinomi omogenei di primo grado in $x_1, x_2, \ldots, x_n$. 
-Viceversa, una qualunque applicazione lineare $F \colon \mathbb{K}^n \to \mathbb{K}^m$ è della forma
-\[
-F\begin{pmatrix}
-    x_1\\
-    x_2\\
-    \vdots\\
-    x_n
-\end{pmatrix} = \begin{pmatrix}
-    F_1(x_1, x_2, \ldots, x_n)\\
-    F_2(x_1, x_2, \ldots, x_n)\\
-    \vdots\\
-    F_m(x_1, x_2, \ldots, x_n)
-\end{pmatrix}
-\]
-in cui ognuno degli $F_j(x_1, x_2, \ldots, x_n)$ è un funzionale lineare su $\mathbb{K}^n$: infatti $F_j$ è uguale alla composizione
-\[
-\eta_j \circ F \,:\, \mathbb{K}^n \to \mathbb{K}^m \to \mathbb{K},
-\]
-che è lineare. Ricordando la \ref{undiciuno}, vediamo che ognuno degli $F_j(x_1, x_2, \ldots, x_n)$ è un polinomio omogeneo del primo grado in $x_1x_2, \ldots, x_n$.
+% Si noti che le coordinate del vettore $A\mathbf{x}$ sono $m$ polinomi omogenei di primo grado in $x_1, x_2, \ldots, x_n$. 
+% Viceversa, una qualunque applicazione lineare $F \colon \mathbb{K}^n \to \mathbb{K}^m$ è della forma
+% \[
+% F\begin{pmatrix}
+%     x_1\\
+%     x_2\\
+%     \vdots\\
+%     x_n
+% \end{pmatrix} = \begin{pmatrix}
+%     F_1(x_1, x_2, \ldots, x_n)\\
+%     F_2(x_1, x_2, \ldots, x_n)\\
+%     \vdots\\
+%     F_m(x_1, x_2, \ldots, x_n)
+% \end{pmatrix}
+% \]
+% in cui ognuno degli $F_j(x_1, x_2, \ldots, x_n)$ è un funzionale lineare su $\mathbb{K}^n$: infatti $F_j$ è uguale alla composizione
+% \[
+% \eta_j \circ F \,:\, \mathbb{K}^n \to \mathbb{K}^m \to \mathbb{K},
+% \]
+% che è lineare. Ricordando la \ref{undiciuno}, vediamo che ognuno degli $F_j(x_1, x_2, \ldots, x_n)$ è un polinomio omogeneo del primo grado in $x_1x_2, \ldots, x_n$.
 
-\vspace{10pt}
+% \vspace{10pt}
 
-Segue che ogni applicazione lineare $F\in\hom(\mathbb{K}^n,\mathbb{K}^m)$ è definita da $m$ polinomi omogenei di primo grado in $x_1, \ldots, x_n$, 
-e la corrispondente matrice ha per prima, seconda, ..., $m$-esima riga i coefficienti di 
-\[F_1(x_1, x_2, \ldots, x_n), F_2(x_1, x_2, \ldots, x_n), \ldots, F_m(x_1, x_2, \ldots, x_n).\]
+% Segue che ogni applicazione lineare $F\in\hom(\mathbb{K}^n,\mathbb{K}^m)$ è definita da $m$ polinomi omogenei di primo grado in $x_1, \ldots, x_n$, 
+% e la corrispondente matrice ha per prima, seconda, ..., $m$-esima riga i coefficienti di 
+% \[F_1(x_1, x_2, \ldots, x_n), F_2(x_1, x_2, \ldots, x_n), \ldots, F_m(x_1, x_2, \ldots, x_n).\]
 
-\vspace{10pt}
+% \vspace{10pt}
 
-\begin{exmp}
-Alla matrice
-\[
-A = \begin{pmatrix}
-1 & 2 & \sqrt{2} \\
-3 & 1 & -\frac{1}{2}
-\end{pmatrix} \in M_{2,3}(\mathbb{R})
-\]
-è associata l'applicazione lineare così definita:
-\[
-F_A \colon \mathbb{R}^3 \to \mathbb{R}^2,\quad \begin{pmatrix}x_1\\x_2\\x_3\end{pmatrix}\mapsto \begin{pmatrix}x_1 + 2x_2 + \sqrt{2}x_3\\3x_1 + x_2 - \frac{x_3}{2}\end{pmatrix}.
-\]    
-\end{exmp}
+% \begin{exmp}
+% Alla matrice
+% \[
+% A = \begin{pmatrix}
+% 1 & 2 & \sqrt{2} \\
+% 3 & 1 & -\frac{1}{2}
+% \end{pmatrix} \in M_{2,3}(\mathbb{R})
+% \]
+% è associata l'applicazione lineare così definita:
+% \[
+% F_A \colon \mathbb{R}^3 \to \mathbb{R}^2,\quad \begin{pmatrix}x_1\\x_2\\x_3\end{pmatrix}\mapsto \begin{pmatrix}x_1 + 2x_2 + \sqrt{2}x_3\\3x_1 + x_2 - \frac{x_3}{2}\end{pmatrix}.
+% \]    
+% \end{exmp}
 
-\vspace{10pt}
+% \vspace{10pt}
 
-\begin{exmp}
-All'applicazione lineare
-\[
-F \colon \mathbb{R}^4 \to \mathbb{R}^3,\quad\begin{pmatrix}x_1\\x_2\\x_3\\x_4\end{pmatrix}\mapsto\begin{pmatrix}2x_1 - x_3 + x_4\\x_2 - \sqrt{3}x_3 + \frac{3}{4}x_2\\x_1 - x_2 + x_3 + 5x_4\end{pmatrix}
-\]
-è associata la matrice
-\[
-\begin{pmatrix}
-2 & 0 & -1 & 1 \\
-0 & 1 & -\sqrt{3} & \tfrac{3}{4} \\
-1 & -1 & 1 & 5
-\end{pmatrix}.
-\]    
-\end{exmp}
+% \begin{exmp}
+% All'applicazione lineare
+% \[
+% F \colon \mathbb{R}^4 \to \mathbb{R}^3,\quad\begin{pmatrix}x_1\\x_2\\x_3\\x_4\end{pmatrix}\mapsto\begin{pmatrix}2x_1 - x_3 + x_4\\x_2 - \sqrt{3}x_3 + \frac{3}{4}x_2\\x_1 - x_2 + x_3 + 5x_4\end{pmatrix}
+% \]
+% è associata la matrice
+% \[
+% \begin{pmatrix}
+% 2 & 0 & -1 & 1 \\
+% 0 & 1 & -\sqrt{3} & \tfrac{3}{4} \\
+% 1 & -1 & 1 & 5
+% \end{pmatrix}.
+% \]    
+% \end{exmp}
 
-\vspace{10pt}
+% \vspace{10pt}
 
-Siano $A \in M_{m,n}(\mathbb{K})$, $\mathbf{b} = \begin{pmatrix} b_1, \ldots, b_m \end{pmatrix} \in \mathbb{K}^m$, 
-e consideriamo il sistema di $m$ equazioni lineari in $n$ incognite
-\begin{equation}\label{dodicidue}
-A\mathbf{X} = \mathbf{b}
-\end{equation}
-dove $\mathbf{X} = (x_1, \ldots, x_n)$. 
-Un vettore $\mathbf{x} = (x_1, \ldots, x_n) \in \mathbb{K}^n$ è una soluzione del sistema \ref{dodicidue} se e solo se 
-$F_A(\mathbf{x}) = \mathbf{b}$, dove $F_A \colon \mathbb{K}^n \to \mathbb{K}^m$ è l'applicazione lineare associata ad $A$. 
-Affinché un $\mathbf{x} \in \mathbb{K}^n$ siffatto esista è necessario e sufficiente che 
-$\mathbf{b} \in \mathrm{Im}(F_A)$.
-D'altra parte, poiché $\text{Im}(F_A)$ è generata dalle colonne di $A$, affinché $\mathbf{b} \in \text{Im}(F_A)$, cioè affinché il sistema \ref{dodicidue} sia compatibile, è necessario e sufficiente che
-\[r(A) = r(A\mathbf{b}).\]
-In questo modo abbiamo ottenuto una nuova dimostrazione del teorema di Kronecker-Rouché-Capelli.
-Sappiamo che, se è compatibile, il sistema \ref{dodicidue} possiede $\infty^{n-r}$ soluzioni, dove $r = r(A)$. Ciò può essere dimostrato anche osservando che il sistema \ref{dodicidue} possiede 
-un'infinità di soluzioni uguali alla dimensione dello spazio delle soluzioni del sistema omogeneo associato
-\[A\mathbf{x} = \mathbf{0},\]
-e che tale spazio coincide con $\ker(F_A)$. 
-Per il teorema \ref{undicisei} abbiamo
-\[\dim[\ker(F_A)] = n - r(F) = n - r.\]
+% Siano $A \in M_{m,n}(\mathbb{K})$, $\mathbf{b} = \begin{pmatrix} b_1, \ldots, b_m \end{pmatrix} \in \mathbb{K}^m$, 
+% e consideriamo il sistema di $m$ equazioni lineari in $n$ incognite
+% \begin{equation}\label{dodicidue}
+% A\mathbf{X} = \mathbf{b}
+% \end{equation}
+% dove $\mathbf{X} = (x_1, \ldots, x_n)$. 
+% Un vettore $\mathbf{x} = (x_1, \ldots, x_n) \in \mathbb{K}^n$ è una soluzione del sistema \ref{dodicidue} se e solo se 
+% $F_A(\mathbf{x}) = \mathbf{b}$, dove $F_A \colon \mathbb{K}^n \to \mathbb{K}^m$ è l'applicazione lineare associata ad $A$. 
+% Affinché un $\mathbf{x} \in \mathbb{K}^n$ siffatto esista è necessario e sufficiente che 
+% $\mathbf{b} \in \mathrm{Im}(F_A)$.
+% D'altra parte, poiché $\text{Im}(F_A)$ è generata dalle colonne di $A$, affinché $\mathbf{b} \in \text{Im}(F_A)$, cioè affinché il sistema \ref{dodicidue} sia compatibile, è necessario e sufficiente che
+% \[r(A) = r(A\mathbf{b}).\]
+% In questo modo abbiamo ottenuto una nuova dimostrazione del teorema di Kronecker-Rouché-Capelli.
+% Sappiamo che, se è compatibile, il sistema \ref{dodicidue} possiede $\infty^{n-r}$ soluzioni, dove $r = r(A)$. Ciò può essere dimostrato anche osservando che il sistema \ref{dodicidue} possiede 
+% un'infinità di soluzioni uguali alla dimensione dello spazio delle soluzioni del sistema omogeneo associato
+% \[A\mathbf{x} = \mathbf{0},\]
+% e che tale spazio coincide con $\ker(F_A)$. 
+% Per il teorema \ref{undicisei} abbiamo
+% \[\dim[\ker(F_A)] = n - r(F) = n - r.\]
 
-\vspace{10pt}
+% \vspace{10pt}
 
-\begin{exmp}
-Sia $\mathbf{V}$ uno spazio vettoriale reale di dimensione 3, e sia $\psi = \{\mathbf{e}_1, \mathbf{e}_2, \mathbf{e}_3\}$ una base di $\mathbf{V}$. 
-Consideriamo le seguenti basi, i cui vettori assegnamo in coordinate rispetto a $\psi$:
-\[\alpha = \left\{\mathbf{a}_1\begin{pmatrix}1\\1\\0\end{pmatrix}, \mathbf{a}_2\begin{pmatrix}2\\1\\1\end{pmatrix}, \mathbf{a}_3\begin{pmatrix}0\\-1\\1\end{pmatrix}\right\},\quad \beta = \left\{\mathbf{b}_1\begin{pmatrix}-1\\0\\1\end{pmatrix}, \mathbf{b}_2\begin{pmatrix}1\\-2\\-3\end{pmatrix}, \mathbf{b}_3\begin{pmatrix}1\\1\\1\end{pmatrix}\right\}.\]
-Si ha
-\[M_{\psi,\alpha}(\mathbf{1_V}) = \begin{pmatrix} 1 & 2 & 0 \\ 1 & 1 & -2 \\ 0 & 1 & 1 \end{pmatrix} \quad M_{\alpha,\psi}(\mathbf{1_V}) = M_{\psi,\alpha}(\mathbf{1_V})^{-1} = \begin{pmatrix} 3 & -2 & -4 \\ -1 & 1 & 2 \\ 1 & -1 & -1 \end{pmatrix}.\]
-Similmente
-\[M_{\psi,\beta}(\mathbf{1_V}) = \begin{pmatrix} -1 & 1 & 1 \\ 0 & -2 & 1 \\ 1 & -3 & 1 \end{pmatrix},\quad M_{\beta,\psi}(\mathbf{1_V}) = M_{\psi,\beta}(\mathbf{1_V})^{-1} = \begin{pmatrix} \frac{1}{2} & -2 & \frac{3}{2} \\ \frac{1}{2} & -1 & \frac{1}{2} \\ 1 & -1 & 1 \end{pmatrix}\]
-Per calcolare $M_{\beta,\alpha}(\mathbf{1_V})$ conviene utilizzare la proposizione \ref{dodicitre}. 
-Si ha
-\[M_{\beta,\alpha}(\mathbf{1_V}) = M_{\beta,\psi}(\mathbf{1_V})M_{\psi,\alpha}(\mathbf{1_V}) =\begin{pmatrix} \frac{1}{2} & -2 & \frac{3}{2} \\ \frac{1}{2} & -1 & \frac{1}{2} \\ 1 & -1 & 1 \end{pmatrix} \begin{pmatrix} 1 & 2 & 0 \\ 1 & 1 & -2 \\ 0 & 1 & 1 \end{pmatrix} = \begin{pmatrix} -\frac{3}{2} & \frac{1}{2} & \frac{1}{2} \\ -\frac{1}{2} & \frac{1}{2} & \frac{5}{2} \\ 0 & 2 & 3 \end{pmatrix}.\]
-Infine, per calcolare $M_{\alpha,\beta}(\mathbf{1_V})$ possiamo utilizzare l'identità
-\[M_{\alpha,\beta}(\mathbf{1_V}) = M_{\beta,\alpha}(\mathbf{1_V})^{-1}\]
-e calcolare l'inversa di $M_{\beta,\alpha}(\mathbf{1_V})$, oppure scrivere
-\[M_{\alpha,\beta}(\mathbf{1_V}) = M_{\alpha,\psi}(\mathbf{1_V})M_{\psi,\beta}(\mathbf{1_V}) =\begin{pmatrix} 3 & -2 & -4 \\ -1 & 1 & 2 \\ 1 & -1 & -1 \end{pmatrix} \begin{pmatrix} -1 & 1 & 1 \\ 0 & -2 & 1 \\ 1 & -3 & 1 \end{pmatrix} = \begin{pmatrix} -7 & 19 & -3 \\ 3 & -9 & 2 \\ -2 & 6 & -1 \end{pmatrix}.\]    
-\end{exmp}
+% \begin{exmp}
+% Sia $\mathbf{V}$ uno spazio vettoriale reale di dimensione 3, e sia $\psi = \{\mathbf{e}_1, \mathbf{e}_2, \mathbf{e}_3\}$ una base di $\mathbf{V}$. 
+% Consideriamo le seguenti basi, i cui vettori assegnamo in coordinate rispetto a $\psi$:
+% \[\alpha = \left\{\mathbf{a}_1\begin{pmatrix}1\\1\\0\end{pmatrix}, \mathbf{a}_2\begin{pmatrix}2\\1\\1\end{pmatrix}, \mathbf{a}_3\begin{pmatrix}0\\-1\\1\end{pmatrix}\right\},\quad \beta = \left\{\mathbf{b}_1\begin{pmatrix}-1\\0\\1\end{pmatrix}, \mathbf{b}_2\begin{pmatrix}1\\-2\\-3\end{pmatrix}, \mathbf{b}_3\begin{pmatrix}1\\1\\1\end{pmatrix}\right\}.\]
+% Si ha
+% \[M_{\psi,\alpha}(\mathbf{1_V}) = \begin{pmatrix} 1 & 2 & 0 \\ 1 & 1 & -2 \\ 0 & 1 & 1 \end{pmatrix} \quad M_{\alpha,\psi}(\mathbf{1_V}) = M_{\psi,\alpha}(\mathbf{1_V})^{-1} = \begin{pmatrix} 3 & -2 & -4 \\ -1 & 1 & 2 \\ 1 & -1 & -1 \end{pmatrix}.\]
+% Similmente
+% \[M_{\psi,\beta}(\mathbf{1_V}) = \begin{pmatrix} -1 & 1 & 1 \\ 0 & -2 & 1 \\ 1 & -3 & 1 \end{pmatrix},\quad M_{\beta,\psi}(\mathbf{1_V}) = M_{\psi,\beta}(\mathbf{1_V})^{-1} = \begin{pmatrix} \frac{1}{2} & -2 & \frac{3}{2} \\ \frac{1}{2} & -1 & \frac{1}{2} \\ 1 & -1 & 1 \end{pmatrix}\]
+% Per calcolare $M_{\beta,\alpha}(\mathbf{1_V})$ conviene utilizzare la proposizione \ref{dodicitre}. 
+% Si ha
+% \[M_{\beta,\alpha}(\mathbf{1_V}) = M_{\beta,\psi}(\mathbf{1_V})M_{\psi,\alpha}(\mathbf{1_V}) =\begin{pmatrix} \frac{1}{2} & -2 & \frac{3}{2} \\ \frac{1}{2} & -1 & \frac{1}{2} \\ 1 & -1 & 1 \end{pmatrix} \begin{pmatrix} 1 & 2 & 0 \\ 1 & 1 & -2 \\ 0 & 1 & 1 \end{pmatrix} = \begin{pmatrix} -\frac{3}{2} & \frac{1}{2} & \frac{1}{2} \\ -\frac{1}{2} & \frac{1}{2} & \frac{5}{2} \\ 0 & 2 & 3 \end{pmatrix}.\]
+% Infine, per calcolare $M_{\alpha,\beta}(\mathbf{1_V})$ possiamo utilizzare l'identità
+% \[M_{\alpha,\beta}(\mathbf{1_V}) = M_{\beta,\alpha}(\mathbf{1_V})^{-1}\]
+% e calcolare l'inversa di $M_{\beta,\alpha}(\mathbf{1_V})$, oppure scrivere
+% \[M_{\alpha,\beta}(\mathbf{1_V}) = M_{\alpha,\psi}(\mathbf{1_V})M_{\psi,\beta}(\mathbf{1_V}) =\begin{pmatrix} 3 & -2 & -4 \\ -1 & 1 & 2 \\ 1 & -1 & -1 \end{pmatrix} \begin{pmatrix} -1 & 1 & 1 \\ 0 & -2 & 1 \\ 1 & -3 & 1 \end{pmatrix} = \begin{pmatrix} -7 & 19 & -3 \\ 3 & -9 & 2 \\ -2 & 6 & -1 \end{pmatrix}.\]    
+% \end{exmp}
 
-\vspace{10pt}
+% \vspace{10pt}
 
-\begin{exmp}
-Siano $\mathbf{V}$ e $\mathbf{W}$ $\mathbb{R}$-spazi vettoriali con $\dim(\mathbf{V}) = 4,\,\dim(\mathbf{W}) = 2$, 
-\[\psi = \{\mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3, \mathbf{v}_4\},\;\textup{e}\;\phi = \{\mathbf{w}_1, \mathbf{w}_2\}\]
-basi di $\mathbf{V}$ e $\mathbf{W}$ rispettivamente, e $F: \mathbf{V} \to \mathbf{W}$ l'applicazione lineare tale che
-\[M_{\phi,\psi}(F) = \begin{pmatrix} 1 & 3 & -2 & \frac{1}{2} \\ 2 & 0 & 1 & 0 \end{pmatrix}.\]
-Siano
-\[\alpha = \left\{\mathbf{a}_1\begin{pmatrix}1\\1\\1\\2\end{pmatrix}, \mathbf{a}_2\begin{pmatrix}2\\-1\\3\\0\end{pmatrix}, \mathbf{a}_3\begin{pmatrix}\sqrt{2}\\1\\0\\0\end{pmatrix}, \mathbf{a}_4\begin{pmatrix}1\\-\frac{1}{2}\\1\\5\end{pmatrix}\right\},\quad\beta = \left\{\mathbf{b}_1\begin{pmatrix}2\\-3\end{pmatrix}, \mathbf{b}_2\begin{pmatrix}-1\\3\end{pmatrix}\right\}\]
-nuove basi di $\mathbf{V}$ e $\mathbf{W}$ rispettivamente, assegnate mediante le loro coordinate nelle basi $\psi$ e $\phi$. Per la proposizione \ref{dodicitre} si ha
-\[M_{\beta,\alpha}(F) = M_{\beta,\phi}(\mathbf{1_W})M_{\phi,\psi}(F)M_{\psi,\alpha}(\mathbf{1_V}).\]
-Poiché
-\[M_{\phi,\beta}(\mathbf{1_W}) = \begin{pmatrix} 2 & -1 \\ -3 & 3 \end{pmatrix},\]
-avremo
-\[
-M_{\beta,\phi}(\mathbf{1_W}) = M_{\phi,\beta}(\mathbf{1_W})^{-1} = 
-\begin{pmatrix} 
-\frac{1}{3} & \frac{1}{3} \\ 
--\frac{1}{3} & \frac{2}{3} 
-\end{pmatrix}
-\]
-e dunque
-\[
-M_{\psi,\alpha}(\mathbf{1_V}) = 
-\begin{pmatrix}
-1 & 2 & \sqrt{2} & 1 \\
-1 & -1 & 1 & -\frac{1}{2} \\
-1 & 3 & 0 & 1 \\
-2 & 0 & 0 & 5
-\end{pmatrix}
-\]
-Si ottiene:
-\begin{align*}
-M_{\beta,\alpha}(F) &= 
-\begin{pmatrix} 
-\frac{1}{3} & \frac{1}{3} \\ 
--\frac{1}{3} & \frac{2}{3} 
-\end{pmatrix} 
-\begin{pmatrix} 
-1 & 3 & -2 & 1 \\ 
-2 & 0 & 1 & 0 
-\end{pmatrix} 
-\begin{pmatrix}
-1 & 2 & \sqrt{2} & 1 \\
-1 & -1 & 1 & -\frac{1}{2} \\
-1 & 3 & 0 & 1 \\
-2 & 0 & 0 & 5
-\end{pmatrix}    \\
-&= 
-\begin{pmatrix} 
-1 & 1 & -\frac{1}{3} & \frac{1}{6} \\ 
-1 & -1 & \frac{4}{3} & -\frac{1}{6} 
-\end{pmatrix} 
-\begin{pmatrix}
-1 & 2 & \sqrt{2} & 1 \\
-1 & -1 & 1 & -\frac{1}{2} \\
-1 & 3 & 0 & 1 \\
-2 & 0 & 0 & 5
-\end{pmatrix}\\
-&= 
-\begin{pmatrix} 
-2 & 0 & \sqrt{2}+1 & 1 \\ 
-1 & 7 & \sqrt{2}-1 & 2 
-\end{pmatrix}
-\end{align*}
-\end{exmp}
+% \begin{exmp}
+% Siano $\mathbf{V}$ e $\mathbf{W}$ $\mathbb{R}$-spazi vettoriali con $\dim(\mathbf{V}) = 4,\,\dim(\mathbf{W}) = 2$, 
+% \[\psi = \{\mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3, \mathbf{v}_4\},\;\textup{e}\;\phi = \{\mathbf{w}_1, \mathbf{w}_2\}\]
+% basi di $\mathbf{V}$ e $\mathbf{W}$ rispettivamente, e $F: \mathbf{V} \to \mathbf{W}$ l'applicazione lineare tale che
+% \[M_{\phi,\psi}(F) = \begin{pmatrix} 1 & 3 & -2 & \frac{1}{2} \\ 2 & 0 & 1 & 0 \end{pmatrix}.\]
+% Siano
+% \[\alpha = \left\{\mathbf{a}_1\begin{pmatrix}1\\1\\1\\2\end{pmatrix}, \mathbf{a}_2\begin{pmatrix}2\\-1\\3\\0\end{pmatrix}, \mathbf{a}_3\begin{pmatrix}\sqrt{2}\\1\\0\\0\end{pmatrix}, \mathbf{a}_4\begin{pmatrix}1\\-\frac{1}{2}\\1\\5\end{pmatrix}\right\},\quad\beta = \left\{\mathbf{b}_1\begin{pmatrix}2\\-3\end{pmatrix}, \mathbf{b}_2\begin{pmatrix}-1\\3\end{pmatrix}\right\}\]
+% nuove basi di $\mathbf{V}$ e $\mathbf{W}$ rispettivamente, assegnate mediante le loro coordinate nelle basi $\psi$ e $\phi$. Per la proposizione \ref{dodicitre} si ha
+% \[M_{\beta,\alpha}(F) = M_{\beta,\phi}(\mathbf{1_W})M_{\phi,\psi}(F)M_{\psi,\alpha}(\mathbf{1_V}).\]
+% Poiché
+% \[M_{\phi,\beta}(\mathbf{1_W}) = \begin{pmatrix} 2 & -1 \\ -3 & 3 \end{pmatrix},\]
+% avremo
+% \[
+% M_{\beta,\phi}(\mathbf{1_W}) = M_{\phi,\beta}(\mathbf{1_W})^{-1} = 
+% \begin{pmatrix} 
+% \frac{1}{3} & \frac{1}{3} \\ 
+% -\frac{1}{3} & \frac{2}{3} 
+% \end{pmatrix}
+% \]
+% e dunque
+% \[
+% M_{\psi,\alpha}(\mathbf{1_V}) = 
+% \begin{pmatrix}
+% 1 & 2 & \sqrt{2} & 1 \\
+% 1 & -1 & 1 & -\frac{1}{2} \\
+% 1 & 3 & 0 & 1 \\
+% 2 & 0 & 0 & 5
+% \end{pmatrix}
+% \]
+% Si ottiene:
+% \begin{align*}
+% M_{\beta,\alpha}(F) &= 
+% \begin{pmatrix} 
+% \frac{1}{3} & \frac{1}{3} \\ 
+% -\frac{1}{3} & \frac{2}{3} 
+% \end{pmatrix} 
+% \begin{pmatrix} 
+% 1 & 3 & -2 & 1 \\ 
+% 2 & 0 & 1 & 0 
+% \end{pmatrix} 
+% \begin{pmatrix}
+% 1 & 2 & \sqrt{2} & 1 \\
+% 1 & -1 & 1 & -\frac{1}{2} \\
+% 1 & 3 & 0 & 1 \\
+% 2 & 0 & 0 & 5
+% \end{pmatrix}    \\
+% &= 
+% \begin{pmatrix} 
+% 1 & 1 & -\frac{1}{3} & \frac{1}{6} \\ 
+% 1 & -1 & \frac{4}{3} & -\frac{1}{6} 
+% \end{pmatrix} 
+% \begin{pmatrix}
+% 1 & 2 & \sqrt{2} & 1 \\
+% 1 & -1 & 1 & -\frac{1}{2} \\
+% 1 & 3 & 0 & 1 \\
+% 2 & 0 & 0 & 5
+% \end{pmatrix}\\
+% &= 
+% \begin{pmatrix} 
+% 2 & 0 & \sqrt{2}+1 & 1 \\ 
+% 1 & 7 & \sqrt{2}-1 & 2 
+% \end{pmatrix}
+% \end{align*}
+% \end{exmp}
 
-\vspace{10pt}
+% \vspace{10pt}
 
-\begin{exmp}
-Nello spazio vettoriale \( M_2(\mathbb{C}) \), consideriamo le basi:
-\[
-\psi = \left\{ 
-\mathbf{1}_{11} = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}, \quad 
-\mathbf{1}_{12} = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}, \quad 
-\mathbf{1}_{21} = \begin{pmatrix} 0 & 0 \\ 1 & 0 \end{pmatrix}, \quad 
-\mathbf{1}_{22} = \begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix} 
-\right\}
-\]
+% \begin{exmp}
+% Nello spazio vettoriale \( M_2(\mathbb{C}) \), consideriamo le basi:
+% \[
+% \psi = \left\{ 
+% \mathbf{1}_{11} = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}, \quad 
+% \mathbf{1}_{12} = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}, \quad 
+% \mathbf{1}_{21} = \begin{pmatrix} 0 & 0 \\ 1 & 0 \end{pmatrix}, \quad 
+% \mathbf{1}_{22} = \begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix} 
+% \right\}
+% \]
+% 
+% \[
+% \phi = \left\{ 
+% \mathbf{I}_2, \quad 
+% \Sigma_1 = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}, \quad 
+% \Sigma_2 = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}, \quad 
+% \Sigma_3 = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} 
+% \right\}
+% \]
+% dove $\Sigma_1$, $\Sigma_2$ e $\Sigma_3$ sono le matrici di Pauli . Poiché
+% \[
+% \mathbf{I}_2 = \mathbf{1}_{11} + \mathbf{1}_{22}, \quad \Sigma_1 = \mathbf{1}_{12} + \mathbf{1}_{21}, \quad \Sigma_2 = -i \mathbf{1}_{12} + i \mathbf{1}_{21}, \quad \Sigma_3 = \mathbf{1}_{11} - \mathbf{1}_{22},
+% \]
+% si ha:
+% \[
+% M_{\psi,\phi}(\mathbf{1}) = 
+% \begin{pmatrix}
+% 0 & 0 & 0 & 1 \\
+% 0 & 1 & -i & 0 \\
+% 0 & 1 & i & 0 \\
+% 1 & 0 & 0 & -1
+% \end{pmatrix},\quad\quad M_{\phi,\psi}(\mathbf{1}) = M_{\psi,\phi}(\mathbf{1})^{-1} = 
+% \begin{pmatrix}
+% \frac{1}{2} & 0 & 0 & \frac{1}{2} \\
+% 0 & \frac{1}{2} & \frac{1}{2} & 0 \\
+% 0 & -\frac{i}{2} & \frac{i}{2} & 0 \\
+% \frac{1}{2} & 0 & 0 & -\frac{1}{2}
+% \end{pmatrix}.
+% \]    
+% \end{exmp}
 
-\[
-\phi = \left\{ 
-\mathbf{I}_2, \quad 
-\Sigma_1 = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}, \quad 
-\Sigma_2 = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}, \quad 
-\Sigma_3 = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} 
-\right\}
-\]
-dove $\Sigma_1$, $\Sigma_2$ e $\Sigma_3$ sono le matrici di Pauli . Poiché
-\[
-\mathbf{I}_2 = \mathbf{1}_{11} + \mathbf{1}_{22}, \quad \Sigma_1 = \mathbf{1}_{12} + \mathbf{1}_{21}, \quad \Sigma_2 = -i \mathbf{1}_{12} + i \mathbf{1}_{21}, \quad \Sigma_3 = \mathbf{1}_{11} - \mathbf{1}_{22},
-\]
-si ha:
-\[
-M_{\psi,\phi}(\mathbf{1}) = 
-\begin{pmatrix}
-0 & 0 & 0 & 1 \\
-0 & 1 & -i & 0 \\
-0 & 1 & i & 0 \\
-1 & 0 & 0 & -1
-\end{pmatrix},\quad\quad M_{\phi,\psi}(\mathbf{1}) = M_{\psi,\phi}(\mathbf{1})^{-1} = 
-\begin{pmatrix}
-\frac{1}{2} & 0 & 0 & \frac{1}{2} \\
-0 & \frac{1}{2} & \frac{1}{2} & 0 \\
-0 & -\frac{i}{2} & \frac{i}{2} & 0 \\
-\frac{1}{2} & 0 & 0 & -\frac{1}{2}
-\end{pmatrix}.
-\]    
-\end{exmp}
+% \vspace{10pt}
 
-\vspace{10pt}
+% In uno spazio affine $\mathbf{A}$ con spazio vettoriale associato $\mathbf{V}$ consideriamo due riferimenti affini, 
+% \[\psi_\mathbf{A}=E \mathbf{e}_1, \dots, \mathbf{e}_n,\quad\quad \phi_\mathbf{A}=F \mathbf{f}_1, \dots, \mathbf{f}_n\]
+% e un punto qualsiasi $P \in \mathbf{A}$. 
+% Sia $\mathbf{x} = (x_1, \dots, x_n)$ il vettore colonna delle coordinate di $P$ nel riferimento $\psi_\mathbf{A}$ e sia $\mathbf{y} = (y_1, \dots, y_n)$ quello delle coordinate di $P \in \mathbf{A}$ rispetto a $\phi_\mathbf{A}$.
+% Si ha
+% \[
+% \overrightarrow{EP} = \sum_{j=1}^{n}x_j \mathbf{e}_j \quad\quad \overrightarrow{FP} = \sum_{j=1}^{n}y_j \mathbf{f}_j. 
+% \]
 
-In uno spazio affine $\mathbf{A}$ con spazio vettoriale associato $\mathbf{V}$ consideriamo due riferimenti affini, 
-\[\psi_\mathbf{A}=E \mathbf{e}_1, \dots, \mathbf{e}_n,\quad\quad \phi_\mathbf{A}=F \mathbf{f}_1, \dots, \mathbf{f}_n\]
-e un punto qualsiasi $P \in \mathbf{A}$. 
-Sia $\mathbf{x} = (x_1, \dots, x_n)$ il vettore colonna delle coordinate di $P$ nel riferimento $\psi_\mathbf{A}$ e sia $\mathbf{y} = (y_1, \dots, y_n)$ quello delle coordinate di $P \in \mathbf{A}$ rispetto a $\phi_\mathbf{A}$.
-Si ha
-\[
-\overrightarrow{EP} = \sum_{j=1}^{n}x_j \mathbf{e}_j \quad\quad \overrightarrow{FP} = \sum_{j=1}^{n}y_j \mathbf{f}_j. 
-\]
+% Supponiamo di conoscere $\mathbf{x}$ e di voler trovare $\mathbf{y}$.
+% Denotiamo con $\psi = \{\mathbf{e}_1, \dots, \mathbf{e}_n\}$ e $\phi = \{\mathbf{f}_1, \dots, \mathbf{f}_n\}$ le due basi di $\mathbf{V}$, con 
+% $A = (a_{ij}) = M_{\phi,\psi}(\mathbf{1_V})$ e con $\mathbf{c} = (c_1, \dots, c_n)$ il vettore delle coordinate di $E$ rispetto a $F \mathbf{f}_1, \dots, \mathbf{f}_n$. 
+% L'identità vettoriale
+% \[
+% \overrightarrow{FP} = \overrightarrow{FE} + \overrightarrow{EP},
+% \]
+% espressa rispetto alla base $\phi$, ci dà
+% \begin{equation}\label{dodicii}
+% \mathbf{y} = A\mathbf{x} + \mathbf{c}.    
+% \end{equation}
 
-Supponiamo di conoscere $\mathbf{x}$ e di voler trovare $\mathbf{y}$.
-Denotiamo con $\psi = \{\mathbf{e}_1, \dots, \mathbf{e}_n\}$ e $\phi = \{\mathbf{f}_1, \dots, \mathbf{f}_n\}$ le due basi di $\mathbf{V}$, con 
-$A = (a_{ij}) = M_{\phi,\psi}(\mathbf{1_V})$ e con $\mathbf{c} = (c_1, \dots, c_n)$ il vettore delle coordinate di $E$ rispetto a $F \mathbf{f}_1, \dots, \mathbf{f}_n$. 
-L'identità vettoriale
-\[
-\overrightarrow{FP} = \overrightarrow{FE} + \overrightarrow{EP},
-\]
-espressa rispetto alla base $\phi$, ci dà
-\begin{equation}\label{dodicii}
-\mathbf{y} = A\mathbf{x} + \mathbf{c}.    
-\end{equation}
+% \vspace{10pt}
 
-\vspace{10pt}
+% \begin{center}
+% \begin{tikzpicture}[>=stealth, node distance=4cm]
+%     % Definizione dei nodi
+%     \node (E) at (0,0) {$E$};
+%     \node (F) at (4,0) {$F$};
+%     \node (P) at (2,3) {$P$};
+% 
+%     % Freccia da E a P con etichetta \mathbf{x},\psi_\mathbf{A}
+%     \draw[->, thick] (E) --  
+%         node[midway, left] {\(\mathbf{x},\,\psi_{\mathbf{A}}\,\)} (P);
+% 
+%     % Freccia da F a P con etichetta \mathbf{y},\phi_\mathbf{A}
+%     \draw[->, thick] (F) -- 
+%         node[midway, right] {\(\,\mathbf{y},\,\phi_{\mathbf{A}}\)} (P);
+% 
+%     % Freccia da F a E con etichetta \mathbf{c},\phi_\mathbf{A}
+%     \draw[->, thick] (F) -- 
+%         node[midway, below] {\(\mathbf{c},\,\phi_{\mathbf{A}}\)} (E);
+% \end{tikzpicture}
+% \end{center}
 
-\begin{center}
-\begin{tikzpicture}[>=stealth, node distance=4cm]
-    % Definizione dei nodi
-    \node (E) at (0,0) {$E$};
-    \node (F) at (4,0) {$F$};
-    \node (P) at (2,3) {$P$};
+% \vspace{10pt}
 
-    % Freccia da E a P con etichetta \mathbf{x},\psi_\mathbf{A}
-    \draw[->, thick] (E) --  
-        node[midway, left] {\(\mathbf{x},\,\psi_{\mathbf{A}}\,\)} (P);
+% La \ref{dodicii} è la formula del \textbf{cambiamento di coordinate affini dal riferimento} $E \mathbf{e}_1, \dots, \mathbf{e}_n$ \textbf{al riferimento} $F \mathbf{f}_1, \dots, \mathbf{f}_n$.
 
-    % Freccia da F a P con etichetta \mathbf{y},\phi_\mathbf{A}
-    \draw[->, thick] (F) -- 
-        node[midway, right] {\(\,\mathbf{y},\,\phi_{\mathbf{A}}\)} (P);
+% La \ref{dodicii} dipende solo dalle basi $\psi$ ed $\phi$ e dai punti $E$ ed $F$, le origini nei due riferimenti affini assegnati.
 
-    % Freccia da F a E con etichetta \mathbf{c},\phi_\mathbf{A}
-    \draw[->, thick] (F) -- 
-        node[midway, below] {\(\mathbf{c},\,\phi_{\mathbf{A}}\)} (E);
-\end{tikzpicture}
-\end{center}
+% Nel caso in cui lo spazio $\mathbf{A}$ è uno spazio affine reale, due riferimenti affini $E \mathbf{e}_1, \dots, \mathbf{e}_n$ e $F \mathbf{f}_1, \dots, \mathbf{f}_n$ si diranno \textbf{orientati concordemente} 
+% (\textbf{orientati discordemente}) se le basi $\phi$ ed $\psi$ sono orientate concordemente (orientate discordemente).
 
-\vspace{10pt}
+% \vspace{10pt}
 
-La \ref{dodicii} è la formula del \textbf{cambiamento di coordinate affini dal riferimento} $E \mathbf{e}_1, \dots, \mathbf{e}_n$ \textbf{al riferimento} $F \mathbf{f}_1, \dots, \mathbf{f}_n$.
+% Consideriamo l'insieme $\mathcal{R}$ di tutti i riferimenti affini di $\mathbf{A}$, e in $\mathcal{R}$ diciamo equivalenti due riferimenti se sono orientati concordemente. 
+% Procedendo in modo simile al caso vettoriale, possiamo verificare che quella che abbiamo definito è effettivamente una relazione di equivalenza, 
+% e che le classi di equivalenza sono due. Esse si dicono le \textbf{orientazioni di $\mathbf{A}$}. 
+% L'orientazione cui un dato riferimento $E \mathbf{e}_1, \dots, \mathbf{e}_n \in \mathcal{R}$ appartiene è \textbf{l'orientazione di $\mathbf{A}$ definita da} $E \mathbf{e}_1, \dots, \mathbf{e}_n$.
 
-La \ref{dodicii} dipende solo dalle basi $\psi$ ed $\phi$ e dai punti $E$ ed $F$, le origini nei due riferimenti affini assegnati.
+% \vspace{10pt}
 
-Nel caso in cui lo spazio $\mathbf{A}$ è uno spazio affine reale, due riferimenti affini $E \mathbf{e}_1, \dots, \mathbf{e}_n$ e $F \mathbf{f}_1, \dots, \mathbf{f}_n$ si diranno \textbf{orientati concordemente} 
-(\textbf{orientati discordemente}) se le basi $\phi$ ed $\psi$ sono orientate concordemente (orientate discordemente).
+% Se $\psi_{\mathbf{A}}'=E\mathbf{e}_1, \dots, \mathbf{e}_n$ è un riferimento affine dello spazio affine $\mathbf{A}$ e se un secondo riferimento affine 
+% assegnato è $\psi_{\mathbf{A}}''=F\mathbf{e}_1, \dots, \mathbf{e}_n$, cioè è ottenuto solo cambiando la posizione dell'origine e lasciando invariata la base dei vettori, 
+% la formula \ref{dodicii} si riduce alla seguente:
+% \begin{equation}\label{dodiciquattro}
+% \mathbf{y} = \mathbf{x} + \mathbf{c}.    
+% \end{equation}
 
-\vspace{10pt}
+% \vspace{10pt}
 
-Consideriamo l'insieme $\mathcal{R}$ di tutti i riferimenti affini di $\mathbf{A}$, e in $\mathcal{R}$ diciamo equivalenti due riferimenti se sono orientati concordemente. 
-Procedendo in modo simile al caso vettoriale, possiamo verificare che quella che abbiamo definito è effettivamente una relazione di equivalenza, 
-e che le classi di equivalenza sono due. Esse si dicono le \textbf{orientazioni di $\mathbf{A}$}. 
-L'orientazione cui un dato riferimento $E \mathbf{e}_1, \dots, \mathbf{e}_n \in \mathcal{R}$ appartiene è \textbf{l'orientazione di $\mathbf{A}$ definita da} $E \mathbf{e}_1, \dots, \mathbf{e}_n$.
+% \begin{center}
+% \begin{tikzpicture}[>=stealth, node distance=4cm]
+%     % Definizione dei nodi
+%     \node (E) at (0,0) {$E$};
+%     \node (F) at (4,0) {$F$};
+%     \node (P) at (2,3) {$P$};
+% 
+%     % Freccia da E a P con etichetta \mathbf{x},\psi_\mathbf{A}
+%     \draw[->, thick] (E) --  
+%         node[midway, left] {\(\mathbf{x},\,\psi_{\mathbf{A}}'\,\)} (P);
+% 
+%     % Freccia da F a P con etichetta \mathbf{y},\phi_\mathbf{A}
+%     \draw[->, thick] (F) -- 
+%         node[midway, right] {\(\,\mathbf{y},\,\psi_{\mathbf{A}}''\)} (P);
+% 
+%     % Freccia da F a E con etichetta \mathbf{c},\phi_\mathbf{A}
+%     \draw[->, thick] (F) -- 
+%         node[midway, below] {\(\mathbf{c},\,\psi_{\mathbf{A}}''\)} (E);
+% \end{tikzpicture}
+% \end{center}
 
-\vspace{10pt}
+% \vspace{10pt}
 
-Se $\psi_{\mathbf{A}}'=E\mathbf{e}_1, \dots, \mathbf{e}_n$ è un riferimento affine dello spazio affine $\mathbf{A}$ e se un secondo riferimento affine 
-assegnato è $\psi_{\mathbf{A}}''=F\mathbf{e}_1, \dots, \mathbf{e}_n$, cioè è ottenuto solo cambiando la posizione dell'origine e lasciando invariata la base dei vettori, 
-la formula \ref{dodicii} si riduce alla seguente:
-\begin{equation}\label{dodiciquattro}
-\mathbf{y} = \mathbf{x} + \mathbf{c}.    
-\end{equation}
+% Se invece il secondo riferimento è $E\mathbf{f}_1, \dots, \mathbf{f}_n$, cioè è ottenuto cambiando la base dei vettori, ma non l'origine, la formula \ref{dodicii} diventa
+% \begin{equation}\label{dodicicinque}
+% \mathbf{y} = A\mathbf{x}
+% \end{equation}
 
-\vspace{10pt}
+% \vspace{10pt}
 
-\begin{center}
-\begin{tikzpicture}[>=stealth, node distance=4cm]
-    % Definizione dei nodi
-    \node (E) at (0,0) {$E$};
-    \node (F) at (4,0) {$F$};
-    \node (P) at (2,3) {$P$};
+% \begin{center}
+% \begin{tikzpicture}[>=stealth, node distance=4cm]
+%     % Definizione dei nodi
+%     \node (E) at (0,0) {$E$};
+%     \node (P) at (2,3) {$P$};
+% 
+%     % Freccia da E a P con etichetta \mathbf{x},\psi_\mathbf{A}
+%     \draw[->, thick] (E) --  
+%         node[midway, left] {\(\mathbf{x},\,\psi_{\mathbf{A}}\,\)} (P);
+%     \draw[->, thick] (E) --  
+%         node[midway, right] {\(\mathbf{y},\,\phi_{\mathbf{A}}\,\)} (P);
+% \end{tikzpicture}
+% \end{center}
 
-    % Freccia da E a P con etichetta \mathbf{x},\psi_\mathbf{A}
-    \draw[->, thick] (E) --  
-        node[midway, left] {\(\mathbf{x},\,\psi_{\mathbf{A}}'\,\)} (P);
+% \vspace{10pt}
 
-    % Freccia da F a P con etichetta \mathbf{y},\phi_\mathbf{A}
-    \draw[->, thick] (F) -- 
-        node[midway, right] {\(\,\mathbf{y},\,\psi_{\mathbf{A}}''\)} (P);
+% \begin{bxthm}
+% \begin{prop}
+% Ogni cambiamento di riferimento affine si può ottenere come la composizione di uno del tipo \ref{dodiciquattro} seguito da uno del tipo \ref{dodicicinque}, o viceversa.     
+% \end{prop}
+% \end{bxthm}
+% \begin{proof}
+%     Da fare.
+% \end{proof}
 
-    % Freccia da F a E con etichetta \mathbf{c},\phi_\mathbf{A}
-    \draw[->, thick] (F) -- 
-        node[midway, below] {\(\mathbf{c},\,\psi_{\mathbf{A}}''\)} (E);
-\end{tikzpicture}
-\end{center}
+% \vspace{10pt}
 
-\vspace{10pt}
+% Siano 
+% \[ \psi_\mathbf{A}=E\mathbf{e}_1, \dots, \mathbf{e}_n,\quad \phi_\mathbf{A}=F\mathbf{f}_1, \dots, \mathbf{f}_n,\quad \varphi_\mathbf{A}=G\mathbf{g}_1, \dots, \mathbf{g}_n \]
+% tre riferimenti affini in $\mathbf{A}$, e siano 
+% \[ \mathbf{x} = (x_1, \dots, x_n),\quad \mathbf{y} = (y_1, \dots, y_n),\quad \mathbf{z} = (z_1, \dots, z_n) \]
+% i vettori delle coordinate di un punto $P \in \mathbf{A}$ rispetto ad ognuno dei riferimenti dati. 
 
-Se invece il secondo riferimento è $E\mathbf{f}_1, \dots, \mathbf{f}_n$, cioè è ottenuto cambiando la base dei vettori, ma non l'origine, la formula \ref{dodicii} diventa
-\begin{equation}\label{dodicicinque}
-\mathbf{y} = A\mathbf{x}
-\end{equation}
+% \vspace{10pt}
 
-\vspace{10pt}
+% \begin{center}
+% \begin{tikzpicture}[>=stealth, node distance=4cm]
+%     % Definizione dei nodi
+%     \node (E) at (1,3) {$E$};
+%     \node (F) at (2,1) {$F$};
+%     \node (G) at (7,1) {$G$};
+%     \node (P) at (6,4) {$P$};
+% 
+%     \draw[->, thick] (E) --  node[midway, above] {\(\mathbf{x},\,\psi_{\mathbf{A}}\,\)} (P);
+%     \draw[->, thick] (E) --  node[midway, left] {\(\mathbf{c},\,\phi_{\mathbf{A}}\,\)} (F);
+%     \draw[->, thick] (F) --  node[midway, right] {\(\,\mathbf{y},\,\phi_{\mathbf{A}}\,\)} (P);
+%     \draw[->, thick] (G) --  node[midway, above] {\(\mathbf{d},\,\varphi_{\mathbf{A}}\,\)} (F);
+%     \draw[->, thick] (G) --  node[midway, right] {\(\mathbf{z},\,\varphi_{\mathbf{A}}\,\)} (P);
+%     % Freccia da E a P con etichetta \mathbf{x},\psi_\mathbf{A}
+%     %\draw[->, thick] (E) --  
+%     %    node[midway, left] {\(\mathbf{x},\,\psi_{\mathbf{A}}\,\)} (P);
+% 
+% \end{tikzpicture}
+% \end{center}
 
-\begin{center}
-\begin{tikzpicture}[>=stealth, node distance=4cm]
-    % Definizione dei nodi
-    \node (E) at (0,0) {$E$};
-    \node (P) at (2,3) {$P$};
+% \vspace{10pt}
 
-    % Freccia da E a P con etichetta \mathbf{x},\psi_\mathbf{A}
-    \draw[->, thick] (E) --  
-        node[midway, left] {\(\mathbf{x},\,\psi_{\mathbf{A}}\,\)} (P);
-    \draw[->, thick] (E) --  
-        node[midway, right] {\(\mathbf{y},\,\phi_{\mathbf{A}}\,\)} (P);
-\end{tikzpicture}
-\end{center}
+% Siano $A=M_{\phi,\psi}(\mathbf{1_V}), B=M_{\varphi,\phi}(\mathbf{1_V})$, e
+% \[\overrightarrow{EP}=\sum_{j=1}^{n}x_j\mathbf{e}_j,\quad\overrightarrow{FP}=\sum_{j=1}^{n}y_j\mathbf{f}_j,\quad\overrightarrow{GP}=\sum_{j=1}^{n}z_j\mathbf{g}_j\]
+% Supponiamo che il passaggio dalle coordinate $\mathbf{x}$ alle $\mathbf{y}$ sia dato da 
+% \[\mathbf{y}=A\mathbf{x}+\mathbf{c}\]
+% e che quello dalle $\mathbf{y}$ alle $\mathbf{z}$ sia dato da
+% \[\mathbf{z}=B\mathbf{y}+\mathbf{d}.\]
+% Allora la formula che esprime il passaggio dalla $\mathbf{x}$ alle $\mathbf{z}$ si ottiene al seguente modo mediante sostituzione:
+% \[\mathbf{z}=B\mathbf{y}+\mathbf{d} = \mathbf{z}=B(A\mathbf{x}+\mathbf{c})+\mathbf{d}= \mathbf{z}=BA\mathbf{x}+(B\mathbf{c}+\mathbf{d}).\]
 
-\vspace{10pt}
+% \vspace{10pt}
 
-\begin{bxthm}
-\begin{prop}
-Ogni cambiamento di riferimento affine si può ottenere come la composizione di uno del tipo \ref{dodiciquattro} seguito da uno del tipo \ref{dodicicinque}, o viceversa.     
-\end{prop}
-\end{bxthm}
-\begin{proof}
-    Da fare.
-\end{proof}
+% Con le notazioni della \ref{dodicii} la formula che esprime il passaggio dalle coordinate $\mathbf{y}$ alle $\mathbf{x}$, cioè il passaggio inverso di quello dato dalla \ref{dodicii}, è
+% \begin{equation}\label{dodicisette}
+% \mathbf{x} = A^{-1} \mathbf{y} - A^{-1} \mathbf{c}.
+% \end{equation}
+% Infatti, sostituendo la \ref{dodicii} nel secondo membro della \ref{dodicisette} si ottiene l'identità $\mathbf{x} = \mathbf{x}$.
 
-\vspace{10pt}
+% \vspace{10pt}
 
-Siano 
-\[ \psi_\mathbf{A}=E\mathbf{e}_1, \dots, \mathbf{e}_n,\quad \phi_\mathbf{A}=F\mathbf{f}_1, \dots, \mathbf{f}_n,\quad \varphi_\mathbf{A}=G\mathbf{g}_1, \dots, \mathbf{g}_n \]
-tre riferimenti affini in $\mathbf{A}$, e siano 
-\[ \mathbf{x} = (x_1, \dots, x_n),\quad \mathbf{y} = (y_1, \dots, y_n),\quad \mathbf{z} = (z_1, \dots, z_n) \]
-i vettori delle coordinate di un punto $P \in \mathbf{A}$ rispetto ad ognuno dei riferimenti dati. 
+% \paragraph{Cambiamento di coordinate affini}
+% Sia $\mathbf{A}$ un $\mathbb{R}$-spazio affine di dimensione $3$, e sia $\mathbf{V}$ lo spazio vettoriale associato. 
+% Siano 
+% \[\psi_\mathbf{A}=E\mathbf{e}_1\mathbf{e}_2\mathbf{e}_3,\quad\textup{e}\quad\phi_\mathbf{A}=F\mathbf{f}_1\mathbf{f}_2\mathbf{f}_3\]
+% due riferimenti affini in $\mathbf{A}$. 
+% Supponiamo che
+% \[
+% \mathbf{f}_1 = \mathbf{e}_1 + \mathbf{e}_2,\quad \mathbf{f}_2 = -\mathbf{e}_1 + \mathbf{e}_3,\quad \mathbf{f}_3 = \mathbf{e}_1 + \mathbf{e}_2 + \mathbf{e}_3,
+% \]
+% e che $F$ abbia coordinate $(5,\ -\frac{3}{2},\ \frac{1}{2})$ nel riferimento $\psi_\mathbf{A}$. 
+% Per conoscere la formula di cambiamento di coordinate dal riferimento $\psi_\mathbf{A}$ al riferimento 
+% $\phi_\mathbf{A}$ occorre conoscere la matrice $M_{\phi,\psi}(\mathbf{1_V})$, nonché le coordinate $c_1,\ c_2,\ c_3$ di $E$ 
+% rispetto a $\phi_\mathbf{A}$. Si ha
+% \[
+% M_{\psi,\phi}(\mathbf{1_V}) = 
+% \begin{pmatrix}
+% 1 & -1 & 1 \\
+% 1 & 0 & 1 \\
+% 0 & 1 & 1
+% \end{pmatrix}
+% \]
+% e quindi
+% \[
+% M_{\phi,\psi}(\mathbf{1_V}) = M_{\psi,\phi}(\mathbf{1_V})^{-1} =
+% \begin{pmatrix}
+% -1 & 2 & -1 \\
+% -1 & 1 & 0 \\
+% 1 & -1 & 1
+% \end{pmatrix}\;.
+% \]
+% Per determinare $(c_1,\ c_2,\ c_3)$ utilizziamo la matrice $M_{\phi,\psi}(\mathbf{1_V})$ che abbiamo appena calcolato. 
+% Si ha
+% \[
+% c_1\mathbf{f}_1 + c_2\mathbf{f}_2 + c_3\mathbf{f}_3 = \overrightarrow{FE} = -\overrightarrow{EF} = -\left(5\mathbf{e}_1 - \frac{3}{2}\mathbf{e}_2 + \frac{1}{2}\mathbf{e}_3\right).
+% \]
+% Pertanto
+% \[
+% \begin{pmatrix}
+% c_1 \\
+% c_2 \\
+% c_3
+% \end{pmatrix}
+% = M_{\phi,\psi}(\mathbf{1_V})
+% \begin{pmatrix}
+% -5 \\
+% \frac{3}{2} \\
+% -\frac{1}{2}
+% \end{pmatrix}
+% =
+% \begin{pmatrix}
+% -1 & 2 & -1 \\
+% -1 & 1 & 0 \\
+% 1 & -1 & 1
+% \end{pmatrix}
+% \begin{pmatrix}
+% -5 \\
+% \frac{3}{2} \\
+% -\frac{1}{2}
+% \end{pmatrix}
+% =
+% \begin{pmatrix}
+% \frac{17}{2} \\
+% \frac{13}{2} \\
+% -7
+% \end{pmatrix}\;.
+% \]
+% In conclusione, la formula del cambiamento di coordinate dal riferimento
+% $\psi_\mathbf{A}$ al riferimento $\phi_\mathbf{A}$ è
+% \[
+% \begin{pmatrix}
+% y_1 \\
+% y_2 \\
+% y_3
+% \end{pmatrix}
+% =
+% \begin{pmatrix}
+% -1 & 2 & -1 \\
+% -1 & 1 & 0 \\
+% 1 & -1 & 1
+% \end{pmatrix}
+% \begin{pmatrix}
+% x_1 \\
+% x_2 \\
+% x_3
+% \end{pmatrix}
+% +
+% \begin{pmatrix}
+% \frac{17}{2} \\
+% \frac{13}{2} \\
+% -7
+% \end{pmatrix}
+% \]
+% ovvero:
+% \[
+% y_1 = -x_1 + 2x_2 - x_3 + \frac{17}{2} \quad\quad
+% y_2 = -x_1 + x_2 + \frac{13}{2} \quad\quad
+% y_3 = x_1 - x_2 + x_3 - 7\;.
+% \]
 
-\vspace{10pt}
+% \vspace{10pt}
 
-\begin{center}
-\begin{tikzpicture}[>=stealth, node distance=4cm]
-    % Definizione dei nodi
-    \node (E) at (1,3) {$E$};
-    \node (F) at (2,1) {$F$};
-    \node (G) at (7,1) {$G$};
-    \node (P) at (6,4) {$P$};
-
-    \draw[->, thick] (E) --  node[midway, above] {\(\mathbf{x},\,\psi_{\mathbf{A}}\,\)} (P);
-    \draw[->, thick] (E) --  node[midway, left] {\(\mathbf{c},\,\phi_{\mathbf{A}}\,\)} (F);
-    \draw[->, thick] (F) --  node[midway, right] {\(\,\mathbf{y},\,\phi_{\mathbf{A}}\,\)} (P);
-    \draw[->, thick] (G) --  node[midway, above] {\(\mathbf{d},\,\varphi_{\mathbf{A}}\,\)} (F);
-    \draw[->, thick] (G) --  node[midway, right] {\(\mathbf{z},\,\varphi_{\mathbf{A}}\,\)} (P);
-    % Freccia da E a P con etichetta \mathbf{x},\psi_\mathbf{A}
-    %\draw[->, thick] (E) --  
-    %    node[midway, left] {\(\mathbf{x},\,\psi_{\mathbf{A}}\,\)} (P);
-
-\end{tikzpicture}
-\end{center}
-
-\vspace{10pt}
-
-Siano $A=M_{\phi,\psi}(\mathbf{1_V}), B=M_{\varphi,\phi}(\mathbf{1_V})$, e
-\[\overrightarrow{EP}=\sum_{j=1}^{n}x_j\mathbf{e}_j,\quad\overrightarrow{FP}=\sum_{j=1}^{n}y_j\mathbf{f}_j,\quad\overrightarrow{GP}=\sum_{j=1}^{n}z_j\mathbf{g}_j\]
-Supponiamo che il passaggio dalle coordinate $\mathbf{x}$ alle $\mathbf{y}$ sia dato da 
-\[\mathbf{y}=A\mathbf{x}+\mathbf{c}\]
-e che quello dalle $\mathbf{y}$ alle $\mathbf{z}$ sia dato da
-\[\mathbf{z}=B\mathbf{y}+\mathbf{d}.\]
-Allora la formula che esprime il passaggio dalla $\mathbf{x}$ alle $\mathbf{z}$ si ottiene al seguente modo mediante sostituzione:
-\[\mathbf{z}=B\mathbf{y}+\mathbf{d} = \mathbf{z}=B(A\mathbf{x}+\mathbf{c})+\mathbf{d}= \mathbf{z}=BA\mathbf{x}+(B\mathbf{c}+\mathbf{d}).\]
-
-\vspace{10pt}
-
-Con le notazioni della \ref{dodicii} la formula che esprime il passaggio dalle coordinate $\mathbf{y}$ alle $\mathbf{x}$, cioè il passaggio inverso di quello dato dalla \ref{dodicii}, è
-\begin{equation}\label{dodicisette}
-\mathbf{x} = A^{-1} \mathbf{y} - A^{-1} \mathbf{c}.
-\end{equation}
-Infatti, sostituendo la \ref{dodicii} nel secondo membro della \ref{dodicisette} si ottiene l'identità $\mathbf{x} = \mathbf{x}$.
-
-\vspace{10pt}
-
-\paragraph{Cambiamento di coordinate affini}
-Sia $\mathbf{A}$ un $\mathbb{R}$-spazio affine di dimensione $3$, e sia $\mathbf{V}$ lo spazio vettoriale associato. 
-Siano 
-\[\psi_\mathbf{A}=E\mathbf{e}_1\mathbf{e}_2\mathbf{e}_3,\quad\textup{e}\quad\phi_\mathbf{A}=F\mathbf{f}_1\mathbf{f}_2\mathbf{f}_3\]
-due riferimenti affini in $\mathbf{A}$. 
-Supponiamo che
-\[
-\mathbf{f}_1 = \mathbf{e}_1 + \mathbf{e}_2,\quad \mathbf{f}_2 = -\mathbf{e}_1 + \mathbf{e}_3,\quad \mathbf{f}_3 = \mathbf{e}_1 + \mathbf{e}_2 + \mathbf{e}_3,
-\]
-e che $F$ abbia coordinate $(5,\ -\frac{3}{2},\ \frac{1}{2})$ nel riferimento $\psi_\mathbf{A}$. 
-Per conoscere la formula di cambiamento di coordinate dal riferimento $\psi_\mathbf{A}$ al riferimento 
-$\phi_\mathbf{A}$ occorre conoscere la matrice $M_{\phi,\psi}(\mathbf{1_V})$, nonché le coordinate $c_1,\ c_2,\ c_3$ di $E$ 
-rispetto a $\phi_\mathbf{A}$. Si ha
-\[
-M_{\psi,\phi}(\mathbf{1_V}) = 
-\begin{pmatrix}
-1 & -1 & 1 \\
-1 & 0 & 1 \\
-0 & 1 & 1
-\end{pmatrix}
-\]
-e quindi
-\[
-M_{\phi,\psi}(\mathbf{1_V}) = M_{\psi,\phi}(\mathbf{1_V})^{-1} =
-\begin{pmatrix}
--1 & 2 & -1 \\
--1 & 1 & 0 \\
-1 & -1 & 1
-\end{pmatrix}\;.
-\]
-Per determinare $(c_1,\ c_2,\ c_3)$ utilizziamo la matrice $M_{\phi,\psi}(\mathbf{1_V})$ che abbiamo appena calcolato. 
-Si ha
-\[
-c_1\mathbf{f}_1 + c_2\mathbf{f}_2 + c_3\mathbf{f}_3 = \overrightarrow{FE} = -\overrightarrow{EF} = -\left(5\mathbf{e}_1 - \frac{3}{2}\mathbf{e}_2 + \frac{1}{2}\mathbf{e}_3\right).
-\]
-Pertanto
-\[
-\begin{pmatrix}
-c_1 \\
-c_2 \\
-c_3
-\end{pmatrix}
-= M_{\phi,\psi}(\mathbf{1_V})
-\begin{pmatrix}
--5 \\
-\frac{3}{2} \\
--\frac{1}{2}
-\end{pmatrix}
-=
-\begin{pmatrix}
--1 & 2 & -1 \\
--1 & 1 & 0 \\
-1 & -1 & 1
-\end{pmatrix}
-\begin{pmatrix}
--5 \\
-\frac{3}{2} \\
--\frac{1}{2}
-\end{pmatrix}
-=
-\begin{pmatrix}
-\frac{17}{2} \\
-\frac{13}{2} \\
--7
-\end{pmatrix}\;.
-\]
-In conclusione, la formula del cambiamento di coordinate dal riferimento
-$\psi_\mathbf{A}$ al riferimento $\phi_\mathbf{A}$ è
-\[
-\begin{pmatrix}
-y_1 \\
-y_2 \\
-y_3
-\end{pmatrix}
-=
-\begin{pmatrix}
--1 & 2 & -1 \\
--1 & 1 & 0 \\
-1 & -1 & 1
-\end{pmatrix}
-\begin{pmatrix}
-x_1 \\
-x_2 \\
-x_3
-\end{pmatrix}
-+
-\begin{pmatrix}
-\frac{17}{2} \\
-\frac{13}{2} \\
--7
-\end{pmatrix}
-\]
-ovvero:
-\[
-y_1 = -x_1 + 2x_2 - x_3 + \frac{17}{2} \quad\quad
-y_2 = -x_1 + x_2 + \frac{13}{2} \quad\quad
-y_3 = x_1 - x_2 + x_3 - 7\;.
-\]
-
-\vspace{10pt}
-
-\begin{bxthm}
-\begin{prop}
-Siano \( \psi = \{\mathbf{e}_1, \dots, \mathbf{e}_n\}, \quad \phi = \{\mathbf{f}_1, \dots, \mathbf{f}_n\} \) 
-due basi del \( \mathbb{K} \)-spazio vettoriale \( \mathbf{V} \), e siano
-\[
-\eta = \{\eta_1, \dots, \eta_n\}, \quad \beta = \{\beta_1, \dots, \beta_n\}
-\]
-le basi di \( \mathbf{V^*} \) duali di \( \psi \) e di \( \phi \) rispettivamente. Allora
-\[
-M_{\beta, \eta}(\mathbf{1_{V^*}}) = \left[ M_{\psi, \phi}(\mathbf{1_V}) \right]^t.
-\]
-\end{prop}
-\end{bxthm}
-\begin{proof}
-    Da fare.
-\end{proof}
+% \begin{bxthm}
+% \begin{prop}
+% Siano \( \psi = \{\mathbf{e}_1, \dots, \mathbf{e}_n\}, \quad \phi = \{\mathbf{f}_1, \dots, \mathbf{f}_n\} \) 
+% due basi del \( \mathbb{K} \)-spazio vettoriale \( \mathbf{V} \), e siano
+% \[
+% \eta = \{\eta_1, \dots, \eta_n\}, \quad \beta = \{\beta_1, \dots, \beta_n\}
+% \]
+% le basi di \( \mathbf{V^*} \) duali di \( \psi \) e di \( \phi \) rispettivamente. Allora
+% \[
+% M_{\beta, \eta}(\mathbf{1_{V^*}}) = \left[ M_{\psi, \phi}(\mathbf{1_V}) \right]^t.
+% \]
+% \end{prop}
+% \end{bxthm}
+% \begin{proof}
+%     Da fare.
+% \end{proof}
 
 \vspace{50pt}
 \subsection{Operatori Lineari}
@@ -10120,91 +9991,91 @@ $\forall\,\mathbf{a},\mathbf{b},\mathbf{c}\in\mathbf{V}\setminus\{\mathbf{0}\},\
     Da fare.
 \end{proof}
 
-\vspace{10pt}
-
-Si osservi che per la definizione di angolo orientato è stata fissata una base ortonormale di $\mathbf{V}$. 
-In realtà la definizione dipende dall'orientazione di $\mathbf{V}$ definita dalla base fissata.
-
-\vspace{10pt}
-
-Infatti, sia $\{\mathbf{i}', \mathbf{j}'\}$ un'altra base ortonormale, concordemente orientata con 
-$\{\mathbf{i}, \mathbf{j}\}$, e sia
-\[A = \begin{pmatrix}
-\cos\alpha & -\sin\alpha \\
-\sin\alpha & \cos\alpha
-\end{pmatrix}\]
-la matrice del cambiamento di coordinate da $\{\mathbf{i}, \mathbf{j}\}$ a $\{\mathbf{i}', \mathbf{j}'\}$. 
-Se
-\[\mathbf{u} = \cos\varphi \mathbf{i} + \sin\varphi \mathbf{j} = \cos\varphi' \mathbf{i'} + \sin\varphi' \mathbf{j'} \quad\quad\mathbf{v} = \cos\psi \mathbf{i} + \sin\psi \mathbf{j} = \cos\psi' \mathbf{i'} + \sin\psi' \mathbf{j'}\]
-allora si ha
-\[\begin{pmatrix}
-\cos\varphi' \\
-\sin\varphi'
-\end{pmatrix} = \begin{pmatrix}
-\cos\alpha & -\sin\alpha \\
-\sin\alpha & \cos\alpha
-\end{pmatrix} \begin{pmatrix}
-\cos\varphi \\
-\sin\varphi
-\end{pmatrix} = \begin{pmatrix}
-\cos(\varphi + \alpha) \\
-\sin(\varphi + \alpha)
-\end{pmatrix}\]
-e similmente
-\[\begin{pmatrix}
-\cos\psi' \\
-\sin\psi'
-\end{pmatrix} = \begin{pmatrix}
-\cos\alpha & -\sin\alpha \\
-\sin\alpha & \cos\alpha
-\end{pmatrix} \begin{pmatrix}
-\cos\psi \\
-\sin\psi
-\end{pmatrix} = \begin{pmatrix}
-\cos(\psi + \alpha) \\
-\sin(\psi + \alpha)
-\end{pmatrix}\]
-Quindi si ha 
-\[\psi' - \varphi' \equiv (\psi + \alpha) - (\varphi + \alpha) \equiv \psi - \varphi \pmod{2\pi},\]
-e pertanto le due basi definiscono lo stesso angolo orientato tra $\mathbf{u}$ e $\mathbf{v}$.
-
-\vspace{10pt}
-
-L'insieme $\mathbb{C}$ dei numeri complessi è uno spazio vettoriale reale di dimensione $2$. La base $\{1, i\}$ 
-identifica $\mathbb{C}$ con $\mathbb{R}^2$ associando ad un numero complesso $a + ib$ la coppia $(a, b)$. 
-Se $z = a + ib \in \mathbb{C}$, il \textbf{modulo} di $z$, che è definito come
-\[|z| = \sqrt{z\bar{z}} = \sqrt{a^2 + b^2}\]
-è uguale a $\|(a, b)\|$. Ad ogni $z \in \mathbb{C}^*$ possiamo associare il numero complesso
-\[\frac{z}{|z|} = \frac{a}{|z|} + i\frac{b}{|z|}\]
-che ha modulo 1, e quindi è della forma
-\[\frac{z}{|z|} = \cos\theta + i\sin\theta\]
-L'angolo individuato da $\theta$ si dice l'\textbf{argomento} di $z$ e si denota con $\arg(z)$; 
-la determinazione principale di $\arg(z)$ è talvolta chiamata \textbf{argomento principale} di $z$.
-Poiché 
-\[z = |z| \frac{z}{|z|}\]
-deduciamo da quanto detto che ogni numero complesso $z \neq 0$ si scrive nella forma seguente:
-\begin{equation}\label{diciassettedodici}
-z = |z|(\cos\theta + i\sin\theta)
-\end{equation}
-dove $\theta$ è una determinazione di $\arg(z)$. La \ref{diciassettedodici} è una 
-\textbf{rappresentazione trigonometrica} di $z$.
-Se $z, w \in \mathbb{C}^*$ allora si ha 
-\[|zw| = |z||w|\quad\textup{e}\quad\arg(zw) = \arg(z) + \arg(w).\]
-Ciò può essere verificato per mezzo delle rappresentazioni trigonometriche nel modo seguente. 
-Siano $\theta \in \arg(z)$, $\varphi \in \arg(w)$. Allora
-\begin{align*}
-zw &= |z|(\cos\theta + i\sin\theta)|w|(\cos\varphi + i\sin\varphi) = \\
-&= |z||w|(\cos\theta\cos\varphi - \sin\theta\sin\varphi + i(\cos\theta\sin\varphi + \sin\theta\cos\varphi)) = \\
-&= |z||w|[\cos(\theta + \varphi) + i\sin(\theta + \varphi)]
-\end{align*}
-
-\vspace{10pt}
-
-Consideriamo lo spazio vettoriale $\mathbb{R}[X]$ dei polinomi a coefficienti reali in una indeterminata $X$. 
-Per ogni $f(X), g(X) \in \mathbb{R}[X]$ poniamo
-\[\langle f, g \rangle = \int_{-1}^{1} f(x)g(x) \,dx.\]
-Dalle proprietà dell'integrale definito segue subito che $\langle , \rangle$ è un prodotto scalare. 
-Dotato di questo prodotto scalare, $\mathbb{R}[X]$ è uno spazio vettoriale euclideo che non ha dimensione finita.
+% \vspace{10pt}
+% 
+% Si osservi che per la definizione di angolo orientato è stata fissata una base ortonormale di $\mathbf{V}$. 
+% In realtà la definizione dipende dall'orientazione di $\mathbf{V}$ definita dalla base fissata.
+% 
+% \vspace{10pt}
+% 
+% Infatti, sia $\{\mathbf{i}', \mathbf{j}'\}$ un'altra base ortonormale, concordemente orientata con 
+% $\{\mathbf{i}, \mathbf{j}\}$, e sia
+% \[A = \begin{pmatrix}
+% \cos\alpha & -\sin\alpha \\
+% \sin\alpha & \cos\alpha
+% \end{pmatrix}\]
+% la matrice del cambiamento di coordinate da $\{\mathbf{i}, \mathbf{j}\}$ a $\{\mathbf{i}', \mathbf{j}'\}$. 
+% Se
+% \[\mathbf{u} = \cos\varphi \mathbf{i} + \sin\varphi \mathbf{j} = \cos\varphi' \mathbf{i'} + \sin\varphi' \mathbf{j'} \quad\quad\mathbf{v} = \cos\psi \mathbf{i} + \sin\psi \mathbf{j} = \cos\psi' \mathbf{i'} + \sin\psi' \mathbf{j'}\]
+% allora si ha
+% \[\begin{pmatrix}
+% \cos\varphi' \\
+% \sin\varphi'
+% \end{pmatrix} = \begin{pmatrix}
+% \cos\alpha & -\sin\alpha \\
+% \sin\alpha & \cos\alpha
+% \end{pmatrix} \begin{pmatrix}
+% \cos\varphi \\
+% \sin\varphi
+% \end{pmatrix} = \begin{pmatrix}
+% \cos(\varphi + \alpha) \\
+% \sin(\varphi + \alpha)
+% \end{pmatrix}\]
+% e similmente
+% \[\begin{pmatrix}
+% \cos\psi' \\
+% \sin\psi'
+% \end{pmatrix} = \begin{pmatrix}
+% \cos\alpha & -\sin\alpha \\
+% \sin\alpha & \cos\alpha
+% \end{pmatrix} \begin{pmatrix}
+% \cos\psi \\
+% \sin\psi
+% \end{pmatrix} = \begin{pmatrix}
+% \cos(\psi + \alpha) \\
+% \sin(\psi + \alpha)
+% \end{pmatrix}\]
+% Quindi si ha 
+% \[\psi' - \varphi' \equiv (\psi + \alpha) - (\varphi + \alpha) \equiv \psi - \varphi \pmod{2\pi},\]
+% e pertanto le due basi definiscono lo stesso angolo orientato tra $\mathbf{u}$ e $\mathbf{v}$.
+% 
+% \vspace{10pt}
+% 
+% L'insieme $\mathbb{C}$ dei numeri complessi è uno spazio vettoriale reale di dimensione $2$. La base $\{1, i\}$ 
+% identifica $\mathbb{C}$ con $\mathbb{R}^2$ associando ad un numero complesso $a + ib$ la coppia $(a, b)$. 
+% Se $z = a + ib \in \mathbb{C}$, il \textbf{modulo} di $z$, che è definito come
+% \[|z| = \sqrt{z\bar{z}} = \sqrt{a^2 + b^2}\]
+% è uguale a $\|(a, b)\|$. Ad ogni $z \in \mathbb{C}^*$ possiamo associare il numero complesso
+% \[\frac{z}{|z|} = \frac{a}{|z|} + i\frac{b}{|z|}\]
+% che ha modulo 1, e quindi è della forma
+% \[\frac{z}{|z|} = \cos\theta + i\sin\theta\]
+% L'angolo individuato da $\theta$ si dice l'\textbf{argomento} di $z$ e si denota con $\arg(z)$; 
+% la determinazione principale di $\arg(z)$ è talvolta chiamata \textbf{argomento principale} di $z$.
+% Poiché 
+% \[z = |z| \frac{z}{|z|}\]
+% deduciamo da quanto detto che ogni numero complesso $z \neq 0$ si scrive nella forma seguente:
+% \begin{equation}\label{diciassettedodici}
+% z = |z|(\cos\theta + i\sin\theta)
+% \end{equation}
+% dove $\theta$ è una determinazione di $\arg(z)$. La \ref{diciassettedodici} è una 
+% \textbf{rappresentazione trigonometrica} di $z$.
+% Se $z, w \in \mathbb{C}^*$ allora si ha 
+% \[|zw| = |z||w|\quad\textup{e}\quad\arg(zw) = \arg(z) + \arg(w).\]
+% Ciò può essere verificato per mezzo delle rappresentazioni trigonometriche nel modo seguente. 
+% Siano $\theta \in \arg(z)$, $\varphi \in \arg(w)$. Allora
+% \begin{align*}
+% zw &= |z|(\cos\theta + i\sin\theta)|w|(\cos\varphi + i\sin\varphi) = \\
+% &= |z||w|(\cos\theta\cos\varphi - \sin\theta\sin\varphi + i(\cos\theta\sin\varphi + \sin\theta\cos\varphi)) = \\
+% &= |z||w|[\cos(\theta + \varphi) + i\sin(\theta + \varphi)]
+% \end{align*}
+% 
+% \vspace{10pt}
+% 
+% Consideriamo lo spazio vettoriale $\mathbb{R}[X]$ dei polinomi a coefficienti reali in una indeterminata $X$. 
+% Per ogni $f(X), g(X) \in \mathbb{R}[X]$ poniamo
+% \[\langle f, g \rangle = \int_{-1}^{1} f(x)g(x) \,dx.\]
+% Dalle proprietà dell'integrale definito segue subito che $\langle , \rangle$ è un prodotto scalare. 
+% Dotato di questo prodotto scalare, $\mathbb{R}[X]$ è uno spazio vettoriale euclideo che non ha dimensione finita.
 
 \vspace{50pt}
 \section{Prodotto vettoriale}
