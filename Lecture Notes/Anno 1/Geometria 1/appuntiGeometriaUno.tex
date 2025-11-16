@@ -8551,70 +8551,70 @@ L'applicazione $h \oplus k$ è una forma bilineare, detta \textbf{somma diretta}
 Se $h$ e $k$ sono entrambe simmetriche (entrambe alterne) $h \oplus k$ è simmetrica (alterna).     
 \end{prop}
 \end{bxthm}
-\begin{proof}
-    Mostriamo che \(h\oplus k\) soddisfa i tre assiomi di bilinearità e conserva simmetria/alternanza.
-
-    \begin{itemize}
-        \item[FB1]  Siano \((\mathbf{u}_1,\mathbf{w}_1),(\mathbf{u}_2,\mathbf{w}_2),(\mathbf{u}_3,\mathbf{w}_3)\in \mathbf{V}^2\). Allora
-        \[
-        \begin{aligned}
-        (h\oplus k)\bigl((\mathbf{u}_1,\mathbf{w}_1)&+(\mathbf{u}_2,\mathbf{w}_2),(\mathbf{u}_3,\mathbf{w}_3)\bigr)\\
-        &= (h\oplus k)\bigl((\mathbf{u}_1+\mathbf{u}_2,\;\mathbf{w}_1+\mathbf{w}_2),(\mathbf{u}_3,\mathbf{w}_3)\bigr)\\
-        &= h(\mathbf{u}_1+\mathbf{u}_2,\mathbf{u}_3)\;+\;k(\mathbf{w}_1+\mathbf{w}_2,\mathbf{w}_3)\\
-        &= \bigl[h(\mathbf{u}_1,\mathbf{u}_3)+h(\mathbf{u}_2,\mathbf{u}_3)\bigr]
-           +\bigl[k(\mathbf{w}_1,\mathbf{w}_3)+k(\mathbf{w}_2,\mathbf{w}_3)\bigr]\\
-        &= (h\oplus k)\bigl((\mathbf{u}_1,\mathbf{w}_1),(\mathbf{u}_3,\mathbf{w}_3)\bigr)
-         + (h\oplus k)\bigl((\mathbf{u}_2,\mathbf{w}_2),(\mathbf{u}_3,\mathbf{w}_3)\bigr).
-        \end{aligned}
-        \]
-
-        \item[FB2]  Con la stessa procedura, per ogni \((\mathbf{u}_1,\mathbf{w}_1)\) e \((\mathbf{u}_2,\mathbf{w}_2),(\mathbf{u}_3,\mathbf{w}_3)\) si ottiene
-        \[
-        \begin{aligned}
-        (h\oplus k)\bigl((\mathbf{u}_1,\mathbf{w}_1),(\mathbf{u}_2,\mathbf{w}_2)&+(\mathbf{u}_3,\mathbf{w}_3)\bigr)
-        = h(\mathbf{u}_1,\mathbf{u}_2+\mathbf{u}_3)+k(\mathbf{w}_1,\mathbf{w}_2+\mathbf{w}_3)\\
-        &= h(\mathbf{u}_1,\mathbf{u}_2)+h(\mathbf{u}_1,\mathbf{u}_3)
-         +k(\mathbf{w}_1,\mathbf{w}_2)+k(\mathbf{w}_1,\mathbf{w}_3)\\
-        &= (h\oplus k)\bigl((\mathbf{u}_1,\mathbf{w}_1),(\mathbf{u}_2,\mathbf{w}_2)\bigr)
-         +(h\oplus k)\bigl((\mathbf{u}_1,\mathbf{w}_1),(\mathbf{u}_3,\mathbf{w}_3)\bigr).
-        \end{aligned}
-        \]
-
-        \item[FB3]  Per \(\lambda\in \mathbf{K}\) e \((\mathbf{u},\mathbf{w}),(\mathbf{u}',\mathbf{w}')\in \mathbf{V}^2\),
-        \[
-        \begin{aligned}
-        (h\oplus k)\bigl(\lambda(\mathbf{u},\mathbf{w}),(\mathbf{u}',\mathbf{w}')\bigr)
-        &= (h\oplus k)\bigl((\lambda\mathbf{u},\lambda\mathbf{w}),(\mathbf{u}',\mathbf{w}')\bigr)\\
-        &= h(\lambda\mathbf{u},\mathbf{u}') + k(\lambda\mathbf{w},\mathbf{w}')\\
-        &= \lambda\,h(\mathbf{u},\mathbf{u}') + \lambda\,k(\mathbf{w},\mathbf{w}')
-        = \lambda\,(h\oplus k)\bigl((\mathbf{u},\mathbf{w}),(\mathbf{u}',\mathbf{w}')\bigr).
-        \end{aligned}
-        \]
-        Analogamente si mostra l'omogeneità nel secondo argomento.
-
-        \item[\textit{Simmetria}] Se \(h\) e \(k\) sono simmetriche, cioè
-        \[
-        h(\mathbf{u},\mathbf{u}') = h(\mathbf{u}',\mathbf{u}),\quad
-        k(\mathbf{w},\mathbf{w}') = k(\mathbf{w}',\mathbf{w}),
-        \]
-        allora
-        \[
-        \begin{aligned}
-        (h\oplus k)\bigl((\mathbf{u},\mathbf{w}),(\mathbf{u}',\mathbf{w}')\bigr)
-        &= h(\mathbf{u},\mathbf{u}') + k(\mathbf{w},\mathbf{w}')\\
-        &= h(\mathbf{u}',\mathbf{u}) + k(\mathbf{w}',\mathbf{w})
-        = (h\oplus k)\bigl((\mathbf{u}',\mathbf{w}'),(\mathbf{u},\mathbf{w})\bigr).
-        \end{aligned}
-        \]
-
-        \item[\textit{Alternanza}] Se \(h\) e \(k\) sono entrambe alterne, ovvero \(h(\mathbf{u},\mathbf{u})=0\) per ogni \(\mathbf{u}\in \mathbf{U}\) e analogamente per \(k\), allora
-        \[
-        (h\oplus k)\bigl((\mathbf{u},\mathbf{w}),(\mathbf{u},\mathbf{w})\bigr)
-        = h(\mathbf{u},\mathbf{u}) + k(\mathbf{w},\mathbf{w}) = 0 + 0 = 0,
-        \]
-        quindi \(h\oplus k\) è alter­na.
-    \end{itemize}
-\end{proof}
+% \begin{proof}
+%     Mostriamo che \(h\oplus k\) soddisfa i tre assiomi di bilinearità e conserva simmetria/alternanza.
+% 
+%     \begin{itemize}
+%         \item[FB1]  Siano \((\mathbf{u}_1,\mathbf{w}_1),(\mathbf{u}_2,\mathbf{w}_2),(\mathbf{u}_3,\mathbf{w}_3)\in \mathbf{V}^2\). Allora
+%         \[
+%         \begin{aligned}
+%         (h\oplus k)\bigl((\mathbf{u}_1,\mathbf{w}_1)&+(\mathbf{u}_2,\mathbf{w}_2),(\mathbf{u}_3,\mathbf{w}_3)\bigr)\\
+%         &= (h\oplus k)\bigl((\mathbf{u}_1+\mathbf{u}_2,\;\mathbf{w}_1+\mathbf{w}_2),(\mathbf{u}_3,\mathbf{w}_3)\bigr)\\
+%         &= h(\mathbf{u}_1+\mathbf{u}_2,\mathbf{u}_3)\;+\;k(\mathbf{w}_1+\mathbf{w}_2,\mathbf{w}_3)\\
+%         &= \bigl[h(\mathbf{u}_1,\mathbf{u}_3)+h(\mathbf{u}_2,\mathbf{u}_3)\bigr]
+%            +\bigl[k(\mathbf{w}_1,\mathbf{w}_3)+k(\mathbf{w}_2,\mathbf{w}_3)\bigr]\\
+%         &= (h\oplus k)\bigl((\mathbf{u}_1,\mathbf{w}_1),(\mathbf{u}_3,\mathbf{w}_3)\bigr)
+%          + (h\oplus k)\bigl((\mathbf{u}_2,\mathbf{w}_2),(\mathbf{u}_3,\mathbf{w}_3)\bigr).
+%         \end{aligned}
+%         \]
+% 
+%         \item[FB2]  Con la stessa procedura, per ogni \((\mathbf{u}_1,\mathbf{w}_1)\) e \((\mathbf{u}_2,\mathbf{w}_2),(\mathbf{u}_3,\mathbf{w}_3)\) si ottiene
+%         \[
+%         \begin{aligned}
+%         (h\oplus k)\bigl((\mathbf{u}_1,\mathbf{w}_1),(\mathbf{u}_2,\mathbf{w}_2)&+(\mathbf{u}_3,\mathbf{w}_3)\bigr)
+%         = h(\mathbf{u}_1,\mathbf{u}_2+\mathbf{u}_3)+k(\mathbf{w}_1,\mathbf{w}_2+\mathbf{w}_3)\\
+%         &= h(\mathbf{u}_1,\mathbf{u}_2)+h(\mathbf{u}_1,\mathbf{u}_3)
+%          +k(\mathbf{w}_1,\mathbf{w}_2)+k(\mathbf{w}_1,\mathbf{w}_3)\\
+%         &= (h\oplus k)\bigl((\mathbf{u}_1,\mathbf{w}_1),(\mathbf{u}_2,\mathbf{w}_2)\bigr)
+%          +(h\oplus k)\bigl((\mathbf{u}_1,\mathbf{w}_1),(\mathbf{u}_3,\mathbf{w}_3)\bigr).
+%         \end{aligned}
+%         \]
+% 
+%         \item[FB3]  Per \(\lambda\in \mathbf{K}\) e \((\mathbf{u},\mathbf{w}),(\mathbf{u}',\mathbf{w}')\in \mathbf{V}^2\),
+%         \[
+%         \begin{aligned}
+%         (h\oplus k)\bigl(\lambda(\mathbf{u},\mathbf{w}),(\mathbf{u}',\mathbf{w}')\bigr)
+%         &= (h\oplus k)\bigl((\lambda\mathbf{u},\lambda\mathbf{w}),(\mathbf{u}',\mathbf{w}')\bigr)\\
+%         &= h(\lambda\mathbf{u},\mathbf{u}') + k(\lambda\mathbf{w},\mathbf{w}')\\
+%         &= \lambda\,h(\mathbf{u},\mathbf{u}') + \lambda\,k(\mathbf{w},\mathbf{w}')
+%         = \lambda\,(h\oplus k)\bigl((\mathbf{u},\mathbf{w}),(\mathbf{u}',\mathbf{w}')\bigr).
+%         \end{aligned}
+%         \]
+%         Analogamente si mostra l'omogeneità nel secondo argomento.
+% 
+%         \item[\textit{Simmetria}] Se \(h\) e \(k\) sono simmetriche, cioè
+%         \[
+%         h(\mathbf{u},\mathbf{u}') = h(\mathbf{u}',\mathbf{u}),\quad
+%         k(\mathbf{w},\mathbf{w}') = k(\mathbf{w}',\mathbf{w}),
+%         \]
+%         allora
+%         \[
+%         \begin{aligned}
+%         (h\oplus k)\bigl((\mathbf{u},\mathbf{w}),(\mathbf{u}',\mathbf{w}')\bigr)
+%         &= h(\mathbf{u},\mathbf{u}') + k(\mathbf{w},\mathbf{w}')\\
+%         &= h(\mathbf{u}',\mathbf{u}) + k(\mathbf{w}',\mathbf{w})
+%         = (h\oplus k)\bigl((\mathbf{u}',\mathbf{w}'),(\mathbf{u},\mathbf{w})\bigr).
+%         \end{aligned}
+%         \]
+% 
+%         \item[\textit{Alternanza}] Se \(h\) e \(k\) sono entrambe alterne, ovvero \(h(\mathbf{u},\mathbf{u})=0\) per ogni \(\mathbf{u}\in \mathbf{U}\) e analogamente per \(k\), allora
+%         \[
+%         (h\oplus k)\bigl((\mathbf{u},\mathbf{w}),(\mathbf{u},\mathbf{w})\bigr)
+%         = h(\mathbf{u},\mathbf{u}) + k(\mathbf{w},\mathbf{w}) = 0 + 0 = 0,
+%         \]
+%         quindi \(h\oplus k\) è alter­na.
+%     \end{itemize}
+% \end{proof}
 
 \vspace{10pt}
 
@@ -8640,237 +8640,237 @@ mentre
 Poiché assumono gli stessi valori sulla base $\psi$, il primo e il secondo membro di \ref{quindiciundici} sono uguali, e l'asserto è dimostrato.
 \end{proof}
 
-\vspace{10pt}
-
-Si verifica in modo simile che $A$ è la matrice che rappresenta l'applicazione 
-$\delta_b': \mathbf{V} \to \mathbf{V}^\smallsmile$ rispetto alle basi $\psi$ e $\psi^\smallsmile$.
-
-\vspace{10pt}
-
-\paragraph{Forme e piani iperbolici}
-\begin{bxthm}
-\begin{defn}
-Sia $\mathbf{U}$ un $\mathbb{K}$-spazio vettoriale tale che $\dim(\mathbf{U}) = 2$. 
-Supponiamo assegnata su $\mathbf{U}$ una forma bilineare simmetrica $h$ non degenere tale che esista 
-un vettore isotropo rispetto ad $h$ e non nullo. Allora $h$ si dice \textbf{forma iperbolica} su 
-$\mathbf{U}$ e la coppia $(\mathbf{U}, h)$ si dice \textbf{piano iperbolico}.    
-\end{defn}
-\end{bxthm}
-
-\vspace{10pt}
-
-\begin{bxthm}
-\begin{prop}
-Se $(\mathbf{U}, h)$ è un piano iperbolico, $\mathbf{U}$ possiede una base $\{\mathbf{u}_1, \mathbf{u}_2\}$ 
-formata da due vettori isotropi tali che $h(\mathbf{u}_1, \mathbf{u}_2) = 1$.
-\end{prop}
-\end{bxthm}
-\begin{proof}
-Infatti, per definizione esiste $\mathbf{u}_1 \neq \mathbf{0}$ isotropo. Poiché $h$ è non degenere, 
-\[\exists\,\mathbf{v} \in \mathbf{U}\,:\;h(\mathbf{u}_1, \mathbf{v}) =1\]
-I vettori $\mathbf{u}_1$ e $\mathbf{v}$ non sono proporzionali, perché si ha 
-\[\forall\,k\in\mathbb{K},\quad h(\mathbf{u}_1, k\mathbf{u}_1) = kh(\mathbf{u}_1, \mathbf{u}_1) = 0;\]
-pertanto $\mathbf{u}_1$ e $\mathbf{v}$ sono linearmente indipendenti. 
-Prendendo $\mathbf{u}_2 = \mathbf{v} - \frac{h(\mathbf{v}, \mathbf{v})\mathbf{u}_1}{2}$ si ottiene 
-la base richiesta.
-\end{proof}
-
-\vspace{10pt}
-
-\paragraph{Base iperbolica}
-\begin{bxthm}
-\begin{defn}
-Una base $\{\mathbf{u}_1, \mathbf{u}_2\}$ con tali proprietà è detta \textbf{iperbolica}. 
-La matrice che rappresenta $h$ rispetto a una base iperbolica è
-\begin{equation}\label{quindicidodici}
-\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}.    
-\end{equation}
-\end{defn}
-\end{bxthm}
-
-\vspace{10pt}
-
-\begin{note}
-È evidente, viceversa, che se lo spazio vettoriale $\mathbf{U}$ ha una base 
-$\{\mathbf{u}_1, \mathbf{u}_2\}$ tale che la matrice della forma bilineare sia la \ref{quindicidodici}, 
-allora $(\mathbf{U}, h)$ è un piano iperbolico.    
-\end{note}
-
-\vspace{10pt}
-
-\begin{exmp}
-La forma bilineare
-\[h(\mathbf{x}, \mathbf{y}) = x_1 y_2 + x_2 y_1\]
-su $\mathbb{K}^2$ è iperbolica, e la base canonica è iperbolica.    
-\end{exmp}
-
-\vspace{10pt}
-
-\begin{exmp}
-La forma bilineare
-\[k(\mathbf{x}, \mathbf{y}) = \dfrac{x_1 y_1}{2}  - \dfrac{x_2 y_2}{2} \]
-è iperbolica, e una base iperbolica è $\left\{\begin{pmatrix}1\\1\end{pmatrix}, \begin{pmatrix}1\\-1\end{pmatrix}\right\}$. 
-Per la forma $k$ la base canonica è diagonalizzante.    
-\end{exmp}
-
-\vspace{10pt}
-
-\begin{bxthm}
-\begin{prop}
-Siano $\mathbf{V}$ un $\mathbb{K}$-spazio vettoriale e $b\in\mathrm{Bil}_s(\mathbf{V})$
-non degenere tale che $\mathbf{V}$ contenga un vettore isotropo $\mathbf{u} \neq \mathbf{0}$. 
-Allora esiste un sottospazio $\mathbf{U}$ di $\mathbf{V}$ contenente $\mathbf{u}$ e tale che la 
-coppia $(\mathbf{U}, b_{\mathbf{U}})$ sia un piano iperbolico.    
-\end{prop}
-\end{bxthm}
-\begin{proof}
-Poiché $b$ è non degenere, 
-\[\exists\,\mathbf{v} \in \mathbf{V}\,:\;b(\mathbf{u}, \mathbf{v}) = 1.\]
-Il vettore
-\[\mathbf{w} = \mathbf{v} - \frac{b(\mathbf{v}, \mathbf{v})}{2} \mathbf{u}\]
-è isotropo e tale che $b(\mathbf{u}, \mathbf{w}) = 1$. Quindi il sottospazio 
-$\mathbf{U} = \langle \mathbf{u}, \mathbf{w} \rangle$ ha le proprietà volute.    
-\end{proof}
-
-\vspace{10pt}
-
-\paragraph{Scalare rappresentabile mediante forma quadratica}
-\begin{bxthm}
-\begin{defn}
-Siano $\mathbf{V}$ uno spazio vettoriale e $q: \mathbf{V} \to \mathbb{K}$ una forma quadratica. 
-Uno scalare $\alpha \in \mathbb{K}$ si dice \textbf{rappresentabile mediante} $q$ se 
-\[\exists\,\mathbf{v} \in \mathbf{V}\setminus\{\mathbf{0}\}\,:\;q(\mathbf{v}) = \alpha.\]
-\end{defn}
-\end{bxthm}
-
-\vspace{10pt}
-
-\begin{bxthm}
-\begin{prop}
-Se $\mathbf{V}$ è uno spazio vettoriale complesso e $q$ è non degenere, allora ogni 
-$\alpha \in \mathbb{C}$ è rappresentabile mediante $q$. 
-\end{prop}
-\end{bxthm}
-\begin{proof}
-Infatti, fissata una base $\psi=\{\mathbf{e}_1, \ldots, \mathbf{e}_n\}$ tale che 
-$b(\mathbf{e}_i) \neq 0$, e detta $\beta \in \mathbb{C}$ una radice quadrata di $\alpha q(\mathbf{e}_1)^{-1}$, si ha
-\[q(\beta \mathbf{e}_1) = \beta^2 q(\mathbf{e}_1) = \alpha.\]    
-\end{proof}
-
-\vspace{10pt}
-
-\begin{bxthm}
-\begin{prop}
-Siano $\mathbb{K} = \mathbb{R}$, $\mathbf{V} = \mathbb{R}^n$, $n \geq 1$, e $q(\mathbf{x}) = \sum_{i=1}^{n}x_i^2$
-la forma quadratica standard. Allora, nessun numero $\alpha \leq 0$ è rappresentabile 
-mediante $q$. Invece ogni numero reale $\alpha > 0$ lo è.
-\end{prop}
-\end{bxthm}
-\begin{proof}
-    La dimostrazione è simile al caso complesso, tenendo presente che $\alpha$ possiede una radice quadrata reale.
-\end{proof}
-
-\vspace{10pt}
-
-\begin{note}
-La nozione di rappresentabilità di uno scalare mediante $q$ è importante se $\mathbb{K} = \mathbb{Q}$. 
-L'insieme degli scalari rappresentabili mediante una data forma quadratica $q$ su uno $\mathbb{Q}$-spazio vettoriale 
-ha una notevole importanza aritmetica.
-\end{note}
-
-\vspace{10pt}
-
-\begin{bxthm}
-\begin{prop}\label{quindicidiecicinque}
-Se $(\mathbf{U}, h)$ è un piano iperbolico e $q: \mathbf{U} \to \mathbb{K}$ è la forma quadratica 
-associata ad $h$, allora $q(\mathbf{U} \setminus \{\mathbf{0}\}) = \mathbb{K}$, e quindi ogni elemento 
-di $\mathbb{K}$ è rappresentabile mediante $q$. 
-\end{prop}
-\end{bxthm}
-\begin{proof}
-Infatti, se $(\mathbf{u}_1, \mathbf{u}_2)$ è una base 
-iperbolica di $\mathbf{U}$ e $\alpha \in \mathbb{K}$, si ha \[q\left(\mathbf{u}_1 + \frac{\alpha}{2} \mathbf{u}_2\right) = \alpha.\]
-\end{proof}
-
-\vspace{10pt}
-
-Dall'osservazione precedente e dalla \ref{quindicidiecicinque} segue subito che se $q$ è una forma quadratica 
-non degenere su uno spazio vettoriale $\mathbf{V}$, tale che esista in $\mathbf{V}$ un vettore isotropo non 
-nullo, allora ogni $\alpha \in \mathbb{K}$ è rappresentabile mediante $q$. In altre parole, se $0$ è 
-rappresentabile mediante $q$, lo è ogni $\alpha \in \mathbb{K}$.
-
-\vspace{10pt}
-
-\begin{exmp}
-Prendendo $\mathbb{K} = \mathbb{Q}$ e $\mathbf{V} =\mathbb{Q}^2$, otteniamo che ogni numero razionale 
-$\alpha$ può essere espresso nella forma
-\[\alpha = \dfrac{x^2 - y^2}{2}, \quad  x, y \in \mathbb{Q}.\]    
-\end{exmp}
-
-\vspace{10pt}
-
-Sia $b\in\mathrm{Bil}_s(\mathbf{V})$ non degenere, e sia $\mathbf{U}$ un sottospazio di $\mathbf{V}$. Il sottospazio ortogonale 
-$\mathbf{U}^\perp$ coincide con l'ortogonale di $\delta_b(\mathbf{U})\subset\mathbf{V}^\smallsmile$, così com'è stato definito in \ref{undiciquattordici}. 
-Supponiamo che $\mathbf{V}$ abbia dimensione finita. Poiché $b$ è non degenere, $\delta_b$ è un isomorfismo, 
-e quindi $\dim(\mathbf{U})=\dim[\delta_b(\mathbf{U})]$. Dalla \ref{undicitredici} segue pertanto che
-\begin{equation}\label{quindicitredici}
-\dim(\mathbf{U}^\perp) = n - \dim(\mathbf{U}). 
-\end{equation}
-Se $\mathbf{U}$ non contiene vettori isotropi non nulli, si ha $\mathbf{U} \cap \mathbf{U}^\perp = \langle\mathbf{0}\rangle$, 
-e dalla \ref{quindicitredici} segue allora che $\mathbf{V} = \mathbf{U}\oplus\mathbf{V}^\perp$. Prendendo in particolare 
-$\mathbf{U} = \langle \mathbf{v} \rangle$, dove $\mathbf{v}$ è un vettore non isotropo, si ottiene l'identità 
-dei vettori \ref{quindicitredici} dimostrata in precedenza.
-
-\vspace{10pt}
-
-\paragraph{Cono isotropo}
-\begin{bxthm}
-\begin{defn}
-Sia $b: \mathbf{V}^2 \to \mathbb{K}$ una forma bilineare simmetrica sullo spazio $\mathbf{V}$, e denotiamo 
-con $\mathbf{I}_b(\mathbf{V}) \subset \mathbf{V}$ l'insieme dei vettori isotropi rispetto a $b$. 
-$\mathbf{I}_b(\mathbf{V})$ è detto \textbf{cono isotropo} di $\mathbf{V}$ (rispetto a $b$).     
-\end{defn}
-\end{bxthm}
-
-\vspace{10pt}
-
-\paragraph{Sottospazi isotropi}
-\begin{bxthm}
-\begin{defn}
-Un sottospazio $\mathbf{U}$ di $\mathbf{V}$ si dice \textbf{isotropo} se 
-$\mathbf{U} \subset \mathbf{I}_b(\mathbf{V})$.     
-\end{defn}
-\end{bxthm}
-
-\vspace{10pt}
-
-Ovviamente $\langle\mathbf{0}\rangle$ è un sottospazio isotropo di $\mathbf{V}$, che si dice \textbf{banale}. 
-
-\vspace{10pt}
-
-Se $b$ è degenere, allora il suo radicale $\mathbf{V}^\perp$ è un sottospazio isotropo non banale.
-
-\vspace{10pt}
-
-Se $\mathbf{U}$ è un sottospazio isotropo a $\mathbf{u}_1, \mathbf{u}_2 \in \mathbf{U}$, allora, poichè $\mathbf{u}_1 + \mathbf{u}_2 \in \mathbf{U}$, si ha
-\begin{equation}
-0 = b(\mathbf{u}_1 + \mathbf{u}_2, \mathbf{u}_1 + \mathbf{u}_2) = 2b(\mathbf{u}_1, \mathbf{u}_2),
-\end{equation}
-cioè $\mathbf{u}_1$ e $\mathbf{u}_2$ sono ortogonali. Da ciò discende che $\mathbf{U} \subset \mathbf{U}^\perp$. 
-Viceversa, se $\mathbf{U} \subset \mathbf{U}^\perp$, allora è evidente che $\mathbf{U}$ è isotropo.
-
-\vspace{10pt}
-
-La forma $b$ si dice \textbf{anisotropa} se $\mathbf{V}$ non possiede vettori isotropi non nulli, cioè se 
-$\mathbf{I}_b(\mathbf{V}) = \{\mathbf{0}\}$. Ad esempio la forma bilineare standard su $\mathbb{R}^n$ è 
-anisotropa. Supponiamo $b$ non degenere, e sia $\mathbf{U}$ un sottospazio isotropo. Allora si ha
-\begin{equation}\label{quindiciquattordici}
-\dim(\mathbf{U}) \leq \dfrac{\dim(\mathbf{V})}{2}. 
-\end{equation}
-Infatti $\mathbf{U}$ isotropo significa che $\mathbf{U} \subset \mathbf{U}^\perp$, e quindi, per la \ref{quindicitredici}, 
-abbiamo
-\[\dim(\mathbf{U}) \leq \dim(\mathbf{U}^\perp) = \dim(\mathbf{V}) - \dim(\mathbf{U}),\]
-cioè la \ref{quindiciquattordici}.
+% \vspace{10pt}
+% 
+% Si verifica in modo simile che $A$ è la matrice che rappresenta l'applicazione 
+% $\delta_b': \mathbf{V} \to \mathbf{V}^\smallsmile$ rispetto alle basi $\psi$ e $\psi^\smallsmile$.
+% 
+% \vspace{10pt}
+% 
+% \paragraph{Forme e piani iperbolici}
+% \begin{bxthm}
+% \begin{defn}
+% Sia $\mathbf{U}$ un $\mathbb{K}$-spazio vettoriale tale che $\dim(\mathbf{U}) = 2$. 
+% Supponiamo assegnata su $\mathbf{U}$ una forma bilineare simmetrica $h$ non degenere tale che esista 
+% un vettore isotropo rispetto ad $h$ e non nullo. Allora $h$ si dice \textbf{forma iperbolica} su 
+% $\mathbf{U}$ e la coppia $(\mathbf{U}, h)$ si dice \textbf{piano iperbolico}.    
+% \end{defn}
+% \end{bxthm}
+% 
+% \vspace{10pt}
+% 
+% \begin{bxthm}
+% \begin{prop}
+% Se $(\mathbf{U}, h)$ è un piano iperbolico, $\mathbf{U}$ possiede una base $\{\mathbf{u}_1, \mathbf{u}_2\}$ 
+% formata da due vettori isotropi tali che $h(\mathbf{u}_1, \mathbf{u}_2) = 1$.
+% \end{prop}
+% \end{bxthm}
+% \begin{proof}
+% Infatti, per definizione esiste $\mathbf{u}_1 \neq \mathbf{0}$ isotropo. Poiché $h$ è non degenere, 
+% \[\exists\,\mathbf{v} \in \mathbf{U}\,:\;h(\mathbf{u}_1, \mathbf{v}) =1\]
+% I vettori $\mathbf{u}_1$ e $\mathbf{v}$ non sono proporzionali, perché si ha 
+% \[\forall\,k\in\mathbb{K},\quad h(\mathbf{u}_1, k\mathbf{u}_1) = kh(\mathbf{u}_1, \mathbf{u}_1) = 0;\]
+% pertanto $\mathbf{u}_1$ e $\mathbf{v}$ sono linearmente indipendenti. 
+% Prendendo $\mathbf{u}_2 = \mathbf{v} - \frac{h(\mathbf{v}, \mathbf{v})\mathbf{u}_1}{2}$ si ottiene 
+% la base richiesta.
+% \end{proof}
+% 
+% \vspace{10pt}
+% 
+% \paragraph{Base iperbolica}
+% \begin{bxthm}
+% \begin{defn}
+% Una base $\{\mathbf{u}_1, \mathbf{u}_2\}$ con tali proprietà è detta \textbf{iperbolica}. 
+% La matrice che rappresenta $h$ rispetto a una base iperbolica è
+% \begin{equation}\label{quindicidodici}
+% \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}.    
+% \end{equation}
+% \end{defn}
+% \end{bxthm}
+% 
+% \vspace{10pt}
+% 
+% \begin{note}
+% È evidente, viceversa, che se lo spazio vettoriale $\mathbf{U}$ ha una base 
+% $\{\mathbf{u}_1, \mathbf{u}_2\}$ tale che la matrice della forma bilineare sia la \ref{quindicidodici}, 
+% allora $(\mathbf{U}, h)$ è un piano iperbolico.    
+% \end{note}
+% 
+% \vspace{10pt}
+% 
+% \begin{exmp}
+% La forma bilineare
+% \[h(\mathbf{x}, \mathbf{y}) = x_1 y_2 + x_2 y_1\]
+% su $\mathbb{K}^2$ è iperbolica, e la base canonica è iperbolica.    
+% \end{exmp}
+% 
+% \vspace{10pt}
+% 
+% \begin{exmp}
+% La forma bilineare
+% \[k(\mathbf{x}, \mathbf{y}) = \dfrac{x_1 y_1}{2}  - \dfrac{x_2 y_2}{2} \]
+% è iperbolica, e una base iperbolica è $\left\{\begin{pmatrix}1\\1\end{pmatrix}, \begin{pmatrix}1\\-1\end{pmatrix}\right\}$. 
+% Per la forma $k$ la base canonica è diagonalizzante.    
+% \end{exmp}
+% 
+% \vspace{10pt}
+% 
+% \begin{bxthm}
+% \begin{prop}
+% Siano $\mathbf{V}$ un $\mathbb{K}$-spazio vettoriale e $b\in\mathrm{Bil}_s(\mathbf{V})$
+% non degenere tale che $\mathbf{V}$ contenga un vettore isotropo $\mathbf{u} \neq \mathbf{0}$. 
+% Allora esiste un sottospazio $\mathbf{U}$ di $\mathbf{V}$ contenente $\mathbf{u}$ e tale che la 
+% coppia $(\mathbf{U}, b_{\mathbf{U}})$ sia un piano iperbolico.    
+% \end{prop}
+% \end{bxthm}
+% \begin{proof}
+% Poiché $b$ è non degenere, 
+% \[\exists\,\mathbf{v} \in \mathbf{V}\,:\;b(\mathbf{u}, \mathbf{v}) = 1.\]
+% Il vettore
+% \[\mathbf{w} = \mathbf{v} - \frac{b(\mathbf{v}, \mathbf{v})}{2} \mathbf{u}\]
+% è isotropo e tale che $b(\mathbf{u}, \mathbf{w}) = 1$. Quindi il sottospazio 
+% $\mathbf{U} = \langle \mathbf{u}, \mathbf{w} \rangle$ ha le proprietà volute.    
+% \end{proof}
+% 
+% \vspace{10pt}
+% 
+% \paragraph{Scalare rappresentabile mediante forma quadratica}
+% \begin{bxthm}
+% \begin{defn}
+% Siano $\mathbf{V}$ uno spazio vettoriale e $q: \mathbf{V} \to \mathbb{K}$ una forma quadratica. 
+% Uno scalare $\alpha \in \mathbb{K}$ si dice \textbf{rappresentabile mediante} $q$ se 
+% \[\exists\,\mathbf{v} \in \mathbf{V}\setminus\{\mathbf{0}\}\,:\;q(\mathbf{v}) = \alpha.\]
+% \end{defn}
+% \end{bxthm}
+% 
+% \vspace{10pt}
+% 
+% \begin{bxthm}
+% \begin{prop}
+% Se $\mathbf{V}$ è uno spazio vettoriale complesso e $q$ è non degenere, allora ogni 
+% $\alpha \in \mathbb{C}$ è rappresentabile mediante $q$. 
+% \end{prop}
+% \end{bxthm}
+% \begin{proof}
+% Infatti, fissata una base $\psi=\{\mathbf{e}_1, \ldots, \mathbf{e}_n\}$ tale che 
+% $b(\mathbf{e}_i) \neq 0$, e detta $\beta \in \mathbb{C}$ una radice quadrata di $\alpha q(\mathbf{e}_1)^{-1}$, si ha
+% \[q(\beta \mathbf{e}_1) = \beta^2 q(\mathbf{e}_1) = \alpha.\]    
+% \end{proof}
+% 
+% \vspace{10pt}
+% 
+% \begin{bxthm}
+% \begin{prop}
+% Siano $\mathbb{K} = \mathbb{R}$, $\mathbf{V} = \mathbb{R}^n$, $n \geq 1$, e $q(\mathbf{x}) = \sum_{i=1}^{n}x_i^2$
+% la forma quadratica standard. Allora, nessun numero $\alpha \leq 0$ è rappresentabile 
+% mediante $q$. Invece ogni numero reale $\alpha > 0$ lo è.
+% \end{prop}
+% \end{bxthm}
+% \begin{proof}
+%     La dimostrazione è simile al caso complesso, tenendo presente che $\alpha$ possiede una radice quadrata reale.
+% \end{proof}
+% 
+% \vspace{10pt}
+% 
+% \begin{note}
+% La nozione di rappresentabilità di uno scalare mediante $q$ è importante se $\mathbb{K} = \mathbb{Q}$. 
+% L'insieme degli scalari rappresentabili mediante una data forma quadratica $q$ su uno $\mathbb{Q}$-spazio vettoriale 
+% ha una notevole importanza aritmetica.
+% \end{note}
+% 
+% \vspace{10pt}
+% 
+% \begin{bxthm}
+% \begin{prop}\label{quindicidiecicinque}
+% Se $(\mathbf{U}, h)$ è un piano iperbolico e $q: \mathbf{U} \to \mathbb{K}$ è la forma quadratica 
+% associata ad $h$, allora $q(\mathbf{U} \setminus \{\mathbf{0}\}) = \mathbb{K}$, e quindi ogni elemento 
+% di $\mathbb{K}$ è rappresentabile mediante $q$. 
+% \end{prop}
+% \end{bxthm}
+% \begin{proof}
+% Infatti, se $(\mathbf{u}_1, \mathbf{u}_2)$ è una base 
+% iperbolica di $\mathbf{U}$ e $\alpha \in \mathbb{K}$, si ha \[q\left(\mathbf{u}_1 + \frac{\alpha}{2} \mathbf{u}_2\right) = \alpha.\]
+% \end{proof}
+% 
+% \vspace{10pt}
+% 
+% Dall'osservazione precedente e dalla \ref{quindicidiecicinque} segue subito che se $q$ è una forma quadratica 
+% non degenere su uno spazio vettoriale $\mathbf{V}$, tale che esista in $\mathbf{V}$ un vettore isotropo non 
+% nullo, allora ogni $\alpha \in \mathbb{K}$ è rappresentabile mediante $q$. In altre parole, se $0$ è 
+% rappresentabile mediante $q$, lo è ogni $\alpha \in \mathbb{K}$.
+% 
+% \vspace{10pt}
+% 
+% \begin{exmp}
+% Prendendo $\mathbb{K} = \mathbb{Q}$ e $\mathbf{V} =\mathbb{Q}^2$, otteniamo che ogni numero razionale 
+% $\alpha$ può essere espresso nella forma
+% \[\alpha = \dfrac{x^2 - y^2}{2}, \quad  x, y \in \mathbb{Q}.\]    
+% \end{exmp}
+% 
+% \vspace{10pt}
+% 
+% Sia $b\in\mathrm{Bil}_s(\mathbf{V})$ non degenere, e sia $\mathbf{U}$ un sottospazio di $\mathbf{V}$. Il sottospazio ortogonale 
+% $\mathbf{U}^\perp$ coincide con l'ortogonale di $\delta_b(\mathbf{U})\subset\mathbf{V}^\smallsmile$, così com'è stato definito in \ref{undiciquattordici}. 
+% Supponiamo che $\mathbf{V}$ abbia dimensione finita. Poiché $b$ è non degenere, $\delta_b$ è un isomorfismo, 
+% e quindi $\dim(\mathbf{U})=\dim[\delta_b(\mathbf{U})]$. Dalla \ref{undicitredici} segue pertanto che
+% \begin{equation}\label{quindicitredici}
+% \dim(\mathbf{U}^\perp) = n - \dim(\mathbf{U}). 
+% \end{equation}
+% Se $\mathbf{U}$ non contiene vettori isotropi non nulli, si ha $\mathbf{U} \cap \mathbf{U}^\perp = \langle\mathbf{0}\rangle$, 
+% e dalla \ref{quindicitredici} segue allora che $\mathbf{V} = \mathbf{U}\oplus\mathbf{V}^\perp$. Prendendo in particolare 
+% $\mathbf{U} = \langle \mathbf{v} \rangle$, dove $\mathbf{v}$ è un vettore non isotropo, si ottiene l'identità 
+% dei vettori \ref{quindicitredici} dimostrata in precedenza.
+% 
+% \vspace{10pt}
+% 
+% \paragraph{Cono isotropo}
+% \begin{bxthm}
+% \begin{defn}
+% Sia $b: \mathbf{V}^2 \to \mathbb{K}$ una forma bilineare simmetrica sullo spazio $\mathbf{V}$, e denotiamo 
+% con $\mathbf{I}_b(\mathbf{V}) \subset \mathbf{V}$ l'insieme dei vettori isotropi rispetto a $b$. 
+% $\mathbf{I}_b(\mathbf{V})$ è detto \textbf{cono isotropo} di $\mathbf{V}$ (rispetto a $b$).     
+% \end{defn}
+% \end{bxthm}
+% 
+% \vspace{10pt}
+% 
+% \paragraph{Sottospazi isotropi}
+% \begin{bxthm}
+% \begin{defn}
+% Un sottospazio $\mathbf{U}$ di $\mathbf{V}$ si dice \textbf{isotropo} se 
+% $\mathbf{U} \subset \mathbf{I}_b(\mathbf{V})$.     
+% \end{defn}
+% \end{bxthm}
+% 
+% \vspace{10pt}
+% 
+% Ovviamente $\langle\mathbf{0}\rangle$ è un sottospazio isotropo di $\mathbf{V}$, che si dice \textbf{banale}. 
+% 
+% \vspace{10pt}
+% 
+% Se $b$ è degenere, allora il suo radicale $\mathbf{V}^\perp$ è un sottospazio isotropo non banale.
+% 
+% \vspace{10pt}
+% 
+% Se $\mathbf{U}$ è un sottospazio isotropo a $\mathbf{u}_1, \mathbf{u}_2 \in \mathbf{U}$, allora, poichè $\mathbf{u}_1 + \mathbf{u}_2 \in \mathbf{U}$, si ha
+% \begin{equation}
+% 0 = b(\mathbf{u}_1 + \mathbf{u}_2, \mathbf{u}_1 + \mathbf{u}_2) = 2b(\mathbf{u}_1, \mathbf{u}_2),
+% \end{equation}
+% cioè $\mathbf{u}_1$ e $\mathbf{u}_2$ sono ortogonali. Da ciò discende che $\mathbf{U} \subset \mathbf{U}^\perp$. 
+% Viceversa, se $\mathbf{U} \subset \mathbf{U}^\perp$, allora è evidente che $\mathbf{U}$ è isotropo.
+% 
+% \vspace{10pt}
+% 
+% La forma $b$ si dice \textbf{anisotropa} se $\mathbf{V}$ non possiede vettori isotropi non nulli, cioè se 
+% $\mathbf{I}_b(\mathbf{V}) = \{\mathbf{0}\}$. Ad esempio la forma bilineare standard su $\mathbb{R}^n$ è 
+% anisotropa. Supponiamo $b$ non degenere, e sia $\mathbf{U}$ un sottospazio isotropo. Allora si ha
+% \begin{equation}\label{quindiciquattordici}
+% \dim(\mathbf{U}) \leq \dfrac{\dim(\mathbf{V})}{2}. 
+% \end{equation}
+% Infatti $\mathbf{U}$ isotropo significa che $\mathbf{U} \subset \mathbf{U}^\perp$, e quindi, per la \ref{quindicitredici}, 
+% abbiamo
+% \[\dim(\mathbf{U}) \leq \dim(\mathbf{U}^\perp) = \dim(\mathbf{V}) - \dim(\mathbf{U}),\]
+% cioè la \ref{quindiciquattordici}.
 
 \vspace{50pt}
 \section{Diagonalizzazione delle forme quadratiche}
@@ -9162,12 +9162,12 @@ cioè se e solo se
 \end{cor}
 \end{bxthm}
 
-\vspace{10pt}
-
-Le forme bilineari simmetriche definite positive sugli spazi vettoriali reali sono molto importanti in geometria euclidea, perché permettono di introdurre tutte le nozioni di natura metrica. Anche altri tipi di forme bilineari su spazi vettoriali reali hanno notevole importanza in geometria e in fisica. Un esempio particolare è lo spazio vettoriale reale $\mathbb{R}^4$ dotato dalla forma quadratica
-\[\lambda(x_1, x_2, x_3, x_4) = x_1^2 + x_2^2 + x_3^2 - x_4^2,\]
-che si chiama \textbf{forma di Minkowski}. $\lambda$ è non degenere indefinita, di segnatura $(3, 1)$. 
-La coppia $(\mathbb{R}^4, \lambda)$ è detta \textbf{spazio di Minkowski} e ha importanza fondamentale in relatività ristretta.
+% \vspace{10pt}
+% 
+% Le forme bilineari simmetriche definite positive sugli spazi vettoriali reali sono molto importanti in geometria euclidea, perché permettono di introdurre tutte le nozioni di natura metrica. Anche altri tipi di forme bilineari su spazi vettoriali reali hanno notevole importanza in geometria e in fisica. Un esempio particolare è lo spazio vettoriale reale $\mathbb{R}^4$ dotato dalla forma quadratica
+% \[\lambda(x_1, x_2, x_3, x_4) = x_1^2 + x_2^2 + x_3^2 - x_4^2,\]
+% che si chiama \textbf{forma di Minkowski}. $\lambda$ è non degenere indefinita, di segnatura $(3, 1)$. 
+% La coppia $(\mathbb{R}^4, \lambda)$ è detta \textbf{spazio di Minkowski} e ha importanza fondamentale in relatività ristretta.
 
 \vspace{50pt}
 \section{Prodotti scalari}
@@ -10953,317 +10953,317 @@ esiste un'unica coppia \((N, N')\) che soddisfa alla condizione voluta.
 La retta \(\mathfrak{s}\) passante per \(N\) e per \(N'\) si chiama \textbf{perpendicolare comune} a 
 \(\mathfrak{r}\) e a \(\mathfrak{r}'\).
 
-\vspace{10pt}
-
-Ciò posto, definiamo la \textbf{distanza di \(\mathfrak{r}\) da \(\mathfrak{r}'\)} come
-\[
-d(\mathfrak{r}, \mathfrak{r}') = d(N, N').
-\]
-Si ha la seguente formula che permette di calcolare agevolmente la distanza di due rette assegnate:
-\begin{equation}\label{diciannovedieci}
-d(\mathfrak{r}, \mathfrak{r}') = 
-\dfrac{
-\begin{vmatrix}
-a - a' & b - b' & c - c'\\
-l & m & n\\
-l' & m' & n'
-\end{vmatrix}
-}
-{
-\sqrt{
-\begin{vmatrix}
-m & n\\
-m' & n'
-\end{vmatrix}^2
-+
-\begin{vmatrix}
-l & n\\
-l' & n'
-\end{vmatrix}^2
-+
-\begin{vmatrix}
-l & m\\
-l' & m'
-\end{vmatrix}^2
-}
-}
-\end{equation}
-La \eqref{diciannovedieci} si dimostra nel modo seguente.
-Sia \(\mathbf{b}\) un versore della perpendicolare comune a \(\mathfrak{r}\) e a \(\mathfrak{r}'\). Si ha
-\[
-\langle \mathbf{b}, \overrightarrow{Q Q'} \rangle
-= \langle \mathbf{b}, \overrightarrow{Q N} \rangle 
-+ \langle \mathbf{b}, \overrightarrow{N Q'} \rangle 
-= \langle \mathbf{b}, \overrightarrow{N Q'} \rangle
-\]
-e quindi
-\[
-d(\mathfrak{r}, \mathfrak{r}')
-= | \langle \mathbf{b}, \overrightarrow{N Q'} \rangle |
-= | \langle \mathbf{b}, \overrightarrow{Q Q'} \rangle |.
-\]
-D'altra parte, poiché \(\mathbf{b}\) è ortogonale sia ad \(\mathbf{a}\) che ad \(\mathbf{a}'\), si ha
-\[
-\mathbf{b} = \pm \frac{\mathbf{a} \wedge \mathbf{a}'}{\|\mathbf{a} \wedge \mathbf{a}'\|}.
-\]
-Quindi
-\[
-d(\mathfrak{r}, \mathfrak{r}')
-= \frac{|\langle \mathbf{a} \wedge \mathbf{a}', \overrightarrow{Q Q'} \rangle|}{\|\mathbf{a} \wedge \mathbf{a}'\|}.
-\]
-Esplicitando quest'uguaglianza si ottiene la formula cercata.
-
-\vspace{10pt}
-
-Per trovare equazioni cartesiane della retta $\mathcal{s}$ perpendicolare comune a $\mathfrak{r}$ e a 
-$\mathfrak{r}'$ si procede nel modo seguente.
-Conosciamo $\mathbf{a}\wedge\mathbf{a}'$, vettore di direzione $\mathfrak{s}$, le cui coordinate 
-denotiamo con $(\beta_1, \beta_2, \beta_3)$. Denotando con $P(X, Y, Z)$ un punto di coordinate indeterminate, 
-e imponendo le condizioni di complanarità di $\mathfrak{r}$ e di $\mathfrak{r}'$ con la retta passante per 
-$P$ e avente vettore di direzione $\mathbf{a}\wedge\mathbf{a}'$, otteniamo le due seguenti equazioni:
-\[
-    \begin{vmatrix}
-    X - a & Y - b & Z - c \\\\
-    \beta_1 & \beta_2 & \beta_3 \\\\
-    l & m & n
-    \end{vmatrix} = 0\quad\quad
-    \begin{vmatrix}
-    X - a' & Y - b' & Z - c' \\\\
-    \beta_1 & \beta_2 & \beta_3 \\\\
-    l' & m' & n'
-    \end{vmatrix} = 0.
-\]
-Poiché queste equazioni rappresentano due piani distinti e sono soddisfatte dai punti di $\mathfrak{s}$, 
-esse sono equazioni cartesiane di $\mathfrak{s}$.
-
-\vspace{20pt}
-
-Supponiamo fissato in uno spazio euclideo $\mathbf{E}$ un riferimento cartesiano 
-$O\mathbf{e}_1 \ldots \mathbf{e}_n$ ed un punto $C(c_1, \ldots, c_n)$. Sia $r > 0$.
-\begin{itemize}
-    \item La \textbf{sfera di centro $C$ e raggio $r$} è l'insieme
-        \[\mathbf{S}(C, r)=\{P(x_1, \ldots, x_n)\in\mathbf{E}\,:\;d(C, P) = r\},\]
-        cioè tali che
-        \begin{equation}\label{diciannoveundici}
-        \sum_{i=1}^{n}(x_i - c_i)^2 = r^2.
-        \end{equation}
-    \item Il \textbf{disco di centro $C$ e raggio $r$} è l'insieme
-        \[\mathbf{D}(C, r)=\{P(x_1, \ldots, x_n)\in\mathbf{E}\,:\;d(C, P) \leq r\},\]
-        cioè tali che
-        \begin{equation}
-        \sum_{i=1}^{n}(x_i - c_i)^2 \leq r^2.
-        \end{equation}
-\end{itemize}
-
-\vspace{10pt}
-
-Nel caso in cui $\mathbf{E}$ sia un piano, $\mathbf{S}(C, r)$ e $\mathbf{D}(C, r)$ sono la 
-\textbf{circonferenza} e il \textbf{cerchio} rispettivamente, di centro $C$ e raggio $r$.
-Se $\dim(\mathbf{E}) = 1$, $\mathbf{D}(C, r)$ è il segmento di lunghezza $2r$ e di centro $C$, ed 
-$\mathbf{S}(C, r)$ è l'insieme costituito dai suoi estremi.
-
-\vspace{10pt}
-
-Quando $\mathbf{E} = \mathbf{E}^n$, si usano i simboli $\mathbf{S}^{n-1}$ e $\mathbf{D}^n$ per denotare 
-$\mathbf{S}(\mathbf{0}, 1)$ e $\mathbf{D}(\mathbf{0}, 1)$ rispettivamente.
-
-\vspace{10pt}
-
-Dalla \ref{diciannoveundici} deduciamo che $\mathbf{S}(C, r)$ è l'insieme dei punti di $\mathbf{E}$ le cui 
-coordinate sono soluzioni dell'equazione
-\begin{equation}\label{diciannovedodici}
-\sum_{i=1}^{n}(X_i - c_i)^2 = r^2 
-\end{equation}
-nelle indeterminate $X_1, X_2, \ldots, X_n$. La \ref{diciannovedodici} è detta \textbf{equazione cartesiana della sfera $\mathbf{S}(C, r)$}. 
-Portando $r^2$ a primo membro e svolgendo i calcoli troviamo che la \ref{diciannovedodici} è equivalente 
-all'equazione
-\begin{equation}\label{diciannovetredici}
-\sum_{i=1}^{n}X_i(X_i+d_i) + d = 0\quad\quad\quad d_i = -2c_i,\quad d = \sum_{i=1}^{n}c_i^2 - r^2.
-\end{equation}
-A causa della loro definizione 
-e del fatto che $r^2 > 0$, i coefficienti $d_1, \ldots, d_n, d$ della \ref{diciannovetredici} soddisfano la condizione
-\begin{equation}\label{diciannovequattordici}
-\sum_{i=1}^{n}\dfrac{d_i^2}{4} - d > 0.
-\end{equation}
-Viceversa, un'equazione della forma \ref{diciannovetredici} i cui coefficienti soddisfano la condizione 
-\ref{diciannovequattordici} è equazione cartesiana di una sfera $\mathbf{S}$, il cui centro 
-$C(c_1, \ldots, c_n)$ e raggio $\rho$ sono
-\[c_i = -\frac{d_i}{2}, \quad r = \sqrt{\sum_{i=1}^{n}\dfrac{d_i^2}{4} - d}.\]
-Nel caso particolare $n = 2$, la \ref{diciannovetredici} è l'equazione di una circonferenza e ha la forma, 
-nelle indeterminate $X$, $Y$,
-\begin{equation}\label{diciannovequindici}
-X^2 + Y^2 + d_1 X + d_2 Y + d = 0 \quad\quad\quad\dfrac{d_1^2}{4} + \dfrac{d_2^2}{4} - d > 0.
-\end{equation}
-Il centro della circonferenza è 
-\[C\left(-\frac{d'}{2}, -\frac{d_2}{2}\right),\]
-mentre il raggio è
-\[r = \sqrt{\dfrac{d_1^2}{4} + \frac{d_2^2}{4} - d}.\]
-
-\vspace{10pt}
-
-Sia $\mathbf{E}$ un piano euclideo in cui sia assegnata un'orientazione (un piano euclideo orientato) e siano 
-$\mathfrak{s}$ ed $\mathfrak{s}'$ due semirette aventi origine nello stesso punto $O$. Detti 
-$\mathbf{a}$ e $\mathbf{a}'$ vettori di direzione di $\mathfrak{s}$ ed $\mathfrak{s}'$ rispettivamente, 
-l'angolo $\widehat{\mathbf{a}\mathbf{a}'}$ si dice \textbf{angolo orientato tra $\mathfrak{s}$ ed $\mathfrak{s}'$} e si denota 
-con $\widehat{\mathfrak{s}\mathfrak{s}'}$.
-
-\vspace{10pt}
-
-In un piano euclideo orientato $\mathbf{E}$ fissiamo una semiretta $\mathfrak{s}$ di origine $O$. 
-Per ogni punto $P \neq O$ lo associamo al piano $E$ consideriamo la semiretta $\mathfrak{s}_P$ di origine 
-$O$ e vettore di direzione $\overrightarrow{OP}$. Lo scalare positivo $\rho = \|\overrightarrow{OP}\|$, 
-e l'angolo $\theta = \widehat{\mathfrak{s}\mathfrak{s}_P}$ si dicono \textbf{coordinate polari} di $P$, e 
-rispettivamente il \textbf{modulo} e l'\textbf{anomalia} di $P$ rispetto alla semiretta $\mathfrak{s}$. 
-Diremo che $\mathfrak{s}$ definisce in $\mathbf{text}E$ un \textbf{sistema di coordinate polari}.
-Le coordinate polari $(\rho, \theta)$ di un punto $P \neq O$ lo individuano univocamente. Infatti $\theta$ 
-individua una semiretta $\mathfrak{s}_\theta$ di origine $O$, e $P$ è il punto di intersezione di 
-$\mathfrak{s}_\theta$ con la circonferenza di centro $O$ e raggio $\rho$.
-Quindi per ogni coppia di numeri reali $(\rho, \theta)$, con $\rho > 0$, esiste un unico punto $P$ le cui 
-coordinate polari sono $\rho$ e l'angolo definito da $\theta$. Si conviene di estendere le coordinate polari 
-anche al punto $O$ assegnandogli modulo $\rho = 0$ ed anomalia indeterminata.
-Consideriamo il riferimento cartesiano $O\mathbf{ij}$ appartenente all'orientazione assegnata in 
-$\mathbf{E}$, avente origine in $O$ e tale che $\mathbf{i}$ sia il versore di direzione di $\mathfrak{s}$. 
-($O\mathbf{ij}$ è univocamente individuato da queste condizioni). Sia $P \neq O$ un punto avente coordinate 
-polari $(\rho, \theta)$ e coordinate cartesiane $(x, y)$. Allora si ha
-\begin{equation}\label{diciannovesedici}
-x = \rho \cos \theta \quad\quad y = \rho \sin \theta.    
-\end{equation}
-Viceversa:
-\begin{equation}\label{diciannovediciassette}
-\rho = \sqrt{x^2 + y^2}\quad\quad\theta = \varepsilon(y) \arccos \left( \frac{x}{\sqrt{x^2 + y^2}} \right),     
-\end{equation}
-in cui si è denotato con $\varepsilon(y) = \pm 1$ a seconda che $y \geq 0$ oppure $y < 0$ (con questa formula si 
-individua una determinazione dell'angolo $\theta$ compresa tra $-\pi$ e $\pi$).
-Le \ref{diciannovesedici} e \ref{diciannovediciassette} sono le 
-\textbf{formule di passaggio da coordinate polari a coordinate cartesiane e viceversa}. La validità delle 
-suddette formule è lasciata al lettore.
-
-\vspace{10pt}
-
-Sia $\mathbf{E}$ uno spazio euclideo di dimensione $n$, $O \mathbf{e}_1 \ldots \mathbf{e}_n$ un riferimento cartesiano, e 
-siano 
-\[A_i(a_1^i, \ldots, a_n^i)\in\mathbf{E},\quad\quad i\in\{0,1,\ldots,n\}, \]
-punti indipendenti. Il \textbf{volume dell'$n$-parallelepipedo} rispettivamente determinato da 
-$A_0, A_1, \ldots, A_n$ è definito come $|\det(M)|$, dove
-\[M = \begin{pmatrix}
-a_1^1 - a_1^0 & a_2^1 - a_2^0 & \cdots & a_1^n - a_n^0 \\\\
-a_1^2 - a_1^0 & a_2^2 - a_2^0 & \cdots & a_2^n - a_n^0 \\\\
-\vdots & \vdots & \ddots & \vdots \\\\
-a_1^n - a_1^0 & a_2^n - a_2^0 & \cdots & a_n^n - a_n^0
-\end{pmatrix}.\]
-In particolare, per $n = 1, 2, 3$ parleremo di \textbf{lunghezza}, \textbf{area}, \textbf{volume} di un segmento, 
-di un parallelogramma, di un parallelepipedo rispettivamente. La lunghezza di un segmento $A(a)B(b)$ di una 
-retta euclidea è $|b - a|$, quindi coincide con $d(A, B)$.
-L'area del parallelogramma individuato da $A(a_1, a_2)$, $B(b_1, b_2)$, $C(c_1, c_2)$ in un piano euclideo è
-\[\begin{vmatrix}
-b_1 - a_1 & b_2 - a_2 \\
-c_1 - a_1 & c_2 - a_2
-\end{vmatrix}.\]
-Il volume del parallelepipedo individuato da 
-$A(a_1, a_2, a_3)$, $B(b_1, b_2, b_3)$, $C(c_1, c_2, c_3)$, $D(d_1, d_2, d_3)$ in uno spazio euclideo di 
-dimensione $3$ è
-\[\begin{vmatrix}
-b_1 - a_1 & b_2 - a_2 & b_3 - a_3 \\
-c_1 - a_1 & c_2 - a_2 & c_3 - a_3 \\
-d_1 - a_1 & d_2 - a_2 & d_3 - a_3
-\end{vmatrix}.\]
-Osserviamo che la definizione di volume di un $n$-parallelepipedo non dipende dalla scelta del riferimento 
-cartesiano $O\mathbf{e}_1 \ldots \mathbf{e}_n$. Infatti le righe della matrice $M$ sono le coordinate dei 
-vettori $\overrightarrow{A_0A_1},\overrightarrow{A_0A_2},\ldots,\overrightarrow{A_0A_n}$ rispetto 
-alla base $\{\mathbf{e}_1, \ldots, \mathbf{e}_n\}$; se $O\mathbf{f}_1 \ldots \mathbf{f}_n$ è un altro 
-riferimento cartesiano, le coordinate di 
-$\overrightarrow{A_0A_1},\overrightarrow{A_0A_2},\ldots,\overrightarrow{A_0A_n}$ 
-rispetto alla base $\{\mathbf{f}_1, \ldots, \mathbf{f}_n\}$ si ottengono dalle 
-precedenti moltiplicando per una matrice ortogonale. Quindi la matrice $N$ analoga di $M$ nel riferimento 
-$O\mathbf{f}_1 \ldots \mathbf{f}_n$ si ottiene da $M$ moltiplicandola a destra per una matrice ortogonale, 
-che ha determinante uguale a $\pm 1$; dunque
-\[|\det(M)| = |\det(N)|.\]
-
-\vspace{10pt}
-
-\paragraph{Sottoinsieme limitato}
-\begin{bxthm}
-\begin{defn}
-Sia $\mathbf{E}$ uno spazio euclideo. Un sottoinsieme $\mathbf{S} \subset \mathbf{E}$ si dice \textbf{limitato} se è 
-contenuto in un disco, cioè
-\[\exists\,C \in \mathbf{E}\,\land\,r>0\,:\;\mathbf{S} \subset D(C, r).\]
-\end{defn}
-\end{bxthm}
-
-\vspace{10pt}
-
-Un \textbf{poliedro convesso} è un sottoinsieme limitato di $\mathbf{E}$ che non è contenuto in un sottospazio 
-affine proprio di $\mathbf{E}$ e che è l'intersezione di un numero finito di semispazi. Un poliedro convesso 
-è un insieme convesso perché lo è ogni semispazio. La dimensione di $\mathbf{E}$ è detta 
-\textbf{dimensione del poliedro}. Se $\dim(\mathbf{E}) = 1$ si ottiene un segmento. Se $\dim(\mathbf{E}) = 2$, 3 
-un poliedro convesso si dice \textbf{poligono convesso} e \textbf{solido convesso} rispettivamente.
-
-\vspace{10pt}
-
-Lasciamo al lettore di introdurre in modo appropriato tutte le nozioni elementari relative ai poligoni convessi, 
-come quelle di \emph{vertice}, \emph{lato} ed \emph{angolo}, di $n$-\emph{agono regolare}, di \emph{lati adiacenti} 
-o \emph{consecutivi} ecc. in analogia con quanto viene fatto in geometria euclidea elementare.
-
-\vspace{10pt}
-
-Supponiamo $\dim(\mathbf{E}) = 3$ e sia $\Pi \subset \mathbf{E}$ un solido convesso. Se $\mathscr{I}$ è un 
-piano di $\mathbf{E}$ tale che $\Pi$ sia contenuto in uno dei due semispazi definiti da $\mathscr{I}$, allora 
-abbiamo le seguenti possibilità:
-\begin{itemize}
-\item $\mathscr{I}\cap\Pi = \emptyset$;
-\item $\mathscr{I}\cap\Pi$ è un punto, che si dice \textbf{vertice} di $\Pi$;
-\item $\mathscr{I}\cap\Pi$ è un segmento, che si dice \textbf{spigolo} (o \textbf{lato}) di $\Pi$;
-\item $\mathscr{I}\cap\Pi$ è un poligono, che si dice \textbf{faccia} di $\Pi$.
-\end{itemize}
-
-\vspace{10pt}
-
-Dal fatto che $\Pi$ è intersezione di un numero finito di semispazi segue che esso possiede un numero 
-finito $v$ di vertici, $s$ di spigoli, ed $f$ di facce. 
-È facile vedere che ogni spigolo è lato di due facce e ogni vertice è vertice di almeno tre facce e di altrettanti spigoli.
-
-\vspace{10pt}
-
-Per ogni solido convesso $\Pi$ sussiste la seguente relazione tra $v$, $s$ ed $f$:
-\begin{equation}\label{diciannovediciotto}
-v - s + f = 2. 
-\end{equation}
-
-\vspace{10pt}
-
-Daremo una dimostrazione della \ref{diciannovediciotto} che è simile a quella originale di Eulero. Per semplificare l'argomentazione supporremo 
-che sia possibile costruire il solido $\Pi$ partendo da una faccia e aggiungendone poi via via altre, in 
-modo che ad ogni nuova faccia che si aggiunge abbia solo lati \textbf{adiacenti} in comune con quelle precedentemente 
-iscritte.
-
-\vspace{10pt}
-
-Si osservi che necessariamente $f \geq 3$. Ad ogni stadio del procedimento denotiamo con $\Phi$ il numero 
-$v - s + f - 1$. Per una sola faccia si ha $v = 0$. Procediamo per induzione sul numero di facce iscritte, 
-dimostrando che finché il poliedro non è stato completato, si ha $\Phi = 0$. Supponiamo che ciò sia vero un 
-dato stadio della costruzione in cui restano da iscrivere almeno due facce ancora. Aggiungendo una nuova faccia 
-$F$ avente $p$ lati, di cui $q$ consecutivi siano in comune con le precedenti; pertanto $q + 1$ vertici di 
-$F$ appartengono alle precedenti facce. Abbiamo quindi aggiunto 1 nuova faccia, $p - q$ nuovi vertici, 
-$p - q$ nuovi spigoli. Denotando con $\Phi'$ la quantità corrispondente di $\Phi$ relativa alla nuova configurazione, 
-si ha
-\begin{align}
-\Phi' &= \Phi + (p - q) - (p - q) + 1 = \Phi + 1 = 0 + 1 = 1 = \Phi,
-\end{align}
-come asserito. Osserviamo che quando si aggiunge l'ultima faccia non si modifica né il numero dei vertici 
-né quello degli spigoli, mentre il numero delle facce aumenta di 1. Quindi per $\Pi$ si ha $\Phi = 1$, 
-cioè la (19.18).
-
-Gli studi sulla estensione 3-dimensionale dei poligoni regolari detti ``solidi regolari''. Un 
-\textit{solido regolare} è un solido convesso avente facce poligonali tutti uguali tra loro. È un fatto 
-notevole che, diversamente da quello che avviene per i poligoni regolari, esistono solo un numero finito, 
-precisamente 5, di classi di similitudine di solidi regolari (per la definizione di similitudine cfr. 
-20.10(2)): il \textit{tetraedro}, l'\textit{ottaedro}, il \textit{cubo}, il \textit{dodecaedro}, 
-l'\textit{icosaedro} (fig. 19.4).
-
-Questi solidi erano noti fin dall'antichità. Poiché la scuola platonica se ne interessò, in particolare 
-Platone ne parla nel \textit{Timeo}, essi vengono anche chiamati \textit{solidi platonici}. Teeteto li 
-studiò sistematicamente attorno al 380 a.C. e di essi tratta il XIII libro degli \textit{Elementi} di 
-Euclide. (Per maggiori dettagli rimandiamo il lettore a [7]).
+% \vspace{10pt}
+% 
+% Ciò posto, definiamo la \textbf{distanza di \(\mathfrak{r}\) da \(\mathfrak{r}'\)} come
+% \[
+% d(\mathfrak{r}, \mathfrak{r}') = d(N, N').
+% \]
+% Si ha la seguente formula che permette di calcolare agevolmente la distanza di due rette assegnate:
+% \begin{equation}\label{diciannovedieci}
+% d(\mathfrak{r}, \mathfrak{r}') = 
+% \dfrac{
+% \begin{vmatrix}
+% a - a' & b - b' & c - c'\\
+% l & m & n\\
+% l' & m' & n'
+% \end{vmatrix}
+% }
+% {
+% \sqrt{
+% \begin{vmatrix}
+% m & n\\
+% m' & n'
+% \end{vmatrix}^2
+% +
+% \begin{vmatrix}
+% l & n\\
+% l' & n'
+% \end{vmatrix}^2
+% +
+% \begin{vmatrix}
+% l & m\\
+% l' & m'
+% \end{vmatrix}^2
+% }
+% }
+% \end{equation}
+% La \eqref{diciannovedieci} si dimostra nel modo seguente.
+% Sia \(\mathbf{b}\) un versore della perpendicolare comune a \(\mathfrak{r}\) e a \(\mathfrak{r}'\). Si ha
+% \[
+% \langle \mathbf{b}, \overrightarrow{Q Q'} \rangle
+% = \langle \mathbf{b}, \overrightarrow{Q N} \rangle 
+% + \langle \mathbf{b}, \overrightarrow{N Q'} \rangle 
+% = \langle \mathbf{b}, \overrightarrow{N Q'} \rangle
+% \]
+% e quindi
+% \[
+% d(\mathfrak{r}, \mathfrak{r}')
+% = | \langle \mathbf{b}, \overrightarrow{N Q'} \rangle |
+% = | \langle \mathbf{b}, \overrightarrow{Q Q'} \rangle |.
+% \]
+% D'altra parte, poiché \(\mathbf{b}\) è ortogonale sia ad \(\mathbf{a}\) che ad \(\mathbf{a}'\), si ha
+% \[
+% \mathbf{b} = \pm \frac{\mathbf{a} \wedge \mathbf{a}'}{\|\mathbf{a} \wedge \mathbf{a}'\|}.
+% \]
+% Quindi
+% \[
+% d(\mathfrak{r}, \mathfrak{r}')
+% = \frac{|\langle \mathbf{a} \wedge \mathbf{a}', \overrightarrow{Q Q'} \rangle|}{\|\mathbf{a} \wedge \mathbf{a}'\|}.
+% \]
+% Esplicitando quest'uguaglianza si ottiene la formula cercata.
+% 
+% \vspace{10pt}
+% 
+% Per trovare equazioni cartesiane della retta $\mathcal{s}$ perpendicolare comune a $\mathfrak{r}$ e a 
+% $\mathfrak{r}'$ si procede nel modo seguente.
+% Conosciamo $\mathbf{a}\wedge\mathbf{a}'$, vettore di direzione $\mathfrak{s}$, le cui coordinate 
+% denotiamo con $(\beta_1, \beta_2, \beta_3)$. Denotando con $P(X, Y, Z)$ un punto di coordinate indeterminate, 
+% e imponendo le condizioni di complanarità di $\mathfrak{r}$ e di $\mathfrak{r}'$ con la retta passante per 
+% $P$ e avente vettore di direzione $\mathbf{a}\wedge\mathbf{a}'$, otteniamo le due seguenti equazioni:
+% \[
+%     \begin{vmatrix}
+%     X - a & Y - b & Z - c \\\\
+%     \beta_1 & \beta_2 & \beta_3 \\\\
+%     l & m & n
+%     \end{vmatrix} = 0\quad\quad
+%     \begin{vmatrix}
+%     X - a' & Y - b' & Z - c' \\\\
+%     \beta_1 & \beta_2 & \beta_3 \\\\
+%     l' & m' & n'
+%     \end{vmatrix} = 0.
+% \]
+% Poiché queste equazioni rappresentano due piani distinti e sono soddisfatte dai punti di $\mathfrak{s}$, 
+% esse sono equazioni cartesiane di $\mathfrak{s}$.
+% 
+% \vspace{20pt}
+% 
+% Supponiamo fissato in uno spazio euclideo $\mathbf{E}$ un riferimento cartesiano 
+% $O\mathbf{e}_1 \ldots \mathbf{e}_n$ ed un punto $C(c_1, \ldots, c_n)$. Sia $r > 0$.
+% \begin{itemize}
+%     \item La \textbf{sfera di centro $C$ e raggio $r$} è l'insieme
+%         \[\mathbf{S}(C, r)=\{P(x_1, \ldots, x_n)\in\mathbf{E}\,:\;d(C, P) = r\},\]
+%         cioè tali che
+%         \begin{equation}\label{diciannoveundici}
+%         \sum_{i=1}^{n}(x_i - c_i)^2 = r^2.
+%         \end{equation}
+%     \item Il \textbf{disco di centro $C$ e raggio $r$} è l'insieme
+%         \[\mathbf{D}(C, r)=\{P(x_1, \ldots, x_n)\in\mathbf{E}\,:\;d(C, P) \leq r\},\]
+%         cioè tali che
+%         \begin{equation}
+%         \sum_{i=1}^{n}(x_i - c_i)^2 \leq r^2.
+%         \end{equation}
+% \end{itemize}
+% 
+% \vspace{10pt}
+% 
+% Nel caso in cui $\mathbf{E}$ sia un piano, $\mathbf{S}(C, r)$ e $\mathbf{D}(C, r)$ sono la 
+% \textbf{circonferenza} e il \textbf{cerchio} rispettivamente, di centro $C$ e raggio $r$.
+% Se $\dim(\mathbf{E}) = 1$, $\mathbf{D}(C, r)$ è il segmento di lunghezza $2r$ e di centro $C$, ed 
+% $\mathbf{S}(C, r)$ è l'insieme costituito dai suoi estremi.
+% 
+% \vspace{10pt}
+% 
+% Quando $\mathbf{E} = \mathbf{E}^n$, si usano i simboli $\mathbf{S}^{n-1}$ e $\mathbf{D}^n$ per denotare 
+% $\mathbf{S}(\mathbf{0}, 1)$ e $\mathbf{D}(\mathbf{0}, 1)$ rispettivamente.
+% 
+% \vspace{10pt}
+% 
+% Dalla \ref{diciannoveundici} deduciamo che $\mathbf{S}(C, r)$ è l'insieme dei punti di $\mathbf{E}$ le cui 
+% coordinate sono soluzioni dell'equazione
+% \begin{equation}\label{diciannovedodici}
+% \sum_{i=1}^{n}(X_i - c_i)^2 = r^2 
+% \end{equation}
+% nelle indeterminate $X_1, X_2, \ldots, X_n$. La \ref{diciannovedodici} è detta \textbf{equazione cartesiana della sfera $\mathbf{S}(C, r)$}. 
+% Portando $r^2$ a primo membro e svolgendo i calcoli troviamo che la \ref{diciannovedodici} è equivalente 
+% all'equazione
+% \begin{equation}\label{diciannovetredici}
+% \sum_{i=1}^{n}X_i(X_i+d_i) + d = 0\quad\quad\quad d_i = -2c_i,\quad d = \sum_{i=1}^{n}c_i^2 - r^2.
+% \end{equation}
+% A causa della loro definizione 
+% e del fatto che $r^2 > 0$, i coefficienti $d_1, \ldots, d_n, d$ della \ref{diciannovetredici} soddisfano la condizione
+% \begin{equation}\label{diciannovequattordici}
+% \sum_{i=1}^{n}\dfrac{d_i^2}{4} - d > 0.
+% \end{equation}
+% Viceversa, un'equazione della forma \ref{diciannovetredici} i cui coefficienti soddisfano la condizione 
+% \ref{diciannovequattordici} è equazione cartesiana di una sfera $\mathbf{S}$, il cui centro 
+% $C(c_1, \ldots, c_n)$ e raggio $\rho$ sono
+% \[c_i = -\frac{d_i}{2}, \quad r = \sqrt{\sum_{i=1}^{n}\dfrac{d_i^2}{4} - d}.\]
+% Nel caso particolare $n = 2$, la \ref{diciannovetredici} è l'equazione di una circonferenza e ha la forma, 
+% nelle indeterminate $X$, $Y$,
+% \begin{equation}\label{diciannovequindici}
+% X^2 + Y^2 + d_1 X + d_2 Y + d = 0 \quad\quad\quad\dfrac{d_1^2}{4} + \dfrac{d_2^2}{4} - d > 0.
+% \end{equation}
+% Il centro della circonferenza è 
+% \[C\left(-\frac{d'}{2}, -\frac{d_2}{2}\right),\]
+% mentre il raggio è
+% \[r = \sqrt{\dfrac{d_1^2}{4} + \frac{d_2^2}{4} - d}.\]
+% 
+% \vspace{10pt}
+% 
+% Sia $\mathbf{E}$ un piano euclideo in cui sia assegnata un'orientazione (un piano euclideo orientato) e siano 
+% $\mathfrak{s}$ ed $\mathfrak{s}'$ due semirette aventi origine nello stesso punto $O$. Detti 
+% $\mathbf{a}$ e $\mathbf{a}'$ vettori di direzione di $\mathfrak{s}$ ed $\mathfrak{s}'$ rispettivamente, 
+% l'angolo $\widehat{\mathbf{a}\mathbf{a}'}$ si dice \textbf{angolo orientato tra $\mathfrak{s}$ ed $\mathfrak{s}'$} e si denota 
+% con $\widehat{\mathfrak{s}\mathfrak{s}'}$.
+% 
+% \vspace{10pt}
+% 
+% In un piano euclideo orientato $\mathbf{E}$ fissiamo una semiretta $\mathfrak{s}$ di origine $O$. 
+% Per ogni punto $P \neq O$ lo associamo al piano $E$ consideriamo la semiretta $\mathfrak{s}_P$ di origine 
+% $O$ e vettore di direzione $\overrightarrow{OP}$. Lo scalare positivo $\rho = \|\overrightarrow{OP}\|$, 
+% e l'angolo $\theta = \widehat{\mathfrak{s}\mathfrak{s}_P}$ si dicono \textbf{coordinate polari} di $P$, e 
+% rispettivamente il \textbf{modulo} e l'\textbf{anomalia} di $P$ rispetto alla semiretta $\mathfrak{s}$. 
+% Diremo che $\mathfrak{s}$ definisce in $\mathbf{text}E$ un \textbf{sistema di coordinate polari}.
+% Le coordinate polari $(\rho, \theta)$ di un punto $P \neq O$ lo individuano univocamente. Infatti $\theta$ 
+% individua una semiretta $\mathfrak{s}_\theta$ di origine $O$, e $P$ è il punto di intersezione di 
+% $\mathfrak{s}_\theta$ con la circonferenza di centro $O$ e raggio $\rho$.
+% Quindi per ogni coppia di numeri reali $(\rho, \theta)$, con $\rho > 0$, esiste un unico punto $P$ le cui 
+% coordinate polari sono $\rho$ e l'angolo definito da $\theta$. Si conviene di estendere le coordinate polari 
+% anche al punto $O$ assegnandogli modulo $\rho = 0$ ed anomalia indeterminata.
+% Consideriamo il riferimento cartesiano $O\mathbf{ij}$ appartenente all'orientazione assegnata in 
+% $\mathbf{E}$, avente origine in $O$ e tale che $\mathbf{i}$ sia il versore di direzione di $\mathfrak{s}$. 
+% ($O\mathbf{ij}$ è univocamente individuato da queste condizioni). Sia $P \neq O$ un punto avente coordinate 
+% polari $(\rho, \theta)$ e coordinate cartesiane $(x, y)$. Allora si ha
+% \begin{equation}\label{diciannovesedici}
+% x = \rho \cos \theta \quad\quad y = \rho \sin \theta.    
+% \end{equation}
+% Viceversa:
+% \begin{equation}\label{diciannovediciassette}
+% \rho = \sqrt{x^2 + y^2}\quad\quad\theta = \varepsilon(y) \arccos \left( \frac{x}{\sqrt{x^2 + y^2}} \right),     
+% \end{equation}
+% in cui si è denotato con $\varepsilon(y) = \pm 1$ a seconda che $y \geq 0$ oppure $y < 0$ (con questa formula si 
+% individua una determinazione dell'angolo $\theta$ compresa tra $-\pi$ e $\pi$).
+% Le \ref{diciannovesedici} e \ref{diciannovediciassette} sono le 
+% \textbf{formule di passaggio da coordinate polari a coordinate cartesiane e viceversa}. La validità delle 
+% suddette formule è lasciata al lettore.
+% 
+% \vspace{10pt}
+% 
+% Sia $\mathbf{E}$ uno spazio euclideo di dimensione $n$, $O \mathbf{e}_1 \ldots \mathbf{e}_n$ un riferimento cartesiano, e 
+% siano 
+% \[A_i(a_1^i, \ldots, a_n^i)\in\mathbf{E},\quad\quad i\in\{0,1,\ldots,n\}, \]
+% punti indipendenti. Il \textbf{volume dell'$n$-parallelepipedo} rispettivamente determinato da 
+% $A_0, A_1, \ldots, A_n$ è definito come $|\det(M)|$, dove
+% \[M = \begin{pmatrix}
+% a_1^1 - a_1^0 & a_2^1 - a_2^0 & \cdots & a_1^n - a_n^0 \\\\
+% a_1^2 - a_1^0 & a_2^2 - a_2^0 & \cdots & a_2^n - a_n^0 \\\\
+% \vdots & \vdots & \ddots & \vdots \\\\
+% a_1^n - a_1^0 & a_2^n - a_2^0 & \cdots & a_n^n - a_n^0
+% \end{pmatrix}.\]
+% In particolare, per $n = 1, 2, 3$ parleremo di \textbf{lunghezza}, \textbf{area}, \textbf{volume} di un segmento, 
+% di un parallelogramma, di un parallelepipedo rispettivamente. La lunghezza di un segmento $A(a)B(b)$ di una 
+% retta euclidea è $|b - a|$, quindi coincide con $d(A, B)$.
+% L'area del parallelogramma individuato da $A(a_1, a_2)$, $B(b_1, b_2)$, $C(c_1, c_2)$ in un piano euclideo è
+% \[\begin{vmatrix}
+% b_1 - a_1 & b_2 - a_2 \\
+% c_1 - a_1 & c_2 - a_2
+% \end{vmatrix}.\]
+% Il volume del parallelepipedo individuato da 
+% $A(a_1, a_2, a_3)$, $B(b_1, b_2, b_3)$, $C(c_1, c_2, c_3)$, $D(d_1, d_2, d_3)$ in uno spazio euclideo di 
+% dimensione $3$ è
+% \[\begin{vmatrix}
+% b_1 - a_1 & b_2 - a_2 & b_3 - a_3 \\
+% c_1 - a_1 & c_2 - a_2 & c_3 - a_3 \\
+% d_1 - a_1 & d_2 - a_2 & d_3 - a_3
+% \end{vmatrix}.\]
+% Osserviamo che la definizione di volume di un $n$-parallelepipedo non dipende dalla scelta del riferimento 
+% cartesiano $O\mathbf{e}_1 \ldots \mathbf{e}_n$. Infatti le righe della matrice $M$ sono le coordinate dei 
+% vettori $\overrightarrow{A_0A_1},\overrightarrow{A_0A_2},\ldots,\overrightarrow{A_0A_n}$ rispetto 
+% alla base $\{\mathbf{e}_1, \ldots, \mathbf{e}_n\}$; se $O\mathbf{f}_1 \ldots \mathbf{f}_n$ è un altro 
+% riferimento cartesiano, le coordinate di 
+% $\overrightarrow{A_0A_1},\overrightarrow{A_0A_2},\ldots,\overrightarrow{A_0A_n}$ 
+% rispetto alla base $\{\mathbf{f}_1, \ldots, \mathbf{f}_n\}$ si ottengono dalle 
+% precedenti moltiplicando per una matrice ortogonale. Quindi la matrice $N$ analoga di $M$ nel riferimento 
+% $O\mathbf{f}_1 \ldots \mathbf{f}_n$ si ottiene da $M$ moltiplicandola a destra per una matrice ortogonale, 
+% che ha determinante uguale a $\pm 1$; dunque
+% \[|\det(M)| = |\det(N)|.\]
+% 
+% \vspace{10pt}
+% 
+% \paragraph{Sottoinsieme limitato}
+% \begin{bxthm}
+% \begin{defn}
+% Sia $\mathbf{E}$ uno spazio euclideo. Un sottoinsieme $\mathbf{S} \subset \mathbf{E}$ si dice \textbf{limitato} se è 
+% contenuto in un disco, cioè
+% \[\exists\,C \in \mathbf{E}\,\land\,r>0\,:\;\mathbf{S} \subset D(C, r).\]
+% \end{defn}
+% \end{bxthm}
+% 
+% \vspace{10pt}
+% 
+% Un \textbf{poliedro convesso} è un sottoinsieme limitato di $\mathbf{E}$ che non è contenuto in un sottospazio 
+% affine proprio di $\mathbf{E}$ e che è l'intersezione di un numero finito di semispazi. Un poliedro convesso 
+% è un insieme convesso perché lo è ogni semispazio. La dimensione di $\mathbf{E}$ è detta 
+% \textbf{dimensione del poliedro}. Se $\dim(\mathbf{E}) = 1$ si ottiene un segmento. Se $\dim(\mathbf{E}) = 2$, 3 
+% un poliedro convesso si dice \textbf{poligono convesso} e \textbf{solido convesso} rispettivamente.
+% 
+% \vspace{10pt}
+% 
+% Lasciamo al lettore di introdurre in modo appropriato tutte le nozioni elementari relative ai poligoni convessi, 
+% come quelle di \emph{vertice}, \emph{lato} ed \emph{angolo}, di $n$-\emph{agono regolare}, di \emph{lati adiacenti} 
+% o \emph{consecutivi} ecc. in analogia con quanto viene fatto in geometria euclidea elementare.
+% 
+% \vspace{10pt}
+% 
+% Supponiamo $\dim(\mathbf{E}) = 3$ e sia $\Pi \subset \mathbf{E}$ un solido convesso. Se $\mathscr{I}$ è un 
+% piano di $\mathbf{E}$ tale che $\Pi$ sia contenuto in uno dei due semispazi definiti da $\mathscr{I}$, allora 
+% abbiamo le seguenti possibilità:
+% \begin{itemize}
+% \item $\mathscr{I}\cap\Pi = \emptyset$;
+% \item $\mathscr{I}\cap\Pi$ è un punto, che si dice \textbf{vertice} di $\Pi$;
+% \item $\mathscr{I}\cap\Pi$ è un segmento, che si dice \textbf{spigolo} (o \textbf{lato}) di $\Pi$;
+% \item $\mathscr{I}\cap\Pi$ è un poligono, che si dice \textbf{faccia} di $\Pi$.
+% \end{itemize}
+% 
+% \vspace{10pt}
+% 
+% Dal fatto che $\Pi$ è intersezione di un numero finito di semispazi segue che esso possiede un numero 
+% finito $v$ di vertici, $s$ di spigoli, ed $f$ di facce. 
+% È facile vedere che ogni spigolo è lato di due facce e ogni vertice è vertice di almeno tre facce e di altrettanti spigoli.
+% 
+% \vspace{10pt}
+% 
+% Per ogni solido convesso $\Pi$ sussiste la seguente relazione tra $v$, $s$ ed $f$:
+% \begin{equation}\label{diciannovediciotto}
+% v - s + f = 2. 
+% \end{equation}
+% 
+% \vspace{10pt}
+% 
+% Daremo una dimostrazione della \ref{diciannovediciotto} che è simile a quella originale di Eulero. Per semplificare l'argomentazione supporremo 
+% che sia possibile costruire il solido $\Pi$ partendo da una faccia e aggiungendone poi via via altre, in 
+% modo che ad ogni nuova faccia che si aggiunge abbia solo lati \textbf{adiacenti} in comune con quelle precedentemente 
+% iscritte.
+% 
+% \vspace{10pt}
+% 
+% Si osservi che necessariamente $f \geq 3$. Ad ogni stadio del procedimento denotiamo con $\Phi$ il numero 
+% $v - s + f - 1$. Per una sola faccia si ha $v = 0$. Procediamo per induzione sul numero di facce iscritte, 
+% dimostrando che finché il poliedro non è stato completato, si ha $\Phi = 0$. Supponiamo che ciò sia vero un 
+% dato stadio della costruzione in cui restano da iscrivere almeno due facce ancora. Aggiungendo una nuova faccia 
+% $F$ avente $p$ lati, di cui $q$ consecutivi siano in comune con le precedenti; pertanto $q + 1$ vertici di 
+% $F$ appartengono alle precedenti facce. Abbiamo quindi aggiunto 1 nuova faccia, $p - q$ nuovi vertici, 
+% $p - q$ nuovi spigoli. Denotando con $\Phi'$ la quantità corrispondente di $\Phi$ relativa alla nuova configurazione, 
+% si ha
+% \begin{align}
+% \Phi' &= \Phi + (p - q) - (p - q) + 1 = \Phi + 1 = 0 + 1 = 1 = \Phi,
+% \end{align}
+% come asserito. Osserviamo che quando si aggiunge l'ultima faccia non si modifica né il numero dei vertici 
+% né quello degli spigoli, mentre il numero delle facce aumenta di 1. Quindi per $\Pi$ si ha $\Phi = 1$, 
+% cioè la (19.18).
+% 
+% Gli studi sulla estensione 3-dimensionale dei poligoni regolari detti ``solidi regolari''. Un 
+% \textit{solido regolare} è un solido convesso avente facce poligonali tutti uguali tra loro. È un fatto 
+% notevole che, diversamente da quello che avviene per i poligoni regolari, esistono solo un numero finito, 
+% precisamente 5, di classi di similitudine di solidi regolari (per la definizione di similitudine cfr. 
+% 20.10(2)): il \textit{tetraedro}, l'\textit{ottaedro}, il \textit{cubo}, il \textit{dodecaedro}, 
+% l'\textit{icosaedro} (fig. 19.4).
+% 
+% Questi solidi erano noti fin dall'antichità. Poiché la scuola platonica se ne interessò, in particolare 
+% Platone ne parla nel \textit{Timeo}, essi vengono anche chiamati \textit{solidi platonici}. Teeteto li 
+% studiò sistematicamente attorno al 380 a.C. e di essi tratta il XIII libro degli \textit{Elementi} di 
+% Euclide. (Per maggiori dettagli rimandiamo il lettore a [7]).
 
 \vspace{50pt}
 \section{Diagonalizzazione di operatori simmetrici}
