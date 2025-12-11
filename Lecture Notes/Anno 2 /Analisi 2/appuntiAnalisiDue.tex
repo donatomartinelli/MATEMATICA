@@ -2073,10 +2073,123 @@ Calcolare i seguenti limiti:
 \end{xca}
 
 
+\newpage
+\part{Trascrizione degli appunti, da integrare}
 
+\paragraph{Teorema sui limiti lungo le curve}
 
+Sia $f: A \subseteq \mathbb{R}^2 \to \mathbb{R}$, sia $(x_0, y_0)$ un punto di accumulazione per $A$ e supponiamo che $\lim_{(x,y) \to (x_0,y_0)} f(x,y) = \ell \in \hat{\mathbb{R}}$. Sia $\rho: I \to \mathbb{R}$ una funzione continua definita in un intervallo reale che contiene $x_0$ tale che $\rho(x_0) = y_0$ e $\forall x \in I \setminus \{x_0\}, (x, \rho(x)) \in A$. Allora
+$$ \lim_{x \to x_0} f(x, \rho(x)) = \ell $$
+$y = \rho(x)$ è l'equazione del grafico di $\rho$, quindi $f(x, \rho(x))$ è la funzione calcolata lungo la curva cartesiana di equazione $y = \rho(x)$.
 
+\vspace{10pt}
+\paragraph{Dim.}
 
+Sia $\ell \in \mathbb{R}$. \\
+Per ipotesi $\left[ \forall \varepsilon > 0, \exists \delta > 0 : \forall (x,y) \in A \text{ con } 0 < ||(x,y) - (x_0, y_0)|| < \delta , |f(x,y) - \ell| < \varepsilon \right] \star$
 
+\vspace{10pt}
+Th \quad $\forall \varepsilon > 0, \exists \delta' > 0 : \forall x \in I \setminus \{x_0\} \text{ con } |x - x_0| < \delta', |f(x, \rho(x)) - \ell| < \varepsilon$.
+
+\vspace{10pt}
+Sia $\varepsilon > 0$ e $\delta$ come in $\star$. Poiché $\rho$ è continua in $x_0$, $\exists \bar{\delta} > 0 : \forall x \in I \text{ con } |x - x_0| < \bar{\delta}$, $|\rho(x) - y_0| < \frac{\delta}{2}$. \\
+$\delta' = \min \left\{ \bar{\delta}, \frac{\delta}{2} \right\}$. Sia $x \in I \setminus \{x_0\} : |x - x_0| < \delta'$. $(x, \rho(x))$
+
+Se $x \in I \setminus \{x_0\}$, $(x, \rho(x)) \in A$. \\
+$||(x, \rho(x)) - (x_0, y_0)|| = ||(x-x_0, \rho(x)-y_0)|| = \sqrt{(x-x_0)^2 + (\rho(x)-y_0)^2}$
+
+$(x, \rho(x))$ Se $x \in I \setminus \{x_0\}, (x, \rho(x)) \in A, |x-x_0| < \delta' < \frac{\delta}{2}$.
+
+Poiché $x \neq x_0$, $\sqrt{(x-x_0)^2 + (\rho(x)-y_0)^2} > \sqrt{(x-x_0)^2} = |x-x_0| > 0$
+
+Se $x \in I \setminus \{x_0\}$ e $|x-x_0| < \delta'$, $(x, \rho(x)) \in A$ e $0 < ||(x, \rho(x)) - (x_0, y_0)|| < \delta \implies$ da $\star \quad |f(x, \rho(x)) - \ell| < \varepsilon$.
+
+$$ \lim_{(x,y) \to (x_0, y_0)} f(x,y) \qquad \begin{aligned} &f: A \subseteq \mathbb{R}^2 \to \mathbb{R} \\ &(x_0, y_0) \text{ di accumulazione per } A. \end{aligned} $$
+
+\vspace{10pt}
+Passiamo alle coordinate polari
+$$ \begin{cases} x = x_0 + \rho \cos \theta \\ y = y_0 + \rho \sin \theta \end{cases} \text{ e } \rho = \sqrt{(x-x_0)^2 + (y-y_0)^2} $$
+
+\vspace{10pt}
+$F(\rho, \theta) = f(x_0 + \rho \cos \theta, y_0 + \rho \sin \theta)$ \\
+$F$ è la $f$ trasformata in coordinate polari.
+
+\vspace{10pt}
+Sia $f(x,y) = \frac{xy^2}{x^2+y^2}$ e $(x_0, y_0) = (0,0)$
+
+$$ \begin{cases} x = \rho \cos \theta \\ y = \rho \sin \theta \end{cases} \text{ e } \rho = \sqrt{x^2+y^2} \qquad F(\rho, \theta) = \frac{\rho \cos \theta \rho^2 \sin^2 \theta}{\rho^2} = \rho \cos \theta \sin^2 \theta $$
+
+\vspace{10pt}
+$F$ è definita in $A^* = \{ (\rho, \theta) \in [0, +\infty[ \times [0, 2\pi] : (x_0 + \rho \cos \theta, y_0 + \rho \sin \theta) \in A \}$ \\
+$A^*$ è $A$ in coordinate polari.
+
+\vspace{10pt}
+Se $A = C((0,0), 1)$, $A^*$ sarà \quad $A^* \begin{cases} 0 < \rho \le 1 \\ 0 \le \theta \le 2\pi \end{cases}$
+
+$$ \Rightarrow A^* = (0, 1] \times [0, 2\pi] $$
+
+\paragraph{Ipotesi (*).} Supponiamo che esista un cerchio di centro $(x_0, y_0) : C \setminus \{(x_0, y_0)\} \subseteq A$.
+
+\vspace{10pt}
+\paragraph{Prop.} Nell'ipotesi $(*)$, se $r$ è il raggio di $C$, abbiamo che $]0, r] \times [0, 2\pi] \subseteq A^*$.
+
+\vspace{10pt}
+\paragraph{Dim.}
+$(C \setminus \{(x_0, y_0)\})^* = \{ (\rho, \theta) : 0 < \rho \le r \text{ e } 0 \le \theta \le 2\pi \}$
+
+Sia $(\rho, \theta) \in ]0, r] \times [0, 2\pi] \implies (\rho, \theta) \in (C \setminus \{(x_0, y_0)\})^*$
+$\implies (x_0 + \rho \cos \theta, y_0 + \rho \sin \theta) \in C \setminus \{(x_0, y_0)\} \subseteq A \implies (\rho, \theta) \in A^*$.
+
+\vspace{10pt}
+$\forall \theta \in [0, 2\pi]$, sia $\varphi_\theta(\rho) = F(\rho, \theta)$
+$\varphi_\theta$ è la $f$ vista come funzione della sola variabile $\rho$, mentre $\theta$ è assegnato. Per la prop precedente, $\varphi_\theta$ è ben definita in $]0, r]$ perché, se $0 < \rho < r$, poiché $\theta \in [0, 2\pi]$, $(\rho, \theta) \in A^*$, quindi ha senso scrivere $F(\rho, \theta)$. $0$ è un punto di accumulazione per $]0, r]$ e, quindi, ha senso calcolare $\lim_{\rho \to 0} \varphi_\theta(\rho)$.
+
+\vspace{10pt}
+Cosa vuol dire che $\forall \theta \in [0, 2\pi], \lim_{\rho \to 0} \varphi_\theta(\rho) = \ell \in \mathbb{R}$.
+
+Vuol dire che $\forall \varepsilon > 0$ e $\forall \theta \in [0, 2\pi], \exists \delta > 0, \delta(\varepsilon, \theta) :$
+se $0 < \rho < \delta, |\varphi_\theta(\rho) - \ell| < \varepsilon$, cioè $|F(\rho, \theta) - \ell| < \varepsilon$.
+
+\vspace{10pt}
+\paragraph{Def.} Si dice che $\lim_{\rho \to 0} F(\rho, \theta) = \ell \in \mathbb{R}$ uniformemente rispetto a $\theta$ se
+$\forall \varepsilon > 0, \exists \delta(\varepsilon) > 0 : 0 < \rho < \delta \implies |F(\rho, \theta) - \ell| < \varepsilon \quad \forall \theta \in [0, 2\pi]$.
+
+\vspace{10pt}
+\paragraph{Def.} Si dice che $\lim_{\rho \to 0} F(\rho, \theta) = +\infty$ uniformemente rispetto a $\theta$ se $\forall M > 0, \exists \delta^{(M)} > 0 :$
+se $0 < \rho < \delta \quad F(\rho, \theta) > M \quad \forall \theta \in [0, 2\pi]$
+
+\vspace{10pt}
+\paragraph{Def.} Si dice che $\lim_{\rho \to 0} F(\rho, \theta) = -\infty$ uniformemente rispetto a $\theta$ se $\forall M > 0, \exists \delta^{(M)} > 0 :$
+se $0 < \rho < \delta \quad F(\rho, \theta) < -M \quad \forall \theta \in [0, 2\pi]$
+
+\paragraph{Teorema sul calcolo dei limiti}
+Sia $f: A \subseteq \mathbb{R}^2 \to \mathbb{R}$, $(x_0, y_0)$ un punto di accumulazione per $A$ e sia verificata l'ipotesi $(\star)$. Allora $\lim_{(x,y) \to (x_0,y_0)} f(x,y) = \ell \in \hat{\mathbb{R}} \iff \underbrace{\lim_{\rho \to 0} F(\rho, \theta) = \ell}_{\lim_{\rho \to 0} \varphi_\theta(\rho)} \text{ uniformemente rispetto a } \theta$
+
+\vspace{10pt}
+Il teorema riconduce il calcolo del limite di una funzione di 2 variabili al calcolo del limite di una sola variabile.
+
+\vspace{10pt}
+$\lim_{(x,y) \to (x_0, y_0)} f(x,y) \qquad \begin{aligned} &f: A \subseteq \mathbb{R}^2 \to \mathbb{R} \\ &(x_0, y_0) \text{ di accumulazione} \end{aligned}$
+
+\vspace{10pt}
+$F(\rho, \theta) = f(x_0 + \rho \cos \theta, y_0 + \rho \sin \theta)$
+
+$\lim_{\rho \to 0} F(\rho, \theta) = \ell \in \hat{\mathbb{R}}$. Si deve verificare se il limite è uniforme rispetto a $\theta$. Se il limite è uniforme, si conclude che $\lim_{(x,y) \to (x_0,y_0)} f(x,y) = \ell$. Se il limite non è uniforme rispetto a $\theta$, si conclude che $\lim_{(x,y) \to (x_0,y_0)} f(x,y) \nexists$. A patto che $A$ verifichi l'ipotesi $(\star)$.
+
+\vspace{10pt}
+\paragraph{es}
+$$ \lim_{(x,y) \to (0,0)} (x^2+y^2) e^{\sqrt{x^2+y^2}} \qquad \begin{cases} x = \rho \cos \theta \\ y = \rho \sin \theta \\ \rho = \sqrt{x^2+y^2} \end{cases} $$
+$$ F(\rho, \theta) = \rho^2 e^\rho $$
+
+\vspace{10pt}
+$\lim_{\rho \to 0} F(\rho, \theta) = 0$ è uniforme rispetto a $\theta$ perché $F$ non dipende da $\theta \implies \lim_{(x,y) \to (0,0)} (x^2+y^2)e^{\sqrt{x^2+y^2}} = 0$
+
+\vspace{10pt}
+\paragraph{es}
+$$ \lim_{(x,y) \to (0,0)} \frac{xy}{x^2+y^2} \qquad A = \mathbb{R}^2 \setminus \{(0,0)\} \qquad \begin{cases} x = \rho \cos \theta \\ y = \rho \sin \theta \\ \rho = \sqrt{x^2+y^2} \end{cases} $$
+
+$$ F(\rho, \theta) = \frac{\rho \cos \theta \rho \sin \theta}{\rho^2} = \cos \theta \sin \theta $$
+
+$F$ non dipende da $\rho$
 
 \end{document}
