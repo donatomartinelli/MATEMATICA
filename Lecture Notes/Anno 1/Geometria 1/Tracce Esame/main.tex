@@ -1,0 +1,812 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsfonts, amsthm}
+\usepackage{mathtools}
+\usepackage{mdframed}
+\usepackage{cancel}
+\usepackage{import, xifthen, pdfpages, transparent}
+\usepackage{enumitem}
+\usepackage{geometry}
+\usepackage{multicol}
+\usepackage{hyperref}
+\usepackage{mathrsfs}
+\usepackage{float}
+\usepackage{tikz, pgfplots}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+\usetikzlibrary{positioning}
+\pgfplotsset{compat=1.18}
+\geometry{a4paper, margin=1.5cm}
+
+\newmdenv[
+  linecolor=black,
+  linewidth=1pt,
+  roundcorner=5pt,
+  innertopmargin=4pt,
+  innerbottommargin=10pt,
+  innerleftmargin=10pt,
+  innerrightmargin=10pt
+]{bxthm}
+
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[section]
+\newtheorem{exmp}{Example}[section]
+\newtheorem{xca}[exmp]{Exercise}
+
+\theoremstyle{remark}
+\newtheorem{rem}{Remark}
+\newtheorem{note}{Note}
+\newtheorem{case}{Case}
+
+\newcommand{\incfig}[2][\columnwidth]{%
+    \def\svgwidth{#1}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\begin{document}
+\begin{titlepage}
+    \centering
+	{\textsc{Università degli Studi della Basilicata} \par}
+	\vspace{2cm}
+    {\huge\bfseries Tracce dell'esame di Geometria\par}
+    \vfill
+	{\Large\itshape Donato Martinelli\par}
+	{\large \today\par}
+\end{titlepage}
+
+\tableofcontents
+
+\newpage
+
+\section{Tracce}
+
+\subsection{Sistemi con parametro}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}\label{primosistema}
+Risolvere il seguente sistema di equazioni lineari al variare del parametro $\lambda \in \mathbb{R}$:
+\[
+\begin{cases}
+(\lambda + 1)X_1 + X_2 + X_3 - X_4 = 0 \\
+(2 - \lambda)X_1 + (2 + \lambda)X_2 + 2X_3 - (\lambda + 1)X_4 = \lambda \\
+-X_1 - X_2 - (\lambda + 1)^2 X_3 + X_4 = 1 - \lambda
+\end{cases}\quad.
+\]
+\end{xca}
+\end{bxthm}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}\label{secondosistema}
+Risolvere il seguente sistema di equazioni lineari al variare del parametro $\lambda \in \mathbb{R}$:
+\[
+\begin{cases}
+X_1+2X_2+X_3 = \lambda \\
+2X_1+2X_2+2X_3=-\lambda \\
+X_1+\lambda X_2+X_3=0\\
+3X_1-X_2=1
+\end{cases}\quad.
+\]
+\end{xca}
+\end{bxthm}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}\label{terzosistema}
+Risolvere il seguente sistema di equazioni lineari al variare del parametro 
+$\lambda \in \mathbb{R}$:
+\[
+\begin{cases}
+X_1+X_2+X_3+X_4=1\\
+2X_1+X_2+X_3-X_4=-2\\
+-\lambda X_1+\lambda X_2+\lambda X_3+\lambda X_4=-1\\
+X_1+X_2+X_4=3\\
+X_2+X_3+(1-\lambda)X_4=5
+\end{cases}\quad.
+\]
+\end{xca}
+\end{bxthm}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}\label{quartosistema}
+Risolvere il seguente sistema di equazioni lineari al variare del parametro $\lambda \in \mathbb{R}$:
+\[
+\begin{cases}
+X_1+(\lambda-1)X_2+(\lambda-2)X_3=\lambda+3 \\
+3X_1+(\lambda-2)X_3-2X_4=4\lambda +1\\
+X_1+2X_4=3\\
+X_1+(3\lambda-3)X_2+2X_4=9\\
+2X_1+(3\lambda-3)X_2+4X_4=12\\
+X_1+(2-2\lambda)X_2+(2-\lambda)X_3-2X_4=2\lambda -5
+\end{cases}\quad.
+\]
+\end{xca}
+\end{bxthm}
+
+\vspace{50pt}
+
+\subsection{Operatori Lineari}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}\label{primoapplicazionilineari}
+Si consideri l'operatore lineare 
+\[
+F : \mathbb{R}^3 \rightarrow \mathbb{R}^3 ,\quad \begin{pmatrix}x\\y\\z\end{pmatrix} \mapsto \begin{pmatrix}x - y + 2z\\2x - z\\3x - y + z\end{pmatrix}\quad.
+\]
+\begin{enumerate}
+    \item[i)] Verificare se $F$ è diagonalizzabile;
+    \item[ii)] determinare una base di $\mathrm{Im}(F)$. Determinare una base di $\ker(F)$;
+    \item[iii)] verificare se risulta $\mathbb{R}^3 = \mathrm{Im}(F) \oplus \ker(F)$;
+    \item[iv)] dato $\mathbf{W}=\langle(1,2,3)\rangle$, determinare una base del sottospazio vettoriale $F^{-1}(\mathbf{W})$.
+\end{enumerate}
+\end{xca}
+\end{bxthm}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}\label{secondoapplicazionilineari}
+Sia $F:\mathbb{R}^3 \rightarrow \mathbb{R}^3$ l'endomorfismo che, rispetto alla base canonica $\mathbf{E}$, ha matrice : 
+
+\[
+M_{\mathbf{E},\mathbf{E}}(F)=\begin{pmatrix} 0& 0& -3\\3 &1 &1 \\ 0& 0& 1\end{pmatrix}\quad.
+\]
+\begin{enumerate}
+    \item[i)] Determinare gli autovalori e autovettori di $F$ e verificare che $F$ non è diagonalizzabile;
+    \item[ii)] determinare una base $\mathbf{B}$ di $\mathbb{R}^3$ contenente due autovettori di $F$ e calcolare $M_{\mathbf{B},\mathbf{B}}(F)$;
+    \item[iii)] determinare un endomorfismo $G:\mathbb{R}^3 \rightarrow \mathbb{R}^3$ diagonalizzabile che abbia tra i suoi autovettori quelli di $F$ (relativi ai medesimi autovalori).
+\end{enumerate}
+\end{xca}
+\end{bxthm}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+Si consideri l'operatore lineare 
+\[
+F : \mathbb{R}^4 \rightarrow \mathbb{R}^4 ,\quad \begin{pmatrix}x\\y\\z\\t\end{pmatrix} \mapsto 
+\begin{pmatrix}\frac{x}{2}-\frac{y}{2}-z\\y+z \\z \\\frac{x}{2}+\frac{y}{2} \end{pmatrix}\quad.
+\]
+\begin{enumerate}
+    \item[i)] Verificare se $F$ è diagonalizzabile;
+    \item[ii)] determinare una base di $F^{-1}(\mathbf{W})$, essendo $\mathbf{W}=\langle(0,1,0,1)\rangle$;
+    \item[iii)] verificare se risulta $\mathbb{R}^4 = \mathrm{Im}(F) \oplus \ker(F)$;
+    \item[iv)] determinare una base di $F(\mathrm{Im}(F))$.
+\end{enumerate}
+\end{xca}
+\end{bxthm}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+Si consideri l'operatore lineare 
+\[
+F : \mathbb{R}^4 \rightarrow \mathbb{R}^4 ,\quad \begin{pmatrix}x\\y\\z\\t\end{pmatrix} \mapsto 
+\begin{pmatrix}z+t\\z+t \\z+t \\-z-t \end{pmatrix}\quad.
+\]
+\begin{enumerate}
+    \item[i)] Scrivere la matrice di $F$ rispetto alle basi canoniche;
+    \item[ii)] determinare una base e la dimensione di $\mathrm{Im}(F)$ e $\ker(F)$;
+    \item[iii)] provare che la somma di $\mathrm{Im}(F)$ e $\ker(F)$ non è diretta;
+    \item[iv)] provare che ogni vettore di $\mathrm{Im}(F)\cap\ker(F)$ è un autovettore di $F$.
+\end{enumerate}
+\end{xca}
+\end{bxthm}
+
+\vspace{50pt}
+
+\subsection{Forme bilineari e quadratiche}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+Rispetto alla base canonica sia data la forma quadratica
+\[
+\Phi : \mathbb{R}^2 \rightarrow \mathbb{R},\quad (x, y) \mapsto x^2 + 2hxy + y^2\quad h\in\mathbb{R}.
+\]
+\begin{enumerate}
+    \item[i)] Dire per quali valori di $h$ tale forma è definita positiva;
+    \item[ii)] posto $h = 3$, determinare una forma canonica per $\Phi$, precisando la base rispetto a cui essa si realizza.
+\end{enumerate}
+\end{xca}
+\end{bxthm}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+Rispetto alla base canonica sia data la forma quadratica
+\[
+\Phi : \mathbb{R}^3 \rightarrow \mathbb{R},\quad (x, y, z) \mapsto x^2+y^2+z^2+2xy+2xz+2yz\quad h\in\mathbb{R}.
+\]
+\begin{enumerate}
+    \item[i)] Determinare la forma polare associata alla forma quadratica $\Phi$;
+    \item[ii)] scrivere la matrice della forma quadratica $\Phi$ e determinarne il rango;
+    \item[iii)] determinare una forma canonica della forma quadratica $\Phi$ e la sua segnatura.
+\end{enumerate}
+\end{xca}
+\end{bxthm}
+
+\vspace{10pt}
+
+
+
+\begin{bxthm}
+\begin{xca}
+Rispetto alla base canonica sia data la forma quadratica
+\[
+\Phi : \mathbb{R}^3 \rightarrow \mathbb{R},\quad (x, y,z) \mapsto 2x^2+y^2-4xy-4yz\quad h\in\mathbb{R},
+\]
+e sia $b$ la forma bilineare polare di $\Phi$.
+\begin{enumerate}
+    \item[i)] Calcolare la segnatura di $b$;
+    \item[ii)] calcolare la forma canonica (possibilmente in due modi distinti);
+    \item[iii)]  motivare e dimostrare in due modi il teorema principale.
+\end{enumerate}
+\end{xca}
+\end{bxthm}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+Rispetto alla base canonica sia data la forma quadratica
+\[
+\Phi : \mathbb{R}^3 \rightarrow \mathbb{R},\quad (x, y,z) \mapsto xz+xy+yz\quad h\in\mathbb{R}.
+\]
+\begin{enumerate}
+    \item[i)] Determinare la forma polare associata alla forma quadratica $\Phi$;
+    \item[ii)] scrivere la matrice della forma quadratica $\Phi$ e determinarne il rango;
+    \item[iii)] determinare una forma canonica della forma quadratica $\Phi$ e la sua segnatura.
+\end{enumerate}
+\end{xca}
+\end{bxthm}
+
+\vspace{50pt}
+
+\subsection{Geometria}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+Nello spazio euclideo $\mathbb{E}^3$ dotato di un fissato riferimento cartesiano ortogonale monometrico, 
+sia $r$ la retta congiungente i punti $A = (1, -1, 1)$, $B = (2, 0, -1)$ e sia $\pi$ il piano di equazione 
+cartesiana $2X - T + Z + 1 = 0$.
+\begin{enumerate}
+    \item[i)] Determinare la proiezione ortogonale $r'$ di $r$ su $\pi$.
+    \item[ii)] Determinare il piano $\tau$ contenente $r'$ ed il punto $R = (0, 0, 1)$.
+    \item[iii)] Determinare la retta $t$ passante per $R$, contenuta in $\tau$ e ortogonale a $r'$.
+    \item[iv)] Determinare il piano contenente la retta $t$ e parallelo alla retta $r$.
+\end{enumerate}
+\end{xca}
+\end{bxthm}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+Sia $\mathbb{E}^3$ uno spazio euclideo di dimensione $3$ in cui è fissato un riferimento euclideo $R$ .
+Sia $l$ la retta di equazioni cartesiane:
+\[
+\begin{cases}
+2X-Y+Z+12=0 \\
+X-Y+Z-\sqrt{5}=0
+\end{cases}
+\]
+\begin{enumerate}
+    \item[i)] Determinare i piani $\alpha_1$ e $\alpha_2$ passanti per l'origine, paralleli ad $l$ ed aventi distanza $1$ da $P(1,-1,1)$.
+    \item[ii)] Determinare il piano $\rho$ passante per $P$ ed ortogonale sia ad $\alpha_1$ che $\alpha_2$
+    \item[iii)] Posto $r_1=\rho\cap\alpha_1$ ed $r_2=\rho\cap\alpha_2$, dette $R_1$ ed $R_2$ le proiezioni ortogonali di $P$ sulle rette $r_1$ ed $r_2$ rispettivamente, calcolare la distanza tra $R_1$ ed $R_2$.
+\end{enumerate}
+\end{xca}
+\end{bxthm}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+In $\mathbb{R}^5$ sia $p:\mathbb{R}^5\to\mathbb{R}^5$ l'operatore di proiezione ortogonale sul sottospazio vettoriale $\mathbf{U}$ di equazioni cartesiane, rispetto alla base canonica $\mathbf{E}$ di $\mathbb{R}^5$
+\[
+\begin{cases}
+X_2-X_3=0 \\
+X_2+X_4-X_5=0
+\end{cases}
+\]
+\begin{enumerate}
+    \item[i)] Determinare la matrice di $p$ (rispetto ad $\mathbf{E}$);
+    \item[ii)] Determinare una base ortonormale di $\mathbf{U}$ e completarla sino ad ottenere una base ortonormale $\mathbf{F}$ di $\mathbb{R}^5$;
+    \item[iii)] Scrivere la matrice di $p$ rispetto ad $\mathbf{F}$.
+\end{enumerate}
+\end{xca}
+\end{bxthm}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+Nello spazio euclideo $\mathbf{E}^3$ dotato di un fissato riferimento cartesiano ortogonale monometrico:
+Dire per quali valori del parametro $k$ le rette $r_k$ e $s_k$ di $\mathbb{R}^3$ di equazioni cartesiane:
+\[
+r_k:
+\begin{cases}
+x-y+z=k\\
+x+2y-z=2
+\end{cases}
+\quad\quad 
+s_k:
+\begin{cases}
+x+y=1\\
+x-y-2kz-1
+\end{cases}
+\]
+sono coincidenti, incidenti in un punto o sghembe.
+\end{xca}
+\end{bxthm}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+Sia $\mathbf{V}=(\mathbf{V}_\mathbb{R}^2,\cdot)$ un piano vettoriale euclideo e sia $\mathbf{E}=\{\mathbf{e}_1,\mathbf{e}_2\}$ una base di $\mathbf{V}$ tale che 
+$\mathbf{e}_1\cdot\mathbf{e}_1=2,\quad\mathbf{e}_1\cdot\mathbf{e}_2=\mathbf{e}_2\cdot\mathbf{e}_2=1$. Sia $T:\mathbf{V}\to\mathbf{V}$ l'operatore lineare definito da 
+\[T(\mathbf{e}_1)=-\mathbf{e}_1+4\mathbf{e}_2,\quad T(\mathbf{e}_2)=\mathbf{e}_1+\mathbf{e}_2.\]
+Determinare una base ortonormale $\mathbf{F}$ di $\mathbf{V}$. Verificare che $T$ è autoaggiunto e scriverne la matrice nella base $\mathbf{F}$.
+Calcolare una base ortonormale di autovettori di $T$. Veriricare che $T$ non è unitario.
+\end{xca}
+\end{bxthm}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{xca}
+Nello spazio euclideo $\mathbb{E}^3$ dotato di un fissato riferimento euclideo $R$.
+Sia $\delta$ il piano contenente i punti $A = (0, -1, 0)$, $B = (0, 0, \frac{1}{3})$, $C = (\frac{1}{5},0,0)$.
+
+\begin{enumerate}
+    \item[i)] Determinare la retta $r$ passante per il punto $P = (1,-1,3)$, parallela al piano $\delta$ ed ortogonale alla retta $s$ di equazioni cartesiane 
+    \[\begin{cases}
+        2X-Y+Z=1\\
+        X-3Y+Z=3
+    \end{cases}.\]
+    \item[ii)] Determinare la distanza di $r$ da $\delta$.
+    \item[iii)] Determinare la proiezione ortogonale $r'$ di $r$ su $\delta$.
+    \item[iv)] Determinare il piano $\rho$ contenente $r$ ed $r'$.
+\end{enumerate}
+\end{xca}
+\end{bxthm}
+
+\newpage
+
+\section{Soluzioni}
+
+\subsection{Sistema con parametro}
+\paragraph{\ref{primosistema}}
+Scriviamo la matrice orlata associata al sistema. 
+\[A|b=\begin{pmatrix}
+    (\lambda+1)&1&1&-1&0\\
+    (2-\lambda)&(2+\lambda)&2&-(\lambda+1)&\lambda\\
+    -1&-1&-(\lambda+1)^2&1&(1-\lambda)
+\end{pmatrix}\quad A\in M_{3,4}(\mathbb{R}),A|b\in M_{3,5}(\mathbb{R}).\]
+\subparagraph{Caso generale}
+Per verificare se il sistema è compatibile, utilizziamo il teorema di Kronecker-Rouche-Capelli.
+Notiamo che $1\leq r(A),r(A|b)\leq 3 $. 
+Procediamo con il metodo dei minori orlati. 
+Calcoliamo il minore di $M=A|b(1\,3\,|1\,2)$:
+\[\begin{vmatrix}
+    \lambda + 1 & 1 \\
+    -1 & -1
+\end{vmatrix}=-(\lambda+1)+1 = -\lambda,\]
+Segue immediatamente che $\det(M)\neq0\iff \lambda \neq0$, perciò $2\leq r(A),r(A|b)\leq 3 $. 
+Procediamo con l'orlare $M$, 
+\[\begin{cases}
+    M_1=A|b(1\,2\,3\,|\,1\,2\,3)\\
+    M_2=A|b(1\,2\,3\,|\,1\,2\,4)\\
+    M_3=A|b(1\,2\,3\,|\,1\,2\,5)
+\end{cases} ,\quad M_1,M_2\in \{A,A|b\},\;M_3\notin A,\,M_3\in A|b,\]
+se riusciamo a provare che un minore non nullo appartiene sia ad $A$ che a $A|b$, allora $r(A)=r(A|b)=3$, altrimenti $r(A)=r(A|b)=2$.
+Abbiamo dunque 
+\[M_1=\begin{vmatrix}
+    \lambda+1&1&1\\
+    2-\lambda&2+\lambda&2\\
+    -1&-1&-(\lambda+1)^2
+\end{vmatrix},\quad
+M_2=\begin{vmatrix}
+    \lambda+1&1&-1\\
+    2-\lambda&2+\lambda&-(\lambda+1)\\
+    -1&-1&1
+\end{vmatrix},\quad
+M_3=\begin{vmatrix}
+    \lambda+1&1&0\\
+    2.\lambda&2+\lambda&\lambda\\
+    -1&-1&1-\lambda
+\end{vmatrix}\;.\]
+Calcoliamo il secondo minore:
+\begin{center}
+\includegraphics[scale=0.22]{minoredue.jpg}    
+\end{center}
+Segue che $\det(M_2)\neq0 \iff \lambda\neq0$, e quindi abbiamo che $r(A)=r(A|b)=3$. Perciò per Kronecker-Rouche-Capelli il sistema 
+è compatibile e ammette $\infty^{4-3}=\infty^1$ soluzioni.
+Poniamo dunque $X_3=t\; t\in\mathbb{R}$ e risolviamo in funzione del parametro posto:
+\[\begin{cases}
+    (\lambda + 1)X_1 + X_2- X_4 = -t \\
+    (2 - \lambda)X_1 + (2 + \lambda)X_2 - (\lambda + 1)X_4 = \lambda-2t \\
+    -X_1 - X_2  + X_4 = 1 - \lambda +(\lambda+1)^2t
+\end{cases}\quad\lambda,t\in\mathbb{R}.\]
+Le soluzioni del sistema sono del tipo $(x_1,x_2,t,x_4)$ e sono calcolabili mediante il metodo di Cramer, dunque avremo:
+\begin{center}
+\includegraphics[scale=0.2]{cramer.jpg}    
+\end{center}
+Procediamo con i calcoli.
+\begin{itemize}
+    \item[$x_1$)]\hfill
+    \begin{center}
+        \includegraphics[scale=0.25]{crameruno.jpg}
+    \end{center}
+    Dunque 
+    \[x_1=\dfrac{\lambda^2t+2\lambda t-\lambda+1}{\lambda}.\]
+    \item[$x_2$)]\hfill
+    \begin{center}
+        \includegraphics[scale=0.28]{cramerduee.jpg}
+    \end{center}
+    Dunque 
+    \[x_2=\dfrac{\lambda^4t+5\lambda^3+6\lambda^2t-3\lambda t-\lambda^3-\lambda^2+4\lambda-1}{\lambda}.\]
+    \item[$x_4$)]\hfill
+    \begin{center}
+        \includegraphics[scale=0.22]{cramertre.jpg}
+    \end{center}
+    Dunque 
+    \[x_4=\dfrac{\cancel{\lambda}(\lambda^3t-\lambda^2+6\lambda^2t+9\lambda t+4-2\lambda)}{\cancel{\lambda}}=\lambda^3t-\lambda^2+6\lambda^2t+9\lambda t+4-2\lambda.\]
+\end{itemize}
+
+E quindi:
+\[(x_1,x_2,x_3,x_4)=\left(\dfrac{\lambda^2t+2\lambda t+1-\lambda}{\lambda},\dfrac{\lambda^4t+5\lambda^3+6\lambda^2t-3\lambda t-\lambda^3-\lambda^2+4\lambda-1}{\lambda},t,\lambda^3t-\lambda^2+6\lambda^2t+9\lambda t+4-2\lambda\right)\;\lambda\in\mathbb{R}.\]
+
+\subparagraph{Casi particolari}
+Se $\lambda=0$, avremo
+\[\begin{pmatrix}
+        1&1&1&-1&0\\
+        2&2&2&-1&0\\
+        -1&-1&-1&1&1
+    \end{pmatrix},\]
+Moltiplicando la terza riga per -1, otteniamo il che primo membro di entrambi è uguale, ma non possiamo dire lo stesso per il secondo, dunque il sistema è incompatibile.    
+
+\vspace{20pt}
+
+\paragraph{\ref{secondosistema}}
+Scriviamo la matrice orlata associata al sistema
+\[
+A|b=\begin{pmatrix}
+    1&2&1&\lambda\\
+    2&2&2&-\lambda\\
+    1&\lambda&1&0\\
+    3&-1&0&1
+\end{pmatrix}
+\quad A\in M_{4,3}(\mathbb{R}),B=A|b\in M_4(\mathbb{R}).\]
+\subparagraph{Caso generale}
+Per verificare se il sistema è compatibile, utilizziamo il teorema di Kronecker-Rouche-Capelli. 
+Notiamo che $1\leq r(A)\leq 3$ e $1\leq r(B)\leq 4$, quindi essendo $B$ quadrata, se $\det(B)\neq0$, allora $r(B)=4$.
+Calcoliamo dunque $\det(B)$ mediante Laplace:
+\begin{center}
+    \includegraphics[scale=0.31]{A.jpg}
+\end{center}
+Poniamo $\det(B)\neq0$ e otteniamo 
+\[3\lambda(3\lambda-4)\neq0\implies\lambda\neq0\;\land\;\lambda\neq\dfrac{4}{3}.\]
+Dunque $\forall\,\lambda\neq0,\frac{4}{3},$ abbiamo che $r(B)=4$. Ora però il fatto che $1\leq r(A)\leq 3$ ci impedisce di applicare KRC poichè $r(A)\neq r(B)$, 
+e dunque per valori di $\lambda$ diversi da quelli verificati, il sistema è incompatibile.
+
+\subparagraph{Casi particolari}
+Adesso studiamo i casi per cui $\lambda = 0$ e $\lambda =\frac{4}{3}$. Per $\lambda =0$ il sistema diventa
+\[
+A|b=\begin{pmatrix}
+    1&2&1&0\\
+    2&2&2&0\\
+    1&0&1&0\\
+    3&-1&0&1
+\end{pmatrix}
+\quad A\in M_{4,3}(\mathbb{R}),B=A|b\in M_4(\mathbb{R}).\]
+Riduco tale matrice a gradini mediante Gauss-Jordan:
+\begin{center}
+    \includegraphics[scale=0.31]{B.jpg}
+\end{center}
+Ora scriviamo il sistema associato a tale matrice:
+\[
+\begin{cases}
+X+2Y+Z=0 \\
+Y=0 \\
+Z=-\frac{1}{3}
+\end{cases}=\begin{cases}
+    X=\frac{1}{3}\\
+    Y=0\\
+    Z=-\frac{1}{3}
+\end{cases}\quad.
+\]
+Quindi l'unica soluzione del sistema per $\lambda=0$ è data da $(x,y,z)=(\frac{1}{3},0,-\frac{1}{3})$.
+Per $\lambda=\frac{4}{3}$ il sistema diventa
+\[
+A|b=\begin{pmatrix}
+    1&2&1&\frac{4}{3}\\
+    2&2&2&-\frac{4}{3}\\
+    1&\frac{4}{3}&1&0\\
+    3&-1&0&1
+\end{pmatrix}
+\quad A\in M_{4,3}(\mathbb{R}),A|b\in M_4(\mathbb{R}).\]
+Riduco tale matrice a gradini mediante Gauss-Jordan:
+\begin{center}
+    \includegraphics[scale=0.27]{C.jpg}
+\end{center}
+Ora scriviamo il sistema associato a tale matrice:
+\[
+\begin{cases}
+X+2Y+Z=\frac{4}{3}\\
+Y=2\\
+Z=-\frac{11}{3}
+\end{cases}=
+\begin{cases}
+X=\frac{4}{3}+\frac{11}{3}-4\\
+Y=2\\
+Z=-\frac{11}{3}
+\end{cases}=
+\begin{cases}
+X=1\\
+Y=2\\
+Z=-\frac{11}{3}
+\end{cases}\quad.
+\]
+Dunque l'unica soluzione del sistema per $\lambda=\frac{4}{3}$ è data da $(x,y,z)=(1,2,-\frac{11}{3})$.
+
+\vspace{20pt}
+
+\paragraph{\ref{terzosistema}}
+Scriviamo la matrice orlata associata al sistema
+\[
+A|b=\begin{pmatrix}
+    1&1&1&1&1\\
+    2&1&1&-1&-2\\
+    -\lambda&\lambda&\lambda&\lambda&-1\\
+    1&1&0&1&3\\
+    0&1&1&1-\lambda&5
+\end{pmatrix}
+\quad A\in M_{5,4}(\mathbb{R}),B=A|b\in M_5(\mathbb{R}).\]
+\subparagraph{Caso generale}
+Applichiamo il metodo di Gauss-Jordan per ridurre questo sistema a gradini:
+\begin{center}
+    \includegraphics[scale=0.27]{D.jpg}
+\end{center}
+Se $7\lambda^2+19\lambda+2\neq0$, allora il sistema è incompatibile.
+\subparagraph{Caso particolare}
+Per $\lambda =0$, il sistema diventa
+\[
+A|b=\begin{pmatrix}
+    1&1&1&1&1\\
+    2&1&1&-1&-2\\
+    0&0&0&0&-1\\
+    1&1&0&1&3\\
+    0&1&1&1&5
+\end{pmatrix}
+\quad A\in M_{5,4}(\mathbb{R}),B=A|b\in M_5(\mathbb{R}),\]
+è evidente constatare l'incompatibilità dalla terza riga.
+Per $7\lambda^2+19\lambda+2=0$ si ha, partendo dalla matrice già ridotta a gradini nel caso generale,
+\[
+A|b=\begin{pmatrix}
+    1&1&1&1&1\\
+    0&1&1&3&4\\
+    0&0&1&0&-2\\
+    0&0&0&1&\frac{7\lambda+1}{4\lambda}\\
+    0&0&0&0&0
+\end{pmatrix}
+\quad A\in M_{5,4}(\mathbb{R}),B=A|b\in M_5(\mathbb{R}),\]
+cancelliamo la quinta riga e poichè $n=m$, il sistema è compatibile. 
+Scriviamo il sistema:
+\begin{center}
+    \includegraphics[scale=0.27]{E.jpg}
+\end{center}
+Dunque il sistema è risolto dalla seguente quadrupla $(x_1,x_2,x_3,x_4)=\left(\frac{\lambda+1}{2\lambda},\frac{3(\lambda-1)}{4\lambda},-2,\frac{7\lambda+1}{4\lambda}\right).$
+
+\vspace{20pt}
+
+\paragraph{\ref{quartosistema}}
+Scriviamo la matrice orlata associata al sistema
+\[
+A|b=\begin{pmatrix}
+    1&\lambda-1&\lambda-2&0&\lambda+3\\
+    3&0&\lambda-2&-2&4\lambda+1\\
+    1&0&0&2&3\\
+    1&3\lambda-3&0&2&9\\
+    2&3\lambda-3&0&4&12\\
+    1&-2(\lambda-1)&-(\lambda-2)&-2&2\lambda-5
+\end{pmatrix}
+\quad A\in M_{6,4}(\mathbb{R}),B=A|b\in M_{6,5}(\mathbb{R}).\]
+\subparagraph{Caso generale}
+Applichiamo il metodo di Gauss-Jordan per ridurre questo sistema a gradini:
+\begin{center}
+    \includegraphics[scale=0.27]{F.jpg}
+\end{center}
+Trascriviamo in sistema
+\begin{center}
+    \includegraphics[scale=0.23]{G.jpg}
+\end{center}
+Il sistema è quindi compatibile, e la soluzione per $\lambda\neq\{1,2\}$ è 
+$(x_1,x_2,x_3,x_4)=\left(\lambda+1,\frac{2}{\lambda-1},0,\frac{2-\lambda}{2}\right)\quad\lambda\in\mathbb{R}.$
+\subparagraph{Casi particolari}
+Per $\lambda=1$ il sistema diventa
+\[
+A|b=\begin{pmatrix}
+    1&0&-1&0&4\\
+    3&0&-1&-2&5\\
+    1&0&0&2&3\\
+    1&0&0&2&9\\
+    2&0&0&4&12\\
+    1&0&1&-2&-3
+\end{pmatrix}
+\quad A\in M_{6,4}(\mathbb{R}),B=A|b\in M_{6,5}(\mathbb{R}).\]
+Poichè terza e quarta riga mostrano delle incompatibilità, il sistema è incompatibile.
+Per $\lambda=2$ il sistema diventa 
+\begin{center}
+    \includegraphics[scale=0.23]{H.jpg}
+\end{center}
+Trascriviamo in sistema 
+\[\begin{cases}
+    x_2=2\\
+    x_4=0\\
+    x_1=3
+\end{cases}.\]
+Poichè $m<n$, pongo $x_3=k\in\mathbb{R}$, allora le $\infty^1$ soluzioni del sistema sono $(x_1,x_2,x_3,x_4)=(3,2,k,0)$.
+
+
+\vspace{50pt}
+\subsection{Operatori lineari}
+
+\paragraph{\ref{primoapplicazionilineari}}
+\begin{enumerate}
+    \item[i)] Scriviamo la matrice associata ad $F$ rispetto alla base canonica $\mathbf{E}$
+    \[
+        F\begin{pmatrix}1\\0\\0\end{pmatrix} = \begin{pmatrix} 1\\2\\3 \end{pmatrix}\quad\quad
+        F\begin{pmatrix}0\\1\\0\end{pmatrix} = \begin{pmatrix} -1\\0\\-1 \end{pmatrix}\quad\quad
+        F\begin{pmatrix}0\\0\\1\end{pmatrix} = \begin{pmatrix} 2\\-1\\1 \end{pmatrix}\;.
+    \]
+    Otteniamo dunque 
+    \[M_{\mathbf{EE}}(F)=\begin{pmatrix}
+    1&-1&2\\
+    2&0&-1\\
+    3&-1&1
+    \end{pmatrix}=A.\]
+    Troviamo ora il polinomio caratteristico, ossia
+    \[|A-\lambda\mathbf{I}_3|=\begin{vmatrix}
+    1-\lambda&-1&2\\
+    2&-\lambda&-1\\
+    3&-1&1-\lambda
+    \end{vmatrix};\]
+    \begin{center}
+        \includegraphics[scale=0.2]{cramerdue.jpg}
+    \end{center}
+    Otteniamo 
+    \[|A-\lambda\mathbf{I}_3|=-\lambda(\lambda^2-2\lambda-4).\]
+    Calcoliamo ora gli autovalori, ossia le radici del polinomio caratteristico.
+    Lo spettro di $F$ è $\{0,1-\sqrt{5},1+\sqrt{5}\}$. 
+    Poichè la dimensione dello spettro di $F$ è $3$, allora l'endomorfismo è diagonalizzabile.
+
+    \item[ii)] 
+    Una base e la dimensione di $\ker(F)$ coincidono con una base e una dimensione dello spazio delle soluzioni del sistema omogeneo 
+    $A\mathbf{x}=\mathbf{0}$. Applicando Gauss-Jordan arriviamo al fatto che il sistema possiede $\infty^1$ soluzioni date da $(x_1,x_2,x_3)=t(1,5,2)$.
+    otteniamo dunque che $\ker(F)=\langle\begin{pmatrix}1,5,2\end{pmatrix}\rangle$ e dunque $\mathrm{B}_{\ker(F)}=\{\begin{pmatrix}1,5,2\end{pmatrix}\}$.
+    e la sua dimensione è $1$ per la cardinalità della base o anche da $\infty^{\textcolor{red}{1}}$.
+    Poichè $\dim(\ker(F))$, per il teorema 4.15 avremo che $r(F)=3-\ker(F)=3-1=2$. $r(F)$ è anche uguale ad $r(A)$. Una sua base sarà costituita da due colonne di $A$
+    \[\mathrm{B}_{\mathrm{Im}(F)}=\{\begin{pmatrix}1\\2\\3\end{pmatrix},\begin{pmatrix}-1\\0\\-1\end{pmatrix}\}.\]
+
+    \item[iii)] 
+    Due sottospazi sono supplementari se e solo se sono in somma diretta. In questo caso se 
+    \[\mathrm{Im}(F) + \ker(F)=\mathbb{R}^3 \quad\land\quad \mathrm{Im}(F) \cap \ker(F)=\emptyset.\]
+    Dunque uniamo le basi, verifichiamo che queste siano un sistema di generatori prendendo il sistema 
+    \[ \begin{cases}a-b+2c=x\\5a-c=y\\2a+b+c=z\end{cases} \]
+    La matrice dei coefficienti è 
+    \[\begin{pmatrix}
+    1&-1&2\\
+    5&0&-1\\
+    2&1&1
+    \end{pmatrix}.\]
+    Poichè $1\leq r(A),r(B)\leq 3$, deduciamo che se $\det(A)\neq0$, allora $r(A)=r(B)$, e quindi per Kronecker-Rouche-Capelli il sistema è compatibile, ciò significa che per ogni vettore in $\mathbb{R}^3$, esiste una terna tale per cui il vettore è uguale alla combinazione lineare della base. 
+    Oltre a ciò bisogna verificare che i tre vettori siano linearmente indipendenti, e dunque dobbiamo risolvere 
+    \[ \begin{cases}a-b+2c=0\\5a-c=0\\2a+b+c=0\end{cases}\implies\begin{cases}a-b+2c=0\\c=5a\\b=-7a\end{cases}\implies \begin{cases}a=0\\b=0\\c=0\end{cases},\]
+    dunque lo sono e quindi l'insieme di vettori $\mathrm{B}_{\mathrm{Im}(F)}\cup\mathrm{B}_{\ker(F)}$ è una base di $\ker(F)+\mathrm{Im}(F)$, la sua dimensione è $3$ che è uguale a $\dim(\mathbb{R}^3)$, segue dunque che 
+    $\mathrm{Im}(F)+\ker(F)=\mathbb{R}^3$. Per la formua di Grassmann si ha 
+    \[\dim(\mathrm{Im}(F)\cap\ker(F))=\dim(\mathrm{Im}(F))+\dim(\ker(F))-\dim(\mathrm{Im}(F)+\ker(F))=2+1-3=0,\]
+    e dunque $\mathrm{Im}(F) \oplus \ker(F) = \mathbb{R}^3$.
+
+    \item[iv)] Questo non tanto l'ho capito ma suppongo io debba fare più esercizi.
+\end{enumerate}
+
+
+\vspace{20pt}
+
+\paragraph{\ref{secondoapplicazionilineari}}
+\begin{enumerate}
+    \item[i)] Determinare gli autovalori e autovettori di $F$ e verificare che $F$ non è diagonalizzabile;
+    Determiniamo le radici del polinomio $P_A(\lambda)$ dove $A=M_{\mathbf{E},\mathbf{E}}(F)$.
+    \[\begin{vmatrix}
+        -\lambda&0&-3\\
+        3&1-\lambda&1\\
+        0&0&1-\lambda
+    \end{vmatrix}.\]
+    Sviluppo Laplace lungo la terza riga:
+    \[(-1)^{3+3}\cdot(1-\lambda)\cdot\begin{vmatrix}
+        -\lambda&0\\
+        3&1-\lambda
+    \end{vmatrix}=(1-\lambda)(-\lambda)(1-\lambda)=-\lambda(1-\lambda)^2.\]
+    Ponendo $P_A(\lambda)=0$ ottengo $\lambda_1=0$ e $\lambda_2=1$.
+    \item[ii)] determinare una base $\mathbf{B}$ di $\mathbb{R}^3$ contenente due autovettori di $F$ e calcolare $M_{\mathbf{B},\mathbf{B}}(F)$;
+    \item[iii)] determinare un endomorfismo $G:\mathbb{R}^3 \rightarrow \mathbb{R}^3$ diagonalizzabile che abbia tra i suoi autovettori quelli di $F$ (relativi ai medesimi autovalori).
+\end{enumerate}
+
+
+\subsection{Forme bilineari e quadratiche}
+%\ref{}
+
+\subsection{Geometria}
+%\ref{}
+
+
+
+
+
+\newpage
+
+\section{Considerazioni su risoluzione dei problemi}
+\subsection{Sistemi con parametro}
+Per risolvere un sistema lineare con parametro, bisogna prima di tutto estrarre la matrice orlata associata al sistema.
+Poi determinare gli insiemi di appartenenza delle matrici $A$ e $Ab$.
+Caso Generale
+In un altro caso ho applicato prima Gauss-Jordan ma era di ordine 5, perchè?
+Specificare che useremo il teorema di Kronecker-Rouche-Capelli.
+Vediamo il rango di entrambe le matrici in quale intervallo può esistere.
+\begin{itemize}
+    \item Se $Ab$ è una matrice quadrata di ordine $n$, calcolo direttamente $\det(Ab)$ mediante Laplace. 
+    Se $\det(Ab)\neq0$, allora $r(Ab)=n$ e dunque inevitabilmente sarà incompatibile perchè $1\leq r(A)\leq n-1$. 
+\end{itemize}
+Dopo aver analizzato il caso generale, passo ai casi particolari.
+Per quei valori che rendono incompatibile il caso generale, faccio vedere come diventa il sistema e faccio la matrice 
+orlata associata, determino ancora una volta gli insiemi di appartenenza delle matrici $A$ e $b$.
+Effettuo riduzione a gradini con il metodo di eliminazione di Gauss-Jordan.
+Notare che se non incontro incompatibilità nella riduzione a gradini, allora il sistema è compatibile.
+Una volta ridotto a gradini, riscrivo il sistema e dopo aver effettuato i dovuti calcoli, riscrivo la soluzione sotto forma di $n$-upla.
+
+
+\subsection{Operatori lineari}
+Dato un operatore lineare (scritto in forma di funzione), se devo verificare che è diagonalizzabile, 
+anzitutto scrivo la matrice associata all'operatore mediante la base canonica;
+Poi calcoliamo gli autovalori, ossia le radici del polinomio caratteristico $A-\lambda \mathbf{I}_n$.
+Chiaramente il calcolo del determinante deve essere fatto mediante Laplace.
+
+\paragraph{\ref{secondoapplicazionilineari}}
+Nella traccia mi è stata data un amatrice che rappresenta l'endomorfismo $F$ rispetto alla base canonica, siamo in $R^3$.
+Si chiede di determinare autovalori e autovettori di $F$ e verificare che non è diagonalizzabile.
+Per trovare gli autovalori, devo determinare le radici del polinomio caratteristico. 
+Fatto ciò, esplicito lo spettro dell'operatore $F$.
+Per ogni autovalore, sostituisco al posto $\lambda$ nella matrice $A-\lambda \mathbf{I}_n$ e ne calcolo il rango, applicando se necessario Gauss-Jordan o Laplace.
+Estraggo lo spazio delle soluzioni, ossia l'autospazio relativo all'autovalore  ($\mathbf{V}_\lambda(A)$).
+Estraggo le dimensioni di tutti gli autospazi, e li sommo. Se la somma è uguale a $n$, allora l'operatore è diagonalizzabile e una base diagonalizzante 
+è ottenibile unendo le basi di tutti gli autospazi.
+QUì ci sono da fare delle modifiche, se devo solo trovare autovalori e autovettori allora devo seguire il metodo del libro a pagina 94, 
+invece per trovare le molteplicità geometriche o algebriche, o verificare la diagonalizzabilità di un operatore, bisogna integrare altre 
+cose e sono processi diversi.
+
+
+
+\end{document}
