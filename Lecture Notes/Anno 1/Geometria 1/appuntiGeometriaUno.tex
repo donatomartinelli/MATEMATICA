@@ -4083,42 +4083,46 @@ Poiché ha codimensione 1 in $\mathbf{A}$, la retta $\mathbf{r}$ si può anche r
 AX + BY + C = 0,
 \end{equation}
 per opportuni $A, B, C \in \mathbb{K}$ tali che $(A, B) \neq (0, 0)$. Le costanti $A, B, C$ sono individuate da $\mathbf{r}$ solo a meno di un comune fattore di proporzionalità non nullo, 
-e quindi una retta $\mathbf{r}$ possiede infinite equazioni \ref{eqcart}, tutte tra loro proporzionali. 
-La retta $\mathbf{r}$ di equazione \ref{eqcart} contiene l'origine $O$ se e solo se $C = 0$. 
+e quindi una retta $\mathbf{r}$ possiede infinite equazioni (\ref{eqcart}), tutte tra loro proporzionali. 
+La retta $\mathbf{r}$ di equazione (\ref{eqcart}) contiene l'origine $O$ se e solo se $C = 0$. 
 Le rette di equazioni $X = 0$ e $Y = 0$ si dicono \textbf{assi coordinati}, rispettivamente \textbf{asse delle Y} e \textbf{asse delle X}.
 
 \vspace{10pt}
 
+\begin{bxthm}
+\begin{rem}\hfill
 \begin{itemize}
     \item $A,B\neq0$
     \begin{itemize}
-        \item $C\neq0\quad\mathfrak{r}=\{(x,y)\in\mathbb{R}^2\,:\;Ax+By+C=0\}$
-        \item $C=0\quad\mathfrak{r}=\{(x,y)\in\mathbb{R}^2\,:\;Ax+By=0\}$
+        \item $C\neq0\quad\mathfrak{r}=\{(x,y)\in\mathbb{K}^2\,:\;Ax+By+C=0\}$
+        \item $C=0\quad\mathfrak{r}=\{(x,y)\in\mathbb{K}^2\,:\;Ax+By=0\}$
     \end{itemize}
     \item $A\neq0,B=0$
     \begin{itemize}
-        \item $C\neq0\quad\mathfrak{r}=\{(-C/A,y)\,:\;y\in\mathbb{R}\}$
-        \item $C=0\quad\mathfrak{r}=\{(0,y)\,:\;y\in\mathbb{R}\}$
+        \item $C\neq0\quad\mathfrak{r}=\{(-C/A,y)\,:\;y\in\mathbb{K}\}$
+        \item $C=0\quad\mathfrak{r}=\{(0,y)\,:\;y\in\mathbb{K}\}$
     \end{itemize}
     \item $A=0,B\neq0$
     \begin{itemize}
-        \item $C\neq0\quad\mathfrak{r}=\{(x,-C/B)\,:\;x\in\mathbb{R}\}$
-        \item $C=0\quad\mathfrak{r}=\{(x,0)\,:\;x\in\mathbb{R}\}$
+        \item $C\neq0\quad\mathfrak{r}=\{(x,-C/B)\,:\;x\in\mathbb{K}\}$
+        \item $C=0\quad\mathfrak{r}=\{(x,0)\,:\;x\in\mathbb{K}\}$
     \end{itemize}
     \item $A,B=0$
     \begin{itemize}
-        \item $C\neq0\quad\mathfrak{r}=\{(x,y)\in\mathbb{R}^2\,:\;C=0\}$
+        \item $C\neq0\quad\mathfrak{r}=\{(x,y)\in\mathbb{K}^2\,:\;C=0\}$
         Viene dunque descritto un insieme vuoto, che non è una retta.
-        \item $C=0\quad\mathfrak{r}=\{(x,y)\in\mathbb{R}^2\,:\;0=0\}$
+        \item $C=0\quad\mathfrak{r}=\{(x,y)\in\mathbb{K}^2\,:\;0=0\}$
         In questo caso viene descritto tutto il piano, che ancora una volta non è una retta.
     \end{itemize}
 \end{itemize}
+\end{rem}
+\end{bxthm}
 
 \vspace{10pt}
 
 \paragraph{Passaggio da equazioni parametriche a cartesiane}
-Per ottenere un'equazione cartesiana della retta $\mathbf{r}$ a partire da sue equazioni parametriche \ref{eqparam}, cioè una volta noti un suo punto $Q(a, b)$ e un suo vettore di direzione $\mathbf{v} = (l, m)$, 
-si può osservare che le \ref{eqparam} esprimono la condizione che il vettore $\overrightarrow{QP}$ sia parallelo a $\mathbf{v}$, e che la stessa condizione può esprimersi imponendo che $(x, y)$ sia soluzione dell'equazione in $X, Y$:
+Per ottenere un'equazione cartesiana della retta $\mathbf{r}$ a partire da sue equazioni parametriche (\ref{eqparam}), cioè una volta noti un suo punto $Q(a, b)$ e un suo vettore di direzione $\mathbf{v} = (l, m)$, 
+si può osservare che le (\ref{eqparam}) esprimono la condizione che il vettore $\overrightarrow{QP}$ sia parallelo a $\mathbf{v}$, e che la stessa condizione può esprimersi imponendo che $(x, y)$ sia soluzione dell'equazione in $X, Y$:
 \begin{equation}\label{novetre}
 \begin{vmatrix}
 X - a & Y - b \\
@@ -4136,12 +4140,13 @@ mX - lY + lb - ma = 0.
 
 \vspace{10pt}
 
-L'equazione \ref{novetre} è soddisfatta da tutti e soli i punti $P(x, y) \in \mathbf{r}$. 
-Quindi la \ref{novetre}, oppure la \ref{novequattro} o la \ref{novecinque}, è un'equazione cartesiana di $\mathbf{r}$.
+L'equazione (\ref{novetre}) è soddisfatta da tutti e soli i punti $P(x, y) \in \mathbf{r}$. 
+Quindi la (\ref{novetre}) (oppure la (\ref{novequattro}) o la (\ref{novecinque})), è un'equazione cartesiana di $\mathbf{r}$.
 
 \vspace{10pt}
 
-Se la retta $\mathbf{r}$ è assegnata mediante due suoi punti distinti $Q(a, b)$ e $Q'(a', b')$, allora come vettore di direzione si può prendere $\mathbf{v} = (a' - a, b' - b) = \overrightarrow{QQ'}$ e la \ref{novetre} prende la forma
+Se la retta $\mathbf{r}$ è assegnata mediante due suoi punti distinti $Q(a, b)$ e $Q'(a', b')$, allora come vettore di direzione 
+si può prendere $\mathbf{v} = (a' - a, b' - b) = \overrightarrow{QQ'}$ e la (\ref{novetre}) prende la forma
 \begin{equation}\label{novesei}
 \begin{vmatrix}
 X - a & Y - b \\
@@ -4151,6 +4156,7 @@ a' - a & b' - b
 
 \vspace{10pt}
 
+\paragraph{Posizione reciproca di due rette} 
 \begin{bxthm}
 \begin{prop}\label{noveuno}
 Siano $\mathbf{r}$ ed $\mathbf{r}'$ due rette di $\mathbf{A}$ di equazioni cartesiane
@@ -4177,7 +4183,7 @@ rispettivamente. Allora:
     \end{equation}
     abbia rango $2$ oppure $1$.
 
-    \item $\mathbf{r}$ ed $\mathbf{r}'$ hanno uno e un solo punto in comune se e solo se la matrice \ref{novesette} ha rango $2$. 
+    \item $\mathbf{r}$ ed $\mathbf{r}'$ hanno uno e un solo punto in comune se e solo se la matrice (\ref{novesette}) ha rango $2$. 
     In questo caso il punto $\mathbf{r} \cap \mathbf{r}'$ ha coordinate
     \begin{equation}\label{novenove}
     x_0 = \frac{CB' - C'B}{AB' - A'B}, \quad y_0 = \frac{AC' - A'C}{AB' - A'B}.
@@ -4191,26 +4197,26 @@ rispettivamente. Allora:
     \[AX + BY = 0\quad\quad A'X + B'Y = 0,\]
     rispettivamente. Quindi $\mathbf{r}$ ed $\mathbf{r}'$ sono parallele se e solo se 
     \[\begin{cases}A' = \rho A\\B' = \rho B\end{cases}\quad \rho\in\mathbb{K}\setminus\{0\},\]
-    cioè se e solo se la \ref{novesette} ha rango 1. 
+    cioè se e solo se la (\ref{novesette}) ha rango 1. 
 
-    \item La matrice \ref{noveotto} ha rango $1$ se e solo se le equazioni di $\mathbf{r}$ e di $\mathbf{r}'$ sono proporzionali, cioè se e solo se $\mathbf{r} \equiv \mathbf{r}'$. 
-    Quindi, se la \ref{noveotto} ha rango 2 e la \ref{novesette} ha rango 1, $\mathbf{r}$ ed $\mathbf{r}'$ sono distinte e, per la (1), parallele: pertanto non hanno punti in comune. 
+    \item La matrice (\ref{noveotto}) ha rango $1$ se e solo se le equazioni di $\mathbf{r}$ e di $\mathbf{r}'$ sono proporzionali, cioè se e solo se $\mathbf{r} \equiv \mathbf{r}'$. 
+    Quindi, se la (\ref{noveotto}) ha rango 2 e la (\ref{novesette}) ha rango 1, $\mathbf{r}$ ed $\mathbf{r}'$ sono distinte e, per la (1), parallele: pertanto non hanno punti in comune. 
 
-    \item Infine, la \ref{novesette} ha rango 2 se e solo se $\mathbf{r}$ ed $\mathbf{r}'$ non sono parallele. 
+    \item Infine, la (\ref{novesette}) ha rango 2 se e solo se $\mathbf{r}$ ed $\mathbf{r}'$ non sono parallele. 
     In questo caso, per il teorema di Cramer, il sistema costituito dalle equazioni di $\mathbf{r}$ e di $\mathbf{r}'$ ha un'unica soluzione 
-    $(x_0, y_0)$ data dalla \ref{novenove}.
+    $(x_0, y_0)$ data dalla (\ref{novenove}).
 \end{enumerate}
 \end{proof}
 
 \vspace{10pt}
 
-I casi che vengono considerati nell'enunciato della proposizione \ref{noveuno} sono tutti quelli che si possono presentare per la posizione reciproca di due rette di $\mathbf{A}$, perché corrispondono a tutte le possibilità per un sistema di due equazioni lineari in due incognite. 
-In particolare vediamo che l'unica possibilità perché due rette $\mathbf{r}$ ed $\mathbf{r}'$ non abbiano punti in comune è che la \ref{novesette} abbia rango 1 e la \ref{noveotto} abbia rango 2, e questo caso corrisponde al parallelismo di $\mathbf{r}$ ed $\mathbf{r}'$. 
+I casi che vengono considerati nell'enunciato della proposizione (\ref{noveuno}) sono tutti quelli che si possono presentare per la posizione reciproca di due rette di $\mathbf{A}$, perché corrispondono a tutte le possibilità per un sistema di due equazioni lineari in due incognite. 
+In particolare vediamo che l'unica possibilità perché due rette $\mathbf{r}$ ed $\mathbf{r}'$ non abbiano punti in comune è che la (\ref{novesette}) abbia rango 1 e la (\ref{noveotto}) abbia rango 2, e questo caso corrisponde al parallelismo di $\mathbf{r}$ ed $\mathbf{r}'$. 
 Quindi due rette di un piano affine non possono essere sghembe.
 
 \vspace{10pt}
 
-\paragraph{Fascio proprio di rette}
+\paragraph{Fascio proprio di rette} %Aggiungere disegno
 \begin{bxthm}
 \begin{defn}
 Sia $Q(x_0, y_0) \in \mathbf{A}$. L'insieme $\Phi$ i cui elementi sono le rette di $\mathbf{A}$ passanti per $Q$ si dice \textbf{fascio proprio di rette} e $Q$ si dice il suo \textbf{centro}.
@@ -4227,66 +4233,69 @@ Siano $\lambda, \mu \in \mathbb{K}$ due scalari non entrambi nulli; la retta di 
 \lambda (AX + BY + C) + \mu (A'X + B'Y + C') = 0     
 \end{equation}
 passa per $Q$ e quindi appartiene al fascio $\Phi$.
-
-\vspace{10pt}
-
 Viceversa, se $\mathbf{r} \in \Phi$ e $P(x, y)\in\mathbf{r}$ è un punto diverso da $Q$, la condizione
 \begin{equation}\label{noveundici}
     \lambda (AX + BY + C) + \mu (A'X + B'Y + C') = 0 
 \end{equation}
-è un'equazione lineare omogenea in $\lambda$ e $\mu$ che ha un'unica soluzione, determinata a meno di un fattore di proporzionalità: la retta \ref{novedieci} in cui $\lambda$ e $\mu$ soddisfano la \ref{noveundici} appartiene a $\Phi$ e passa per $P$, quindi coincide con $\mathbf{r}$.
+è un'equazione lineare omogenea in $\lambda$ e $\mu$ che ha un'unica soluzione, determinata a meno di un fattore di 
+proporzionalità: la retta (\ref{novedieci}) in cui $\lambda$ e $\mu$ soddisfano la (\ref{noveundici}) appartiene a 
+$\Phi$ e passa per $P$, quindi coincide con $\mathbf{r}$. 
+Pertanto tutte le rette di $\Phi$ si rappresentano nella forma (\ref{novedieci}); una retta di $\Phi$ determina 
+$\lambda, \mu$ solo a meno di un fattore di proporzionalità.
 
-Pertanto tutte le rette di $\Phi$ si rappresentano nella forma \ref{novedieci}; una retta di $\Phi$ determina $\lambda, \mu$ solo a meno di un fattore di proporzionalità.
+\vspace{10pt}
 
-Un caso particolare della \ref{novedieci} si ha prendendo $\mathbf{r}$ ed $\mathbf{r}'$ parallele agli assi: si ottiene che ogni retta del fascio $\Phi$ si può scrivere nella forma
-
+\begin{case}
+Un caso particolare della (\ref{novedieci}) si ha prendendo $\mathbf{r}$ ed $\mathbf{r}'$ parallele agli assi: si ottiene che ogni retta del fascio $\Phi$ si può scrivere nella forma
 \[
 \lambda(X - x_0) + \mu(Y - y_0) = 0
 \]
+per opportuni $\lambda, \mu$.    
+\end{case}
 
-per opportuni $\lambda, \mu$.
+\vspace{10pt}
 
-I fasci di rette sono utili in pratica soprattutto quando il punto $Q$ è individuato da due rette che lo contengono ma le sue coordinate non sono note, e si vuole individuare una retta contenente $Q$ soddisfacente a condizioni assegnate, ad esempio la condizione di passare per un punto $P$ diverso da $Q$, oppure di essere parallela ad una retta assegnata.
+\begin{note}
+I fasci di rette sono utili in pratica soprattutto quando il punto $Q$ è individuato da due rette che lo contengono ma le sue coordinate non sono note, e si vuole individuare una retta contenente $Q$ soddisfacente a condizioni assegnate, ad esempio la condizione di passare per un punto $P$ diverso da $Q$, oppure di essere parallela ad una retta assegnata.    
+\end{note}
 
-È talvolta più conveniente utilizzare un solo parametro non omogeneo $t$, invece della coppia di parametri omogenei $\lambda, \mu$. In altre parole, anziché nella forma \ref{novedieci}, si può scrivere la retta variabile nel fascio nella forma
+\vspace{10pt}
 
+È talvolta più conveniente utilizzare un solo parametro non omogeneo $t$, invece della coppia di parametri omogenei 
+$\lambda, \mu$. In altre parole, anziché nella forma (\ref{novedieci}), si può scrivere la retta variabile nel fascio 
+nella forma
 \begin{equation}\label{novedodici}
 AX + BY + C + t(A'X + B'Y + C') = 0,
 \end{equation}
-
-e la condizione di passaggio \ref{noveundici} diventa un'equazione lineare in $t$:
-
+e la condizione di passaggio (\ref{noveundici}) diventa un'equazione lineare in $t$:
 \begin{equation}\label{novetredici}
 Ax + By + C + t(A'x + B'y + C') = 0,
 \end{equation}
-
 la cui soluzione, se esiste, determina la retta cercata.
-
-Si faccia però attenzione: nella forma \ref{novetredici} si rappresentano tutte le rette del fascio $\Phi$ ad eccezione della retta
-
+Si faccia però attenzione: nella forma (\ref{novetredici}) si rappresentano tutte le rette del fascio $\Phi$ ad 
+eccezione della retta
 \begin{equation}\label{novequattordici}
 A'X + B'Y + C' = 0.
 \end{equation}
-
-Ciò corrisponde al fatto che l'equazione \ref{novetredici} è incompatibile se (e solo se)
-
+Ciò corrisponde al fatto che l'equazione (\ref{novetredici}) è incompatibile se (e solo se)
 \[
 A'x + B'y + C' = 0
 \]
-
 e
-
 \[
 Ax + By + C \neq 0,
 \]
+cioè se $P \notin Q$ e $P$ appartiene alla retta (\ref{novequattordici}).
+Con questa avvertenza, si può sempre utilizzare un parametro non omogeneo per determinare una retta del fascio $\Phi$, 
+purché si interpreti nel modo detto l'equazione (\ref{novetredici}) quando essa risulti incompatibile.
 
-cioè se $P \notin Q$ e $P$ appartiene alla retta \ref{novequattordici}.
-
-Con questa avvertenza, si può sempre utilizzare un parametro non omogeneo per determinare una retta del fascio $\Phi$, purché si interpreti nel modo detto l'equazione \ref{novetredici} quando essa risulti incompatibile.
+\vspace{10pt}
 
 Considerazioni simili alle precedenti si possono fare nel caso dei “fasci impropri”. 
 
-\paragraph{Fascio improprio di rette}
+\vspace{10pt}
+
+\paragraph{Fascio improprio di rette} % Aggiungere disegno
 \begin{bxthm}
 \begin{defn}
 Dato un vettore non nullo $\mathbf{v} \in \mathbf{V}$, l'insieme i cui elementi sono le rette di $\mathbf{A}$ aventi direzione $\langle \mathbf{v} \rangle$ è un \textbf{fascio improprio di rette}, e $\langle \mathbf{v} \rangle$ è la sua direzione.
@@ -4301,13 +4310,10 @@ AX + BY + C = 0,
 \]
 ogni altra retta di $\Phi$ è della forma
 \[
-AX + BY + t = 0
+AX + BY + t = 0\quad t\in\mathbb{K}.
 \]
-al variare del parametro $t \in \mathbb{K}$. Ciò segue immediatamente dalla proposizione \ref{noveuno}.
-
-\vspace{10pt}
-
-Per ogni punto $P(x, y) \in \mathbb{A}$ esiste un'unica retta di $\Phi$ contenente $P$, che è quella
+Ciò segue immediatamente dalla proposizione (\ref{noveuno}). 
+Per ogni punto $P(x, y) \in \mathbf{A}$ esiste un'unica retta di $\Phi$ contenente $P$, che è quella
 corrispondente al valore
 \[
 t = -(Ax + By).
@@ -4453,15 +4459,13 @@ che denotiamo con $\sigma_C(\mathbf{r})$. Si noti che $\sigma_C(\mathbf{r})$ pas
 \subsection{Geometria in uno Spazio Affine}
 \vspace{20pt}
 
-Considereremo ora il caso degli spazi affini di dimensione $3$. 
-Tra questi rientra come caso particolare lo spazio ordinario.
-
-Supponiamo assegnato un \( \mathbb{K} \)-spazio vettoriale \( \mathbf{V} \) di dimensione $3$ e uno spazio affine \( \mathbf{A} \) su \( \mathbf{V} \). 
+Sia  \( \mathbf{V} \) un \( \mathbb{K}\)-spazio vettoriale di dimensione $3$ e \( \mathbf{A} \) uno spazio affine su \( \mathbf{V} \). 
 Fissiamo un riferimento affine \( O\mathbf{e}_1\mathbf{e}_2\mathbf{e}_3 \) in \( \mathbf{A} \); denotiamo con \( x, y, z \) le coordinate di un punto variabile 
-\( P \in \mathbf{A} \) e con \( X, Y, Z \) indeterminate.
+\( P \in \mathbf{A} \) e con \( X, Y, Z \) indeterminate. I sottospazi affini di \( \mathbf{A} \) sono i piani e le rette, oltre ad \( \mathbf{A} \) stesso e ai suoi punti.
 
-I sottospazi affini di \( \mathbf{A} \) sono i piani e le rette, oltre ad \( \mathbf{A} \) stesso e ai suoi punti.
+\vspace{10pt}
 
+\paragraph{Piano nello spazio}
 Un piano \( \mathfrak{p} \) di \( \mathbf{A} \) passante per un punto \( Q(q_1, q_2, q_3) \) ha equazioni parametriche della forma
 \begin{equation}
 \begin{matrix}\label{dieciuno}
@@ -4470,23 +4474,28 @@ y = q_2 + a_2 u + b_2 v \\
 z = q_3 + a_3 u + b_3 v
 \end{matrix}
 \end{equation}
-
 dove \( \{ \mathbf{a}(a_1, a_2, a_3), \, \mathbf{b}(b_1, b_2, b_3) \} \) è una base della giacitura \( \mathbf{W} \) del piano.
+
+\vspace{10pt}
 
 Il piano \( \mathfrak{p} \), avendo codimensione 1, si rappresenta anche con un'equazione cartesiana
 \begin{equation}\label{diecidue}
 AX + BY + CZ + D = 0
 \end{equation}
-
 per opportuni \( A, B, C, D \in \mathbb{K} \) tali che \( (A, B, C) \ne (0, 0, 0) \). 
+
+\vspace{10pt}
+
 Le costanti \( A, B, C, D \) sono individuate da \( \mathfrak{p} \) solo a meno di un comune fattore di proporzionalità non nullo.
 Il piano \( \mathfrak{p} \) contiene l'origine \( O \) se e solo se \( D = 0 \). 
 I piani di equazione \( X = 0, Y = 0, Z = 0 \) si dicono \textbf{piani coordinati}, e rispettivamente \textit{piano YZ}, \textit{piano XZ}, \textit{piano XY}.
 % aggiungere grafico
-Possiamo ottenere un'equazione cartesiana \ref{diecidue} di \( \mathfrak{p} \) a partire dalle \ref{dieciuno} osservando che esse esprimono la dipendenza lineare dei 
-vettori \( \overrightarrow{QP}, \mathbf{a}, \mathbf{b} \); le \ref{dieciuno} sono pertanto equivalenti all'annullarsi del determinante della matrice le cui righe sono le coordinate di questi vettori. 
-Quindi il punto \( P(x, y, z) \) appartiene al piano passante per \( Q(q_1, q_2, q_3) \) e parallelo a \( \langle \mathbf{a}(a_1, a_2, a_3), \mathbf{b}(b_1, b_2, b_3) \rangle \) se e solo se le sue coordinate soddisfano l'equazione in \( X, Y, Z \)
 
+\vspace{10pt}
+
+Possiamo ottenere un'equazione cartesiana (\ref{diecidue}) di \( \mathfrak{p} \) a partire dalle (\ref{dieciuno}) osservando che esse esprimono la dipendenza lineare dei 
+vettori \( \overrightarrow{QP}, \mathbf{a}, \mathbf{b} \); le (\ref{dieciuno}) sono pertanto equivalenti all'annullarsi del determinante della matrice le cui righe sono le coordinate di questi vettori. 
+Quindi il punto \( P(x, y, z) \) appartiene al piano passante per \( Q(q_1, q_2, q_3) \) e parallelo a \( \langle \mathbf{a}, \mathbf{b} \rangle \) se e solo se le sue coordinate soddisfano l'equazione in \( X, Y, Z \)
 \begin{equation}\label{diecitre}
 \left|
 \begin{array}{ccc}
@@ -4496,8 +4505,7 @@ b_1 & b_2 & b_3
 \end{array}
 \right| = 0.
 \end{equation}
-
-Espandendo il primo membro della \ref{diecitre} secondo la prima riga, e ponendo
+Espandendo il primo membro della (\ref{diecitre}) secondo la prima riga, e ponendo
 \begin{equation}\label{dieciquattro}
 A = 
 \left|
@@ -4523,27 +4531,26 @@ b_1 & b_2
 \end{array}
 \right|,
 \end{equation}
-
 si ottiene
 \begin{equation}\label{diecicinque}
 A(X - q_1) + B(Y - q_2) + C(Z - q_3) = 0.
 \end{equation}
-
 Si noti che \( A, B, C \) non sono tutti nulli: ciò segue dalla loro definizione e dal fatto che \( \mathbf{a} \) e \( \mathbf{b} \) sono linearmente indipendenti. 
 Se poniamo
 \begin{equation}\label{diecisei}
 D = -Aq_1 - Bq_2 - Cq_3,
 \end{equation}
-possiamo scrivere la \ref{diecicinque} nella forma
+possiamo scrivere la (\ref{diecicinque}) nella forma
 \begin{equation}\label{diecisette}
 AX + BY + CZ + D = 0.
 \end{equation}
+La (\ref{diecisette}) è soddisfatta da tutti e soli i punti \( P(x, y, z) \in \mathfrak{p} \) e quindi è un'equazione cartesiana del piano \( \mathfrak{p} \).
 
-La \ref{diecisette} è soddisfatta da tutti e soli i punti \( P(x, y, z) \in \mathfrak{p} \) e quindi è un'equazione cartesiana del piano \( \mathfrak{p} \).
+\vspace{10pt}
 
 Se \( \mathfrak{p} \) è assegnato mediante tre suoi punti non allineati 
 \( P_0(x_0, y_0, z_0), P_1(x_1, y_1, z_1), P_2(x_2, y_2, z_2) \), la sua giacitura è generata dai vettori \( \overrightarrow{P_0P_1} \) e \( \overrightarrow{P_0P_2} \), 
-e la \ref{diecitre} prende la forma seguente:
+e la (\ref{diecitre}) prende la forma seguente:
 \begin{equation}\label{dieciotto}
 \left|
 \begin{array}{ccc}
@@ -4553,8 +4560,10 @@ x_2 - x_0 & y_2 - y_0 & z_2 - z_0
 \end{array}
 \right| = 0.
 \end{equation}
+La (\ref{dieciotto}) è un'\textbf{equazione cartesiana del piano passante per i punti} \( P_0, P_1, P_2 \).
 
-La \ref{dieciotto} è un'\textbf{equazione cartesiana del piano passante per i punti} \( P_0, P_1, P_2 \).
+\vspace{10pt}
+\paragraph{Retta nello spazio}
 
 Una retta \( \mathfrak{r} \subset \mathbf{A} \) ha equazioni parametriche della forma
 \begin{equation}\label{diecinove}
@@ -4569,23 +4578,19 @@ dove \( Q(a, b, c) \in \mathfrak{r} \), e \( \mathbf{v}(l, m, n) \) è un suo ve
 \vspace{10pt}
 
 La retta \( \mathfrak{r} \) può anche essere definita da due equazioni cartesiane, cioè come intersezione di due piani, perché ha codimensione 2:
-
 \begin{equation}\label{diecidieci}
 \begin{matrix}
 AX + BY + CZ + D = 0 \\
 A'X + B'Y + C'Z + D' = 0
 \end{matrix}
 \end{equation}
-
 La direzione di \( \mathfrak{r} \) è il sottospazio vettoriale di dimensione 1 di \( \mathbf{V} \) definito dal sistema omogeneo associato
-
 \begin{equation}\label{dieciundici}
 \begin{matrix}
 AX + BY + CZ = 0 \\
 A'X + B'Y + C'Z = 0
 \end{matrix}
 \end{equation}
-
 Da ciò segue che il vettore \( \mathbf{v}(l, m, n) \) di coordinate
 \[
 l =
@@ -4612,17 +4617,16 @@ A' & B'
 \end{array}
 \right|
 \]
-
-è un vettore di direzione di \( \mathfrak{r} \), perché \( (l, m, n) \) è una soluzione non nulla del sistema \ref{dieciundici}.
+è un vettore di direzione di \( \mathfrak{r} \), perché \( (l, m, n) \) è una soluzione non nulla del sistema (\ref{dieciundici}).
 
 \vspace{10pt}
 
-Quest'osservazione fornisce un metodo pratico per calcolare un vettore di direzione di una retta $\mathfrak{r}$ assegnata mediante equazioni cartesiane \ref{dieciuno}.
+Quest'osservazione fornisce un metodo pratico per calcolare un vettore di direzione di una retta $\mathfrak{r}$ assegnata mediante equazioni cartesiane (\ref{dieciuno}).
 
 \vspace{10pt}
 
 Se viceversa la retta $\mathfrak{r}$ è assegnata mediante un suo punto $Q(a, b, c)$ e un suo vettore di direzione $\mathbf{v}(l, m, n)$, 
-ovvero per mezzo della \ref{diecinove}, se ne possono ottenere equazioni cartesiane imponendo la condizione che si annullino i minori 
+ovvero per mezzo della (\ref{diecinove}), se ne possono ottenere equazioni cartesiane imponendo la condizione che si annullino i minori 
 di ordine $2$ della matrice
 \begin{equation}\label{diecidodici}
 \begin{pmatrix}
@@ -4639,18 +4643,20 @@ m(X - a) - l(Y - b) = 0
 n(X - a) - l(Z - c) = 0 
 \end{equation}
 cioè alle
-\begin{equation}\label{dieciquattordici}
+\begin{equation}\label{dieciquattordicii}
+\begin{matrix}
 mX - lY - (ma - lb) = 0 \\
-nX - lZ - (na - lc) = 0 \tag{10.14}
+nX - lZ - (na - lc) = 0    
+\end{matrix}    
 \end{equation}
 che sono equazioni cartesiane di due piani \textbf{distinti} contenenti $\mathfrak{r}$ 
 (che i due piani siano distinti segue dal fatto che, essendo $l \neq 0$, la matrice dei coefficienti delle incognite delle 
-due equazioni \ref{dieciquattordici} ha rango due), i quali quindi definiscono $\mathfrak{r}$.
+due equazioni (\ref{dieciquattordicii}) ha rango due), i quali quindi definiscono $\mathfrak{r}$.
 
 \vspace{10pt}
 
 \begin{note}
-Si noti che le \ref{diecitredicia}\ref{diecitredicib} implicano l'annullamento del rimanente minore della \ref{diecidodici}:
+Si noti che le (\ref{diecitredicia}) e (\ref{diecitredicib}) implicano l'annullamento del rimanente minore della (\ref{diecidodici}):
 \[
 n(Y - b) - m(Z - c) = l^{-1} \big[ m[n(X - a) - l(Z - c)] - n[m(X - a) - l(Y - b)] \big] = 0.
 \]    
@@ -4658,6 +4664,7 @@ n(Y - b) - m(Z - c) = l^{-1} \big[ m[n(X - a) - l(Z - c)] - n[m(X - a) - l(Y - b
 
 \vspace{10pt}
 
+\paragraph{Posizione reciproca di due piani}
 \begin{bxthm}
 \begin{prop}
  Siano $\mathfrak{p},\,\mathfrak{p}'$ due piani di $\mathbf{A}$, di equazioni cartesiane
@@ -4676,7 +4683,7 @@ rispettivamente. Allora:
     A' & B' & C'
     \end{pmatrix}
     \end{equation} ha rango 1.
-    \item Se la matrice \ref{diecisedici} ha rango $1$, allora $\mathfrak{p} \equiv \mathfrak{p}'$ sono paralleli e disgiunti oppure coincidono a seconda che la matrice
+    \item Se la matrice (\ref{diecisedici}) ha rango $1$, allora $\mathfrak{p}$ e $\mathfrak{p}'$ sono paralleli e disgiunti oppure coincidono a seconda che la matrice
     \begin{equation}\label{diecidiciassette}
     \begin{pmatrix}
     A & B & C & D \\
@@ -4684,12 +4691,12 @@ rispettivamente. Allora:
     \end{pmatrix}    
     \end{equation}
     abbia rango $2$ oppure $1$.
-\item Se $\mathfrak{p}$ e $\mathfrak{p}'$ non sono paralleli, allora sono incidenti e $\mathfrak{p} \cap \mathfrak{p}'$ è una retta; ciò avviene se e solo se la matrice \ref{diecisedici} ha rango 2.
+\item Se $\mathfrak{p}$ e $\mathfrak{p}'$ non sono paralleli, allora sono incidenti e $\mathfrak{p} \cap \mathfrak{p}'$ è una retta; ciò avviene se e solo se la matrice (\ref{diecisedici}) ha rango 2.
 \end{enumerate}   
 \end{prop}
 \end{bxthm}
 \begin{proof}
-I casi considerati nell'enunciato corrispondono alle possibilità che si hanno per il sistema \ref{dieciquindici}, di cui la \ref{diecisedici} e la \ref{diecidiciassette} sono rispettivamente la matrice dei coefficienti e la matrice orlata.
+I casi considerati nell'enunciato corrispondono alle possibilità che si hanno per il sistema (\ref{dieciquindici}), di cui la (\ref{diecisedici}) e la (\ref{diecidiciassette}) sono rispettivamente la matrice dei coefficienti e la matrice orlata.
 Poiché le giaciture di $\mathfrak{p}$ e di $\mathfrak{p}'$ sono determinate dalle equazioni omogenee associate
 \begin{equation}\label{diecidiciotto}
     \begin{matrix}
@@ -4697,13 +4704,13 @@ Poiché le giaciture di $\mathfrak{p}$ e di $\mathfrak{p}'$ sono determinate dal
         A'X + B'Y + C'Z = 0     
     \end{matrix}
 \end{equation}
-il parallelismo di $\mathfrak{p}$ e $\mathfrak{p}'$ è equivalente alla condizione che le \ref{diecidiciotto} siano proporzionali, 
-cioè che la \ref{diecisedici} abbia rango 1. In questo caso la matrice \ref{diecidiciassette} ha rango $1$ o $2$ rispettivamente, 
-a seconda che il sistema \ref{dieciquindici} sia compatibile oppure no, cioè che $\mathfrak{p} \cap \mathfrak{p}' \neq \emptyset$ 
-oppure $\mathfrak{p} \cap \mathfrak{p}' = \emptyset$. Nel primo caso dev'essere $\mathfrak{p} \equiv \mathfrak{p}'$ perché 
-i due piani sono paralleli. Ciò dimostra (1) e (2). Per la (1) la \ref{diecisedici} ha rango 2 se e solo se $\mathfrak{p}$ e $\mathfrak{p}'$ non sono paralleli. 
-In tal caso il sistema \ref{dieciquindici} è compatibile, perché anche la \ref{diecidiciassette} ha rango 2. 
-Il sistema \ref{dieciquindici} possiede $\infty^1$ soluzioni e $\mathfrak{p} \cap \mathfrak{p}'$ è una retta. 
+il parallelismo di $\mathfrak{p}$ e $\mathfrak{p}'$ è equivalente alla condizione che le (\ref{diecidiciotto}) siano proporzionali, 
+cioè che la (\ref{diecisedici}) abbia rango 1. In questo caso la matrice (\ref{diecidiciassette}) ha rango $1$ o $2$ rispettivamente, 
+a seconda che il sistema (\ref{dieciquindici}) sia compatibile oppure no, cioè che $\mathfrak{p} \cap \mathfrak{p}' \neq \emptyset$ 
+oppure $\mathfrak{p} \cap \mathfrak{p}' = \emptyset$. Nel primo caso dev'essere $\mathfrak{p} = \mathfrak{p}'$ perché 
+i due piani sono paralleli. Ciò dimostra (1) e (2). Per la (1) la (\ref{diecisedici}) ha rango 2 se e solo se $\mathfrak{p}$ e $\mathfrak{p}'$ non sono paralleli. 
+In tal caso il sistema (\ref{dieciquindici}) è compatibile, perché anche la (\ref{diecidiciassette}) ha rango 2. 
+Il sistema (\ref{dieciquindici}) possiede $\infty^1$ soluzioni e $\mathfrak{p} \cap \mathfrak{p}'$ è una retta. 
 Anche la (3) è dimostrata.    
 \end{proof}
 
@@ -4713,9 +4720,10 @@ Passiamo ora a considerare il caso di una retta e di un piano. La proposizione s
 
 \vspace{10pt}
 
+\paragraph{Posizione reciproca tra retta e piano}
 \begin{bxthm}
 \begin{prop}\label{riecrui}
-Sia $\mathfrak{r}$ una retta di equazioni parametriche \ref{diecinove} e cartesiane \ref{diecidieci}, e sia 
+Sia $\mathfrak{r}$ una retta di equazioni parametriche (\ref{diecinove}) e cartesiane (\ref{diecidieci}), e sia 
 $\mathfrak{p}''$ un piano di equazione
 \begin{equation}\label{diecidiciannove}
 A''X + B''Y + C''Z + D'' = 0.
@@ -4733,7 +4741,7 @@ o, equivalentemente, se e solo se
 \begin{equation}\label{dieciventuno}
     A''l+B''m+C''n=0
 \end{equation}
-\item Se la \ref{dieciventi} è soddisfatta, allora $\mathfrak{r}$ e $\mathfrak{p}''$ sono paralleli e disgiunti oppure coincidono a seconda che la matrice
+\item Se la (\ref{dieciventi}) è soddisfatta, allora $\mathfrak{r}$ e $\mathfrak{p}''$ sono paralleli e disgiunti oppure coincidono a seconda che la matrice
 \begin{equation}\label{dieciventidue}
 \begin{pmatrix}
 A & B & C & D \\
@@ -4745,7 +4753,7 @@ abbia rango 3 oppure 2.
 
 \item Se $\mathfrak{r}$ e $\mathfrak{p}''$ non sono paralleli, allora sono incidenti ed $\mathfrak{r} \cap \mathfrak{p}''$ consiste di un solo punto; 
 ciò avviene se e solo se
-\begin{equation}\label{dieciventire}
+\begin{equation}\label{dieciventitre}
 \begin{vmatrix}
 A & B & C \\
 A' & B' & C' \\
@@ -4770,11 +4778,11 @@ A''l + B''m + C''n \neq 0.
         \end{matrix}
         \end{equation}
         è equivalente al sistema costituito dalle sue due prime equazioni, che definiscono la direzione di $\mathfrak{r}$. 
-        Pertanto ogni vettore di direzione di $\mathfrak{r}$ soddisfa la terza equazione \ref{dieciventicinque}, che è un'equazione 
+        Pertanto ogni vettore di direzione di $\mathfrak{r}$ soddisfa la terza equazione (\ref{dieciventicinque}), che è un'equazione 
         della giacitura di $\mathfrak{p}''$; cioè $\mathfrak{p}''$ ed $\mathfrak{r}$ sono paralleli. Se viceversa 
-        $\mathfrak{p}''$ ed $\mathfrak{r}$ sono paralleli, necessariamente la terza equazione \ref{dieciventicinque} è 
-        dipendente dalle prime due, e la \ref{dieciventi} è soddisfatta. L'equivalenza delle condizioni \ref{dieciventi} e \ref{dieciventuno} 
-        si vede sviluppando il determinante \ref{dieciventi} secondo la terza riga.
+        $\mathfrak{p}''$ ed $\mathfrak{r}$ sono paralleli, necessariamente la terza equazione (\ref{dieciventicinque}) è 
+        dipendente dalle prime due, e la (\ref{dieciventi}) è soddisfatta. L'equivalenza delle condizioni (\ref{dieciventi}) e (\ref{dieciventuno}) 
+        si vede sviluppando il determinante (\ref{dieciventi}) secondo la terza riga.
     \item Se $\mathfrak{r}$ ed $\mathfrak{p}''$ sono paralleli, allora coincidono oppure sono disgiunti a seconda 
         che il sistema
         \begin{equation}\label{dieciventisei}
@@ -4785,22 +4793,34 @@ A''l + B''m + C''n \neq 0.
         \end{matrix}
         \end{equation}
         sia compatibile oppure no, applichiamo dunque il teorema di Kronecker-Rouchè-Capelli.
+    \item Per la (1), $\mathfrak{p}''$ ed $\mathfrak{r}$ non sono paralleli se e solo se la (\ref{dieciventitre}) o la (\ref{dieciventiquattro}), 
+        che come già osservato sono equivalenti, sono soddisfatte. In questo caso il sistema (\ref{dieciventisei}) è compatibile e ammette un'unica 
+        soluzione, per Kronecker-Rouchè-Capelli. Quindi $\mathfrak{r}$ e $\mathfrak{p}''$ hanno un unico punto in comune.
     \end{enumerate}
 \end{proof}
  
-Per la (1), $\mathfrak{r}''$ ed $\nu$ non sono paralleli se e solo se la [10.23] o la [10.24], che come già osservato sono equivalenti, sono soddisfatte. In questo caso il sistema [10.26] è compatibile e ammette un'unica soluzione, per il teorema 5.7. Quindi $\mathfrak{r}''$ e $\rho''$ hanno un unico punto in comune.
+\vspace{10pt}
 
-La [10.20] e la [10.21] danno la \textbf{condizione di parallelismo di una retta e di un piano}.
+La (\ref{dieciventi}) e la (\ref{dieciventuno}) danno la \textbf{condizione di parallelismo di una retta e di un piano}.
+
+\vspace{10pt}
 
 Passiamo ora a considerare due rette e le loro posizioni relative.
 
-Due rette $\mathfrak{r}$ e $\mathfrak{r}_1$ di $\Delta$ si dicono \textbf{complananari} se esiste un piano che le contiene entrambe.
+\vspace{10pt}
+
+\paragraph{Rette complanari}
+\begin{bxthm}
+\begin{defn}
+Due rette $\mathfrak{r}$ e $\mathfrak{r}_1$ di $\mathbf{A}$ si dicono \textbf{complananari} se esiste un piano che le contiene entrambe.    
+\end{defn}
+\end{bxthm}
 
 \vspace{10pt}
 
 \begin{bxthm}
 \begin{prop}
-Due rette $\mathfrak{r}$ ed $\mathfrak{r}_1$ di $\Delta$ sono complanari se e solo se una delle condizioni seguenti è verificata:
+Due rette $\mathfrak{r}$ ed $\mathfrak{r}_1$ di $\mathbf{A}$ sono complanari se e solo se una delle condizioni seguenti è verificata:
 \begin{enumerate}
     \item $\mathfrak{r}$ ed $\mathfrak{r}_1$ sono parallele;
     \item $\mathfrak{r}$ ed $\mathfrak{r}_1$ sono incidenti.
@@ -4813,10 +4833,10 @@ Poiché due rette di un piano affine che non sono incidenti sono necessariamente
 ed $\mathfrak{r}_1$ sono complanari, allora o sono parallele o sono incidenti.
 Viceversa, se $\mathfrak{r} = \mathfrak{r}_1$, allora ovviamente $\mathfrak{r}$ ed $\mathfrak{r}_1$ sono complanari. 
 Se $\mathfrak{r}$ ed $\mathfrak{r}_1$ sono parallele e distinte sono contenute nel piano che passa per un 
-punto qualsiasi $Q \in \mathfrak{r}$ e di giacitura $\langle \vec{v}, \overrightarrow{OQ_1} \rangle$, 
-dove $\vec{v}$ è un vettore di direzione di $\mathfrak{r}$ e di $\mathfrak{r}_1$, e $Q_1 \in \mathfrak{r}_1 \setminus \mathfrak{r}$. 
+punto qualsiasi $Q \in \mathfrak{r}$ e di giacitura $\langle \mathbf{v}, \overrightarrow{OQ_1} \rangle$, 
+dove $\mathbf{v}$ è un vettore di direzione di $\mathfrak{r}$ e di $\mathfrak{r}_1$, e $Q_1 \in \mathfrak{r}_1 \setminus \mathfrak{r}$. 
 Se $\mathfrak{r}$ ed $\mathfrak{r}_1$ sono incidenti e distinte sono contenute nel piano passante per il punto 
-$\mathfrak{r} \cap \mathfrak{r}_1$ e di giacitura $\langle \vec{v}, \vec{v}_1 \rangle$, dove $\vec{v}$ e $\vec{v}_1$ 
+$\mathfrak{r} \cap \mathfrak{r}_1$ e di giacitura $\langle \mathbf{v}, \mathbf{v}_1 \rangle$, dove $\mathbf{v}$ e $\mathbf{v}_1$ 
 sono vettori di direzione di $\mathfrak{r}$ e di $\mathfrak{r}_1$, rispettivamente.    
 \end{proof}
 
@@ -4827,120 +4847,127 @@ La proposizione che segue dà dei criteri per riconoscere la complanarità di du
 
 \begin{bxthm}
 \begin{prop}
-Siano $\mathfrak{r}$ ed $\mathfrak{r}_1$ due rette di $\Delta$; supponiamo che $\mathfrak{r}$ abbia equazioni cartesiane [10.10] e che $\mathfrak{r}_1$ abbia equazioni cartesiane
-\begin{align*}
+Siano $\mathfrak{r}$ ed $\mathfrak{r}_1$ due rette di $\mathbf{A}$; supponiamo che $\mathfrak{r}$ abbia equazioni cartesiane \ref{diecidieci} e che $\mathfrak{r}_1$ abbia equazioni cartesiane
+\begin{equation}\label{dieciventisette}
+\begin{aligned}
     A_1 X + B_1 Y + C_1 Z + D_1 &= 0 \\
-    A_1' X + B_1' Y + C_1' Z + D_1' &= 0. \tag{10.27}
-\end{align*}
-Siano $Q(a, b, c) \in \mathfrak{r}$, $Q_1(a_1, b_1, c_1) \in \mathfrak{r}_1$; siano inoltre $\vec{v}(m, n, v) \in \nu(\mathfrak{r})$, $\vec{v}_1(m_1, n_1, v_1) \in \nu(\mathfrak{r}_1)$ vettori di direzione di $\mathfrak{r}$ e di $\mathfrak{r}_1$ rispettivamente. Le seguenti condizioni sono equivalenti:
+    A_1' X + B_1' Y + C_1' Z + D_1' &= 0.
+\end{aligned}    
+\end{equation}
+Siano $Q(a, b, c) \in \mathfrak{r}$, $Q_1(a_1, b_1, c_1) \in \mathfrak{r}_1$; siano inoltre $\mathbf{v}(l,m,n)$, $\mathbf{v}_1(l_1, m_1, n_1)$ vettori di direzione di $\mathfrak{r}$ e di $\mathfrak{r}_1$ rispettivamente. 
+Le seguenti condizioni sono equivalenti:
 \begin{enumerate}
     \item $\mathfrak{r}$ ed $\mathfrak{r}_1$ sono complanari;
-    \item $\begin{vmatrix}
+    \item \[\begin{vmatrix}
         a - a_1 & b - b_1 & c - c_1 \\
         l & m & n \\
         l_1 & m_1 & n_1
-    \end{vmatrix} = 0;$
-    \item $\begin{vmatrix}
+    \end{vmatrix} = 0;\]
+    \item \[\begin{vmatrix}
         A & B & C & D \\
         A' & B' & C' & D' \\
         A_1 & B_1 & C_1 & D_1 \\
         A_1' & B_1' & C_1' & D_1'
-    \end{vmatrix} = 0.$
+    \end{vmatrix} = 0.\]
 \end{enumerate}    
 \end{prop}
 \end{bxthm}
-\begin{proof}
-(1) $\Rightarrow$ (2) \quad Se $\nu$ ed $\nu_1$ sono parallele, allora $\vec{v}$ e $\vec{v}_1$ sono proporzionali, e quindi la (2) è soddisfatta. Se $\nu$ ed $\nu_1$ sono incidenti, allora sono contenute in uno stesso piano $\mathscr{G}$: il vettore $\overrightarrow{QQ_1}$ appartiene alla giacitura di $\mathscr{G}$, che è generata da $\vec{v}$ e da $\vec{v}_1$, e di nuovo la (2) è soddisfatta.
+\begin{proof}\hfill
+\begin{itemize}
+\item[(1) $\Rightarrow$ (2)] Se $\mathfrak{r}$ ed $\mathfrak{r}_1$ sono parallele, allora $\mathbf{v}$ e $\mathbf{v}_1$ sono proporzionali, e quindi la (2) è soddisfatta. Se $\mathfrak{r}$ ed $\mathfrak{r}_1$ sono incidenti, allora sono contenute in uno stesso piano $\mathscr{G}$: il vettore $\overrightarrow{QQ_1}$ appartiene alla giacitura di $\mathscr{G}$, che è generata da $\mathbf{v}$ e da $\mathbf{v}_1$, e di nuovo la (2) è soddisfatta.
 
-(2) $\Rightarrow$ (1) \quad Se la (2) è soddisfatta, allora o le ultime due righe della matrice
-
-\begin{equation}
+\item[(2) $\Rightarrow$ (1)] Se la (2) è soddisfatta, allora o le ultime due righe della matrice
+\begin{equation}\label{dieciventotto}
 \begin{pmatrix}
 a - a_1 & b - b_1 & c - c_1 \\
 l & m & n \\
 l_1 & m_1 & n_1
 \end{pmatrix}
-\tag{10.28}
 \end{equation}
+sono proporzionali, e le due rette sono parallele, oppure la prima riga della (\ref{dieciventotto}) è combinazione lineare delle ultime due, e il piano $\mathscr{G}$ di giacitura $\langle \mathbf{v}, \mathbf{v}_1 \rangle$ passante per $Q$, che contiene $\mathfrak{r}$, contiene anche $Q_1$, e quindi contiene $\mathfrak{r}_1$. In ogni caso le due rette sono complanari.
 
-sono proporzionali, e le due rette sono parallele, oppure la prima riga della (10.28) è combinazione lineare delle ultime due, e il piano $\mathscr{G}$ di giacitura $\langle \vec{v}, \vec{v}_1 \rangle$ passante per $Q$, che contiene $\nu$, contiene anche $Q_1$, e quindi contiene $\nu_1$. In ogni caso le due rette sono complanari.
-
-(3) $\Rightarrow$ (1) \quad Se il sistema costituito dalle [10.10] e dalle [10.27] è compatibile, allora $\nu$ ed $\nu_1$ sono complanari perché hanno punti in comune.
-
+\item[(3) $\Rightarrow$ (1)] Se il sistema costituito dalle (\ref{diecidieci}) e dalle (\ref{dieciventisette}) è compatibile, allora $\mathfrak{r}$ ed $\mathfrak{r}_1$ sono complanari perché hanno punti in comune.
 Supponiamo che il sistema non sia compatibile. Allora, poiché il rango $R$ della matrice
-
-\begin{equation}
+\begin{equation}\label{dieciventinove}
 \begin{pmatrix}
 A & B & C & D \\
 A' & B' & C' & D' \\
 A_1 & B_1 & C_1 & D_1 \\
 A_1' & B_1' & C_1' & D_1'
 \end{pmatrix}
-\tag{10.29}
 \end{equation}
-
 è al più 3, e quello $r$ della matrice
-
-\begin{equation}
+\begin{equation}\label{diecitrenta}
 \begin{pmatrix}
 A & B & C \\
 A' & B' & C' \\
 A_1 & B_1 & C_1 \\
 A_1' & B_1' & C_1'
 \end{pmatrix}
-\tag{10.30}
 \end{equation}
+è almeno 2, si deve avere $R = 3$ ed $r = 2$. La condizione $r = 2$ implica che le due ultime righe della (\ref{diecitrenta}) sono combinazione lineare delle prime due; e quindi $\mathfrak{r}$, $\mathfrak{r}_1$ hanno pertanto la stessa direzione, cioè sono parallele, e in particolare complanari.
 
-è almeno 2, si deve avere $R = 3$ ed $r = 2$. La condizione $r = 2$ implica che le due ultime righe della [10.30] sono combinazione lineare delle prime due; e quindi $\nu$, $\nu_1$ hanno pertanto la stessa direzione, cioè sono parallele, e in particolare complanari.
-
-(3) $\Rightarrow$ (3') \quad Se $\nu$ ed $\nu_1$ sono incidenti il sistema costituito dalle [10.10] e dalle [10.27] è compatibile, e quindi la [10.29] ha rango minore di 4. Se invece $\nu$ ed $\nu_1$ sono parallele, la [10.30] ha rango 2 e conseguentemente la [10.29] ha rango al più 3. In entrambi i casi la (3) è verificata.
+\item[(1) $\Rightarrow$ (3)] Se $\mathfrak{r}$ ed $\mathfrak{r}_1$ sono incidenti il sistema costituito dalle (\ref{diecidieci}) e dalle (\ref{dieciventisette}) è compatibile, e quindi la (\ref{dieciventinove}) ha rango minore di 4. Se invece $\mathfrak{r}$ ed $\mathfrak{r}_1$ sono parallele, la (\ref{diecitrenta}) ha rango 2 e conseguentemente la (\ref{dieciventinove}) ha rango al più 3. In entrambi i casi la (3) è verificata.
+\end{itemize}
 \end{proof}
 
 \vspace{10pt}
 
-Sia $\nu$ una retta di $\mathbb{A}$. L'insieme $\Phi$ dei piani di $\mathbb{A}$ che contengono $\nu$ si dice \textit{fascio proprio di piani}, ed $\nu$ è detta \textit{asse del fascio} (fig. 10.2).
+\paragraph{Fascio proprio di piani}
+\begin{bxthm}
+\begin{defn}
+Sia $\mathbf{r}$ una retta di $\mathbf{A}$. L'insieme $\Phi$ dei piani di $\mathbf{A}$ che contengono $\mathbf{r}$ si dice \textbf{fascio proprio di piani}, ed $\mathbf{r}$ è detta \textbf{asse del fascio}.
+\end{defn}
+\end{bxthm}
 
-Consideriamo due piani distinti $\rho, \rho_1 \in \Phi$, di equazioni rispettive
-\[
-AX + BY + CZ + D = 0
-\]
-\[
-A_1 X + B_1 Y + C_1 Z + D_1 = 0.
-\]
+\vspace{10pt}
 
+Consideriamo due piani distinti $\mathfrak{p}, \mathfrak{p}_1 \in \Phi$, di equazioni rispettive
+\[
+AX + BY + CZ + D = 0\quad\quad\quad A_1 X + B_1 Y + C_1 Z + D_1 = 0.
+\]
 Come nel caso dei fasci di rette, si verifica che ogni piano appartenente a $\Phi$ ha equazione
 \[
 \lambda(AX + BY + CZ + D) + \mu(A_1 X + B_1 Y + C_1 Z + D_1) = 0
 \]
 per opportuni $\lambda, \mu \in \mathbb{K}$ non entrambi nulli.
-
 Anche in questo caso si può utilizzare un parametro non omogeneo $t$ per rappresentare i piani del fascio nella forma
 \[
 AX + BY + CZ + D + t(A_1 X + B_1 Y + C_1 Z + D_1) = 0,
 \]
-tenendo presente che il piano $\rho_1$ è l'unico elemento di $\Phi$ che non si può ottenere in questo modo.
+tenendo presente che il piano $\mathfrak{p}_1$ è l'unico elemento di $\Phi$ che non si può ottenere in questo modo.
 
-Se $\mathscr{G}$ è un piano non parallelo a $\nu$, i piani appartenenti al fascio $\Phi$ di asse $\nu$ intersecano $\mathscr{G}$ nelle rette appartenenti al fascio di rette di centro il punto $\nu \cap \mathscr{G}$ (fig. 10.3).
+\vspace{10pt}
 
-Sia $W$ un sottospazio di dimensione 2 di $V$. L'insieme $\Psi$ dei piani di $\mathbb{A}$ che hanno giacitura $W$ si dice \textit{fascio improprio di piani} e $W$ si dice \textit{giacitura del fascio}.
+Se $\mathscr{G}$ è un piano non parallelo a $\mathfrak{r}$, i piani appartenenti al fascio $\Phi$ di asse $\mathfrak{r}$ intersecano $\mathscr{G}$ nelle rette appartenenti al fascio di rette di centro il punto $\mathfrak{r} \cap \mathscr{G}$.
 
-Se $\mathscr{G}$ è un piano del fascio $\Psi$, di equazione
+\vspace{10pt}
+
+\paragraph{Fascio improprio di piani}
+\begin{bxthm}
+\begin{defn}
+Sia $\mathbf{W}$ un sottospazio di dimensione 2 di $\mathbf{V}$. L'insieme $\Psi$ dei piani di $\mathbf{A}$ 
+che hanno giacitura $\mathbf{W}$ si dice \textbf{fascio improprio di piani} e $\mathbf{W}$ si dice \textbf{giacitura del fascio}.    
+\end{defn}
+\end{bxthm}
+
+\vspace{10pt}
 
 Se $\varphi$ è un piano del fascio $\Psi$, di equazione
 \[AX + BY + CZ + D = 0,\]
 allora ogni altro elemento di $\Psi$ ha equazione
 \[AX + BY + CZ + t = 0\]
-al variare di $t \in K$.
+al variare di $t \in \mathbb{K}$.
 
-\subsection*{10.4 Esempio}
+\vspace{10pt}
+
+\begin{exmp}
 Siano $\mathfrak{r}$ ed $\mathfrak{r}'$ due rette sghembe di $\mathbf{A}$, e sia $P \in \mathbf{A}$ un punto non appartenente a $\mathfrak{r} \cup \mathfrak{r}'$ (fig. 10.4).
-
 Esiste una e una sola retta contenente $P$ e complanare sia con $\mathfrak{r}$ che con $\mathfrak{r}'$. Per vederlo si osservi che esiste un unico piano $\varphi$ contenente sia $\mathfrak{r}$ che $P$, e un unico piano $\varphi'$ contenente sia $\mathfrak{r}'$ che $P$. Poiché $\mathfrak{r}$ e $\mathfrak{r}'$ hanno in comune il punto $P$ e sono distinti (altrimenti $\mathfrak{r}$ e $\mathfrak{r}'$ sarebbero complanari), $\varphi \cap \varphi'$ è una retta che contiene $P$ e, per costruzione, è complanare sia con $\mathfrak{r}$ che con $\mathfrak{r}'$. L'unicità di $\varphi$ segue da quella di $\varphi$ e di $\varphi'$.
+Si noti che certamente $\mathfrak{r}$ non è parallela sia a $\mathfrak{r}$ che a $\mathfrak{r}'$, perché in tal caso $\mathfrak{r}$ ed $\mathfrak{r}'$ sarebbero parallele tra loro. Quindi $\mathfrak{r}$ interseca almeno una delle due rette.    
+\end{exmp}
 
-Si noti che certamente $\mathfrak{r}$ non è parallela sia a $\mathfrak{r}$ che a $\mathfrak{r}'$, perché in tal caso $\mathfrak{r}$ ed $\mathfrak{r}'$ sarebbero parallele tra loro. Quindi $\mathfrak{r}$ interseca almeno una delle due rette.
-
-
-\vspace{50pt}
+\newpage
 \section{Applicazioni Lineari}
 \vspace{20pt}
 
@@ -5246,11 +5273,7 @@ e in questo caso $p_{\,\mathbf{U}}$ è detta \textbf{proiezione di} $\mathbf{V}$
 
 \vspace{10pt}
 
-Se $\{\mathbf{e}_1,\dots,\mathbf{e}_n\}$ è una base di $\mathbf{V}$ e $1\leq k<n$, la proiezione di $\mathbf{V}$ su $\langle\mathbf{e}_{k+1},\dots,\mathbf{e}_n\rangle$ 
-definita dalla decomposizione \[\mathbf{V}=\langle\mathbf{e}_1,\dots,\mathbf{e}_k\rangle\oplus\langle\mathbf{e}_{k+1},\dots,\mathbf{e}_n\rangle\] è:
-\[p\left(\sum_{i=1}^{n}c_i\mathbf{e}_i\right)=\sum_{i=k+1}^{n}c_i\mathbf{e}_i.\]
 \paragraph{Proiezione rispetto a una decomposizione indotta da una base}
-
 Sia $\{\mathbf{e}_1,\dots,\mathbf{e}_n\}$ una base di $\mathbf{V}$ e sia $1\leq k<n$. Allora i sottospazi 
 \[
 \mathbf{U} := \langle \mathbf{e}_1,\dots,\mathbf{e}_k \rangle \quad \text{e} \quad \mathbf{W} := \langle \mathbf{e}_{k+1},\dots,\mathbf{e}_n \rangle
@@ -5296,28 +5319,56 @@ che restituisce la componente di un vettore lungo $\mathbf{W}$, annullando quell
     si descrive la proiezione $p$ di $\mathbf{V}$ su $\mathbf{W}$ nella direzione $\langle\mathbf{u}\rangle$.    
 \end{exmp}
 
-
 \vspace{10pt}
 
+\begin{bxthm}
+\begin{prop}
 Siano $\mathbf{V}$ un $\mathbb{K}$-spazio vettoriale ed $\mathbf{e} = \{\mathbf{e}_1,\ldots,\mathbf{e}_n\}$ una sua base.
-Per ogni $i=1,\ldots,n$ definiamo \[\eta_i:\mathbf{V}\to\mathbb{K},\quad c_1\mathbf{e}_1+\ldots+c_n\mathbf{e}_n\mapsto c_i.\]
-$\eta_i$ è un funzionale lineare su $\mathbf{V}$. Infatti presi \(\mathbf{v}=\sum\limits_{k=1}^{n}c_k\mathbf{e}_k,\,\mathbf{v}'=\sum\limits_{k=1}^{n}d_k\mathbf{e}_k\in\mathbf{V},\; \lambda,\lambda'\in\mathbb{K}\), si ha 
-\[\eta_i(\lambda\mathbf{v}+\lambda'\mathbf{v}')=\eta_i\left(\sum_{k=1}^{n}(\lambda c_k+\lambda'd_k)\mathbf{e}_k\right)=\lambda c_i+\lambda'd_i=\lambda\eta_i(\mathbf{v})+\lambda'\eta_i(\mathbf{v}')\]
+Per ogni $i\in\{1,\ldots,n\}$ definiamo \[\eta_i:\mathbf{V}\to\mathbb{K},\quad c_1\mathbf{e}_1+\ldots+c_n\mathbf{e}_n\mapsto c_i.\]
+$\eta_i$ è un funzionale lineare su $\mathbf{V}$.     
+\end{prop}
+\end{bxthm}
+\begin{proof}
+Infatti presi \(\mathbf{v}=\sum\limits_{k=1}^{n}c_k\mathbf{e}_k,\,\mathbf{v}'=\sum\limits_{k=1}^{n}d_k\mathbf{e}_k\in\mathbf{V},\; \lambda,\lambda'\in\mathbb{K}\), si ha 
+\[\eta_i(\lambda\mathbf{v}+\lambda'\mathbf{v}')=\eta_i\left(\sum_{k=1}^{n}(\lambda c_k+\lambda'd_k)\mathbf{e}_k\right)=\lambda c_i+\lambda'd_i=\lambda\eta_i(\mathbf{v})+\lambda'\eta_i(\mathbf{v}').\]
+\end{proof}
 
 \vspace{10pt}
 
+\begin{bxthm}
+\begin{prop}
 Siano $\mathbf{V}$ un $\mathbb{K}$-spazio vettoriale e $\mathbf{U}$, $\mathbf{W}$ sottospazi supplementari in $\mathbf{V}$.
 Definiamo 
 \[\rho :\mathbf{V}\to\mathbf{V},\quad \mathbf{u}+\mathbf{w}\mapsto \mathbf{u}-\mathbf{w}\quad\quad\forall\,\mathbf{v}=\mathbf{u}+\mathbf{w},\;\mathbf{u}\in\mathbf{U},\,\mathbf{w}\in\mathbf{W}\]
-$\rho$ è un operatore lineare. Infatti presi $\mathbf{v}=\mathbf{u}+\mathbf{w},\,\mathbf{v}'=\mathbf{u}'+\mathbf{w}',\;\lambda,\in\mathbb{K}$:
+$\rho$ è un operatore lineare. 
+\end{prop}
+\end{bxthm}
+\begin{proof}
+Infatti presi $\mathbf{v}=\mathbf{u}+\mathbf{w},\,\mathbf{v}'=\mathbf{u}'+\mathbf{w}',\;\lambda,\in\mathbb{K}$:
 \[\rho(\mathbf{v}+\mathbf{v}')=\rho(\mathbf{u}+\mathbf{w}+\mathbf{u}'+\mathbf{w}')=\rho(\mathbf{u}+\mathbf{u}'+\mathbf{w}+\mathbf{w}')=\mathbf{u}+\mathbf{u}'-\mathbf{w}-\mathbf{w}'=\mathbf{u}-\mathbf{w}+\mathbf{u}'-\mathbf{w}'=\rho(\mathbf{v})+\rho(\mathbf{v}')\]
-\[\rho(\lambda\mathbf{v})=\rho(\lambda\mathbf{u}+\lambda\mathbf{w})=\lambda\mathbf{u}-\lambda\mathbf{w}=\lambda(\mathbf{u}-\mathbf{w})=\lambda\rho(\mathbf{v}).\]
+\[\rho(\lambda\mathbf{v})=\rho(\lambda\mathbf{u}+\lambda\mathbf{w})=\lambda\mathbf{u}-\lambda\mathbf{w}=\lambda(\mathbf{u}-\mathbf{w})=\lambda\rho(\mathbf{v}).\]    
+\end{proof}
+
+\vspace{10pt}
+
+\begin{bxthm}
+\begin{prop}
 L'operatore $\rho$ gode delle seguenti proprietà
 \begin{enumerate}
     \item $\rho(\mathbf{u})=\mathbf{u}\quad\forall\mathbf{u}\in\mathbf{U};$
     \item $\rho\circ\rho=\mathbf{1}_\mathbf{V}.$
-\end{enumerate}
-La seconda proprietà implica che $\rho$ è invertibile, e quindi $\rho\in\mathrm{GL}(\mathbf{V})$.
+\end{enumerate}    
+\end{prop}
+\end{bxthm}
+
+\vspace{10pt}
+
+\begin{note}
+La seconda proprietà implica che $\rho$ è invertibile, e quindi $\rho\in\mathrm{GL}(\mathbf{V})$.    
+\end{note}
+
+\vspace{10pt}
+
 Se $\mathbf{e}=\{\mathbf{e}_1,\ldots,\mathbf{e}_n\}$ è una base di $\mathbf{V}$ e $1\leq k<n$, 
 \[\mathbf{U}=\langle\mathbf{e}_1,\ldots,\mathbf{e}_k\rangle, \quad\mathbf{W}=\langle\mathbf{e}_{k+1},\ldots,\mathbf{e}_n\rangle,\]
 allora 
@@ -5325,14 +5376,25 @@ allora
 
 \vspace{10pt}
 
-Siano $\mathbf{V}$ un $\mathbb{K}$-spazio vettoriale, $\mathbf{U}$ un suo sottospazio e consideriamo lo spazio vettoriale quoziente $\mathbf{V/U}$. 
-L'applicazione 
+\paragraph{Proiezione naturale}
+\begin{bxthm}
+\begin{prop}
+Siano $\mathbf{V}$ un $\mathbb{K}$-spazio vettoriale, $\mathbf{U}$ un suo sottospazio e consideriamo lo 
+spazio vettoriale quoziente $\mathbf{V/U}$. L'applicazione 
 \[p:\mathbf{V}\to\mathbf{V/U},\quad \mathbf{v}\mapsto \mathbf{v}+\mathbf{U}\]
-è lineare. Essa è chiamata \textbf{proiezione naturale} di $\mathbf{V}$ su $\mathbf{V/U}$
+è lineare. Essa è chiamata \textbf{proiezione naturale} di $\mathbf{V}$ su $\mathbf{V/U}$    
+\end{prop}
+\end{bxthm}
 
 \vspace{10pt}
 
-Sia $\mathbf{U}$ un sottospazio del $\mathbb{K}$-spazio vettoriale $\mathbf{V}$. L'inclusione $i$ di $\mathbf{U}$ in $\mathbf{V}$ è un'applicazione lineare.
+\paragraph{Inclusione}
+\begin{bxthm}
+\begin{prop}
+Sia $\mathbf{U}$ un sottospazio del $\mathbb{K}$-spazio vettoriale $\mathbf{V}$. 
+L'inclusione $i$ di $\mathbf{U}$ in $\mathbf{V}$ è un'applicazione lineare.    
+\end{prop}
+\end{bxthm}
 
 \vspace{10pt}
 
@@ -5533,9 +5595,9 @@ $F$ definisce un isomorfismo
 F' : \mathbf{V}/\ker(F) \rightarrow \mathrm{Im}(F)
 \]
 tale che
-\begin{equation}
+\begin{equation}\label{undiciottoo}
 F = i \circ F' \circ p,    
-\end{equation}\label{undiciotto}
+\end{equation}
 dove $p: \mathbf{V} \rightarrow \mathbf{V}/\ker(F)$ è la proiezione naturale e $i: \mathrm{Im}(F) \rightarrow \mathbf{W}$ è l'inclusione.    
 \end{thm}
 \end{bxthm}
@@ -5550,8 +5612,8 @@ Possiamo quindi definire $F': \mathbf{V}/\ker(F) \rightarrow \mathrm{Im}(F)$ pon
 F'(\mathbf{v} + \ker(F)) = F(\mathbf{v}).
 \]
 
-$F'$ è biunivoca perché, oltre ad essere ovviamente suriettiva, è anche iniettiva per \ref{undicinove}. 
-La verifica della linearità di $F'$ e della \ref{undiciotto} è lasciata al lettore.    
+$F'$ è biunivoca perché, oltre ad essere ovviamente suriettiva, è anche iniettiva per (\ref{undicinove}). 
+La verifica della linearità di $F'$ e della (\ref{undiciottoo}) è lasciata al lettore.    
 \end{proof}
 
 \vspace{10pt}
@@ -9494,7 +9556,7 @@ $\mathbf{w} - \langle \mathbf{v}, \mathbf{w} \rangle \mathbf{v}$ è ortogonale a
 \vspace{10pt}
 
 \paragraph{Teorema di ortogonalizzazione di Gram-Schmidt}
-\begin{bxthm}\label{diciassettequattro}
+\begin{bxthm}\label{diciassettequattroo}
 \begin{thm}
 Sia $\mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3, \ldots$ una successione (finita o infinita) di vettori dello spazio euclideo $\mathbf{V}$. 
 Allora:
@@ -9554,7 +9616,7 @@ Allora:
 \vspace{10pt}
 
 \begin{note}
-Si noti che la (b) del teorema \ref{diciassettequattro} non afferma che $\{ \mathbf{w}_1, \mathbf{w}_2, \ldots, \mathbf{w}_k \}$ è un 
+Si noti che la (b) del teorema (\ref{diciassettequattroo}) non afferma che $\{ \mathbf{w}_1, \mathbf{w}_2, \ldots, \mathbf{w}_k \}$ sia un 
 insieme ortogonale di vettori, perché può accadere che qualcuno dei vettori $\mathbf{w}_1, \mathbf{w}_2, \ldots, \mathbf{w}_k$ sia 
 uguale a $\mathbf{0}$. Se $\mathbf{w}_1, \mathbf{w}_2, \ldots, \mathbf{w}_k$ sono tutti non nulli, allora $\{ \mathbf{w}_1, \mathbf{w}_2, \ldots, \mathbf{w}_k \}$ è un 
 insieme ortogonale di vettori.    
@@ -9828,9 +9890,9 @@ scriveremo
 \[
 \theta \equiv \varphi \pmod{2\pi}
 \]
-se e solo se esiste $k \in \mathbb{Z}$ tale che 
+se e solo se 
 \[
-\theta - \varphi = 2k\pi.
+\exists\,k \in \mathbb{Z}\,:\;\theta - \varphi = 2k\pi.
 \]    
 \end{defn}
 \end{bxthm}
@@ -9894,7 +9956,7 @@ individua un angolo \ref{diciassettenove} cui appartiene e uno solo. Gli element
 \textbf{determinazioni}; per definizione, due determinazioni di uno stesso angolo differiscono per un multiplo 
 intero di $2\pi$. Ogni angolo possiede un'unica determinazione $\theta_0$, tale che 
 $0 \leq \theta_0 < 2\pi$, la cosiddetta \textbf{determinazione principale}. Con abuso di linguaggio 
-identificheremo spesso un angolo con una sua determinazione, così che un numero reale, sottintendendo 
+identificheremo spesso un angolo con una sua determinazione, cioè con un numero reale, sottintendendo 
 che due numeri reali rappresentano lo stesso angolo se e solo se la loro differenza è un multiplo intero di $2\pi$.
 
 \vspace{10pt}
@@ -9904,17 +9966,27 @@ tra l'insieme $\mathcal{D}$ di tutti gli angoli e l'intervallo chiuso a sinistra
 
 \vspace{10pt}
 
+\paragraph{Angolo convesso associato}
+\begin{bxthm}
+\begin{defn}
 In precedenza abbiamo definito un angolo convesso come un numero reale nell'intervallo $[0, \pi]$. 
 Ad ogni angolo $\{\theta + 2k\pi \,:\; k \in \mathbb{Z}\}$ si può associare il numero reale
 \(\min\{|\theta + 2k\pi| : k \in \mathbb{Z}\},\)
-che, è immediato verificarlo, appartiene a $[0, \pi]$, e si dice \textbf{l'angolo convesso associato}.
+che, è immediato verificarlo, appartiene a $[0, \pi]$, e si dice \textbf{l'angolo convesso associato}.    
+\end{defn}
+\end{bxthm}
 
 \vspace{10pt}
 
+\paragraph{Somma tra angoli}
+\begin{bxthm}
+\begin{defn}
 Gli angoli si possono sommare tra loro sommandone le determinazioni: se 
 $[\theta]_{2\pi},[\eta]_{2\pi}$
 sono due angoli, la loro somma è l'angolo
-\[[\theta+\eta]_{2\pi}=\{\theta + \eta + 2k\pi : k \in \mathbb{Z}\}\]
+\[[\theta+\eta]_{2\pi}=\{\theta + \eta + 2k\pi : k \in \mathbb{Z}\}\]    
+\end{defn}    
+\end{bxthm}
 
 \vspace{10pt}
 
@@ -9959,13 +10031,13 @@ cioè:
 \vspace{10pt}
 
 Consideriamo ora uno spazio vettoriale euclideo $\mathbf{V}$ di dimensione $2$, in cui sia fissata una base 
-ortonormale $\{\mathbf{i}, \mathbf{j}\}$. Siano $\mathbf{u}(u_1, u_2)$, $\mathbf{v}(v_1, v_2)$ due vettori, 
+ortonormale $\{\mathbf{i}, \mathbf{j}\}$. Siano $\mathbf{u}(u_1, u_2)$, $\mathbf{v}(v_1, v_2)$ due versori, 
 e siano $\varphi, \psi \in \mathbb{R}$ tali che
 \[\begin{pmatrix}u_1\\u_2\end{pmatrix} = \begin{pmatrix}\cos\varphi\\\sin\varphi\end{pmatrix} \quad\quad\begin{pmatrix}v_1\\v_2\end{pmatrix} = \begin{pmatrix}\cos\psi\\\sin\psi\end{pmatrix}.\]
 
 \vspace{10pt}
 
-Definiamo l'\textbf{angolo orientato} formato dai vettori $\mathbf{u}$ e $\mathbf{v}$ come l'angolo 
+Definiamo l'\textbf{angolo orientato} formato dai versori $\mathbf{u}$ e $\mathbf{v}$ come l'angolo 
 $\widehat{\mathbf{uv}}=[\psi - \varphi]_{2\pi}$.
 
 \vspace{10pt}
@@ -10328,7 +10400,7 @@ Si ha, utilizzando le proprietà (2), (7) e (6):
 
 \vspace{10pt}
 
-Si noti che nel caso in cui $\mathbf{V}$ è lo spazio dei vettori dello spazio ordinario, la proposizione \ref{diciottoquattro} 
+Si noti che nel caso in cui $\mathbf{V}$ è lo spazio dei vettori dello spazio ordinario, la proposizione (\ref{diciottoquattro})
 afferma che $\|\mathbf{v} \wedge \mathbf{w}\|$ è uguale all'area del parallelogramma costruito sui vettori $\mathbf{v}$ e 
 $\mathbf{w}$.
 
@@ -10377,7 +10449,7 @@ Per ogni $\mathbf{v}, \mathbf{w}, \mathbf{a}, \mathbf{b} \in \mathbf{V}$ si ha
 \end{bxthm}
 \begin{proof}
 Se le coordinate dei vettori dati sono $(v_1, v_2, v_3)$, $(w_1, w_2, w_3)$, $(a_1, a_2, a_3)$, 
-$(b_1, b_2, b_3)$, il primo membro della \ref{diciottouno} è
+$(b_1, b_2, b_3)$, il primo membro della (\ref{diciottouno}) è
 \[\begin{vmatrix}
 v_2 & v_3  \\
 w_2 & w_3 
@@ -10440,7 +10512,7 @@ l'\textbf{$n$-spazio euclideo numerico}. Il suo spazio vettoriale associato è l
 \paragraph{Sistema di coordinate cartesiane}
 \begin{bxthm}
 \begin{defn}
-Un sistema di coordinate $O\mathbf{e}_1 \ldots \mathbf{e}_n$ nello spazio euclideo $\mathbf{E}$ è tale che 
+Un sistema di coordinate $O\mathbf{e}_1 \ldots \mathbf{e}_n$ nello spazio euclideo $\mathbf{E}$ tale che 
 $\{\mathbf{e}_1, \ldots, \mathbf{e}_n\}$ sia una base ortonormale di $\mathbf{V}$ si chiama 
 \textbf{sistema di coordinate cartesiane} oppure \textbf{riferimento cartesiano}.     
 \end{defn}
@@ -10492,23 +10564,27 @@ d(P, Q) = \|\overrightarrow{PQ}\|.
 
 \vspace{10pt}
 
+\begin{case}
 Se in $\mathbf{E}$ è fissato un sistema di coordinate cartesiane $O\mathbf{e}_1 \ldots \mathbf{e}_n$, e se i punti dati sono 
 $P(x_1, \ldots, x_n)$ e $Q(y_1, \ldots, y_n)$ rispettivamente, allora si ha
 \[
 d(P, Q) = \sqrt{\sum_{i=1}^{n}(y_i - x_i)^2}.
-\]
+\]    
+\end{case}
 
 \vspace{10pt}
 
+\begin{case}
 Nel caso in cui $\mathbf{E} = \mathbf{V}_a$, dove $\mathbf{V}$ è uno spazio vettoriale euclideo, si ha
 \[
 d(\mathbf{v}, \mathbf{w}) = \|\mathbf{w} - \mathbf{v}\|.
-\]
+\]    
+\end{case}
 
 \vspace{10pt}
 
 \begin{bxthm}
-\begin{prop}\label{diciannovedue}
+\begin{prop}\label{diciannoveduee}
 La distanza gode delle seguenti proprietà:
 \begin{enumerate}
     \item[SM1] $\forall\,P, Q \in \mathbf{E},\; d(P, Q) \geq 0$ e $d(P, Q) = 0\iff P = Q$.
@@ -10520,7 +10596,7 @@ La distanza gode delle seguenti proprietà:
 
 \vspace{10pt}
 
-La \ref{diciannovedue} può essere presa come sistema assiomatico per definire una classe più generale di spazi.
+La (\ref{diciannoveduee}) può essere presa come sistema assiomatico per definire una classe più generale di spazi.
 
 \vspace{10pt}
 
@@ -10534,10 +10610,10 @@ $d: \mathbf{X}^2 \to \mathbb{R}$ che soddisfi alle tre condizioni SM1, SM2, SM3.
 
 \vspace{10pt}
 
-La \ref{diciannovedue} garantisce che, con la distanza definita dalla \ref{diciannoveuno}, ogni spazio euclideo è uno spazio 
+La (\ref{diciannoveduee}) garantisce che, con la distanza definita dalla (\ref{diciannoveuno}), ogni spazio euclideo è uno spazio 
 metrico. Non è vero il viceversa: in generale uno spazio metrico non è uno spazio euclideo, e infatti gli spazi metrici sono 
 oggetti molto più generali. Per rendersi conto della loro maggiore generalità si pensi che ogni sottoinsieme di uno spazio 
-metrico è ancora uno spazio metrico; in particolare tutti i sottoinsiemi di uno spazio euclideo $E$ sono spazi metrici.
+metrico è ancora uno spazio metrico; in particolare tutti i sottoinsiemi di uno spazio euclideo $\mathbf{E}$ sono spazi metrici.
 
 \vspace{10pt}
 
@@ -10592,6 +10668,10 @@ Due rette in $\mathbf{E}$ si dicono \textbf{ortogonali} (o \textbf{perpendicolar
 
 \vspace{10pt}
 
+\subsection{Piano euclideo}
+
+\vspace{10pt}
+
 Sia $\mathbf{E}$ un piano euclideo in cui sia fissato un riferimento cartesiano $O\mathbf{i}\mathbf{j}$. 
 Consideriamo una retta $\mathfrak{r}$, avente equazione cartesiana
 \begin{equation}\label{diciannoveeuno}
@@ -10631,12 +10711,15 @@ Dato un punto $Q(a,b)\in\mathfrak{r}$, un'equazione cartesiana di $\mathfrak{r}$
 \begin{equation}\label{diciannovedue}
 A(X - a) + B(Y - b) = 0.    
 \end{equation}
-Poiché la \ref{diciannovedue} è individuata da $a, b, A, B$, vediamo che $\mathfrak{r}$ è individuata da 
+Poiché la (\ref{diciannovedue}) è individuata da $a, b, A, B$, vediamo che $\mathfrak{r}$ è individuata da 
 un suo punto $Q(a,b)$ e da un vettore normale $\mathbf{n}(A,B)$: una retta in $\mathbf{E}$ può quindi 
 essere individuata assegnando un suo punto e un vettore ad essa perpendicolare.
 
 \vspace{10pt}
 
+\paragraph{Angolo convesso tra due rette}
+\begin{bxthm}
+\begin{defn}
 Siano $\mathfrak{r}$ ed $\mathfrak{r}'$ due rette di equazioni cartesiane
 \[
 A X + B Y + C = 0 \quad \textup{e}\quad A_1 X + B_1 Y + C_1 = 0 
@@ -10646,7 +10729,12 @@ $\mathbf{a}(-B, A)$ e $\mathbf{a}_1(-B', A')$, è definito dalle condizioni $0 \
 \[
 \cos \varphi = \frac{\langle \mathbf{a}, \mathbf{a}_1 \rangle}{\|\mathbf{a}\|\, \|\mathbf{a}_1\|} 
 = \frac{AA' + BB'}{\sqrt{A^2 + B^2} \sqrt{(A')^2 + (B')^2}}.
-\]
+\]    
+\end{defn}
+\end{bxthm}
+
+\vspace{10pt}
+
 In particolare $\mathfrak{r}$ ed $\mathfrak{r}'$ sono \textbf{perpendicolari} se e solo se
 \[
 AA' + BB' = 0.
@@ -10654,7 +10742,7 @@ AA' + BB' = 0.
 
 \vspace{10pt}
 
-Supponiamo data una retta $\mathfrak{r}$ di equazione cartesiana \ref{diciannoveeuno}, e un punto 
+Supponiamo data una retta $\mathfrak{r}$ di equazione cartesiana (\ref{diciannoveeuno}), e un punto 
 $P_0(x_0, y_0) \in \mathbf{E}$. Consideriamo la retta $\mathfrak{r}'$ che passa per $P_0$ ed è ortogonale a $\mathfrak{r}$;
 evidentemente questa retta esiste ed è unica. Poiché $\mathfrak{r}'$ non è parallela a $\mathfrak{r}$, essa ha
 uno e un solo punto $N$ in comune con $\mathfrak{r}$: $N$ è il \textbf{piede della perpendicolare condotta da $P_0$ a $\mathfrak{r}$}.
@@ -10701,49 +10789,60 @@ d(P_0, \mathfrak{r}) = \dfrac{|A(x_0 - a) + B(y_0 - b)|}{\sqrt{A^2 + B^2}} =
 
 \vspace{10pt}
 
+\paragraph{Distanza tra due rette}
+\begin{bxthm}
+\begin{defn}
 Se $\mathfrak{r}$ ed $\mathfrak{r}'$ sono due rette parallele di $\mathbf{E}$, la loro distanza 
 $d(\mathfrak{r}, \mathfrak{r}')$ è per definizione uguale a $d(P, \mathfrak{r}')$, dove $P$ è un punto 
-qualunque di $\mathfrak{r}$. 
+qualunque di $\mathfrak{r}$.    
+\end{defn}
+\end{bxthm}
+
+\vspace{10pt}
 Per calcolare $d(\mathfrak{r}, \mathfrak{r}')$ è sufficiente trovare un punto $P \in \mathfrak{r}$ e 
-applicare la formula della proposizione \ref{diciannovetre}.
+applicare la formula della proposizione (\ref{diciannovetre}).
+
+\vspace{10pt}
+
+\subsection{Spazio euclideo}
 
 \vspace{10pt}
 
 Sia $\mathbf{E}$ uno spazio euclideo di dimensione $3$ con spazio vettoriale associato $\mathbf{V}$. 
 Supponiamo fissato in $\mathbf{E}$ un sistema di coordinate cartesiane $O\mathbf{ijk}$.
-Consideriamo un piano $\mathscr{P}$ in $\mathbf{E}$, di equazione cartesiana
+Consideriamo un piano $\mathfrak{p}$ in $\mathbf{E}$, di equazione cartesiana
 \begin{equation}\label{diciannovequattro}
 AX + BY + CZ + D = 0.    
 \end{equation}
 Un vettore $\mathbf{m}$ si dice \textbf{normale} (o \textbf{perpendicolare}, o \textbf{ortogonale}) a 
-$\mathscr{P}$ se è ortogonale ad ogni vettore della giacitura di $\mathscr{P}$. 
-Se inoltre $\mathbf{m}$ è un versore, esso viene detto \textbf{versore normale} a $\mathscr{P}$.
+$\mathfrak{p}$ se è ortogonale ad ogni vettore della giacitura di $\mathfrak{p}$. 
+Se inoltre $\mathbf{m}$ è un versore, esso viene detto \textbf{versore normale} a $\mathfrak{p}$.
 
 \vspace{10pt}
 
-Poiché $\dim(\mathbf{E}) = 3$, due qualsiasi vettori normali a $\mathscr{P}$ sono tra loro paralleli; 
-quindi $\mathscr{P}$ possiede esattamente due versori normali.
+Poiché $\dim(\mathbf{E}) = 3$, due qualsiasi vettori normali a $\mathfrak{p}$ sono tra loro paralleli; 
+quindi $\mathfrak{p}$ possiede esattamente due versori normali.
 
 \vspace{10pt}
 
-Fissiamo un punto $P_0(x_0, y_0, z_0) \in \mathscr{P}$ e consideriamo l'equazione cartesiana di $\mathscr{P}$
+Fissiamo un punto $P_0(x_0, y_0, z_0) \in \mathfrak{p}$ e consideriamo l'equazione cartesiana di $\mathfrak{p}$
 \begin{equation}\label{diciannovecinque}
 A(X - x_0) + B(Y - y_0) + C(Z - z_0) = 0.    
 \end{equation}
-Ogni vettore appartenente alla giacitura di $\mathscr{P}$ è della forma 
-$\overrightarrow{P_0P},\; P \in \mathscr{P}$; quindi dalla \ref{diciannovecinque} vediamo che il vettore 
-$\mathbf{n}(A, B, C)$ è normale a $\mathscr{P}$. Ne deduciamo che i due vettori 
+Ogni vettore appartenente alla giacitura di $\mathfrak{p}$ è della forma 
+$\overrightarrow{P_0P},\; P \in \mathfrak{p}$; quindi dalla (\ref{diciannovecinque}) vediamo che il vettore 
+$\mathbf{n}(A, B, C)$ è normale a $\mathfrak{p}$. Ne deduciamo che i due vettori 
 $\pm \mathbf{v} = \pm \frac{\mathbf{n}}{\|\mathbf{n}\|}$ di coordinate
 \[
 \pm \left( \frac{A}{\sqrt{A^2 + B^2 + C^2}}, 
 \frac{B}{\sqrt{A^2 + B^2 + C^2}}, 
 \frac{C}{\sqrt{A^2 + B^2 + C^2}} \right)
 \]
-sono i versori normali a $\mathscr{P}$.
+sono i versori normali a $\mathfrak{p}$.
 
 \vspace{10pt}
 
-La \ref{diciannovecinque} mostra inoltre che un qualsiasi piano è individuato da un suo punto 
+La (\ref{diciannovecinque}) mostra inoltre che un qualsiasi piano è individuato da un suo punto 
 e da un vettore ad esso perpendicolare.
 
 \vspace{10pt}
@@ -10755,9 +10854,9 @@ L'angolo convesso fra due piani di $\mathbf{E}$ può essere definito utilizzando
 \paragraph{Angolo convesso tra due piani}
 \begin{bxthm}
 \begin{defn}
-Siano $\mathscr{P}$ e $\mathscr{P}'$ due piani, di equazioni cartesiane
+Siano $\mathfrak{p}$ e $\mathfrak{p}'$ due piani, di equazioni cartesiane
 \[AX + BY + CZ + D = 0\quad\quad A'X + B'Y + C'Z + D' = 0.\]
-L'angolo convesso di $\mathscr{P}$ e $\mathscr{P}'$ è l'angolo convesso tra i vettori 
+L'angolo convesso di $\mathfrak{p}$ e $\mathfrak{p}'$ è l'angolo convesso tra i vettori 
 $\mathbf{n}(A,B,C)$ ed $\mathbf{n}'(A',B',C')$, cioè è l'angolo $\varphi$ definito da 
 $0 \le \varphi \le \pi$ e da
 \begin{equation}\label{diciannovesette}
@@ -10788,11 +10887,11 @@ AA' + BB' + CC' = 0.
 \paragraph{Angolo tra una retta e un piano}
 \begin{bxthm}
 \begin{defn}
-Sia $\mathscr{P}$ un piano di equazione 
+Sia $\mathfrak{p}$ un piano di equazione 
 \[AX + BY + CZ + D = 0,\]
 e sia $\mathfrak{r}$ una retta 
 con vettore di direzione $\mathbf{a}(l,m,n)$. 
-\textbf{L'angolo tra $\mathscr{P}$ ed $\mathfrak{r}$} è l'angolo 
+\textbf{L'angolo tra $\mathfrak{p}$ ed $\mathfrak{r}$} è l'angolo 
 la cui determinazione è
 \[
 \varphi = \psi - \dfrac{\pi}{2},
@@ -10811,17 +10910,17 @@ e
 
 \vspace{10pt}
 
-Se $\varphi = \pm \dfrac{\pi}{2}$, allora $\mathscr{P}$ ed $\mathfrak{r}$ si dicono 
+Se $\varphi = \pm \dfrac{\pi}{2}$, allora $\mathfrak{p}$ ed $\mathfrak{r}$ si dicono 
 \textbf{perpendicolari} (od \textbf{ortogonali}).
 
 \vspace{10pt}
 
 Si noti che ponendo $\sin \varphi = 0$ si ritrova la condizione di parallelismo 
-tra $\mathscr{P}$ ed $\mathfrak{r}$
+tra $\mathfrak{p}$ ed $\mathfrak{r}$
 \[
 Al + Bm + Cn = 0
 \]
-già data nella proposizione \ref{riecrui}.
+già data nella proposizione (\ref{riecrui}).
 
 \vspace{10pt}
 
@@ -10833,14 +10932,14 @@ euclideo.
 \paragraph{Distanza di un punto da un piano}
 \begin{bxthm}
 \begin{defn}
-Siano $\mathscr{P}$ un piano di equazione 
+Siano $\mathfrak{p}$ un piano di equazione 
 \[AX + BY + CZ + D = 0,\]
 e $P_0(x_0, y_0, z_0) \in \mathbf{E}$ un punto. 
-Consideriamo la retta $\mathfrak{r}$ passante per $P_0$ e perpendicolare a $\mathscr{P}$ e denotiamo con 
-$N = \mathscr{P} \cap \mathfrak{r}$ il piede della perpendicolare condotta da $P_0$ a $\mathscr{P}$. Definiamo la 
-distanza di $P_0$ da $\mathscr{P}$ come
+Consideriamo la retta $\mathfrak{r}$ passante per $P_0$ e perpendicolare a $\mathfrak{p}$ e denotiamo con 
+$N = \mathfrak{p} \cap \mathfrak{r}$ il piede della perpendicolare condotta da $P_0$ a $\mathfrak{p}$. Definiamo la 
+distanza di $P_0$ da $\mathfrak{p}$ come
 \[
-d(P_0, \mathscr{P}) = d(P_0, N).
+d(P_0, \mathfrak{p}) = d(P_0, N).
 \]    
 \end{defn}
 \end{bxthm}
@@ -10849,25 +10948,25 @@ d(P_0, \mathscr{P}) = d(P_0, N).
 
 Si dimostra che
 \[
-d(P_0, \mathscr{P}) = \frac{\left| A x_0 + B y_0 + C z_0 + D \right|}{\sqrt{A^2 + B^2 + C^2}}.
+d(P_0, \mathfrak{p}) = \frac{\left| A x_0 + B y_0 + C z_0 + D \right|}{\sqrt{A^2 + B^2 + C^2}}.
 \]
-La dimostrazione è simile a quella della proposizione 19.3 ed è lasciata al lettore.
+La dimostrazione è simile a quella della proposizione (\ref{diciannovetre}) ed è lasciata al lettore.
 
 \vspace{10pt}
 
 \paragraph{Distanza tra una retta e un piano paralleli}
-Se $\mathfrak{r}$ e $\mathscr{P}$ sono rispettivamente una retta e un piano paralleli, la loro distanza 
-$d(\mathfrak{r},\mathscr{P})$ è per definizione $d(P, \mathscr{P})$, dove $P$ è un qualsiasi punto di 
-$\mathfrak{r}$. Per calcolare $d(\mathfrak{r},\mathscr{P})$ è sufficiente trovare le coordinate di un punto
-$P \in \mathfrak{r}$ e applicare la formula che dà $d(P, \mathscr{P})$.
+Se $\mathfrak{r}$ e $\mathfrak{p}$ sono rispettivamente una retta e un piano paralleli, la loro distanza 
+$d(\mathfrak{r},\mathfrak{p})$ è per definizione $d(P, \mathfrak{p})$, dove $P$ è un qualsiasi punto di 
+$\mathfrak{r}$. Per calcolare $d(\mathfrak{r},\mathfrak{p})$ è sufficiente trovare le coordinate di un punto
+$P \in \mathfrak{r}$ e applicare la formula che dà $d(P, \mathfrak{p})$.
 
 \vspace{10pt}
 
 \paragraph{Distanza di un punto da una retta}
 \begin{bxthm}
 \begin{defn}
-Sia $\mathfrak{r}$ una retta e sia $P_0 \in \mathbf{E}$. Consideriamo il piano $\mathscr{P}$ passante per $P_0$ e 
-perpendicolare a $\mathfrak{r}$ e sia $N = \mathfrak{r} \cap \mathscr{P}$. La distanza di $P_0$ da $\mathfrak{r}$ è definita come
+Sia $\mathfrak{r}$ una retta e sia $P_0 \in \mathbf{E}$. Consideriamo il piano $\mathfrak{p}$ passante per $P_0$ e 
+perpendicolare a $\mathfrak{r}$ e sia $N = \mathfrak{r} \cap \mathfrak{p}$. La distanza di $P_0$ da $\mathfrak{r}$ è definita come
 \[
 d(P_0, \mathfrak{r}) = d(P_0, N).
 \]    
@@ -10937,7 +11036,7 @@ cioè
 + t' \langle \mathbf{a}', \mathbf{a}' \rangle
 - t \langle \mathbf{a}, \mathbf{a}' \rangle = 0.
 \end{equation}
-Poiché \(\mathbf{a}\) ed \(\mathbf{a}'\) sono linearmente indipendenti, per il teorema \ref{diciottodue}(6) si ha
+Poiché \(\mathbf{a}\) ed \(\mathbf{a}'\) sono linearmente indipendenti, per il teorema (\ref{diciottodue}.6) si ha
 \[
 \begin{vmatrix}
 \langle \mathbf{a}', \mathbf{a} \rangle & \langle \mathbf{a}, \mathbf{a} \rangle\\
