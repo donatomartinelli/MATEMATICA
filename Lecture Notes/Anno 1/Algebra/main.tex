@@ -1,0 +1,1759 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsfonts, amsthm}
+\usepackage{mathtools}
+\usepackage{mdframed}
+\usepackage{cancel}
+\usepackage{import, xifthen, pdfpages, transparent}
+\usepackage{enumitem}
+\usepackage{geometry}
+\usepackage{multicol}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{tikz, pgfplots}
+\usetikzlibrary{positioning}
+\pgfplotsset{compat=1.18}
+\geometry{a4paper, margin=2cm}
+
+\newmdenv[
+  linecolor=black,
+  linewidth=1pt,
+  roundcorner=5pt,
+  innertopmargin=4pt,
+  innerbottommargin=10pt,
+  innerleftmargin=10pt,
+  innerrightmargin=10pt
+]{bxthm}
+
+\theoremstyle{plain}
+\newtheorem{thm}{Teorema}[section]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposizione}
+\newtheorem{cor}{Corollario}
+
+\theoremstyle{definition}
+\newtheorem{defn}{Definizione}[section]
+\newtheorem{exmp}{Esempio}[section]
+\newtheorem{xca}[exmp]{Esercizio}
+
+\theoremstyle{remark}
+\newtheorem{rem}{Osservazione}
+\newtheorem{note}{Nota}
+\newtheorem{case}{Caso}
+
+\newcommand{\incfig}[2][\columnwidth]{%
+    \def\svgwidth{#1}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+	{\textsc{Università degli Studi della Basilicata} \par}
+	\vspace{2cm}
+    {\huge\bfseries Appunti rielaborati di Algebra 2025/2026\par}
+    \vfill
+	{\Large\itshape Donato Martinelli\par}
+	{\large \today\par}
+\end{titlepage}
+
+%\tableofcontents
+
+\newpage 
+Un \textbf{insieme} è una collezione di oggetti.
+Gli oggetti di un insieme sono chiamati \textbf{elementi}.
+La proprietà caratteristica è la proprietà che contraddistingue un insieme di elementi.
+
+\vspace{10pt}
+
+$A$ \hspace{2cm} $x, y, z, a, b, \dots$ elementi.
+$B$
+$\vdots$
+Insieme
+
+\[
+x \in A \quad \begin{array}{l} x \text{ appartiene ad } A \\ x \text{ è un elemento dell'insieme } A \end{array}
+\]
+
+\vspace{10pt}
+
+\[
+A = \{ x \mid x \text{ ha la proprietà } \underset{\substack{\uparrow \\ \text{proprietà} \\ \text{caratteristica} \\ \text{dell'insieme } A}}{P} \} \quad \left\} \begin{array}{l} \text{metodo di} \\ \text{rappresentazione} \\ \text{di un insieme} \\ \text{per proprietà} \\ \text{caratteristica} \end{array} \right.
+\]
+
+\vspace{10pt}
+
+\[
+A = \{ a_1, a_2, a_3, a_4, a_5 \} \quad \left\} \begin{array}{l} \text{metodo di} \\ \text{rappresentazione} \\ \text{di un insieme} \\ \text{per elencazione} \end{array} \right.
+\]
+
+
+\[
+\begin{aligned}
+A &= \{ \text{numeri naturali pari } \overset{\text{strettamente}}{\text{minori}} \text{ di } 10 \} & \quad 4 \in A \\
+  &= \{ x \mid x \in \mathbb{N}, x \text{ pari}, x < 10 \} & \quad 5 \notin A \\
+  &= \{ 0, 2, 4, 6, 8 \}
+\end{aligned}
+\]
+
+\vspace{10pt}
+
+Quando due insiemi sono uguali? Ossia $A=B$?
+
+\[
+A=B \left\{ \begin{array}{l} \forall x \in A, \exists y \in B \mid x=y \longrightarrow A \subseteq B \\ \forall y \in B, \exists x \in A \mid y=x \longrightarrow B \subseteq A \end{array} \right.
+\]
+
+\vspace{10pt}
+
+\paragraph{Def.}
+Dati gli insiemi $A,B$ si dice che $A$ è contenuto in $B$ (o $A$ è un sottoinsieme di $B$) e si scrive $A \subseteq B \leftrightarrow$ ogni elemento di $A$ appartiene all'insieme $B$. In simboli:
+\[
+A \subseteq B \longleftrightarrow \forall x \in A, \exists y \in B \mid x=y
+\]
+
+\[
+A=B \longleftrightarrow A \subseteq B \text{ e } B \subseteq A
+\]
+
+\vspace{10pt}
+
+\textbf{Intersezione} \quad $A \cap B = \{ x \mid x \in A \text{ e } x \in B \}$
+
+\textbf{Unione} \hspace{1.2cm} $A \cup B = \{ x \mid x \in A \text{ o } x \in B \}$
+
+\textbf{Differenza} \hspace{0.7cm} $A - B = \{ x \mid x \in A \text{ e } x \notin B \}$
+
+\textbf{Complementare} \quad $B \subseteq A \quad B^c = \{ x \mid x \in A \text{ e } x \notin B \} = A - B \text{ con } B \subseteq A$
+
+\[
+\left( \begin{gathered} \text{Due insiemi si dicono} \\ \text{disgiunti se hanno} \\ \text{intersezione vuota} \\ X \cap Y = \emptyset \end{gathered} \right)
+\]
+
+\vspace{10pt}
+
+Proprietà distributive di unione e intersezione
+
+\paragraph{Prop.}
+Dati gli insiemi $A, B, C$ si ha
+\[
+A \cap (B \cup C) = (A \cap B) \cup (A \cap C)
+\]
+
+\paragraph{Dim.}
+Bisogna provare che $\underbrace{(A \cap (B \cup C) \subseteq (A \cap B) \cup (A \cap C))}_{1} \text{ e } \underbrace{((A \cap B) \cup (A \cap C) \subseteq A \cap (B \cup C))}_{2}$
+
+\textbf{1 $\Rightarrow$ 2}
+$\forall x \in A \cap (B \cup C)$, si ha che $x \in A$ e $\underbrace{x \in B \cup C}_{\text{e dunque } x \in B \text{ o } x \in C}$
+Quindi: $x \in A \cap B$ o $x \in A \cap C$
+In ogni caso $x \in (A \cap B) \cup (A \cap C)$
+quindi $A \cap (B \cup C) \subseteq (A \cap B) \cup (A \cap C)$
+
+\textbf{2 $\Rightarrow$ 1}
+$\forall y \in (A \cap B) \cup (A \cap C)$, $\left\{ \begin{aligned} & y \in A \cap B \text{ e quindi } y \in A \text{ e } y \in B \\ \text{o } & y \in A \cap C \text{ e quindi } y \in A \text{ e } y \in C \end{aligned} \right\}$ in ogni caso $y \in A$ e $y \in B \cup C$
+e dunque $y \in A \cap (B \cup C)$
+e dunque $(A \cap B) \cup (A \cap C) \subseteq A \cap (B \cup C)$
+
+\vspace{10pt}
+
+\textbf{Insieme delle parti}
+Dato $A$ si pone $\mathcal{P}(A) = \{ X \mid X \subseteq A \}$.
+
+\paragraph{Esempio}
+\[
+\left.
+\begin{aligned}
+A_2 = \{1, 2\} \quad & P(A_2) = \{ \emptyset, \{1\}, \{2\}, \{1,2\} \} \quad |A_2|=2 \quad |P(A_2)|=4 \\
+A_3 = \{1, 2, 3\} \quad & P(A_3) = \{ \emptyset, \{1\}, \{2\}, \{3\}, \\
+& \hspace{1.5cm} \{1,2\}, \{1,3\}, \{2,3\}, \\
+& \hspace{1.5cm} \{1,2,3\} \} \\
+& |A_3|=3 \quad |P(A_3)|=8
+\end{aligned}
+\right\} \quad \boxed{|A_n|=n \Rightarrow |P(A_n)|=2^n}
+\]
+
+\vspace{10pt}
+
+Esempio con $P(A_4)$
+
+\[
+|P(A_4)| = 1 + 4 + 6 + 4 + 1 = 16 = 2^4
+\]
+
+\[
+P(A_4) = \{ \underset{\underset{P(A_3)}{\downarrow}}{\text{sottoinsiemi di } A_4 \text{ che non contengono } 4} \} \cup \{ \underset{\underset{\{ x \cup \{4\} \mid x \in P(A_3) \}}{\downarrow}}{\text{sottoinsiemi di } A_4 \text{ che contengono } 4} \}
+\]
+
+\[
+X \cap Y = \emptyset \Rightarrow |X \cup Y| = |X| + |Y|
+\]
+
+\[
+P(A_4) = P(A_3) \cup \{ x \cup \{4\} \mid x \in P(A_3) \} \quad \text{poiché sono disgiunti}
+\]
+
+\[
+|P(A_4)| = |P(A_3)| + |\{ x \cup \{4\} \mid x \in P(A_3) \}|
+\]
+
+\[
+\text{e dunque } |P(A_3)| + |P(A_3)| \Rightarrow |P(A_4)| = 2 |P(A_3)|
+\]
+
+\vspace{10pt}
+
+\begin{minipage}{0.45\textwidth}
+\textbf{Proprietà dell' intersezione}
+\begin{enumerate}
+    \item $A \cap A = A$
+    \item $A \cap B = B \cap A$ (commutativa)
+    \item $(A \cap B) \cap C = A \cap (B \cap C)$ (associativa)
+\end{enumerate}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+\textbf{Proprietà dell' unione}
+\begin{enumerate}
+    \item $A \cup A = A$
+    \item $A \cup B = B \cup A$ (commutativa)
+    \item $(A \cup B) \cup C = A \cup (B \cup C)$ (associativa)
+\end{enumerate}
+\end{minipage}
+
+\vspace{20pt}
+
+\[
+A \cup (B \cap C) = (A \cup B) \cap (A \cup C)
+\]
+
+\paragraph{Dim.}
+Bisogna provare che:
+\[
+A \cup (B \cap C) \subseteq (A \cup B) \cap (A \cup C) \quad \textcircled{1}
+\]
+\[
+(A \cup B) \cap (A \cup C) \subseteq A \cup (B \cap C) \quad \textcircled{2}
+\]
+
+\vspace{10pt}
+
+\textbf{1)} $x \in A \cup (B \cap C) \Rightarrow x \in A \text{ o } (x \in B \text{ e } x \in C)$
+
+\[
+\left. \begin{aligned}
+x \in A & \Rightarrow x \in A \cup B \\
+        & \Rightarrow x \in A \cup C
+\end{aligned} \right\} \Rightarrow x \in (A \cup B) \cap (A \cup C)
+\]
+
+\[
+x \in B \cap C \Rightarrow x \in B \text{ e } x \in C
+\]
+\[
+\left. \begin{aligned}
+x \in B & \Rightarrow x \in A \cup B \\
+x \in C & \Rightarrow x \in A \cup C
+\end{aligned} \right\} \Rightarrow x \in (A \cup B) \cap (A \cup C)
+\]
+
+\vspace{10pt}
+
+\textbf{2)} $x \in (A \cup B) \cap (A \cup C) \Rightarrow x \in (A \cup B) \text{ e } x \in (A \cup C)$
+\[
+\Rightarrow x \in A \text{ o } x \in B \quad \text{e} \quad x \in A \text{ o } x \in C
+\]
+
+Se $x \in A \Rightarrow x \in A \cup (B \cap C)$
+
+Se $x \notin A \Rightarrow x \in B \text{ e } x \in C \Rightarrow x \in B \cap C \Rightarrow x \in A \cup (B \cap C)$
+
+\vspace{10pt}
+
+\[
+A, B \subseteq X \quad \left( \begin{aligned} (A \cup B)^c &= A^c \cap B^c \\ (A \cap B)^c &= A^c \cup B^c \end{aligned} \right. \quad \text{De Morgan}
+\]
+
+\paragraph{Dim.}
+\[
+\begin{aligned}
+\text{ho } x \in (A \cup B)^c &\Rightarrow x \in (A \cup B)^c, \ x \in X \Rightarrow x \notin A, x \notin B, x \in X \\
+&\Rightarrow \left. \begin{aligned} x \in X - A = A^c \\ x \in X - B = B^c \end{aligned} \right\} \Rightarrow x \in A^c \cap B^c
+\end{aligned}
+\]
+
+\[
+\begin{aligned}
+\text{Sia } x \in (A^c \cap B^c) &\Rightarrow x \in A^c \text{ e } x \in B^c \Rightarrow x \in X - A \text{ e } x \in X - B \\
+&\Rightarrow x \in X, x \notin A \text{ e } x \in X, x \notin B \\
+&\Rightarrow x \in X \text{ e } x \notin (A \cup B) \\
+&\Rightarrow x \in X - (A \cup B) \Rightarrow x \in (A \cup B)^c
+\end{aligned}
+\]
+
+\paragraph{Def.}
+La coppia ordinata di primo elemento $a$, e secondo $b$, indicata con $(a,b)$, è l'insieme $\{ \{a,b\}, \{a\} \}$.
+\[
+(a,b) = \{ \{a,b\}, \{a\} \}
+\]
+
+\paragraph{Proposizione}
+\[
+(a,b) = (c,d) \Longleftrightarrow a=c \text{ e } b=d
+\]
+
+\paragraph{Dim.}
+1) $(a,b) = (c,d) \Rightarrow a=c, b=d \quad$ C. Necessaria
+2) $a=c, b=d \Rightarrow (a,b) = (c,d) \quad$ C. Sufficiente
+
+\textbf{1. I caso} \quad $a=b$
+In questo caso $\{a,b\} = \{a\}$ e $(a,b) = \{ \{a\}, \{a,b\} \} = \{ \{a\}, \{a\} \} = \{ \{a\} \}$
+Per ipotesi $(c,d) = (a,b)$, quindi
+\[
+\{ \{c\}, \{c,d\} \} = \{ \{a\} \} \Rightarrow \{c\} = \{a\} = \{c,d\} \Rightarrow c=a=d
+\]
+In conclusione
+$a=b=c=d$ e a maggior ragione $a=c$ e $b=d$
+
+\textbf{2. II caso} \quad $a \neq b$
+In questo caso $\{a,b\} \neq \{a\}$ e anche $\{a,b\} \neq \{c\}$
+Per ipotesi $(a,b) = (c,d)$ quindi $\{a,b\} \in (c,d) = \{ \{c\}, \{c,d\} \}$
+così $\{a,b\} = \{c,d\}$ d'altra parte $\{a\} \in (c,d) = \{ \{c\}, \{c,d\} \}$
+\[
+\{a\} = \begin{cases} \{c\} \text{ unica conclusione} \\ \text{possibile} \\ \{c,d\} \text{ impossibile perché} \\ \{a\} = \{a,b\} \end{cases}
+\]
+
+\paragraph{Def. Prodotto Cartesiano}
+\[
+A \times B = \{ (a,b) \mid a \in A, b \in B \}
+\]
+
+es. $A=\{x,y\}$ \quad $B=\{1,2,3\}$
+\[
+A \times B = \{ (x,1), (x,2), (x,3), (y,1), (y,2), (y,3) \}
+\]
+\[
+\neq B \times A = \{ (1,x), (1,y), (2,x), (2,y), (3,x), (3,y) \}
+\]
+
+\[
+|A \times B| = |A| \cdot |B|
+\]
+
+$A = \{ a_1, a_2, \dots, a_m \} \quad |A|=m$
+$B = \{ b_1, b_2, \dots, b_n \} \quad |B|=n$
+
+\[
+A \times B = \{ (a_i, b_j) \mid \substack{i=1, \dots, m \\ j=1, \dots, n} \} = \bigcup_{i=1}^m \{ (a_i, b_j) \mid j=1, \dots, n \} = \bigcup_{i=1}^m A_i
+\]
+
+Gli insiemi $A_i$ sono a 2 a 2 disgiunti.
+
+Così $|A \times B| = |\bigcup_{i=1}^m A_i| = \sum_{i=1}^m |A_i|$
+
+Ovviamente $|A_i| = |B| = n \quad \text{e} \quad |A \times B| = m \cdot n = |A| \cdot |B|$
+
+\vspace{10pt}
+
+\paragraph{Def. Relazione tra insiemi}
+Siano $A, B$ due insiemi. Una relazione $R$ tra $A$ e $B$ è un sottoinsieme di $A \times B$. $R \subseteq A \times B$.
+
+es. $A=\{x,y\} \quad B=\{1,2,3\}$
+$A \times B = \{ \dots \}$
+
+$R_1 = \{ (x,1), (x,2), (y,3) \}$
+$R_2 = \{ (x,1), (x,3), (y,1) \}$
+$R_3 = A \times B$
+$R_4 = \{ (x,1), (x,2), (x,3) \}$
+
+\begin{center}
+(Disegno insiemi con frecce per $R_1$: $x \to 1, x \to 2, y \to 3$)
+\end{center}
+
+\vspace{10pt}
+
+\paragraph{Def.}
+Dato la relazione $R \subseteq A \times B$ diciamo che $a$ è in relazione con $b$ e scriviamo $aRb \longleftrightarrow (a,b) \in R$.
+
+\textit{modo di rappresentare le relazioni, anche con 1, 0 se c'è o no.}
+
+\[
+\begin{array}{c|ccc}
+R_1 & 1 & 2 & 3 \\
+\hline
+x & \bullet & \bullet & \\
+y & & & \bullet
+\end{array}
+\qquad
+\begin{array}{c|ccc}
+R_2 & 1 & 2 & 3 \\
+\hline
+x & \bullet & & \bullet \\
+y & \bullet & &
+\end{array}
+\qquad
+\begin{array}{c|ccc}
+R_3 & 1 & 2 & 3 \\
+\hline
+x & \bullet & \bullet & \bullet \\
+y & \bullet & \bullet & \bullet
+\end{array}
+\qquad
+\begin{array}{c|ccc}
+R_4 & 1 & 2 & 3 \\
+\hline
+x & \bullet & \bullet & \bullet \\
+y & & &
+\end{array}
+\]
+
+\vspace{10pt}
+
+\paragraph{Def. Relazione Trasposta}
+Data la relazione $R \subseteq A \times B$, si definisce la relazione trasposta $R^t \subseteq B \times A$ ponendo $R^t = \{ (b,a) \mid (a,b) \in R \}$
+
+$R_1^t = \{ (1,x), (2,x), (3,y) \}$
+$R_2^t = \{ (1,1), (3,x) \}$ \textit{(Nota: nel manoscritto sembra mancare un termine o è scritto $(1,1)$ invece di $(1,y)$? Dal contesto $R_2$ originale: $(y,1) \to (1,y)$)}
+$R_3^t = B \times A$
+$R_4^t = \{ (1,x), (2,x), (3,x) \}$
+
+\paragraph{Composizione di relazioni}
+
+Date
+\begin{minipage}[t]{0.2\textwidth}
+\[
+\begin{aligned}
+R &\subseteq A \times B \\
+S &\subseteq B \times C
+\end{aligned}
+\]
+\end{minipage}
+Si definisce la relazione $S \circ R \subseteq A \times C$ ponendo
+
+\[
+(a,c) \in S \circ R \iff \exists b \in B : (a,b) \in R \text{ e } (b,c) \in S
+\]
+
+\[
+a(S \circ R)c \iff \exists b \in B \mid aRb \text{ e } bSc
+\]
+
+\vspace{10pt}
+
+\begin{minipage}[t]{0.3\textwidth}
+\[
+\begin{aligned}
+A &= \{ x, y \} \\
+B &= \{ 1, 2, 3 \} \\
+C &= \{ \alpha, \beta, \gamma \}
+\end{aligned}
+\]
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.6\textwidth}
+\[
+\begin{aligned}
+R &= \{ (x,1), (x,2), (y,3) \} \\
+S &= \{ (1,\alpha), (1,\beta), (2,\gamma), (3,\alpha), (3,\beta) \}
+\end{aligned}
+\]
+\end{minipage}
+
+\[
+S \circ R = \{ (x,\alpha), (x,\beta), (x,\gamma), (y,\alpha), (y,\beta) \}
+\]
+
+\paragraph{Dim. mia}
+
+\[
+\text{Siano } \left\{ \begin{aligned} R &\subseteq A \times B \\ S &\subseteq B \times C \\ S \circ R &\subseteq A \times C \end{aligned} \right. \quad \text{e} \quad \left\{ \begin{aligned} R^t &\subseteq B \times A \\ S^t &\subseteq C \times B \\ R^t \circ S^t &\subseteq C \times A \end{aligned} \right. \quad \begin{aligned} (S \circ R)^t &\subseteq C \times A \\ R^t \circ S^t &= (S \circ R)^t ? \end{aligned}
+\]
+
+Devo dimostrare che $R^t \circ S^t = (S \circ R)^t$:
+
+1) $R^t \circ S^t \subseteq (S \circ R)^t$
+2) $(S \circ R)^t \subseteq R^t \circ S^t$
+\hspace{3cm} $R^t \circ S^t : \underbrace{C \times B}_{S^t} \underbrace{B \times A}_{R^t}$
+
+Sia $c$ e $a$ tali che $c(R^t \circ S^t)a$, allora $(c,a) \in R^t \circ S^t$
+e dunque $\exists b \in B \mid cS^t b \text{ e } bR^t a \Rightarrow (c,b) \in S^t \text{ e } (b,a) \in R^t$
+\hspace{4.5cm} $\Rightarrow (b,c) \in S \text{ e } (a,b) \in R$
+\hspace{4.5cm} $\Rightarrow (a,c) \in S \circ R \Rightarrow (c,a) \in (S \circ R)^t$
+
+dunque $R^t \circ S^t \subseteq (S \circ R)^t$.
+
+\vspace{10pt}
+
+$(S \circ R)^t \subseteq R^t \circ S^t$
+Siano $c$ e $a$ tali che $c(S \circ R)^t a$.
+$\Rightarrow (c,a) \in (S \circ R)^t \Rightarrow (a,c) \in R \circ S$
+
+\vspace{20pt}
+
+\paragraph{Dim. Prof.}
+
+Data $R \subseteq A \times B, S \subseteq B \times C$ si ha $(S \circ R)^t = R^t \circ S^t$
+$(S \circ R)^t \subseteq C \times A$
+
+Sia $(c,a) \in (S \circ R)^t$, allora $(a,c) \in S \circ R \Rightarrow \exists b \in B : aRb, bSc$
+$\Rightarrow bR^t a, cS^t b \Rightarrow (c,a) \in R^t \circ S^t$. Pertanto $(S \circ R)^t \subseteq R^t \circ S^t$
+
+Sia $(c,a) \in R^t \circ S^t$. Allora $\exists b \in B : cS^t b, bR^t a \rightarrow (b,c) \in S, (a,b) \in R$
+$\rightarrow (a,c) \in S \circ R \Rightarrow (c,a) \in (S \circ R)^t \ \therefore \ R^t \circ S^t \subseteq (S \circ R)^t$.
+
+Dimostrate entrambe, verifichiamo l'uguaglianza e l'assunto è dimostrato.
+
+\[
+R^{tt} = R \quad \text{Infatti } (a,b) \in R^{tt} \leftrightarrow (b,a) \in R^t \leftrightarrow (a,b) \in R
+\]
+
+\vspace{10pt}
+
+\begin{minipage}{0.45\textwidth}
+\textbf{Relazione in un insieme} $R \subseteq A \times A$
+\begin{itemize}
+    \item rel di equivalenza
+    \item relazioni di ordine
+\end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+\textbf{Applicazione tra insiemi}
+(corrispondenza)
+(funzione)
+\end{minipage}
+
+\vspace{15pt}
+
+\paragraph{Def.}
+Una relazione $f \subseteq A \times B$ si dice corrispondenza tra $A$ e $B$
+\[
+\leftrightarrow \forall a \in A, \exists! b \in B \mid (a,b) \in f \quad (afb)
+\]
+In questo caso $b$ si dice immagine di $a$ mediante $f$ e si scrive $b=f(a)$.
+
+\vspace{10pt}
+
+\[
+\left.
+\begin{aligned}
+R_1^t &= \{ (1,x), (2,x), (3,y) \} \\
+R_2^t &= \{ (1,1), (3,x) \} \\
+R_3^t &= B \times A \\
+R_4^t &= \{ (1,x), (2,x), (3,x) \}
+\end{aligned}
+\right\}
+\begin{aligned}
+&\longrightarrow \text{funzioni} \quad (R_1^t, R_4^t) \\
+&\longrightarrow \text{non funzioni} \quad (R_2^t, R_3^t)
+\end{aligned}
+\]
+
+\vspace{10pt}
+
+\[
+f \subseteq A \times B \text{ è una funzione} \leftrightarrow \forall a \in A, \exists! b \in B : (a,b) \in f \ (b=F(a))
+\]
+\[
+f^t \subseteq B \times A \text{ è una funzione} \leftrightarrow \forall y \in B, \exists! x \in A : (y,x) \in f^t \text{ cioè } (x,y) \in f \text{ cioè } y=f(x)
+\]
+
+\vspace{10pt}
+
+\paragraph{Def.}
+Una funzione $f$ tra $A$ e $B$ ($f \subseteq A \times B$) si dice biettiva
+\[
+\leftrightarrow \forall y \in B \text{ (codominio di } f), \exists! x \in A \text{ (dominio di } f) : y=f(x)
+\]
+ossia immagine di $x$ mediante $f$.
+
+\vspace{10pt}
+
+$f: A \longrightarrow B$ è una funzione \underline{biettiva} $\leftrightarrow \forall y \in B$, esiste esattamente un elemento $x \in A$ tale che $y=f(x)$
+
+$f: A \longrightarrow B$ è una funzione \underline{suriettiva} $\leftrightarrow \forall y \in B$, esiste almeno un elemento $x \in A$ tale che $y=f(x)$
+
+$f: A \longrightarrow B$ è una funzione \underline{iniettiva} $\leftrightarrow \forall y \in B$, esiste al più un elemento $x \in A$ tale che $y=f(x)$
+
+\vspace{10pt}
+
+Oss. $f$ è biettiva $\leftrightarrow f$ è iniettiva e suriettiva
+
+es. $\mathbb{R}$ è l'insieme dei numeri reali
+
+\[
+f: \mathbb{R} \to \mathbb{R} \qquad x \mapsto 2x+1 \qquad f = \left\{ (x, 2x+1) \mid x \in \mathbb{R} \right\} \subseteq \mathbb{R} \times \mathbb{R}
+\]
+
+Verificare se $f$ è biettiva, se sì scrivere $f$ trasposta
+
+\[
+\forall y \in \mathbb{R}, \ \exists! \ x \in \mathbb{R} : y = f(x) ?
+\]
+
+Imponiamo che $y=f(x)$, si ha
+\[
+y=f(x) \longleftrightarrow \underset{\substack{\downarrow \\ \text{lo trattiamo} \\ \text{come parametro}}}{y} = 2 \underset{\substack{\downarrow \\ \text{incognita}}}{x} + 1 \longleftrightarrow y-1 = 2x \longleftrightarrow \frac{y-1}{2} = x \ , \quad x = \frac{y-1}{2}
+\]
+
+Questa equazione ammette una ed una sola soluzione al variare di $y$, dunque è biettiva.
+
+La relazione $f^t$ è quindi una funzione, definita al seguente modo
+\[
+f^t : \mathbb{R} \to \mathbb{R} \qquad y \mapsto \frac{y-1}{2} \qquad \text{dunque } \quad f^t = \left\{ (y, \frac{y-1}{2}) \mid y \in \mathbb{R} \right\}
+\]
+
+\vspace{10pt}
+
+es.
+\[
+f: \mathbb{R} \to \mathbb{R} \qquad x \mapsto 2^x
+\]
+
+$f$ è biettiva? Lo è $\longleftrightarrow \forall y \in \mathbb{R}, \exists! x \in \mathbb{R} : y=f(x)$
+
+Ma $y=f(x) \longleftrightarrow y=2^x$. Studiamo l'equazione esponenziale in cui $x$ è l'incognita e $y$ è il parametro.
+
+Sappiamo che $\forall x \in \mathbb{R}, \ 2^x > 0$ e dunque ha soluzione solo per valori positivi $\Rightarrow f$ non è biettiva $\Rightarrow f^t$ non è una funzione tra $\mathbb{R}$ e $\mathbb{R}$ e specifico... non lo è perché non suriettiva.
+
+$y > 0 \Rightarrow$ l'eq. ha soluzione $x=\log_2 y \quad$ verifichiamo l'iniettività
+
+\[
+f = \{ (x, 2^x) \mid x \in \mathbb{R} \} \ . \ f^t = \{ (y, \log_2 y) \mid y \in \mathbb{R}, y > 0 \} \Rightarrow \begin{gathered} \text{non è una funzione tra} \\ \mathbb{R} \text{ e } \mathbb{R} \text{ perché ci sono} \\ \text{elementi che non hanno} \\ \text{immagine} \end{gathered}
+\]
+
+\paragraph{Def.}
+Sia $f: X \to Y$ una funzione.
+Sia $A \subseteq X$ allora
+\[
+f(A) = \{ f(a) \mid a \in A \} \longrightarrow \text{Immagine di } A
+\]
+
+Oss. Dato $f: X \to Y$, $f$ è suriettiva $\leftrightarrow Y = f(X)$
+
+\vspace{10pt}
+
+es) $F: \mathbb{R} \to \mathbb{R} \qquad x \mapsto 2x+1 \qquad A=[0,1] \quad f(A)=[1,3]$
+
+\begin{minipage}{0.45\textwidth}
+Proviamo che $f(A) \subseteq [1,3]$
+Sia $x \in A$ allora $0 \le x \le 1$,
+così $2 \cdot 0 + 1 \le 2x+1 \le 2 \cdot 1 + 1$
+cioè $1 \le \underbrace{2x+1}_{f(x)} \le 3 \quad \forall x \in [0,1]$
+$\Rightarrow \{ f(x) \mid x \in [0,1] \} \subseteq [1,3]$
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+Viceversa, proviamo che $[1,3] \subseteq f(A)$
+così che $\forall y \in [1,3] \ \exists x \in A : y=f(x)$
+si ha $y=f(x) \leftrightarrow y=2x+1 \leftrightarrow x = \frac{y-1}{2}$
+Ora se $1 \le y \le 3$ si ha $0 \le y-1 \le 2$ e quindi
+$0 \le \frac{y-1}{2} \le 1 \quad \text{cioè} \quad 0 \le x \le 1 \text{ e } x \in [0,1]$
+\end{minipage}
+
+\vspace{15pt}
+
+es.
+\[
+f: \mathbb{R} \to \mathbb{R} \qquad x \mapsto \begin{cases} x^2 & x \ge 0 \\ x & x < 0 \end{cases}
+\]
+
+$f$ è biettiva?
+lo è $\longleftrightarrow \underset{\text{cod.}}{\forall y \in \mathbb{R}}, \underset{\text{dom}}{\exists! x \in \mathbb{R}} : y=f(x)$
+
+\paragraph{Discutiamo $f$.}
+Se $y < 0$, l'equazione $y=f(x)$ si riduce a $y=x$ perché anche $f(x)$ deve essere minore di $0$ e quindi dalla definizione di $f$, $x<0$.
+La soluzione è $x=y$.
+
+Se $y \ge 0$, bisogna studiare $y=x^2$. La soluzione è $x=\sqrt{y}$ ($\pm$ ma data le condizioni solo più).
+$y > 0 \Rightarrow x = -\sqrt{y}$ è da escludere perché $-\sqrt{y} < 0$.
+e dunque anche qui l'eq ha una sola soluzione, dunque $f$ è biettiva.
+
+\[
+f^t : \mathbb{R} \to \mathbb{R} \qquad y \mapsto \begin{cases} y & y < 0 \\ \sqrt{y} & y \ge 0 \end{cases}
+\]
+
+\paragraph{es)}
+\[
+f: \mathbb{R} \to \mathbb{R} \qquad x \mapsto \begin{cases} x + \frac{x+1}{x-1} & x \neq 1 \\ 0 & x=1 \end{cases} \quad f \text{ è biettiva?}
+\]
+
+Ovviamente $0 = f(1)$, ci chiediamo se la soluzione di $0=f(x)$ è unica. Studiamo $0=f(x)$ nel caso in cui $x \neq 1$.
+
+In questo caso
+\[
+0 = x + \frac{x+1}{x-1} \longrightarrow \begin{aligned} 0 &= x^2 - x + x + 1 \\ 0 &= x^2 + 1 \end{aligned}
+\]
+$x^2 = -1 \quad$ impossibile in $\mathbb{R}$
+
+Studiamo ora $y=f(x)$ nel caso in cui $y \neq 0$ e $x \neq 1$
+
+Si ha $y = x + \frac{x+1}{x-1} \qquad x \neq 1$
+\[
+\hookrightarrow \quad y(x-1) = x(x-1) + x + 1
+\]
+\[
+xy - y = x^2 - x + x + 1 = x^2 + 1
+\]
+\[
+x^2 + 1 - xy + y = 0
+\]
+\[
+x^2 - xy + y + 1 = 0 \qquad \left. \begin{aligned} a) & \ 1 \\ b) & -y \\ c) & \ y+1 \end{aligned} \right.
+\]
+
+\[
+x = \frac{-(-y) \pm \sqrt{(-y)^2 - 4 \cdot 1 \cdot (y+1)}}{2} = \frac{y \pm \sqrt{y^2 - 4y - 4}}{2}
+\]
+
+reale se $y^2 - 4y - 4 \ge 0 \quad$ cerchiamo le radici
+
+\[
+y^2 - 4y - 4 = 0 \longrightarrow y \le 2 - 2\sqrt{2} \lor y \ge 2 + 2\sqrt{2}
+\]
+
+Pertanto $x^2 - xy + y + 1 = 0$ ha soluzione in $X$
+\[
+\longleftrightarrow y \le 2 - 2\sqrt{2} \lor y \ge 2 + 2\sqrt{2}
+\]
+$\to f$ non è suriettiva, perché troviamo $x$ soltanto a quelle condizioni + la cond. $y=0$
+
+$\to$ non suriettiva e nemmeno iniettiva perché $x = \pm \dots$ e dunque nemmeno iniettiva $\Rightarrow$ non biettiva
+
+\paragraph{Prop.}
+Date le relazioni: $F \subseteq A \times B$, $G \subseteq B \times C$, $H \subseteq C \times D$, si ha che
+\[
+(H \circ G) \circ F = H \circ (G \circ F) \subseteq A \times D
+\]
+
+\paragraph{Dim}
+Bisogna dimostrare che
+1) $(H \circ G) \circ F \subseteq H \circ (G \circ F)$
+2) $H \circ (G \circ F) \subseteq (H \circ G) \circ F$
+
+\textbf{1} Sia $(a,d) \in (H \circ G) \circ F \Rightarrow \exists b \in B : (a,b) \in F \text{ e } (b,d) \in H \circ G$
+così $\exists c \in C : (b,c) \in G \text{ e } (c,d) \in H \qquad (\text{meglio la notazione } aRb)$
+allora $(a,c) \in G \circ F \text{ e } (c,d) \in H$
+$\Rightarrow (a,d) \in H \circ (G \circ F) \Rightarrow (H \circ G) \circ F \subseteq H \circ (G \circ F)$
+
+\textbf{2} Sia $(\alpha, \delta) \in H \circ (G \circ F) \Rightarrow \exists \gamma \in C : (\alpha, \gamma) \in G \circ F \text{ e } (\gamma, \delta) \in H$
+$\Rightarrow \exists \beta \in B : (\alpha, \beta) \in F \text{ e } (\beta, \gamma) \in G \quad \text{quindi } (\beta, \delta) \in H \circ G \text{ e } (\alpha, \beta) \in F$
+$(\alpha, \delta) \in (H \circ G) \circ F \Rightarrow H \circ (G \circ F) \subseteq (H \circ G) \circ F$
+
+\vspace{10pt}
+
+\paragraph{Prop.}
+Date le applicazioni $f: A \to B, g: B \to C, h: C \to D$ si ha che
+\[
+(h \circ g) \circ f = h \circ (g \circ f) : A \to D
+\]
+
+\paragraph{Dim.}
+Ricordiamo che se $\sigma: X \to Y$ è un applicazione allora
+\[
+\forall x \in X, \exists! y \in Y : (x,y) \in \sigma \text{ e in tal caso scriviamo che } y = \sigma(x)
+\]
+così per ottenere la tesi basta provare che $\forall a \in A \exists! d \in D : ((h \circ g) \circ f)(a) = d = (h \circ (g \circ f))(a)$
+
+si ha $((h \circ g) \circ f)(a) = (h \circ g)(f(a)) = h(g(f(a))) \quad A \xrightarrow{f} B \xrightarrow{h \circ g} D$
+
+$(h \circ (g \circ f))(a) = h((g \circ f)(a)) = h(g(f(a))) \quad A \xrightarrow{g \circ f} C \xrightarrow{h} D$
+
+\paragraph{esempio}
+\[
+\begin{aligned}
+\mathbb{R} &\xrightarrow{f} \mathbb{R} & \mathbb{R} &\xrightarrow{g} \mathbb{R}^+ & \mathbb{R}^+ &\xrightarrow{h} \mathbb{R}^+ \\
+x &\longmapsto 2x+1 & x &\longmapsto |x| & x &\longmapsto \sqrt{x}
+\end{aligned}
+\]
+
+\[
+h \circ g : \mathbb{R} \xrightarrow{g} \mathbb{R}^+ \xrightarrow{h} \mathbb{R}^+ \quad \leadsto \quad h \circ g : \mathbb{R} \longrightarrow \mathbb{R}^+
+\]
+\[
+x \longmapsto |x| \longmapsto \sqrt{|x|} \hspace{4cm} x \longmapsto \sqrt{|x|}
+\]
+
+\[
+\left\{
+\begin{aligned}
+& (h \circ g) \circ f : \mathbb{R} \xrightarrow{f} \mathbb{R} \xrightarrow{h \circ g} \mathbb{R}^+ \quad \leadsto \quad (h \circ g) \circ f : \mathbb{R} \longrightarrow \mathbb{R}^+ \\
+& \hspace{2cm} x \longmapsto 2x+1 \longmapsto \sqrt{|2x+1|} \hspace{3cm} x \longmapsto \sqrt{|2x+1|} \\
+\\
+& g \circ f : \mathbb{R} \xrightarrow{f} \mathbb{R} \xrightarrow{g} \mathbb{R}^+ \quad \leadsto \quad g \circ f : \mathbb{R} \longrightarrow \mathbb{R}^+ \\
+& \hspace{1.5cm} x \longmapsto 2x+1 \longmapsto |2x+1| \hspace{3cm} x \longmapsto |2x+1| \\
+\\
+& h \circ (g \circ f) : \mathbb{R} \xrightarrow{g \circ f} \mathbb{R}^+ \xrightarrow{h} \mathbb{R}^+ \\
+& \hspace{2cm} x \longmapsto |2x+1| \longmapsto \sqrt{|2x+1|}
+\end{aligned}
+\right.
+\]
+\hspace{5cm} stesso risultato ma cambia il passaggio intermedio
+
+\vspace{10pt}
+
+\paragraph{Prop.}
+Date le applicazioni $f: A \to B$ e $g: B \to C$ si consideri $g \circ f : A \to C$
+
+1) se $f$ e $g$ sono suriettive, allora $g \circ f$ è suriettiva
+2) se $f$ e $g$ sono iniettive, allora $g \circ f$ è iniettiva
+3) se $f$ e $g$ sono biettive, allora $g \circ f$ è biettiva
+
+\paragraph{Dim.}
+1) occorre provare che $\forall c \in C \ \exists a \in A : c = (g \circ f)(a)$
+per ipotesi $g$ è suriettiva $\Rightarrow \forall c \in C \ \exists b \in B : c = g(b)$
+poiché $f: A \to B$ è suriettiva $\exists a \in A : b = f(a)$
+così $c = g(b) = g(f(a)) = (g \circ f)(a) \quad \therefore \ g \circ f$ è suriettiva
+
+2) osserviamo che un'applicazione $\sigma: X \to Y$
+è iniettiva $\leftrightarrow \forall x_1, x_2 \in X : \sigma(x_1) = \sigma(x_2) \text{ si ha che } x_1 = x_2$
+proviamo ora che $g \circ f$ è iniettiva, siano $a_1, a_2 \in A : (g \circ f)(a_1) = (g \circ f)(a_2)$
+allora $g(f(a_1)) = g(f(a_2))$, dalla ipotesi $g$ è iniettiva, dunque $f(a_1) = f(a_2)$;
+ma anche $f$ è iniettiva dalle ipotesi, e dunque $a_1 = a_2 \quad \therefore \ g \circ f$ è iniettiva
+
+3) $g \circ f$ è contemporaneamente iniettiva e suriettiva quindi è anche biettiva (consegue dalla (1) e (2)).
+
+\paragraph{Def. Applicazione identica}
+\[
+A \neq \emptyset \qquad \begin{aligned} id_A : A &\to A \\ x &\mapsto x \end{aligned} \qquad id_A = \{ (x,x) \mid x \in A \} \subseteq A \times A \quad \text{diagonale di } A \times A
+\]
+
+\paragraph{Prop.}
+Sia $f: A \to B$, allora
+1) $id_B \circ f = f \qquad id$ funge un po' da elemento neutro
+2) $f \circ id_A = f$
+
+\paragraph{Dim}
+1)
+\[
+id_B \circ f : A \xrightarrow{f} B \xrightarrow{id_B} B \qquad \implies \qquad \begin{aligned} id_B \circ f : A &\to B \\ a &\mapsto f(a) \end{aligned} \quad \implies \ id \circ f = f
+\]
+\[
+a \longmapsto f(a) \longmapsto f(a)
+\]
+
+2)
+\[
+f \circ id_A : A \xrightarrow{id_A} A \xrightarrow{f} B \qquad \implies \qquad \begin{aligned} f \circ id_A : A &\to B \\ x &\mapsto f(x) \end{aligned} \quad \implies \ f \circ id_A = f
+\]
+\[
+x \longmapsto x \longmapsto f(x)
+\]
+
+\vspace{10pt}
+
+\paragraph{Scrittura delle applicazioni nel caso finito}
+\[
+\begin{aligned}
+|A| &= m \qquad f: A \to B \\
+|B| &= n \qquad A = \{ a_1, a_2, \dots, a_m \}
+\end{aligned}
+\]
+
+Bisogna individuare $f(a) \ \forall a \in A$
+
+\[
+f = \begin{pmatrix} a_1 & a_2 & \dots & a_m \\ f(a_1) & f(a_2) & \dots & f(a_m) \end{pmatrix}
+\]
+
+es \quad $A=\{x,y\} \quad B=\{1,2,3\}$
+
+\[
+f = \begin{pmatrix} x & y \\ 1 & 1 \end{pmatrix} \qquad A \xrightarrow{f} B
+\]
+(disegno: $x \to 1, y \to 1$)
+
+\vspace{10pt}
+
+Quante sono le applicazioni da $A$ in $B$? \quad $|\{ f \mid f: A \to B \}| = ?$
+
+\[
+f = \begin{pmatrix} x & y \\ f(x) & f(y) \end{pmatrix} \quad \begin{gathered} \text{nell'esempio abbiamo } 9 \\ \text{applicazioni. in generale } n^m \end{gathered}
+\]
+
+\[
+\{ f \mid f: A \to B \} \text{ lo indichiamo con il simbolo } B^A \quad \text{e} \quad |B^A| = |B|^{|A|}
+\]
+\[
+\{ \text{Relazioni tra } A \text{ e } B \} = \{ \text{sottoinsiemi di } A \times B \} = \mathcal{P}(A \times B) \quad \text{e} \quad |\mathcal{P}(A \times B)| = 2^{|A \times B|} = 2^{|A||B|}
+\]
+
+\vspace{10pt}
+
+Andiamo al caso biettivo
+\[
+\{ \text{Applicazioni biettive su } A \} = S(A) \qquad \text{sostituzioni} \qquad |S(A)|
+\]
+
+\[
+A = \{ a_1, a_2, \dots, a_n \} \qquad f: A \to A
+\]
+
+\[
+f = \begin{pmatrix} a_1 & a_2 & \dots & a_n \\ f(a_1) & f(a_2) & \dots & f(a_n) \end{pmatrix} \implies |S(A)| = |A|!
+\]
+\[
+\underset{\substack{\uparrow \\ n \\ \text{poss}}}{\phantom{f(a_1)}} \quad \underset{\substack{\uparrow \\ n-1 \\ \text{poss}}}{\phantom{f(a_2)}} \quad \dots \quad \underset{\substack{\uparrow \\ 1 \\ \text{poss}}}{\phantom{f(a_n)}}
+\]
+
+\vspace{15pt}
+
+\paragraph{Strutture Algebriche}
+
+\underline{Operazione Binaria} in un insieme $X \neq \emptyset$
+$\hookrightarrow$ Applicazione $\omega : X \times X \to X$
+\[
+(a,b) \longmapsto \omega((a,b)) \dots \text{si preferisce scrivere} \dots a \omega b
+\]
+
+I simboli più utilizzati sono $+, \cdot, *, \circ, \Delta, \square$
+
+\vspace{10pt}
+
+es
+\[
+A \qquad A^A = \{ f \mid f: A \to A \} = M(A)
+\]
+
+\[
+\begin{aligned}
+M(A) \times M(A) &\longrightarrow M(A) \qquad (M(A), \circ) \\
+(f,g) &\longmapsto \underset{\substack{\uparrow \\ \text{composizione} \\ \text{di applicazioni}}}{f \circ g}
+\end{aligned}
+\]
+
+\[
+A \quad P(A) \qquad \begin{aligned} P(A) \times P(A) &\longrightarrow P(A) \\ (X,Y) &\longmapsto X \cap Y \end{aligned} \qquad \left( \begin{aligned} P(A) \times P(A) &\longrightarrow P(A) & P(A) \times P(A) &\longrightarrow P(A) \\ (X,Y) &\longmapsto X \cup Y & (X,Y) &\longmapsto X - Y \end{aligned} \right)
+\]
+
+\[
+\begin{aligned}
+(P(A), \cap) \quad & \text{struttura algebrica} & (P(A), \cup) & & (P(A), -) \\
+& \text{comm} & \text{comm} & & \text{né comm} \\
+& \text{ass} & \text{ass} & & \text{né ass} \\
+& & & & \downarrow ? \\
+& & & & \text{vediamo meglio}
+\end{aligned}
+\]
+
+\vspace{10pt}
+
+\paragraph{es}
+$(\mathbb{R}, +) \leadsto \begin{aligned} \mathbb{R} \times \mathbb{R} &\to \mathbb{R} \\ (x,y) &\mapsto x+y \end{aligned}$
+
+$(\mathbb{Q}, \cdot)$
+
+Algebra: studio delle strutture algebriche con le loro interazioni
+
+\vspace{15pt}
+
+\begin{minipage}[t]{0.45\textwidth}
+\[
+\begin{array}{c|cccc}
+\cap & \emptyset & \{a\} & \{b\} & \{a,b\} \\
+\hline
+\emptyset & \emptyset & \emptyset & \emptyset & \emptyset \\
+\{a\} & \emptyset & \{a\} & \emptyset & \{a\} \\
+\{b\} & \emptyset & \emptyset & \{b\} & \{b\} \\
+\{a,b\} & \emptyset & \{a\} & \{b\} & \{a,b\}
+\end{array}
+\]
+\[
+\{a,b\} \cap X = X \quad \forall X \in P(A)
+\]
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.5\textwidth}
+In generale - non è commutativa
+
+es \quad $A=\{1,2\} \quad P(A) = \{ \emptyset, \{a\}, \{b\}, \{a,b\} \}$
+
+\[
+\begin{array}{c|cccc}
+- & \emptyset & \{a\} & \{b\} & \{a,b\} \\
+\hline
+\emptyset & \emptyset & \emptyset & \emptyset & \emptyset \\
+\{a\} & \{a\} & \emptyset & \{a\} & \emptyset \\
+\{b\} & \{b\} & \{b\} & \emptyset & \emptyset \\
+\{a,b\} & \{a,b\} & \{b\} & \{a\} & \emptyset
+\end{array}
+\]
+\[
+\left. \begin{aligned} \{a\} - \{b\} = \{a\} \\ \{b\} - \{a\} = \{b\} \end{aligned} \right\} \neq \text{ e dunque non commutativo}
+\]
+\end{minipage}
+
+\paragraph{Proprietà che interessano particolarmente}
+- commutative
+- associative
+$(S, w)$
+
+\textbf{comm.} \quad $a w b = b w a \quad \forall a,b \in S$
+
+\textbf{ass} \quad $a w (b w c) = (a w b) w c \quad \forall a,b,c \in S$
+
+\paragraph{Def.}
+Diciamo che $e$ è un elemento neutro per $(S, w) \leftrightarrow$
+\[
+e w x = x = x w e \quad \forall x \in S
+\]
+
+\[
+\left(
+\begin{aligned}
+& \text{In notazione moltiplicativa } (\cdot, *, \circ), \ 1_S \\
+& \text{In notazione additiva } (+), \ 0_S
+\end{aligned}
+\right)
+\]
+
+\vspace{15pt}
+
+\paragraph{Prop. Unicità dell'elemento neutro}
+Se esiste un elemento neutro in $(S, w)$ esso è unico.
+
+\paragraph{Dim:}
+Siano $e_1, e_2$ elementi neutri in $(S, w)$. Allora $\forall x \in S$, si ha
+\[
+\Rightarrow \begin{aligned}
+e_1 w x &= x = x w e_1 \\
+e_2 w x &= x = x w e_2
+\end{aligned}
+\]
+
+in particolare
+\[
+\left\{
+\begin{aligned}
+x=e_2 &\Rightarrow e_1 w e_2 = e_2 = e_2 w e_1 \\
+x=e_1 &\Rightarrow e_2 w e_1 = e_1 = e_1 w e_2
+\end{aligned}
+\right.
+\]
+
+\[
+\Rightarrow e_2 = e_2 w e_1 = e_1
+\]
+
+\vspace{15pt}
+
+\begin{center}
+\begin{tabular}{cc}
+\textbf{STRUTTURA} & \textbf{ELEMENTO NEUTRO} \\
+$(\mathbb{R}, +)$ & $0_{\mathbb{R}}$ \\
+$(\mathbb{Q}, \cdot)$ & $1_{\mathbb{Q}}$ \\
+$(P(X), \cap)$ & $X$ \\
+$(P(X), \cup)$ & $\emptyset$ \\
+$(P(X), -)$ & $\emptyset$ \\
+$(M(X), \circ)$ & $id_X$ \\
+$(S(X), \circ)$ & $id_X$
+\end{tabular}
+\end{center}
+
+\paragraph{Def.}
+Sia $(S, w)$ un monoide con elemento neutro $1_S$. Un elemento $a \in S$ si dice \underline{INVERTIBILE} in $S \leftrightarrow \exists b \in S : a w b = 1_S = b w a$.
+In questo caso diciamo che $b$ è un inverso di $a$. Si noti che anche $b$ è invertibile e $a$ è un suo inverso.
+
+\vspace{10pt}
+
+\paragraph{Proprietà (unicità dell'inverso)}
+Siano $(S, w)$ un monoide, $1_S$ l'elemento neutro, e $a$ un elemento invertibile.
+Allora l'inverso di $a$ è unico.
+
+\paragraph{Dim.}
+Siano $b_1$ e $b_2$ inversi di $a$.
+\[
+\left. \begin{aligned}
+a w b_1 &= 1_S = b_1 w a \\
+a w b_2 &= 1_S = b_2 w a
+\end{aligned} \right\} \text{ si ha } \quad b_1 = b_1 w 1_S = b_1 w (a w b_2) = (b_1 w a) w b_2 = 1_S w b_2 = b_2
+\]
+
+\vspace{10pt}
+
+Per denotare l'inverso di $a$ si usa il simbolo $a^{-1}$ $(-a)$ IN NOTAZIONE MOLTIPLICATIVA (ADDITIVA).
+
+\textbf{Nota}
+Se $a$ è invertibile in $(S, w)$, $a^{-1}$ è invertibile e si ha $(a^{-1})^{-1} = a$ \quad (NOT. MOLT.)
+Se $a$ è invertibile in $(S, w)$, $-a$ è invertibile e si ha $-(-a) = a$ \quad (NOT. ADD.)
+
+\vspace{15pt}
+
+\paragraph{Def. La struttura algebrica $(S, w)$ si dice:}
+
+\underline{SEMIGRUPPO} $\leftrightarrow$ vale la proprietà associativa $a w (b w c) = (a w b) w c \quad \forall a,b,c \in S$
+
+\underline{MONOIDE} $\leftrightarrow (S, w)$ è un semigruppo con elemento neutro, cioè se
+\[
+\begin{cases}
+a w (b w c) = (a w b) w c \quad \forall a,b,c \in S \\
+\exists 1_S \in S : 1_S w x = x = x w 1_S \quad \forall x \in S
+\end{cases}
+\]
+
+\underline{GRUPPO} $\leftrightarrow (S, w)$ è un monoide e ogni elemento di $S$ è invertibile in $S$, cioè
+\[
+\begin{cases}
+a w (b w c) = (a w b) w c \quad \forall a,b,c \in S \\
+\exists 1_S \in S : 1_S w x = x = x w 1_S \quad \forall x \in S \\
+\forall a \in S, \exists b \in S : a w b = 1_S = b w a
+\end{cases}
+\]
+
+\begin{flushright}
+\textit{l'unicità di inversi e elementi neutri segue implicitamente dall'esistenza}
+\end{flushright}
+
+Se queste strutture sono anche commutative, diciamo $SG, M, \text{ o } G$ commutativo.
+Conviene verificare prima così risparmio operazioni sull'elemento neutro e/o sull'inverso.
+
+\vspace{15pt}
+
+\paragraph{Prop.}
+Sia $(S, *)$ un monoide, $1_S$ il suo elemento neutro, e $a, b \in S$.
+Se $a, b$ sono invertibili, allora $a * b$ è invertibile e si ha
+\[
+(a * b)^{-1} = b^{-1} * a^{-1}
+\]
+
+\paragraph{Dim.}
+Per ipotesi $a, b$ sono invertibili, quindi $\exists a^{-1}, b^{-1}$ in $S$.
+Consideriamo $b^{-1} * a^{-1}$ e proviamo che esso è l'inverso di $a * b$.
+
+Si ha
+\[
+\begin{aligned}
+(a * b) * (b^{-1} * a^{-1}) &= ((a * b) * b^{-1}) * a^{-1} = (a * (b * b^{-1})) * a^{-1} \\
+&= (a * 1_S) * a^{-1} = a * a^{-1} = 1_S
+\end{aligned}
+\]
+
+Inoltre
+\[
+\begin{aligned}
+(b^{-1} * a^{-1}) * (a * b) &= ((b^{-1} * a^{-1}) * a) * b \\
+&= (b^{-1} * (a^{-1} * a)) * b = (b^{-1} * 1_S) * b = b^{-1} * b = 1_S.
+\end{aligned}
+\]
+
+\paragraph{Def.}
+Sia $(S, w)$ un monoide, definiamo $U(S)$ ponendo
+\[
+U(S) = \{ \text{elementi invertibili di } S \} = \{ a \mid a \in S, \ a \text{ è invertibile} \}
+\]
+
+\paragraph{Prop.}
+Sia $(S, w)$ un monoide, allora
+
+\begin{center}
+\begin{tabular}{ccc}
+& \textbf{not. Molt.} & \textbf{not. Add} \\
+1) $\forall a,b \in U(S), \ a w b \in U(S)$ & $(a w b)^{-1} = b^{-1} w a^{-1}$ & $-(a+b) = (-b) + (-a) \ [ (a*b)^{-1} = b^{-1} * a^{-1} ]$ \\
+2) $\forall a \in U(S), \ a^{-1} \in U(S)$ & $(a^{-1})^{-1} = a$ & $-(-a) = a$
+\end{tabular}
+\end{center}
+
+$1_S$ è sempre invertibile, l'inverso coincide con $1_S$ e dunque $U(S) \neq \emptyset \ \forall S$
+\[
+1_S w 1_S = 1_S = 1_S w 1_S
+\]
+Si osservi che $1_S \in U(S)$ sempre (a patto che $S$ sia un monoide).
+
+\vspace{15pt}
+
+\paragraph{Prop.}
+Se $(S, *)$ è un monoide, allora $(U(S), *)$ è un GRUPPO.
+
+\paragraph{Dim.}
+Osserviamo che
+\[
+\begin{aligned}
+U(S) \times U(S) &\longrightarrow U(S) \\
+(a,b) &\longmapsto a * b
+\end{aligned}
+\]
+è un operazione binaria in $U(S)$, ovviamente è associativa.
+
+$1_S$ è elemento neutro in $(U(S), *)$ e ogni elemento $a \in U(S)$ è invertibile in $S$ per definizione, ma anche in $U(S)$ perché $a^{-1} \in U(S)$.
+
+Ogni volta che abbiamo un monoide, nasce dunque un gruppo, con un operazione che si dice `indotta' dal monoide.
+
+\paragraph{es.}
+
+\begin{center}
+\begin{tabular}{lccl}
+& \textbf{MONOIDE S} & \textbf{EL NEUTRO} & \textbf{U(S)} \\
+& $(\mathbb{N}, +)$ & $0$ & $\{0\}$ \\
+& $(\mathbb{N}, \cdot)$ & $1$ & $\{1\}$ \\
+\textbf{Gruppo} & $(\mathbb{Z}, +)$ & $0$ & $\mathbb{Z}$ \\
+& $(\mathbb{Z}, \cdot)$ & $+1$ & $\{\pm 1\}$ \\
+\textbf{Gruppo} & $(\mathbb{Q}, +)$ & $0$ & $\mathbb{Q}$ \\
+& $(\mathbb{Q}, \cdot)$ & $1$ & $\mathbb{Q}^* = \mathbb{Q} - \{0_{\mathbb{Q}}\}$ \\
+\textbf{Gruppo} & $(\mathbb{R}, +)$ & $0$ & $\mathbb{R}$ \\
+& $(\mathbb{R}, \cdot)$ & $1$ & $\mathbb{R}^*$ \\
+& $(P(X), \cap)$ & $X$ & $\{X\}$ \\
+& $(P(X), \cup)$ & $\emptyset$ & $\{\emptyset\}$
+\end{tabular}
+\end{center}
+
+\vspace{15pt}
+
+\paragraph{Derivazioni a lato (per $P(X)$)}
+
+\textbf{Per l'intersezione:}
+$A \in P(X)$ è invertibile in $(P(X), \cap) \iff \exists B \in P(X) : A \cap B = X = B \cap A$
+\[
+A \cap B = X \implies X \subseteq A \quad \text{ma } A \in P(X), \text{ quindi } A \subseteq X \quad \therefore \ A = X
+\]
+\[
+U(P(X), \cap) = \{X\}
+\]
+
+\textbf{Per l'unione:}
+$A \in U(P(X), \cup) \iff \exists B \in P(X) : A \cup B = \emptyset = B \cup A$
+In particolare se $A$ è invertibile in $(P(X), \cup)$, $\exists B \in P(X) : A \cup B = \emptyset$.
+Ma $A \subseteq A \cup B$ così $A \subseteq \emptyset$ poiché $\emptyset \subseteq A$ si ottiene $A = \emptyset$.
+\[
+U(P(X), \cup) = \{\emptyset\}
+\]
+
+\[
+X \neq \emptyset \quad M(X) = X^X \quad (M(X), \circ)
+\]
+L'elemento neutro in $(M(X), \circ)$ è l'applicazione identica di $X$
+\[
+id : X \to X \qquad x \mapsto x \qquad U(M(X), \circ) = ?
+\]
+
+\paragraph{Def.}
+Sia $f: A \to B$. Diciamo che $f$ è invertibile
+\[
+\longleftrightarrow \exists h: B \to A : h \circ f = id_A \text{ e } f \circ h = id_B
+\]
+In questo caso $h$ è unica e si chiama applicazione inversa di $f$, e si denota con il simbolo $f^{-1}$.
+
+\textbf{Proviamo che $h$ è unica.} Supponiamo che anche $g: B \to A$ sia un inverso di $f$, cioè $\substack{g \circ f = id_A \\ f \circ g = id_B}$.
+Allora $g = g \circ id_B = g \circ (f \circ h) = (g \circ f) \circ h = id_A \circ h = h$
+(Uguale a quella dei monoidi per unicità dell'elemento invertibile)
+
+\vspace{10pt}
+
+\paragraph{Prop}
+Sia $f: A \to B$. $f$ è invertibile $\longleftrightarrow f$ è biettiva.
+
+\paragraph{Dim.}
+$\Rightarrow$ Proviamo che $f$ è suriettiva, proviamo cioè che $\forall b \in B, \exists a \in A : b = f(a)$.
+Per ipotesi $\exists h: B \to A : h \circ f = id_A \text{ e } f \circ h = id_B$. Quindi $(f \circ h)(b) = id_B(b)$
+cioè $f(h(b)) = b$. Basta porre $\underbrace{h(b)}_{(\text{def.})} = a$ e si ottiene $b = f(a)$ ($h(b) \in A$ per definizione).
+
+Proviamo che $f$ è iniettiva, cioè $\forall x_1, x_2 \in A, f(x_1) = f(x_2) \Rightarrow x_1 = x_2$.
+Siano $x_1, x_2 \in A : f(x_1) = f(x_2)$, così $h(f(x_1)) = h(f(x_2))$ e
+$(h \circ f)(x_1) = (h \circ f)(x_2) \Rightarrow id_A(x_1) = id_A(x_2) \Rightarrow x_1 = x_2$.
+
+$\Leftarrow$ Per ipotesi $f$ è biettiva, quindi $f^t: B \to A$ è ancora un applicazione. Verifichiamo che in questo caso
+$f \circ f^t = id_B$ e $f^t \circ f = id_A$.
+$\forall a \in A \ (f^t \circ f)(a) = f^t(f(a))$. Poniamo $b = f(a)$ e quindi $a = f^t(b)$
+cioè $f^t(b) = a$ e $f^t(f(a)) = a \Rightarrow id_A(a)$, cioè $f^t \circ f = id_A$.
+
+Sia adesso $b \in B$, proviamo che $(f \circ f^t)(b) = id_B(b)$.
+Si ha $(f \circ f^t)(b) = f(f^t(b))$. Poniamo $a = f^t(b)$, cioè $(b,a) \in f^t$ e $(a,b) \in f$.
+così $b = f(a)$. Allora $(f \circ f^t)(b) = f(f^t(b)) = f(a) = b = id_B(b)$.
+
+\vspace{15pt}
+
+\paragraph{Cor.}
+Siano $f: A \to B$ e $g: B \to C$ applicazioni invertibili, allora
+$g \circ f: A \to C$ è invertibile.
+
+\paragraph{Dim.}
+Poiché $f$ e $g$ sono invertibili, esse sono biettive ($P \Rightarrow$). La composizione di applicazioni biettive è biettiva. Così $g \circ f$ è biettiva tra $A \to C$ e otteniamo che $g \circ f : A \to C$ è invertibile ($P \Leftarrow$).
+
+\vspace{10pt}
+
+Si ha $(g \circ f)^{-1} = f^{-1} \circ g^{-1}$
+
+Sappiamo che $g \circ f$ è invertibile e dunque $(g \circ f)^{-1} = (g \circ f)^t = f^t \circ g^t = f^{-1} \circ g^{-1}$
+\[
+(g \circ f) \circ (f^{-1} \circ g^{-1}) = \dots = id_C
+\]
+\[
+(f^{-1} \circ g^{-1}) \circ (g \circ f) = \dots = id_A
+\]
+
+E dunque $U(M(X), \circ) = \{ \text{applicazioni biettive da } X \to X \} = S(X)$
+
+così $(S(X), \circ)$  è un gruppo, che prende il nome di GRUPPO SIMMETRICO su  $X$.
+
+$$
+|X|=n \implies |S(X)|=n!
+$$
+
+\[
+X = \{a_1, \dots, a_n\} \qquad f \in S(X)
+\]
+\[
+f = \begin{pmatrix} a_1 & a_2 & \dots & a_n \\ f(a_1) & f(a_2) & \dots & f(a_n) \end{pmatrix}
+\]
+
+\paragraph{Esempio per n=4}
+\[
+X = \{1, 2, 3, 4\} \qquad \begin{aligned} 1 &\to 3 \\ 2 &\to 2 \\ 3 &\to 4 \\ 4 &\to 1 \end{aligned} \qquad f^{-1} : \begin{pmatrix} 3 & 2 & 4 & 1 \\ 1 & 2 & 3 & 4 \end{pmatrix} = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 4 & 2 & 1 & 3 \end{pmatrix}
+\]
+\[
+f = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 3 & 2 & 4 & 1 \end{pmatrix}
+\]
+\[
+id_X = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \end{pmatrix}
+\]
+\[
+1_{S(X)} = id_X
+\]
+
+\[
+f = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 3 & 2 & 4 & 1 \end{pmatrix} \quad g = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 4 & 3 & 2 & 1 \end{pmatrix}
+\]
+\[
+f \circ g = \begin{pmatrix} 1 & 2 & 3 & 4 \\ f(g(1)) & f(g(2)) & f(g(3)) & f(g(4)) \end{pmatrix} = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 1 & 4 & 2 & 3 \end{pmatrix}
+\]
+
+\vspace{10pt}
+
+\paragraph{Facciamo ora la tabella di moltiplicazione nel caso n=3}
+\[
+X = \{1, 2, 3\}
+\]
+\[
+S(X) = \left\{ \begin{pmatrix} 1 & 2 & 3 \\ 1 & 2 & 3 \end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 \\ 2 & 3 & 1 \end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 \\ 3 & 1 & 2 \end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 \\ 1 & 3 & 2 \end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 \\ 3 & 2 & 1 \end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 \\ 2 & 1 & 3 \end{pmatrix} \right\}
+\]
+
+\[
+\renewcommand{\arraystretch}{1.5} % Aumenta lo spazio verticale per leggibilità
+\begin{array}{c|cccccc}
+\circ & id & (1\ 2\ 3) & (1\ 3\ 2) & (2\ 3) & (1\ 3) & (1\ 2) \\
+\hline
+id & id & (1\ 2\ 3) & (1\ 3\ 2) & (2\ 3) & (1\ 3) & (1\ 2) \\
+(1\ 2\ 3) & (1\ 2\ 3) & (1\ 3\ 2) & id & (1\ 2) & (2\ 3) & (1\ 3) \\
+(1\ 3\ 2) & (1\ 3\ 2) & id & (1\ 2\ 3) & (1\ 3) & (1\ 2) & (2\ 3) \\
+(2\ 3) & (2\ 3) & (1\ 3) & (1\ 2) & id & (1\ 2\ 3) & (1\ 3\ 2) \\
+(1\ 3) & (1\ 3) & (1\ 2) & (2\ 3) & (1\ 3\ 2) & id & (1\ 2\ 3) \\
+(1\ 2) & (1\ 2) & (2\ 3) & (1\ 3) & (1\ 2\ 3) & (1\ 3\ 2) & id
+\end{array}
+\]
+
+\vspace{15pt}
+
+\begin{center}
+\begin{tabular}{ccccc}
+\textbf{Notazione} & & & & \\
+\textbf{ciclica} & $f$ & $f^{-1}$ & $\alpha$ & $\alpha^{-1}$ \\
+\hline
+$(1)(2)(3)$ & $\begin{pmatrix} 1 & 2 & 3 \\ 1 & 2 & 3 \end{pmatrix}$ & $\begin{pmatrix} 1 & 2 & 3 \\ 1 & 2 & 3 \end{pmatrix}$ & $id$ & $id$ \\
+$(1 \ 2 \ 3)$ & $\begin{pmatrix} 1 & 2 & 3 \\ 2 & 3 & 1 \end{pmatrix}$ & $\begin{pmatrix} 1 & 2 & 3 \\ 3 & 1 & 2 \end{pmatrix}$ & $(1 \ 2 \ 3)$ & $(1 \ 3 \ 2)$ \\
+$(1 \ 3 \ 2)$ & $\begin{pmatrix} 1 & 2 & 3 \\ 3 & 1 & 2 \end{pmatrix}$ & $\begin{pmatrix} 1 & 2 & 3 \\ 2 & 3 & 1 \end{pmatrix}$ & $(1 \ 3 \ 2)$ & $(1 \ 2 \ 3)$ \\
+$(1)(2 \ 3)$ & $\begin{pmatrix} 1 & 2 & 3 \\ 1 & 3 & 2 \end{pmatrix}$ & $\begin{pmatrix} 1 & 2 & 3 \\ 1 & 3 & 2 \end{pmatrix}$ & $(2 \ 3)$ & $(2 \ 3)$ \\
+$(2)(1 \ 3)$ & $\begin{pmatrix} 1 & 2 & 3 \\ 3 & 2 & 1 \end{pmatrix}$ & $\begin{pmatrix} 1 & 2 & 3 \\ 3 & 2 & 1 \end{pmatrix}$ & $(1 \ 3)$ & $(1 \ 3)$ \\
+$(3)(1 \ 2)$ & $\begin{pmatrix} 1 & 2 & 3 \\ 2 & 1 & 3 \end{pmatrix}$ & $\begin{pmatrix} 1 & 2 & 3 \\ 2 & 1 & 3 \end{pmatrix}$ & $(1 \ 2)$ & $(1 \ 2)$ \\
+\end{tabular}
+\end{center}
+
+\vspace{10pt}
+
+I cicli banali (da un solo elemento) posso non scriverli.
+Il gruppo non è commutativo, guardando la tabella moltiplicativa si vede dalla non simmetria rispetto alla diagonale principale.
+
+\[
+f \circ g = \begin{pmatrix} 1 & 2 & 3 \\ 2 & 3 & 1 \end{pmatrix} \circ \begin{pmatrix} 1 & 2 & 3 \\ 2 & 1 & 3 \end{pmatrix} = \begin{pmatrix} 1 & 2 & 3 \\ 3 & 2 & 1 \end{pmatrix}
+\]
+\[
+g \circ f = \begin{pmatrix} 1 & 2 & 3 \\ 2 & 1 & 3 \end{pmatrix} \circ \begin{pmatrix} 1 & 2 & 3 \\ 2 & 3 & 1 \end{pmatrix} = \begin{pmatrix} 1 & 2 & 3 \\ 1 & 3 & 2 \end{pmatrix}
+\]
+\begin{flushright}
+$\swarrow$ non commutativo
+\end{flushright}
+
+\vspace{15pt}
+
+\paragraph{Useremo la notazione ciclica per le funzioni}
+$\sigma = (a_1, a_2, \dots, a_k)$ indica l'applicazione
+\[
+\begin{aligned}
+\sigma: a_1 &\to a_2 \\
+a_2 &\to a_3 \\
+&\vdots \\
+a_{k-1} &\to a_k \\
+a_k &\to a_1
+\end{aligned}
+\]
+$x \to x \quad \forall x \in X \setminus \{a_1, a_2, \dots, a_k\}$
+
+$X = \{ x_1, x_2, \dots, x_n \}$
+Ogni permutazione è prodotto di cicli (disgiunti).
+
+\[
+(1 \ 2 \ 3)(2 \ 3) = (1 \ 2)(3) = (1 \ 2)
+\]
+\[
+(1 \ 3)(1 \ 2 \ 3) = (1)(2)(3) = id
+\]
+\[
+(1 \ 3)(1 \ 2 \ 3) = (1)(2)(3) \to \text{Errore trascrizione, verifica: } 1\to2\to2, 3\to1\to3, 2\to3\to1 \implies (1 \ 2)
+\]
+\textit{[Nota: nell'ultima riga manoscritta sembra calcolare: $(1 \ 2)(1 \ 3 \ 2) = (1)(2 \ 3) \cdot (2 \ 3)$]}
+
+La tabella moltiplicativa in notazione ciclica diventa
+
+\[
+\begin{array}{c|cccccc}
+\circ & id & (123) & (132) & (12) & (13) & (23) \\
+\hline
+id & id & (123) & (132) & (12) & (13) & (23) \\
+(123) & (123) & (132) & id & (13) & (23) & (12) \\
+(132) & (132) & id & (123) & (23) & (12) & (13) \\
+(12) & (12) & (23) & (13) & id & (132) & (123) \\
+(13) & (13) & (12) & (23) & (123) & id & (132) \\
+(23) & (23) & (13) & (12) & (132) & (123) & id
+\end{array}
+\quad
+\begin{aligned}
+& l_{id} \\
+& l_{(123)} \\
+& l_{(132)} \\
+& l_{(12)} \\
+& l_{(13)} \\
+& l_{(23)}
+\end{aligned}
+\]
+
+\vspace{15pt}
+
+Cosa rappresenta questa riga? \quad $\underbrace{(132) \circ f}_{\text{fisso} \quad \text{varia}}$ \quad $f \in S(\{1,2,3\}) = S(X)$
+
+Generalizzabile al seguente modo
+\[
+\begin{aligned}
+S(X) &\longrightarrow S(X) \\
+f &\longmapsto (123) \circ f
+\end{aligned}
+\]
+
+O ancora meglio \quad $(G, \cdot)$ \ $g$ fissato
+\[
+\begin{aligned}
+l_g : G &\longrightarrow G \\
+x &\longmapsto g \cdot x
+\end{aligned}
+\]
+
+Moltiplicazione a sinistra per un fissato elemento $g \longrightarrow$ posso quindi esprimere le righe della tabella al seguente modo.
+
+\vspace{10pt}
+
+Il fatto che nella tabella compaiono, per ciascuna riga e ciascuna colonna, tutti gli elementi una volta sola, viene tradotto nella biiettività di $l_g$, cioè
+\[
+\forall y \in G, \exists! x \in G : y = g \cdot x
+\]
+
+\paragraph{Def.}
+Sia $(G, \cdot)$ un gruppo e $g \in G$ un elemento fissato.
+Si consideri l'applicazione
+\[
+\begin{aligned}
+l_g : G &\longrightarrow G \\
+x &\longmapsto g \cdot x
+\end{aligned}
+\]
+$l_g$ si chiama MOLTIPLICAZIONE A SINISTRA PER $g$.
+
+\paragraph{Prop}
+$l_g$ è biettiva da $G$ in $G$.
+
+\paragraph{Dim}
+1) Proviamo che $l_g$ è suriettiva \quad $\forall y \in G \ \exists x \in G : y = l_g(x)$
+Ma $y = l_g(x) \longleftrightarrow \underset{\text{parametro}}{y} = g \cdot \underset{\text{incognita}}{x}$
+
+\[
+y = g \cdot x \implies g^{-1} \cdot y = g^{-1} \cdot (g \cdot x) = (g^{-1} \cdot g) \cdot x = 1_G \cdot x = x
+\]
+\[
+\implies x = g^{-1} \cdot y
+\]
+
+Sia dunque $x = g^{-1} \cdot y$, allora
+\[
+l_g(x) = l_g(g^{-1} \cdot y) = g (g^{-1} \cdot y) = (g \cdot g^{-1}) \cdot y = 1_G \cdot y = y
+\]
+
+Dunque $l_g$ è suriettiva $\forall y \in G \ \exists x \in G : y = l_g(x) \quad \text{con } x = g^{-1} \cdot y$,
+ma è anche unica e si potrebbe già dimostrare l'iniettività volendo.
+
+2) Proviamo che $l_g$ è iniettiva
+Siano $x_1, x_2 \in G : l_g(x_1) = l_g(x_2)$
+Allora $g \cdot x_1 = g \cdot x_2$. Così $g^{-1} \cdot (g \cdot x_1) = g^{-1} \cdot (g \cdot x_2) \implies (g^{-1} \cdot g) x_1 = (g^{-1} \cdot g) x_2$
+\[
+\implies 1_G \cdot x_1 = 1_G \cdot x_2 \implies x_1 = x_2 \text{ e dunque è iniettiva}
+\]
+
+\vspace{15pt}
+
+Allo stesso modo definiamo $P_g$ per le colonne.
+
+\paragraph{Def.}
+Sia $(G, \cdot)$ un gruppo e $g \in G$ un elemento fissato.
+Si consideri l'applicazione
+\[
+\begin{aligned}
+P_g : G &\to G \\
+x &\mapsto x \cdot g
+\end{aligned}
+\]
+$P_g$ si chiama MOLTIPLICAZIONE A DESTRA PER $g$.
+
+\paragraph{Prop}
+$P_g$ è biettiva da $G$ in $G$.
+Dim. Da fare
+
+\vspace{20pt}
+
+\paragraph{TABELLA DI MOLTIPLICAZIONE DI UN GRUPPO}
+
+$|G|=2 \quad G=\{1_G, a\}$
+
+\begin{minipage}{0.4\textwidth}
+\[
+\begin{array}{c|cc}
+* & 1_G & a \\
+\hline
+1_G & 1_G & a \\
+a & a & 1_G
+\end{array}
+\]
+\begin{center}
+tavola astratta
+\end{center}
+\end{minipage}
+\hfill
+\begin{minipage}{0.4\textwidth}
+es. $(U(\mathbb{Z}), \cdot)$
+\[
+\begin{array}{r|rr}
+\cdot & 1 & -1 \\
+\hline
+1 & 1 & -1 \\
+-1 & -1 & 1
+\end{array}
+\]
+\begin{center}
+esempio concreto
+\end{center}
+\end{minipage}
+
+\vspace{20pt}
+
+$|G|=3 \quad G=\{1_G, a, b\}$
+
+\begin{minipage}{0.4\textwidth}
+\[
+\begin{array}{c|ccc}
+\cdot & 1_G & a & b \\
+\hline
+1_G & 1_G & a & b \\
+a & a & b & 1_G \\
+b & b & 1_G & a
+\end{array}
+\]
+\end{minipage}
+\hfill
+\begin{minipage}{0.5\textwidth}
+\[
+\begin{array}{r|l}
+& id \quad (123) \quad (132) \\
+\hline
+id & \\
+(123) & \\
+(132) &
+\end{array}
+\]
+\[
+\swarrow
+\]
+$A_3 = \{ id, (123), (132) \}$
+gruppo alterno su 3 elementi
+\end{minipage}
+
+\paragraph{(1) Def.}
+Sia $(G, \cdot)$ un gruppo e $H \subseteq G, \ H \neq \emptyset$.
+$H$ si dice sottogruppo di $G \longleftrightarrow$
+1) $x \cdot y \in H \quad \forall x,y \in H$
+2) $x^{-1} \in H \quad \forall x \in H$
+
+\begin{flushright}
+\small
+In $H$ è definita un operazione \\
+che è indotta da quella di $G$, cioè \\
+$H \times H \longrightarrow G \longrightarrow H$ \\
+$(x,y) \longmapsto x \cdot y$ (ma dalle ipotesi $x \cdot y \in H$, dunque) \\
+L'operazione è associativa in $H$ perché \\
+associativa in $G$. \\
+$a \cdot (b \cdot c) = (a \cdot b) \cdot c \quad \forall a,b,c \in H$
+\end{flushright}
+
+\paragraph{Provo che $1_G \in H$}
+Poiché $H \neq \emptyset \ \exists a \in H$
+così $(2) \Rightarrow a^{-1} \in H \quad (x=a)$
+Inoltre $(1) \Rightarrow a \cdot a^{-1} \in H \quad (y=a^{-1})$
+Quindi: $1_G \in H$
+
+E dunque $(H, \cdot)$ è una struttura algebrica con operazione binaria. Inoltre valgono
+\begin{itemize}
+    \item I ASS
+    \item II $\exists$ el. neutro
+    \item III $\forall x \in H \ x^{-1} \in H$
+\end{itemize}
+$\Bigg\} \to$ dunque è un gruppo anch'esso
+
+\vspace{15pt}
+
+\paragraph{(2) Def Alternativa di sottogruppo}
+Sia $(G, \cdot)$ un gruppo, $H \subseteq G, H \neq \emptyset$.
+$H$ si dice sottogruppo di $G \longleftrightarrow H$ è chiuso (stabile) rispetto all'operazione di $G$, cioè $x \cdot y \in H \ \forall x,y \in H$ e $(H, \cdot)$ è un gruppo (op. indotta).
+
+\vspace{10pt}
+
+Per definizione di gruppo, in $(H, \cdot)$ esiste un elemento neutro $1_H$.
+\textbf{Provo che $1_H = 1_G$} \qquad IDEMPOTENZA
+
+Per definizione $1_H \cdot 1_H = 1_H$
+Chiamo $a = 1_H$. Allora in $G$ si ha $a \cdot a = a$
+In $G$ si ha che $a^{-1} \cdot (a \cdot a) = a^{-1} \cdot a$
+\[
+\Rightarrow a = 1_G
+\]
+\[
+\Rightarrow 1_H = 1_G
+\]
+
+Adesso ogni elemento di $H$ è invertibile in $H$,
+così $\forall x \in H \ \exists y \in H : x \cdot y = 1_H = 1_G$
+\hspace{3.5cm} $y \cdot x = 1_H = 1_G$
+
+$\Rightarrow y$ è l'inverso di $x$ in $G$, cioè $x^{-1} = y \in H$
+
+\vspace{15pt}
+
+\[
+X = \{1, 2, 3\} \qquad (S(X), \circ) \qquad S(X) = \{ id, (123), (132), (12), (13), (23) \}
+\]
+
+\[
+\begin{array}{c|cccccc}
+\circ & id & (123) & (132) & (12) & (13) & (23) \\
+\hline
+id & id & (123) & (132) & (12) & (13) & (23) \\
+(123) & (123) & (132) & id & (13) & (23) & (12) \\
+(132) & (132) & id & (123) & (23) & (12) & (13) \\
+(12) & (12) & (23) & (13) & id & (132) & (123) \\
+(13) & (13) & (12) & (23) & (123) & id & (132) \\
+(23) & (23) & (13) & (12) & (132) & (123) & id
+\end{array}
+\qquad
+\begin{array}{cc}
+\alpha & \alpha^{-1} \\
+\hline
+id & id \\
+(1 \ 2 \ 3) & (1 \ 3 \ 2) \\
+(1 \ 3 \ 2) & (1 \ 2 \ 3) \\
+(1 \ 2) & (1 \ 2) \\
+(1 \ 3) & (1 \ 3) \\
+(2 \ 3) & (2 \ 3)
+\end{array}
+\]
+
+\vspace{20pt}
+
+$\{id\}$
+\[
+\begin{array}{c|c}
+\circ & id \\
+\hline
+id & id
+\end{array}
+\]
+
+\vspace{20pt}
+
+$\{id, (123), (132)\}$
+\begin{minipage}{0.4\textwidth}
+\[
+\begin{array}{c|ccc}
+\circ & id & (123) & (132) \\
+\hline
+id & id & (123) & (132) \\
+(123) & (123) & (132) & id \\
+(132) & (132) & id & (123)
+\end{array}
+\]
+\end{minipage}
+\hfill
+\begin{minipage}{0.5\textwidth}
+$A_3 = \{ id, (123), (132) \}$
+$\hookrightarrow$ sottogruppo di $S(3)$
+\begin{center}
+$\downarrow$ \\
+$S(\{1,2,3\})$
+\end{center}
+\end{minipage}
+
+\vspace{30pt}
+
+\begin{center}
+\textbf{TUTTI SOTTOGRUPPI di S3}
+\end{center}
+
+\[
+\swarrow \qquad \downarrow \qquad \searrow
+\]
+
+\begin{minipage}{0.3\textwidth}
+\centering
+$\{id, (1 \ 2)\}$
+\[
+\begin{array}{c|cc}
+\circ & id & (1 \ 2) \\
+\hline
+id & id & (1 \ 2) \\
+(1 \ 2) & (1 \ 2) & id
+\end{array}
+\]
+\end{minipage}
+\hfill
+\begin{minipage}{0.3\textwidth}
+\centering
+$\{id, (1 \ 3)\}$
+\[
+\begin{array}{c|cc}
+\circ & id & (1 \ 3) \\
+\hline
+id & id & (1 \ 3) \\
+(1 \ 3) & (1 \ 3) & id
+\end{array}
+\]
+\end{minipage}
+\hfill
+\begin{minipage}{0.3\textwidth}
+\centering
+$\{id, (2 \ 3)\}$
+\[
+\begin{array}{c|cc}
+\circ & id & (2 \ 3) \\
+\hline
+id & id & (2 \ 3) \\
+(2 \ 3) & (2 \ 3) & id
+\end{array}
+\]
+\end{minipage}
+
+\vspace{20pt}
+
+$S_3$ sottogruppo di $S_3$
+
+\end{document}
