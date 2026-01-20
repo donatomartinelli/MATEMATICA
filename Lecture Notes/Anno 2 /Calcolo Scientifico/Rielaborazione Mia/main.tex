@@ -122,7 +122,7 @@
     \begin{minipage}{0.4\textwidth}
         \begin{flushright} \large
             \emph{Docente:}\\
-            Prof.ssa \textbf{Carmela De Bonis}
+            Prof.ssa \textbf{Maria Carmela De Bonis}
         \end{flushright}
     \end{minipage}
 
@@ -1810,7 +1810,6 @@ Si ha
 $$ \text{err1} = 0.655\dots 10^{-11} < \frac{1}{2} 10^{-10} $$
 $$ \text{err2} = 0.655\dots 10^{-11} < \frac{1}{2} 10^{-10} $$
 cioè entrambe le soluzioni sono state calcolate con solo 11 cifre significative corrette.
-
 La function \textbackslash del MatLab risolve i sistemi lineari con un algoritmo stabile che implementa il metodo di eliminazione di Gauss con pivoting.
 Pertanto la perdita di cifre significative è dovuta al mal condizionamento della matrice del sistema.
 Se $A$ denota la matrice dei coefficienti di un sistema lineare il comando \texttt{cond(A,inf)} del MatLab permette di calcolare l'indice di condizionamento del problema della risoluzione del sistema.
@@ -2009,16 +2008,32 @@ Sfortunatamente il metodo di Cramer ha un costo computazionale molto elevato, pa
 Supponendo per esempio di poter effettuare $10^{6}$ flops al secondo, per risolvere un sistema di 20 equazioni occorrono circa $3 \cdot 10^{7}$ anni (300.000 secoli).
 Anche i metodi classici per il calcolo dell'inversa $A^{-1}$ hanno un costo computazionale di tipo fattoriale. Poiché nei problemi reali i sistemi possono essere costituiti da centinaia o migliaia di equazioni, occorrono metodi numerici efficienti che tengano conto della dimensione e delle proprietà della matrice.
 
-\paragraph{Proprietà delle Matrici: Dense e Sparse}
-\begin{itemize}
-    \item \textit{Matrice Densa:} Una matrice $A \in \mathbb{R}^{n \times n}$ si dice densa se la maggior parte dei suoi elementi è non nulla.
-    \item \textit{Matrice Sparsa:} Una matrice $A \in \mathbb{R}^{n \times n}$ si dice sparsa se possiede un numero di elementi non nulli dell'ordine di $n$. Per memorizzare una matrice sparsa è possibile utilizzare solo tre vettori: uno per gli elementi non nulli, uno per gli indici di riga e uno per gli indici di colonna.
-\end{itemize}
+\vspace{10pt}
+
+\paragraph{Matrice Densa}
+\begin{bxthm}
+\begin{defn}
+Una matrice $A \in \mathbb{R}^{n \times n}$ si dice \textbf{densa} se la maggior parte dei suoi elementi è non nulla.    
+\end{defn}
+\end{bxthm}
+
+\vspace{10pt}
+
+\paragraph{Matrice Sparsa}
+\begin{bxthm}
+\begin{defn}
+Una matrice $A \in \mathbb{R}^{n \times n}$ si dice \textbf{sparsa} se possiede un numero di elementi non nulli dell'ordine di $n$. Per memorizzare una matrice sparsa è possibile utilizzare solo tre vettori: uno per gli elementi non nulli, uno per gli indici di riga e uno per gli indici di colonna.    
+\end{defn}
+\end{bxthm}
+
+\vspace{10pt}
 
 \paragraph{Matrici Strutturate}
-Una matrice si dice strutturata se i suoi elementi sono disposti secondo una regola nota.
+\begin{bxthm}
+\begin{defn}
+Una matrice $A \in \mathbb{R}^{n \times n}$ si dice \textbf{strutturata} se i suoi elementi sono disposti secondo una regola nota.
 \begin{itemize}
-\item \textit{Matrice Diagonale:} $a_{i,j} = 0$ per $i \neq j$.
+\item \textbf{Matrice Diagonale:} $a_{i,j} = 0$ per $i \neq j$.
 $$
 \begin{pmatrix}
 a_{1,1} & 0 & \dots & 0 \\
@@ -2028,7 +2043,7 @@ a_{1,1} & 0 & \dots & 0 \\
 \end{pmatrix}
 $$
 
-\item \textit{Matrice Triangolare Inferiore:} $a_{i,j} = 0$ per $i < j$.
+\item \textbf{Matrice Triangolare Inferiore:} $a_{i,j} = 0$ per $i < j$.
 $$
 \begin{pmatrix}
 a_{1,1} & 0 & \dots & 0 \\
@@ -2038,7 +2053,7 @@ a_{n,1} & a_{n,2} & \dots & a_{n,n}
 \end{pmatrix}
 $$
 
-\item \textit{Matrice Triangolare Superiore:} $a_{i,j} = 0$ per $i > j$.
+\item \textbf{Matrice Triangolare Superiore:} $a_{i,j} = 0$ per $i > j$.
 $$
 \begin{pmatrix}
 a_{1,1} & a_{1,2} & \dots & a_{1,n} \\
@@ -2048,7 +2063,7 @@ a_{1,1} & a_{1,2} & \dots & a_{1,n} \\
 \end{pmatrix}
 $$
 
-\item \textit{Matrice Tridiagonale:} elementi non nulli solo sulla diagonale principale, sulla sovra-diagonale e sulla sotto-diagonale.
+\item \textbf{Matrice Tridiagonale:} elementi non nulli solo sulla diagonale principale, sulla sovra-diagonale e sulla sotto-diagonale.
 $$
 \begin{pmatrix}
 a_{1,1} & a_{1,2} & 0 & \dots & 0 \\
@@ -2060,7 +2075,7 @@ a_{2,1} & a_{2,2} & a_{2,3} & \ddots & \vdots \\
 $$
 
 
-\item \textit{Hessenberg Inferiore:} $a_{i,j} = 0$ per $j > i+1$ (elementi nulli sopra la prima sovra-diagonale).
+\item \textbf{Hessenberg Inferiore:} $a_{i,j} = 0$ per $j > i+1$ (elementi nulli sopra la prima sovra-diagonale).
 $$
 \begin{pmatrix}
 a_{1,1} & a_{1,2} & 0 & \dots & 0 \\
@@ -2071,7 +2086,7 @@ a_{n,1} & a_{n,2} & \dots & a_{n,n-1} & a_{n,n}
 \end{pmatrix}
 $$
 
-\item \textit{Hessenberg Superiore:} $a_{i,j} = 0$ per $i > j+1$ (elementi nulli sotto la prima sotto-diagonale).
+\item \textbf{Hessenberg Superiore:} $a_{i,j} = 0$ per $i > j+1$ (elementi nulli sotto la prima sotto-diagonale).
 $$
 \begin{pmatrix}
 a_{1,1} & a_{1,2} & \dots & a_{1,n-1} & a_{1,n} \\
@@ -2082,44 +2097,90 @@ a_{2,1} & a_{2,2} & \dots & a_{2,n-1} & a_{2,n} \\
 \end{pmatrix}
 $$
 \end{itemize}
+\end{defn}
+\end{bxthm}
 
-\paragraph{Matrici Simmetriche e Definite Positive}
-Una matrice $A$ si dice \textit{simmetrica} se coincide con la sua trasposta, cioè $A = A^{T}$.
-Una matrice simmetrica $A$ si dice \textit{definita positiva} se per ogni vettore $y \in \mathbb{R}^{n}, y \neq 0$ si ha $y^{T}Ay > 0$.
-\textit{Criterio di Sylvester:} Una matrice simmetrica $A \in \mathbb{R}^{n \times n}$ è definita positiva se e solo se:
-$$ \det(A_{k}) > 0, \quad k=1,\dots,n $$
+\vspace{10pt}
+
+\paragraph{Matrice Simmetrica}
+\begin{bxthm}
+\begin{defn}
+Una matrice $A$ si dice \textbf{simmetrica} se coincide con la sua trasposta, cioè $A = A^{T}$.
+\end{defn}
+\end{bxthm}
+
+\vspace{10pt}
+
+\paragraph{Matrice Definita Positiva}
+\begin{bxthm}
+\begin{defn}
+Una matrice simmetrica $A$ si dice \textbf{definita positiva} se per ogni vettore $y \in \mathbb{R}^{n}, y \neq 0$ si ha $y^{T}Ay > 0$.
+\end{defn}
+\end{bxthm}
+
+\vspace{10pt}
+
+\paragraph{Criterio di Sylvester}
+\begin{bxthm}
+\begin{prop}
+Una matrice simmetrica $A \in \mathbb{R}^{n \times n}$ è definita positiva se e solo se:
+$$ \det(A_{k}) > 0, \quad k\in\{1,\ldots,n\} $$
 dove $\det(A_{k})$ è il determinante della sottomatrice principale di testa di ordine $k$.
+\end{prop}
+\end{bxthm}
 
-\paragraph{Matrici a Diagonale Dominante}
-Una matrice $A$ è detta a \textit{diagonale dominante per righe} se:
-$$ |a_{i,i}| > \sum_{j=1, j \neq i}^{n} |a_{i,j}|, \quad i\in\{1,\ldots,n\} $$
-È detta a \textit{diagonale dominante per colonne} se:
-$$ |a_{j,j}| > \sum_{i=1, i \neq j}^{n} |a_{i,j}|, \quad j=1,\dots,n $$
+\vspace{10pt}
 
-\paragraph{Richiami sulle Norme Vettoriali}
-Una norma vettoriale è una funzione che associa ad un vettore $x \in \mathbb{R}^{n}$ un numero reale $||x||$ con le seguenti proprietà:
-1. $||x|| > 0, \forall x \neq 0$ e $||x|| = 0 \Leftrightarrow x = 0$;
-2. $||cx|| = |c| ||x||, \forall c \in \mathbb{R}$;
-3. $||x+y|| \le ||x|| + ||y||, \forall y \in \mathbb{R}^{n}$.
+\paragraph{Matrice a Diagonale Dominante}
+\begin{bxthm}
+\begin{defn}
+Una matrice $A$ è detta a \textbf{diagonale dominante per righe} se:
+$$ |a_{i,i}| > \sum_{j=1, j \neq i}^{n} |a_{i,j}|, \quad i\in\{1,\ldots,n\} .$$
+È detta a \textbf{diagonale dominante per colonne} se:
+$$ |a_{j,j}| > \sum_{i=1, i \neq j}^{n} |a_{i,j}|, \quad j\in\{1,\ldots,n\} .$$
+\end{defn}
+\end{bxthm}
 
+\vspace{10pt}
+
+\paragraph{Norma Vettoriale}
+\begin{bxthm}
+\begin{defn}
+Una \textbf{norma vettoriale} è una funzione che associa ad un vettore $x \in \mathbb{R}^{n}$ un numero reale $||x||$ con le seguenti proprietà:
+\begin{enumerate}
+    \item $||x|| > 0, \forall x \neq 0$ e $||x|| = 0 \Leftrightarrow x = 0$;
+    \item $||cx|| = |c| ||x||, \forall c \in \mathbb{R}$;
+    \item $||x+y|| \le ||x|| + ||y||, \forall y \in \mathbb{R}^{n}$.
+\end{enumerate}
 Le norme più utilizzate sono:
 \begin{itemize}
-    \item \textit{Norma infinito:} $||x||_{\infty} = \max_{1 \le i \le n} |x_{i}|$
-    \item \textit{Norma 1:} $||x||_{1} = \sum_{i=1}^{n} |x_{i}|$
-    \item \textit{Norma Euclidea (o norma 2):} $||x||_{2} = \sqrt{\sum_{i=1}^{n} |x_{i}|^{2}} = \sqrt{x^{T}x}$
+    \item \textbf{Norma infinito:} $||x||_{\infty} = \max_{1 \le i \le n} |x_{i}|$
+    \item \textbf{Norma 1:} $||x||_{1} = \sum_{i=1}^{n} |x_{i}|$
+    \item \textbf{Norma Euclidea (o norma 2):} $||x||_{2} = \sqrt{\sum_{i=1}^{n} |x_{i}|^{2}} = \sqrt{x^{T}x}$
 \end{itemize}
+\end{defn}
+\end{bxthm}
 
-\paragraph{Richiami sulle Norme Matriciali}
-Una norma matriciale associa ad una matrice $A$ un numero reale $||A||$ soddisfacendo proprietà analoghe a quelle vettoriali, con l'aggiunta della proprietà di sub-moltiplicatività:
-4. $||AB|| \le ||A|| ||B||, \forall B \in \mathbb{R}^{n \times n}$.
+\vspace{10pt}
 
-Le norme matriciali più note sono:
+\paragraph{}
+\begin{bxthm}
+\begin{defn}
+Una \textbf{norma matriciale} associa ad una matrice $A$ un numero reale $||A||$ soddisfacendo proprietà analoghe a quelle vettoriali, con l'aggiunta della proprietà di sub-moltiplicatività:
 \begin{itemize}
-    \item \textit{Norma infinito:} $||A||_{\infty} = \max_{1 \le i \le n} \sum_{j=1}^{n} |a_{i,j}|$ (massima somma per righe).
-    \item \textit{Norma 1:} $||A||_{1} = \max_{1 \le j \le n} \sum_{i=1}^{n} |a_{i,j}|$ (massima somma per colonne).
-    \item \textit{Norma Spettrale (o norma 2):} $||A||_{2} = \sqrt{\rho(A^{T}A)}$, dove $\rho(B)$ è il raggio spettrale di $B$ (modulo massimo degli autovalori).
-    \item \textit{Norma di Frobenius:} $||A||_{F} = (\sum_{i=1}^{n}\sum_{j=1}^{n} |a_{i,j}|^{2})^{\frac{1}{2}}$.
+    \item $||AB|| \le ||A|| ||B||, \forall B \in \mathbb{R}^{n \times n}$.
 \end{itemize}
+Le norme matriciali più utilizzate sono:
+\begin{itemize}
+    \item \textbf{Norma infinito:} $||A||_{\infty} = \max_{1 \le i \le n} \sum_{j=1}^{n} |a_{i,j}|$ (massima somma per righe).
+    \item \textbf{Norma 1:} $||A||_{1} = \max_{1 \le j \le n} \sum_{i=1}^{n} |a_{i,j}|$ (massima somma per colonne).
+    \item \textbf{Norma Spettrale (o norma 2):} $||A||_{2} = \sqrt{\rho(A^{T}A)}$, dove $\rho(B)$ è il raggio spettrale di $B$ (modulo massimo degli autovalori).
+    \item \textbf{Norma di Frobenius:} $||A||_{F} = (\sum_{i=1}^{n}\sum_{j=1}^{n} |a_{i,j}|^{2})^{\frac{1}{2}}$.
+\end{itemize}
+\end{defn}
+\end{bxthm}
+
+\vspace{10pt}
 
 \paragraph{Norme Compatibili e Indotte}
 Una norma vettoriale e una matriciale sono \textit{compatibili} se $||Ax|| \le ||A|| ||x||$.
