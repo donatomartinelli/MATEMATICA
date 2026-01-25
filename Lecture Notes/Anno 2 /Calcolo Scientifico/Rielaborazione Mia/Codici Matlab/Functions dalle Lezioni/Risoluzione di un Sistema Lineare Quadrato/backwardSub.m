@@ -1,14 +1,15 @@
 function x = backwardSub(U, b)
-% FORWARDSUB Risolve il sistema lineare triangolare superiore Ux = b usando la vettorizzazione (più veloce in esecuzione). 
-%   x = BACKWARDSUB(U, b) restituisce il vettore soluzione x.
-%
-%   INPUT:
-%       U - Matrice quadrata triangolare superiore (n x n)
-%       b - Vettore dei termini noti (n x 1)
-%
-%   OUTPUT:
-%       x - Vettore soluzione (n x 1)
+%{
+FORWARDSUB Risolve il sistema lineare triangolare superiore Ux = b usando la vettorizzazione (più veloce in esecuzione). 
+  x = BACKWARDSUB(U, b) restituisce il vettore soluzione x.
 
+  INPUT:
+    U - Matrice quadrata triangolare superiore (n x n)
+    b - Vettore dei termini noti (n x 1)
+
+  OUTPUT:
+    x - Vettore soluzione (n x 1)
+%}
     %% 1. Validazione degli Input
     arguments
         U (:,:) double {mustBeNumeric}
@@ -52,4 +53,5 @@ function x = backwardSub(U, b)
         % Calcolo finale
         x(i) = (b(i) - sommatoria) / U(i,i);
     end
+    
 end
