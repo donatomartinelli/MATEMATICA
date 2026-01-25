@@ -1,6 +1,6 @@
 function x = backwardSub(U, b)
 %{
-FORWARDSUB Risolve il sistema lineare triangolare superiore Ux = b usando la vettorizzazione (più veloce in esecuzione). 
+BACKWARDSUB Risolve il sistema lineare triangolare superiore Ux = b usando la vettorizzazione (più veloce in esecuzione). 
   x = BACKWARDSUB(U, b) restituisce il vettore soluzione x.
 
   INPUT:
