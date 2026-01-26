@@ -1,66 +1,74 @@
 function [Ag,bg] = gaussElimP(A,b,p)
 %{
-GAUSSELIMP Applica l'eliminazione di Gauss (con pivoting opzionale).
+GAUSSELIMP Applica il metodo dell'eliminazione di Gauss alla matrice dei coefficienti e al vettore dei termini noti.    
+  [Ag,bg] = gaussElimP(A,b,p)  restituisce A e b risultanti dall'eliminazione.
+    
+    INPUT:
+      A - Matrice dei coefficienti (n x n)
+      b - Vettore dei termini noti (n x 1)
+      p - Logical true (1) per applicare pivoting parziale, 0 altrimenti
+    
+    OUTPUT:
+      Ag - Matrice dei coefficienti post-GE (n x n)
+      bg - Vettore dei termini noti post-GE (n x 1)
 %}
-
-    %% 1. Validazione Input
+    
+    %% 1. Validazione degli Input
     arguments
         A (:,:) double {mustBeNumeric}
         b (:,1) double {mustBeNumeric}
-        p (1,1) logical = false 
+        p (1,1) logical = 0
     end
-
+    
     %% 2. Verifica Dimensioni
     [n, m] = size(A);
     
+    % Verifico se la matrice è quadrata
     if n ~= m
-        error('gaussElimP:nonSquare', 'Matrice non quadrata (%dx%d).', n, m);
+        error('gaussElimP:nonSquareMatrix', 'La matrice non è quadrata (Size %dx%d).', n, m);
     end
     
+    % Verifico se il prodotto Ab è compatibile
     if n ~= length(b)
-        error('gaussElimP:dimMismatch', 'Dimensioni incompatibili: A(%dx%d), b(%dx1).', n, m, length(b));
+        error('gaussElimP:nonCompatible', 'Il prodotto non è compatibile (Size (%dx%d)*(%dx1)).', n, m, length(b));
     end
-
-    %% 3. Algoritmo di Gauss
-    % Unico ciclo principale: evita la duplicazione del codice
+    
+    
+    %% 3. Eliminazione di Gauss
     for k = 1 : n-1
         
-        % --- FASE PIVOTING (Opzionale) ---
+        % --- PIVOTING (Se p=1) ---
         if p
-            % Ricerca del massimo nella colonna k (dal pivot in giù)
-            [~, r_rel] = max(abs(A(k:n, k))); 
-            r_glob = r_rel + k - 1;           % Conversione indice locale -> globale
+            % Trovo il massimo nella colonna k (dal pivot in giù)
+            [~, r_rel] = max(abs(A(k:n, k)));
             
-            % Scambio righe se necessario
+            % Converto in indice globale
+            r_glob = r_rel + k - 1;
+            
+            % Se il pivot migliore non è quello attuale, scambio
             if r_glob ~= k
                 A([k, r_glob], :) = A([r_glob, k], :);
                 b([k, r_glob])    = b([r_glob, k]);
             end
         end
         
-        % --- CONTROLLO SINGOLARITÀ ---
-        % Importante: Se dopo il pivoting il pivot è ancora 0, la matrice è singolare.
+        % Controllo pivot nullo (sicurezza)
         if A(k,k) == 0
-            error('gaussElimP:singularMatrix', 'Pivot nullo alla riga %d. Matrice singolare.', k);
+             error('gaussElimP:zeroPivot', 'Pivot nullo alla riga %d.', k);
         end
-
-        % --- FASE ELIMINAZIONE ---
+        
+        % --- ELIMINAZIONE ---
         for i = k+1 : n
-            % Calcolo moltiplicatore
             mol = -A(i,k) / A(k,k);
             
-            % Aggiornamento riga i-esima (Vettorizzazione mista)
-            % Nota: operiamo solo da k+1 in poi per risparmiare calcoli
+            % Aggiorno la riga i (Vettorizzazione mista)
             A(i, k+1:n) = A(i, k+1:n) + mol * A(k, k+1:n);
             
-            % (Opzionale ma pulito) Forziamo a zero l'elemento sotto il pivot
-            % A(i,k) = 0; 
-
-            % Aggiornamento termine noto
+            % Aggiorno il termine noto
             b(i) = b(i) + mol * b(k);
         end
     end
-
+    
     Ag = A;
     bg = b;
 end
