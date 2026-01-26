@@ -1,19 +1,16 @@
 function invU = invTriu(U, tol)
-%INVTRIU Calcola l'inversa di una matrice triangolare superiore.
-%   invU = INVTRIU(U) calcola l'inversa della matrice U usando
-%   la sostituzione all'indietro (backward substitution).
-%
-%   invU = INVTRIU(U, tol) specifica una tolleranza per il controllo
-%   di singolarità (default: 1e-10).
-%
-%   Input:
-%       U   - Matrice triangolare superiore (n x n)
-%       tol - Tolleranza per singolarità (scalare opzionale)
-%
-%   Output:
-%       invU - Inversa della matrice U
-%
-%   Vedi anche: BACKWARDSUB, INV, TRIU.
+%{
+INVTRIU Calcola l'inversa di una matrice triangolare superiore.
+  invU = INVTRIU(U) calcola l'inversa della matrice U usando la sostituzione all'indietro (backward substitution).
+  invU = INVTRIU(U, tol) specifica una tolleranza per il controllo di singolarità (default: 1e-10).
+
+  Input:
+    U   - Matrice triangolare superiore (n x n)
+    tol - Tolleranza per singolarità (scalare opzionale)
+
+  Output:
+    invU - Inversa della matrice U
+%}
 
     %% 1. Validazione degli Input
     arguments
@@ -26,14 +23,12 @@ function invU = invTriu(U, tol)
 
     % Verifica che la matrice sia quadrata
     if n ~= m
-        error('invTriu:NonSquareMatrix', ...
-              'La matrice di input deve essere quadrata (%dx%d).', n, m);
+        error('invTriu:NonSquareMatrix', 'La matrice di input deve essere quadrata (%dx%d).', n, m);
     end
 
     % Verifica singolarità (elemento diagonale nullo o sotto tolleranza)
     if any(abs(diag(U)) < tol)
-        error('invTriu:SingularMatrix', ...
-              'Matrice singolare: pivot sulla diagonale minore della tolleranza.');
+        error('invTriu:SingularMatrix', 'Matrice singolare: pivot sulla diagonale minore della tolleranza.');
     end
 
     %% 3. Calcolo Inversa
