@@ -37,7 +37,7 @@ GAUSSELIMP Applica il metodo dell'eliminazione di Gauss alla matrice dei coeffic
     %% 3. Eliminazione di Gauss
     for k = 1 : n-1
         
-        % --- PIVOTING (Se p=1) ---
+        % Pivoting parziale (p=1)
         if p
             % Trovo il massimo nella colonna k (dal pivot in giù)
             [~, r_rel] = max(abs(A(k:n, k)));
@@ -57,11 +57,11 @@ GAUSSELIMP Applica il metodo dell'eliminazione di Gauss alla matrice dei coeffic
              error('gaussElimP:zeroPivot', 'Pivot nullo alla riga %d.', k);
         end
         
-        % --- ELIMINAZIONE ---
+        % Eliminazione
         for i = k+1 : n
             mol = -A(i,k) / A(k,k);
             
-            % Aggiorno la riga i (Vettorizzazione mista)
+            % Aggiorno la riga i
             A(i, k+1:n) = A(i, k+1:n) + mol * A(k, k+1:n);
             
             % Aggiorno il termine noto
