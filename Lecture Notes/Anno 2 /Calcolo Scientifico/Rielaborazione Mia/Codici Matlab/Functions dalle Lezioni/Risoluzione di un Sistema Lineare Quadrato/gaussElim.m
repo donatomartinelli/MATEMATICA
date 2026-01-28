@@ -1,7 +1,7 @@
 function [Ag,bg] = gaussElim(A,b)
 %{
 GAUSSELIM Applica il metodo dell'eliminazione di Gauss alla matrice dei coefficienti e al vettore dei termini noti.
-  [Ag,bg] = gaussElimP(A,b)  restituisce A e b risultanti dall'eliminazione.
+  [Ag,bg] = gaussElim(A,b)  restituisce A e b risultanti dall'eliminazione.
     
     INPUT:
       A - Matrice dei coefficienti (n x n)
@@ -23,12 +23,12 @@ GAUSSELIM Applica il metodo dell'eliminazione di Gauss alla matrice dei coeffici
     
     % Verifico se la matrice è quadrata
     if n ~= m
-        error('gaussElimP:nonSquareMatrix', 'La matrice non è quadrata (Size %dx%d).', n, m);
+        error('gaussElim:nonSquareMatrix', 'La matrice non è quadrata (Size %dx%d).', n, m);
     end
     
     % Verifico se il prodotto Ab è compatibile
     if n ~= length(b)
-        error('gaussElimP:nonCompatible', 'Il prodotto non è compatibile (Size (%dx%d)*(%dx1)).', n, m, length(b));
+        error('gaussElim:nonCompatible', 'Il prodotto non è compatibile (Size (%dx%d)*(%dx1)).', n, m, length(b));
     end
     
     
@@ -36,7 +36,7 @@ GAUSSELIM Applica il metodo dell'eliminazione di Gauss alla matrice dei coeffici
     for k = 1 : n-1
         % Controllo pivot nullo (sicurezza)
         if A(k,k) == 0
-             error('gaussElimP:zeroPivot', 'Pivot nullo alla riga %d.', k);
+             error('gaussElim:zeroPivot', 'Pivot nullo alla riga %d.', k);
         end
         
         % Eliminazione
