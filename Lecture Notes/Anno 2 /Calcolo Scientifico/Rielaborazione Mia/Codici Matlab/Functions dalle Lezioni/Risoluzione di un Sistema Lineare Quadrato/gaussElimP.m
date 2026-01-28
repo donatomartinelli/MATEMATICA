@@ -1,3 +1,4 @@
+%% IMPLEMENTARE PIVOT TOTALE
 function [Ag,bg] = gaussElimP(A,b,p)
 %{
 GAUSSELIMP Applica il metodo dell'eliminazione di Gauss alla matrice dei coefficienti e al vettore dei termini noti.    
