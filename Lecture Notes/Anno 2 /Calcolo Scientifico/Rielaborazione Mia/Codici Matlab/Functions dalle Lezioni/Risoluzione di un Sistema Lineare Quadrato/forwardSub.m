@@ -44,13 +44,8 @@ FORWARDSUB Risolve il sistema lineare triangolare inferiore Lx = b usando la vet
     % Calcoliamo il primo elemento manualmente per avviare il processo
     x(1) = b(1) / L(1,1);
 
-    for i = n-1 : -1 : 1
-        % Prendiamo la riga i-esima di L (fino alla colonna i-1)
-        % e il vettore x (fino all'elemento i-1).
-        % Il loro prodotto matriciale (*) è esattamente la sommatoria che ci serve.
+    for i = 2 : n 
         sommatoria = L(i, 1:i-1) * x(1:i-1);
-        
-        % Calcolo finale
         x(i) = (b(i) - sommatoria) / L(i,i);
     end
 
