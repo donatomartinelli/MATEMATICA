@@ -45,12 +45,7 @@ BACKWARDSUB Risolve il sistema lineare triangolare superiore Ux = b usando la ve
     x(n) = b(n) / U(n,n);
     
     for i = n-1 : -1 : 1
-        % Prendi la porzione di riga i-esima a destra della diagonale: U(i, i+1:n)
-        % Prendi la porzione di soluzione x già calcolata (che sta "sotto"): x(i+1:n)
-        % Il loro prodotto matriciale (Riga * Colonna) è la sommatoria.
         sommatoria = U(i, i+1:n) * x(i+1:n);
-        
-        % Calcolo finale
         x(i) = (b(i) - sommatoria) / U(i,i);
     end
     
