@@ -1,0 +1,589 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsfonts, amsthm}
+\usepackage{mathtools}
+\usepackage{mdframed}
+\usepackage{cancel}
+\usepackage{import, xifthen, pdfpages, transparent}
+\usepackage{enumitem}
+\usepackage{geometry}
+\usepackage{multicol}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{tikz, pgfplots}
+\usetikzlibrary{positioning}
+\pgfplotsset{compat=1.18}
+\geometry{a4paper, margin=2cm}
+\usepackage{listings}
+\usepackage{xcolor}
+\lstset{
+    inputencoding=utf8,
+    extendedchars=true,
+    literate={à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1 {È}{{\`E}}1 {é}{{\'e}}1,
+}
+% Definizione colori stile MATLAB
+\definecolor{mGreen}{rgb}{0,0.6,0}
+\definecolor{mGray}{rgb}{0.5,0.5,0.5}
+\definecolor{mPurple}{rgb}{0.58,0,0.82}
+\definecolor{mBack}{rgb}{0.95,0.95,0.92} % Colore sfondo opzionale
+
+% Stile per il CODICE
+\lstdefinestyle{matlabCode}{
+    language=Matlab,
+    backgroundcolor=\color{white},   % Sfondo bianco
+    commentstyle=\color{mGreen},
+    keywordstyle=\color{blue},
+    numberstyle=\tiny\color{mGray},
+    stringstyle=\color{mPurple},
+    basicstyle=\ttfamily\footnotesize, % Font monospaziato
+    breakatwhitespace=false,
+    breaklines=true,                 % A capo automatico
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,                    % Numeri di riga a sinistra
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2,
+    frame=single                     % Cornice attorno al codice
+}
+
+% Stile per l'OUTPUT (senza colori, sfondo grigio chiaro)
+\lstdefinestyle{matlabOutput}{
+    language={},                     % Nessun linguaggio
+    backgroundcolor=\color{gray!10}, % Sfondo grigio chiaro
+    basicstyle=\ttfamily\footnotesize,
+    frame=single,                    % Cornice
+    breaklines=true,
+    showstringspaces=false
+}
+
+\newmdenv[
+  linecolor=black,
+  linewidth=1pt,
+  roundcorner=5pt,
+  innertopmargin=4pt,
+  innerbottommargin=10pt,
+  innerleftmargin=10pt,
+  innerrightmargin=10pt
+]{bxthm}
+
+\theoremstyle{plain}
+\newtheorem{thm}{Teorema}[section]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposizione}
+\newtheorem{cor}{Corollario}
+
+\theoremstyle{definition}
+\newtheorem{defn}{Definizione}[section]
+\newtheorem{exmp}{Esempio}[section]
+\newtheorem{xca}[exmp]{Esercizio}
+
+\theoremstyle{remark}
+\newtheorem{rem}{Osservazione}
+\newtheorem{note}{Nota}
+\newtheorem{case}{Caso}
+
+\newcommand{\incfig}[2][\columnwidth]{%
+    \def\svgwidth{#1}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+    {\scshape\LARGE Università degli Studi della Basilicata \par}
+    \vspace{0.5cm}
+    {\scshape\Large Dipartimento di Scienze di Base e Applicate - DISBA \par} 
+    
+    \vspace{2.5cm}
+
+    % Linea orizzontale superiore
+    \rule{\linewidth}{0.5mm}
+    \vspace{0.4cm}
+    
+    {\huge\bfseries Calcolo Scientifico \par}
+    \vspace{0.2cm}
+    {\Large\itshape Esercitazioni \par}
+    
+    \vspace{0.4cm}
+    % Linea orizzontale inferiore
+    \rule{\linewidth}{0.5mm}
+    
+    \vspace{3cm}
+
+    % Blocco Studente e Docente
+    \begin{minipage}{0.4\textwidth}
+        \begin{flushleft} \large
+            \emph{Studente:}\\
+            \textbf{Donato Martinelli}\\
+            Matr. 69060 
+        \end{flushleft}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.4\textwidth}
+        \begin{flushright} \large
+            \emph{Docente:}\\
+            Prof.ssa \textbf{Maria Carmela De Bonis}
+        \end{flushright}
+    \end{minipage}
+
+    \vfill
+
+    {\large Anno Accademico 2025/2026 \par}
+
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+\section{Risoluzione di un Sistema Lineare Quadrato}
+
+\vspace{10pt}
+
+\subsection{Tracce}
+
+\vspace{10pt}
+
+\begin{enumerate}
+\item Scrivere una function Matlab che verifichi che una matrice è simmetrica.
+\item Scrivere una function Matlab che verifichi che una matrice simmetrica è definita positiva usando il criterio di Sylvester.
+\item Scrivere una function Matlab che verifichi che una matrice è a diagonale dominante per righe.
+\item Si consideri la matrice
+\[
+A = rand(10), \quad A = A * {}^tA.
+\]
+\begin{itemize}
+\item Verificare se è simmetrica;
+\item Verificare se è simmetrica e definita positiva;
+\end{itemize}
+\item Si consideri la matrice
+\[
+A = rand(10) + 100 * diag(ones(1, 10)).
+\]
+Verificare se è a diagonale dominante per righe.
+\item Scrivere una function Matlab che verifichi che una matrice è a diagonale dominante per colonne.
+\item Si consideri la matrice
+\[
+A(i, j) = \begin{cases}
+-1 & i > j \\
+0 & i < j, \qquad i, j \in\{1, \dots, n\} \\
+100 & i = j
+\end{cases}
+\]
+con $n = 15$.
+\begin{itemize}
+\item Verificare se è a diagonale dominante per colonne;
+\item Verificare se è a diagonale dominante per righe.
+\end{itemize}
+\item Scrivere una function Matlab che implementi il metodo di sostituzione in avanti.
+\item scrivere una function Matlab che implementi il metodo di sostituzione all'indietro.
+\item scrivere una function Matlab che implementi opportunamente il metodo di sostituzione all'indietro per calcolare l'inversa di una matrice triangolare superiore
+\item Si consideri il sistema lineare $Ax = b$ con
+\[
+A = tril(rand(10)), \quad b = sum(A, 2).
+\]
+Risolvere il sistema con il metodo di sostituzione in avanti.
+\item Si consideri il sistema lineare $Ax = b$ con
+\[
+A = triu(rand(10)), \quad b = sum(A, 2).
+\]
+\begin{itemize}
+\item Risolvere il sistema con il metodo di sostituzione all'indietro;
+\item calcolare l'inversa di $A$.
+\end{itemize}
+\item Scrivere una function Matlab che risolvi un sistema diagonale.
+\item Risolvere il sistema lineare $Ax = b$ con
+\[
+A = diag(diag(rand(10))), \quad b = sum(A, 2).
+\]
+\item Scrivere una function Matlab che implementi opportunamente il metodo di sostituzione in avanti per calcolare l'inversa di una matrice triangolare inferiore
+\item Calcolare l'inversa della matrice
+\[
+A = tril(rand(20)).
+\]
+\item Scrivere una function Matlab che implementi il metodo di eliminazione di Gauss.
+\item Si consideri il sistema lineare $Ax = b$ con
+\[
+A = rand(100), \quad b = sum(A, 2).
+\]
+Risolvere il sistema con il metodo di Gauss.
+\item Si consideri il sistema di equazioni lineari $Ax=b$ di ordine $n=15$, con
+\[
+A(i, j) = \begin{cases}
+-1 & i > j \\
+0 & i < j, \qquad i, j \in \{1, \dots, n\} \\
+100 & i = j
+\end{cases}
+\]
+e
+\[
+b = [1, 1, \dots, 1]^T.
+\]
+\begin{itemize}
+\item Calcolare l'indice di condizionamento e il numero massimo di cifre significative corrette che ci si può aspettare nel calcolo della soluzione approssimata.
+\item Calcolare il vettore soluzione con il metodo di sostituzione in avanti e riportarne le prime due componenti con le cifre significative che si possono certamente ritenere corrette.
+\item Confrontare la soluzione ottenuta (vettore x) con la soluzione che si ottiene usando la function predefinita del Matlab (vettore y). Di quanto differiscono al massimo?
+\end{itemize}
+\item Si consideri il sistema di equazioni lineari $Ax=b$ di ordine $n=10$, con
+\[
+A = \begin{pmatrix}
+\frac{1}{2} & 2 & 4 & 4 & \dots & 4 & 4 \\
+1 & \frac{1}{3} & 2 & 4 & \dots & & 4 \\
+2 & 1 & \frac{1}{4} & \ddots & \ddots & & \vdots \\
+0 & 2 & \ddots & \ddots & \ddots & 4 & \vdots \\
+\vdots & \ddots & \ddots & \ddots & \ddots & 2 & 4 \\
+0 & \dots & 0 & 2 & 1 & \frac{1}{n} & 2 \\
+0 & \dots & \dots & 0 & 2 & 1 & \frac{1}{n+1}
+\end{pmatrix}
+\]
+e
+\[
+b = (b_i)_{i\in\{1,\dots,n\}}, \quad b(i) = \sum_{j=1}^n A_{i,j}.
+\]
+\begin{itemize}
+\item Calcolare l'indice di condizionamento e il numero massimo di cifre significative corrette che ci si può aspettare nel calcolo della soluzione approssimata.
+\item Calcolare il vettore soluzione con il metodo di eliminazione di Gauss e riportarne le prime due componenti con le cifre significative che si possono certamente ritenere corrette.
+\item Confrontare la soluzione ottenuta (vettore x) con la soluzione che si ottiene usando la function predefinita del Matlab (vettore y). Di quanto differiscono al massimo?
+\item Confrontare la soluzione ottenuta (vettore x) con il vettore $t = [1, \dots, 1]^T$ che rappresenta la soluzione esatta del sistema. Di quanto differiscono al massimo?
+\end{itemize}
+\item Si consideri il sistema di equazioni lineari Ax=b di ordine n=100, con
+\[
+A = \begin{pmatrix}
+1 & 1 & 4 & 0 & \dots & 0 & 0 \\
+6 & 3 & 1 & 4 & \ddots & & 0 \\
+0 & 6 & 5 & \ddots & \ddots & \ddots & \vdots \\
+0 & 0 & \ddots & \ddots & \ddots & 4 & 0 \\
+\vdots & \ddots & \ddots & \ddots & \ddots & 1 & 4 \\
+0 & \dots & 0 & 0 & 6 & \ddots & 1 \\
+0 & \dots & \dots & \dots & 0 & 6 & 2n-1
+\end{pmatrix}
+\]
+e
+\[
+b = (b_i)_{i\in\{1,\dots,n\}}, \quad b(i) = \sum_{j=1}^n A_{i,j}.
+\]
+\begin{itemize}
+\item Calcolare l'indice di condizionamento e il numero massimo di cifre significative corrette che ci si può aspettare nel calcolo della soluzione approssimata.
+\item Calcolare il vettore soluzione con il metodo di eliminazione di Gauss e riportare le prime due componenti del vettore soluzione con le cifre significative che si possono certamente ritenere corrette.
+\item Confrontare la soluzione ottenuta (vettore x) con il vettore $t = [1, \dots, 1]^T$ che rappresenta la soluzione esatta del sistema. Di quanto differiscono al massimo?
+\end{itemize}
+\item Scrivere una function Matlab che implementi il metodo di eliminazione di Gauss con la strategia del pivoting parziale.
+\item Scrivere una function Matlab che prende in input una matrice $A$ e restituisce in output le matrici $L$ e $U$ tali che $A = LU$.
+\item Consideriamo il sistema lineare $Ax = b$ di ordine $n = 18$, dove
+\[
+A_{i,j} = \cos \left( (j-1)\frac{2i-1}{2n}\pi \right), \quad i,j \in \{1, \dots, n\},
+\]
+e
+\[
+b_i = \sum_{j=1}^n A_{i,j}, \quad i \in \{1, \dots, n\},
+\]
+la cui soluzione esatta è $x = [1, \dots, 1]^T$.
+\begin{itemize}
+\item Calcolare l'indice di condizionamento e il numero di cifre significative corrette che ci si può aspettare nel calcolo della soluzione approssimata.
+\item Calcolare la soluzione approssimata del sistema utilizzando il metodo di Gauss e calcolare l'errore relativo. Quante sono le cifre significative corrette?
+\item Calcolare la soluzione approssimata del sistema utilizzando il metodo di Gauss con pivoting parziale e calcolare l'errore relativo. Quante sono le cifre significative corrette?
+\item Qual è il metodo più stabile?
+\end{itemize}
+\item Consideriamo il sistema lineare $Ax = b$ di ordine $n = 50$, dove
+\[
+A = \begin{pmatrix}
+3 & 2 & 2 & 2 & \dots & 2 & 6 \\
+2 & \frac{5}{2} & 2 & 2 & \ddots & & 2 \\
+2 & 2 & \frac{7}{3} & 2 & \ddots & \ddots & \vdots \\
+2 & 2 & 2 & \ddots & \ddots & 2 & 2 \\
+\vdots & \vdots & \ddots & \ddots & \ddots & 2 & 2 \\
+2 & 2 & \dots & 2 & 2 & 2+\frac{1}{n-1} & 2 \\
+6 & 2 & 2 & \dots & 2 & 2 & 2+\frac{1}{n}
+\end{pmatrix}
+\]
+e
+\[
+b_i = \sum_{j=1}^n A_{i,j}, \quad i \in \{1, \dots, n\},
+\]
+la cui soluzione esatta è $x = [1, \dots, 1]^T$.
+\begin{itemize}
+\item Calcolare l'indice di condizionamento e il numero di cifre significative corrette che ci si può aspettare nel calcolo della soluzione approssimata.
+\item Calcolare la soluzione approssimata del sistema utilizzando il metodo di Gauss e calcolare l'errore relativo. Quante sono le cifre significative corrette?
+\item Calcolare la soluzione approssimata del sistema utilizzando il metodo di Gauss con pivoting parziale e calcolare l'errore relativo. Quante sono le cifre significative corrette?
+\item Qual è il metodo più stabile?
+\end{itemize}
+
+\item Consideriamo il problema di $n = 80$
+\[
+AX = B, \quad A \in \mathbb{R}^{n \times n}, X \in \mathbb{R}^{n \times 3}, B \in \mathbb{R}^{n \times 3},
+\]
+dove
+\[
+A = \begin{pmatrix}
+5 & 0 & \frac{1}{2} & 0 & \dots & 0 \\
+0 & 9 & 0 & \frac{1}{3} & \ddots & \vdots \\
+\vdots & 0 & 13 & \ddots & \ddots & 0 \\
+0 & \ddots & \ddots & \ddots & \ddots & \frac{1}{n-1} \\
+\frac{1}{3} & \ddots & 0 & \dots & 4(n-1)+1 & 0 \\
+0 & \frac{1}{3} & 0 & \dots & 0 & 4n+1
+\end{pmatrix}, \quad
+B = \begin{pmatrix}
+1 & 2 & 1 \\
+1 & 2 & 2 \\
+\vdots & \vdots & \vdots \\
+\vdots & \vdots & \vdots \\
+1 & 2 & n-1 \\
+1 & 2 & n
+\end{pmatrix}.
+\]
+(In questa la trascrizione è corretta ma confrontare meglio con pdf esercitazioni per conferma sulla struttura.)
+\begin{itemize}
+\item Calcolare l'indice di condizionamento e il numero di cifre significative corrette che ci si può aspettare nel calcolo della matrice soluzione $X$.
+\item Calcolare la soluzione approssimata $Y$ utilizzando opportunamente la fattorizzazione $LU$ della matrice $A$. Riportare le componenti della prima riga della matrice $Y$ con le cifre che si possono ritenere corrette.
+\item Calcolare il residuo relativo in norma infinito.
+\end{itemize}
+
+\item Scrivere una function Matlab che implementi opportunamente il metodo di eliminazione di Gauss per risolvere un sistema a matrice tridiagonale.
+\item Scrivere una function Matlab che implementi opportunamente il metodo di eliminazione di Gauss per risolvere un sistema a matrice di Hessemberg superiore.
+
+\item Scrivere una function Matlab che prende in input una matrice $A$ e restituisce in output le matrici $L, U$ e $P$ tali che $PA = LU$ e il numero $s$ degli scambi effettuati.
+\item Consideriamo il sistema lineare $Ax = b$ di ordine $n = 80$, dove
+\[
+A = \begin{pmatrix}
+4 & 2 & 2 & 2 & \dots & 2 & 8 \\
+4 & \frac{7}{2} & 2 & 2 & \ddots & & 2 \\
+4 & 4 & \frac{10}{3} & 2 & \ddots & \ddots & \vdots \\
+4 & 4 & 4 & \ddots & \ddots & 2 & 2 \\
+\vdots & \vdots & \ddots & \ddots & \ddots & 2 & 2 \\
+4 & 4 & \dots & 4 & 4 & 3+\frac{1}{n-1} & 2 \\
+10 & 4 & 4 & \dots & 4 & 4 & 3+\frac{1}{n}
+\end{pmatrix}
+\]
+e
+\[
+b_i = \sum_{j=1}^n A_{i,j}, \quad i \in \{1, \dots, n\},
+\]
+la cui soluzione esatta è $x = [1, \dots, 1]^T$.
+\begin{itemize}
+\item Calcolare l'indice di condizionamento e il numero di cifre significative corrette che ci si può aspettare nel calcolo della soluzione approssimata.
+\item Calcolare la soluzione approssimata del sistema utilizzando opportunamente il metodo di Gauss e calcolare l'errore relativo. Quante sono le cifre significative corrette?
+\item Calcolare il Determinante della matrice $A$.
+\item Calcolare l'inversa della matrice $A$.
+\end{itemize}
+\item Data la matrice di ordine $n = 40$
+\[
+A = \begin{pmatrix}
+\frac{1}{10} & 0 & \frac{1}{2} & 0 & \dots & 0 \\
+0 & \frac{1}{10} & 0 & \frac{1}{2} & \ddots & \vdots \\
+\vdots & 0 & \frac{1}{10} & \ddots & \ddots & 0 \\
+0 & \ddots & \ddots & \ddots & \ddots & \frac{1}{2} \\
+\frac{1}{2} & \ddots & 0 & \dots & \frac{1}{10} & 0 \\
+0 & \frac{1}{3} & 0 & \dots & 0 & \frac{1}{10}
+\end{pmatrix},
+\]
+Calcolare l'indice di condizionamento e il numero di cifre significative corrette che ci si può aspettare nel calcolarne:
+\begin{itemize}
+\item il determinante;
+\item l'inversa.
+\end{itemize}
+\item Data la matrice di ordine $n = 40$(?)
+\[
+A = \begin{pmatrix}
+10 & 1 & \frac{1}{2} & 3 & \dots & 3 & 3 \\
+0 & 10 & 1 & \frac{1}{3} & \ddots & & 3 \\
+2 & 0 & 10 & 1 & \ddots & \ddots & \vdots \\
+\vdots & 2 & 0 & \ddots & \ddots & \frac{1}{n-2} & 3 \\
+2 & & \ddots & \ddots & \ddots & 1 & \frac{1}{n-1} \\
+\frac{1}{2} & \ddots & & 2 & 0 & 10 & 1 \\
+1 & \frac{1}{2} & 2 & \dots & 2 & 0 & 10
+\end{pmatrix}
+\]
+e
+\[
+b_i = \sum_{j=1}^n A_{i,j}, \quad i \in \{1, \dots, n\},
+\]
+la cui soluzione esatta è $x = [1, \dots, 1]^T$.
+\begin{itemize}
+\item Calcolare l'indice di condizionamento e il numero di cifre significative corrette che ci si può aspettare nel calcolo della soluzione approssimata.
+\item Calcolare la soluzione approssimata del sistema utilizzando opportunamente il metodo di Gauss e calcolare l'errore relativo. Quante sono le cifre significative corrette?
+\item Calcolare il Determinante della matrice $A$.
+\item Calcolare l'inversa della matrice $A$.
+\end{itemize}
+\end{enumerate}
+
+\vspace{10pt}
+
+\subsection{Soluzioni}
+
+
+\newpage
+\section{Metodi Numerici per la Risoluzione di un Sistema Lineare Rettangolare nel Senso dei Minimi Quadrati}
+
+\vspace{10pt}
+
+\subsection{Tracce}
+
+\vspace{10pt}
+
+\subsection{Soluzioni}
+
+
+
+
+\newpage
+\section{Metodi Numerici per la Risoluzione di una Equazione non Lineare}
+
+\vspace{10pt}
+
+\subsection{Tracce}
+
+\begin{enumerate}
+\item Scrivere una function Matlab che implementi il metodo di bisezione.
+\item Scrivere una function Matlab che implementi il metodo di Newton.
+\item Scrivere una function Matlab che implementi il metodo combinato bisezione-Newton.
+\item Data l'equazione
+\[
+F(x) = \cos(x) - 4x.
+\]
+\begin{itemize}
+\item Individuare un intervallo che contenga lo zero della funzione.
+\item Approssimare lo zero con la precisione di macchina utilizzando il metodo di Bisezione. Riportare il valore approssimato dello zero e il numero di iterazioni effettuate dal metodo.
+\item Approssimare lo zero con la precisione di macchina utilizzando il metodo di Newton. Riportare il valore approssimato dello zero e il numero di iterazioni effettuate dal metodo.
+\item Approssimare lo zero con la precisione di macchina utilizzando il metodo combinato di bisezione-Newton. Riportare il valore approssimato dello zero e il numero di iterazioni effettuate dai metodi.
+\end{itemize}
+\item Data l'equazione
+\[
+F(x) = e^x + \frac{x}{10}.
+\]
+\begin{itemize}
+\item Individuare un intervallo che contenga lo zero della funzione.
+\item Approssimare lo zero con la precisione di macchina utilizzando il metodo di Bisezione. Riportare il valore approssimato dello zero e il numero di iterazioni effettuate dal metodo.
+\item Approssimare lo zero con la precisione di macchina utilizzando il metodo di Newton. Riportare il valore approssimato dello zero e il numero di iterazioni effettuate dal metodo.
+\item Approssimare lo zero con la precisione di macchina utilizzando il metodo combinato di bisezione-Newton. Riportare il valore approssimato dello zero e il numero di iterazioni effettuate dai metodi.
+\end{itemize}
+\item Data l'equazione
+\[
+F(x) = x + \log(x^3).
+\]
+\begin{itemize}
+\item Individuare un intervallo che contenga lo zero della funzione.
+\item Approssimare lo zero con la precisione di macchina utilizzando il metodo di Bisezione. Riportare il valore approssimato dello zero e il numero di iterazioni effettuate dal metodo.
+\item Approssimare lo zero con la precisione di macchina utilizzando il metodo di Newton. Riportare il valore approssimato dello zero e il numero di iterazioni effettuate dal metodo.
+\item Approssimare lo zero con la precisione di macchina utilizzando il metodo combinato di bisezione-Newton. Riportare il valore approssimato dello zero e il numero di iterazioni effettuate dai metodi.
+\end{itemize}
+\item Supponiamo che una reazione chimica origini ad un certo istante $t$ una concentrazione di un particolare ione data dalla legge:
+\[
+c(t) = 7e^{-5t} + 3e^{-2t}.
+\]
+Se all'istante iniziale la concentrazione iniziale è $c(0)=10$, a quale istante $\bar{t}$ la concentrazione iniziale si sarà dimezzata, ossia
+\[
+c(\bar{t}) = 5?
+\]
+\begin{itemize}
+\item Tenendo conto che il problema è equivalente a quello di determinare lo zero dell'equazione
+\[
+F(t) = 7e^{-5t} + 3e^{-2t} - 5 = 0,
+\]
+individuare un intervallo del semiasse positivo che contenga lo zero della funzione $F$.
+\item Approssimare lo zero con la precisione di macchina utilizzando il metodo combinato di bisezione-Newton. Riportare il valore approssimato dello zero e il numero di iterazioni effettuate dai metodi.
+\end{itemize}
+\item Calcolare $\sqrt{33}$ con la precisione di macchina utilizzando il metodo combinato di bisezione-Newton.
+\item Calcolare $1/43$ con la precisione di macchina utilizzando il metodo combinato di bisezione-Newton.
+\item Scrivere una function Matlab che implementi il metodo di bisezione per equazioni algebriche.
+\item Scrivere una function Matlab che implementi il metodo di Newton per equazioni algebriche.
+\item Scrivere una function Matlab che implementi il metodo combinato bisezione-Newton per equazioni algebriche.
+\item Scrivere una function Matlab che implementi l'algoritmo di Horner per il calcolo del valore di un polinomio e della sua derivata in un punto.
+\item Scrivere una function Matlab che calcoli gli indici di condizionamento delle radici semplici e multiple.
+\item Sia
+\[
+P(x) = x^6 - x - 1.
+\]
+\begin{itemize}
+\item Approssimare le radici reali di $P$ con la precisione di macchina utilizzando il metodo combinato di bisezione-Newton. Qual è il numero di iterazioni del metodo di bisezione? Qual è il numero di iterazioni del metodo di Newton?
+\item Studiare il condizionamento delle radici reali di $P$. Riportare il valore delle radici con le cifre che si possono ritenere corrette.
+\end{itemize}
+\item Sia
+\[
+P(x) = x^9 + 2x^8 - 3x^7 + x^6 + x^4 - 2x^2 + x - 1
+\]
+\begin{itemize}
+\item Approssimare le radici reali di $P$ con la precisione di macchina utilizzando il metodo combinato di bisezione-Newton. Qual è il numero di iterazioni del metodo di bisezione? Qual è il numero di iterazioni del metodo di Newton?
+\item Studiare il condizionamento delle radici reali di $P$. Riportare il valore delle radici con le cifre che si possono ritenere corrette.
+\end{itemize}
+\item Sia
+\[
+P(x) = 2x^9 - 3x^8 + 4x^5 + \frac{1}{2}x^4 - x^3 + x - \frac{1}{2}
+\]
+\begin{itemize}
+\item Individuare l'intervallo che contiene tutte le radici reali.
+\item Quante sono le radici reali? Che molteplicità hanno? Trovare per ciasuna radice reale un intervallo che la contiene.
+\item Approssimare le radici reali di $P$ con la precisione di macchina utilizzando il metodo combinato di bisezione-Newton. Qual è il numero di iterazioni del metodo di bisezione? Qual è il numero di iterazioni del metodo di Newton?
+\item Studiare il condizionamento delle radici reali di $P$. Riportare il valore delle radici con le cifre che si possono ritenere corrette.
+\end{itemize}
+\item Sia
+\[
+P(x) = x^7 - 3x^6 + 2.25x^5 - x^3 + 3.5x^2 - 3.75x + 1.125.
+\]
+\begin{itemize}
+\item Il polinomio $P$ ha $x = \frac{3}{2}$ come radice doppia. Calcolarne il condizionamento.
+\item Approssimarla con la precisione di macchina utilizzando il metodo Newton. Qual è il numero di iterazioni?
+\item Approssimarla con la precisione di macchina utilizzando il metodo Newton opportunamente modificato. Qual è il numero di iterazioni?
+\item Approssimarla con la function roots del MatLab.
+\end{itemize}
+\item Sia
+\[
+P(x) = x^5 + 0.631x^4 + 0.676387x^3 - 0.325473867x^2 + 0.04352613299999995x - 0.001860867
+\]
+\begin{itemize}
+\item Individuare l'intervallo che contiene tutte le radici reali di $P$.
+\item Quante sono le radici reali? Che molteplicità hanno? Trovare per ciasuna radice reale un intervallo che la contiene.
+\item Approssimare le radici reali di $P$ con la precisione di macchina utilizzando opportunamente i metodi studiati. Qual è il numero di iterazioni del metodo utilizzato?
+\item Studiare il condizionamento delle radici reali di $P$. Riportare il valore delle radici con le cifre che si possono ritenere corrette.
+\end{itemize}
+\item Sia
+\[
+P(x) = x^8 - 4.01x^7 + 4.02x^6 + x^3 - 3.01x^2 + 0.01x + 4.02.
+\]
+\begin{itemize}
+\item Individuare l'intervallo che contiene tutte le radici reali di $P$.
+\item Quante sono le radici reali? Che molteplicità hanno? Trovare per ciasuna radice reale un intervallo che la contiene.
+\item Approssimare le radici reali di $P$ con la precisione di macchina utilizzando opportunamente i metodi studiati. Qual è il numero di iterazioni del metodo utilizzato?
+\item Studiare il condizionamento delle radici reali di $P$. Riportare il valore delle radici con le cifre che si possono ritenere corrette.
+\end{itemize}
+\item Sia
+\[
+P(x) = 2x^8 - 8.02x^7 + 8.04x^6 + x^3 - 3.01x^2 + 0.001x + 4.02
+\]
+\begin{itemize}
+\item Individuare l'intervallo che contiene tutte le radici reali.
+\item Quante sono le radici reali? Che molteplicità hanno? Trovare per ciasuna radice reale un intervallo che la contiene.
+\item Approssimare le radici reali di $P$ con la precisione di macchina utilizzando opportunamente i metodi studiati. Qual è il numero di iterazioni del metodo utilizzato?
+\item Studiare il condizionamento delle radici reali di $P$. Riportare il valore delle radici con le cifre che si possono ritenere corrette.
+\end{itemize}
+\item Sia
+\[
+P(x) = x^{10} - 55x^9 + 1320x^8 - 18150x^7 + 157773x^6 - 902055x^5 + 3416930x^4 - 8409500x^3 + 12753576x^2 - 10628640x + 3628800.
+\]
+\begin{itemize}
+\item Individuare l'intervallo che contiene tutte le radici reali di $P$.
+\item Quante sono le radici reali? Che molteplicità hanno? Trovare per ciasuna radice reale un intervallo che la contiene.
+\item Approssimare le radici reali di $P$ con la precisione di macchina utilizzando opportunamente i metodi studiati. Qual è il numero di iterazioni del metodo utilizzato?
+\item Studiare il condizionamento delle radici reali di $P$. Riportare il valore delle radici con le cifre che si possono ritenere corrette.
+\end{itemize}
+\item Sia
+\[
+P(x) = x^6 - 2x^5 - 4x^4 + 6x^3 + 7x^2 - 4x - 4
+\]
+\begin{itemize}
+\item Individuare l'intervallo che contiene tutte le radici reali di $P$.
+\item Quante sono le radici reali? Che molteplicità hanno? Trovare per ciasuna radice reale un intervallo che la contiene.
+\item Approssimare le radici reali di $P$ con la precisione di macchina utilizzando opportunamente i metodi studiati. Qual è il numero di iterazioni del metodo utilizzato?
+\item Studiare il condizionamento delle radici reali di $P$. Riportare il valore delle radici con le cifre che si possono ritenere corrette.
+\end{itemize}
+\end{enumerate}
+
+\vspace{10pt}
+
+\subsection{Soluzioni}
+
+
+
+\end{document}
