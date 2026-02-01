@@ -3,11 +3,11 @@ function isSym = isSymm(A, tol)
 %  isSym = ISSYMM(A) restituisce true se A è simmetrica (entro 1e-10).
 %  isSym = ISSYMM(A, tol) permette di specificare la tolleranza.
 %
-%  INPUT:
+%  Input:
 %    A   - Matrice numerica quadrata (double)
 %    tol - (Opzionale) Soglia di tolleranza. Default: 1e-10
 %
-%  OUTPUT:
+%  Output:
 %    isSym - Logical true (1) se simmetrica, false (0) altrimenti
 
     %% 1. Validazione degli Input
