@@ -4,7 +4,7 @@ function isSym = isSymm(A, tol)
 %  isSym = ISSYMM(A, tol) permette di specificare la tolleranza.
 %
 %  INPUT:
-%    A - Matrice numerica quadrata (double)
+%    A   - Matrice numerica quadrata (double)
 %    tol - (Opzionale) Soglia di tolleranza. Default: 1e-10
 %
 %  OUTPUT:
