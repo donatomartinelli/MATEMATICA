@@ -25,7 +25,7 @@ function isDom = diagDomCol(A)
     % Calcolo i valori assoluti
     absA = abs(A);
 
-    % Estraggo la diagonale (vettore colonna nx1)
+    % Estraggo la diagonale
     d_diag = diag(absA);
 
     % Calcolo la somma di ogni colonna
