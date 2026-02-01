@@ -1,10 +1,10 @@
-function isSym = isSymm(mat, tol)
-%ISSYMM Verifica se una matrice è simmetrica con una data tolleranza.
-%  isSym = ISSYMM(mat) restituisce true se mat è simmetrica (entro 1e-10).
-%  isSym = ISSYMM(mat, tol) permette di specificare la tolleranza.
+function isSym = isSymm(A, tol)
+%ISSYMM Verifica se una Arice è simmetrica con una data tolleranza.
+%  isSym = ISSYMM(A) restituisce true se A è simmetrica (entro 1e-10).
+%  isSym = ISSYMM(A, tol) permette di specificare la tolleranza.
 %
 %  INPUT:
-%    mat - Matrice numerica quadrata (double)
+%    A - Matrice numerica quadrata (double)
 %    tol - (Opzionale) Soglia di tolleranza. Default: 1e-10
 %
 %  OUTPUT:
@@ -12,13 +12,13 @@ function isSym = isSymm(mat, tol)
 
     %% 1. Validazione degli Input
     arguments
-        mat (:,:) double {mustBeNumeric}
+        A (:,:) double {mustBeNumeric}
         tol (1,1) double {mustBeNonnegative} = 1e-10
     end
 
     %% 2. Controllo Dimensioni
     % Estraggo le dimensioni della matrice
-    [r, c] = size(mat);
+    [r, c] = size(A);
 
     % Verifico che la matrice sia quadrata
     if r ~= c
@@ -27,9 +27,9 @@ function isSym = isSymm(mat, tol)
 
     %% 3. Verifica Simmetria
     % Calcoliamo la trasposta una sola volta
-    matT = mat'; 
+    AT = A'; 
     
     % Confrontiamo vettorialmente usando la tolleranza
-    isSym = all( abs(mat(:) - matT(:)) <= tol );
+    isSym = all( abs(A(:) - AT(:)) <= tol );
 
 end
