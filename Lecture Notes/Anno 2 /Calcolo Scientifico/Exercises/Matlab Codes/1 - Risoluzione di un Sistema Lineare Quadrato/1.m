@@ -1,5 +1,5 @@
 function isSym = isSymm(A, tol)
-%ISSYMM Verifica se una Arice è simmetrica con una data tolleranza.
+%ISSYMM Verifica se una matrice è simmetrica con una data tolleranza.
 %  isSym = ISSYMM(A) restituisce true se A è simmetrica (entro 1e-10).
 %  isSym = ISSYMM(A, tol) permette di specificare la tolleranza.
 %
