@@ -4,10 +4,10 @@ function isPositive = isDefPos(A)
 %   positiva utilizzando il criterio di Sylvester (tutti i minori principali
 %   di testa devono avere determinante strettamente positivo).
 %
-%   INPUT:
+%   Input:
 %       A - Matrice quadrata numerica (reale e simmetrica).
 %
-%   OUTPUT:
+%   Output:
 %       isPositive - Logical true (1) se simmetrica, false (0) altrimenti.
 
     %% 1 - Validazione degli Input
