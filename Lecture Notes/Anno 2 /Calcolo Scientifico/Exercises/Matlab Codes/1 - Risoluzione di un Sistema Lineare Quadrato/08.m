@@ -32,8 +32,6 @@ function x = forwardSub(L, b, tol)
     end
     
     %% 3. Controllo Singolarità
-    % Se c'è uno zero sulla diagonale, non possiamo dividere.
-    % Usiamo una piccola tolleranza per i numeri floating point.
     if any(abs(diag(L)) < tol)
         error('forwardSub:SingularMatrix', 'La matrice è singolare.');
     end
