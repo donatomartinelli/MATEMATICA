@@ -28,14 +28,14 @@ function x = forwardSub(L, b, tol)
 
     % Verifico che b sia compatibile con L
     if m ~= length(b)
-        error('ForwardSub:DimensionMismatch', 'Le dimensioni di L e b non corrispondono (Input (%dx%d)x(%dx1)).',n,m,length(b));
+        error('forwardSub:DimensionMismatch', 'Le dimensioni di L e b non corrispondono (Input (%dx%d)x(%dx1)).',n,m,length(b));
     end
     
     %% 3. Controllo Singolarità
     % Se c'è uno zero sulla diagonale, non possiamo dividere.
     % Usiamo una piccola tolleranza per i numeri floating point.
     if any(abs(diag(L)) < tol)
-        error('ForwardSub:SingularMatrix', 'La matrice è singolare.');
+        error('forwardSub:SingularMatrix', 'La matrice è singolare.');
     end
 
     %% 4. Sostituzione in Avanti
