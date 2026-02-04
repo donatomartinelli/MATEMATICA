@@ -8,7 +8,7 @@ function n = cifDecCorr(valExact, valApprox)
 %    valApprox - Valore approssimato (numerico: stesse dimensioni di valExact)
 %
 %  Output:
-%    n         - Numero intero di cifre decimali corrette.
+%    n - Numero intero di cifre decimali corrette.
 %      Restituisce Inf se valExact e valApprox sono identici (errAbs 0).
 
     %% 1. Validazione degli Input
