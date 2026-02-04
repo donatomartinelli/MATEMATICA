@@ -41,15 +41,14 @@ function V = invL(L, tol)
         % 2. Sostituzione in avanti per la colonna j (righe i > j)
         for i = j+1:n    
             V(i,j) = 0;
-            % Sommatoria prodotti noti L(i,k)*V(k,j).
-            % Nota: k parte da j (non 1) sfruttando la triangolarità inferiore.
+            % Inizializzazione dell'accumulatore per la sommatoria
             for k = j:i-1
-                V(i,j) = V(i,j) + L(i,k) * V(k,j);
+                V(i,j) = V(i,j) - L(i,k) * V(k,j);
             end
             
-            % Risoluzione equazione: L(i,i)*V(i,j) + Somma = 0
-            V(i,j) = -V(i,j) / L(i,i);
+            % Divisione finale per il coefficiente della diagonale
+            V(i,j) = V(i,j) / L(i,i);
         end
     end
-
+    
 end
