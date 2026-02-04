@@ -23,7 +23,6 @@ function n = cifDecCorr(valExact, valApprox)
     end
 
     %% 3. Calcolo cifre decimali corrette
-    % Calcolo l'errore assoluto
-    err = errAbs(valExact, valApprox);
+    err = errAbs(valExact, valApprox); % Calcolo l'errore assoluto
     n = floor(-log10(2 * err));
 end
