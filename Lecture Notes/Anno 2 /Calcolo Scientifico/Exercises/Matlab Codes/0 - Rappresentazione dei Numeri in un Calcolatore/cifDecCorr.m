@@ -1,7 +1,7 @@
 function n = cifDecCorr(valExact, valApprox)
 % CIFDECCORR Calcola il numero di cifre decimali corrette.
 %  n = CIFDECCORR(valExact, valApprox) calcola il numero di cifre 
-%  decimali significative corrette basandosi sull'errore assoluto.
+%  decimali corrette basandosi sull'errore assoluto.
 %
 %  Input:
 %    valExact  - Valore esatto (numerico: scalare, vettore o matrice)
