@@ -20,4 +20,4 @@ for i = 1:2
 end
 
 %% 3. Controllo Finale
-fprintf('\nErrore relativo tra le due soluzioni: %e\n', norm(x-y,inf));
+fprintf('\nErrore massimo (forwardSub vs Matlab): %e\n', norm(x-y,inf));
