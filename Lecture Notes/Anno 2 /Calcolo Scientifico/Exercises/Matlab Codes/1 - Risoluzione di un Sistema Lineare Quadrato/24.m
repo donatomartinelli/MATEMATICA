@@ -1,8 +1,6 @@
-clc; clear; clc;
-
 %% 1. Dati
 n = 18;
-A = ones(n);
+A = zeros(n);
 for i = 1:n
     for j = 1:n
         A(i,j) = cos((j-1) * pi * ((2 * i-1) / (2 * n)));
@@ -36,3 +34,5 @@ fprintf('\nErrore relativo (Gauss vs Esatta):\n%e\n', errxge);
 fprintf('Cifre significative corrette:\n%d\n', cscxge);
 fprintf('\nErrore relativo (GaussPP vs Esatta):\n%e\n', errxgepp);
 fprintf('Cifre significative corrette:\n%d\n', cscxgepp);
+
+% Siccome il metodo GEPP mantiene più cifre significative, come risultato dai test, possiamo dire che è il più stabile tra i due.
