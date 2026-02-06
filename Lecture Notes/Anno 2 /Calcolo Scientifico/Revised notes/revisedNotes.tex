@@ -49,7 +49,7 @@
     frame=single                     % Cornice attorno al codice
 }
 
-% Stile per l'OUTPUT (senza colori, sfondo grigio chiaro)
+% Stile per l'Output (senza colori, sfondo grigio chiaro)
 \lstdefinestyle{matlabOutput}{
     language={},                     % Nessun linguaggio
     backgroundcolor=\color{gray!10}, % Sfondo grigio chiaro
@@ -106,7 +106,7 @@
     
     {\huge\bfseries Calcolo Scientifico \par}
     \vspace{0.2cm}
-    {\Large\itshape Appunti delle lezioni ed esercizi rielaborati \par}
+    {\Large\itshape Appunti rielaborati delle lezioni ed esercizi svolti \par}
     
     \vspace{0.4cm}
     % Linea orizzontale inferiore
@@ -138,7 +138,7 @@
 
 \tableofcontents
 
-\newpage
+\newpage 
 
 \section{Introduzione}
 
@@ -188,7 +188,7 @@ Nonostante la potenza dei calcolatori moderni, i matematici affrontano ancora di
 Un tema centrale del Calcolo Scientifico è la consapevolezza dell'errore e della sua propagazione. Alcuni metodi propagano gli errori (introdotti nei dati iniziali) al punto da fornire soluzioni completamente sbagliate. 
 Si studia quindi la stabilità degli algoritmi rispetto a questi errori.
 
-\vspace{20pt}
+\newpage
 
 \section{Rappresentazione dei Numeri in un Calcolatore}
 \paragraph{Sistemi di Numerazione}
@@ -673,9 +673,11 @@ ans =
 \vspace{20pt}
 
 \subsection{Errori}
+
+\vspace{10pt}
+
 \paragraph{Cause principali di errori nella risoluzione di problemi matematici con un calcolatore}
 Nella risoluzione di un problema matematico con un calcolatore le sorgenti di errore possono essere, in generale, suddivise in due gruppi.
-
 \begin{enumerate}
     \item \textbf{Errori di rappresentazione dei dati o di arrotondamento} \\
     Abbiamo visto che non tutti i numeri reali possono essere rappresentati in un calcolatore. Se il calcolatore utilizza una rappresentazione con $t$ cifre per la mantissa, tutti i numeri reali compresi tra l'estremo inferiore e l'estremo superiore di $\mathbb{F}$ la cui mantissa ha un numero di cifre superiore a $t$ dovranno essere arrotondati o troncati a $t$ cifre.
@@ -698,23 +700,26 @@ La quantità
 $$ \Delta a = |a - A| $$
 si chiama errore assoluto.    
 \end{defn}
-\begin{lstlisting}[style=matlabCode, title={Funzione errore assoluto}]
+\begin{lstlisting}[style=matlabCode, title={Function errAbs}]
 function e = errAbs(valExact, valApprox)
-%ERRABS Calcola l'errore assoluto con validazione degli input.
-%   E = ERRABS(VALEXACT, VALAPPROX) calcola |valExact - valApprox|.
+% ERRABS Calcola l'errore assoluto (norma Euclidea della differenza).
+%   E = ERRABS(VALEXACT, VALAPPROX) restituisce ||valExact - valApprox||_2.
 %   Supporta scalari, vettori e matrici multidimensionali.
-
+    
+    %% 1. Validazione degli Input
     arguments
-        valExact  {mustBeNumeric}
-        valApprox {mustBeNumeric}
+        valExact  double {mustBeNumeric}
+        valApprox double {mustBeNumeric}
     end
 
-    % Controllo manuale delle dimensioni
+    %% 2. Controllo Dimensioni 
+    % isequal è il metodo standard per confrontare le dimensioni di array/matrici
     if ~isequal(size(valExact), size(valApprox))
-        error('Input arguments must be of the same size.');
+        error("errAbs:DimensionMismatch", "Dimensioni incompatibili (%d e %d).", size(valExact), size(valApprox));
     end
 
-    e = abs(valExact - valApprox);
+    %% 3. Calcolo Errore Assoluto
+    e = norm(valExact - valApprox);
 end
 \end{lstlisting}
 \end{bxthm}
@@ -731,23 +736,35 @@ La quantità
 $$ \delta a = \frac{|a - A|}{|a|} $$
 si chiama errore relativo.    
 \end{defn}
-\begin{lstlisting}[style=matlabCode, title={Funzione errore relativo}]
-function e = errRel(valExact, valApprox)
-%ERRREL Calcola l'errore relativo richiamando errAbs.
-%   E = ERRREL(VALEXACT, VALAPPROX) sfrutta la funzione errAbs per il
-%   numeratore e normalizza rispetto al valore esatto.
+\begin{lstlisting}[style=matlabCode, title={Function errRel}]
+function e = errRel(valExact, valApprox, tol)
+% ERRREL Calcola l'errore relativo in norma 2.
+%   E = ERRREL(VALEXACT, VALAPPROX, TOL) calcola ||valExact- valApprox|| / ||valExact||.
+%
+%   NOTA: Se ||valExact|| < tol, la funzione restituisce l'errore assoluto
+%   per evitare divisioni per zero (NaN/Inf).
 
+    %% 1. Validazione degli Input
     arguments
-        valExact  {mustBeNumeric}
-        valApprox {mustBeNumeric}
+        valExact  double {mustBeNumeric}
+        valApprox double {mustBeNumeric}
+        tol (1,1) double {mustBeNumeric} = 1e-10
     end
 
-    % Controllo manuale delle dimensioni
-    if ~isequal(size(valExact), size(valApprox))
-        error('Input arguments must be of the same size.');
+    %% 2. Calcolo Numeratore (Errore Assoluto)
+    num = errAbs(valExact, valApprox);
+    
+    %% 3. Calcolo Denominatore e Gestione Singolarità
+    den = norm(valExact);
+    
+    if den < tol
+        % Caso critico: La soluzione esatta è zero. 
+        % L'errore relativo non è definito. Restituiamo l'assoluto.
+        warning("errRel:ZeroNorm", "La norma della soluzione esatta è minore della tolleranza. Restituisco Errore Assoluto.");
+        e = num;
+    else
+        e = num / den;
     end
-
-    e = errAbs(valExact, valApprox) ./ abs(valExact);
 end
 \end{lstlisting}
 \end{bxthm}
@@ -779,24 +796,36 @@ Partendo dalla disuguaglianza che lega l'errore assoluto $\Delta a$ al numero di
 \end{align*}
 Poiché $t$ deve essere un intero, si assume il massimo valore che soddisfa la condizione (parte intera inferiore):
 \[t = \left\lfloor - \log_{10}(2 \cdot \Delta a) \right\rfloor.\]
-\begin{lstlisting}[style=matlabCode, title={Funzione cifre decimali corrette}]
-function n = cifDecCorr(valExact, valApprox)
-%CIFDECCORR Calcola il numero di cifre decimali corrette.
-%   n = floor(-log10(2 * errAbs(valExact, valApprox)))
 
+\vspace{10pt}
+
+\begin{lstlisting}[style=matlabCode, title={Function cifDecCorr}]
+function n = cifDecCorr(valExact, valApprox)
+% CIFDECCORR Calcola il numero di cifre decimali corrette.
+%  n = CIFDECCORR(valExact, valApprox) calcola il numero di cifre 
+%  decimali corrette basandosi sull'errore assoluto.
+%
+%  Input:
+%    valExact  - Valore esatto (numerico: scalare, vettore o matrice)
+%    valApprox - Valore approssimato (numerico: stesse dimensioni di valExact)
+%
+%  Output:
+%    n - Numero intero di cifre decimali corrette.
+%      Restituisce Inf se valExact e valApprox sono identici (errAbs 0).
+
+    %% 1. Validazione degli Input
     arguments
         valExact  {mustBeNumeric}
         valApprox {mustBeNumeric}
     end
 
-    % Controllo manuale delle dimensioni
+    %% 2. Controllo Dimensioni
     if ~isequal(size(valExact), size(valApprox))
-        error('Input arguments must be of the same size.');
+        error('cifDecCorr:SizeMismatch', 'Gli input devono avere la stessa dimensione.');
     end
 
-    % Calcolo l'errore assoluto
-    err = errAbs(valExact, valApprox);
-
+    %% 3. Calcolo cifre decimali corrette
+    err = errAbs(valExact, valApprox); % Calcolo l'errore assoluto
     n = floor(-log10(2 * err));
 end
 \end{lstlisting}
@@ -820,24 +849,35 @@ Partendo dalla disuguaglianza che lega l'errore relativo $\delta a$ al numero di
 \end{align*}
 Poiché $t$ deve essere un intero, si assume il massimo valore che soddisfa la condizione (parte intera inferiore):
 \[t = \left\lfloor 1 - \log_{10}(2 \cdot \delta a) \right\rfloor.\]
-\begin{lstlisting}[style=matlabCode, title={Funzione cifre significative corrette}]
-function n = cifSigCorr(valExact, valApprox)
-%CIFSIGCORR Calcola il numero di cifre significative corrette.
-%   n = floor(1-log10(2 * errRel(valExact, valApprox)))
 
+\vspace{10pt}
+
+\begin{lstlisting}[style=matlabCode, title={Function cifSigCorr}]
+function n = cifSigCorr(valExact, valApprox)
+% CIFSIGCORR Calcola il numero di cifre significative corrette.
+%  n = CIFSIGCORR(valExact, valApprox) calcola il numero di cifre 
+%  significative corrette basandosi sull'errore relativo.
+%
+%  Input:
+%    valExact  - Valore esatto (numerico: scalare, vettore o matrice)
+%    valApprox - Valore approssimato (numerico: stesse dimensioni di valExact)
+%
+%  Output:
+%    n - Numero intero di cifre significative corrette.
+
+    %% 1. Validazione degli Input
     arguments
         valExact  {mustBeNumeric}
         valApprox {mustBeNumeric}
     end
 
-    % Controllo manuale delle dimensioni
+    %% 2. Controllo Dimensioni
     if ~isequal(size(valExact), size(valApprox))
-        error('Input arguments must be of the same size.');
+        error('cifSigCorr:SizeMismatch', 'Gli input devono avere la stessa dimensione.');
     end
 
-    % Calcolo l'errore assoluto
-    err = errRel(valExact, valApprox);
-
+    %% 3. Calcolo cifre significative corrette
+    err = errRel(valExact, valApprox); % Calcolo l'errore relativo
     n = floor(1-log10(2 * err));
 end
 \end{lstlisting}
@@ -1093,6 +1133,9 @@ cioè \texttt{eps(1) = eps}.
 \vspace{20pt}
 
 \subsection{Operazioni Macchina e Cancellazione Numerica}
+
+\vspace{10pt}
+
 \paragraph{Terza conseguenza della rappresentazione dei numeri come parole di lunghezza fissa - Errori nei calcoli}
 Non sempre una operazione tra due o più numeri macchina produce un risultato che è un numero macchina.
 Si può verificare una situazione di overflow o underflow.
@@ -1640,6 +1683,9 @@ Ne consegue che nella valutazione di $y_{2}$ si ha una perdita di precisione mag
 \vspace{20pt}
 
 \subsection{Propagazione degli Errori Introdotti nei Dati Iniziali}
+
+\vspace{10pt}
+
 \paragraph{Condizionamento di un problema}
 L'esempio della cancellazione numerica introduce un concetto molto rilevante del Calcolo Scientifico: il condizionamento di un problema.
 Nella risoluzione di un problema matematico è in molti casi utile avere una misura di quanto i risultati siano sensibili a piccoli cambiamenti dei dati iniziali.
@@ -1984,13 +2030,16 @@ ans =
 Possiamo concludere che il secondo algoritmo è più stabile del primo.
 \end{exmp}
 
-\vspace{20pt}
+\newpage
 
 \section{Risoluzione di un Sistema Lineare Quadrato}
 
 \vspace{20pt}
 
 \subsection{Il Problema della Risoluione di un Sistema Lineare}
+
+\vspace{10pt}
+
 \paragraph{Generalità sui Sistemi Lineari}
 Molti problemi dell'ingegneria, della fisica, della chimica, dell'informatica e dell'economia, si modellizzano mediante equazioni lineari, cioè equazioni in cui le incognite appaiono con esponente uguale ad uno e sono legate tra loro da relazioni lineari (prodotto per scalari e somme algebriche).
 Un sistema di $n$ equazioni lineari in $n$ incognite è definito come segue:
@@ -2128,16 +2177,57 @@ $$
 \paragraph{Matrice Simmetrica}
 \begin{bxthm}
 \begin{defn}
-Una matrice $A$ si dice \textbf{simmetrica} se coincide con la sua trasposta, cioè $A = A^{T}$.
+Una matrice $A$ si dice \textbf{simmetrica} se coincide con la sua trasposta, cioè $A = {}^tA$.
 \end{defn}
 \end{bxthm}
+
+\vspace{10pt}
+
+\begin{lstlisting}[style=matlabCode, title={Function isSymm}]
+function isSym = isSymm(A, tol)
+%ISSYMM Verifica se una matrice è simmetrica con una data tolleranza.
+%  isSym = ISSYMM(A) restituisce true se A è simmetrica (entro 1e-10).
+%  isSym = ISSYMM(A, tol) permette di specificare la tolleranza.
+%
+%  Input:
+%    A   - Matrice numerica quadrata (double)
+%    tol - (Opzionale) Soglia di tolleranza. Default: 1e-10
+%
+%  Output:
+%    isSym - Logical true (1) se simmetrica, false (0) altrimenti
+
+    %% 1. Validazione degli Input
+    arguments
+        A (:,:) double {mustBeNumeric}
+        tol (1,1) double {mustBeNonnegative} = 1e-10
+    end
+
+    %% 2. Controllo Dimensioni
+    % Estraggo le dimensioni della matrice
+    [r, c] = size(A);
+
+    % Verifico che la matrice sia quadrata
+    if r ~= c
+        error('isSymm:DimError', 'La matrice deve essere quadrata (Input size: %dx%d).', r, c);
+    end
+
+    %% 3. Verifica Simmetria
+    % Calcoliamo la trasposta una sola volta
+    AT = A'; 
+    
+    % Confrontiamo vettorialmente usando la tolleranza
+    isSym = all( abs(A(:) - AT(:)) <= tol );
+
+end
+\end{lstlisting}
 
 \vspace{10pt}
 
 \paragraph{Matrice Definita Positiva}
 \begin{bxthm}
 \begin{defn}
-Una matrice simmetrica $A$ si dice \textbf{definita positiva} se per ogni vettore $y \in \mathbb{R}^{n}, y \neq 0$ si ha $y^{T}Ay > 0$.
+Una matrice simmetrica $A$ si dice \textbf{definita positiva} se
+$$\forall\,\mathbf{y} \in \mathbb{R}^{n}\; (\mathbf{y} \neq \mathbf{0}),\quad{}^t\mathbf{y}A\mathbf{y} > 0.$$
 \end{defn}
 \end{bxthm}
 
@@ -2154,6 +2244,57 @@ dove $\det(A_{k})$ è il determinante della sottomatrice principale di testa di 
 
 \vspace{10pt}
 
+\begin{lstlisting}[style=matlabCode, title={Function isDefPos}]
+function isPositive = isDefPos(A)
+% ISDEFPOS Determina se una matrice è definita positiva.
+%  isPositive = ISDEFPOS(A) restituisce true se la matrice A è definita
+%  positiva utilizzando il criterio di Sylvester (tutti i minori principali
+%  di testa devono avere determinante strettamente positivo).
+%
+%  Input:
+%    A - Matrice quadrata numerica (reale e simmetrica).
+%
+%  Output:
+%    isPositive - Logical true (1) se simmetrica, false (0) altrimenti.
+
+    %% 1 - Validazione degli Input
+    arguments
+        A (:,:) {mustBeNumeric, mustBeReal}
+    end
+
+    %% 2 - Controllo Dimensioni e Simmetria
+    % Estraggo le dimensioni della matrice
+    [r,c] = size(A);
+
+    % Verifico che la matrice sia quadrata
+    if r ~= c
+        error('isDefPos:NonSquareMatrix', 'La matrice di input deve essere quadrata (%dx%d).', rows, cols);
+    end
+
+    % Verifica della simmetria (condizione necessaria per def. pos. reale)
+    if ~isSymm(A)
+        error('isDefPos:NonSymmetricMatrix', 'La matrice deve essere simmetrica per applicare il criterio.');
+    end
+
+    %% 3 - Verifica Definita Positività
+    % Inizializzazione
+    isPositive = true;
+
+    % Criterio di Sylvester con uscita anticipata
+    for k = 1:r
+        minorDet = det(A(1:k, 1:k));
+        
+        if minorDet <= 0
+            isPositive = false;
+            return; % Interrompe il calcolo se un minore non soddisfa la condizione
+        end
+    end
+
+end
+\end{lstlisting}
+
+\vspace{10pt}
+
 \paragraph{Matrice a Diagonale Dominante}
 \begin{bxthm}
 \begin{defn}
@@ -2165,6 +2306,132 @@ $$ |a_{j,j}| > \sum_{i=1, i \neq j}^{n} |a_{i,j}|, \quad j\in\{1,\ldots,n\} .$$
 \end{bxthm}
 
 \vspace{10pt}
+
+\paragraph{Esempio di Matrice a Diagonale Dominante per Righe}
+Consideriamo la seguente matrice $A$:
+$$ A = \begin{bmatrix} 
+5 & 1 & 2 \\ 
+-2 & 6 & 1 \\ 
+1 & 3 & 8 
+\end{bmatrix} $$
+\vspace{10pt}
+Verifichiamo la condizione $|a_{i,i}| > \sum_{j \neq i} |a_{i,j}|$ per ogni riga $i$:
+\begin{itemize}
+    \item \textbf{Riga 1 ($i=1$):} elemento diagonale $5$. Somma degli altri elementi: $|1| + |2| = 3$.
+    $$ 5 > 3 \quad (\text{Vero}) $$
+    \item \textbf{Riga 2 ($i=2$):} elemento diagonale $6$. Somma degli altri elementi: $|-2| + |1| = 3$.
+    $$ 6 > 3 \quad (\text{Vero}) $$
+    \item \textbf{Riga 3 ($i=3$):} elemento diagonale $8$. Somma degli altri elementi: $|1| + |3| = 4$.
+    $$ 8 > 4 \quad (\text{Vero}) $$
+\end{itemize}
+\vspace{10pt}
+Poiché la condizione è soddisfatta per tutte le righe, la matrice $A$ è a diagonale dominante per righe.
+
+\vspace{10pt}
+
+\begin{lstlisting}[style=matlabCode, title={Function diagDomRow}]
+function isDom = diagDomRow(A)
+% DIAGDOMROW Verifica se una matrice è a diagonale dominante per righe.
+%   isDom = DIAGDOMROW(A) restituisce true se la matrice A è a diagonale
+%   dominante per righe.
+%
+%   Input:
+%       A - Matrice quadrata numerica.
+%
+%   Output:
+%       isDom - Logical true (1) se dominante per righe, false (0) altrimenti. 
+
+    %% 1. Validazione Input
+    arguments
+        A (:,:) {mustBeNumeric}
+    end
+
+    %% 2. Controllo Dimensioni
+    % Estraggo le dimensioni
+    [m, n] = size(A);
+    if m ~= n
+        error('diagDomRow:NonSquareMatrix', 'La matrice deve essere quadrata (Input %dx%d).', m, n);
+    end
+
+    %% 3. Verifico Proprietà
+    % Calcolo i valori assoluti
+    absA = abs(A);
+
+    % Estraggo la diagonale
+    d_diag = diag(absA);
+
+    % Calcolo la somma di ogni riga
+    sum_rows = sum(absA,2);
+
+    % Calcolo la somma degli elementi extra-diagonali
+    sum_off_diag = sum_rows - d_diag;
+
+    % Verifica della condizione 
+    isDom = true;
+    for i = 1:m
+        if d_diag(i) <= sum_off_diag(i)
+            isDom = false;
+            return; % Interrompe appena trova una riga che viola la condizione
+        end
+    end
+
+end
+\end{lstlisting}
+
+\vspace{10pt}
+
+\begin{lstlisting}[style=matlabCode, title={Function diagDomCol}]
+function isDom = diagDomCol(A)
+% DIAGDOMCOL Verifica se una matrice è a diagonale dominante per colonne.
+%   isDom = DIAGDOMCOL(A) restituisce true se la matrice A è a diagonale
+%   dominante per colonne.
+%
+%   Input:
+%       A - Matrice quadrata numerica.
+%
+%   Output:
+%       isDom - Logical true (1) se dominante per colonne, false (0) altrimenti. 
+
+    %% 1. Validazione Input
+    arguments
+        A (:,:) {mustBeNumeric}
+    end
+
+    %% 2. Controllo Dimensioni
+    % Estraggo le dimensioni
+    [m, n] = size(A);
+    if m ~= n
+        error('diagDomCol:NonSquareMatrix', 'La matrice deve essere quadrata (Input %dx%d).', m, n);
+    end
+
+    %% 3. Verifico Proprietà
+    % Calcolo i valori assoluti
+    absA = abs(A);
+
+    % Estraggo la diagonale
+    d_diag = diag(absA);
+
+    % Calcolo la somma di ogni colonna
+    sum_cols = sum(absA).';
+
+    % Calcolo la somma degli elementi extra-diagonali
+    sum_off_diag = sum_cols - d_diag;
+
+    % Verifica della condizione 
+    isDom = true;
+    for j = 1:n
+        if d_diag(j) <= sum_off_diag(j)
+            isDom = false;
+            return; % Interrompe appena trova una colonna che viola la condizione
+        end
+    end
+
+end
+\end{lstlisting}
+
+\vspace{10pt}
+
+
 
 \paragraph{Norme Vettoriali}
 \begin{bxthm}
@@ -2179,7 +2446,7 @@ Le norme più utilizzate sono:
 \begin{itemize}
     \item \textbf{Norma infinito:} $$||x||_{\infty} = \max_{1 \le i \le n} |x_{i}|;$$
     \item \textbf{Norma 1:} $$||x||_{1} = \sum_{i=1}^{n} |x_{i}|;$$
-    \item \textbf{Norma Euclidea (o norma 2):} $$||x||_{2} = \sqrt{\sum_{i=1}^{n} |x_{i}|^{2}} = \sqrt{x^{T}x}.$$
+    \item \textbf{Norma Euclidea (o norma 2):} $$||x||_{2} = \sqrt{\sum_{i=1}^{n} |x_{i}|^{2}} = \sqrt{{}^txx}.$$
 \end{itemize}
 \end{defn}
 \end{bxthm}
@@ -2208,7 +2475,7 @@ Le norme matriciali più utilizzate sono:
 \begin{itemize}
     \item \textbf{Norma infinito:} $$||A||_{\infty} = \max_{1 \le i \le n} \sum_{j=1}^{n} |a_{i,j}|$$ (massima somma per righe).
     \item \textbf{Norma 1:} $$||A||_{1} = \max_{1 \le j \le n} \sum_{i=1}^{n} |a_{i,j}|$$ (massima somma per colonne).
-    \item \textbf{Norma Spettrale (o norma 2):} $$||A||_{2} = \sqrt{\rho(A^{T}A)},$$ dove $\rho(B)$ è il raggio spettrale di $B$ (modulo massimo degli autovalori).
+    \item \textbf{Norma Spettrale (o norma 2):} $$||A||_{2} = \sqrt{\rho({}^tAA)},$$ dove $\rho(B)$ è il raggio spettrale di $B$ (modulo massimo degli autovalori).
     \item \textbf{Norma di Frobenius:} $$||A||_{F} = \sqrt{\sum_{i=1}^{n}\sum_{j=1}^{n} |a_{i,j}|^{2}}.$$
 \end{itemize}
 \end{defn}
@@ -2374,6 +2641,9 @@ I metodi diretti trasformano il problema in problemi equivalenti. Sono efficient
 \vspace{20pt}
 
 \subsection{Sistemi Diagonali e Triangolari}
+
+\vspace{10pt}
+
 \paragraph{Metodi Diretti}
 Si chiamano metodi diretti quei metodi numerici che risolvono sistemi lineari in un numero finito di passi. In altri termini, supponendo di effettuare i calcoli in precisione infinita, tali metodi forniscono la soluzione esatta del sistema mediante un numero finito di operazioni, noto a priori.
 In precisione di calcolo finita invece, se il metodo proposto è stabile, esso fornisce una soluzione approssimata con la precisione massima ottenibile, cioè in accordo con il condizionamento della matrice dei coefficienti.
@@ -2382,7 +2652,7 @@ In precisione di calcolo finita invece, se il metodo proposto è stabile, esso f
 
 \paragraph{Sistemi Diagonali}
 Il più banale dei metodi diretti si ottiene nel caso delle matrici diagonali.
-Se denotiamo con $x=(x_{1}, x_{2}, \dots, x_{n})^{T}$ e $b=(b_{1}, b_{2}, \dots, b_{n})^{T}$ rispettivamente il vettore delle incognite e quello dei termini noti, e se la matrice dei coefficienti è del tipo:
+Se denotiamo con $x={}^t(x_{1}, x_{2}, \dots, x_{n})$ e $b={}^t(b_{1}, b_{2}, \dots, b_{n})$ rispettivamente il vettore delle incognite e quello dei termini noti, e se la matrice dei coefficienti è del tipo:
 $$
 D = \begin{pmatrix}
 a_{1,1} & 0 & 0 & \dots & 0 \\
@@ -2395,6 +2665,59 @@ il sistema $Dx=b$, nell'ipotesi che $D$ sia non singolare (cioè $a_{i,i} \neq 0
 $$ x_{i} = \frac{b_{i}}{a_{i,i}}, \quad i\in\{1,\ldots,n\} $$
 con un costo computazionale complessivo di $n$ operazioni di divisione.
 L'algoritmo è ben posto se la matrice è non singolare. Inoltre, poiché l'algoritmo è composto da $n$ divisioni indipendenti l'una dall'altra, esso è banalmente stabile.
+
+\vspace{10pt}
+
+\begin{lstlisting}[style=matlabCode, title={Function diagSub}]
+function x = diagSub(D, b, tol)
+% DIAGSUB Risolve il sistema lineare diagonale Dx = b. 
+%  X = DIAGSUB(D, B, TOL) restituisce il vettore soluzione X.
+%
+%  Input:
+%    D - Matrice quadrata diagonale (n x n)
+%    b - Vettore dei termini noti (n x 1)
+%    tol (opzionale) - Tolleranza per verifica della singolarità (1 x 1)
+%
+%  Output:
+%    x - Vettore soluzione (n x 1)
+
+    %% 1. Validazione degli Input
+    arguments
+        D (:,:) double {mustBeNumeric}
+        b (:,1) double {mustBeNumeric}
+        tol (1,1) double {mustBeNumeric} = 1e-10
+    end
+
+    %% 2. Controllo Dimensioni
+    % Estraggo le dimensioni
+    [n,m] = size(D);
+    
+    % Verifico che D sia quadrata
+    if n ~= m
+        error('diagSub:NonSquareMatrix', 'La matrice D deve essere quadrata (Input %dx%d).', n, m);
+    end
+
+    % Verifico che b sia compatibile con D
+    if m ~= length(b)
+        error('diagSub:DimensionMismatch', 'Le dimensioni di D e b non corrispondono (Input (%dx%d)x(%dx1)).',n,m,length(b));
+    end
+    
+    %% 3. Controllo Singolarità
+    if any(abs(diag(D)) < tol)
+        error('diagSub:SingularMatrix', 'La matrice è singolare.');
+    end
+
+    %% 4. Sostituzione in Avanti
+    % Pre-allocazione
+    x = zeros(n, 1);
+
+    % Ciclo principale
+    for i = 1 : n 
+        x(i) = b(i) / D(i,i);
+    end
+
+end
+\end{lstlisting}
 
 \vspace{10pt}
 
@@ -2420,7 +2743,7 @@ u_{1,1} & u_{1,2} & \dots & u_{1,n-1} & u_{1,n} \\
 0 & 0 & \dots & 0 & u_{n,n}
 \end{pmatrix}
 $$
-Vogliamo fornire degli algoritmi per la risoluzione dei sistemi $Lx=b$ e $Ux=b$.
+Vogliamo fornire degli algoritmi per la risoluzione dei sistemi $L\mathbf{x}=\mathbf{b}$ e $U\mathbf{x}=\mathbf{b}$.
 Una matrice triangolare è non singolare se e solo se i suoi elementi diagonali sono tutti diversi da zero. Infatti:
 $$ \det(L) = \prod_{i=1}^{n}l_{ii} \neq 0 \;\iff\; l_{i,i} \neq 0,\quad \forall i\in\{1,\ldots,n\} ;$$
 $$ \det(U) = \prod_{i=1}^{n}u_{ii} \neq 0 \;\iff\; u_{i,i} \neq 0,\quad \forall i\in\{1,\ldots,n\} .$$
@@ -2428,8 +2751,8 @@ Gli algoritmi per la risoluzione di sistemi con matrice dei coefficienti triango
 
 \vspace{10pt}
 
-\paragraph{Algoritmo di Sostituzione in Avanti (Forward Substitution)}
-Esaminiamo il caso della matrice triangolare inferiore $Lx=b$. Esplicitamente il sistema può scriversi come:
+\subparagraph{Algoritmo di Sostituzione in Avanti (Forward Substitution)}
+Esaminiamo il caso della matrice triangolare inferiore $L\mathbf{x}=\mathbf{b}$. Esplicitamente il sistema può scriversi come:
 $$
 \begin{cases}
 l_{1,1}x_{1} = b_{1} \\
@@ -2446,7 +2769,10 @@ $$ x_{3} = \frac{b_{3} - l_{3,1}x_{1} - l_{3,2}x_{2}}{l_{3,3}} $$
 $$ \dots $$
 $$ x_{i} = \frac{b_{i} - \sum_{k=1}^{i-1} l_{i,k}x_{k}}{l_{i,i}}, \quad i\in\{2,\dots,n\} $$
 L'algoritmo è ben posto se la matrice $L$ è non singolare.
-\paragraph{Schema Algoritmo e Costo per Iterazione}
+
+\vspace{10pt}
+
+\subparagraph{Schema Algoritmo}
 \begin{verbatim}
 x(1) = b(1) / L(1,1)                  % 1 flop (divisione)
 for i = 2 : n
@@ -2457,137 +2783,175 @@ for i = 2 : n
     x(i) = x(i) / L(i,i)              % 1 flop (divisione)
 end
 \end{verbatim}
-\paragraph{Calcolo del Costo Computazionale}
-Per determinare il costo totale in termini di operazioni floating-point (flops), analizziamo le operazioni svolte per ogni riga $i$-esima.
-\begin{itemize}
-    \item Il ciclo interno ($k$) esegue 2 operazioni (moltiplicazione e sottrazione) ripetute $i-1$ volte.
-    \item Al termine del ciclo interno viene eseguita 1 divisione.
-\end{itemize}
-Il costo per la riga $i$ è quindi $2(i-1) + 1 = 2i - 1$ flops. Sommando su tutte le righe da $1$ a $n$:
-$$ C(n) = \sum_{i=1}^{n} (2i - 1) = 2\sum_{i=1}^{n} i - \sum_{i=1}^{n} 1 $$
-Utilizzando la formula della somma dei primi $n$ interi $\sum i = \frac{n(n+1)}{2}$:
-$$ C(n) = 2 \cdot \frac{n(n+1)}{2} - n = n^2 + n - n = n^2 \text{ flops} .$$
-\subparagraph{Implementazione Ottimizzata in MATLAB}
-Nel passaggio dallo schema teorico all'implementazione pratica in ambiente MATLAB (funzione \texttt{forwardSub}), sono state introdotte alcune variazioni fondamentali per garantire efficienza e stabilità numerica:
-\begin{itemize}
-    \item \textbf{Vettorizzazione (Vectorization):} In MATLAB, il ciclo interno (la sommatoria $\sum l_{i,k}x_k$) è sostituito da un prodotto matriciale riga-per-colonna tra la porzione della riga $i$-esima di $L$ e la parte del vettore $x$ già calcolata:
-    \begin{center}
-    \texttt{sommatoria = L(i, 1:i-1) * x(1:i-1);}
-    \end{center}
-    Sebbene la complessità computazionale rimanga $O(n^2)$, questo approccio riduce l'overhead dell'interprete e sfrutta le librerie ottimizzate di algebra lineare (BLAS), risultando significativamente più veloce nell'esecuzione rispetto a un ciclo \texttt{for} esplicito.
-    
-    \item \textbf{Robustezza e Validazione:} A differenza dello pseudo-codice, la funzione reale include il blocco \texttt{arguments} per la validazione dei tipi e controlli espliciti sulle dimensioni. Inoltre, la verifica della non-singolarità non avviene controllando l'uguaglianza con zero ($L_{ii} = 0$), ma verificando che $|L_{ii}| < \texttt{eps}$ (epsilon macchina), per gestire correttamente gli errori di arrotondamento propri dell'aritmetica floating point.
-    
-    \item \textbf{Pre-allocazione:} Il vettore soluzione viene inizializzato staticamente con \texttt{zeros(n,1)} prima del ciclo, evitando costose riallocazioni dinamiche della memoria durante l'esecuzione.
-\end{itemize}
-\begin{lstlisting}[style=matlabCode, title={Funzione forwardSub}]
-function x = forwardSub(L, b)
-% FORWARDSUB Risolve il sistema lineare triangolare inferiore Lx = b usando la vettorizzazione (più veloce in esecuzione). 
-%   x = FORWARDSUB(L, b) restituisce il vettore soluzione x.
+
+\vspace{10pt}
+
+\subparagraph{Costo Computazionale}
+$$ \sum_{i=1}^{n} i \simeq \frac{n(n+1)}{2} \simeq \frac{n^{2}}{2} \text{ operazioni (flops)} $$
+È possibile provare che l'algoritmo è stabile, cioè non produce amplificazione dell'errore di arrotondamento.
+
+\vspace{10pt}
+
+\begin{lstlisting}[style=matlabCode, title={Function forwardSub}]
+function x = forwardSub(L, b, tol)
+% FORWARDSUB Risolve il sistema lineare triangolare inferiore Lx = b usando la sostituzione in avanti. 
+%  x = FORWARDSUB(L, b) restituisce il vettore soluzione x.
 %
-%   INPUT:
-%       L - Matrice quadrata triangolare inferiore (n x n)
-%       b - Vettore dei termini noti (n x 1)
+%  Input:
+%    L - Matrice quadrata triangolare inferiore (n x n)
+%    b - Vettore dei termini noti (n x 1)
+%    tol (opzionale) - Tolleranza per verifica della singolarità (1 x 1)
 %
-%   OUTPUT:
-%       x - Vettore soluzione (n x 1)
+%  Output:
+%    x - Vettore soluzione (n x 1)
 
     %% 1. Validazione degli Input
     arguments
         L (:,:) double {mustBeNumeric}
         b (:,1) double {mustBeNumeric}
+        tol (1,1) double {mustBeNumeric} = 1e-10
     end
 
     %% 2. Controllo Dimensioni
-    % Ricaviamo le dimensioni
-    n = size(L, 1);
+    % Estraggo le dimensioni
+    [n,m] = size(L);
     
-    % Verifichiamo che L sia quadrata
-    if size(L, 2) ~= n
-        error('ForwardSub:NonSquareMatrix', 'La matrice L deve essere quadrata.');
+    % Verifico che L sia quadrata
+    if n ~= m
+        error('forwardSub:NonSquareMatrix', 'La matrice L deve essere quadrata (Input %dx%d).', n, m);
     end
 
-    % Verifichiamo che b sia compatibile con L
-    if length(b) ~= n
-        error('ForwardSub:DimensionMismatch', 'Le dimensioni di L e b non corrispondono.');
+    % Verifico che b sia compatibile con L
+    if m ~= length(b)
+        error('forwardSub:DimensionMismatch', 'Le dimensioni di L e b non corrispondono (Input (%dx%d)x(%dx1)).',n,m,length(b));
     end
     
     %% 3. Controllo Singolarità
-    % Se c'è uno zero sulla diagonale, non possiamo dividere.
-    % Usiamo una piccola tolleranza per i numeri floating point.
-    if any(abs(diag(L)) < eps)
-        error('ForwardSub:SingularMatrix', 'La matrice è singolare.');
+    if any(abs(diag(L)) < tol)
+        error('forwardSub:SingularMatrix', 'La matrice è singolare.');
     end
 
-    %% 4. Algoritmo Vettorizzato
+    %% 4. Sostituzione in Avanti
     % Pre-allocazione
     x = zeros(n, 1);
 
-    % Calcoliamo il primo elemento manualmente per avviare il processo
+    % Primo elemento
     x(1) = b(1) / L(1,1);
 
-    for i = 2 : n
-        % Prendiamo la riga i-esima di L (fino alla colonna i-1)
-        % e il vettore x (fino all'elemento i-1).
-        % Il loro prodotto matriciale (*) coincide esattamente con la sommatoria che ci serve.
-        sommatoria = L(i, 1:i-1) * x(1:i-1);
-        
-        % Calcolo finale
-        x(i) = (b(i) - sommatoria) / L(i,i);
+    % Ciclo principale
+    for i = 2 : n 
+        x(i) = b(i);
+        % Ciclo interno: accumulo la somma parziale
+        for k = 1:i-1
+            x(i) = x(i) - L(i,k) * x(k);
+        end
+        % Divisione finale per l'elemento diagonale
+        x(i) = x(i) / L(i,i); 
     end
+
 end
 \end{lstlisting}
-Di seguito viene mostrato uno script di esempio che utilizza la funzione \texttt{forwardSub} per risolvere un sistema lineare triangolare, riportando il codice e i risultati numerici ottenuti.
-\begin{lstlisting}[style=matlabCode]
-% 1. Impostiamo il formato numerico
-format long e
 
-% 2. Generazione dati (Generalizzato per dimensione n)
-n = 4;
-L = tril(rand(n));         % Matrice triangolare inferiore
-b = randi([-10, 10], n, 1); % Termine noto
+\vspace{10pt}
 
-disp('Matrice L:'); disp(L);
-disp('Vettore b:'); disp(b);
+\paragraph{Calcolo dell'Inversa di una Matrice Triangolare Inferiore}
+Il metodo di sostituzione in avanti può essere adattato per il calcolo esplicito dell'inversa di una matrice triangolare inferiore $L$.
+I vettori colonna $\mathbf{v}_{i}$ dell'inversa $V=(\mathbf{v}_{1}, \dots, \mathbf{v}_{n})$ di $L$ soddisfano i sistemi lineari:
+$$ L\mathbf{v}_{i} = \mathbf{e}_{i}, \quad i\in\{1,\ldots,n\} $$
+dove $\mathbf{e}_{i}$ è l'$i$-esima colonna della matrice identità.
+Poiché l'inversa di una matrice triangolare inferiore è anch'essa triangolare inferiore, le colonne di $V$ hanno tutti gli elementi sovradiagonali nulli. Sfruttando questa proprietà, per ogni colonna $j$ le uniche componenti incognite sono quelle da $j$ a $n$.
+Il calcolo delle componenti non nulle $v_{i,j}$ (con $i \ge j$) avviene risolvendo i sistemi con la sostituzione in avanti.
 
-% 3. Algoritmo di Forward Substitution (Sostituzione in avanti)
-x = forwardSub(L,b);
+\vspace{10pt}
 
-% 4. Output e Verifica
-disp('Soluzione x calcolata:');
-disp(x);
+\subparagraph{Algoritmo di Inversione}
+$$ v_{j,j} = \frac{1}{l_{j,j}} , \quad \text{per } j\in\{1,\dots,n\},$$
+$$ v_{i,j} = -\frac{1}{l_{i,i}} \sum_{k=j}^{i-1} l_{i,k}v_{k,j}, \quad \text{per } i\in\{j+1, \dots, n\} .$$
 
-% 5. Calcolo del Residuo
-% Calcoliamo la norma della differenza
-residuo = norm(L*x - b);
-fprintf('Norma del residuo ||Lx - b||: %e\n', residuo);
-\end{lstlisting}
+\vspace{10pt}
+
+\subparagraph{Schema Algoritmo}
 \begin{verbatim}
-Matrice L:
-     4.624491592423287e-01                         0                         0                         0
-     4.243490398153752e-01     7.847392947607416e-01                         0                         0
-     4.609163660289640e-01     4.713571537106116e-01     4.734859929653203e-01                         0
-     7.701597286086093e-01     3.576273326911794e-02     1.527212004382318e-01     7.384268399769416e-01
-
-Vettore b:
-    -5
-     9
-    -5
-     6
-
-Soluzione x calcolata:
-    -1.081199933024409e+01
-     1.731538311512285e+01
-    -1.727253262241360e+01
-     2.213571077577904e+01
-
-Norma del residuo ||Lx - b||: 8.881784e-16
+for j = 1 : n
+    v(j,j) = 1 / L(j,j)
+    for i = j+1 : n
+        v(i,j) = 0
+        for k = j : i-1
+            v(i,j) = v(i,j) - L(i,k) * v(k,j)
+        end
+        v(i,j) = v(i,j) / L(i,i)
+    end
+end
 \end{verbatim}
 
 \vspace{10pt}
 
-\paragraph{Algoritmo di Sostituzione all'Indietro (Backward Substitution)}
-Si vuole risolvere il sistema $Ux=b$ dove $U$ è triangolare superiore:
+\subparagraph{Costo Computazionale}
+$$ \sum_{j=1}^{n} \sum_{i=j}^{n} (i-j+1) \simeq \frac{n^{3}}{6} \text{ operazioni} .$$
+
+\vspace{10pt}
+
+\begin{lstlisting}[style=matlabCode, title={Function invL}]
+function V = invL(L, tol)
+% INVL calcola l'inversa di una matrice triangolare inferiore ottimizzando
+% la sostituzione in avanti con una certa tolleranza
+%  V = INVL(L, tol) restituisce l'inversa della matrice L.
+%
+%  Input:
+%    L - Matrice triangolare inferiore numerica (n x n)
+%    tol (opzionale) - Tolleranza per la verifica della singolarità (1 x 1)
+%    
+%  Output:
+%    V - Matrice triangolare inferiore numerica inversa di L (n x n)
+
+    %% 1. Validazione Input
+    arguments
+        L (:,:) double {mustBeNumeric}
+        tol (1,1) double {mustBeNumeric} = 1e-10
+    end
+
+    %% 2. Controllo Dimensioni
+    % Estraggo le dimensioni
+    [n,m] = size(L);
+
+    % Verifico che L sia quadrata
+    if n ~= m
+        error('invL:NonSquareMatrix', 'La matrice L deve essere quadrata (Input %dx%d).', n, m);
+    end
+
+    % Verifico che L sia non singolare
+    if any(abs(diag(L)) < tol)
+        error('invL:SingularMatrix', 'La matrice L è singolare.');
+    end
+    
+        %% 3. Calcolo Inversa
+    % Pre-allocazione (V sarà triangolare inferiore, il resto rimane 0)
+    V = zeros(n);
+
+    for j = 1:n
+        % 1. Diagonale: inverso del pivot
+        V(j,j) = 1 / L(j,j);
+        
+        % 2. Sostituzione in avanti per la colonna j (righe i > j)
+        for i = j+1:n    
+            V(i,j) = 0;
+            % Inizializzazione dell'accumulatore per la sommatoria
+            for k = j:i-1
+                V(i,j) = V(i,j) - L(i,k) * V(k,j);
+            end
+            
+            % Divisione finale per il coefficiente della diagonale
+            V(i,j) = V(i,j) / L(i,i);
+        end
+    end
+    
+end
+\end{lstlisting}
+
+\vspace{10pt}
+
+\subparagraph{Algoritmo di Sostituzione all'Indietro (Backward Substitution)}
+Si vuole risolvere il sistema $U\mathbf{x}=\mathbf{b}$ dove $U$ è triangolare superiore:
 $$
 \begin{cases}
 u_{1,1}x_{1} + u_{1,2}x_{2} + \dots + u_{1,n}x_{n} = b_{1} \\
@@ -2603,7 +2967,10 @@ $$ x_{n-1} = \frac{b_{n-1} - u_{n-1,n}x_{n}}{u_{n-1,n-1}} $$
 $$ \dots $$
 $$ x_{i} = \frac{b_{i} - \sum_{k=i+1}^{n} u_{i,k}x_{k}}{u_{i,i}}, \quad i\in\{n-1, \dots, 1\} $$
 Anche in questo caso l'algoritmo è ben posto se $U$ è non singolare.
-\subparagraph{Schema Algoritmo e Costo per Iterazione}
+
+\vspace{10pt}
+
+\subparagraph{Schema Algoritmo}
 \begin{verbatim}
 x(n) = b(n) / U(n,n)                  % 1 flop (divisione)
 for i = n-1 : -1 : 1
@@ -2614,148 +2981,96 @@ for i = n-1 : -1 : 1
     x(i) = x(i) / U(i,i)              % 1 flop (divisione)
 end
 \end{verbatim}
-\subparagraph{Calcolo del Costo Computazionale}
-Analizziamo il costo per una generica riga $i$-esima.
-\begin{itemize}
-    \item Il ciclo interno su $k$ va da $i+1$ a $n$. Il numero di termini nella sommatoria è quindi $n - (i+1) + 1 = n - i$.
-    \item Per ogni termine del ciclo si eseguono 2 operazioni (moltiplicazione e sottrazione).
-    \item Al termine del ciclo si esegue 1 divisione.
-\end{itemize}
-Il costo per calcolare $x_i$ è quindi $2(n-i) + 1$ flops. Sommando per tutte le righe da $1$ a $n$ (notando che per $i=n$ il costo è semplicemente 1):
-$$ C(n) = \sum_{i=1}^{n} [2(n-i) + 1] $$
-Ponendo $j = n-i$ (cambio di indice per semplificare la somma), quando $i=1 \to j=n-1$ e quando $i=n \to j=0$:
-$$ C(n) = \sum_{j=0}^{n-1} (2j + 1) = 2\sum_{j=0}^{n-1} j + \sum_{j=0}^{n-1} 1 $$
-$$ C(n) = 2 \frac{(n-1)n}{2} + n = n^2 - n + n = n^2 \text{ flops} .$$
-\subparagraph{Implementazione Ottimizzata in MATLAB}
-Analogamente a quanto visto per la sostituzione in avanti, l'implementazione della funzione \texttt{backwardSub} introduce ottimizzazioni cruciali rispetto allo schema teorico:
-\begin{itemize}
-    \item \textbf{Vettorizzazione (Vectorization):} Invece di iterare scalarmente con un ciclo interno, si calcola la sommatoria $\sum_{k=i+1}^{n} u_{i,k}x_{k}$ mediante un prodotto matriciale (dot product). 
-    In MATLAB, questo si traduce nel moltiplicare la parte di riga a destra della diagonale, \texttt{U(i, i+1:n)}, per il vettore delle soluzioni già calcolate, \texttt{x(i+1:n)}. 
-    Questo approccio sfrutta l'efficienza delle operazioni su blocchi di memoria contigui.
-    
-    \item \textbf{Robustezza Numerica:} La funzione include la validazione degli argomenti e, soprattutto, un controllo di non-singolarità basato sulla tolleranza macchina (\texttt{eps}). Se un elemento diagonale $|u_{ii}| < \varepsilon$, l'algoritmo si arresta controllatamente per evitare divisioni instabili o per zero.
-\end{itemize}
-\begin{lstlisting}[style=matlabCode, title={Funzione backwardSub}]
-function x = backwardSub(U, b)
-% FORWARDSUB Risolve il sistema lineare triangolare superiore Ux = b usando la vettorizzazione (più veloce in esecuzione). 
-%   x = BACKWARDSUB(U, b) restituisce il vettore soluzione x.
+
+\vspace{10pt}
+
+\subparagraph{Costo Computazionale}
+$$ \sum_{i=1}^{n} (n-i+1) = \frac{n(n+1)}{2} \simeq \frac{n^{2}}{2} \text{ operazioni} .$$
+Anche l'algoritmo di sostituzione all'indietro è stabile.
+
+\vspace{10pt}
+
+\begin{lstlisting}[style=matlabCode, title={Function backwardSub}]
+function x = backwardSub(U, b, tol)
+% BACKWARDSUB Risolve il sistema lineare triangolare superiore Ux = b usando la sostituzione all'indietro. 
+%  x = BACKWARDSUB(U, b, tol) restituisce il vettore soluzione x.
 %
-%   INPUT:
-%       U - Matrice quadrata triangolare superiore (n x n)
-%       b - Vettore dei termini noti (n x 1)
-%
-%   OUTPUT:
-%       x - Vettore soluzione (n x 1)
+%  Input:
+%    U - Matrice quadrata triangolare superiore (n x n)
+%    b - Vettore dei termini noti (n x 1)
+%    tol (opzionale) - Tolleranza per verifica della singolarità (1 x 1)
+%    
+%  Output:
+%    x - Vettore soluzione (n x 1)
 
     %% 1. Validazione degli Input
     arguments
         U (:,:) double {mustBeNumeric}
         b (:,1) double {mustBeNumeric}
+        tol (1,1) double {mustBeNumeric} = 1e-10
     end
 
     %% 2. Controllo Dimensioni
     % Ricaviamo le dimensioni
-    n = size(U, 1);
+    [n, m] = size(U);
     
     % Verifichiamo che U sia quadrata
-    if size(U, 2) ~= n
-        error('BackwardSub:NonSquareMatrix', 'La matrice U deve essere quadrata.');
+    if n ~= m
+        error('backwardSub:NonSquareMatrix', 'La matrice U deve essere quadrata (Input %dx%d).', n, m);
     end
 
     % Verifichiamo che b sia compatibile con U
-    if length(b) ~= n
-        error('BackwardSub:DimensionMismatch', 'Le dimensioni di U e b non corrispondono.');
+    if m ~= length(b)
+        error('backwardSub:DimensionMismatch', 'Le dimensioni di U e b non corrispondono (Input (%dx%d)x(%dx1)).', n, m, length(b));
     end
     
     %% 3. Controllo Singolarità
-    % Se c'è uno zero sulla diagonale, non possiamo dividere.
-    % Usiamo una piccola tolleranza per i numeri floating point.
-    if any(abs(diag(U)) < eps)
-        error('BackwardSub:SingularMatrix', 'La matrice è singolare.');
+    if any(abs(diag(U)) < tol)
+        error('backwardSub:SingularMatrix', 'La matrice è singolare.');
     end
 
-    %% 4. Algoritmo Vettorizzato
+    %% 4. Sostituzione all'indietro
     % Pre-allocazione
     x = zeros(n, 1);
 
-    % Calcoliamo l'ultimo elemento manualmente per avviare il processo
+    % Ultimo elemento
     x(n) = b(n) / U(n,n);
     
+    % Ciclo principale
     for i = n-1 : -1 : 1
-        % Prendi la porzione di riga i-esima a destra della diagonale: U(i, i+1:n)
-        % Prendi la porzione di soluzione x già calcolata (che sta "sotto"): x(i+1:n)
-        % Il loro prodotto matriciale (Riga * Colonna) è la sommatoria.
-        sommatoria = U(i, i+1:n) * x(i+1:n);
-        
-        % Calcolo finale
-        x(i) = (b(i) - sommatoria) / U(i,i);
+        x(i) = b(i);
+        % Ciclo interno: accumulo la somma parziale
+        for k = i+1:n
+            x(i) = x(i) - U(i,k) * x(k);
+        end
+        % Divisione finale per l'elemento diagonale
+        x(i) = x(i) / U(i,i);
     end
+
 end
 \end{lstlisting}
-Di seguito viene riportato il codice della funzione e un esempio applicativo con i relativi risultati.
-\begin{lstlisting}[style=matlabCode]
-% 1. Impostiamo il formato numerico
-format long e
-
-% 2. Generazione dati (Generalizzato per dimensione n)
-n = 4;
-U = triu(rand(n));         % Matrice triangolare superiore
-b = randi([-10, 10], n, 1); % Termine noto
-
-disp('Matrice U:'); disp(U);
-disp('Vettore b:'); disp(b);
-
-% 3. Algoritmo di Backward Substitution (Sostituzione all'indietro)
-
-x = backwardSub(U,b);
-
-% 4. Output e Verifica
-disp('Soluzione x calcolata:');
-disp(x);
-
-% 5. Calcolo del Residuo
-% Calcoliamo la norma della differenza
-residuo = norm(U*x - b);
-fprintf('Norma del residuo ||Ux - b||: %e\n', residuo);
-\end{lstlisting}
-\begin{verbatim}
-Matrice U:
-     9.727338850797841e-01     9.541744563795431e-01     2.815015591484906e-01     5.906086529196359e-01
-                         0     3.192262950397839e-02     2.303830673174637e-01     6.604379663126019e-01
-                         0                         0     7.111285511803251e-01     4.755467311386607e-02
-                         0                         0                         0     3.487848085100589e-01
-
-Vettore b:
-    -1
-    -5
-     5
-     7
-
-Soluzione x calcolata:
-     5.863474614137475e+02
-    -6.129013653804130e+02
-     5.688975435765223e+00
-     2.006968144599715e+01
-
-Norma del residuo ||Ux - b||: 2.494817e-14
-\end{verbatim}
 
 \vspace{10pt}
 
-\paragraph{Calcolo dell'Inversa di una Matrice Triangolare}
+\paragraph{Calcolo dell'Inversa di una Matrice Triangolare Superiore}
 Il metodo di sostituzione all'indietro può essere adattato per il calcolo esplicito dell'inversa di una matrice triangolare superiore $U$.
 I vettori colonna $\mathbf{v}_{i}$ dell'inversa $V=(\mathbf{v}_{1}, \dots, \mathbf{v}_{n})$ di $U$ soddisfano i sistemi lineari:
 $$ U\mathbf{v}_{i} = \mathbf{e}_{i}, \quad i\in\{1,\ldots,n\} $$
 dove $\mathbf{e}_{i}$ è l'$i$-esima colonna della matrice identità.
-Poiché l'inversa di una matrice triangolare superiore è anch'essa triangolare superiore, le colonne di $V$ hanno tutti gli elementi subdiagonali nulli. Sfruttando questa proprietà, indichiamo con $\mathbf{v}_{j}' = (\mathbf{v}_{1,j}, \dots, \mathbf{v}_{j,j})^{T}$ il vettore di dimensione $j$ tale che:
+Poiché l'inversa di una matrice triangolare superiore è anch'essa triangolare superiore, le colonne di $V$ hanno tutti gli elementi subdiagonali nulli. Sfruttando questa proprietà, indichiamo con $\mathbf{v}_{j}' = {}^t(v_{1,j}, \dots, v_{j,j})$ il vettore di dimensione $j$ tale che:
 $$ U_{j}\mathbf{v}_{j}' = \mathbf{e}_{j}', \quad j\in\{1,\dots,n\}$$
-essendo $U_{j}$ la sottomatrice principale di $U$ di ordine $j$ e $\mathbf{e}_{j}'$ il vettore di $\mathbb{R}^{j}$ con tutte le componenti nulle fuorché l'ultima che è 1.
-I sistemi sono triangolari superiori di ordine $j$ e si risolvono con l'eliminazione all'indietro.
-\paragraph{Algoritmo di Inversione}
-Per $j\in\{1,\dots,n\}$:
-$$ \mathbf{v}_{j,j} = \frac{1}{u_{j,j}} $$
-$$ \mathbf{v}_{i,j} = -\frac{1}{u_{i,i}} \sum_{k=i+1}^{j} u_{i,k}\mathbf{v}_{k,j}, \quad \text{per } i\in\{j-1, \dots, 1\} $$
-\paragraph{Schema Algoritmo}
+essendo $U_{j}$ la sottomatrice principale di testa $U$ di ordine $j$ e $\mathbf{e}_{j}'$ il vettore di $\mathbb{R}^{j}$ con tutte le componenti nulle fuorché l'ultima che è 1.
+I sistemi sono triangolari superiori di ordine $j$ e si risolvono con la sostituzione all'indietro.
+
+\vspace{10pt}
+
+\subparagraph{Algoritmo di Inversione}
+$$ v_{j,j} = \frac{1}{u_{j,j}} , \quad \text{per } j\in\{1,\dots,n\},$$
+$$ v_{i,j} = -\frac{1}{u_{i,i}} \sum_{k=i+1}^{j} u_{i,k}v_{k,j}, \quad \text{per } i\in\{j-1, \dots, 1\} .$$
+
+\vspace{10pt}
+
+\subparagraph{Schema Algoritmo}
 \begin{verbatim}
 for j = 1 : n
     v(j,j) = 1 / U(j,j)
@@ -2768,14 +3083,75 @@ for j = 1 : n
     end
 end
 \end{verbatim}
-\paragraph{Costo Computazionale}
-$$ \sum_{j=1}^{n} \sum_{i=1}^{j} (j-i+1) \simeq \frac{n^{3}}{6} \text{ operazioni} $$
-Una procedura analoga, basata sulla sostituzione in avanti, permette di calcolare l'inversa di una matrice triangolare inferiore.
-Da fare.
+
+\vspace{10pt}
+
+\subparagraph{Costo Computazionale}
+$$ \sum_{j=1}^{n} \sum_{i=1}^{j} (j-i+1) \simeq \frac{n^{3}}{6} \text{ operazioni} .$$
+
+\vspace{10pt}
+
+\begin{lstlisting}[style=matlabCode, title={Function invU}]
+function V = invU(U, tol)
+% INVU calcola l'inversa di una matrice triangolare superiore ottimizzando
+% la sostituzione all'indietro con una certa tolleranza
+%  V = INVU(U, tol) restituisce l'inversa della matrice U.
+%
+%  Input:
+%    U - Matrice triangolare superiore numerica (n x n)
+%    tol (opzionale) - Tolleranza per la verifica della singolarità (1 x 1)
+%    
+%  Output:
+%    V - Matrice triangolare superiore numerica inversa di U (n x n)
+
+    %% 1. Validazione Input
+    arguments
+        U (:,:) double {mustBeNumeric}
+        tol (1,1) double {mustBeNumeric} = 1e-10
+    end
+
+    %% 2. Controllo Dimensioni
+    % Estraggo le dimensioni
+    [n,m] = size(U);
+
+    % Verifico che U sia quadrata
+    if n ~= m
+        error('invU:NonSquareMatrix', 'La matrice U deve essere quadrata (Input %dx%d).', n, m);
+    end
+
+    % Verifico che U sia non singolare
+    if any(abs(diag(U)) < tol)
+        error('invU:SingularMatrix', 'La matrice U è singolare.');
+    end
+
+    %% 3. Calcolo Inversa
+    % Pre-allocazione
+    V = zeros(n);
+
+    % Costruzione dell'inversa V
+    for j = 1:n
+        % Calcolo dell'elemento diagonale (Pivot)
+        V(j,j) = 1 / U(j,j);
+        for i = j-1:-1:1
+            % Inizializzazione dell'accumulatore per la sommatoria
+            V(i,j) = 0;
+            for k = i+1:j
+                V(i,j) = V(i,j) - U(i,k) * V(k,j);
+            end
+            % Divisione finale per il coefficiente della diagonale
+            V(i,j) = V(i,j) / U(i,i);
+        end
+    end
+    
+end
+\end{lstlisting}
 
 \vspace{20pt}
 
 \subsection{Metodo di Eliminazione di Gauss}
+
+\vspace{10pt}
+
 \paragraph{Metodo di eliminazione di Gauss}
 Consideriamo il caso di una generica matrice di ordine $n$. Sia dunque $A \in \mathbb{R}^{n \times n}$ e come al solito $x, b \in \mathbb{R}^{n}$. Vogliamo risolvere il generico sistema $Ax=b$.
 Il metodo di Gauss è basato sulla tecnica di eliminazione delle incognite da fissate equazioni. Obiettivo del metodo è ridurre, attraverso un numero finito di passi, il sistema di partenza ad uno ad esso equivalente che abbia la matrice dei coefficienti triangolare.
@@ -2892,7 +3268,7 @@ L'algoritmo è ben posto se e solo se tutti gli elementi pivot sono diversi da z
 
 \vspace{10pt}
 
-\paragraph{Schema Algoritmo}
+\subparagraph{Schema Algoritmo}
 \begin{verbatim}
 for k = 1 : n-1
     for i = k+1 : n
@@ -2907,24 +3283,24 @@ end
 
 \vspace{10pt}
 
-\paragraph{Costo Computazionale}
+\subparagraph{Costo Computazionale}
 $$ \sum_{k=1}^{n-1} [2(n-k) + (n-k)^2] \simeq \frac{n^3}{3} \text{ operazioni} $$
 
 \vspace{10pt}
 
-\begin{lstlisting}[style=matlabCode, title={Funzione gaussElim}]
+\begin{lstlisting}[style=matlabCode, title={Function gaussElim}]
 function [Ag,bg] = gaussElim(A,b)
-%GAUSSELIM Applica il metodo dell'eliminazione di Gauss alla matrice dei coefficienti e al vettore dei termini noti.
+% GAUSSELIM Applica il metodo dell'eliminazione di Gauss alla matrice dei coefficienti e al vettore dei termini noti.
 %  [Ag,bg] = gaussElim(A,b)  restituisce A e b risultanti dall'eliminazione.
 %    
-%    INPUT:
-%      A - Matrice dei coefficienti (n x n)
-%      b - Vettore dei termini noti (n x 1)
+%  Input:
+%    A - Matrice dei coefficienti (n x n)
+%    b - Vettore dei termini noti (n x 1)
 %    
-%    OUTPUT:
-%      Ag - Matrice dei coefficienti post-GE (n x n)
-%      bg - Vettore dei termini noti post-GE (n x 1)
-
+%  Output:
+%    Ag - Matrice dei coefficienti post-GE (n x n)
+%    bg - Vettore dei termini noti post-GE (n x 1)
+ 
     %% 1. Validazione degli Input
     arguments
         A (:,:) double {mustBeNumeric}
@@ -2936,12 +3312,12 @@ function [Ag,bg] = gaussElim(A,b)
     
     % Verifico se la matrice è quadrata
     if n ~= m
-        error('gaussElim:nonSquareMatrix', 'La matrice non è quadrata (Size %dx%d).', n, m);
+        error('gaussElim:NonSquareMatrix', 'La matrice non è quadrata (Size %dx%d).', n, m);
     end
     
     % Verifico se il prodotto Ab è compatibile
     if n ~= length(b)
-        error('gaussElim:nonCompatible', 'Il prodotto non è compatibile (Size (%dx%d)*(%dx1)).', n, m, length(b));
+        error('gaussElim:NonCompatible', 'Il prodotto non è compatibile (Size (%dx%d)*(%dx1)).', n, m, length(b));
     end
     
     
@@ -2949,16 +3325,21 @@ function [Ag,bg] = gaussElim(A,b)
     for k = 1 : n-1
         % Controllo pivot nullo (sicurezza)
         if A(k,k) == 0
-             error('gaussElim:zeroPivot', 'Pivot nullo alla riga %d.', k);
+             error('gaussElim:ZeroPivot', 'Pivot nullo alla riga %d.', k);
         end
         
         % Eliminazione
         for i = k+1 : n
             mol = -A(i,k) / A(k,k);
-            A(i, k+1:n) = A(i, k+1:n) + mol * A(k, k+1:n);
+            for j = k+1:n
+                A(i,j) = A(i,j) + mol * A(k,j);
+            end
             b(i) = b(i) + mol * b(k);
         end
     end
+    
+    % Nota: Gli elementi A(i,k) sotto la diagonale non vengono azzerati fisicamente
+    % per risparmiare tempo, ma sono logicamente considerati zero.
     
     Ag = A;
     bg = b;
@@ -2968,22 +3349,27 @@ end
 \paragraph{Esistenza dei Pivot}
 \begin{bxthm}
 \begin{thm}
-Sia $A \in \mathbb{R}^{n \times n}$. Gli elementi pivot $a_{k,k}^{(k)}$ sono tutti diversi da zero se e soltanto se tutte le matrici principali di testa di $A$, denotate con $A_k = (a_{i,j})_{i,j=1,\dots,k}$, sono non singolari, cioè:
+Sia $A \in \mathbb{R}^{n \times n}$. Gli elementi pivot $a_{k,k}^{(k)}$ sono tutti diversi da zero se e soltanto se tutte le matrici principali di testa di $A$, denotate con $A_k = (a_{i,j})_{i,j\in\{1,\dots,k\}}$, sono non singolari, cioè:
 $$ \det(A_k) \neq 0 \quad \forall k\in\{1,\dots,n\} .$$    
 \end{thm}
 \end{bxthm}
 
 \vspace{10pt}
 
+\begin{note}
 Poiché questa condizione è difficile da verificare, esistono famiglie di matrici per cui è garantita a priori:
 \begin{itemize}
-    \item Matrici a \textbf{diagonale dominante per righe} o per colonne.
-    \item Matrici \textbf{simmetriche definite positive} ($A^T=A$ e $y^TAy > 0, \forall y \neq 0$).
+    \item Matrici a \textbf{diagonale dominante per righe o per colonne}.;
+    \item Matrici \textbf{simmetriche definite positive} (${}^tA=A$ e ${}^t\mathbf{y}A\mathbf{y} > 0, \forall \mathbf{y} \neq \mathbf{0}$).
 \end{itemize}
+\end{note}
 
 \vspace{20pt}
 
 \subsection{Strategia Pivoting e Fattorizzazione LU}
+
+\vspace{10pt}
+
 \paragraph{Necessità del Pivoting}
 Il metodo di Gauss descritto in precedenza si arresta se, a un certo passo $k$, l'elemento pivot $a_{k,k}^{(k)}$ risulta nullo. Tuttavia, se la matrice è non singolare, deve esistere almeno un elemento $a_{i,k}^{(k)} \neq 0$ con $i > k$ sulla stessa colonna. Per proseguire è sufficiente scambiare la riga $k$-esima con la riga $i$-esima.
 Anche quando il pivot non è nullo ma è molto piccolo in valore assoluto rispetto agli altri elementi, possono verificarsi errori di arrotondamento disastrosi (amplificazione degli errori o cancellazione numerica). Per garantire la stabilità numerica, è necessario permutare le righe in modo da scegliere un pivot "ottimale". Tale strategia è detta \textit{pivoting}.
@@ -2999,6 +3385,9 @@ Anche quando il pivot non è nullo ma è molto piccolo in valore assoluto rispet
     $$ |a_{r,s}^{(k)}| = \max_{k \le i, j \le n} |a_{i,j}^{(k)}| $$
     Si scambiano le righe $k$ ed $r$ e le colonne $k$ ed $s$ (quest'ultimo scambio comporta il riordinamento delle incognite).
 \end{itemize}
+
+\vspace{10pt}
+
 Il pivoting parziale è la strategia più utilizzata perché meno costosa computazionalmente ($O(n^2)$ confronti) e generalmente sufficiente a garantire stabilità.
 
 \vspace{10pt}
@@ -3006,14 +3395,14 @@ Il pivoting parziale è la strategia più utilizzata perché meno costosa comput
 \paragraph{Stabilità senza Pivoting}
 Il metodo di eliminazione di Gauss senza pivoting è stabile a priori solo per alcune classi di matrici:
 \begin{itemize}
-    \item Matrici a diagonale dominante per colonne.
-    \item Matrici a diagonale dominante per righe.
-    \item Matrici simmetriche e definite positive.
+    \item Matrici a \textbf{diagonale dominante per righe o per colonne};
+    \item Matrici \textbf{simmetriche} e \textbf{definite positive}.
 \end{itemize}
 
 \vspace{10pt}
 
 \paragraph{Esempio di Instabilità}
+\begin{exmp}
 Consideriamo un sistema di ordine $n=18$ con matrice definita da $a_{i,j} = \cos((j-1)\frac{2i-1}{2n}\pi)$ e termine noto somma degli elementi della riga (soluzione esatta $x_i=1$). La matrice è ben condizionata ($K \approx 16.9$).
 Risolvendo con Gauss senza pivoting, si ottengono errori significativi (es. $x_{15} \approx 1.0000000002...$).
 Risolvendo con Gauss e pivoting parziale, si ottiene la soluzione corretta con massima precisione (es. $x_{15} \approx 1.000000000000000$).
@@ -3045,10 +3434,11 @@ Risolvendo con Gauss e pivoting parziale, si ottiene la soluzione corretta con m
 \end{tabular}
 \end{footnotesize}
 \end{center}
+\end{exmp}
 
 \vspace{10pt}
 
-\paragraph{Schema Algoritmo: Gauss con Pivoting Parziale}
+\subparagraph{Schema Algoritmo}
 \begin{verbatim}
 for k = 1 : n-1
     % Ricerca del pivot massimo nella colonna k-esima
@@ -3072,7 +3462,7 @@ end
 
 \vspace{10pt}
 
-\paragraph{Costo Computazionale con Pivoting}
+\subparagraph{Costo Computazionale}
 Il costo computazionale totale dell'algoritmo di Gauss con pivoting è dato dalla somma delle operazioni aritmetiche (flops) necessarie per l'eliminazione e dei confronti necessari per la ricerca del pivot massimo.
 \begin{itemize}
     \item \textbf{Operazioni Aritmetiche:} $\approx \frac{n^{3}}{3}$ (invariato rispetto a Gauss senza pivoting).
@@ -3083,21 +3473,20 @@ Poiché $n^2$ è trascurabile rispetto a $n^3$ per $n$ grandi, il costo asintoti
 
 \vspace{10pt}
 
-\begin{lstlisting}[style=matlabCode, title={Funzione gaussElimP}]
-% function [Ag,bg] = gaussElimP(A,b)
-% GAUSSELIMP Applica il metodo dell'eliminazione di Gauss alla matrice dei
-% coefficienti e al vettore dei termini noti implementando il pivoting
-% parziale.
-%   [Ag,bg] = gaussElimP(A,b)  restituisce A e b risultanti dall'eliminazione con pivoting parziale.
-%     
-%     INPUT:
-%       A - Matrice dei coefficienti (n x n)
-%       b - Vettore dei termini noti (n x 1)
-%     
-%     OUTPUT:
-%       Ag - Matrice dei coefficienti post-GE (n x n)
-%       bg - Vettore dei termini noti post-GE (n x 1)
-  
+\begin{lstlisting}[style=matlabCode, title={Function gaussElimPP}]
+function [Ag,bg] = gaussElimPP(A,b)
+% GAUSSELIMPP Applica il metodo dell'eliminazione di Gauss alla matrice dei
+%  coefficienti e al vettore dei termini noti implementando il pivoting parziale.
+%  [Ag,bg] = gaussElimPP(A,b)  restituisce A e b risultanti dall'eliminazione con pivoting parziale.
+%    
+%  Input:
+%    A - Matrice dei coefficienti (n x n)
+%    b - Vettore dei termini noti (n x 1)
+%    
+%  Output:
+%    Ag - Matrice dei coefficienti post-GE (n x n)
+%    bg - Vettore dei termini noti post-GE (n x 1)
+    
     %% 1. Validazione degli Input
     arguments
         A (:,:) double {mustBeNumeric}
@@ -3109,20 +3498,18 @@ Poiché $n^2$ è trascurabile rispetto a $n^3$ per $n$ grandi, il costo asintoti
     
     % Verifico se la matrice è quadrata
     if n ~= m
-        error('gaussElimP:nonSquareMatrix', 'La matrice non è quadrata (Size %dx%d).', n, m);
+        error('gaussElimPP:NonSquareMatrix', 'La matrice non è quadrata (Size %dx%d).', n, m);
     end
     
     % Verifico se il prodotto Ab è compatibile
     if n ~= length(b)
-        error('gaussElimP:nonCompatible', 'Il prodotto non è compatibile (Size (%dx%d)*(%dx1)).', n, m, length(b));
+        error('gaussElimPP:NonCompatible', 'Il prodotto non è compatibile (Size (%dx%d)*(%dx1)).', n, m, length(b));
     end
     
     
     %% 3. Eliminazione di Gauss
-    for k = 1 : n-1
-        
+    for k = 1 : n-1        
         % Pivoting parziale
-        
         % Trovo il massimo nella colonna k (dal pivot in giù)
         [~, r_rel] = max(abs(A(k:n, k)));
             
@@ -3135,27 +3522,27 @@ Poiché $n^2$ è trascurabile rispetto a $n^3$ per $n$ grandi, il costo asintoti
             b([k, r_glob])    = b([r_glob, k]);
         end
         
-        
         % Controllo pivot nullo (sicurezza)
         if A(k,k) == 0
-             error('gaussElimP:zeroPivot', 'Pivot nullo alla riga %d.', k);
+             error('gaussElimPP:ZeroPivot', 'Pivot nullo alla riga %d.', k);
         end
         
-        % --- ELIMINAZIONE ---
+        % Eliminazione di Gauss
         for i = k+1 : n
             mol = -A(i,k) / A(k,k);
             
-            % Aggiorno la riga i (Vettorizzazione mista)
-            A(i, k+1:n) = A(i, k+1:n) + mol * A(k, k+1:n);
+            for j = k+1:n
+                A(i,j) = A(i,j) + mol * A(k,j);
+            end
             
             % Aggiorno il termine noto
             b(i) = b(i) + mol * b(k);
-
-            % Pulizia formale (Facoltativo ma consigliato per l'output)
-            % A(i,k) = 0;
         end
     end
     
+    % Nota: Gli elementi A(i,k) sotto la diagonale non vengono azzerati fisicamente
+    % per risparmiare tempo, ma sono logicamente considerati zero.
+
     Ag = A;
     bg = b;
 end
@@ -3208,7 +3595,7 @@ Per costruirla basta, ad ogni passo del metodo di Gauss, memorizzare i moltiplic
 
 \vspace{10pt}
 
-\paragraph{Schema Algoritmo}
+\subparagraph{Schema Algoritmo}
 \begin{verbatim}
 for k = 1 : n-1
     for i = k+1 : n
@@ -3224,18 +3611,18 @@ U = triu(A)                % Parte triangolare superiore
 
 \vspace{10pt}
 
-\begin{lstlisting}[style=matlabCode, title={Funzione gaussElimLU}]
-function [L, U] = gaussElimLU(A)
-%GAUSSELIMLU Esegue la fattorizzazione LU su una matrice A.
-%  [L, U] = gaussElimLU(A) decompone la matrice A in L*U usando 
+\begin{lstlisting}[style=matlabCode, title={Function factorLU}]
+function [L, U] = factorLU(A)
+% FACTORLU Esegue la fattorizzazione LU su una matrice A.
+%  [L, U] = factorLU(A) fattorizza la matrice A in L * U usando 
 %  l'eliminazione di Gauss senza pivoting.
 %    
-%    INPUT:
-%      A - Matrice dei coefficienti (n x n)
+%  Input:
+%    A - Matrice dei coefficienti (n x n)
 %
-%    OUTPUT:
-%      L - Matrice triangolare inferiore unitaria (n x n)
-%      U - Matrice triangolare superiore (n x n)
+%  Output:
+%    L - Matrice triangolare inferiore unitaria (n x n)
+%    U - Matrice triangolare superiore (n x n)
 
     %% 1. Validazione degli Input
     arguments
@@ -3243,28 +3630,30 @@ function [L, U] = gaussElimLU(A)
     end
 
     %% 2. Verifica Dimensioni
+    % Estraggo le dimensioni
     [n, m] = size(A);
 
+    % Verifico se la matrice è quadrata
     if n ~= m
-        error('gaussElimLU:nonSquareMatrix', 'La matrice dei coefficienti deve essere quadrata (Size: %dx%d).', n, m);
+        error('factorLU:NonSquareMatrix', 'La matrice dei coefficienti deve essere quadrata (Size: %dx%d).', n, m);
     end
 
     %% 3. Eliminazione di Gauss
     for k = 1 : n-1
-        
         % Controllo pivot nullo
         if A(k,k) == 0
-             error('gaussElimLU:zeroPivot', 'Pivot nullo incontrato alla riga %d.', k);
+             error('factorLU:ZeroPivot', 'Pivot nullo incontrato alla riga %d.', k);
         end
         
         % Ciclo sulle righe sottostanti
         for i = k+1 : n
-            
             % Calcolo e assegnazione del moltiplicatore
             A(i,k) = -A(i,k) / A(k,k);
             
             % Aggiornamento della riga i-esima (Eliminazione)
-            A(i, k+1:n) = A(i, k+1:n) + A(i,k) * A(k, k+1:n);
+            for j = k+1:n
+                A(i,j) = A(i,j) + A(i,k) * A(k,j);
+            end
         end
     end
     
@@ -3276,61 +3665,31 @@ end
 
 \vspace{10pt}
 
-\paragraph{Risoluzione di Sistemi con $LU$}
-Una volta fattorizzata $A=LU$, il sistema $Ax=b$ diventa $LUx=b$. Si risolve in due passi:
+\subparagraph{Risoluzione di Sistemi con $LU$}
+Una volta fattorizzata $A=LU$, il sistema $A\mathbf{x}=\mathbf{b}$ diventa $LU\mathbf{x}=\mathbf{b}$. 
+Si risolve in due passi:
 \begin{enumerate}
-    \item Risoluzione del sistema triangolare inferiore $Ly = b$ (sostituzione in avanti).
-    \item Risoluzione del sistema triangolare superiore $Ux = y$ (sostituzione all'indietro).
+    \item Risoluzione del sistema triangolare inferiore $L\mathbf{y} = \mathbf{b}$ (sostituzione in avanti).
+    \item Risoluzione del sistema triangolare superiore $U\mathbf{x} = \mathbf{y}$ (sostituzione all'indietro).
 \end{enumerate}
 
 \vspace{10pt}
 
-\paragraph{Costo Computazionale}
+\subparagraph{Costo Computazionale}
 Costo totale: $\frac{n^3}{3}$ (fattorizzazione) + $n^2$ (soluzione sistemi).
 
 \vspace{10pt}
 
-Di seguito un esempio in Matlab.
-
-\begin{lstlisting}[style=matlabCode]
-format long e;
-n = 5; 
-
-% Generazione dati casuali
-A = randi([-10,10], n, n);
-b = randi([-10,10], n, 1);
-
-% 1. Fattorizzazione A = LU
-[L, U] = gaussElimLU(A);
-
-% 2. Risoluzione dei sistemi triangolari
-y = forwardSub(L, b);        % Risolve Ly = b
-x = backwardSub(U, y);       % Risolve Ux = y
-
-% 3. Verifica dell'errore
-sol_ref = A\b;               % Soluzione di riferimento MATLAB
-errore = norm(x - sol_ref);
-
-disp("Errore assoluto:");
-disp(errore);
-\end{lstlisting}
-\begin{verbatim}
-Errore assoluto:
-     9.160456941832493e-16
-\end{verbatim}
-
-\vspace{10pt}
-
-\paragraph{Applicazioni della Fattorizzazione LU}
-\subparagraph{1. Calcolo del Determinante di A}
-Il determinante di una matrice $A$ può essere calcolato utilizzando la formula di Binet. Avendo la fattorizzazione $A=LU$, si ha:
-$$ \det(A) = \det(LU) = \det(L)\det(U) $$
-Poiché $L$ è triangolare inferiore con tutti 1 sulla diagonale, $\det(L)=1$. Poiché $U$ è triangolare superiore, il suo determinante è il prodotto degli elementi diagonali. Dunque:
-$$ \det(A) = \det(U) = \prod_{i=1}^{n} u_{i,i} $$
-Il costo computazionale complessivo è $\frac{n^{3}}{3} + n$ (dove $\frac{n^3}{3}$ è il costo della fattorizzazione).
-
-\subparagraph{2. Risoluzione di p sistemi con la stessa matrice dei coefficienti}
-Supponiamo di dover risolvere i sistemi:
+\subparagraph{Applicazioni della Fattorizzazione LU}
+\begin{enumerate}
+    \item \textbf{Calcolo del Determinante di $A$}\\
+    Il determinante di una matrice $A$ può essere calcolato utilizzando la formula di Binet. Avendo la fattorizzazione $A=LU$, si ha:
+    $$ \det(A) = \det(LU) = \det(L)\det(U) $$
+    Poiché $L$ è triangolare inferiore con tutti 1 sulla diagonale, $\det(L)=1$. Poiché $U$ è triangolare superiore, il suo determinante è il prodotto degli elementi diagonali. Dunque:
+    $$ \det(A) = \det(U) = \prod_{i=1}^{n} u_{i,i} $$
+    Il costo computazionale complessivo è $\frac{n^{3}}{3} + n$ (dove $\frac{n^3}{3}$ è il costo della fattorizzazione).
+    \item \textbf{Risoluzione di $p$ sistemi con la stessa matrice dei coefficienti}\\
+    Supponiamo di dover risolvere i sistemi:
 $$ A\mathbf{x}_{1}=\mathbf{b}_{1}, \quad A\mathbf{x}_{2}=\mathbf{b}_{2}, \quad \dots, \quad A\mathbf{x}_{p}=\mathbf{b}_{p} $$
 o in altri termini il sistema matriciale:
 $$ AX=B $$
@@ -3339,16 +3698,15 @@ Calcolate le matrici $L$ e $U$ una sola volta, ogni sistema $A\mathbf{x}_{i}=\ma
 $$
 \begin{cases}
 L\mathbf{y} = \mathbf{b}_{i} \\
-U\mathbf{text}_{i} = \mathbf{y}
-\end{cases}, \quad i\in\{1,\dots,p\}
+U\mathbf{x}_{i} = \mathbf{y}
+\end{cases} \quad i\in\{1,\dots,p\}
 $$
 mediante gli algoritmi di sostituzione.
 Il costo computazionale complessivo è:
 $$ \frac{n^{3}}{3} + pn^{2} $$
 Se invece si risolvesse ciascun sistema indipendentemente dagli altri con il metodo di Gauss, il costo sarebbe molto più alto: $p(\frac{n^{3}}{3} + \frac{n^{2}}{2})$.
-
-\subparagraph{3. Calcolo dell'inversa di A}
-Se $p=n$ e $B=I$ (matrice identità), risolvere il sistema $AX=B$ è equivalente a calcolare l'inversa $A^{-1}$.
+    \item \textbf{Calcolo dell'inversa di $A$}\\
+    Se $p=n$ e $B=I$ (matrice identità), risolvere il sistema $AX=B$ è equivalente a calcolare l'inversa $A^{-1}$.
 Si risolvono quindi i sistemi:
 $$
 \begin{cases}
@@ -3365,6 +3723,7 @@ Nel dettaglio:
     \item Risolvere il sistema matriciale $UX=Y$ ha un costo di $\frac{n^{3}}{2}$.
 \end{itemize}
 Sommando il costo della fattorizzazione ($\frac{n^3}{3}$), il costo totale asintotico è $n^3$.
+\end{enumerate}
 
 \vspace{10pt}
 
@@ -3389,29 +3748,53 @@ $$ PA = \hat{L}U .$$
 Siano $1 \le r, s \le n$ e sia $P_{r,s}$ la matrice ottenuta da $I$ scambiando la $r$-esima e la $s$-esima riga.
 $$
 P_{r,s} =
-\begin{pmatrix}
-1 & 0 & \dots & \dots & \dots & 0 \\
-0 & 1 & 0 & \dots & \dots & 0 \\
-\vdots & & 0 & \dots & 1 & \vdots \\
-\vdots & & \vdots & 1 & \vdots & \vdots \\
-\vdots & & 1 & \dots & 0 & \vdots \\
-0 & \dots & \dots & \dots & 0 & 1
-\end{pmatrix}
-\begin{matrix}
- \\ \\ \leftarrow r \\ \vdots \\ \leftarrow s \\ \\
-\end{matrix}
+\begin{array}{cl}
+% 1. LA MATRICE (Blocco a sinistra)
+\left(
+\begin{array}{ccccccc}
+1 & \cdots & 0 & \cdots & 0 & \cdots & 0 \\
+\vdots & \ddots & \vdots & & \vdots & & \vdots \\
+0 & \cdots & 0 & \cdots & 1 & \cdots & 0 \\
+\vdots & & \vdots & \ddots & \vdots & & \vdots \\
+0 & \cdots & 1 & \cdots & 0 & \cdots & 0 \\
+\vdots & & \vdots & & \vdots & \ddots & \vdots \\
+0 & \cdots & 0 & \cdots & 0 & \cdots & 1
+\end{array}
+\right)
+&
+% 2. LE FRECCE LATERALI (Blocco a destra)
+% Usiamo \phantom per mantenere l'altezza delle righe allineata
+\begin{array}{l}
+\phantom{1} \\
+\phantom{\vdots} \\
+\leftarrow r \\
+\phantom{\vdots} \\
+\leftarrow s \\
+\phantom{\vdots} \\
+\phantom{1}
+\end{array}
+\\
+% 3. LE FRECCE INFERIORI (Blocco in basso)
+% Usiamo \phantom per copiare la larghezza esatta delle colonne della matrice
+\begin{array}{ccccccc}
+\phantom{1} & \phantom{\cdots} & \uparrow & \phantom{\cdots} & \uparrow & \phantom{\cdots} & \phantom{0} \\
+ & & r & & s & &
+\end{array}
+&
+\end{array}
 $$
+
 
 \vspace{10pt}
 
 \begin{bxthm}
 \begin{prop}
-La matrice $P_{r,s}$ è detta matrice di permutazione e gode delle seguenti proprietà:
+La matrice $P_{r,s}$ è detta \textbf{matrice di permutazione} e gode delle seguenti proprietà:
 \begin{enumerate}
-    \item $det(P_{r,s}) = -1$
-    \item $P_{r,s} = P_{r,s}^{T}$
-    \item $P_{r,s}^{2} = I$
-    \item $P_{r,s}^{-1} = P_{r,s}$
+    \item $det(P_{r,s}) = -1$;
+    \item $P_{r,s} = {}^tP_{r,s}$;
+    \item $P_{r,s}^{2} = I$;
+    \item $P_{r,s}^{-1} = P_{r,s}$.
 \end{enumerate}    
 \end{prop}
 \end{bxthm}
@@ -3419,8 +3802,8 @@ La matrice $P_{r,s}$ è detta matrice di permutazione e gode delle seguenti prop
 \begin{enumerate}
     \item Banale;
     \item Segue dal fatto che l'elemento di posto $(r, s)$ coincide con quello di posto $(s, r)$, mentre tutti gli altri elementi non nulli giacciono sulla diagonale;
-    \item $$ P_{r,s}P_{r,s} = (\mathbf{e}_1, \dots, \mathbf{e}_{r-1}, \mathbf{e}_s, \mathbf{e}_{r+1}, \dots, \mathbf{e}_{s-1}, \mathbf{e}_r, \mathbf{e}_{s+1}, \dots, \mathbf{e}_n)^T (\mathbf{e}_1, \dots, \mathbf{e}_s, \dots, \mathbf{e}_r, \dots, \mathbf{e}_n) $$
-$$ = \mathbf{e}_1\mathbf{e}_1^T + \dots + \mathbf{e}_{r-1}\mathbf{e}_{r-1}^T + \mathbf{e}_s \mathbf{e}_s^T + \mathbf{e}_{r+1}\mathbf{e}_{r+1}^T + \dots + \mathbf{e}_{s-1}\mathbf{e}_{s-1}^T + \mathbf{e}_r \mathbf{e}_r^T + \mathbf{e}_{s+1}\mathbf{e}_{s+1}^T + \dots + \mathbf{e}_n \mathbf{e}_n^T = I $$
+    \item $$ P_{r,s}P_{r,s} = {}^t(\mathbf{e}_1, \dots, \mathbf{e}_{r-1}, \mathbf{e}_s, \mathbf{e}_{r+1}, \dots, \mathbf{e}_{s-1}, \mathbf{e}_r, \mathbf{e}_{s+1}, \dots, \mathbf{e}_n) (\mathbf{e}_1, \dots, \mathbf{e}_s, \dots, \mathbf{e}_r, \dots, \mathbf{e}_n) $$
+$$ = \mathbf{e}_1{}^t\mathbf{e}_1 + \dots + \mathbf{e}_{r-1}{}^t\mathbf{e}_{r-1} + \mathbf{e}_s {}^t\mathbf{e}_s + \mathbf{e}_{r+1}{}^t\mathbf{e}_{r+1} + \dots + \mathbf{e}_{s-1}{}^t\mathbf{e}_{s-1} + \mathbf{e}_r {}^t\mathbf{e}_r + \mathbf{e}_{s+1}{}^t\mathbf{e}_{s+1} + \dots + \mathbf{e}_n {}^t\mathbf{e}_n = I $$
 dove $\mathbf{e}_i$ è l'$i$-esimo vettore colonna della base canonica;
     \item Segue dalla 3.
 \end{enumerate}
@@ -3518,7 +3901,7 @@ La costruzione della matrice $P$ viene fatta scambiando, ogni volta che viene fa
 
 \vspace{10pt}
 
-\paragraph{Schema Algoritmo}
+\subparagraph{Schema Algoritmo}
 \begin{verbatim}
 for k = 1:n-1
     trovo p : |a(p,k)| = max(|a(i,k)|) per i >= k
@@ -3539,137 +3922,139 @@ U = triu(A)
 
 \vspace{10pt}
 
-\paragraph{Costo computazionale}
+\subparagraph{Costo computazionale}
 $$ \frac{n^3}{3} \text{ operazioni} + \sum_{k=1}^{n-1} (n-k) \text{ confronti} \simeq \frac{n^3}{3} \text{ operazioni} + \frac{n^2}{2} \text{ confronti} $$
 
 \vspace{10pt}
 
-\paragraph{Risoluzione di sistemi lineari mediante LU con pivoting}
-Nota la fattorizzazione del tipo $PA=\hat{L}U$, per determinare la soluzione del sistema lineare $Ax=b$ si risolvono due sistemi triangolari:
-$$
-\begin{cases}
-\hat{L}y = Pb \\
-Ux = y
-\end{cases}
-$$
-che deduciamo dalla relazione $PAx=Pb$, ovvero $\hat{L}Ux=Pb$.
+\begin{lstlisting}[style=matlabCode, title = {Function factorLUPP}]
+function [L, U, P, s] = factorLUPP(A)
+% FACTORLUPP Esegue la fattorizzazione LU con pivoting parziale.
+%  [L, U, P, s] = factorLUPP(A) calcola la fattorizzazione PA = LU e
+%  restituisce il numero di scambi effettuati.
+%
+%    Input:
+%      A - Matrice dei coefficienti (n x n)
+%
+%    Output:
+%      L - Matrice triangolare inferiore unitaria (n x n)
+%      U - Matrice triangolare superiore (n x n)
+%      P - Matrice di permutazione (n x n)
+%      s - Numero di scambi effettuati (1 x 1)
 
-\vspace{10pt}
+    %% 1. Validazione degli Input
+    arguments
+        A (:,:) double {mustBeNumeric}
+    end
 
-\paragraph{Costo computazionale}
-L'intera procedura (fattorizzazione $PA=\hat{L}U$ e risoluzione dei due sistemi triangolari) consta di $\frac{n^3}{3} + n^2$ operazioni aritmetiche. Ci sono poi $(n-1) + (n-2) + \dots + 1 = \frac{n(n-1)}{2}$ confronti per determinare il massimo pivot in ogni passo.
+    %% 2. Verifica Dimensioni
+    % Estraggo le dimensioni
+    [n, m] = size(A);
 
-\vspace{10pt}
+    % Verifico se la matrice è quadrata
+    if n ~= m
+        error('factorLUPP:NonSquareMatrix', 'La matrice deve essere quadrata (Size: %dx%d).', n, m);
+    end
 
-Di seguito un esempio in Matlab.
+    %% 3. Eliminazione di Gauss con Pivoting Parziale
+    % Inizializzo P come matrice identità
+    P = eye(n);
+    % Inizializzo s
+    s = 0;
 
-\begin{lstlisting}[style=matlabCode]
-format long e;
-n = 5;
+    for k = 1 : n-1
+        % Pivoting parziale
+        % Trovo il massimo nella colonna k (dal pivot in giù)
+        [~, r_rel] = max(abs(A(k:n, k)));
 
-% Generazione dati casuali
-A = randi([-10,10], n, n);
-b = randi([-10,10], n, 1);
+        % Converto in indice globale
+        r_glob = r_rel + k - 1;
+            
+        % Se il pivot migliore non è quello attuale, scambio
+        if r_glob ~= k
+            A([k, r_glob], :) = A([r_glob, k], :);
+            
+            % Scambio le righe della matrice di permutazione P
+            P([k, r_glob], :) = P([r_glob, k], :);
 
-% 1. Fattorizzazione PA = LU
-[L, U, P] = gaussElimLUP(A);
-
-% 2. Permutazione del termine noto
-b_perm = P * b;
-
-% 3. Risoluzione dei sistemi triangolari
-y = forwardSub(L, b_perm);   % Risolve Ly = Pb
-x = backwardSub(U, y);       % Risolve Ux = y
-
-% 4. Verifica dell'errore
-sol_ref = A\b;               % Soluzione di riferimento MATLAB
-errore = norm(x - sol_ref);
-
-disp("Errore assoluto:");
-disp(errore);
+            % Aggiorno variabile s
+            s = s + 1;
+        end
+        
+        % Controllo pivot nullo (sicurezza)
+        if A(k,k) == 0
+             error('factorLUPP:ZeroPivot', 'Matrice singolare (pivot nullo alla riga %d).', k);
+        end
+        
+        % Ciclo sulle righe sottostanti
+        for i = k+1 : n
+            % Calcolo e assegnazione del moltiplicatore
+            A(i,k) = -A(i,k) / A(k,k);
+            
+            % Aggiornamento riga i-esima
+            for j = k+1:n
+                A(i,j) = A(i,j) + A(i,k) * A(k,j);
+            end
+        end
+    end
+    
+    %% 4. Costruzione Output
+    L = eye(n) - tril(A, -1);
+    U = triu(A);
+    % P è già stata costruita durante i cicli
+end
 \end{lstlisting}
-\begin{verbatim}
-Errore assoluto:
-     2.220446049250313e-16
-\end{verbatim}
 
 \vspace{10pt}
 
-Facciamo ora un confronto tra i due metodi aumentando le dimensioni del problema.
-
-\vspace{10pt}
-
-\begin{lstlisting}[style=matlabCode]
-format long e;
-n = 100;
-
-% Generazione dati casuali
-A = randi([-10,10], n, n);
-b = randi([-10,10], n, 1);
-
-% 1. Fattorizzazione A = LU e PA = LU
-[L0, U0] = gaussElimLU(A);
-[L1, U1, P] = gaussElimLUP(A);
-
-% 2. Permutazione del termine noto
-b_perm = P * b;
-
-% 3. Risoluzione dei sistemi triangolari
-y0 = forwardSub(L0, b);         % Risolve Ly = b
-x0 = backwardSub(U0, y0);       % Risolve Ux = y
-
-y1 = forwardSub(L1, b_perm);    % Risolve Ly = Pb
-x1 = backwardSub(U1, y1);       % Risolve Ux = y
-
-% 4. Verifica dell'errore
-sol_ref = A\b;                  % Soluzione di riferimento MATLAB
-errore0 = norm(x0 - sol_ref);
-errore1 = norm(x1 - sol_ref);
-
-disp("Errore assoluto LU:");
-disp(errore0);
-
-disp("Errore assoluto LUP:");
-disp(errore1);
-\end{lstlisting}
-\begin{verbatim}
-Errore assoluto LU:
-     6.487091132616242e-12
-
-Errore assoluto LUP:
-     3.176154547748571e-14
-\end{verbatim}
-
-\vspace{10pt}
-
-\paragraph{Calcolo del determinante}
-Da $PA = \hat{L}U$, essendo $P^{-1} = P^T$,
-$$ \det(A) = \det(P^T) \det(\hat{L}) \det(U) = \det(P) \det(U) $$
-Poiché
-$$ \det(P) = \det(P_{n-1}) \dots \det(P_2) \det(P_1), $$
-e
-$$
-\det(P_j) =
-\begin{cases}
-1 & \text{se } P_j = I \\
--1 & \text{altrimenti}
-\end{cases}
-$$
-si ha
-$$ \det(A) = (-1)^s \prod_{i=1}^{n} a_{i,i}^{(i)} $$
-dove $s$ denota il numero complessivo di scambi effettuati.
-
-\paragraph{Calcolo dell'inversa di A}
-Denotate con $\mathbf{x}_1, \dots, \mathbf{x}_n$ le colonne della matrice inversa di $A$, quest'ultima può essere calcolata risolvendo i $2n$ sistemi:
+\subparagraph{Risoluzione di sistemi lineari mediante $LU$ con pivoting}
+Nota la fattorizzazione del tipo $PA=\hat{L}U$, per determinare la soluzione del sistema lineare $A\mathbf{x}=\mathbf{b}$ si risolvono due sistemi triangolari:
 $$
 \begin{cases}
-\hat{L}\mathbf{y} = P\mathbf{e}_i \\
-U\mathbf{x}_i = \mathbf{y}
+\hat{L}\mathbf{y} = P\mathbf{b} \\
+U\mathbf{x} = \mathbf{y}
 \end{cases}
-\quad i\in\{1,\ldots,n\}
 $$
-il primo triangolare inferiore e il secondo triangolare superiore.
-Il costo computazionale complessivo è $\frac{n^3}{3} + n^3$ ma può essere ridotto a $n^3$ se si tiene conto dalla natura dei vettori $P\mathbf{e}_i$.
+che deduciamo dalla relazione $PA\mathbf{x}=P\mathbf{b}$, ovvero $\hat{L}U\mathbf{x}=P\mathbf{b}$.
+
+\vspace{10pt}
+
+\subparagraph{Costo computazionale}
+L'intera procedura (fattorizzazione $PA=\hat{L}U$ e risoluzione dei due sistemi triangolari) consta di $\frac{n^3}{3} + n^2$ operazioni aritmetiche. 
+Ci sono poi $(n-1) + (n-2) + \dots + 1 = \frac{n(n-1)}{2}$ confronti per determinare il massimo pivot in ogni passo.
+
+\vspace{10pt}
+
+\subparagraph{Applicazioni della Fattorizzazione LU}
+\begin{enumerate}
+    \item \textbf{Calcolo del determinante}\\
+    Da $PA = \hat{L}U$, essendo $P^{-1} = P^T$,
+    $$ \det(A) = \det(P^T) \det(\hat{L}) \det(U) = \det(P) \det(U) $$
+    Poiché
+    $$ \det(P) = \det(P_{n-1}) \dots \det(P_2) \det(P_1), $$
+    e
+    $$
+    \det(P_j) =
+    \begin{cases}
+    1 & \text{se } P_j = I \\
+    -1 & \text{altrimenti}
+    \end{cases}
+    $$
+    si ha
+    $$ \det(A) = (-1)^s \prod_{i=1}^{n} a_{i,i}^{(i)} $$
+    dove $s$ denota il numero complessivo di scambi effettuati.
+    \item \textbf{Calcolo dell'inversa di $A$}\\
+    Denotate con $\mathbf{x}_1, \dots, \mathbf{x}_n$ le colonne della matrice inversa di $A$, quest'ultima può essere calcolata risolvendo i $2n$ sistemi:
+    $$
+    \begin{cases}
+    \hat{L}\mathbf{y} = P\mathbf{e}_i \\
+    U\mathbf{x}_i = \mathbf{y}
+    \end{cases}
+    \quad i\in\{1,\ldots,n\}
+    $$
+    il primo triangolare inferiore e il secondo triangolare superiore.
+    Il costo computazionale complessivo è $\frac{n^3}{3} + n^3$ ma può essere ridotto a $n^3$ se si tiene conto dalla natura dei vettori $P\mathbf{e}_i$.
+\end{enumerate}
 
 \vspace{20pt}
 
@@ -3682,8 +4067,8 @@ Sia $A \in \mathbb{R}^{n \times n}$ una matrice per cui esiste la fattorizzazion
 Questa decomposizione può essere sempre riscritta come:
 $$ A = LU = LDU_{1} $$
 essendo $L, U_{1}$ entrambe matrici triangolari a diagonale unitaria e $D$ matrice diagonale tale che $(D)_{i,i} = (U)_{i,i}$.
-Se $A$ è simmetrica, allora $U_{1} = L^{T}$, e si ha:
-$$ A = LDL^{T} $$
+Se $A$ è simmetrica, allora $U_{1} = {}^tL$, e si ha:
+$$ A = LD{}^tL $$
 
 \vspace{10pt}
 
@@ -3698,7 +4083,7 @@ Da cui segue il teorema:
 \begin{bxthm}
 \begin{thm}
 Se $A \in \mathbb{R}^{n \times n}$ è una matrice simmetrica definita positiva esiste ed è unica la fattorizzazione:
-$$ A = L_{1}L_{1}^{T} \quad \text{con} \quad L_{1} = LD^{\frac{1}{2}} $$
+$$ A = L_{1}{}^tL_{1} \quad \text{con} \quad L_{1} = LD^{\frac{1}{2}} $$
 dove $L_{1}$ è una matrice triangolare inferiore con elementi diagonali non nulli.
 \end{thm}
 \end{bxthm}
@@ -3706,7 +4091,7 @@ dove $L_{1}$ è una matrice triangolare inferiore con elementi diagonali non nul
 \vspace{10pt}
 
 Nel seguito si fa riferimento alla fattorizzazione di cui nel teorema precedente come alla fattorizzazione del tipo $LL^{T}$.
-La fattorizzazione $LL^{T}$ può essere ottenuta attraverso la procedura di fattorizzazione LU senza pivoting con un costo pari a $n^{3}/6$, cioè circa la metà della fattorizzazione LU.
+La fattorizzazione $L{}^tL$ può essere ottenuta attraverso la procedura di fattorizzazione LU senza pivoting con un costo pari a $n^{3}/6$, cioè circa la metà della fattorizzazione LU.
 Infatti è possibile organizzare l'algoritmo in modo da sfruttare la simmetria di tutte le matrici attive negli $n-1$ passi.
 Vedremo ora come sia possibile ottenere la stessa fattorizzazione attraverso una tecnica "compatta" che porta al metodo di Cholesky e che costa circa $n^{3}/6$ operazioni.
 
@@ -3758,10 +4143,10 @@ function L = cholDec(A)
 %  L = cholDec(A) decompone la matrice A in L*L'
 %  La matrice A deve essere Simmetrica Definita Positiva.
 %
-%    INPUT:
+%    Input:
 %      A - Matrice dei coefficienti (n x n)
 %
-%    OUTPUT:
+%    Output:
 %      L - Matrice fattorizzata (n x n)
 
     %% 1. Validazione degli Input
@@ -3892,6 +4277,8 @@ Sia allora $A$ una matrice non singolare di ordine $n$ e $b$ un vettore colonna 
 
 \subsection{Stabilità dei Metodi di Gauss}
 
+\vspace{10pt}
+
 \paragraph{Backward Error Analysis}
 Con la "Backward Error Analysis (BEA)" (Analisi dell'errore all'indietro), si misura la perturbazione nei dati di ingresso che porta al risultato finale, ipotizzando che le operazioni siano eseguite con precisione infinita.
 Si valuta in sostanza quanto è perturbato il dato di input considerando "esatto" il risultato in output.
@@ -4003,8 +4390,10 @@ $$ \frac{||x-x^{*}||}{||x||} \le ||A|| ||A^{-1}|| \frac{||Ax^{*}-b||}{||b||} $$
 Dalla stima precedente si deduce che la norma del residuo $||Ax^{*}-b||$, pur essendo piccola (magari dell'ordine di eps), non garantisce un errore relativo piccolo, in particolare per matrici con elevato indice di condizionamento.
 Quindi la quantità $||Ax^{*}-b||$ deve essere usata con cautela come stimatore a posteriori dell'errore.
 
-\vspace{20pt}
+\newpage
+
 \section{Metodi Numerici per la Risoluzione di un Sistema Lineare Rettangolare nel Senso dei Minimi Quadrati}
+
 \paragraph{Il problema dei minimi quadrati lineari}
 Consideriamo un sistema lineare del tipo
 $$ Ax=b $$
@@ -4229,12 +4618,12 @@ Abbiamo proposto due possibili strategie numeriche per la risoluzione del proble
 Le funzioni Matlab coinvolte nella risoluzione del PMQ sono le seguenti:
 \begin{itemize}
     \item \texttt{A\textbackslash b}: implementa, nel caso $A$ sia rettangolare, il metodo che utilizza la fattorizzazione QR, cioè il metodo 2;
-    \item \texttt{R = chol(B)}: calcola il fattore di Cholesky della matrice simmetrica e definita positiva $B$ ($B=R^{T}R$);
+    \item \texttt{R = chol(B)}: calcola il fattore di Cholesky della matrice simmetrica e definita positiva $B$ ($B={}^tRR$);
     \item \texttt{D = pinv(A)}: calcola la pseudoinversa (sinistra) della matrice $A$;
     \item \texttt{[Q,R] = qr(A)}: calcola la fattorizzazione QR della matrice $A$ (quadrata o rettangolare) mediante trasformazioni di Householder.
 \end{itemize}
 
-\vspace{20pt}
+\newpage
 
 \section{Metodi Numerici per la Risoluzione di una Equazione non Lineare}
 
@@ -4242,11 +4631,15 @@ Le funzioni Matlab coinvolte nella risoluzione del PMQ sono le seguenti:
 
 \subsection{Risoluzione di Equazioni non Lineari}
 
+\vspace{10pt}
+
 \paragraph{Introduzione}
 Sia $F \in C^{0}([a,b])$, cioè $F$ è una funzione continua in un intervallo $[a,b] \subset \mathbb{R}$, tale che $F(a)F(b) < 0$.
 Vogliamo trovare le radici dell'equazione non lineare
 $$ F(x) = 0 $$
 La condizione $F(a)F(b) < 0$ è una condizione sufficiente per l'esistenza di almeno una radice di $F$ in $[a,b]$.
+
+\vspace{10pt}
 
 \paragraph{Metodo di Bisezione}
 Questo metodo consiste nel costruire, a partire dall'intervallo $[a,b]$, una successione di intervalli incapsulati
@@ -4506,6 +4899,8 @@ In generale, anziché verificare le ipotesi del teorema, è preferibile utilizza
 \vspace{20pt}
 
 \subsection{Risoluzione di Equazioni Algebriche}
+
+\vspace{10pt}
 
 \paragraph{Valutazione di un polinomio in un punto}
 Le equazioni algebriche sono equazioni del tipo
@@ -4789,4 +5184,959 @@ Esistono diversi approcci:
     \textit{Difetti:} Il metodo calcola con precisione gli autovalori della matrice, ma ciò non implica una soddisfacente approssimazione degli zeri di $P$, poiché i due problemi hanno un differente condizionamento.
 \end{enumerate}
 
+\newpage
+
+\section{Esercizi}
+
+\vspace{20pt}
+
+\subsection{Risoluzione di un Sistema Lineare Quadrato}
+
+\vspace{10pt}
+
+\begin{enumerate}
+\item Scrivere una function Matlab che verifichi che una matrice è simmetrica.
+\item Scrivere una function Matlab che verifichi che una matrice simmetrica è definita positiva usando il criterio di Sylvester.
+\item Scrivere una function Matlab che verifichi che una matrice è a diagonale dominante per righe.
+\item Si consideri la matrice
+\[
+A = rand(10), \quad A = A * {}^tA.
+\]
+\begin{itemize}
+\item Verificare se è simmetrica;
+\item Verificare se è simmetrica e definita positiva;
+\end{itemize}
+\item Si consideri la matrice
+\[
+A = rand(10) + 100 * diag(ones(1, 10)).
+\]
+Verificare se è a diagonale dominante per righe.
+\item Scrivere una function Matlab che verifichi che una matrice è a diagonale dominante per colonne.
+\item Si consideri la matrice
+\[
+A(i, j) = \begin{cases}
+-1 & i > j \\
+0 & i < j, \qquad i, j \in\{1, \dots, n\} \\
+100 & i = j
+\end{cases}
+\]
+con $n = 15$.
+\begin{itemize}
+\item Verificare se è a diagonale dominante per colonne;
+\item Verificare se è a diagonale dominante per righe.
+\end{itemize}
+\item Scrivere una function Matlab che implementi il metodo di sostituzione in avanti.
+\item Scrivere una function Matlab che implementi il metodo di sostituzione all'indietro.
+\item Scrivere una function Matlab che implementi opportunamente il metodo di sostituzione all'indietro per calcolare l'inversa di una matrice triangolare superiore
+\item Si consideri il sistema lineare $A\mathbf{x} = \mathbf{b}$ con
+\[
+A = tril(rand(10)), \quad \mathbf{b} = sum(A, 2).
+\]
+Risolvere il sistema con il metodo di sostituzione in avanti.
+\item Si consideri il sistema lineare $A\mathbf{x} = \mathbf{b}$ con
+\[
+A = triu(rand(10)), \quad \mathbf{b} = sum(A, 2).
+\]
+\begin{itemize}
+\item Risolvere il sistema con il metodo di sostituzione all'indietro;
+\item calcolare l'inversa di $A$.
+\end{itemize}
+\item Scrivere una function Matlab che risolvi un sistema diagonale.
+\item Risolvere il sistema lineare $A\mathbf{x} = \mathbf{b}$ con
+\[
+A = diag(diag(rand(10))), \quad \mathbf{b} = sum(A, 2).
+\]
+\item Scrivere una function Matlab che implementi opportunamente il metodo di sostituzione in avanti per calcolare l'inversa di una matrice triangolare inferiore
+\item Calcolare l'inversa della matrice
+\[
+A = tril(rand(20)).
+\]
+\item Scrivere una function Matlab che implementi il metodo di eliminazione di Gauss.
+\item Si consideri il sistema lineare $A\mathbf{x} = \mathbf{b}$ con
+\[
+A = rand(100), \quad \mathbf{b} = sum(A, 2).
+\]
+Risolvere il sistema con il metodo di Gauss.
+\item Si consideri il sistema di equazioni lineari $Ax=b$ di ordine $n=15$, con
+\[
+A(i, j) = \begin{cases}
+-1 & i > j \\
+0 & i < j, \qquad i, j \in \{1, \dots, n\} \\
+100 & i = j
+\end{cases}
+\]
+e
+\[
+\mathbf{b} = {}^t(1, 1, \dots, 1).
+\]
+\begin{itemize}
+\item Calcolare l'indice di condizionamento e il numero massimo di cifre significative corrette che ci si può aspettare nel calcolo della soluzione approssimata.
+\item Calcolare il vettore soluzione con il metodo di sostituzione in avanti e riportarne le prime due componenti con le cifre significative che si possono certamente ritenere corrette.
+\item Confrontare la soluzione ottenuta (vettore x) con la soluzione che si ottiene usando la function predefinita del Matlab (vettore y). Di quanto differiscono al massimo?
+\end{itemize}
+\item Si consideri il sistema di equazioni lineari $Ax=b$ di ordine $n=10$, con
+\[
+A = \begin{pmatrix}
+\frac{1}{2} & 2 & 4 & 4 & \dots & 4 & 4 \\
+1 & \frac{1}{3} & 2 & 4 & \dots & & 4 \\
+2 & 1 & \frac{1}{4} & \ddots & \ddots & & \vdots \\
+0 & 2 & \ddots & \ddots & \ddots & 4 & \vdots \\
+\vdots & \ddots & \ddots & \ddots & \ddots & 2 & 4 \\
+0 & \dots & 0 & 2 & 1 & \frac{1}{n} & 2 \\
+0 & \dots & \dots & 0 & 2 & 1 & \frac{1}{n+1}
+\end{pmatrix}
+\]
+e
+\[
+\mathbf{b} = (b_i)_{i\in\{1,\dots,n\}}, \quad b(i) = \sum_{j=1}^n A_{i,j}.
+\]
+\begin{itemize}
+\item Calcolare l'indice di condizionamento e il numero massimo di cifre significative corrette che ci si può aspettare nel calcolo della soluzione approssimata.
+\item Calcolare il vettore soluzione con il metodo di eliminazione di Gauss e riportarne le prime due componenti con le cifre significative che si possono certamente ritenere corrette.
+\item Confrontare la soluzione ottenuta (vettore x) con la soluzione che si ottiene usando la function predefinita del Matlab (vettore y). Di quanto differiscono al massimo?
+\item Confrontare la soluzione ottenuta (vettore x) con il vettore $t = {}^t(1,\ldots,1)$ che rappresenta la soluzione esatta del sistema. Di quanto differiscono al massimo?
+\end{itemize}
+\item Si consideri il sistema di equazioni lineari $A\mathbf{x}=\mathbf{b}$ di ordine $n=100$, con
+\[
+A = \begin{pmatrix}
+1 & 1 & 4 & 0 & \dots & 0 & 0 \\
+6 & 3 & 1 & 4 & \ddots & & 0 \\
+0 & 6 & 5 & \ddots & \ddots & \ddots & \vdots \\
+0 & 0 & \ddots & \ddots & \ddots & 4 & 0 \\
+\vdots & \ddots & \ddots & \ddots & \ddots & 1 & 4 \\
+0 & \dots & 0 & 0 & 6 & \ddots & 1 \\
+0 & \dots & \dots & \dots & 0 & 6 & 2n-1
+\end{pmatrix}
+\]
+e
+\[
+\mathbf{b} = (b_i)_{i\in\{1,\dots,n\}}, \quad b(i) = \sum_{j=1}^n A_{i,j}.
+\]
+\begin{itemize}
+\item Calcolare l'indice di condizionamento e il numero massimo di cifre significative corrette che ci si può aspettare nel calcolo della soluzione approssimata.
+\item Calcolare il vettore soluzione con il metodo di eliminazione di Gauss e riportare le prime due componenti del vettore soluzione con le cifre significative che si possono certamente ritenere corrette.
+\item Confrontare la soluzione ottenuta (vettore x) con il vettore $t = {}^t(1,\ldots,1)$ che rappresenta la soluzione esatta del sistema. Di quanto differiscono al massimo?
+\end{itemize}
+\item Scrivere una function Matlab che implementi il metodo di eliminazione di Gauss con la strategia del pivoting parziale.
+\item Scrivere una function Matlab che prende in input una matrice $A$ e restituisce in output le matrici $L$ e $U$ tali che $A = LU$.
+\item Consideriamo il sistema lineare $A\mathbf{x} = \mathbf{b}$ di ordine $n = 18$, dove
+\[
+A_{i,j} = \cos \left( (j-1)\frac{2i-1}{2n}\pi \right), \quad i,j \in \{1, \dots, n\},
+\]
+e
+\[
+b_i = \sum_{j=1}^n A_{i,j}, \quad i \in \{1, \dots, n\},
+\]
+la cui soluzione esatta è $\mathbf{x} = {}^t(1,\ldots,1)$.
+\begin{itemize}
+\item Calcolare l'indice di condizionamento e il numero di cifre significative corrette che ci si può aspettare nel calcolo della soluzione approssimata.
+\item Calcolare la soluzione approssimata del sistema utilizzando il metodo di Gauss e calcolare l'errore relativo. Quante sono le cifre significative corrette?
+\item Calcolare la soluzione approssimata del sistema utilizzando il metodo di Gauss con pivoting parziale e calcolare l'errore relativo. Quante sono le cifre significative corrette?
+\item Qual è il metodo più stabile?
+\end{itemize}
+\item Consideriamo il sistema lineare $A\mathbf{x} = \mathbf{b}$ di ordine $n = 50$, dove
+\[
+A = \begin{pmatrix}
+3 & 2 & 2 & 2 & \dots & 2 & 6 \\
+2 & \frac{5}{2} & 2 & 2 & \ddots & & 2 \\
+2 & 2 & \frac{7}{3} & 2 & \ddots & \ddots & \vdots \\
+2 & 2 & 2 & \ddots & \ddots & 2 & 2 \\
+\vdots & \vdots & \ddots & \ddots & \ddots & 2 & 2 \\
+2 & 2 & \dots & 2 & 2 & 2+\frac{1}{n-1} & 2 \\
+6 & 2 & 2 & \dots & 2 & 2 & 2+\frac{1}{n}
+\end{pmatrix}
+\]
+e
+\[
+b_i = \sum_{j=1}^n A_{i,j}, \quad i \in \{1, \dots, n\},
+\]
+la cui soluzione esatta è $\mathbf{x} = {}^t(1,\ldots,1)$.
+\begin{itemize}
+\item Calcolare l'indice di condizionamento e il numero di cifre significative corrette che ci si può aspettare nel calcolo della soluzione approssimata.
+\item Calcolare la soluzione approssimata del sistema utilizzando il metodo di Gauss e calcolare l'errore relativo. Quante sono le cifre significative corrette?
+\item Calcolare la soluzione approssimata del sistema utilizzando il metodo di Gauss con pivoting parziale e calcolare l'errore relativo. Quante sono le cifre significative corrette?
+\item Qual è il metodo più stabile?
+\end{itemize}
+
+\item Consideriamo il problema di $n = 80$
+\[
+AX = B, \quad A \in \mathbb{R}^{n \times n}, X \in \mathbb{R}^{n \times 3}, B \in \mathbb{R}^{n \times 3},
+\]
+dove
+\[
+A = \begin{pmatrix}
+5 & 0 & \frac{1}{2} & 0 & \dots & 0 \\
+0 & 9 & 0 & \frac{1}{3} & \ddots & \vdots \\
+\vdots & 0 & 13 & \ddots & \ddots & 0 \\
+0 & \ddots & \ddots & \ddots & \ddots & \frac{1}{n-1} \\
+\frac{1}{3} & \ddots & 0 & \dots & 4(n-1)+1 & 0 \\
+0 & \frac{1}{3} & 0 & \dots & 0 & 4n+1
+\end{pmatrix}, \quad
+B = \begin{pmatrix}
+1 & 2 & 1 \\
+1 & 2 & 2 \\
+\vdots & \vdots & \vdots \\
+\vdots & \vdots & \vdots \\
+1 & 2 & n-1 \\
+1 & 2 & n
+\end{pmatrix}.
+\]
+(In questa la trascrizione è corretta ma confrontare meglio con pdf esercitazioni per conferma sulla struttura.)
+\begin{itemize}
+\item Calcolare l'indice di condizionamento e il numero di cifre significative corrette che ci si può aspettare nel calcolo della matrice soluzione $X$.
+\item Calcolare la soluzione approssimata $Y$ utilizzando opportunamente la fattorizzazione $LU$ della matrice $A$. Riportare le componenti della prima riga della matrice $Y$ con le cifre che si possono ritenere corrette.
+\item Calcolare il residuo relativo in norma infinito.
+\end{itemize}
+
+\item Scrivere una function Matlab che implementi opportunamente il metodo di eliminazione di Gauss per risolvere un sistema a matrice tridiagonale.
+\item Scrivere una function Matlab che implementi opportunamente il metodo di eliminazione di Gauss per risolvere un sistema a matrice di Hessemberg superiore.
+
+\item Scrivere una function Matlab che prende in input una matrice $A$ e restituisce in output le matrici $L, U$ e $P$ tali che $PA = LU$ e il numero $s$ degli scambi effettuati.
+\item Consideriamo il sistema lineare $A\mathbf{x} = \mathbf{b}$ di ordine $n = 80$, dove
+\[
+A = \begin{pmatrix}
+4 & 2 & 2 & 2 & \dots & 2 & 8 \\
+4 & \frac{7}{2} & 2 & 2 & \ddots & & 2 \\
+4 & 4 & \frac{10}{3} & 2 & \ddots & \ddots & \vdots \\
+4 & 4 & 4 & \ddots & \ddots & 2 & 2 \\
+\vdots & \vdots & \ddots & \ddots & \ddots & 2 & 2 \\
+4 & 4 & \dots & 4 & 4 & 3+\frac{1}{n-1} & 2 \\
+10 & 4 & 4 & \dots & 4 & 4 & 3+\frac{1}{n}
+\end{pmatrix}
+\]
+e
+\[
+b_i = \sum_{j=1}^n A_{i,j}, \quad i \in \{1, \dots, n\},
+\]
+la cui soluzione esatta è $\mathbf{x} = {}^t(1,\ldots,1)$.
+\begin{itemize}
+\item Calcolare l'indice di condizionamento e il numero di cifre significative corrette che ci si può aspettare nel calcolo della soluzione approssimata.
+\item Calcolare la soluzione approssimata del sistema utilizzando opportunamente il metodo di Gauss e calcolare l'errore relativo. Quante sono le cifre significative corrette?
+\item Calcolare il Determinante della matrice $A$.
+\item Calcolare l'inversa della matrice $A$.
+\end{itemize}
+\item Data la matrice di ordine $n = 40$
+\[
+A = \begin{pmatrix}
+\frac{1}{10} & 0 & \frac{1}{2} & 0 & \dots & 0 \\
+0 & \frac{1}{10} & 0 & \frac{1}{2} & \ddots & \vdots \\
+\vdots & 0 & \frac{1}{10} & \ddots & \ddots & 0 \\
+0 & \ddots & \ddots & \ddots & \ddots & \frac{1}{2} \\
+\frac{1}{2} & \ddots & 0 & \dots & \frac{1}{10} & 0 \\
+0 & \frac{1}{3} & 0 & \dots & 0 & \frac{1}{10}
+\end{pmatrix},
+\]
+Calcolare l'indice di condizionamento e il numero di cifre significative corrette che ci si può aspettare nel calcolarne:
+\begin{itemize}
+\item il determinante;
+\item l'inversa.
+\end{itemize}
+\item Data la matrice di ordine $n = 40$(?)
+\[
+A = \begin{pmatrix}
+10 & 1 & \frac{1}{2} & 3 & \dots & 3 & 3 \\
+0 & 10 & 1 & \frac{1}{3} & \ddots & & 3 \\
+2 & 0 & 10 & 1 & \ddots & \ddots & \vdots \\
+\vdots & 2 & 0 & \ddots & \ddots & \frac{1}{n-2} & 3 \\
+2 & & \ddots & \ddots & \ddots & 1 & \frac{1}{n-1} \\
+\frac{1}{2} & \ddots & & 2 & 0 & 10 & 1 \\
+1 & \frac{1}{2} & 2 & \dots & 2 & 0 & 10
+\end{pmatrix}
+\]
+e
+\[
+b_i = \sum_{j=1}^n A_{i,j}, \quad i \in \{1, \dots, n\},
+\]
+la cui soluzione esatta è $\mathbf{x} = {}^t(1,\ldots,1)$.
+\begin{itemize}
+\item Calcolare l'indice di condizionamento e il numero di cifre significative corrette che ci si può aspettare nel calcolo della soluzione approssimata.
+\item Calcolare la soluzione approssimata del sistema utilizzando opportunamente il metodo di Gauss e calcolare l'errore relativo. Quante sono le cifre significative corrette?
+\item Calcolare il Determinante della matrice $A$.
+\item Calcolare l'inversa della matrice $A$.
+\end{itemize}
+    \item Scrivere una function Matlab che implementi il metodo di Cholesky.
+    
+    \item Modificare le functions che implementano le fattorizzazioni $A = LU$ e $PA = LU$ in modo da fornire in output anche il corrispondente fattore di crescita $\rho$ per la valutazione della loro stabilità numerica.
+    
+    \item Consideriamo il sistema lineare $Ax = b$ di ordine $n = 100$, dove
+    $$
+    A = \left(
+    \begin{array}{ccccccc}
+    9 & 0 & 2 & 0 & \dots & 0 & 1 \\
+    4 & 5 & 0 & 2 & 0 & \dots & 0 \\
+    4 & 0 & 5 & \ddots & \ddots & \ddots & \vdots \\
+    \vdots & 0 & \ddots & \ddots & 0 & 2 & 0 \\
+    \vdots & \vdots & \ddots & \ddots & 5 & 0 & 2 \\
+    4 & 0 & \dots & 0 & 0 & 5 & 0 \\
+    4 & 0 & \dots & 0 & 0 & 0 & 5
+    \end{array}
+    \right), \quad A = A * A^T
+    $$
+    e
+    $$
+    b_i = \sum_{j=1}^{n} A_{i,j}, \quad i=1, \dots, n,
+    $$
+    la cui soluzione esatta è $x = [1, \dots, 1]^T$.
+    \begin{itemize}
+        \item Calcolare l'indice di condizionamento e il numero di cifre significative corrette che ci si può aspettare nel calcolo della soluzione approssimata.
+        \item Proporre uno o più metodi numerici per calcolare la soluzione del sistema $Ax = b$ con la massima precisione possibile. Calcolare l'errore relativo in norma infinito. Quante sono le cifre significative corrette della soluzione calcolata?
+        \item Motivare la scelta del metodo effettuata e commentare i risultati ottenuti.
+        \item Calcolare il determinante di $A$.
+        \item Calcolare l'inversa di $A$.
+        \item Verificare che il fattore di crescita $\rho$ relativo alla fattorizzazione $LU$ è uguale a 1.
+    \end{itemize}
+
+    \item Consideriamo il sistema lineare $Ax = b$ di ordine $n = 100$, dove
+    $$
+    A(i,j) = \begin{cases}
+    -7, & i = j \\
+    -2, & |i - j| = 1 \\
+    1, & |i - j| = 4 \\
+    0, & \text{altrimenti}
+    \end{cases}
+    $$
+    e
+    $$
+    b_i = \sum_{j=1}^{n} A_{i,j}, \quad i=1, \dots, n,
+    $$
+    la cui soluzione esatta è $x = [1, \dots, 1]^T$.
+    \begin{itemize}
+        \item Calcolare l'indice di condizionamento e il numero di cifre significative corrette che ci si può aspettare nel calcolo della soluzione approssimata.
+        \item Proporre uno o più metodi numerici per calcolare la soluzione del sistema $Ax = b$ con la massima precisione possibile. Calcolare l'errore relativo in norma infinito. Quante sono le cifre significative corrette della soluzione calcolata?
+        \item Valutare la stabilità dei metodi proposti mediante il calcolo del fattore di crescita $\rho$.
+        \item Motivare la scelta del metodo effettuata e commentare i risultati ottenuti.
+        \item Calcolare il determinante di $A$.
+        \item Calcolare l'inversa di $A$.
+        \item Verificare che il fattore di crescita $\rho$ relativo alla fattorizzazione $LU$ è minore di 2.
+    \end{itemize}
+
+    \item Consideriamo il sistema lineare $Ax = b$ di ordine $n = 80$, dove
+    $$
+    A = \left(
+    \begin{array}{cccccc}
+    15 & -3 & -3 & -3 & \dots & -3 \\
+    2 & 15 & -3 & -3 & \ddots & \vdots \\
+    0 & 2 & 15 & \ddots & \ddots & -3 \\
+    \vdots & & \ddots & \ddots & \ddots & -3 \\
+    \vdots & \ddots & & 2 & 15 & -3 \\
+    0 & \dots & \dots & 0 & 2 & 4
+    \end{array}
+    \right)
+    $$
+    e
+    $$
+    b = [1, \dots, 1]^T.
+    $$
+    \begin{itemize}
+        \item Calcolare l'indice di condizionamento e il numero di cifre significative corrette che ci si può aspettare nel calcolo della soluzione approssimata.
+        \item Calcolare la soluzione approssimata $y$ del sistema utilizzando opportunamente il metodo di Gauss. Riportare le prime 2 componenti del vettore $y$ con le cifre che si possono ritenere corrette.
+        \item Verificare la stabilità del metodo di Gauss usato, valutando il suo fattore di crescita $\rho$.
+        \item Calcolare la norma infinito del residuo $Ay - b$.
+        \item Calcolare il determinante di $A$.
+        \item Calcolare l'inversa di $A$.
+    \end{itemize}
+
+    \item Consideriamo il sistema lineare $Ax = b$ di ordine $n = 60$, con $A$ matrice di Wilkinson
+    $$
+    A = \left(
+    \begin{array}{ccccccc}
+    1 & 0 & 0 & 0 & \dots & 0 & 1 \\
+    -1 & 1 & 0 & 0 & & \vdots & 1 \\
+    -1 & -1 & 1 & \ddots & \ddots & \vdots & \vdots \\
+    \vdots & -1 & \ddots & \ddots & 0 & 0 & \vdots \\
+    \vdots & \vdots & \ddots & \ddots & 1 & 0 & 1 \\
+    -1 & -1 & \dots & -1 & -1 & 1 & 1 \\
+    -1 & -1 & \dots & -1 & -1 & -1 & 1
+    \end{array}
+    \right)
+    $$
+    e $b(i) = \sum_{j=1}^n a_{ij}, \quad i = 1:n$
+    \begin{itemize}
+        \item Calcolare l'indice di condizionamento e il numero di cifre significative corrette che ci si può aspettare nel calcolo della soluzione approssimata.
+        \item Stabilire in base a proprietà eventuali della matrice quale variante del metodo di Gauss o fattorizzazione è più conveniente usare per garantire la massima stabilità al minimo costo.
+        \item Calcolare il fattore di crescita $\rho$ se si usa il GE.
+        \item Calcolare la soluzione e l'errore relativo commesso.
+        \item Calcolare il fattore di crescita $\rho$ se si usa il GEPP.
+        \item Calcolare la soluzione e l'errore relativo commesso.
+        \item Fare opportune considerazioni sui risultati ottenuti
+        \item Calcolare la soluzione con il GETP e l'errore relativo commesso. Utilizzare opportunamente la function predefinita del Matlab lu.
+        \item Fare opportune considerazioni sui risultati ottenuti
+        \item Ripetere lo stesso esercizio con $n = 50$.
+    \end{itemize}
+    \item Scrivere una function Matlab che calcoli il fattore $\rho$ di crescita per la valutazione dell'errore algoritmico in GE e GEPP.
+
+    \item Scrivere una function Matlab per la determinazione delle matrici $L, U, P, Q$ tali che $PAQ = LU$ con pivoting totale.
+
+    \item Consideriamo il sistema lineare $Ax = b$ di ordine $n = 60$, con $A$ matrice di Wilkinson
+    $$
+    A = \left(
+    \begin{array}{ccccccc}
+    1 & 0 & 0 & 0 & \dots & 0 & 1 \\
+    -1 & 1 & 0 & 0 & & \vdots & 1 \\
+    -1 & -1 & 1 & \ddots & \ddots & \vdots & \vdots \\
+    \vdots & -1 & \ddots & \ddots & 0 & 0 & \vdots \\
+    \vdots & \vdots & \ddots & \ddots & 1 & 0 & 1 \\
+    -1 & -1 & \dots & -1 & -1 & 1 & 1 \\
+    -1 & -1 & \dots & -1 & -1 & -1 & 1
+    \end{array}
+    \right)
+    $$
+    e $b(i) = \sum_{j=1}^n a_{ij}, \quad i = 1:n$
+    \begin{itemize}
+        \item Calcolare l'indice di condizionamento e il numero di cifre significative corrette che ci si può aspettare nel calcolo della soluzione approssimata.
+        \item Stabilire in base a proprietà eventuali della matrice quale variante del metodo di Gauss o fattorizzazione è più conveniente usare per garantire la massima stabilità al minimo costo.
+        \item Calcolare il fattore di crescita $\rho$ se si usa il GEPP.
+        \item Calcolare la soluzione e l'errore relativo commesso.
+        \item Fare opportune considerazioni sui risultati ottenuti
+        \item Calcolare la soluzione con il GETP e l'errore relativo commesso.
+        \item Fare opportune considerazioni sui risultati ottenuti
+        \item Ripetere lo stesso esercizio con $n = 50$.
+    \end{itemize}
+
+    \item Consideriamo il sistema lineare $Ax = b$ di ordine $n = 60$, con $b(i) = i \quad i=1,2\dots,n$ ed $A = G * G'$, essendo
+    \begin{eqnarray*}
+    G(i, i+1) &=& \cos(2i+1), \quad i=1,2,..,,n-1 \\
+    G(i,i) &=& n+1, \quad i=1,2,\dots,n \\
+    G(i,1) &=& 1, \quad i \ge 2 \\
+    0 && \text{altrove}
+    \end{eqnarray*}
+    \begin{itemize}
+        \item Calcolare l'indice di condizionamento e il numero di cifre significative corrette che ci si può aspettare nel calcolo della soluzione approssimata.
+        \item Stabilire in base a proprietà eventuali della matrice quale variante del metodo di Gauss o fattorizzazione è più conveniente usare per garantire la massima stabilità al minimo costo.
+        \item Calcolare il fattore di crescita $\rho$ se si usa il GEPP.
+        \item Calcolare la soluzione e l'errore relativo commesso.
+        \item Fare opportune considerazioni sui risultati ottenuti
+    \end{itemize}
+
+    \item Consideriamo i sistemi lineari
+    $$
+    Gx = c
+    $$
+    $$
+    Gy = d
+    $$
+    con $G = (g_{i,j})_{i,j=1,\dots,n}$ matrice dell'esercizio precedente e con
+    $$
+    c(i) = \sum_{j=1}^n g_{i,j}, \quad i=1,\dots,n,
+    $$
+    $$
+    d(i) = 1, \quad i=1:n
+    $$
+    \begin{itemize}
+        \item Calcolare l'indice di condizionamento e il numero di cifre significative corrette che ci si può aspettare nel calcolo della soluzione approssimata.
+        \item Stabilire in base a proprietà eventuali della matrice quale variante del metodo di Gauss o fattorizzazione è più conveniente usare per garantire la massima stabilità al minimo costo.
+        \item Calcolare il fattore di crescita $\rho$ se si usa il GEPP.
+        \item Calcolare la soluzione e l'errore relativo commesso.
+        \item Fare opportune considerazioni sui risultati ottenuti
+    \end{itemize}
+\item Consideriamo il sistema lineare $Ax = b$ di ordine $n = 80$ con
+    $$
+    A = \left(
+    \begin{array}{ccccccc}
+    10 & 1 & 0 & \dots & 0 & 2 & 200 \\
+    1 & 10 & 2 & \ddots & & \ddots & 2 \\
+    0 & 1 & 10 & \ddots & \ddots & & 0 \\
+    \vdots & \ddots & \ddots & \ddots & \ddots & \ddots & \vdots \\
+    0 & & \ddots & \ddots & \ddots & n-2 & 0 \\
+    2 & \ddots & & \ddots & 1 & 10 & n-1 \\
+    100 & 2 & 0 & \dots & 0 & 1 & 10
+    \end{array}
+    \right)
+    $$
+    e
+    $$
+    b = \{b_i\}_{i=1,\dots,n}^T, \quad b_i = \sum_{j=1}^{n} A_{i,j}, \quad i=1,\dots,n.
+    $$
+    \begin{itemize}
+        \item Riportare le istruzioni Matlab utilizzate per la costruzione di $A$ e $b$.
+        \item Calcolare la soluzione approssimata del sistema con la massima precisione possibile usando una opportuna procedura numerica. Riportare le istruzioni Matlab utilizzate e le prime 2 componenti del vettore soluzione con le cifre che si possono ritenere corrette.
+        \item Motivare la scelta del metodo.
+        \item Qual è il costo computazionale del metodo numerico utilizzato?
+        \item Poichè è noto che la soluzione è $x = (1, 1, \dots, 1)^T$, calcolare l'errore relativo. Riportarne il valore e le istruzioni Matlab utilizzate. Quante sono le cifre significative corrette?
+        \item Commentare i risultati ottenuti.
+    \end{itemize}
+
+    \item Determinare la matrice inversa della matrice data nell'esercizio precedente. Indicare:
+    \begin{itemize}
+        \item la procedura utilizzata
+        \item la fattorizzazione più adeguata per garantire stabilità
+        \item il costo computazionale.
+    \end{itemize}
+\item Consideriamo il sistema lineare $Ax = b$ di ordine $n = 100$ con
+    $$
+    A = \left(
+    \begin{array}{cccccc}
+    2 & 0 & \dots & 0 & 1 & 3 \\
+    0 & 4 & 0 & \dots & 0 & 1 \\
+    2 & 0 & 6 & \ddots & \vdots & 0 \\
+    \vdots & 2 & \ddots & \ddots & 0 & \vdots \\
+    2 & \vdots & \ddots & \ddots & 2n-2 & 0 \\
+    2 & 2 & \dots & 2 & 0 & 2n
+    \end{array}
+    \right)
+    $$
+    e
+    $$
+    b = \{b_i\}_{i=1,\dots,n}^T, \quad b_i = \sum_{j=1}^{n} A_{i,j}, \quad i = 1,\dots,n.
+    $$
+    \begin{itemize}
+        \item Riportare le istruzioni Matlab utilizzate per la costruzione di $A$ e $b$.
+        \item Calcolare la soluzione approssimata del sistema con la massima precisione possibile usando una opportuna procedura numerica. Riportare le istruzioni Matlab utilizzate e le prime 2 componenti del vettore soluzione con le cifre che si possono ritenere corrette.
+        \item Motivare la scelta del metodo.
+        \item Qual è il costo computazionale del metodo numerico utilizzato?
+        \item Poichè è noto che la soluzione è $x = (1, 1, \dots, 1)^T$, calcolare l'errore relativo. Riportarne il valore e le istruzioni Matlab utilizzate. Quante sono le cifre significative corrette?
+        \item Commentare i risultati ottenuti.
+    \end{itemize}
+
+    \item Consideriamo il sistema lineare $AX = B$ di ordine $n = 80$ con
+    $$
+    A = (a_{i,j})_{i,j=1,\dots,n} = \left(\sqrt{\frac{2}{n+1}}\sin\left(\frac{\pi i j}{n+1}\right)\right)_{i,j=1,\dots,n}
+    $$
+    e
+    $$
+    b = \left(
+    \begin{array}{ccc}
+    \sum_{j=1}^n A_{1,j} & 1 & 2 \\
+    \sum_{j=1}^n A_{2,j} & 1 & 2 \\
+    \vdots & \vdots & \vdots \\
+    \sum_{j=1}^n A_{n,j} & 1 & 2
+    \end{array}
+    \right).
+    $$
+    \begin{itemize}
+        \item Riportare le istruzioni Matlab utilizzate per la costruzione di $A$ e $b$.
+        \item Calcolare la soluzione approssimata del sistema con la massima precisione possibile usando una opportuna procedura numerica. Riportare le istruzioni Matlab utilizzate e le prime 2 righe della matrice soluzione con le cifre che si possono ritenere corrette.
+        \item Motivare la scelta del metodo.
+        \item Qual è il costo computazionale del metodo numerico utilizzato?
+        \item Calcolare il residuo relativo. Riportarne il valore e le istruzioni Matlab utilizzate. Quante sono le cifre significative corrette?
+        \item Commentare i risultati ottenuti.
+    \end{itemize}
+
+    \item Consideriamo il sistema lineare $Ax = b$ di ordine $n = 110$ con
+    $$
+    A = \left(
+    \begin{array}{ccccccc}
+    3 & 0 & 0 & 0 & \dots & 0 & 2 \\
+    2 & 1 & 0 & 0 & \dots & 0 & 2 \\
+    2 & 0 & 1 & \ddots & \ddots & \vdots & \vdots \\
+    \vdots & 0 & \ddots & \ddots & 0 & 0 & 2 \\
+    \vdots & \vdots & \ddots & \ddots & 1 & 0 & 2 \\
+    2 & 0 & \dots & 0 & 0 & 1 & 2 \\
+    2 & 0 & \dots & 0 & 0 & 0 & 3
+    \end{array}
+    \right)
+    $$
+    e
+    $$
+    b = \{b_i\}_{i=1,\dots,n}^T, \quad b_i = \sum_{j=1}^{n} A_{i,j}, \quad i = 1,\dots,n.
+    $$
+    \begin{itemize}
+        \item Riportare le istruzioni Matlab utilizzate per la costruzione di $A$ e $b$.
+        \item Calcolare la soluzione approssimata del sistema con la massima precisione possibile usando una opportuna procedura numerica. Riportare le istruzioni Matlab utilizzate e le prime 2 componenti del vettore soluzione con le cifre che si possono ritenere corrette.
+        \item Motivare la scelta del metodo.
+        \item Qual è il costo computazionale del metodo numerico utilizzato?
+        \item Poichè è noto che la soluzione è $x = (1, 1, \dots, 1)^T$, calcolare l'errore relativo. Riportarne il valore e le istruzioni Matlab utilizzate. Quante sono le cifre significative corrette?
+        \item Commentare i risultati ottenuti.
+    \end{itemize}
+    \item Consideriamo il sistema lineare $Ax = b$ di ordine $n = 120$ con
+    $$
+    A = \left(
+    \begin{array}{cccccc}
+    2(n+1) & 2 & 0 & 0 & \dots & 0 \\
+    -1 & 2(n+1) & 4 & 0 & \dots & 0 \\
+    0 & -1 & 2(n+1) & \ddots & \ddots & \vdots \\
+    \vdots & \ddots & \ddots & \ddots & \ddots & 0 \\
+    0 & & \ddots & -1 & 2(n+1) & 2(n-1) \\
+    0 & 0 & \dots & 0 & -1 & 2(n+1)
+    \end{array}
+    \right).
+    $$
+    e
+    $$
+    b = \{b_i\}_{i=1,\dots,n}^T, \quad b_i = \sum_{j=1}^{n} A_{i,j}, \quad i = 1,\dots,n.
+    $$
+    \begin{itemize}
+        \item Riportare le istruzioni Matlab utilizzate per la costruzione di $A$ e $b$.
+        \item Calcolare la soluzione approssimata del sistema con la massima precisione possibile usando una opportuna procedura numerica. Riportare le istruzioni Matlab utilizzate e le prime 2 componenti del vettore soluzione con le cifre che si possono ritenere corrette.
+        \item Motivare la scelta del metodo.
+        \item Qual è il costo computazionale del metodo numerico utilizzato?
+        \item Poichè è noto che la soluzione è $x = (1, 1, \dots, 1)^T$, calcolare l'errore relativo. Riportarne il valore e le istruzioni Matlab utilizzate. Quante sono le cifre significative corrette?
+        \item Calcolare l'inversa $B$ della matrice $A$ con la massima precisione possibile usando una opportuna procedura numerica. Riportare le istruzioni Matlab utilizzate e il valore delle componenti $B(3,4)$ e $B(4,4)$ con le cifre che si possono ritenere corrette.
+        \item Commentare i risultati ottenuti.
+    \end{itemize}
+
+    \item Data la matrice di ordine $n = 80$
+    $$
+    A = \left(
+    \begin{array}{cccccc}
+    \frac{1}{4} & -2 & -2 & \dots & -2 & 5 \\
+    2 & \frac{1}{8} & -2 & \ddots & & -2 \\
+    2 & 2 & \frac{1}{12} & \ddots & \ddots & \vdots \\
+    \vdots & \ddots & \ddots & \ddots & -2 & -2 \\
+    2 & & \ddots & \ddots & \frac{1}{4n-4} & -2 \\
+    9 & 2 & \dots & 2 & 2 & \frac{1}{4n}
+    \end{array}
+    \right).
+    $$
+    \begin{itemize}
+        \item Riportare le istruzioni Matlab utilizzate per la sua costruzione.
+        \item Calcolare il determinante della matrice $A$ con la massima precisione possibile usando una opportuna procedura numerica. Riportare le istruzioni Matlab utilizzate e il valore del determinante con le cifre che si possono ritenere corrette.
+        \item Motivare la scelta del metodo.
+        \item Qual è il costo computazionale del metodo numerico utilizzato?
+    \end{itemize}
+
+    \item Consideriamo il sistema lineare $Ax = b$ di ordine $n = 80$ con
+    $$
+    A = (a_{i,j})_{i,j=1,\dots,n} \quad \text{con} \quad a_{i,j} = \min\{i,j\}
+    $$
+    e
+    $$
+    b = \{b_i\}_{i=1,\dots,n}^T, \quad b_i = \sum_{j=1}^{n} A_{i,j}, \quad i = 1,\dots,n.
+    $$
+    \begin{itemize}
+        \item Riportare le istruzioni Matlab utilizzate per la costruzione di $A$ e $b$.
+        \item Calcolare la soluzione approssimata del sistema con la massima precisione possibile usando una opportuna procedura numerica. Riportare le istruzioni Matlab utilizzate e le prime 2 componenti del vettore soluzione con le cifre che si possono ritenere corrette.
+        \item Motivare la scelta del metodo.
+        \item Qual è il costo computazionale del metodo numerico utilizzato?
+        \item Poichè è noto che la soluzione è $x = (1, 1, \dots, 1)^T$, calcolare l'errore relativo. Riportarne il valore e le istruzioni Matlab utilizzate. Quante sono le cifre significative corrette?
+        \item Calcolare il determinante della matrice $A$ con la massima precisione possibile usando una opportuna procedura numerica. Riportare le istruzioni Matlab utilizzate e il valore del determinante con le cifre che si possono ritenere corrette.
+        \item Commentare i risultati ottenuti.
+    \end{itemize}
+\end{enumerate}
+
+
+\vspace{20pt}
+
+\subsection{Metodi Numerici per la Risoluzione di un Sistema Lineare Rettangolare nel Senso dei Minimi Quadrati}
+
+\vspace{10pt}
+
+\begin{enumerate}
+    \item Considerare la matrice test $A$ definita mediante i comandi Matlab
+    $$
+    B = gallery('kahan', 80);
+    $$
+    $$
+    A = B(:, 1:30).
+    $$
+    \begin{itemize}
+        \item Determinare le dimensioni della matrice e stabilire se è o meno a rango massimo.
+        \item Considerare il sistema $Ax = b$ con $b(i) = \sum_{j=1}^n a_{ij}, \ i=1,\dots,m$ nel senso dei minimi quadrati. Studiare l'esistenza e l'unicità della soluzione del sistema, il condizionamento del problema e determinare la stima dell'errore teorico a priori.
+        \item Scegliere il metodo che conviene applicare e giustificare la scelta.
+        \item È noto che in questo caso la soluzione è data da $\bar{x} = (1, 1, \dots, 1)^T \in \mathbb{R}^n$. Calcolare quindi l'errore commesso e confrontare il risultato ottenuto con la stima a priori.
+    \end{itemize}
+
+    \item Considerare la matrice test $A$ definita mediante il comando Matlab
+    $$
+    A = gallery('chebvand', 350, 60).
+    $$
+    \begin{itemize}
+        \item Determinare le dimensioni della matrice e stabilire se è o meno a rango massimo.
+        \item Considerare il sistema $Ax = b$ con $b(i) = \sum_{j=1}^n a_{ij}, \ i=1,\dots,m$ nel senso dei minimi quadrati. Studiare l'esistenza e l'unicità della soluzione del sistema, il condizionamento del problema e determinare la stima dell'errore teorico a priori.
+        \item Scegliere il metodo che conviene applicare e giustificare la scelta.
+        \item È noto che in questo caso la soluzione è data da $\bar{x} = (1, 1, \dots, 1)^T \in \mathbb{R}^n$. Calcolare quindi l'errore commesso e confrontare il risultato ottenuto con la stima a priori.
+    \end{itemize}
+
+    \item Considerare la matrice test $A$ definita mediante i comandi Matlab
+    $$
+    B = gallery('kms', 100, .1);
+    $$
+    $$
+    A = B(:, 1:30).
+    $$
+    \begin{itemize}
+        \item Determinare le dimensioni della matrice e stabilire se è o meno a rango massimo.
+        \item Considerare il sistema $Ax = b$ con $b(i) = \sum_{j=1}^n a_{ij}, \ i=1,\dots,m$ nel senso dei minimi quadrati. Studiare l'esistenza e l'unicità della soluzione del sistema, il condizionamento del problema e determinare la stima dell'errore teorico a priori.
+        \item Scegliere il metodo che conviene applicare e giustificare la scelta.
+        \item È noto che in questo caso la soluzione è data da $\bar{x} = (1, 1, \dots, 1)^T \in \mathbb{R}^n$. Calcolare quindi l'errore commesso e confrontare il risultato ottenuto con la stima a priori.
+    \end{itemize}
+
+    \item Considerare la matrice test $A$ definita mediante i comandi Matlab
+    $$
+    A = gallery('lauchli', 100) * gallery('lehmer', 100);
+    $$
+    \begin{itemize}
+        \item Determinare le dimensioni della matrice e stabilire se è o meno a rango massimo.
+        \item Considerare il sistema $Ax = b$ con $b(i) = \sum_{j=1}^n a_{ij}, \ i=1,\dots,m$ nel senso dei minimi quadrati. Studiare l'esistenza e l'unicità della soluzione del sistema, il condizionamento del problema e determinare la stima dell'errore teorico a priori.
+        \item Scegliere il metodo che conviene applicare e giustificare la scelta.
+        \item Calcolare l'errore commesso confrontando la soluzione ottenuta con quella che si ottiene utilizzando la function $\backslash$ del MatLab. Confrontare tale errore con la stima a priori.
+    \end{itemize}
+
+    \item Data la matrice di ordine $n = 100$
+    $$
+    B = \left(
+    \begin{array}{cccccc}
+    1 & -2 & -2 & \dots & \dots & -1 \\
+    4 & 2 & -2 & \dots & \dots & -2 \\
+    4 & 4 & \ddots & \ddots & \ddots & \vdots \\
+    \vdots & \ddots & \ddots & \ddots & -2 & -2 \\
+    \vdots & & \ddots & \ddots & n-1 & -2 \\
+    5 & 4 & \dots & 4 & 4 & n
+    \end{array}
+    \right),
+    $$
+    considerare la matrice $A = B(:, 1:7)$.
+    \begin{itemize}
+        \item Determinare le dimensioni della matrice e stabilire se è o meno a rango massimo.
+        \item Considerare il sistema $Ax = b$ con $b = 2 * sum(A, 2)$, nel senso dei minimi quadrati. Studiare l'esistenza e l'unicità della soluzione del sistema, il condizionamento del problema e determinare la stima dell'errore teorico a priori.
+        \item Scegliere il metodo che conviene applicare e giustificare la scelta.
+        \item Commentare i risultati ottenuti.
+    \end{itemize}
+
+    \item Considerare la seguente matrice test
+    $$
+    A = gallery('lauchli', 10).
+    $$
+    \begin{itemize}
+        \item Determinare le dimensioni della matrice e stabilire se è o meno a rango massimo.
+        \item Considerare il sistema $Ax = b$ con $b(i) = \sum_{j=1}^n a_{ij}, \ i=1,\dots,m$ nel senso dei minimi quadrati. Studiare l'esistenza e l'unicità della soluzione del sistema, il condizionamento del problema e determinare la stima dell'errore teorico a priori.
+        \item Scegliere il metodo che conviene applicare e giustificare la scelta. Qual è il suo costo computazionale?
+        \item È noto che in questo caso la soluzione è data da $\bar{x} = (1, 1, \dots, 1)^T \in \mathbb{R}^n$. Calcolare quindi l'errore commesso e confrontare il risultato ottenuto con la stima a priori.
+    \end{itemize}
+
+    \item Sia $m = 90$. Consideriamo il sistema $Ax = b$ nel senso dei minimi quadrati, dove
+    $$
+    A = (a_{i,j})_{i=1,\dots,m \atop j=1,\dots,\frac{m}{3}}, \quad a_{i,j} = \begin{cases} 
+    \sin(i+2j)+1, & i = j \\
+    \cos(2i+j-5), & i \neq j 
+    \end{cases}
+    $$
+    $$
+    b = \{b_i\}_{i=1,\dots,m}, \quad b_i = \sum_{j=1}^{\frac{m}{3}} a_{i,j}, \quad i=1,\dots,m.
+    $$
+    \begin{itemize}
+        \item Riportare le istruzioni Matlab utilizzate per la costruzione di $A$ e $b$.
+        \item Determinare le dimensioni della matrice e stabilire se è o meno a rango massimo.
+        \item Studiare l'esistenza e l'unicità della soluzione del sistema, il condizionamento del problema e determinare la stima dell'errore teorico a priori.
+        \item Scegliere il metodo che conviene applicare e giustificare la scelta. Qual è il suo costo computazionale?
+        \item È noto che in questo caso la soluzione è data da $\bar{x} = (1, 1, \dots, 1)^T \in \mathbb{R}^{\frac{m}{}}$. Calcolare quindi l'errore commesso e confrontare il risultato ottenuto con la stima a priori.
+    \end{itemize}
+    \item Considerare la seguente matrice test
+    $$
+    A = gallery('lauchli', 10).
+    $$
+    \begin{itemize}
+        \item Determinare le dimensioni della matrice e stabilire se è o meno a rango massimo.
+        \item Considerare il sistema $Ax = b$ con $b(i) = \sum_{j=1}^n a_{ij}, \ i=1,\dots,m$ nel senso dei minimi quadrati. Studiare l'esistenza e l'unicità della soluzione del sistema, il condizionamento del problema e determinare la stima dell'errore teorico a priori.
+        \item Scegliere il metodo che conviene applicare e giustificare la scelta. Qual è il suo costo computazionale?
+        \item È noto che in questo caso la soluzione è data da $\bar{x} = (1, 1, \dots, 1)^T \in \mathbb{R}^n$. Calcolare quindi l'errore commesso e confrontare il risultato ottenuto con la stima a priori.
+    \end{itemize}
+
+    \item Sia $m = 90$. Consideriamo il sistema $Ax = b$ nel senso dei minimi quadrati, dove
+    $$
+    A = (a_{i,j})_{i=1,\dots,m \atop j=1,\dots,\frac{m}{3}}, \quad a_{i,j} = \begin{cases} 
+    \sin(i+2j)+1, & i = j \\
+    \cos(2i+j-5), & i \neq j 
+    \end{cases}
+    $$
+    $$
+    b = \{b_i\}_{i=1,\dots,m}^T, \quad b_i = \sum_{j=1}^{\frac{m}{3}} a_{i,j}, \quad i=1,\dots,m.
+    $$
+    \begin{itemize}
+        \item Riportare le istruzioni Matlab utilizzate per la costruzione di $A$ e $b$.
+        \item Determinare le dimensioni della matrice e stabilire se è o meno a rango massimo.
+        \item Studiare l'esistenza e l'unicità della soluzione del sistema, il condizionamento del problema e determinare la stima dell'errore teorico a priori.
+        \item Scegliere il metodo che conviene applicare e giustificare la scelta. Qual è il suo costo computazionale?
+        \item È noto che in questo caso la soluzione è data da $\bar{x} = (1, 1, \dots, 1)^T \in \mathbb{R}^{\frac{m}{4}}$. Calcolare quindi l'errore commesso e confrontare il risultato ottenuto con la stima a priori.
+    \end{itemize}
+    \item Consideriamo il sistema lineare $Ax = b$ di ordine $n = 90$ con
+    $$
+    A = \left(
+    \begin{array}{ccccccc}
+    4 & 0 & 0 & \dots & 0 & 3 & 2 \\
+    0 & 5 & 0 & & & 3 & 3 \\
+    0 & 0 & 6 & \ddots & \vdots & \vdots & \vdots \\
+    \vdots & & \ddots & \ddots & 0 & \vdots & \vdots \\
+    0 & \dots & \dots & 0 & \ddots & 3 & n-1 \\
+    2 & 2 & \dots & 2 & 2 & (n-1)+3 & n \\
+    2 & 3 & \dots & \dots & n-1 & n & n+3
+    \end{array}
+    \right)
+    $$
+    $$
+    b = \{b_i\}_{i=1,\dots,n}^T, \quad b_i = \sum_{j=1}^{n} A_{i,j}, \quad i = 1,\dots,n.
+    $$
+    \begin{itemize}
+        \item Calcolare la soluzione approssimata del sistema con la massima precisione possibile usando una opportuna procedura numerica. Riportare le prime 2 componenti del vettore soluzione con le cifre che si possono ritenere corrette.
+        \item Motivare la scelta del metodo.
+        \item Qual è il costo computazionale del metodo numerico utilizzato?
+        \item Poichè è noto che la soluzione è $x = (1, 1, \dots, 1)^T$, calcolare l'errore relativo. Quante sono le cifre significative corrette?
+        \item Commentare i risultati ottenuti.
+    \end{itemize}
+
+    \item Consideriamo il sistema lineare $Ax = b$ di ordine $n = 90$ con
+    $$
+    A = \left(
+    \begin{array}{cccccc}
+    1 & 2 & 2 & \dots & 2 & 2 \\
+    2 & 3 & 2 & 2 & & 2 \\
+    2 & 2 & 5 & \ddots & \ddots & \vdots \\
+    \vdots & 2 & \ddots & \ddots & 2 & 2 \\
+    2 & & \ddots & 2 & 2n-3 & 2 \\
+    2 & 2 & \dots & 2 & 2 & 2n-1
+    \end{array}
+    \right)
+    $$
+    $$
+    b = \{b_i\}_{i=1,\dots,n}^T, \quad b_i = \sum_{j=1}^{n} A_{i,j}, \quad i = 1,\dots,n.
+    $$
+    \begin{itemize}
+        \item Calcolare la soluzione approssimata del sistema con la massima precisione possibile usando una opportuna procedura numerica. Riportare le prime 2 componenti del vettore soluzione con le cifre che si possono ritenere corrette.
+        \item Motivare la scelta del metodo.
+        \item Qual è il costo computazionale del metodo numerico utilizzato?
+        \item Poichè è noto che la soluzione è $x = (1, 1, \dots, 1)^T$, calcolare l'errore relativo. Quante sono le cifre significative corrette?
+        \item Commentare i risultati ottenuti.
+    \end{itemize}
+\end{enumerate}
+
+\vspace{20pt}
+
+\subsection{Metodi Numerici per la Risoluzione di una Equazione non Lineare}
+
+\vspace{10pt}
+
+\begin{enumerate}
+\item Scrivere una function Matlab che implementi il metodo di bisezione.
+\item Scrivere una function Matlab che implementi il metodo di Newton.
+\item Scrivere una function Matlab che implementi il metodo combinato bisezione-Newton.
+\item Data l'equazione
+\[
+F(x) = \cos(x) - 4x.
+\]
+\begin{itemize}
+\item Individuare un intervallo che contenga lo zero della funzione.
+\item Approssimare lo zero con la precisione di macchina utilizzando il metodo di Bisezione. Riportare il valore approssimato dello zero e il numero di iterazioni effettuate dal metodo.
+\item Approssimare lo zero con la precisione di macchina utilizzando il metodo di Newton. Riportare il valore approssimato dello zero e il numero di iterazioni effettuate dal metodo.
+\item Approssimare lo zero con la precisione di macchina utilizzando il metodo combinato di bisezione-Newton. Riportare il valore approssimato dello zero e il numero di iterazioni effettuate dai metodi.
+\end{itemize}
+\item Data l'equazione
+\[
+F(x) = e^x + \frac{x}{10}.
+\]
+\begin{itemize}
+\item Individuare un intervallo che contenga lo zero della funzione.
+\item Approssimare lo zero con la precisione di macchina utilizzando il metodo di Bisezione. Riportare il valore approssimato dello zero e il numero di iterazioni effettuate dal metodo.
+\item Approssimare lo zero con la precisione di macchina utilizzando il metodo di Newton. Riportare il valore approssimato dello zero e il numero di iterazioni effettuate dal metodo.
+\item Approssimare lo zero con la precisione di macchina utilizzando il metodo combinato di bisezione-Newton. Riportare il valore approssimato dello zero e il numero di iterazioni effettuate dai metodi.
+\end{itemize}
+\item Data l'equazione
+\[
+F(x) = x + \log(x^3).
+\]
+\begin{itemize}
+\item Individuare un intervallo che contenga lo zero della funzione.
+\item Approssimare lo zero con la precisione di macchina utilizzando il metodo di Bisezione. Riportare il valore approssimato dello zero e il numero di iterazioni effettuate dal metodo.
+\item Approssimare lo zero con la precisione di macchina utilizzando il metodo di Newton. Riportare il valore approssimato dello zero e il numero di iterazioni effettuate dal metodo.
+\item Approssimare lo zero con la precisione di macchina utilizzando il metodo combinato di bisezione-Newton. Riportare il valore approssimato dello zero e il numero di iterazioni effettuate dai metodi.
+\end{itemize}
+\item Supponiamo che una reazione chimica origini ad un certo istante $t$ una concentrazione di un particolare ione data dalla legge:
+\[
+c(t) = 7e^{-5t} + 3e^{-2t}.
+\]
+Se all'istante iniziale la concentrazione iniziale è $c(0)=10$, a quale istante $\bar{t}$ la concentrazione iniziale si sarà dimezzata, ossia
+\[
+c(\bar{t}) = 5?
+\]
+\begin{itemize}
+\item Tenendo conto che il problema è equivalente a quello di determinare lo zero dell'equazione
+\[
+F(t) = 7e^{-5t} + 3e^{-2t} - 5 = 0,
+\]
+individuare un intervallo del semiasse positivo che contenga lo zero della funzione $F$.
+\item Approssimare lo zero con la precisione di macchina utilizzando il metodo combinato di bisezione-Newton. Riportare il valore approssimato dello zero e il numero di iterazioni effettuate dai metodi.
+\end{itemize}
+\item Calcolare $\sqrt{33}$ con la precisione di macchina utilizzando il metodo combinato di bisezione-Newton.
+\item Calcolare $1/43$ con la precisione di macchina utilizzando il metodo combinato di bisezione-Newton.
+\item Scrivere una function Matlab che implementi il metodo di bisezione per equazioni algebriche.
+\item Scrivere una function Matlab che implementi il metodo di Newton per equazioni algebriche.
+\item Scrivere una function Matlab che implementi il metodo combinato bisezione-Newton per equazioni algebriche.
+\item Scrivere una function Matlab che implementi l'algoritmo di Horner per il calcolo del valore di un polinomio e della sua derivata in un punto.
+\item Scrivere una function Matlab che calcoli gli indici di condizionamento delle radici semplici e multiple.
+\item Sia
+\[
+P(x) = x^6 - x - 1.
+\]
+\begin{itemize}
+\item Approssimare le radici reali di $P$ con la precisione di macchina utilizzando il metodo combinato di bisezione-Newton. Qual è il numero di iterazioni del metodo di bisezione? Qual è il numero di iterazioni del metodo di Newton?
+\item Studiare il condizionamento delle radici reali di $P$. Riportare il valore delle radici con le cifre che si possono ritenere corrette.
+\end{itemize}
+\item Sia
+\[
+P(x) = x^9 + 2x^8 - 3x^7 + x^6 + x^4 - 2x^2 + x - 1
+\]
+\begin{itemize}
+\item Approssimare le radici reali di $P$ con la precisione di macchina utilizzando il metodo combinato di bisezione-Newton. Qual è il numero di iterazioni del metodo di bisezione? Qual è il numero di iterazioni del metodo di Newton?
+\item Studiare il condizionamento delle radici reali di $P$. Riportare il valore delle radici con le cifre che si possono ritenere corrette.
+\end{itemize}
+\item Sia
+\[
+P(x) = 2x^9 - 3x^8 + 4x^5 + \frac{1}{2}x^4 - x^3 + x - \frac{1}{2}
+\]
+\begin{itemize}
+\item Individuare l'intervallo che contiene tutte le radici reali.
+\item Quante sono le radici reali? Che molteplicità hanno? Trovare per ciasuna radice reale un intervallo che la contiene.
+\item Approssimare le radici reali di $P$ con la precisione di macchina utilizzando il metodo combinato di bisezione-Newton. Qual è il numero di iterazioni del metodo di bisezione? Qual è il numero di iterazioni del metodo di Newton?
+\item Studiare il condizionamento delle radici reali di $P$. Riportare il valore delle radici con le cifre che si possono ritenere corrette.
+\end{itemize}
+\item Sia
+\[
+P(x) = x^7 - 3x^6 + 2.25x^5 - x^3 + 3.5x^2 - 3.75x + 1.125.
+\]
+\begin{itemize}
+\item Il polinomio $P$ ha $x = \frac{3}{2}$ come radice doppia. Calcolarne il condizionamento.
+\item Approssimarla con la precisione di macchina utilizzando il metodo Newton. Qual è il numero di iterazioni?
+\item Approssimarla con la precisione di macchina utilizzando il metodo Newton opportunamente modificato. Qual è il numero di iterazioni?
+\item Approssimarla con la function roots del MatLab.
+\end{itemize}
+\item Sia
+\[
+P(x) = x^5 + 0.631x^4 + 0.676387x^3 - 0.325473867x^2 + 0.04352613299999995x - 0.001860867
+\]
+\begin{itemize}
+\item Individuare l'intervallo che contiene tutte le radici reali di $P$.
+\item Quante sono le radici reali? Che molteplicità hanno? Trovare per ciasuna radice reale un intervallo che la contiene.
+\item Approssimare le radici reali di $P$ con la precisione di macchina utilizzando opportunamente i metodi studiati. Qual è il numero di iterazioni del metodo utilizzato?
+\item Studiare il condizionamento delle radici reali di $P$. Riportare il valore delle radici con le cifre che si possono ritenere corrette.
+\end{itemize}
+\item Sia
+\[
+P(x) = x^8 - 4.01x^7 + 4.02x^6 + x^3 - 3.01x^2 + 0.01x + 4.02.
+\]
+\begin{itemize}
+\item Individuare l'intervallo che contiene tutte le radici reali di $P$.
+\item Quante sono le radici reali? Che molteplicità hanno? Trovare per ciasuna radice reale un intervallo che la contiene.
+\item Approssimare le radici reali di $P$ con la precisione di macchina utilizzando opportunamente i metodi studiati. Qual è il numero di iterazioni del metodo utilizzato?
+\item Studiare il condizionamento delle radici reali di $P$. Riportare il valore delle radici con le cifre che si possono ritenere corrette.
+\end{itemize}
+\item Sia
+\[
+P(x) = 2x^8 - 8.02x^7 + 8.04x^6 + x^3 - 3.01x^2 + 0.001x + 4.02
+\]
+\begin{itemize}
+\item Individuare l'intervallo che contiene tutte le radici reali.
+\item Quante sono le radici reali? Che molteplicità hanno? Trovare per ciasuna radice reale un intervallo che la contiene.
+\item Approssimare le radici reali di $P$ con la precisione di macchina utilizzando opportunamente i metodi studiati. Qual è il numero di iterazioni del metodo utilizzato?
+\item Studiare il condizionamento delle radici reali di $P$. Riportare il valore delle radici con le cifre che si possono ritenere corrette.
+\end{itemize}
+\item Sia
+\[
+P(x) = x^{10} - 55x^9 + 1320x^8 - 18150x^7 + 157773x^6 - 902055x^5 + 3416930x^4 - 8409500x^3 + 12753576x^2 - 10628640x + 3628800.
+\]
+\begin{itemize}
+\item Individuare l'intervallo che contiene tutte le radici reali di $P$.
+\item Quante sono le radici reali? Che molteplicità hanno? Trovare per ciasuna radice reale un intervallo che la contiene.
+\item Approssimare le radici reali di $P$ con la precisione di macchina utilizzando opportunamente i metodi studiati. Qual è il numero di iterazioni del metodo utilizzato?
+\item Studiare il condizionamento delle radici reali di $P$. Riportare il valore delle radici con le cifre che si possono ritenere corrette.
+\end{itemize}
+\item Sia
+\[
+P(x) = x^6 - 2x^5 - 4x^4 + 6x^3 + 7x^2 - 4x - 4
+\]
+\begin{itemize}
+\item Individuare l'intervallo che contiene tutte le radici reali di $P$.
+\item Quante sono le radici reali? Che molteplicità hanno? Trovare per ciasuna radice reale un intervallo che la contiene.
+\item Approssimare le radici reali di $P$ con la precisione di macchina utilizzando opportunamente i metodi studiati. Qual è il numero di iterazioni del metodo utilizzato?
+\item Studiare il condizionamento delle radici reali di $P$. Riportare il valore delle radici con le cifre che si possono ritenere corrette.
+\end{itemize}
+\end{enumerate}
 \end{document}
