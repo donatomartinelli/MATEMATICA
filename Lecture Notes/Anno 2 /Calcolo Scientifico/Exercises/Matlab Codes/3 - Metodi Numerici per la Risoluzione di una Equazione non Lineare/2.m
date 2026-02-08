@@ -1,7 +1,7 @@
 function [x, i] = newton(x0, f, df, toll, itmax)
 % NEWTON Trova la radice di f(x)=0 usando il metodo di Newton.
 %   [x, i] = NEWTON(x0, f, df, toll, itmax) calcola l'approssimazione
-%   della radice a partire da una stima iniiale x0.
+%   della radice a partire da una stima iniziale x0.
 %
 %   Input:
 %     x0    - (double) Stima iniziale
@@ -11,8 +11,8 @@ function [x, i] = newton(x0, f, df, toll, itmax)
 %     itmax - (integer, opzionale) Numero massimo di iterazioni (default 100)
 %
 %   Output:
-%     x    - (vector) Vettore contenente tutte le iterazioni calcolate
-%     iter - (integer) Numero di iterazioni effettuate
+%     x - (vector) Vettore contenente tutte le iterazioni calcolate
+%     i - (integer) Numero di iterazioni effettuate
 
     %% 1. Validazione degli Input
     arguments
@@ -47,7 +47,7 @@ function [x, i] = newton(x0, f, df, toll, itmax)
         x(i + 1) = x(i) - fx / dfx; % Calcolo e aggiungo il nuovo valore al vettore
         
         % Calcolo Errore Relativo
-        % Nota: Aggiungo eps al denominatore per evitare crash se x_new è 0
+        % Nota: Aggiungo eps al denominatore per evitare crash se x(i + 1) è 0
         err = abs(x(i + 1) - x(i)) / (abs(x(i + 1)) + eps);
         
         % Aggiornamento indici e funzioni
@@ -57,9 +57,8 @@ function [x, i] = newton(x0, f, df, toll, itmax)
     end
     
     %% 4. Controllo finale
-    % L'indice 'i' punta all'ultimo elemento riempito. 
-    % Le iterazioni vere e proprie sono (lunghezza vettore - 1).
-    if i - 1 == itmax
+    % Se siamo usciti perché i ha raggiunto itmax (e l'errore è ancora alto)
+    if (i == itmax) && (err > toll)
         warning('Raggiunto il numero massimo di iterazioni (%d) senza convergenza.', itmax);
     end
 end
