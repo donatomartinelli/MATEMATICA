@@ -1,4 +1,4 @@
-function [iter, x, itmax] = bisec(a, b, f, toll)
+function [i, x, itmax] = bisec(a, b, f, toll)
 % BISEC Trova la radice di f(x)=0 in [a,b] con il metodo di Bisezione.
 %
 %   Input:
@@ -7,7 +7,7 @@ function [iter, x, itmax] = bisec(a, b, f, toll)
 %     toll  - Tolleranza richiesta (default 1e-6)
 %
 %   Output:
-%     iter  - Numero di iterazioni effettuate
+%     i     - Numero di iterazioni effettuate
 %     x     - Vettore con la storia delle approssimazioni
 %     itmax - Numero massimo di iterazioni teoriche previste
 
@@ -53,8 +53,5 @@ function [iter, x, itmax] = bisec(a, b, f, toll)
         x(i) = (a + b) / 2; % Nuovo punto medio
         fx = f(x(i));       % Nuova valutazione
     end
-
-    %% 5. Output Finale
-    iter = i; % Numero totale di iterazioni fatte
 
 end
