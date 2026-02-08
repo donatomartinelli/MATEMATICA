@@ -1,79 +1,60 @@
-function root = bisec(f, a, b, toll)
-% BISEC Trova la radice approssimata di f con il metodo di Bisezione.
-%  root = BISEC(f, a, b, toll) restituisce la radice stimata data una certa
-%  tolleranza.
-%  
-%  Input:
-%    f    - Funzione
-%    a    - Estremo inferiore dell'intervallo
-%    b    - Estremo superiore dell'intervallo
-%    toll - Tolleranza per il calcolo della soluzione
-%   
-%  Output: 
-%    root - Radice stimata data la tolleranza 
+function [iter, x, itmax] = bisec(a, b, f, toll)
+% BISEC Trova la radice di f(x)=0 in [a,b] con il metodo di Bisezione.
+%
+%   Input:
+%     a, b  - Estremi dell'intervallo
+%     f     - Function handle della funzione
+%     toll  - Tolleranza richiesta (default 1e-6)
+%
+%   Output:
+%     iter  - Numero di iterazioni effettuate
+%     x     - Vettore con la storia delle approssimazioni
+%     itmax - Numero massimo di iterazioni teoriche previste
 
     %% 1. Validazione degli Input
     arguments
-        f (1,1) function_handle
-        a (1,1) double {mustBeNumeric, mustBeReal}
-        b (1,1) double {mustBeNumeric, mustBeReal}
-        toll (1,1) double {mustBePositive} = 1e-5
+        a     (1,1) double
+        b     (1,1) double
+        f     (1,1) function_handle
+        toll  (1,1) double {mustBePositive} = 1e-6
     end
 
-    %% 2. Controllo Condizioni
-    % Controllo e Swap estremi
-    if a > b
-        warning("Estremi invertiti. Procedo allo scambio (a < b).");
-        [a, b] = deal(b, a);
-    end
-
-    % Calcolo iniziale di f(a)
+    %% 2. Controllo Esistenza Zeri (Teorema degli Zeri)
     fa = f(a);
     fb = f(b);
 
-    % Verifica caso limite (radice sugli estremi)
-    if fa == 0
-        root = a;
-        return;
-    elseif fb == 0
-        root = b;
-        return;
+    % Uso sign() per evitare overflow se f(a)*f(b) diventa troppo grande
+    if sign(fa) * sign(fb) > 0
+        error('La funzione non cambia segno agli estremi dell''intervallo [a,b].');
     end
 
-    % Controllo segno (usando sign() per evitare overflow numerici)
-    if sign(fa) * sign(fb) > 0 
-        error("La funzione deve avere segni opposti agli estremi del dominio.")
-    end
+    %% 3. Inizializzazione
+    % Calcolo teorico del numero di passi necessari
+    itmax = 1 + floor(log((b-a)/toll)/log(2));
 
-    %% 3. Bisezione
-    % Calcolo iterazioni necessarie
-    k = floor(log((b-a)/toll)/log(2)) + 1;
-    fprintf('Iterazioni previste: %d\n', k);
+    i = 1;              % Indice corrente
+    x(i) = (a + b) / 2; % Primo punto medio
+    fx = f(x(i));       % Valutazione nel punto medio
 
-    % Inizializzazione di sicurezza
-    root = a; 
-
-    % Ciclo Principale
-    for i = 1:k
-        m = (a + b) / 2;
-        fm = f(m);
+    %% 4. Ciclo Iterativo
+    % Continua finché non finisco i passi E l'errore è alto
+    while (i < itmax) && (abs(fx) >= toll)
         
-        % Check radice esatta (raro ma possibile)
-        if fm == 0
-            root = m;
-            fprintf("Radice esatta trovata a iterazione %d: %e\n", i, m);
-            return;
-        end
-    
-        % Aggiornamento intervallo
-        if sign(fa) * sign(fm) < 0
-            b = m;
+        % Selezione del sotto-intervallo
+        if sign(fx) * sign(fa) < 0
+            b = x(i);   % La radice è a sinistra (tra a e x)
         else
-            a = m;
-            fa = fm;
+            a = x(i);   % La radice è a destra (tra x e b)
+            fa = fx;    % Fondamentale: aggiorno fa per il prossimo confronto
         end
-    
-        % Aggiornamento stima corrente
-        root = m;
+        
+        % Nuovo passo
+        i = i + 1;
+        x(i) = (a + b) / 2; % Nuovo punto medio
+        fx = f(x(i));       % Nuova valutazione
     end
+
+    %% 5. Output Finale
+    iter = i; % Numero totale di iterazioni fatte
+
 end
