@@ -31,7 +31,6 @@ function [x_bis, i_bis, x_newt, i_newt] = bisnew(a, b, f, df, toll, itmax)
     %% 3. Fase 2: Raffinamento (Newton)
     % Il punto di innesco per Newton è l'ultimo risultato della Bisezione.
     start_point = x_bis(end); 
-    
     [x_newt, i_newt] = newton(start_point, f, df, toll, itmax);
 
 end
