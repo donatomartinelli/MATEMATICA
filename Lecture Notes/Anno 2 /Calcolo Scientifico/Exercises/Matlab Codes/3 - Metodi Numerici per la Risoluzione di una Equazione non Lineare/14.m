@@ -1,33 +1,31 @@
-function [p, dp] = Horner(a, t)
-% HORNER Valuta un polinomio e la sua derivata prima usando l'algoritmo di Horner.
-%  [p, dp] = HORNER(a, t) calcola il valore del polinomio P(x) e della sua
-%  derivata P'(x) nel punto (o nei punti) t.
+function cond = condRoot(c, r, x)
+% CONDROOT Calcola l'indice di condizionamento di una radice.
+%  cond = CONDROOT(c, r, x) stima quanto la radice x (con molteplicità r)
+%  è sensibile alle perturbazioni sui coefficienti del polinomio.
 %
 %  Input:
-%    a - Vettore dei coefficienti ordinati dal grado massimo al minimo
-%      P(x) = a(1)*x^n + a(2)*x^(n-1) + ... + a(n)*x + a(n+1)
-%    t - Punto/i in cui valutare il polinomio (scalare o vettore).
+%    c - Vettore dei coefficienti (dal grado massimo al noto).
+%    r - Molteplicità della radice x (r=1 per radici semplici).
+%    x - Il valore della radice.
 %
 %  Output:
-%    p  - Valore del polinomio calcolato in t.
-%    dp - Valore della derivata prima calcolata in t.
+%    cond - Indice di condizionamento.
 
-    % Numero totale di coefficienti (grado del polinomio n = m - 1)
-    m = length(a);
+    n = length(c) - 1;   % Grado del polinomio
+
+    % Calcola le derivate fino all'ordine r usando Horner Generalizzato
+    p = HornerR(c, r, x);
     
-    % Inizializzazione con il coefficiente di grado massimo
-    p = a(1);
-    dp = p;
-    
-    % Ciclo di Horner: aggiorna p e dp iterativamente
-    % Nota: Il ciclo si ferma al penultimo coefficiente
-    for i = 2 : m-1
-        p = p .* t + a(i);      % Aggiorna valore polinomio
-        dp = dp .* t + p;       % Aggiorna derivata usando il nuovo p
+    y = p(end);          % Valore della derivata r-esima: P^(r)(x)
+
+    % Calcola i singoli termini del polinomio: a_k * x^potenza
+    % (Serve per trovare il termine massimo al numeratore)
+    for k = 1 : n+1
+        fatt(k) = c(k) * x^(n - k + 1);
     end
-    
-    % Ultimo passo per il polinomio (aggiunta del termine noto)
-    % La derivata è già completa all'uscita del ciclo
-    p = p .* t + a(m);
-    
+
+    % Formula dell'indice di condizionamento per radici multiple:
+    % K = (1/|x|) * [ (r! * max|a_k * x^k|) / |P^(r)(x)| ] ^ (1/r)
+    cond = max(abs(fatt * factorial(r) / y).^(1/r)) / abs(x);
+
 end
