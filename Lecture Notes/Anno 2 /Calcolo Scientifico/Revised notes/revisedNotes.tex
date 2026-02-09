@@ -15,6 +15,8 @@
 \pgfplotsset{compat=1.18}
 \geometry{a4paper, margin=2cm}
 \usepackage{listings}
+\usepackage{graphicx} 
+\graphicspath{ {./figures/} }
 \usepackage{xcolor}
 \lstset{
     inputencoding=utf8,
@@ -2489,7 +2491,7 @@ Sia $A = \begin{pmatrix} 2 & 0 & 0 \\ 0 & 3 & 4 \\ 0 & 4 & 3 \end{pmatrix}$.
     \item $||A||_{\infty} = \max(2, 3+4, 4+3) = 7$ (somma righe);
     \item $||A||_{1} = \max(2, 3+4, 4+3) = 7$ (somma colonne);
     \item $||A||_{2}$: Poiché $A$ è simmetrica, $||A||_2 = \max|\lambda(A)|$.
-    Gli autovalori sono $\lambda_1=2$ e, dal blocco inferiore, $\lambda_{2,3} = 3 \pm 4 \Rightarrow \{7, -1\}$.
+    Gli autovalori sono $\lambda_1=2$ e, dal blocco inferiore, $\lambda_{2,3} = 3 \pm 4 \implies \{7, -1\}$.
     Quindi $||A||_{2} = \max\{2, 7, |-1|\} = 7$.
     \item $||A||_{F} = \sqrt{2^2 + 3^2 + 4^2 + 0 + 4^2 + 3^2} = \sqrt{54} \approx 7.35$;
 \end{itemize}
@@ -4072,7 +4074,7 @@ $$ A = LD{}^tL $$
 
 \vspace{10pt}
 
-\paragraph{Fattorizzazione $LL^T$}
+\paragraph{Fattorizzazione $L{}^tL$}
 Se $A \in \mathbb{R}^{n \times n}$ è simmetrica definita positiva, essendo gli elementi di $D$ tutti positivi, si ha:
 $$ D = D^{\frac{1}{2}}D^{\frac{1}{2}} $$
 dove gli elementi di $(D^{\frac{1}{2}})_{i,i} = \sqrt{D_{i,i}}$.
@@ -4082,7 +4084,7 @@ Da cui segue il teorema:
 
 \begin{bxthm}
 \begin{thm}
-Se $A \in \mathbb{R}^{n \times n}$ è una matrice simmetrica definita positiva esiste ed è unica la fattorizzazione:
+Se $A \in \mathbb{R}^{n \times n}$ è una matrice simmetrica definita positiva, esiste ed è unica la fattorizzazione:
 $$ A = L_{1}{}^tL_{1} \quad \text{con} \quad L_{1} = LD^{\frac{1}{2}} $$
 dove $L_{1}$ è una matrice triangolare inferiore con elementi diagonali non nulli.
 \end{thm}
@@ -4090,16 +4092,16 @@ dove $L_{1}$ è una matrice triangolare inferiore con elementi diagonali non nul
 
 \vspace{10pt}
 
-Nel seguito si fa riferimento alla fattorizzazione di cui nel teorema precedente come alla fattorizzazione del tipo $LL^{T}$.
+Nel seguito si fa riferimento alla fattorizzazione di cui nel teorema precedente come alla fattorizzazione del tipo $L{}^tL$.
 La fattorizzazione $L{}^tL$ può essere ottenuta attraverso la procedura di fattorizzazione LU senza pivoting con un costo pari a $n^{3}/6$, cioè circa la metà della fattorizzazione LU.
 Infatti è possibile organizzare l'algoritmo in modo da sfruttare la simmetria di tutte le matrici attive negli $n-1$ passi.
 Vedremo ora come sia possibile ottenere la stessa fattorizzazione attraverso una tecnica "compatta" che porta al metodo di Cholesky e che costa circa $n^{3}/6$ operazioni.
 
 \vspace{10pt}
 
-\paragraph{Costruzione del Metodo di Cholesky}
+\subparagraph{Costruzione del Metodo di Cholesky}
 Posto $A=(a_{i,j})_{i,j\in\{1,\dots,n\}}$ e $L=(l_{i,j})_{i,j\in\{1,\dots,n\}}$, si ha:
-$$ a_{i,j} = \sum_{k=1}^{n} l_{i,k}l_{k,j}^{T} = \sum_{k=1}^{n} l_{i,k}l_{j,k} $$
+$$ a_{i,j} = \sum_{k=1}^{n} l_{i,k}{}^tl_{k,j} = \sum_{k=1}^{n} l_{i,k}l_{j,k} $$
 Poiché la matrice è simmetrica, possiamo considerare solo gli elementi di $A$ con $j \le i$. Otteniamo:
 $$ a_{i,j} = \sum_{k=1}^{j-1} l_{i,k}l_{j,k} + l_{i,j}l_{j,j}, \quad i\in\{1,\ldots,n\}, \quad j\in\{1,\dots,i-1\} $$
 $$ a_{i,i} = \sum_{k=1}^{i-1} l_{i,k}^{2} + l_{i,i}^{2}, \quad i\in\{1,\ldots,n\} $$
@@ -4111,7 +4113,7 @@ $$ l_{i,i} = \sqrt{a_{i,i} - \sum_{k=1}^{i-1} l_{i,k}^{2}}, \quad i\in\{2,\dots,
 
 \vspace{10pt}
 
-\paragraph{Schema Algoritmo}
+\subparagraph{Schema Algoritmo}
 \begin{verbatim}
 l(1,1) = sqrt(a(1,1))                  % 1 operazione
 for i = 2:n
@@ -4130,24 +4132,24 @@ for i = 2:n
 end
 \end{verbatim}
 
-\paragraph{Costo Computazionale}
+\subparagraph{Costo Computazionale}
 $$ 1 + \sum_{i=2}^{n} \left[ i + \sum_{j=1}^{i-1} j \right] = \sum_{i=1}^{n} i + \sum_{i=1}^{n} \frac{i(i-1)}{2} $$
 $$ = \sum_{i=1}^{n} i + \frac{1}{2}\sum_{i=1}^{n} i^{2} - \frac{1}{2}\sum_{i=1}^{n} i = \frac{1}{2}\sum_{i=1}^{n} i + \frac{1}{2}\sum_{i=1}^{n} i^{2} $$
 $$ = \frac{n(n+1)}{4} + \frac{n(n+1)(2n+1)}{12} \simeq \frac{n^{3}}{6} $$
 
 \vspace{10pt}
 
-\begin{lstlisting}[style=matlabCode]
+\begin{lstlisting}[style=matlabCode, title = {Function cholDec}]
 function L = cholDec(A)
-%CHOLDEC Esegue la fattorizzazione di Cholesky.
-%  L = cholDec(A) decompone la matrice A in L*L'
+% CHOLDEC Esegue la fattorizzazione di Cholesky.
+%  L = cholDec(A) esegue la fattorizzazione di Cholesky (A=L*L')
 %  La matrice A deve essere Simmetrica Definita Positiva.
 %
-%    Input:
-%      A - Matrice dei coefficienti (n x n)
-%
-%    Output:
-%      L - Matrice fattorizzata (n x n)
+%  Input:
+%    A - Matrice dei coefficienti (n x n)
+%   
+%  Output:
+%    L - Matrice triangolare inferiore (n x n)
 
     %% 1. Validazione degli Input
     arguments
@@ -4155,18 +4157,15 @@ function L = cholDec(A)
     end
     
     %% 2. Verifica Dimensioni
+    % Estraggo le dimensioni
     [n, m] = size(A);
 
+    % Verifico se la matrice è quadrata
     if n ~= m
-        error('cholDec:nonSquareMatrix', 'La matrice dei coefficienti deve essere quadrata (Size: %dx%d).', n, m);
-    end
-    
-    %% 3. Verifica Simmetria
-    if ~isequal(A, A')
-        error('cholDec:nonSymmMatrix','La matrice dei coefficienti deve essere simmetrica.')
+        error('cholDec:NonSquareMatrix', 'La matrice dei coefficienti deve essere quadrata (Size: %dx%d).', n, m);
     end
 
-    %% 2. Metodo di Cholesky
+    %% 3. Metodo di Cholesky
     L = zeros(n);
     
     % Primo elemento
@@ -4185,7 +4184,7 @@ function L = cholDec(A)
         end
         
         % Calcolo elemento diagonale
-        L(i,i) = 0;    % Inizializza accumulatore
+        L(i,i) = 0;        % Inizializza accumulatore
         for k = 1:i-1
             L(i,i) = L(i,i) + L(i,k)^2;
         end
@@ -4195,7 +4194,7 @@ function L = cholDec(A)
         
         % Controllo di sicurezza
         if argRad <= 0
-            error('cholDec:nonDefPosMatrix','La matrice dei coefficienti non è definita positiva (elemento diagonale <= 0).')
+            error('cholDec:nonDefPosMatrix','La matrice non è definita positiva.')
         end
         
         L(i,i) = sqrt(argRad);
@@ -4203,73 +4202,33 @@ function L = cholDec(A)
 end
 \end{lstlisting}
 
-
 \vspace{10pt}
 
-\paragraph{Stabilità e Risoluzione}
+\subparagraph{Stabilità e Risoluzione}
 È possibile provare che l'algoritmo di Cholesky è stabile. Ricordiamo che, peraltro, anche l'algoritmo di Gauss, senza pivoting, è stabile per le matrici simmetriche definite positive.
-Molte routine automatiche calcolano $R=L^{T}$ anziché $L$, ma è evidente che l'algoritmo è lo stesso (con un attento uso degli indici), data la simmetria della matrice di partenza $A$. In tali casi scriveremo:
-$$ A = R^{T}R $$
-Osserviamo infine che se si vuole risolvere il sistema $Ax=b$ mediante la fattorizzazione di Cholesky basterà, una volta computata la fattorizzazione, e quindi calcolata $L$ (o rispettivamente $R$), risolvere i seguenti due sistemi:
-$$ Ly = b, \quad L^{T}x = y $$
-(oppure $R^{T}y = b, \quad Rx = y$ rispettivamente).
+Molte routine automatiche calcolano $R={}^tL$ anziché $L$, ma è evidente che l'algoritmo è lo stesso (con un attento uso degli indici), data la simmetria della matrice di partenza $A$. 
+In tali casi scriveremo:
+$$ A = {}^tRR $$
+Osserviamo infine che se si vuole risolvere il sistema $A\mathbf{x}=\mathbf{b}$ mediante la fattorizzazione di Cholesky basterà, 
+una volta computata la fattorizzazione, e quindi calcolata $L$ (o rispettivamente $R$), risolvere i seguenti due sistemi:
+$$ L\mathbf{y} = \mathbf{b}, \quad L^{T}\mathbf{x} = \mathbf{y}$$
+(oppure ${}^tR\mathbf{y} = \mathbf{b}, \quad R\mathbf{x} = \mathbf{y}$ rispettivamente).
 
 \vspace{10pt}
-
-Di seguito un esempio in Matlab.
-
-\vspace{10pt}
-
-\begin{lstlisting}[style=matlabCode]
-format long e;
-n = 5; 
-
-% Generazione dati casuali
-A = randi([-10,10], n, n);
-A = A + A';             % Rendo A simmetrica
-A = A * A' + eye(n);    % Rendo A definita positiva
-b = randi([-10,10], n, 1);
-
-% 1. Decomposizione Cholesky
-L = cholDec(A);
-
-% 2. Risoluzione dei sistemi triangolari
-y = forwardSub(L, b);         % Risolve Ly = b
-x = backwardSub(L', y);       % Risolve L'x = y
-
-% 3. Verifica dell'errore
-sol_ref = A\b;               % Soluzione di riferimento MATLAB
-errore = norm(x - sol_ref);
-
-disp("Errore assoluto:");
-disp(errore);
-\end{lstlisting}
-\begin{verbatim}
-Errore assoluto:
-     2.220446049250313e-16
-\end{verbatim}
 
 \paragraph{Le function Matlab}
 Chiudiamo questa carrellata dei principali metodi diretti per la risoluzione di un sistema lineare descrivendo le principali function di Matlab che implementano tali metodi.
-Sia allora $A$ una matrice non singolare di ordine $n$ e $b$ un vettore colonna di ordine $n$.
+Sia allora $A$ una matrice non singolare di ordine $n$ e $\mathbf{b}$ un vettore colonna di ordine $n$.
 
 \begin{itemize}
     \item \textbf{Risoluzione dei sistemi diagonali:} Se la matrice dei coefficienti $A$ è diagonale, \texttt{A\textbackslash b} risolve il sistema mediante $n$ operazioni di divisione.
-    
     \item \textbf{Risoluzione dei sistemi triangolari:} Se la matrice dei coefficienti $A$ è triangolare (superiore o inferiore), \texttt{A\textbackslash b} risolve il sistema mediante algoritmo di sostituzione (all'indietro o in avanti a seconda della struttura della matrice).
-    
     \item \textbf{Risoluzione di sistemi con matrice qualsiasi:} \texttt{A\textbackslash b} risolve il sistema mediante metodo di eliminazione di Gauss (in realtà con la fattorizzazione LU) con pivoting e gli algoritmi di sostituzione.
-    
     \item \textbf{Risoluzione di sistemi simmetrici def. positivi:} \texttt{A\textbackslash b} risolve il sistema mediante metodo di Cholesky e gli algoritmi di sostituzione.
-    
     \item \textbf{Fattorizzazione LU:} Il comando \texttt{[L,U,P] = lu(A)} calcola i fattori $L, U$ e la matrice di permutazione $P$ tali che $PA=LU$.
-    
-    \item \textbf{Fattorizzazione di Cholesky:} Se la matrice $A$ è simmetrica e definita positiva, il comando \texttt{R = chol(A)} calcola il fattore triangolare superiore $R$ tale che $A=R^{T}R$.
-    
-    \item \textbf{Calcolo del determinante:} \texttt{det(A)} calcola il determinante della matrice non singolare $A$, utilizzando la fattorizzazione LU.
-    
-    \item \textbf{Condizionamento:} Il comando \texttt{cond(A, p)}, con \texttt{p = 1, 2, inf, 'fro'}, calcola il numero di condizionamento rispettivamente in norma 1, 2, infinito e Frobenius.
-    
+    \item \textbf{Fattorizzazione di Cholesky:} Se la matrice $A$ è simmetrica e definita positiva, il comando \texttt{R = chol(A)} calcola il fattore triangolare superiore $R$ tale che $A={}^tRR$.    
+    \item \textbf{Calcolo del determinante:} \texttt{det(A)} calcola il determinante della matrice non singolare $A$, utilizzando la fattorizzazione LU.    
+    \item \textbf{Condizionamento:} Il comando \texttt{cond(A, p)}, con \texttt{p = 1, 2, inf, 'fro'}, calcola il numero di condizionamento rispettivamente in norma 1, 2, infinito e Frobenius.    
     \item \textbf{Inversa di una matrice:} \texttt{inv(A)} calcola l'inversa della matrice utilizzando la fattorizzazione LU.
 \end{itemize}
 
@@ -4280,7 +4239,7 @@ Sia allora $A$ una matrice non singolare di ordine $n$ e $b$ un vettore colonna 
 \vspace{10pt}
 
 \paragraph{Backward Error Analysis}
-Con la "Backward Error Analysis (BEA)" (Analisi dell'errore all'indietro), si misura la perturbazione nei dati di ingresso che porta al risultato finale, ipotizzando che le operazioni siano eseguite con precisione infinita.
+Con la \textit{Backward Error Analysis} (BEA) (Analisi dell'errore all'indietro), si misura la perturbazione nei dati di ingresso che porta al risultato finale, ipotizzando che le operazioni siano eseguite con precisione infinita.
 Si valuta in sostanza quanto è perturbato il dato di input considerando "esatto" il risultato in output.
 Essa è stata introdotta da Wilkinson nel 1963 con l'obiettivo di studiare gli errori negli algoritmi di Algebra Lineare ed è particolarmente adatta quando il numero di operazioni è elevato.
 L'algoritmo è detto \textit{stabile} se la perturbazione nel dato di ingresso è dell'ordine della precisione in cui si lavora.
@@ -4390,807 +4349,9 @@ $$ \frac{||x-x^{*}||}{||x||} \le ||A|| ||A^{-1}|| \frac{||Ax^{*}-b||}{||b||} $$
 Dalla stima precedente si deduce che la norma del residuo $||Ax^{*}-b||$, pur essendo piccola (magari dell'ordine di eps), non garantisce un errore relativo piccolo, in particolare per matrici con elevato indice di condizionamento.
 Quindi la quantità $||Ax^{*}-b||$ deve essere usata con cautela come stimatore a posteriori dell'errore.
 
-\newpage
-
-\section{Metodi Numerici per la Risoluzione di un Sistema Lineare Rettangolare nel Senso dei Minimi Quadrati}
-
-\paragraph{Il problema dei minimi quadrati lineari}
-Consideriamo un sistema lineare del tipo
-$$ Ax=b $$
-dove $A$ è una matrice di ordine $m \times n$, con $m \neq n$, $x$ è un vettore di lunghezza $n$ e $b$ un vettore di lunghezza $m$.
-Molte situazioni reali, per esempio nelle applicazioni statistiche, nei problemi di teoria dei segnali, in astronomia, possono essere modellizzate mediante un sistema lineare nel quale la matrice dei coefficienti è rettangolare (o quadrata ma singolare).
-
-In tali casi la soluzione può non esistere affatto oppure possono esserci infinite soluzioni.
-\begin{itemize}
-    \item Se $m > n$, se cioè il numero delle equazioni è superiore a quello delle incognite, il sistema è detto \textit{sovradeterminato} e non ammette soluzioni.
-    \item Se invece $m < n$ il sistema è detto \textit{sottodeterminato} e ammette infinite soluzioni.
-\end{itemize}
-
-In questi casi, invece di cercare di determinare il vettore $x$ che verifichi l'identità $Ax=b$, si cerca, se esiste, un vettore $x$ tale che la distanza di $Ax$ da $b$ sia la minima possibile.
-In altri termini il problema viene ricondotto ad un problema di minimo: determinare un $\overline{x}$ di lunghezza $n$ tale che, posto $r(x)=Ax-b$ (detto residuo) risulti
-$$ ||r(\overline{x})|| = \min_{x} ||r(x)|| = \min_{x} ||Ax-b|| $$
-Se la norma utilizzata è quella euclidea, ovvero la norma 2,
-$$ ||x||_{2} = \sqrt{\sum_{i=1}^{n} x_{i}^{2}} = \sqrt{x^{T}x} $$
-il problema è detto \textit{problema dei minimi quadrati lineari} (PMQ).
-
-Il nome è dovuto al fatto che si cerca il minimo della quantità
-$$ \min_{x=(x_{1},\dots,x_{n})} ||Ax-b||_{2} = \min_{x=(x_{1},\dots,x_{n})} \sqrt{\sum_{i=1}^{m} \left[ b_{i} - \sum_{j=1}^{n} a_{ij}x_{j} \right]^{2}} $$
-cioè si cerca di minimizzare una somma di quadrati.
-
-Anche il problema dei minimi quadrati può avere infinite soluzioni. In questo caso si definisce \textit{soluzione di minima norma} quella per cui accade che
-$$ ||x_{min}||_{2} \le ||x||_{2} $$
-se $x$ è una qualsiasi soluzione.
-
-D'ora in avanti ci occuperemo solo del caso dei sistemi sovradeterminati, cioè con $m \ge n$, che è anche il più significativo dal punto di vista delle applicazioni. Una delle più significative applicazioni del problema dei minimi quadrati sovradeterminati è quella relativa all'approssimazione di dati, detta anche \textit{best fitting}.
-
-\paragraph{Risolubilità del problema dei minimi quadrati}
-Vediamo ora in quali ipotesi il problema dei minimi quadrati ammette soluzione.
-
-\begin{bxthm}
-\begin{thm}
-Se $A$ è una matrice $m \times n$ con $m > n$ allora esiste sempre una soluzione del PMQ. Inoltre tale soluzione è unica se e solo se il rango di $A$ è massimo, cioè se $\text{rank}(A) = n$.    
-\end{thm}
-\end{bxthm}
-
-Omettiamo la dimostrazione di tale teorema mettendo però in evidenza che tale dimostrazione è basata sulla seguente equivalenza:
-$$ x \text{ è soluzione del PMQ} \iff x \text{ è soluzione del sistema } A^{T}Ax = A^{T}b $$
-
-\paragraph{Il sistema delle equazioni normali}
-Il sistema
-$$ A^{T}Ax = A^{T}b $$
-è detto \textit{sistema delle equazioni normali}.
-Osserviamo innanzitutto che la matrice $A^{T}A$ è una matrice quadrata di ordine $n$. Inoltre è simmetrica in quanto
-$$ (A^{T}A)^{T} = A^{T}(A^{T})^{T} = A^{T}A $$
-cioè coincide con la sua trasposta.
-Infine, se $A$ ha rango massimo, è definita positiva poiché se $y$ è un qualunque vettore di lunghezza $n$ non nullo si ha
-$$ y^{T}(A^{T}A)y = (y^{T}A^{T})(Ay) = (Ay)^{T}(Ay) = ||Ay||_{2}^{2} > 0 $$
-(se il rango non è massimo può accadere che $Ay=0$, con $y \neq 0$).
-
-\paragraph{Interpretazione geometrica}
-Vogliamo ora dare un'interpretazione geometrica del problema dei minimi quadrati.
-Se $A$ è di ordine $m \times n$ allora può essere pensata come un'applicazione lineare di $\mathbb{R}^{n} \to R(A) \subseteq \mathbb{R}^{m}$.
-Il sottospazio $R(A)$ delle immagini è l'insieme dei vettori $u$ tali che esiste un $y \in \mathbb{R}^{n}$ tale che $u=Ay$.
-Sia ora $b \in \mathbb{R}^{m}$. Poiché la norma 2 è quella euclidea, $||b-Ax||_{2}$ rappresenta la distanza tra i vettori $b$ e $Ax$.
-
-È evidente allora che affinché tale distanza sia minima deve accadere che $b-Ax$ sia ortogonale a $R(A)$.
-Ora, ogni vettore di $R(A)$ può essere visto come combinazione lineare delle colonne di $A$. Infatti se $u \in R(A)$ è tale che $u=Ay$, ciò significa che
-$$ u = \begin{pmatrix} u_{1} \\ \vdots \\ u_{m} \end{pmatrix} = \begin{pmatrix} a_{11}y_{1} + \dots + a_{1n}y_{n} \\ \vdots \\ a_{m1}y_{1} + \dots + a_{mn}y_{n} \end{pmatrix} $$
-cioè
-$$ u = y_{1}a_{1} + y_{2}a_{2} + \dots + y_{n}a_{n} $$
-dove $a_{j}$ denota la colonna $j$-esima di $A$.
-
-Dunque, affinché $b-Ax$ risulti ortogonale a $R(A)$, basta che sia ortogonale a tutte le colonne di $A$, cioè
-$$ a_{j}^{T}(b-Ax) = 0, \quad j=1,\dots,n \iff A^{T}(b-Ax) = 0 \iff A^{T}Ax = A^{T}b $$
-Si perviene così, anche per via geometrica, all'equivalenza tra la soluzione del problema dei minimi quadrati e quello del sistema delle equazioni normali.
-
-\paragraph{La pseudoinversa}
-\begin{bxthm}
-\begin{defn}
-Sia $A$ una matrice $m \times n$, $m \ge n$ e con rango massimo ($\text{rank}(A)=n$). Si definisce \textit{pseudoinversa} o inversa generalizzata di Moore-Penrose di $A$ la matrice
-$$ A^{+} = (A^{T}A)^{-1}A^{T} .$$
-\end{defn}
-\end{bxthm}
-
-La pseudoinversa generalizza il concetto di inversa di una matrice nel caso delle matrici rettangolari. Infatti
-$$ A^{+}A = (A^{T}A)^{-1}A^{T}A = I $$
-D'altra parte se $A$ è quadrata e non singolare si ha
-$$ A^{+} = (A^{T}A)^{-1}A^{T} = A^{-1}(A^{T})^{-1}A^{T} = A^{-1} $$
-cioè inversa e pseudoinversa coincidono.
-
-Il legame tra pseudoinversa e problema dei minimi quadrati è fornito dalla seguente
-
-\begin{bxthm}
-\begin{prop}
-Sia $A$ di ordine $m \times n$, $m \ge n$ e con rango massimo ($\text{rank}(A)=n$) e $b$ un vettore di lunghezza $m$. L'unica soluzione del problema dei minimi quadrati relativo a tali dati è data da
-$$ x = A^{+}b \equiv (A^{T}A)^{-1}A^{T}b.$$    
-\end{prop}
-\end{bxthm}
-
-La Proposizione è immediata conseguenza del teorema di esistenza e unicità. Infatti abbiamo già detto che la soluzione del PMQ è quella del sistema delle equazioni normali
-$$ A^{T}Ax = A^{T}b \implies x = (A^{T}A)^{-1}A^{T}b $$
-
-La matrice pseudoinversa ha diverse e utili applicazioni, non solo nella soluzione del problema dei minimi quadrati.
-Un'importante informazione che si può dedurre dalla conoscenza di $A^{+}$ è il condizionamento del problema dei minimi quadrati.
-È infatti possibile dimostrare che, se si introducono delle perturbazioni su $b$ ed $A$, allora la corrispondente perturbazione sul vettore $x$, soluzione del problema dei minimi quadrati, è proporzionale a quelle introdotte sui dati mediante la quantità
-$$ pcond(A) = ||A|| ||A^{+}|| $$
-
-\paragraph{Risoluzione del sistema delle equazioni normali}
-Abbiamo visto come la soluzione del problema dei minimi quadrati coincida, nel caso sovradeterminato e di rango massimo, con la soluzione del sistema delle equazioni normali:
-$$ A^{T}Ax = A^{T}b $$
-Dunque per calcolare numericamente la soluzione del PMQ è possibile risolvere numericamente il sistema delle equazioni normali.
-Poiché la matrice dei coefficienti è simmetrica e definita positiva, possiamo usare il metodo di eliminazione di Gauss senza pivoting o, con un costo computazionale dimezzato, il metodo di Cholesky.
-
-Dunque il problema dei minimi quadrati può essere risolto nel seguente modo:
-\begin{itemize}
-    \item si forma la matrice $A^{T}A$;
-    \item si fattorizza $A^{T}A$ mediante fattorizzazione di Cholesky, ovvero si computa $L$ tale che $A^{T}A = LL^{T}$;
-    \item si forma il vettore $c = A^{T}b$;
-    \item si risolve la coppia di sistemi lineari triangolari:
-    $$ \begin{cases} Ly = c \\ L^{T}x = y \end{cases} $$
-\end{itemize}
-
-\paragraph{Costo computazionale e stabilità}
-Il costo computazionale complessivo della procedura è di circa
-$$ m\frac{n^{2}}{2} + \frac{n^{3}}{6} $$
-operazioni, in quanto ne occorrono circa $m\frac{n^{2}}{2}$ per formare $A^{T}A$ (che si costruisce per simmetria) e $\frac{n^{3}}{6}$ per la fattorizzazione di Cholesky.
-Le sostituzioni all'indietro e in avanti costano complessivamente $n^{2}$ e sono trascurate.
-Dunque la procedura è relativamente economica, in quanto l'operazione più costosa (la fattorizzazione di Cholesky) viene effettuata sulla matrice di ordine $n$ (che in genere è molto minore di $m$).
-
-Sfortunatamente la procedura appena descritta è complessivamente instabile.
-Infatti il primo problema è la costruzione della matrice $A^{T}A$. Può accadere che vi sia una perdita di cifre significative nella rappresentazione di macchina di $A^{T}A$.
-Nei casi più patologici può verificarsi che la matrice "di macchina" non sia più definita positiva o addirittura che risulti singolare.
-È stato infatti provato che se $pcond(A) > 10^{\frac{t}{2}}$, dove $t$ è la precisione della rappresentazione floating point, non è più assicurato che $fl(A^{T}A)$ sia non singolare.
-
-\paragraph{Esempio di instabilità}
-Consideriamo la matrice
-$$ A = \begin{pmatrix} 1 & 1 \\ 10^{-4} & 0 \\ 0 & 10^{-4} \end{pmatrix} $$
-e assumiamo di lavorare in precisione $t=8$. Le colonne di $A$ sono linearmente indipendenti e quindi il rango è 2.
-Computiamo ora $A^{T}A$.
-$$ A^{T}A = \begin{pmatrix} 1+10^{-8} & 1 \\ 1 & 1+10^{-8} \end{pmatrix} $$
-Poiché $t=8$, allora $fl(A^{T}A) = \begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}$ che è singolare!
-Si noti che $pcond(A) = 1.4142... \cdot 10^{4} > 10^{4}$.
-
-Anche se non si incorre in questi casi "patologici" tuttavia la procedura è generalmente poco stabile in quanto, mentre il PMQ ha un condizionamento che è regolato da $pcond(A)$, il sistema delle equazioni normali ha un condizionamento che dipende da $cond(A^{T}A)$.
-Si può provare che (in norma 2):
-$$ cond(A^{T}A) = pcond(A)^{2} $$
-Concludendo possiamo dire che alla risoluzione mediante equazioni normali, benché economica, si deve ricorrere solo quando si hanno informazioni sul buon condizionamento della matrice $A^{T}A$. Nei casi in cui si è incerti sul condizionamento del problema conviene utilizzare altri metodi, più costosi, ma stabili.
-
-\paragraph{Metodo mediante fattorizzazione QR}
-\paragraph{La fattorizzazione QR}
-È noto che le fattorizzazioni di matrici costituiscono un efficace strumento in algebra lineare. Le più note sono la fattorizzazione LU e la fattorizzazione $LL^{T}$ di Cholesky (per matrici simmetriche e definite positive). Entrambe queste fattorizzazioni sono per matrici quadrate.
-Il costo computazionale per la costruzione di $L$ e $U$ è di circa $\frac{m^{3}}{3}$ operazioni, mentre la fattorizzazione di Cholesky costa $\frac{m^{3}}{6}$ operazioni.
-
-Illustriamo ora un'altra fattorizzazione che prende il nome di fattorizzazione QR e che può essere costruita anche per matrici rettangolari.
-Data una matrice $A$ di ordine $m \times n$ esistono due matrici, $Q$ quadrata di ordine $m$ e ortogonale (cioè tale che $Q^{-1}=Q^{T}$) e $R$ di ordine $m \times n$, del tipo:
-$$ R = \begin{pmatrix} R_{1} \\ 0 \end{pmatrix} $$
-con $R_{1}$ triangolare superiore di ordine $n$, se $m > n$, oppure del tipo $(R_{1} \quad 0)$ con $R_{1}$ triangolare superiore di ordine $m$, se $m < n$.
-
-Nel caso $A$ sia quadrata i fattori $Q$ ed $R$ sono entrambi quadrati e $R$ è triangolare superiore.
-Esistono vari algoritmi per la costruzione della fattorizzazione QR, il più utilizzato dei quali (quello che adopera le matrici elementari di Householder) ha un costo computazionale di $\frac{2}{3}m^{3}$, nel caso della matrice quadrata e piena.
-Nel caso rettangolare con $m > n$ invece il costo è dell'ordine di:
-$$ n^{2}(m - \frac{n}{3}) $$
-
-Confrontando dunque su matrici quadrate, la fattorizzazione QR "costa di più" della fattorizzazione LU. Il valore aggiunto però sta nel fatto che il fattore $Q$ è ortogonale.
-Le matrici ortogonali rivestono un'importanza rilevante per le loro numerose proprietà:
-\begin{itemize}
-    \item Non è necessario costruire le inverse, che sono disponibili con la sola trasposizione ($Q^{-1} \equiv Q^{T}$), il che implica $Q^{T}Q = QQ^{T} = I$.
-    \item Se $y$ è un qualsiasi vettore di lunghezza $m$ si ha:
-    $$ ||Qy||_{2} = \sqrt{(Qy)^{T}(Qy)} = \sqrt{y^{T}Q^{T}Qy} = \sqrt{y^{T}y} = ||y||_{2} $$
-    cioè la moltiplicazione per matrici ortogonali lascia invariata la norma del vettore (lo stesso vale per $Q^{T}$).
-    \item Da quanto sopra si ha $||Q||_{2}=1$, $||Q^{T}||_{2}=1$, da cui $cond(Q)=1$, cioè le matrici ortogonali sono perfettamente condizionate.
-\end{itemize}
-
-\paragraph{Il metodo per il PMQ basato sulla fattorizzazione QR}
-Ricordiamo che il problema dei minimi quadrati lineari consiste nel cercare il minimo, su tutti i vettori di lunghezza $n$, della quantità $||Ax-b||_{2}$ dove $A$ è una matrice di ordine $m \times n$, con $m \ge n$, $rank(A)=n$ e $b$ è di dimensione $m$.
-Un metodo numerico alternativo è basato sull'utilizzo della fattorizzazione QR di $A$.
-
-Siano infatti $Q$ e $R$ i fattori di $A$, si ha:
-$$ Q^{T}A = \begin{pmatrix} R_{1} \\ 0 \end{pmatrix} $$
-dove $R_{1}$ è quadrata, di ordine $n$ e triangolare superiore.
-Poiché $Q^{T}$ è ortogonale, e quindi preserva la norma 2 del vettore, si ha:
-$$ ||Ax-b||_{2}^{2} = ||Q^{T}(Ax-b)||_{2}^{2} = ||Q^{T}Ax - Q^{T}b||_{2}^{2} $$
-Ponendo ora $Q^{T}b = \begin{pmatrix} c \\ d \end{pmatrix}$ con $c$ vettore di lunghezza $n$, si ha:
-$$ ||Ax-b||_{2}^{2} = ||\begin{pmatrix} R_{1}x \\ 0 \end{pmatrix} - \begin{pmatrix} c \\ d \end{pmatrix}||_{2}^{2} = ||\begin{pmatrix} R_{1}x - c \\ -d \end{pmatrix}||_{2}^{2} $$
-
-Osserviamo ora che se un vettore $y$ di lunghezza $m$ è decomposto in due sottovettori, per esempio $y=(z,t)^{T}$ con $z$ di lunghezza $n$ e $t$ di lunghezza $m-n$, si ha che $||y||_{2}^{2} = ||z||_{2}^{2} + ||t||_{2}^{2}$.
-Dunque:
-$$ ||Ax-b||_{2}^{2} = ||\begin{pmatrix} R_{1}x - c \\ -d \end{pmatrix}||_{2}^{2} = ||R_{1}x - c||_{2}^{2} + ||d||_{2}^{2} $$
-Poiché il secondo termine della somma non dipende da $x$ ed è sempre positivo, il minimo del primo membro sarà assunto se $||R_{1}x - c||_{2} = 0$, se cioè $R_{1}x = c$, ovvero se $x$ è soluzione del sistema triangolare con $R_{1}$ come matrice dei coefficienti e $c$ come termine noto.
-
-\paragraph{Procedura e Costo}
-Dunque la procedura proposta può essere riassunta come segue:
-\begin{itemize}
-    \item si effettua la fattorizzazione QR della matrice $A$ e quindi, in particolare, si determina la matrice $R_{1}$;
-    \item si forma il vettore $c$ costituito dai primi $n$ elementi del vettore $Q^{T}b$;
-    \item si risolve il sistema triangolare $R_{1}x = c$ (mediante sostituzione all'indietro).
-\end{itemize}
-La quantità $||d||_{2}$ rappresenta la norma 2 del residuo.
-L'algoritmo ha un costo computazionale che è essenzialmente quello della fattorizzazione QR e pertanto è $n^{2}(m-\frac{n}{3})$. La procedura descritta risulta inoltre stabile.
-
-\paragraph{Conclusioni}
-Abbiamo proposto due possibili strategie numeriche per la risoluzione del problema dei minimi quadrati lineari, nel caso sia $A$ di dimensioni $m \times n$, con $m \ge n$ e $rank(A)=n$:
-\begin{enumerate}
-    \item la risoluzione del sistema delle equazioni normali $A^{T}Ax = A^{T}b$;
-    \item il metodo che utilizza la fattorizzazione QR della matrice $A$.
-\end{enumerate}
-
-\paragraph{Confronto Schemi}
-\textbf{Metodo 1 (Equazioni Normali):}
-\begin{itemize}
-    \item formare la matrice $A^{T}A$;
-    \item calcolare la fattorizzazione di Cholesky $A^{T}A = LL^{T}$;
-    \item risolvere la coppia di sistemi triangolari $\begin{cases} Ly = A^{T}b \\ L^{T}x = y \end{cases}$;
-    \item costo computazionale: $m\frac{n^{2}}{2} + \frac{n^{3}}{6}$;
-    \item stabilità: assicurata solo se $cond(A^{T}A) = pcond(A)^{2}$ non è grande.
-\end{itemize}
-
-\textbf{Metodo 2 (Fattorizzazione QR):}
-\begin{itemize}
-    \item calcolare la fattorizzazione QR di $A$;
-    \item calcolare $Q^{T}b = \begin{pmatrix} c \\ d \end{pmatrix}$, dove $c$ ha lunghezza $n$;
-    \item posto $R = \begin{pmatrix} R_{1} \\ 0 \end{pmatrix}$, risolvere il sistema $R_{1}x = c$;
-    \item la norma del residuo è data da $||d||_{2}$;
-    \item costo computazionale: $n^{2}(m - \frac{n}{3})$;
-    \item stabilità: assicurata sempre.
-\end{itemize}
-
-\paragraph{Functions del Matlab}
-Le funzioni Matlab coinvolte nella risoluzione del PMQ sono le seguenti:
-\begin{itemize}
-    \item \texttt{A\textbackslash b}: implementa, nel caso $A$ sia rettangolare, il metodo che utilizza la fattorizzazione QR, cioè il metodo 2;
-    \item \texttt{R = chol(B)}: calcola il fattore di Cholesky della matrice simmetrica e definita positiva $B$ ($B={}^tRR$);
-    \item \texttt{D = pinv(A)}: calcola la pseudoinversa (sinistra) della matrice $A$;
-    \item \texttt{[Q,R] = qr(A)}: calcola la fattorizzazione QR della matrice $A$ (quadrata o rettangolare) mediante trasformazioni di Householder.
-\end{itemize}
-
-\newpage
-
-\section{Metodi Numerici per la Risoluzione di una Equazione non Lineare}
-
 \vspace{20pt}
 
-\subsection{Risoluzione di Equazioni non Lineari}
-
-\vspace{10pt}
-
-\paragraph{Introduzione}
-Sia $F \in C^{0}([a,b])$, cioè $F$ è una funzione continua in un intervallo $[a,b] \subset \mathbb{R}$, tale che $F(a)F(b) < 0$.
-Vogliamo trovare le radici dell'equazione non lineare
-$$ F(x) = 0 $$
-La condizione $F(a)F(b) < 0$ è una condizione sufficiente per l'esistenza di almeno una radice di $F$ in $[a,b]$.
-
-\vspace{10pt}
-
-\paragraph{Metodo di Bisezione}
-Questo metodo consiste nel costruire, a partire dall'intervallo $[a,b]$, una successione di intervalli incapsulati
-$$ [a,b] = [a_{0}, b_{0}] \supset [a_{1}, b_{1}] \supset \dots \supset [a_{n}, b_{n}] $$
-tutti contenenti la radice $\overline{x}$ di $F$, tale che
-$$ b_{n} - a_{n} \rightarrow 0 \quad \text{per } n \rightarrow +\infty $$
-
-Gli intervalli $[a_{k}, b_{k}]$, $k=1,\dots,n$, della successione vengono determinati come segue:
-dato $[a_{k-1}, b_{k-1}]$, determiniamo il punto medio
-$$ m_{k} = \frac{a_{k-1} + b_{k-1}}{2} $$
-\begin{itemize}
-    \item se $F(m_{k}) = 0$ allora $\overline{x} = m_{k}$ e abbiamo terminato;
-    \item se $F(m_{k}) \neq 0$ poniamo
-    $$ [a_{k}, b_{k}] = \begin{cases} [a_{k-1}, m_{k}] & \text{se } F(a_{k-1})F(m_{k}) < 0 \\ [m_{k}, b_{k-1}] & \text{se } F(b_{k-1})F(m_{k}) < 0 \end{cases} $$
-\end{itemize}
-
-Dopo $n$ passi si giunge all'intervallo $[a_{n}, b_{n}]$ contenente la radice $\overline{x}$ e di ampiezza
-$$ b_{n} - a_{n} = \frac{b_{n-1} - a_{n-1}}{2} = \frac{b_{n-2} - a_{n-2}}{2^{2}} = \dots = \frac{b-a}{2^{n}} $$
-Come stima di $\overline{x}$ scegliamo
-$$ x_{n+1} = m_{n+1} = \frac{a_{n} + b_{n}}{2} $$
-così che
-$$ \overline{x} = x_{n+1} \pm \varepsilon_{n+1} $$
-dove
-$$ \varepsilon_{n+1} = |\overline{x} - x_{n+1}| < \frac{b-a}{2^{n+1}} $$
-è l'errore assoluto di approssimazione della radice $\overline{x}$ di $F$.
-
-Fissata una tolleranza TOLL, è possibile determinare il numero di iterazioni $k$ necessarie per approssimare la radice $\overline{x}$ con precisione TOLL imponendo che
-$$ |\overline{x} - x_{n}| < \frac{b-a}{2^{n}} < \text{TOLL} $$
-Infatti, possiamo scrivere
-$$ \frac{b-a}{\text{TOLL}} < 2^{n} $$
-$$ \log\left(\frac{b-a}{\text{TOLL}}\right) < \log(2^{n}) = n \log 2 $$
-$$ n > \frac{\log\left(\frac{b-a}{\text{TOLL}}\right)}{\log 2} $$
-Dunque prendiamo
-$$ n = \left\lfloor \frac{\log\left(\frac{b-a}{\text{TOLL}}\right)}{\log 2} \right\rfloor + 1 $$
-dove $\lfloor a \rfloor$ denota la parte intera inferiore di $a$.
-
-\paragraph{Ordine di convergenza}
-Introduciamo ora una misura della velocità di convergenza di una successione numerica.
-
-\begin{bxthm}
-\begin{defn}
-Sia $\{x_{n}\}_{n}$ una successione convergente al valore $\overline{x}$. Poniamo $\varepsilon_{n} = |\overline{x} - x_{n}|$. Se esiste un numero reale $p \ge 1$ e una costante reale positiva $C$ tale che
-$$ \lim_{n \to +\infty} \frac{\varepsilon_{n+1}}{\varepsilon_{n}^{p}} = C $$
-allora diciamo che la successione $\{x_{n}\}_{n}$ ha ordine di convergenza $p$.    
-\end{defn}
-\end{bxthm}
-
-Poiché per il metodo di bisezione si ha
-$$ \frac{\varepsilon_{n+1}}{\varepsilon_{n}} \simeq \frac{1}{2} $$
-ovvero l'errore si dimezza (più o meno) ad ogni passo, il suo ordine di convergenza è 1, cioè converge molto lentamente.
-Va però osservato che il metodo richiede solo la continuità della funzione $F$ e la conoscenza del segno di $F$ negli estremi dell'intervallo $[a, b]$.
-
-\textit{Osservazione:} Per ogni $n \ge 0$ supponiamo che l'approssimazione $x_{n}$ di $\overline{x}$ abbia $t_{n} \in \mathbb{R}$ cifre decimali corrette, cioè
-$$ \varepsilon_{n} = \frac{1}{2} 10^{-t_{n}} $$
-Allora, poiché ad ogni passo l'errore si dimezza,
-$$ \frac{1}{2} 10^{-t_{n+1}} = \varepsilon_{n+1} = \frac{1}{2} \varepsilon_{n} = \frac{1}{4} 10^{-t_{n}} $$
-ovvero
-$$ 10^{-t_{n+1}} = \frac{1}{2} 10^{-t_{n}} $$
-$$ t_{n+1} = t_{n} + \log_{10} 2 \approx t_{n} + 0.3010, \quad n \ge 0 $$
-Dunque $t_{n}$ aumenta di una unità dopo almeno 4 iterazioni. 3 iterazioni non sono sufficienti per ottenere un'approssimazione di $\overline{x}$ con una cifra decimale corretta in più.
-
-\paragraph{Metodi Iterativi}
-Partendo dal punto iniziale $x_{0}$, generiamo i valori $x_{1}, x_{2}, \dots, x_{n}$ nel seguente modo:
-\begin{itemize}
-    \item Conduciamo dal punto $(x_{0}, F(x_{0}))$ una retta con pendenza $m_{0}$ e scegliamo come approssimazione $x_{1}$ l'intersezione di tale retta con l'asse delle x;
-    \item Conduciamo dal punto $(x_{1}, F(x_{1}))$ una retta con pendenza $m_{1}$ e scegliamo come approssimazione $x_{2}$ l'intersezione di tale retta con l'asse delle x;
-\end{itemize}
-Dunque ad ogni passo scegliamo come approssimazione della radice $\overline{x}$ di $F$, la radice dell'equazione lineare
-$$ F(x_{n}) + m_{n}(x - x_{n}) = 0 $$
-cioè
-$$ x_{n+1} = x_{n} - \frac{F(x_{n})}{m_{n}} \quad (1) $$
-Una formula del tipo (1) viene detta \textit{formula iterativa} e si dice che la successione $x_{1}, x_{2}, \dots, x_{n}, \dots$ viene costruita mediante un procedimento iterativo.
-
-La funzione
-$$ g(x) = x - \frac{F(x)}{m_{n}} $$
-tale che $x_{n+1} = g(x_{n})$ viene detta \textit{funzione di iterazione semplice} perché per la costruzione della successione $\{x_{n}\}_{n}$ utilizza solo il punto $x_{n}$.
-Si parla di procedimenti iterativi multipli quando
-$$ x_{n+k} = g(x_{n+k-1}, x_{n+k-2}, \dots, x_{n}), \quad k > 1 $$
-cioè la successione $\{x_{n}\}_{n}$ è costruita a partire dai punti $x_{0}, x_{1}, \dots, x_{k-1}$.
-
-\paragraph{Criteri di Arresto}
-Quando si implementa in maniera automatica un procedimento iterativo del tipo $x_{n+1} = g(x_{n})$, $n=0,1,\dots$, occorrono uno o più criteri per arrestare tale procedimento.
-Fissata una tolleranza TOLL arbitrariamente piccola, i criteri di arresto usualmente utilizzati sono:
-1. $|F(x_{n})| < \text{TOLL}$ (tanto più è piccolo TOLL tanto più $x_{n}$ è vicino ad $\overline{x}$);
-2. $|x_{n+1} - x_{n}| < \text{TOLL}$ oppure $\frac{|x_{n+1} - x_{n}|}{|x_{n+1}|} < \text{TOLL}$ (tanto più è piccolo TOLL tanto più $x_{n}$ è vicino al limite della successione $\overline{x}$);
-3. numero delle iterazioni < ITMAX, dove ITMAX è una variabile intera fissata.
-
-Il criterio 3 entra in gioco quando i primi due falliscono. Per questo motivo la variabile ITMAX viene anche detta variabile tappo. In generale è preferibile utilizzare tutti e tre i criteri, perché per particolari funzioni si può verificare che la convergenza sia troppo lenta oppure che i criteri 1 e/o 2 non vengano mai soddisfatti numericamente.
-
-\paragraph{Metodo di Newton o delle tangenti}
-Nella formula
-$$ x_{n+1} = x_{n} - \frac{F(x_{n})}{m_{n}} $$
-le direzioni $m_{n}$ possono essere scelte in vari modi. In questo metodo la direzione scelta ad ogni passo è quella della tangente alla curva $y=F(x)$ nel punto $x_{n}$, cioè
-$$ m_{n} = F'(x_{n}) $$
-Dunque il metodo è dato da
-$$ x_{n+1} = x_{n} - \frac{F(x_{n})}{F'(x_{n})}, \quad n=0,1,\dots $$
-La funzione di iterazione è quindi
-$$ g(x) = x - \frac{F(x)}{F'(x)} $$
-Appare evidente che il metodo perde di significato se per qualche $n$ risulta $F'(x_{n}) = 0$. Dunque in generale si suppone che $F'(x) \neq 0$, $\forall x \in [a,b]$.
-
-La formula iterativa ci permette di calcolare la successione $x_{1}, x_{2}, \dots$ a partire dal punto $x_{0}$.
-\textit{Domanda:} Come scegliamo il punto $x_{0}$?
-
-\paragraph{Teorema di Convergenza}
-Il seguente teorema stabilisce delle condizioni per la determinazione di un intervallo $[a,b]$ per il quale il metodo di Newton converge per ogni scelta di $x_{0} \in [a,b]$.
-
-\begin{bxthm}
-\begin{thm}
-Sia $F(x) \in C^{2}([a,b])$ con $[a,b]$ chiuso e limitato. Se:
-\begin{itemize}
-    \item $F(a)F(b) < 0$;
-    \item $F'(x) \neq 0$, $\forall x \in [a,b]$;
-    \item $F(x) \ge 0$ oppure $F(x) \le 0$, $\forall x \in [a,b]$;
-    \item $|\frac{F(a)}{F'(a)}| < (b-a)$ e $|\frac{F(b)}{F'(b)}| < (b-a)$;
-\end{itemize}
-allora il Metodo di Newton converge all'unica soluzione $\overline{x} \in [a,b]$ per ogni scelta di $x_{0} \in [a,b]$.    
-\end{thm}
-\end{bxthm}
-\begin{proof}
-Dalle condizioni 1-3 segue l'unicità della soluzione dell'equazione $F(x)=0$ nell'intervallo $[a,b]$.
-Facciamo prima vedere che la condizione 4 implica che la tangente alla curva di equazione $y=F(x)$ negli estremi dell'intervallo interseca l'asse $x$ all'interno di $[a,b]$. Conseguentemente, se prendiamo come punto iniziale $x_{0}$ un punto appartenente all'intervallo $[a,b]$ (a e b inclusi) tutti i punti della successione $\{x_{k}\}_{k=1,2,\dots}$ appartengono all'intervallo $[a,b]$.
-
-La retta tangente in $(a, F(a))$ ha equazione
-$$ y = F'(a)(x-a) + F(a) $$
-ed ha dunque intersezione con l'asse $x$ in
-$$ x = a - \frac{F(a)}{F'(a)} $$
-Poiché $\frac{F(a)}{F'(a)}$ sotto le condizioni 1-3 è sempre negativa e, usando l'ipotesi 4, risulta
-$$ |x-a| = \left|\frac{F(a)}{F'(a)}\right| < b-a $$
-otteniamo $a < x < b$. Analogamente si ragiona per l'altro estremo.
-
-Facciamo ora vedere che la successione $\{x_{k}\}_{k=1,2,\dots}$ che si costruisce a partire da $x_{0} \in [a,b]$ è monotona e limitata. Conduciamo la dimostrazione in una delle possibili quattro situazioni che si possono verificare nelle ipotesi 1-3 (la dimostrazione negli altri casi è simile).
-Supponiamo allora che sia $F' > 0$, $F \le 0$, $F(a) < 0$, $F(b) > 0$.
-Dimostriamo dunque che $x_{k} \le \overline{x}$ e $x_{k+1} \ge x_{k}$.
-Incominciamo per $k=0$ e poi procederemo per induzione.
-Senza ledere la generalità, prendiamo $x_{0}$ nell'intervallo $[a, \overline{x}]$ e quindi tale che $F(x_{0}) \le 0$. Si ha allora
-$$ x_{1} = x_{0} - \frac{F(x_{0})}{F'(x_{0})} \ge x_{0} $$
-Dunque $x_{0} \le \overline{x}$ e $x_{1} \ge x_{0}$.
-
-Poiché la proprietà è vera per $k=0$, dimostriamo che, supposta vera per $k$, essa è verificata per $k+1$.
-Si ha
-$$ x_{k+1} = x_{k} - \frac{F(x_{k})}{F'(x_{k})} $$
-e, per il Teorema di Lagrange,
-$$ -F(x_{k}) = F(\overline{x}) - F(x_{k}) = F'(\xi_{k})(\overline{x} - x_{k}), \quad x_{k} \le \xi_{k} \le \overline{x} $$
-Dal momento che per ipotesi $F(x) \le 0$, si ha che $F'$ è decrescente e quindi $F'(\xi_{k}) \le F'(x_{k})$, da cui
-$$ -F(x_{k}) \le F'(x_{k})(\overline{x} - x_{k}) $$
-Di conseguenza
-$$ x_{k+1} = x_{k} - \frac{F(x_{k})}{F'(x_{k})} \le x_{k} + (\overline{x} - x_{k}) = \overline{x} $$
-$$ F(x_{k+1}) \le 0 \implies x_{k+2} = x_{k+1} - \frac{F(x_{k+1})}{F'(x_{k+1})} \ge x_{k+1} $$
-
-Per completare la dimostrazione, basta osservare che la successione $\{x_{k}\}_{k=1,2,\dots}$ essendo monotona e limitata, è convergente. Inoltre passando al limite nella formula iterativa si deduce immediatamente che essa converge ad $\overline{x}$.
-Infatti, detto $\beta = \lim_{k \to \infty} x_{k}$, si ha
-$$ \beta = \lim_{k \to \infty} x_{k+1} = \lim_{k \to \infty} x_{k} - \lim_{k \to \infty} \frac{F(x_{k})}{F'(x_{k})} = \beta - \frac{F(\beta)}{F'(\beta)} $$
-da cui $F(\beta) = 0$ e quindi $\beta = \overline{x}$ essendo, date le nostre ipotesi, $\overline{x}$ l'unico zero di $F$ nell'intervallo $[a,b]$.    
-\end{proof}
-
-\paragraph{Ordine di convergenza del Metodo di Newton}
-Per determinare l'ordine di convergenza utilizziamo il seguente
-\begin{bxthm}
-\begin{thm}
-Condizione necessaria e sufficiente affinché un procedimento iterativo semplice e convergente ad $\overline{x}$ abbia ordine di convergenza $p$ è che, se la funzione di iterazione $g$ è dotata di derivata $p$-esima continua per $x=\overline{x}$ risulti
-$$ g'(\overline{x}) = g(\overline{x}) = \dots = g^{(p-1)}(\overline{x}) = 0 \quad \text{e} \quad g^{(p)}(\overline{x}) \neq 0 $$    
-\end{thm}
-\end{bxthm}
-
-Per il Metodo di Newton si ha:
-$$ g'(x) = 1 - \frac{(F'(x))^{2} - F(x)F(x)}{(F'(x))^{2}} = \frac{F(x)F(x)}{(F'(x))^{2}} $$
-ma, poiché assumiamo che $F(\overline{x}) = 0$ si ha
-$$ g'(\overline{x}) = 0 $$
-e quindi
-$$ g(x) = \frac{(F'(x)F(x) + F(x)F'(x))(F'(x))^{2} - 2F'(x)F(x)(F(x))^{2}}{(F'(x))^{4}} $$
-$$ g(\overline{x}) = \frac{F(\overline{x})}{F'(\overline{x})} $$
-che, in generale, è diverso da 0. Dunque, in generale, il metodo ha ordine di convergenza 2.
-
-\textit{Domanda:} Cosa succede se $\overline{x}$ è uno zero doppio, cioè $F(\overline{x}) = F'(\overline{x}) = 0$ e $F(\overline{x}) \neq 0$?
-In questo caso non è possibile calcolare né $g$ né $g'$ in $\overline{x}$, ma è possibile definirli per continuità:
-$$ g(\overline{x}) = \overline{x} - \lim_{x \to \overline{x}} \frac{F(x)}{F'(x)} = \overline{x} - \lim_{x \to \overline{x}} \frac{F'(x)}{F(x)} = \overline{x} $$
-$$ g'(\overline{x}) = F(\overline{x}) \lim_{x \to \overline{x}} \frac{F(x)}{(F'(x))^{2}} = F(\overline{x}) \lim_{x \to \overline{x}} \frac{F'(x)}{2F'(x)F(x)} = \frac{1}{2} $$
-Dunque se $\overline{x}$ è uno zero doppio, essendo $g'(\overline{x}) \neq 0$, il metodo di Newton ha ordine di convergenza 1.
-Più in generale, se $\overline{x}$ è uno zero d'ordine $r$, cioè
-$$ F(\overline{x}) = F'(\overline{x}) = \dots = F^{(r-1)}(\overline{x}) = 0 \quad \text{e} \quad F^{(r)}(\overline{x}) \neq 0 $$
-allora
-$$ g'(\overline{x}) = 1 - \frac{1}{r} \neq 0 $$
-dunque il metodo di Newton ha ancora ordine di convergenza 1.
-
-\paragraph{Metodo di Newton per radici multiple}
-Quando $\overline{x}$ è uno zero multiplo è possibile modificare leggermente il metodo di Newton per "recuperare" l'ordine 2.
-Si considera la seguente formula iterativa:
-$$ x_{n+1} = x_{n} - 2\frac{F(x_{n})}{F'(x_{n})} $$
-la cui funzione di iterazione è
-$$ g(x) = x - 2\frac{F(x)}{F'(x)} $$
-La precedente formula iterativa ha ordine di convergenza 2, infatti:
-$$ g'(x) = 1 - 2\frac{(F'(x))^{2} - F(x)F(x)}{(F'(x))^{2}} = 2\frac{F(x)F(x)}{(F'(x))^{2}} - 1 $$
-otteniamo
-$$ g'(\overline{x}) = 2F(\overline{x}) \lim_{x \to \overline{x}} \frac{F(x)}{(F'(x))^{2}} - 1 = 1 - 1 = 0 $$
-
-In generale se $\overline{x}$ è una radice multipla di ordine $r$ si utilizza la seguente formula iterativa
-$$ x_{n+1} = x_{n} - r\frac{F(x_{n})}{F'(x_{n})}, \quad n=0,1,\dots $$
-il cui ordine di convergenza è ancora 2.
-Esistono opportune modifiche anche nei casi in cui la molteplicità della radice è $>1$ ma non è nota e nei casi in cui la molteplicità è infinita. Esistono delle varianti del Metodo di Newton che hanno ordine di convergenza $>$ 2.
-
-\textit{Osservazione:} Quando la funzione $F$ ha radici multiple, abbiamo visto che da un punto di vista teorico il Metodo di Newton converge. Tuttavia, spesso si verifica che esso numericamente non converge. La stessa cosa certe volte accade quando $F$ ha radici "quasi multiple".
-
-\paragraph{Esempi}
-
-\textit{Esempio 1:} Data l'equazione
-$$ \cos x - 4x = 0 \quad (2) $$
-determinare un intervallo dell'asse reale che contenga l'unico zero di tale equazione e sia tale che il Metodo di Newton risulti convergente.
-\textit{Svolgimento:} Localizziamo graficamente lo zero dell'equazione (2) trovando il punto di intersezione delle curve $y=\cos x$ e $y=4x$. Si vede che lo zero $\overline{x}$ cade nell'intervallo $[0, \frac{1}{2}]$.
-Vediamo se tale intervallo è il giusto candidato per la convergenza del Metodo di Newton.
-Prima verifichiamo le condizioni agli estremi. Si ha
-$$ F(0)F(1/2) = 1 \cdot (-1.12241) < 0 $$
-Ponendo $F(x) = \cos x - 4x$ si ha
-$$ F'(x) = -\sin x - 4 \Rightarrow F'(x) < 0 \forall x \in \mathbb{R} $$
-$$ F(x) = -\cos x \Rightarrow F(x) \le 0 \text{ se } \cos x \ge 0 $$
-$$ F(x) \le 0 \quad \forall x \in [0, 1/2] $$
-Inoltre
-$$ \left|\frac{F(0)}{F'(0)}\right| = \left|\frac{1}{-4}\right| = \frac{1}{4} < \frac{1}{2} $$
-$$ \left|\frac{F(1/2)}{F'(1/2)}\right| = \left|\frac{-1.12241}{-4.47942}\right| = 0.250571\dots < \frac{1}{2} $$
-Dunque il Metodo di Newton converge $\forall x_{0} \in [0, 1/2]$.
-
-\textit{Esempio 2:} Data l'equazione
-$$ e^{x} + \frac{x}{10} = 0 \quad (3) $$
-determinare un intervallo dell'asse reale che contenga l'unico zero di tale equazione e sia tale che il Metodo di Newton risulti convergente.
-\textit{Svolgimento:} Localizziamo graficamente lo zero dell'equazione (3) trovando il punto di intersezione delle curve $y=e^{x}$ e $y=-x/10$. Si vede che lo zero $\overline{x}$ cade nell'intervallo $[-2, -3/2]$.
-Vediamo se tale intervallo è il giusto candidato per la convergenza del Metodo di Newton.
-Prima verifichiamo le condizioni agli estremi. Si ha
-$$ F(-2)F(-3/2) = (-0.64665e-003) \cdot (0.73130e-003) < 0 $$
-Ponendo $F(x) = e^{x} + x/10$ si ha
-$$ F'(x) = e^{x} + 1/10 \Rightarrow F'(x) > 0 \forall x \in \mathbb{R} $$
-$$ F(x) = e^{x} \Rightarrow F(x) > 0 \forall x \in \mathbb{R} $$
-Inoltre
-$$ \left|\frac{F(-2)}{F'(-2)}\right| = \left|\frac{-0.64665e-003}{0.23534}\right| = 0.27478 < \frac{1}{2} $$
-$$ \left|\frac{F(-3/2)}{F'(-3/2)}\right| = \left|\frac{0.73130e-003}{0.32313e-002}\right| = 0.22632e-001\dots < \frac{1}{2} $$
-Dunque il Metodo di Newton converge $\forall x_{0} \in [-2, -3/2]$.
-
-\textit{Esempio 3:} Data l'equazione
-$$ x + \log x^{3} = 0 \quad (4) $$
-determinare un intervallo dell'asse reale che contenga l'unico zero di tale equazione e sia tale che il Metodo di Newton risulti convergente.
-\textit{Svolgimento:} Localizziamo graficamente lo zero dell'equazione (4) trovando il punto di intersezione delle curve $y=\log x$ e $y=-x/3$. 
-Si vede che lo zero $\overline{x}$ cade nell'intervallo $[1/2, 1]$.
-Vediamo se tale intervallo è il giusto candidato per la convergenza del Metodo di Newton.
-Prima verifichiamo le condizioni agli estremi. Si ha
-$$ F(1/2)F(1) = (-1.57944) \cdot 1 < 0 $$
-Ponendo $F(x) = x + 3 \log x$ si ha
-$$ F'(x) = 1 + \frac{3}{x} \Rightarrow F'(x) > 0 \forall x > 0 $$
-$$ F(x) = -\frac{3}{x^{2}} \Rightarrow F(x) < 0 \forall x \in [1/2, 1] $$
-Inoltre
-$$ \left|\frac{F(1/2)}{F'(1/2)}\right| = \left|\frac{-1.57944}{7}\right| = 0.22563 < \frac{1}{2} $$
-$$ \left|\frac{F(1)}{F'(1)}\right| = \left|\frac{1}{4}\right| < \frac{1}{2} $$
-Dunque il Metodo di Newton converge $\forall x_{0} \in [1/2, 1]$.
-
-\paragraph{Osservazione}
-La convergenza del Metodo di Newton è garantita quando, supposte soddisfatte le ipotesi del teorema, l'approssimazione iniziale $x_{0}$ è "sufficientemente" vicina alla radice $\overline{x}$.
-Pertanto tale metodo si rivela spesso efficiente soprattutto per migliorare un'approssimazione sufficientemente buona ottenuta con un metodo di ordine più basso la cui convergenza è assicurata.
-In generale, anziché verificare le ipotesi del teorema, è preferibile utilizzare il Metodo di bisezione per determinare un'approssimazione della radice con 1 o 2 cifre decimali corrette, e poi applicare il Metodo di Newton per ottenere con pochissime iterazioni la precisione desiderata.
-
-\vspace{20pt}
-
-\subsection{Risoluzione di Equazioni Algebriche}
-
-\vspace{10pt}
-
-\paragraph{Valutazione di un polinomio in un punto}
-Le equazioni algebriche sono equazioni del tipo
-$$ P(x)=0 $$
-dove $P$ è un polinomio di grado $n$, cioè
-$$ P(x)=a_{1}x^{n}+a_{2}x^{n-1}+\dots+a_{n}x+a_{n+1}, \quad a_{1} \ne 0, \quad a_{k} \in \mathbb{R} $$
-
-Le seguenti proprietà sono ben note:
-\begin{itemize}
-    \item Un polinomio di grado $n$ ha esattamente $n$ radici, che possono essere reali o complesse, ciascuna contata con la sua moltiplicità (Teorema Fondamentale dell'Algebra);
-    \item Se un polinomio $P$ ha una radice complessa $\alpha=a+ib$ allora la sua coniugata $\overline{\alpha}=a-ib$ è anche radice di $P$;
-    \item Un polinomio di grado dispari ha almeno una radice reale;
-    \item Per $n \ge 5$ non esiste alcuna forma esplicita per le radici di $P$.
-\end{itemize}
-
-Per determinare un'approssimazione delle radici reali di un'equazione algebrica è possibile utilizzare i metodi visti per le equazioni non lineari, dopo aver individuato per ciascuna radice reale un intervallo che la contenga.
-Quando $n$ è molto grande il problema di individuare tali intervalli può risultare non immediato.
-In generale occorre effettuare delle operazioni preliminari:
-\begin{itemize}
-    \item \textit{localizzazione delle radici}: serve a determinare un cerchio del piano complesso che contenga tutte le radici (sia reali che complesse);
-    \item \textit{numerazione delle radici}: consiste nel determinare il numero delle radici reali.
-\end{itemize}
-A tale scopo sono utili i seguenti risultati.
-
-\paragraph{Teorema di Cauchy}
-\begin{bxthm}
-\begin{thm}
-Tutti gli zeri di
-$$ P(x)=a_{1}x^{n}+a_{2}x^{n-1}+\dots+a_{n}x+a_{n+1} $$
-sono inclusi nel cerchio del piano di centro l'origine e raggio
-$$ r=1+\max_{2 \le k \le n+1} \left| \frac{a_{k}}{a_{1}} \right| $$    
-\end{thm}
-\end{bxthm}
-
-Dunque, in particolare le radici reali si trovano nell'intervallo $[-r, r]$.
-
-\paragraph{Regola dei segni di Cartesio}
-Sia
-$$ P(x)=a_{1}x^{n}+a_{2}x^{n-1}+\dots+a_{n}x+a_{n+1} $$
-Consideriamo l'insieme ordinato dei coefficienti
-$$ A=\{a_{1}, a_{2}, \dots, a_{n}, a_{n+1}\} $$
-Se denotiamo con $\nu$ il numero di variazioni di segno nell'insieme $A$ (gli eventuali zeri non si contano) si ha che il numero $k$ delle radici reali positive di $P$ soddisfa le seguenti proprietà:
-$$ k \le \nu \quad \text{e} \quad \nu-k \text{ è un numero pari.} $$
-Se applichiamo la regola di Cartesio al polinomio
-$$ Q(x)=P(-x) $$
-otteniamo il numero delle radici reali positive di $Q$ e quindi il numero delle radici reali negative di $P$.
-
-Applicando i precedenti risultati e disegnando il grafico di $P$ sull'intervallo $[-r, r]$ si stabilisce con certezza il numero delle radici reali di $P$ e si determinano tanti intervallini quante sono le radici di $P$. Si può così procedere al calcolo approssimato delle radici reali di $P$ utilizzando i metodi visti per le equazioni non lineari.
-
-\paragraph{Osservazioni}
-È possibile utilizzare il metodo di Newton anche per approssimare le radici complesse di un polinomio scegliendo opportunamente il punto $x_{0}$.
-Esistono delle varianti del Metodo di Newton che permettono di approssimare contemporaneamente tutte le radici del polinomio, sia quelle reali che quelle complesse.
-
-\paragraph{Esempio 1}
-Sia
-$$ P(x)=x^{6}-x-1 $$
-Poiché
-$$ \max_{2 \le k \le n+1} \left| \frac{a_{k}}{a_{1}} \right| = 1 $$
-applicando il Teorema di Cauchy, tutte le radici reali di $P$ appartengono all'intervallo $[-2, 2]$.
-Poiché
-$$ A=\{1, 0, 0, 0, 0, -1, -1\} $$
-applicando la regola di Cartesio si ha $\nu=1$.
-Pertanto $k$ deve essere necessariamente 1, cioè $P$ ha una sola radice positiva.
-Infine, posto
-$$ Q(x):=P(-x)=x^{6}+x-1 $$
-si ha
-$$ A=\{1, 0, 0, 0, 0, 1, -1\} $$
-e, applicando ancora la regola di Cartesio, otteniamo anche in questo caso $\nu=1$, cioè il numero delle radici negative di $P$ è $k=1$.
-
-Possiamo concludere che $P(x)=x^{6}-x-1$ ha due radici reali e due coppie di radici complesse coniugate appartenenti alla circonferenza del piano complesso di centro 0 e raggio 2.
-In particolare:
-\begin{itemize}
-    \item la radice positiva appartiene all'intervallo $[0, 2]$;
-    \item la radice negativa appartiene all'intervallo $[-2, 0]$.
-\end{itemize}
-
-\paragraph{Esempio 2}
-Sia
-$$ P(x) = x^{9} + 2x^{8} - 3x^{7} + x^{6} + x^{4} - 2x^{2} + x - 1 $$
-Poiché
-$$ \max_{2 \le k \le n+1} \left| \frac{a_{k}}{a_{1}} \right| = 3 $$
-applicando il Teorema di Cauchy, tutte le radici reali di $P$ appartengono all'intervallo $[-4, 4]$.
-
-Poiché l'insieme dei coefficienti è
-$$ A = \{1, 2, -3, 1, 0, 1, 0, -2, 1, -1\} $$
-applicando la regola di Cartesio si ha $\nu = 5$.
-Pertanto $k$, il numero di radici positive, può essere 1, 3 o 5, cioè $P$ ha 1, 3 o 5 radici positive.
-
-Infine, posto
-$$ Q(x) := P(-x) = -x^{9} + 2x^{8} + 3x^{7} + x^{6} + x^{4} - 2x^{2} - x - 1 $$
-si ha l'insieme dei coefficienti di $Q$:
-$$ A = \{-1, 2, 3, 1, 0, 1, 0, -2, -1, -1\} $$
-e, applicando ancora la regola di Cartesio, otteniamo $\nu = 2$.
-Cioè il numero delle radici negative di $P$ è $k=0$ o $k=2$.
-
-Possiamo concludere che tutte le radici di $P(x)$ appartengono alla circonferenza del piano complesso di centro 0 e raggio 4. In particolare, i seguenti casi sono possibili:
-\begin{itemize}
-    \item $P$ ha 5 radici positive appartenenti all'intervallo $[0, 4]$ e due coppie di radici complesse coniugate;
-    \item $P$ ha 3 radici positive appartenenti all'intervallo $[0, 4]$ e tre coppie di radici complesse coniugate;
-    \item $P$ ha 1 radice positiva appartenenti all'intervallo $[0, 4]$ e quattro coppie di radici complesse coniugate;
-    \item $P$ ha 2 radici negative appartenenti all'intervallo $[-4, 0]$, 5 radici positive appartenenti all'intervallo $[0, 4]$ e una coppia di radici complesse coniugate;
-    \item $P$ ha 2 radici negative appartenenti all'intervallo $[-4, 0]$, 3 radici positive appartenenti all'intervallo $[0, 4]$ e due coppie di radici complesse coniugate;
-    \item $P$ ha 2 radici negative appartenenti all'intervallo $[-4, 0]$, 1 radice positiva appartenenti all'intervallo $[0, 4]$ e tre coppie di radici complesse coniugate.
-\end{itemize}
-
-Zoommando si può vedere che $P$ ha 3 radici reali di cui:
-\begin{itemize}
-    \item 1 radice negativa appartenente all'intervallo $[-\frac{7}{2}, -3]$;
-    \item 1 radice negativa appartenente all'intervallo $[-1, -\frac{1}{2}]$;
-    \item 1 radice positiva appartenente all'intervallo $[\frac{1}{2}, \frac{3}{2}]$.
-\end{itemize}
-
-\paragraph{Valutazione di un polinomio in un punto}
-Consideriamo un polinomio di grado $n$ a coefficienti reali:
-$$ P(x) = a_{1}x^{n} + a_{2}x^{n-1} + \dots + a_{n}x + a_{n+1} $$
-Il nostro obiettivo è costruire l'algoritmo più efficiente per valutare $P$ in un punto fissato $\overline{x}$.
-
-\textbf{Algoritmo 1: Metodo Immediato} \\
-L'approccio più diretto consiste nel calcolare ogni termine della sommatoria singolarmente:
-$$ P(x) = \sum_{i=0}^{n} a_{i+1}x^{n-i} $$
-In questo metodo, ogni potenza $x^{k}$ viene calcolata da zero moltiplicando $x$ per se stesso $k-1$ volte. Questo comporta un costo computazionale elevato per gradi $n$ grandi.
-\begin{itemize}
-    \item \textit{Operazioni moltiplicative:} $\sum_{i=1}^{n} i = \frac{n(n+1)}{2}$
-    \item \textit{Operazioni additive:} $n$
-\end{itemize}
-
-\textbf{Algoritmo 2: Metodo con Accumulazione delle Potenze} \\
-È possibile migliorare l'efficienza evitando di ricalcolare le potenze ogni volta. Riscriviamo il polinomio come:
-$$ P(x) = a_{n+1} + \sum_{i=0}^{n-1} a_{n-i}x^{i+1} $$
-L'idea chiave è quella di accumulare la potenza di $x$: invece di calcolare $x^{i+1}$ da capo, si utilizza il valore della potenza precedente $x^{i}$ e lo si moltiplica per $x$ (cioè $x^{i+1} = x \cdot x^{i}$).
-In questo modo, il numero di moltiplicazioni necessarie diminuisce drasticamente, passando da una crescita quadratica a una lineare.
-\begin{itemize}
-    \item \textit{Operazioni moltiplicative:} $2n$ (una per aggiornare la potenza e una per il coefficiente ad ogni passo)
-    \item \textit{Operazioni additive:} $n$
-\end{itemize}
-Esiste un algoritmo, detto \textbf{Algoritmo di Horner}, che permette di valutare $P$ in un punto con un costo computazionale pari a $n$ operazioni moltiplicative e $n$ operazioni additive.
-
-\paragraph{Algoritmo di Horner}
-Per semplificare, supponiamo che $P$ sia di grado 3:
-$$ P(x)=a_{4}+a_{3}x+a_{2}x^{2}+a_{1}x^{3} $$
-Mettendo in evidenza la $x$ otteniamo:
-$$ P(x)=a_{4}+x(a_{3}+x(a_{2}+xa_{1})) $$
-Riepilogando, ponendo
-$$ b_{1}:=a_{1} $$
-$$ b_{2}:=a_{2}+\overline{x}b_{1} $$
-$$ b_{3}:=a_{3}+\overline{x}b_{2} $$
-$$ b_{4}:=a_{4}+\overline{x}b_{3} $$
-si ottiene $P(\overline{x})=b_{4}$.
-In generale, per valutare il polinomio $P(x)$ in un punto $\overline{x}$, ponendo:
-$$ b_{1}:=a_{1} $$
-$$ b_{i}:=a_{i}+\overline{x}b_{i-1}, \quad i=2, 3, \dots, n+1 $$
-si ha
-$$ P(\overline{x})=b_{n+1} $$
-
-\paragraph{Osservazione}
-I numeri $b_{i}, i=1, \dots, n$ non sono altro che i coefficienti del polinomio $Q(x)$ ottenuto come quoziente della divisione del polinomio $P(x)$ per il binomio $(x-\overline{x})$ e $P(\overline{x})$ non è altro che il resto, cioè
-$$ P(x)=Q(x)(x-\overline{x})+P(\overline{x}) $$
-con
-$$ Q(x)=b_{1}x^{n-1}+b_{2}x^{n-2}+\dots+b_{n-1}x+b_{n} $$
-Dunque le formule dell'algoritmo di Horner permettono di calcolare, senza eseguire la divisione, i coefficienti di $Q(x)$ nonché il resto $P(\overline{x})$ secondo lo schema di Ruffini:
-$$
-\begin{array}{c|cccccc|c}
- & a_{1} & a_{2} & a_{3} & \dots & a_{n-1} & a_{n} & a_{n+1} \\
-\overline{x} & & \overline{x}b_{1} & \overline{x}b_{2} & \dots & \overline{x}b_{n-2} & \overline{x}b_{n-1} & \overline{x}b_{n} \\
-\hline
- & b_{1} & b_{2} & b_{3} & \dots & b_{n-1} & b_{n} & b_{n+1}
-\end{array}
-$$
-
-\paragraph{Schema Algoritmo di Horner}
-\begin{verbatim}
-START main
-in n, a, x
-b(1) = a(1)
-for i = 2; i <= n; i++
-    b(i) = a(i) + x * b(i-1)
-px = a(n+1) + x * b(n)
-out px, b
-END
-\end{verbatim}
-Costo: $n$ operazioni moltiplicative e $n$ operazioni additive.
-
-\paragraph{Esempio}
-Valutare il polinomio
-$$ P(x)=2x^{9}+8x^{4}-x^{3}-1 $$
-nel punto $\overline{x}=1$.
-Usando lo schema di Ruffini:
-$$
-\begin{array}{c|ccccccccc|cc}
- & 2 & 0 & 0 & 0 & 0 & 8 & -1 & 0 & 0 & -1 \\
-1 & & 2 & 2 & 2 & 2 & 2 & 10 & 9 & 9 & 9 \\
-\hline
- & 2 & 2 & 2 & 2 & 2 & 10 & 9 & 9 & 9 & 8
-\end{array}
-$$
-Dunque $P(1)=8$ e il quoziente è:
-$$ Q(x)=2x^{8}+2x^{7}+2x^{6}+2x^{5}+2x^{4}+10x^{3}+9x^{2}+9x+9 $$
-
-\paragraph{Esercizio in Octave}
-\begin{verbatim}
->> a = [2 0 0 0 0 8 -1 0 0 -1];
->> [px, b] = horner(a, 1)
-px = 8
-b = 2 2 2 2 2 10 9 9 9
-\end{verbatim}
-
-\paragraph{Calcolo della derivata}
-Vediamo ora che, contestualmente al calcolo di $P(\xi)$ è possibile calcolare anche $P'(\xi)$.
-Si può dimostrare facilmente che
-$$ P(x)=Q(x)(x-\xi)+P(\xi) $$
-dove
-$$ Q(x)=b_{1}x^{n-1}+b_{2}x^{n-2}+\dots+b_{n-1}x+b_{n} $$
-Ricordando la formula di Taylor:
-$$ P(x)=P(\xi)+P'(\xi)(x-\xi)+\frac{(x-\xi)^{2}}{2!}P(\xi)+\dots+\frac{(x-\xi)^{n}}{n!}P^{(n)}(\xi) $$
-possiamo scrivere
-$$ Q(x)=\frac{P(x)-P(\xi)}{x-\xi}=P'(\xi)+\frac{(x-\xi)}{2!}P(\xi)+\dots $$
-Facendo il limite per $x \to \xi$ otteniamo
-$$ Q(\xi)=\lim_{x \to \xi}\frac{P(x)-P(\xi)}{x-\xi}=P'(\xi) $$
-Dunque per calcolare $P'(\xi)$ basta calcolare $Q(\xi)$.
-Lo possiamo fare utilizzando ancora l'algoritmo di Horner sui coefficienti $b_{i}$.
-Infatti, ricordando la definizione di $Q(x)$ e ponendo:
-$$
-\begin{cases}
-c_{1}:=b_{1} \\
-c_{i}=c_{i-1}\xi+b_{i}, \quad i=2,\dots,n
-\end{cases}
-$$
-si ha
-$$ P'(\xi)=Q(\xi)=c_{n} $$
-
-L'algoritmo per calcolare $P(\xi)$ e $P'(\xi)$ è dunque:
-\begin{verbatim}
-p = a(1);
-dp = p;
-for i = 2:n
-    p = p * x + a(i);
-    dp = dp * x + p;
-end
-p = p * x + a(n+1);
-\end{verbatim}
-Il suo costo computazionale complessivo è $2n$.
-
-\paragraph{Condizionamento delle radici di un polinomio}
-Sia
-$$ P(x) = a_{1}x^{n} + a_{2}x^{n-1} + \dots + a_{n}x + a_{n+1} $$
-un polinomio di grado $n$ e siano $\alpha_{1}, \dots, \alpha_{n}$ le sue radici.
-Per effetto della rappresentazione finita, i dati in ingresso del problema (ovvero i coefficienti) sono affetti da un errore che al massimo è l'epsilon macchina e di conseguenza le radici effettivamente calcolate saranno altre.
-
-Obiettivo dello studio del condizionamento è misurare, a posteriori, la sensibilità del problema posto.
-Nello stesso polinomio ci possono essere radici ben condizionate ed altre mal condizionate, cioè lo studio non è globale (tutte le radici) ma puntuale (una sola radice alla volta).
-
-\paragraph{Condizionamento di una radice semplice}
-Sia $\alpha$ una generica radice semplice del polinomio $P(x)$ e sia $\beta$ la corrispondente radice del polinomio che si ottiene perturbando il $k$-esimo coefficiente. Si dimostra che:
-$$ \frac{|\alpha-\beta|}{|\alpha|} \le \frac{\varepsilon}{|\alpha|} \max_{k=1,\dots,n+1} \left| \frac{a_{k}\alpha^{n-k+1}}{P'(\alpha)} \right| $$
-La quantità
-$$ \frac{1}{|\alpha|} \max_{k=1,\dots,n+1} \left| \frac{a_{k}\alpha^{n-k+1}}{P'(\alpha)} \right| $$
-rappresenta l'indice di condizionamento della radice.
-Si evince che l'errore si amplifica o perché la derivata prima del polinomio computato nella radice è molto piccola (radici quasi doppie) o perché i coefficienti del polinomio sono molto grandi.
-
-\paragraph{Condizionamento di una radice multipla}
-Sia $\alpha$ una generica radice di molteplicità $r>1$. Si dimostra che:
-$$ \frac{|\alpha-\beta|}{|\alpha|} \le \frac{\varepsilon^{1/r}}{|\alpha|} \max_{k=1,\dots,n+1} \left| \frac{r! a_{k}\alpha^{n-k+1}}{P^{(r)}(\alpha)} \right|^{1/r} $$
-Quindi il problema è in generale mal condizionato.
-
-\paragraph{Problema del calcolo simultaneo di tutti gli zeri}
-Esistono diversi approcci:
-\begin{enumerate}
-    \item \textbf{Deflazione:} Si calcola una radice $x_{1}$ e si costruisce il quoziente $P_{1}(x)=P(x)/(x-x_{1})$. Si itera il procedimento.
-    \textit{Difetti:} L'errore di arrotondamento si accumula in modo inaccettabile fornendo risultati fasulli dopo le prime radici.
-
-    \item \textbf{Matrice Companion:} Si riduce il calcolo degli zeri di $P$ al calcolo degli autovalori della matrice companion di $P$, che ha $P$ come polinomio caratteristico.
-    $$ P_{n}(x)=a_{1}x^{n}+\dots+a_{n}x+a_{n+1} $$
-    $$ A=\begin{pmatrix}
-    -\frac{a_{2}}{a_{1}} & -\frac{a_{3}}{a_{1}} & \dots & -\frac{a_{n}}{a_{1}} & -\frac{a_{n+1}}{a_{1}} \\
-    1 & 0 & \dots & 0 & 0 \\
-    0 & 1 & \dots & 0 & 0 \\
-    \vdots & & \ddots & & \vdots \\
-    0 & 0 & \dots & 1 & 0
-    \end{pmatrix} $$
-    È quello che fa la function \texttt{roots} del Matlab.
-    \textit{Difetti:} Il metodo calcola con precisione gli autovalori della matrice, ma ciò non implica una soddisfacente approssimazione degli zeri di $P$, poiché i due problemi hanno un differente condizionamento.
-\end{enumerate}
-
-\newpage
-
-\section{Esercizi}
-
-\vspace{20pt}
-
-\subsection{Risoluzione di un Sistema Lineare Quadrato}
+\subsection{Esercizi}
 
 \vspace{10pt}
 
@@ -5412,7 +4573,7 @@ la cui soluzione esatta è $\mathbf{x} = {}^t(1,\ldots,1)$.
 \begin{itemize}
 \item Calcolare l'indice di condizionamento e il numero di cifre significative corrette che ci si può aspettare nel calcolo della soluzione approssimata.
 \item Calcolare la soluzione approssimata del sistema utilizzando opportunamente il metodo di Gauss e calcolare l'errore relativo. Quante sono le cifre significative corrette?
-\item Calcolare il Determinante della matrice $A$.
+\item Calcolare il determinante della matrice $A$.
 \item Calcolare l'inversa della matrice $A$.
 \end{itemize}
 \item Data la matrice di ordine $n = 40$
@@ -5431,7 +4592,7 @@ Calcolare l'indice di condizionamento e il numero di cifre significative corrett
 \item il determinante;
 \item l'inversa.
 \end{itemize}
-\item Data la matrice di ordine $n = 40$(?)
+\item Data la matrice di ordine $n = 40$
 \[
 A = \begin{pmatrix}
 10 & 1 & \frac{1}{2} & 3 & \dots & 3 & 3 \\
@@ -5455,10 +4616,8 @@ la cui soluzione esatta è $\mathbf{x} = {}^t(1,\ldots,1)$.
 \item Calcolare l'inversa della matrice $A$.
 \end{itemize}
     \item Scrivere una function Matlab che implementi il metodo di Cholesky.
-    
     \item Modificare le functions che implementano le fattorizzazioni $A = LU$ e $PA = LU$ in modo da fornire in output anche il corrispondente fattore di crescita $\rho$ per la valutazione della loro stabilità numerica.
-    
-    \item Consideriamo il sistema lineare $Ax = b$ di ordine $n = 100$, dove
+    \item Consideriamo il sistema lineare $A\mathbf{x} = \mathbf{b}$ di ordine $n = 100$, dove
     $$
     A = \left(
     \begin{array}{ccccccc}
@@ -5470,13 +4629,13 @@ la cui soluzione esatta è $\mathbf{x} = {}^t(1,\ldots,1)$.
     4 & 0 & \dots & 0 & 0 & 5 & 0 \\
     4 & 0 & \dots & 0 & 0 & 0 & 5
     \end{array}
-    \right), \quad A = A * A^T
+    \right), \quad A = A * {}^tA
     $$
     e
     $$
-    b_i = \sum_{j=1}^{n} A_{i,j}, \quad i=1, \dots, n,
+    b_i = \sum_{j=1}^{n} A_{i,j}, \quad i\in\{1, \dots, n\},
     $$
-    la cui soluzione esatta è $x = [1, \dots, 1]^T$.
+    la cui soluzione esatta è $x = {}^t(1, \dots, 1)$.
     \begin{itemize}
         \item Calcolare l'indice di condizionamento e il numero di cifre significative corrette che ci si può aspettare nel calcolo della soluzione approssimata.
         \item Proporre uno o più metodi numerici per calcolare la soluzione del sistema $Ax = b$ con la massima precisione possibile. Calcolare l'errore relativo in norma infinito. Quante sono le cifre significative corrette della soluzione calcolata?
@@ -5486,20 +4645,20 @@ la cui soluzione esatta è $\mathbf{x} = {}^t(1,\ldots,1)$.
         \item Verificare che il fattore di crescita $\rho$ relativo alla fattorizzazione $LU$ è uguale a 1.
     \end{itemize}
 
-    \item Consideriamo il sistema lineare $Ax = b$ di ordine $n = 100$, dove
+    \item Consideriamo il sistema lineare $A\mathbf{x} = \mathbf{b}$ di ordine $n = 100$, dove
     $$
     A(i,j) = \begin{cases}
-    -7, & i = j \\
-    -2, & |i - j| = 1 \\
-    1, & |i - j| = 4 \\
-    0, & \text{altrimenti}
+    -7 & i = j \\
+    -2 & |i - j| = 1 \\
+    1 & |i - j| = 4 \\
+    0 & \text{altrimenti}
     \end{cases}
     $$
     e
     $$
-    b_i = \sum_{j=1}^{n} A_{i,j}, \quad i=1, \dots, n,
+    b_i = \sum_{j=1}^{n} A_{i,j}, \quad i\in\{1, \dots, n\},
     $$
-    la cui soluzione esatta è $x = [1, \dots, 1]^T$.
+    la cui soluzione esatta è $\mathbf{x} = {}^t(1, \dots, 1)$.
     \begin{itemize}
         \item Calcolare l'indice di condizionamento e il numero di cifre significative corrette che ci si può aspettare nel calcolo della soluzione approssimata.
         \item Proporre uno o più metodi numerici per calcolare la soluzione del sistema $Ax = b$ con la massima precisione possibile. Calcolare l'errore relativo in norma infinito. Quante sono le cifre significative corrette della soluzione calcolata?
@@ -5804,10 +4963,242 @@ la cui soluzione esatta è $\mathbf{x} = {}^t(1,\ldots,1)$.
     \end{itemize}
 \end{enumerate}
 
+\newpage
+
+\section{Metodi Numerici per la Risoluzione di un Sistema Lineare Rettangolare nel Senso dei Minimi Quadrati}
+
+\paragraph{Il problema dei minimi quadrati lineari}
+Consideriamo un sistema lineare del tipo
+$$ Ax=b $$
+dove $A$ è una matrice di ordine $m \times n$, con $m \neq n$, $x$ è un vettore di lunghezza $n$ e $b$ un vettore di lunghezza $m$.
+Molte situazioni reali, per esempio nelle applicazioni statistiche, nei problemi di teoria dei segnali, in astronomia, possono essere modellizzate mediante un sistema lineare nel quale la matrice dei coefficienti è rettangolare (o quadrata ma singolare).
+
+In tali casi la soluzione può non esistere affatto oppure possono esserci infinite soluzioni.
+\begin{itemize}
+    \item Se $m > n$, se cioè il numero delle equazioni è superiore a quello delle incognite, il sistema è detto \textit{sovradeterminato} e non ammette soluzioni.
+    \item Se invece $m < n$ il sistema è detto \textit{sottodeterminato} e ammette infinite soluzioni.
+\end{itemize}
+
+In questi casi, invece di cercare di determinare il vettore $x$ che verifichi l'identità $Ax=b$, si cerca, se esiste, un vettore $x$ tale che la distanza di $Ax$ da $b$ sia la minima possibile.
+In altri termini il problema viene ricondotto ad un problema di minimo: determinare un $\overline{x}$ di lunghezza $n$ tale che, posto $r(x)=Ax-b$ (detto residuo) risulti
+$$ ||r(\overline{x})|| = \min_{x} ||r(x)|| = \min_{x} ||Ax-b|| $$
+Se la norma utilizzata è quella euclidea, ovvero la norma 2,
+$$ ||x||_{2} = \sqrt{\sum_{i=1}^{n} x_{i}^{2}} = \sqrt{x^{T}x} $$
+il problema è detto \textit{problema dei minimi quadrati lineari} (PMQ).
+
+Il nome è dovuto al fatto che si cerca il minimo della quantità
+$$ \min_{x=(x_{1},\dots,x_{n})} ||Ax-b||_{2} = \min_{x=(x_{1},\dots,x_{n})} \sqrt{\sum_{i=1}^{m} \left[ b_{i} - \sum_{j=1}^{n} a_{ij}x_{j} \right]^{2}} $$
+cioè si cerca di minimizzare una somma di quadrati.
+
+Anche il problema dei minimi quadrati può avere infinite soluzioni. In questo caso si definisce \textit{soluzione di minima norma} quella per cui accade che
+$$ ||x_{min}||_{2} \le ||x||_{2} $$
+se $x$ è una qualsiasi soluzione.
+
+D'ora in avanti ci occuperemo solo del caso dei sistemi sovradeterminati, cioè con $m \ge n$, che è anche il più significativo dal punto di vista delle applicazioni. Una delle più significative applicazioni del problema dei minimi quadrati sovradeterminati è quella relativa all'approssimazione di dati, detta anche \textit{best fitting}.
+
+\paragraph{Risolubilità del problema dei minimi quadrati}
+Vediamo ora in quali ipotesi il problema dei minimi quadrati ammette soluzione.
+
+\begin{bxthm}
+\begin{thm}
+Se $A$ è una matrice $m \times n$ con $m > n$ allora esiste sempre una soluzione del PMQ. Inoltre tale soluzione è unica se e solo se il rango di $A$ è massimo, cioè se $\text{rank}(A) = n$.    
+\end{thm}
+\end{bxthm}
+
+Omettiamo la dimostrazione di tale teorema mettendo però in evidenza che tale dimostrazione è basata sulla seguente equivalenza:
+$$ x \text{ è soluzione del PMQ} \iff x \text{ è soluzione del sistema } A^{T}Ax = A^{T}b $$
+
+\paragraph{Il sistema delle equazioni normali}
+Il sistema
+$$ A^{T}Ax = A^{T}b $$
+è detto \textit{sistema delle equazioni normali}.
+Osserviamo innanzitutto che la matrice $A^{T}A$ è una matrice quadrata di ordine $n$. Inoltre è simmetrica in quanto
+$$ (A^{T}A)^{T} = A^{T}(A^{T})^{T} = A^{T}A $$
+cioè coincide con la sua trasposta.
+Infine, se $A$ ha rango massimo, è definita positiva poiché se $y$ è un qualunque vettore di lunghezza $n$ non nullo si ha
+$$ y^{T}(A^{T}A)y = (y^{T}A^{T})(Ay) = (Ay)^{T}(Ay) = ||Ay||_{2}^{2} > 0 $$
+(se il rango non è massimo può accadere che $Ay=0$, con $y \neq 0$).
+
+\paragraph{Interpretazione geometrica}
+Vogliamo ora dare un'interpretazione geometrica del problema dei minimi quadrati.
+Se $A$ è di ordine $m \times n$ allora può essere pensata come un'applicazione lineare di $\mathbb{R}^{n} \to R(A) \subseteq \mathbb{R}^{m}$.
+Il sottospazio $R(A)$ delle immagini è l'insieme dei vettori $u$ tali che esiste un $y \in \mathbb{R}^{n}$ tale che $u=Ay$.
+Sia ora $b \in \mathbb{R}^{m}$. Poiché la norma 2 è quella euclidea, $||b-Ax||_{2}$ rappresenta la distanza tra i vettori $b$ e $Ax$.
+
+È evidente allora che affinché tale distanza sia minima deve accadere che $b-Ax$ sia ortogonale a $R(A)$.
+Ora, ogni vettore di $R(A)$ può essere visto come combinazione lineare delle colonne di $A$. Infatti se $u \in R(A)$ è tale che $u=Ay$, ciò significa che
+$$ u = \begin{pmatrix} u_{1} \\ \vdots \\ u_{m} \end{pmatrix} = \begin{pmatrix} a_{11}y_{1} + \dots + a_{1n}y_{n} \\ \vdots \\ a_{m1}y_{1} + \dots + a_{mn}y_{n} \end{pmatrix} $$
+cioè
+$$ u = y_{1}a_{1} + y_{2}a_{2} + \dots + y_{n}a_{n} $$
+dove $a_{j}$ denota la colonna $j$-esima di $A$.
+
+Dunque, affinché $b-Ax$ risulti ortogonale a $R(A)$, basta che sia ortogonale a tutte le colonne di $A$, cioè
+$$ a_{j}^{T}(b-Ax) = 0, \quad j=1,\dots,n \iff A^{T}(b-Ax) = 0 \iff A^{T}Ax = A^{T}b $$
+Si perviene così, anche per via geometrica, all'equivalenza tra la soluzione del problema dei minimi quadrati e quello del sistema delle equazioni normali.
+
+\paragraph{La pseudoinversa}
+\begin{bxthm}
+\begin{defn}
+Sia $A$ una matrice $m \times n$, $m \ge n$ e con rango massimo ($\text{rank}(A)=n$). Si definisce \textit{pseudoinversa} o inversa generalizzata di Moore-Penrose di $A$ la matrice
+$$ A^{+} = (A^{T}A)^{-1}A^{T} .$$
+\end{defn}
+\end{bxthm}
+
+La pseudoinversa generalizza il concetto di inversa di una matrice nel caso delle matrici rettangolari. Infatti
+$$ A^{+}A = (A^{T}A)^{-1}A^{T}A = I $$
+D'altra parte se $A$ è quadrata e non singolare si ha
+$$ A^{+} = (A^{T}A)^{-1}A^{T} = A^{-1}(A^{T})^{-1}A^{T} = A^{-1} $$
+cioè inversa e pseudoinversa coincidono.
+
+Il legame tra pseudoinversa e problema dei minimi quadrati è fornito dalla seguente
+
+\begin{bxthm}
+\begin{prop}
+Sia $A$ di ordine $m \times n$, $m \ge n$ e con rango massimo ($\text{rank}(A)=n$) e $b$ un vettore di lunghezza $m$. L'unica soluzione del problema dei minimi quadrati relativo a tali dati è data da
+$$ x = A^{+}b \equiv (A^{T}A)^{-1}A^{T}b.$$    
+\end{prop}
+\end{bxthm}
+
+La Proposizione è immediata conseguenza del teorema di esistenza e unicità. Infatti abbiamo già detto che la soluzione del PMQ è quella del sistema delle equazioni normali
+$$ A^{T}Ax = A^{T}b \implies x = (A^{T}A)^{-1}A^{T}b $$
+
+La matrice pseudoinversa ha diverse e utili applicazioni, non solo nella soluzione del problema dei minimi quadrati.
+Un'importante informazione che si può dedurre dalla conoscenza di $A^{+}$ è il condizionamento del problema dei minimi quadrati.
+È infatti possibile dimostrare che, se si introducono delle perturbazioni su $b$ ed $A$, allora la corrispondente perturbazione sul vettore $x$, soluzione del problema dei minimi quadrati, è proporzionale a quelle introdotte sui dati mediante la quantità
+$$ pcond(A) = ||A|| ||A^{+}|| $$
+
+\paragraph{Risoluzione del sistema delle equazioni normali}
+Abbiamo visto come la soluzione del problema dei minimi quadrati coincida, nel caso sovradeterminato e di rango massimo, con la soluzione del sistema delle equazioni normali:
+$$ A^{T}Ax = A^{T}b $$
+Dunque per calcolare numericamente la soluzione del PMQ è possibile risolvere numericamente il sistema delle equazioni normali.
+Poiché la matrice dei coefficienti è simmetrica e definita positiva, possiamo usare il metodo di eliminazione di Gauss senza pivoting o, con un costo computazionale dimezzato, il metodo di Cholesky.
+
+Dunque il problema dei minimi quadrati può essere risolto nel seguente modo:
+\begin{itemize}
+    \item si forma la matrice $A^{T}A$;
+    \item si fattorizza $A^{T}A$ mediante fattorizzazione di Cholesky, ovvero si computa $L$ tale che $A^{T}A = LL^{T}$;
+    \item si forma il vettore $c = A^{T}b$;
+    \item si risolve la coppia di sistemi lineari triangolari:
+    $$ \begin{cases} Ly = c \\ L^{T}x = y \end{cases} $$
+\end{itemize}
+
+\paragraph{Costo computazionale e stabilità}
+Il costo computazionale complessivo della procedura è di circa
+$$ m\frac{n^{2}}{2} + \frac{n^{3}}{6} $$
+operazioni, in quanto ne occorrono circa $m\frac{n^{2}}{2}$ per formare $A^{T}A$ (che si costruisce per simmetria) e $\frac{n^{3}}{6}$ per la fattorizzazione di Cholesky.
+Le sostituzioni all'indietro e in avanti costano complessivamente $n^{2}$ e sono trascurate.
+Dunque la procedura è relativamente economica, in quanto l'operazione più costosa (la fattorizzazione di Cholesky) viene effettuata sulla matrice di ordine $n$ (che in genere è molto minore di $m$).
+
+Sfortunatamente la procedura appena descritta è complessivamente instabile.
+Infatti il primo problema è la costruzione della matrice $A^{T}A$. Può accadere che vi sia una perdita di cifre significative nella rappresentazione di macchina di $A^{T}A$.
+Nei casi più patologici può verificarsi che la matrice "di macchina" non sia più definita positiva o addirittura che risulti singolare.
+È stato infatti provato che se $pcond(A) > 10^{\frac{t}{2}}$, dove $t$ è la precisione della rappresentazione floating point, non è più assicurato che $fl(A^{T}A)$ sia non singolare.
+
+\paragraph{Esempio di instabilità}
+Consideriamo la matrice
+$$ A = \begin{pmatrix} 1 & 1 \\ 10^{-4} & 0 \\ 0 & 10^{-4} \end{pmatrix} $$
+e assumiamo di lavorare in precisione $t=8$. Le colonne di $A$ sono linearmente indipendenti e quindi il rango è 2.
+Computiamo ora $A^{T}A$.
+$$ A^{T}A = \begin{pmatrix} 1+10^{-8} & 1 \\ 1 & 1+10^{-8} \end{pmatrix} $$
+Poiché $t=8$, allora $fl(A^{T}A) = \begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}$ che è singolare!
+Si noti che $pcond(A) = 1.4142... \cdot 10^{4} > 10^{4}$.
+
+Anche se non si incorre in questi casi "patologici" tuttavia la procedura è generalmente poco stabile in quanto, mentre il PMQ ha un condizionamento che è regolato da $pcond(A)$, il sistema delle equazioni normali ha un condizionamento che dipende da $cond(A^{T}A)$.
+Si può provare che (in norma 2):
+$$ cond(A^{T}A) = pcond(A)^{2} $$
+Concludendo possiamo dire che alla risoluzione mediante equazioni normali, benché economica, si deve ricorrere solo quando si hanno informazioni sul buon condizionamento della matrice $A^{T}A$. Nei casi in cui si è incerti sul condizionamento del problema conviene utilizzare altri metodi, più costosi, ma stabili.
+
+\paragraph{Metodo mediante fattorizzazione QR}
+\paragraph{La fattorizzazione QR}
+È noto che le fattorizzazioni di matrici costituiscono un efficace strumento in algebra lineare. Le più note sono la fattorizzazione LU e la fattorizzazione $LL^{T}$ di Cholesky (per matrici simmetriche e definite positive). Entrambe queste fattorizzazioni sono per matrici quadrate.
+Il costo computazionale per la costruzione di $L$ e $U$ è di circa $\frac{m^{3}}{3}$ operazioni, mentre la fattorizzazione di Cholesky costa $\frac{m^{3}}{6}$ operazioni.
+
+Illustriamo ora un'altra fattorizzazione che prende il nome di fattorizzazione QR e che può essere costruita anche per matrici rettangolari.
+Data una matrice $A$ di ordine $m \times n$ esistono due matrici, $Q$ quadrata di ordine $m$ e ortogonale (cioè tale che $Q^{-1}=Q^{T}$) e $R$ di ordine $m \times n$, del tipo:
+$$ R = \begin{pmatrix} R_{1} \\ 0 \end{pmatrix} $$
+con $R_{1}$ triangolare superiore di ordine $n$, se $m > n$, oppure del tipo $(R_{1} \quad 0)$ con $R_{1}$ triangolare superiore di ordine $m$, se $m < n$.
+
+Nel caso $A$ sia quadrata i fattori $Q$ ed $R$ sono entrambi quadrati e $R$ è triangolare superiore.
+Esistono vari algoritmi per la costruzione della fattorizzazione QR, il più utilizzato dei quali (quello che adopera le matrici elementari di Householder) ha un costo computazionale di $\frac{2}{3}m^{3}$, nel caso della matrice quadrata e piena.
+Nel caso rettangolare con $m > n$ invece il costo è dell'ordine di:
+$$ n^{2}(m - \frac{n}{3}) $$
+
+Confrontando dunque su matrici quadrate, la fattorizzazione QR "costa di più" della fattorizzazione LU. Il valore aggiunto però sta nel fatto che il fattore $Q$ è ortogonale.
+Le matrici ortogonali rivestono un'importanza rilevante per le loro numerose proprietà:
+\begin{itemize}
+    \item Non è necessario costruire le inverse, che sono disponibili con la sola trasposizione ($Q^{-1} \equiv Q^{T}$), il che implica $Q^{T}Q = QQ^{T} = I$.
+    \item Se $y$ è un qualsiasi vettore di lunghezza $m$ si ha:
+    $$ ||Qy||_{2} = \sqrt{(Qy)^{T}(Qy)} = \sqrt{y^{T}Q^{T}Qy} = \sqrt{y^{T}y} = ||y||_{2} $$
+    cioè la moltiplicazione per matrici ortogonali lascia invariata la norma del vettore (lo stesso vale per $Q^{T}$).
+    \item Da quanto sopra si ha $||Q||_{2}=1$, $||Q^{T}||_{2}=1$, da cui $cond(Q)=1$, cioè le matrici ortogonali sono perfettamente condizionate.
+\end{itemize}
+
+\paragraph{Il metodo per il PMQ basato sulla fattorizzazione QR}
+Ricordiamo che il problema dei minimi quadrati lineari consiste nel cercare il minimo, su tutti i vettori di lunghezza $n$, della quantità $||Ax-b||_{2}$ dove $A$ è una matrice di ordine $m \times n$, con $m \ge n$, $rank(A)=n$ e $b$ è di dimensione $m$.
+Un metodo numerico alternativo è basato sull'utilizzo della fattorizzazione QR di $A$.
+
+Siano infatti $Q$ e $R$ i fattori di $A$, si ha:
+$$ Q^{T}A = \begin{pmatrix} R_{1} \\ 0 \end{pmatrix} $$
+dove $R_{1}$ è quadrata, di ordine $n$ e triangolare superiore.
+Poiché $Q^{T}$ è ortogonale, e quindi preserva la norma 2 del vettore, si ha:
+$$ ||Ax-b||_{2}^{2} = ||Q^{T}(Ax-b)||_{2}^{2} = ||Q^{T}Ax - Q^{T}b||_{2}^{2} $$
+Ponendo ora $Q^{T}b = \begin{pmatrix} c \\ d \end{pmatrix}$ con $c$ vettore di lunghezza $n$, si ha:
+$$ ||Ax-b||_{2}^{2} = ||\begin{pmatrix} R_{1}x \\ 0 \end{pmatrix} - \begin{pmatrix} c \\ d \end{pmatrix}||_{2}^{2} = ||\begin{pmatrix} R_{1}x - c \\ -d \end{pmatrix}||_{2}^{2} $$
+
+Osserviamo ora che se un vettore $y$ di lunghezza $m$ è decomposto in due sottovettori, per esempio $y=(z,t)^{T}$ con $z$ di lunghezza $n$ e $t$ di lunghezza $m-n$, si ha che $||y||_{2}^{2} = ||z||_{2}^{2} + ||t||_{2}^{2}$.
+Dunque:
+$$ ||Ax-b||_{2}^{2} = ||\begin{pmatrix} R_{1}x - c \\ -d \end{pmatrix}||_{2}^{2} = ||R_{1}x - c||_{2}^{2} + ||d||_{2}^{2} $$
+Poiché il secondo termine della somma non dipende da $x$ ed è sempre positivo, il minimo del primo membro sarà assunto se $||R_{1}x - c||_{2} = 0$, se cioè $R_{1}x = c$, ovvero se $x$ è soluzione del sistema triangolare con $R_{1}$ come matrice dei coefficienti e $c$ come termine noto.
+
+\paragraph{Procedura e Costo}
+Dunque la procedura proposta può essere riassunta come segue:
+\begin{itemize}
+    \item si effettua la fattorizzazione QR della matrice $A$ e quindi, in particolare, si determina la matrice $R_{1}$;
+    \item si forma il vettore $c$ costituito dai primi $n$ elementi del vettore $Q^{T}b$;
+    \item si risolve il sistema triangolare $R_{1}x = c$ (mediante sostituzione all'indietro).
+\end{itemize}
+La quantità $||d||_{2}$ rappresenta la norma 2 del residuo.
+L'algoritmo ha un costo computazionale che è essenzialmente quello della fattorizzazione QR e pertanto è $n^{2}(m-\frac{n}{3})$. La procedura descritta risulta inoltre stabile.
+
+\paragraph{Conclusioni}
+Abbiamo proposto due possibili strategie numeriche per la risoluzione del problema dei minimi quadrati lineari, nel caso sia $A$ di dimensioni $m \times n$, con $m \ge n$ e $rank(A)=n$:
+\begin{enumerate}
+    \item la risoluzione del sistema delle equazioni normali $A^{T}Ax = A^{T}b$;
+    \item il metodo che utilizza la fattorizzazione QR della matrice $A$.
+\end{enumerate}
+
+\paragraph{Confronto Schemi}
+\textbf{Metodo 1 (Equazioni Normali):}
+\begin{itemize}
+    \item formare la matrice $A^{T}A$;
+    \item calcolare la fattorizzazione di Cholesky $A^{T}A = LL^{T}$;
+    \item risolvere la coppia di sistemi triangolari $\begin{cases} Ly = A^{T}b \\ L^{T}x = y \end{cases}$;
+    \item costo computazionale: $m\frac{n^{2}}{2} + \frac{n^{3}}{6}$;
+    \item stabilità: assicurata solo se $cond(A^{T}A) = pcond(A)^{2}$ non è grande.
+\end{itemize}
+
+\textbf{Metodo 2 (Fattorizzazione QR):}
+\begin{itemize}
+    \item calcolare la fattorizzazione QR di $A$;
+    \item calcolare $Q^{T}b = \begin{pmatrix} c \\ d \end{pmatrix}$, dove $c$ ha lunghezza $n$;
+    \item posto $R = \begin{pmatrix} R_{1} \\ 0 \end{pmatrix}$, risolvere il sistema $R_{1}x = c$;
+    \item la norma del residuo è data da $||d||_{2}$;
+    \item costo computazionale: $n^{2}(m - \frac{n}{3})$;
+    \item stabilità: assicurata sempre.
+\end{itemize}
+
+\paragraph{Functions del Matlab}
+Le funzioni Matlab coinvolte nella risoluzione del PMQ sono le seguenti:
+\begin{itemize}
+    \item \texttt{A\textbackslash b}: implementa, nel caso $A$ sia rettangolare, il metodo che utilizza la fattorizzazione QR, cioè il metodo 2;
+    \item \texttt{R = chol(B)}: calcola il fattore di Cholesky della matrice simmetrica e definita positiva $B$ ($B={}^tRR$);
+    \item \texttt{D = pinv(A)}: calcola la pseudoinversa (sinistra) della matrice $A$;
+    \item \texttt{[Q,R] = qr(A)}: calcola la fattorizzazione QR della matrice $A$ (quadrata o rettangolare) mediante trasformazioni di Householder.
+\end{itemize}
 
 \vspace{20pt}
 
-\subsection{Metodi Numerici per la Risoluzione di un Sistema Lineare Rettangolare nel Senso dei Minimi Quadrati}
+\subsection{Esercizi}
 
 \vspace{10pt}
 
@@ -5989,9 +5380,1195 @@ la cui soluzione esatta è $\mathbf{x} = {}^t(1,\ldots,1)$.
     \end{itemize}
 \end{enumerate}
 
+\newpage
+
+\section{Metodi Numerici per la Risoluzione di una Equazione non Lineare}
+
 \vspace{20pt}
 
-\subsection{Metodi Numerici per la Risoluzione di una Equazione non Lineare}
+\subsection{Risoluzione di Equazioni non Lineari}
+
+\vspace{10pt}
+
+\paragraph{Introduzione}
+Sia $F \in C^{0}([a,b])$, cioè $F$ è una funzione continua in un intervallo $[a,b] \subset \mathbb{R}$, tale che $F(a)F(b) < 0$.
+Vogliamo trovare le radici dell'equazione non lineare
+$$ F(x) = 0 $$
+La condizione $F(a)F(b) < 0$ è una condizione sufficiente per l'esistenza di almeno una radice di $F$ in $[a,b]$.
+
+\vspace{10pt}
+
+\paragraph{Metodo di Bisezione}
+Questo metodo consiste nel costruire, a partire dall'intervallo $[a,b]$, una successione di intervalli incapsulati
+$$ [a,b] = [a_{0}, b_{0}] \supset [a_{1}, b_{1}] \supset \dots \supset [a_{n}, b_{n}] $$
+tutti contenenti la radice $\overline{x}$ di $F$, tale che
+$$ b_{n} - a_{n} \rightarrow 0 \quad \text{per } n \rightarrow +\infty. $$
+Gli intervalli $[a_{k}, b_{k}]$, $k\in\{1,\dots,n\}$, della successione vengono determinati come segue:
+dato $[a_{k-1}, b_{k-1}]$, determiniamo il punto medio
+$$ m_{k} = \frac{a_{k-1} + b_{k-1}}{2} $$
+\begin{itemize}
+    \item se $F(m_{k}) = 0$ allora $\overline{x} = m_{k}$ e abbiamo terminato;
+    \item se $F(m_{k}) \neq 0$ poniamo
+    $$ [a_{k}, b_{k}] = \begin{cases} [a_{k-1}, m_{k}] & \text{se } F(a_{k-1})F(m_{k}) < 0 \\ [m_{k}, b_{k-1}] & \text{se } F(b_{k-1})F(m_{k}) < 0 \end{cases} $$
+\end{itemize}
+Dopo $n$ passi si giunge all'intervallo $[a_{n}, b_{n}]$ contenente la radice $\overline{x}$ e di ampiezza
+$$ b_{n} - a_{n} = \frac{b_{n-1} - a_{n-1}}{2} = \frac{b_{n-2} - a_{n-2}}{2^{2}} = \dots = \frac{b-a}{2^{n}} $$
+Come stima di $\overline{x}$ scegliamo
+$$ x_{n+1} = m_{n+1} = \frac{a_{n} + b_{n}}{2} $$
+così che
+$$ \overline{x} = x_{n+1} \pm \varepsilon_{n+1} $$
+dove
+$$ \varepsilon_{n+1} = |\overline{x} - x_{n+1}| < \frac{b-a}{2^{n+1}} $$
+è l'errore assoluto di approssimazione della radice $\overline{x}$ di $F$.
+Fissata una tolleranza TOLL, è possibile determinare il numero di iterazioni $k$ necessarie per approssimare la radice $\overline{x}$ con precisione TOLL imponendo che
+$$ |\overline{x} - x_{n}| < \frac{b-a}{2^{n}} < \text{TOLL} $$
+Infatti, possiamo scrivere
+$$ \frac{b-a}{\text{TOLL}} < 2^{n} $$
+$$ \log\left(\frac{b-a}{\text{TOLL}}\right) < \log(2^{n}) = n \log 2 $$
+$$ n > \frac{\log\left(\frac{b-a}{\text{TOLL}}\right)}{\log 2} $$
+Dunque prendiamo
+$$ n = \left\lfloor \frac{\log\left(\frac{b-a}{\text{TOLL}}\right)}{\log 2} \right\rfloor + 1 $$
+dove $\lfloor a \rfloor$ denota la parte intera inferiore di $a$.
+
+\vspace{10pt}
+
+\begin{lstlisting}[style=matlabCode, title = {Function bisec}]
+function [x, i, itmax] = bisec(a, b, f, toll)
+% BISEC Trova la radice di f(x)=0 in [a,b] con il metodo di Bisezione.
+%
+%   Input:
+%     a, b  - Estremi dell'intervallo
+%     f     - Function handle della funzione
+%     toll  - Tolleranza richiesta (default 1e-6)
+%
+%   Output:
+%     x     - Vettore con la storia delle approssimazioni
+%     i     - Numero di iterazioni effettuate
+%     itmax - Numero massimo di iterazioni teoriche previste
+
+    %% 1. Validazione degli Input
+    arguments
+        a     (1,1) double
+        b     (1,1) double
+        f     (1,1) function_handle
+        toll  (1,1) double {mustBePositive} = 1e-6
+    end
+
+    %% 2. Controllo Esistenza Zeri (Teorema degli Zeri)
+    fa = f(a);
+    fb = f(b);
+
+    % Uso sign() per evitare overflow se f(a)*f(b) diventa troppo grande
+    if sign(fa) * sign(fb) > 0
+        error('La funzione non cambia segno agli estremi dell''intervallo [a,b].');
+    end
+
+    %% 3. Inizializzazione
+    % Calcolo teorico del numero di passi necessari
+    itmax = 1 + floor(log((b-a)/toll)/log(2));
+
+    i = 1;              % Indice corrente
+    x(i) = (a + b) / 2; % Primo punto medio
+    fx = f(x(i));       % Valutazione nel punto medio
+
+    %% 4. Ciclo Iterativo
+    % Continua finché non finisco i passi E l'errore è alto
+    while (i < itmax) && (abs(fx) >= toll)
+        
+        % Selezione del sotto-intervallo
+        if sign(fx) * sign(fa) < 0
+            b = x(i);   % La radice è a sinistra (tra a e x)
+        else
+            a = x(i);   % La radice è a destra (tra x e b)
+            fa = fx;    % Fondamentale: aggiorno fa per il prossimo confronto
+        end
+        
+        % Nuovo passo
+        i = i + 1;
+        x(i) = (a + b) / 2; % Nuovo punto medio
+        fx = f(x(i));       % Nuova valutazione
+    end
+
+end
+\end{lstlisting}
+
+\vspace{10pt}
+
+\paragraph{Ordine di convergenza}
+Introduciamo ora una misura della velocità di convergenza di una successione numerica.
+\begin{bxthm}
+\begin{defn}
+Sia $\{x_{n}\}_{n}$ una successione convergente al valore $\overline{x}$. Poniamo $\varepsilon_{n} = |\overline{x} - x_{n}|$. Se esiste un numero reale $p \ge 1$ e una costante reale positiva $C$ tale che
+$$ \lim_{n \to +\infty} \frac{\varepsilon_{n+1}}{\varepsilon_{n}^{p}} = C $$
+allora diciamo che la successione $\{x_{n}\}_{n}$ ha ordine di convergenza $p$.    
+\end{defn}
+\end{bxthm}
+
+\vspace{10pt}
+
+Poiché per il metodo di bisezione si ha
+$$ \frac{\varepsilon_{n+1}}{\varepsilon_{n}} \simeq \frac{1}{2} $$
+ovvero l'errore si dimezza (più o meno) ad ogni passo, il suo ordine di convergenza è 1, cioè converge molto lentamente.
+Va però osservato che il metodo richiede solo la continuità della funzione $F$ e la conoscenza del segno di $F$ negli estremi dell'intervallo $[a, b]$.
+
+\vspace{10pt}
+
+\begin{note}
+Per ogni $n \ge 0$ supponiamo che l'approssimazione $x_{n}$ di $\overline{x}$ abbia $t_{n} \in \mathbb{R}$ cifre decimali corrette, cioè
+$$ \varepsilon_{n} = \frac{1}{2} 10^{-t_{n}} $$
+Allora, poiché ad ogni passo l'errore si dimezza,
+$$ \frac{1}{2} 10^{-t_{n+1}} = \varepsilon_{n+1} = \frac{1}{2} \varepsilon_{n} = \frac{1}{4} 10^{-t_{n}} $$
+ovvero
+$$ 10^{-t_{n+1}} = \frac{1}{2} 10^{-t_{n}} $$
+$$ t_{n+1} = t_{n} + \log_{10} 2 \approx t_{n} + 0.3010, \quad n \ge 0 $$
+Dunque $t_{n}$ aumenta di una unità dopo almeno 4 iterazioni. 3 iterazioni non sono sufficienti per ottenere un'approssimazione di $\overline{x}$ con una cifra decimale corretta in più.    
+\end{note}
+
+\vspace{10pt}
+
+\paragraph{Metodi Iterativi}
+Partendo dal punto iniziale $x_{0}$, generiamo i valori $x_{1}, x_{2}, \dots, x_{n}$ nel seguente modo:
+\begin{itemize}
+    \item Conduciamo dal punto $(x_{0}, F(x_{0}))$ una retta con pendenza $m_{0}$ e scegliamo come approssimazione $x_{1}$ l'intersezione di tale retta con l'asse delle x;
+    \item Conduciamo dal punto $(x_{1}, F(x_{1}))$ una retta con pendenza $m_{1}$ e scegliamo come approssimazione $x_{2}$ l'intersezione di tale retta con l'asse delle x;
+\end{itemize}
+Dunque ad ogni passo scegliamo come approssimazione della radice $\overline{x}$ di $F$, la radice dell'equazione lineare
+$$ F(x_{n}) + m_{n}(x - x_{n}) = 0 $$
+cioè
+$$ x_{n+1} = x_{n} - \frac{F(x_{n})}{m_{n}} \quad (1) $$
+Una formula del tipo (1) viene detta \textbf{formula iterativa} e si dice che la successione $x_{1}, x_{2}, \dots, x_{n}, \dots$ viene costruita mediante un procedimento iterativo.
+La funzione
+$$ g(x) = x - \frac{F(x)}{m_{n}} $$
+tale che $x_{n+1} = g(x_{n})$ viene detta \textbf{funzione di iterazione semplice} perché per la costruzione della successione $\{x_{n}\}_{n}$ utilizza solo il punto $x_{n}$.
+Si parla di procedimenti iterativi multipli quando
+$$ x_{n+k} = g(x_{n+k-1}, x_{n+k-2}, \dots, x_{n}), \quad k > 1 $$
+cioè la successione $\{x_{n}\}_{n}$ è costruita a partire dai punti $x_{0}, x_{1}, \dots, x_{k-1}$.
+
+\vspace{10pt}
+
+\paragraph{Criteri di Arresto}
+Quando si implementa in maniera automatica un procedimento iterativo del tipo $x_{n+1} = g(x_{n})$, $n\in\mathbb{N}$, occorrono uno o più criteri per arrestare tale procedimento.
+Fissata una tolleranza TOLL arbitrariamente piccola, i criteri di arresto usualmente utilizzati sono:
+\begin{enumerate}
+    \item $|F(x_{n})| < \text{TOLL}$ (tanto più è piccolo TOLL tanto più $x_{n}$ è vicino ad $\overline{x}$);
+    \item $|x_{n+1} - x_{n}| < \text{TOLL}$ oppure $\frac{|x_{n+1} - x_{n}|}{|x_{n+1}|} < \text{TOLL}$ (tanto più è piccolo TOLL tanto più $x_{n}$ è vicino al limite della successione $\overline{x}$);
+    \item numero delle iterazioni $<$ ITMAX, dove ITMAX è una variabile intera fissata.
+\end{enumerate}
+Il criterio 3 entra in gioco quando i primi due falliscono. Per questo motivo la variabile ITMAX viene anche 
+detta variabile tappo. In generale è preferibile utilizzare tutti e tre i criteri, perché per particolari 
+funzioni si può verificare che la convergenza sia troppo lenta oppure che i criteri 1 e/o 2 non vengano mai 
+soddisfatti numericamente.
+
+\vspace{10pt}
+
+\paragraph{Metodo di Newton o delle tangenti}
+Nella formula
+$$ x_{n+1} = x_{n} - \frac{F(x_{n})}{m_{n}} $$
+le direzioni $m_{n}$ possono essere scelte in vari modi. In questo metodo la direzione scelta ad ogni passo è quella della tangente alla curva $y=F(x)$ nel punto $x_{n}$, cioè
+$$ m_{n} = F'(x_{n}) .$$
+Dunque il metodo è dato da
+$$ x_{n+1} = x_{n} - \frac{F(x_{n})}{F'(x_{n})}, \quad n\in\mathbb{N}. $$
+La funzione di iterazione è quindi
+$$ g(x) = x - \frac{F(x)}{F'(x)} .$$
+Appare evidente che il metodo perde di significato se per qualche $n$ risulta $F'(x_{n}) = 0$. Dunque in generale si suppone che $F'(x) \neq 0$, $\forall x \in [a,b]$.
+La formula iterativa ci permette di calcolare la successione $x_{1}, x_{2}, \dots$ a partire dal punto $x_{0}$. Ma come scegliamo il punto $x_{0}$?
+
+\vspace{10pt}
+
+\begin{lstlisting}[style=matlabCode, title = {Function newton}]
+function [x, i] = newton(x0, f, df, toll, itmax)
+% NEWTON Trova la radice di f(x)=0 usando il metodo di Newton.
+%   [x, i] = NEWTON(x0, f, df, toll, itmax) calcola l'approssimazione
+%   della radice a partire da una stima iniziale x0.
+%
+%   Input:
+%     x0    - (double) Stima iniziale
+%     f     - (function_handle) La funzione f(x)
+%     df    - (function_handle) La derivata prima f'(x)
+%     toll  - (double, opzionale) Tolleranza per l'arresto (default 1e-6)
+%     itmax - (integer, opzionale) Numero massimo di iterazioni (default 100)
+%
+%   Output:
+%     x - (vector) Vettore contenente tutte le iterazioni calcolate
+%     i - (integer) Numero di iterazioni effettuate
+
+    %% 1. Validazione degli Input
+    arguments
+        x0    (1,1) double
+        f     (1,1) function_handle
+        df    (1,1) function_handle
+        toll  (1,1) double {mustBePositive} = 1e-6
+        itmax (1,1) double {mustBePositive, mustBeInteger} = 100
+    end
+
+    %% 2. Inizializzazione
+    i = 1;               % Indice di posizione (parte da 1)
+    x(i) = x0;           % Inserimento stima iniziale nel vettore
+    
+    fx = f(x(i));        % Valutazione funzione
+    dfx = df(x(i));      % Valutazione derivata
+    
+    err = 1;             % Inizializzo l'errore per entrare nel loop
+
+    %% 3. Ciclo Iterativo
+    % Continua se: non ho superato itmax E l'errore è alto E il residuo è alto
+    while (i < itmax) && (err > toll) && (abs(fx) > toll)
+        
+        % Controllo di sicurezza: Derivata nulla o quasi nulla
+        if abs(dfx) < eps
+            warning('Derivata quasi nulla in x = %f. Metodo arrestato.', x(i));
+            break;
+        end
+        
+        % Passo di Newton
+        % Formula: x(k+1) = x(k) - f(x)/f'(x)
+        x(i + 1) = x(i) - fx / dfx; % Calcolo e aggiungo il nuovo valore al vettore
+        
+        % Calcolo Errore Relativo
+        % Nota: Aggiungo eps al denominatore per evitare crash se x(i + 1) è 0
+        err = abs(x(i + 1) - x(i)) / (abs(x(i + 1)) + eps);
+        
+        % Aggiornamento indici e funzioni
+        i = i + 1;
+        fx = f(x(i));
+        dfx = df(x(i));
+    end
+    
+    %% 4. Controllo finale
+    % Se siamo usciti perché i ha raggiunto itmax (e l'errore è ancora alto)
+    if (i == itmax) && (err > toll)
+        warning('Raggiunto il numero massimo di iterazioni (%d) senza convergenza.', itmax);
+    end
+end
+\end{lstlisting}
+
+\vspace{10pt}
+
+\paragraph{Teorema di Convergenza}
+Il seguente teorema stabilisce delle condizioni per la determinazione di un intervallo $[a,b]$ per il quale il metodo di Newton converge per ogni scelta di $x_{0} \in [a,b]$.
+\begin{bxthm}
+\begin{thm}
+Sia $F(x) \in C^{2}([a,b])$ con $[a,b]$ chiuso e limitato. Se:
+\begin{itemize}
+    \item $F(a)F(b) < 0$;
+    \item $F'(x) \neq 0$, $\forall x \in [a,b]$;
+    \item $F''(x) \ge 0\;\lor\;F''(x) \le 0$, $\forall x \in [a,b]$;
+    \item $|\frac{F(a)}{F'(a)}| < (b-a)\;\land\;|\frac{F(b)}{F'(b)}| < (b-a)$;
+\end{itemize}
+allora il Metodo di Newton converge all'unica soluzione $\overline{x} \in [a,b]$ per ogni scelta di $x_{0} \in [a,b]$.    
+\end{thm}
+\end{bxthm}
+\begin{proof}
+Dalle condizioni 1-3 segue l'unicità della soluzione dell'equazione $F(x)=0$ nell'intervallo $[a,b]$.
+Facciamo prima vedere che la condizione 4 implica che la tangente alla curva di equazione $y=F(x)$ negli 
+estremi dell'intervallo interseca l'asse $x$ all'interno di $[a,b]$. Conseguentemente, se prendiamo come 
+punto iniziale $x_{0}$ un punto appartenente all'intervallo $[a,b]$ (a e b inclusi) tutti i punti della 
+successione $\{x_{k}\}_{k\in\mathbb{N}}$ appartengono all'intervallo $[a,b]$.
+La retta tangente in $(a, F(a))$ ha equazione
+$$ y = F'(a)(x-a) + F(a) $$
+ed ha dunque intersezione con l'asse $x$ in
+$$ x = a - \frac{F(a)}{F'(a)} $$
+Poiché $\frac{F(a)}{F'(a)}$ sotto le condizioni 1-3 è sempre negativa e, usando l'ipotesi 4, risulta
+$$ |x-a| = \left|\frac{F(a)}{F'(a)}\right| < b-a $$
+otteniamo $a < x < b$. Analogamente si ragiona per l'altro estremo.
+Facciamo ora vedere che la successione $\{x_{k}\}_{k=1,2,\dots}$ che si costruisce a partire da $x_{0} \in [a,b]$ è monotona e limitata. Conduciamo la dimostrazione in una delle possibili quattro situazioni che si possono verificare nelle ipotesi 1-3 (la dimostrazione negli altri casi è simile).
+Supponiamo allora che sia $F' > 0$, $F \le 0$, $F(a) < 0$, $F(b) > 0$.
+Dimostriamo dunque che $x_{k} \le \overline{x}$ e $x_{k+1} \ge x_{k}$.
+Incominciamo per $k=0$ e poi procederemo per induzione.
+Senza ledere la generalità, prendiamo $x_{0}$ nell'intervallo $[a, \overline{x}]$ e quindi tale che $F(x_{0}) \le 0$. Si ha allora
+$$ x_{1} = x_{0} - \frac{F(x_{0})}{F'(x_{0})} \ge x_{0} $$
+Dunque $x_{0} \le \overline{x}$ e $x_{1} \ge x_{0}$.
+Poiché la proprietà è vera per $k=0$, dimostriamo che, supposta vera per $k$, essa è verificata per $k+1$.
+Si ha
+$$ x_{k+1} = x_{k} - \frac{F(x_{k})}{F'(x_{k})} $$
+e, per il Teorema di Lagrange,
+$$ -F(x_{k}) = F(\overline{x}) - F(x_{k}) = F'(\xi_{k})(\overline{x} - x_{k}), \quad x_{k} \le \xi_{k} \le \overline{x} $$
+Dal momento che per ipotesi $F(x) \le 0$, si ha che $F'$ è decrescente e quindi $F'(\xi_{k}) \le F'(x_{k})$, da cui
+$$ -F(x_{k}) \le F'(x_{k})(\overline{x} - x_{k}) $$
+Di conseguenza
+$$ x_{k+1} = x_{k} - \frac{F(x_{k})}{F'(x_{k})} \le x_{k} + (\overline{x} - x_{k}) = \overline{x} $$
+$$ F(x_{k+1}) \le 0 \implies x_{k+2} = x_{k+1} - \frac{F(x_{k+1})}{F'(x_{k+1})} \ge x_{k+1} $$
+Per completare la dimostrazione, basta osservare che la successione $\{x_{k}\}_{k=1,2,\dots}$ essendo monotona e limitata, è convergente. Inoltre passando al limite nella formula iterativa si deduce immediatamente che essa converge ad $\overline{x}$.
+Infatti, detto $\beta = \lim_{k \to \infty} x_{k}$, si ha
+$$ \beta = \lim_{k \to \infty} x_{k+1} = \lim_{k \to \infty} x_{k} - \lim_{k \to \infty} \frac{F(x_{k})}{F'(x_{k})} = \beta - \frac{F(\beta)}{F'(\beta)} $$
+da cui $F(\beta) = 0$ e quindi $\beta = \overline{x}$ essendo, date le nostre ipotesi, $\overline{x}$ l'unico zero di $F$ nell'intervallo $[a,b]$.    
+\end{proof}
+
+\vspace{10pt}
+
+\paragraph{Ordine di convergenza del Metodo di Newton}
+Per determinare l'ordine di convergenza utilizziamo il seguente teorema:
+\begin{bxthm}
+\begin{thm}
+Condizione necessaria e sufficiente affinché un procedimento iterativo semplice e convergente ad $\overline{x}$ abbia ordine di convergenza $p$ è che, se la funzione di iterazione $g$ è dotata di derivata $p$-esima continua per $x=\overline{x}$ risulti
+$$ g'(\overline{x}) = g(\overline{x}) = \dots = g^{(p-1)}(\overline{x}) = 0 \quad \text{e} \quad g^{(p)}(\overline{x}) \neq 0 $$    
+\end{thm}
+\end{bxthm}
+
+\vspace{10pt}
+
+Per il Metodo di Newton si ha:
+$$ g'(x) = 1 - \frac{(F'(x))^{2} - F(x)F(x)}{(F'(x))^{2}} = \frac{F(x)F(x)}{(F'(x))^{2}} $$
+ma, poiché assumiamo che $F(\overline{x}) = 0$ si ha
+$$ g'(\overline{x}) = 0 $$
+e quindi
+$$ g(x) = \frac{(F'(x)F(x) + F(x)F'(x))(F'(x))^{2} - 2F'(x)F(x)(F(x))^{2}}{(F'(x))^{4}} $$
+$$ g(\overline{x}) = \frac{F(\overline{x})}{F'(\overline{x})} $$
+che, in generale, è diverso da 0. Dunque, in generale, il metodo ha ordine di convergenza 2.
+
+\vspace{10pt}
+
+\textit{Domanda:} Cosa succede se $\overline{x}$ è uno zero doppio, cioè $F(\overline{x}) = F'(\overline{x}) = 0$ e $F(\overline{x}) \neq 0$?
+In questo caso non è possibile calcolare né $g$ né $g'$ in $\overline{x}$, ma è possibile definirli per continuità:
+$$ g(\overline{x}) = \overline{x} - \lim_{x \to \overline{x}} \frac{F(x)}{F'(x)} = \overline{x} - \lim_{x \to \overline{x}} \frac{F'(x)}{F(x)} = \overline{x} $$
+$$ g'(\overline{x}) = F(\overline{x}) \lim_{x \to \overline{x}} \frac{F(x)}{(F'(x))^{2}} = F(\overline{x}) \lim_{x \to \overline{x}} \frac{F'(x)}{2F'(x)F(x)} = \frac{1}{2} $$
+Dunque se $\overline{x}$ è uno zero doppio, essendo $g'(\overline{x}) \neq 0$, il metodo di Newton ha ordine di convergenza 1.
+Più in generale, se $\overline{x}$ è uno zero d'ordine $r$, cioè
+$$ F(\overline{x}) = F'(\overline{x}) = \dots = F^{(r-1)}(\overline{x}) = 0 \quad \text{e} \quad F^{(r)}(\overline{x}) \neq 0 $$
+allora
+$$ g'(\overline{x}) = 1 - \frac{1}{r} \neq 0 $$
+dunque il metodo di Newton ha ancora ordine di convergenza 1.
+
+\vspace{10pt}
+
+\paragraph{Metodo di Newton per radici multiple}
+Quando $\overline{x}$ è uno zero multiplo è possibile modificare leggermente il metodo di Newton per "recuperare" l'ordine 2.
+Si considera la seguente formula iterativa:
+$$ x_{n+1} = x_{n} - 2\frac{F(x_{n})}{F'(x_{n})} $$
+la cui funzione di iterazione è
+$$ g(x) = x - 2\frac{F(x)}{F'(x)} $$
+La precedente formula iterativa ha ordine di convergenza 2, infatti:
+$$ g'(x) = 1 - 2\frac{(F'(x))^{2} - F(x)F(x)}{(F'(x))^{2}} = 2\frac{F(x)F(x)}{(F'(x))^{2}} - 1 $$
+otteniamo
+$$ g'(\overline{x}) = 2F(\overline{x}) \lim_{x \to \overline{x}} \frac{F(x)}{(F'(x))^{2}} - 1 = 1 - 1 = 0 $$
+
+In generale se $\overline{x}$ è una radice multipla di ordine $r$ si utilizza la seguente formula iterativa
+$$ x_{n+1} = x_{n} - r\frac{F(x_{n})}{F'(x_{n})}, \quad n=0,1,\dots $$
+il cui ordine di convergenza è ancora 2.
+Esistono opportune modifiche anche nei casi in cui la molteplicità della radice è $>1$ ma non è nota e nei casi in cui la molteplicità è infinita. Esistono delle varianti del Metodo di Newton che hanno ordine di convergenza $>$ 2.
+
+\vspace{10pt}
+
+\begin{note}
+Quando la funzione $F$ ha radici multiple, abbiamo visto che da un punto di vista teorico il Metodo di Newton converge. Tuttavia, spesso si verifica che esso numericamente non converge. La stessa cosa certe volte accade quando $F$ ha radici "quasi multiple".    
+\end{note}
+
+\vspace{10pt}
+
+\begin{exmp}
+Data l'equazione
+$$ \cos x - 4x = 0$$
+determinare un intervallo dell'asse reale che contenga l'unico zero di tale equazione e sia tale che il Metodo di Newton risulti convergente.
+
+\textit{Svolgimento:} Localizziamo graficamente lo zero dell'equazione trovando il punto di intersezione delle curve $y=\cos x$ e $y=4x$. 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{figures/primafunz.png} 
+\end{figure}
+Si vede che lo zero $\overline{x}$ cade nell'intervallo $\left[0, \frac{1}{2}\right]$.
+Vediamo se tale intervallo è il giusto candidato per la convergenza del Metodo di Newton.
+Prima verifichiamo le condizioni agli estremi. Si ha
+$$ F(0)F(1/2) = 1 \cdot (-1.12241) < 0 $$
+Ponendo $F(x) = \cos x - 4x$ si ha
+$$ F'(x) = -\sin x - 4 \implies F'(x) < 0 \quad \forall x \in \mathbb{R} $$
+$$ F''(x) = -\cos x \implies F''(x) \le 0\; \text{ se } \cos x \ge 0 $$
+Dunque 
+$$ F(x) \le 0 \quad \forall x \in \left[0, \frac{1}{2}\right].$$
+Inoltre
+$$ \left|\frac{F(0)}{F'(0)}\right| = \left|\frac{1}{-4}\right| = \frac{1}{4} < \frac{1}{2} $$
+$$ \left|\frac{F(1/2)}{F'(1/2)}\right| = \left|\frac{-1.12241}{-4.47942}\right| = 0.250571\dots < \frac{1}{2} $$
+Dunque il Metodo di Newton converge $\forall x_{0} \in \left[0, \frac{1}{2}\right]$.
+\end{exmp}
+
+\vspace{10pt}
+
+\begin{exmp}
+Data l'equazione
+$$ e^{x} + \frac{x}{10} = 0$$
+determinare un intervallo dell'asse reale che contenga l'unico zero di tale equazione e sia tale che il Metodo di Newton risulti convergente.
+
+\textit{Svolgimento:} Localizziamo graficamente lo zero dell'equazione trovando il punto di intersezione delle curve $y=e^{x}$ e $y=-x/10$. Si vede che lo zero $\overline{x}$ cade nell'intervallo $\left[-2, -\frac{3}{2}\right]$.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{figures/secondafunz.png} 
+\end{figure}
+Vediamo se tale intervallo è il giusto candidato per la convergenza del Metodo di Newton.
+Prima verifichiamo le condizioni agli estremi. Si ha
+$$ F(-2)F(-3/2) = (-0.64665e-003) \cdot (0.73130e-003) < 0 $$
+Ponendo $F(x) = e^{x} + x/10$ si ha
+$$ F'(x) = e^{x} + 1/10 \implies F'(x) > 0 \;\forall x \in \mathbb{R} $$
+$$ F''(x) = e^{x} \implies F''(x) > 0\; \forall x \in \mathbb{R} $$
+Inoltre
+$$ \left|\frac{F(-2)}{F'(-2)}\right| = \left|\frac{-0.64665e-003}{0.23534}\right| = 0.27478 < \frac{1}{2} $$
+$$ \left|\frac{F(-3/2)}{F'(-3/2)}\right| = \left|\frac{0.73130e-003}{0.32313e-002}\right| = 0.22632e-001\dots < \frac{1}{2} $$
+Dunque il Metodo di Newton converge $\forall x_{0} \in \left[-2, -\frac{3}{2}\right]$.    
+\end{exmp}
+
+\vspace{10pt}
+
+\begin{exmp}
+Data l'equazione
+$$ x + \log x^{3} = 0$$
+determinare un intervallo dell'asse reale che contenga l'unico zero di tale equazione e sia tale che il Metodo di Newton risulti convergente.
+
+\textit{Svolgimento:} Localizziamo graficamente lo zero dell'equazione trovando il punto di intersezione delle curve $y=\log x$ e $y=-x/3$. 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{figures/terzafunz.png} 
+\end{figure}
+Si vede che lo zero $\overline{x}$ cade nell'intervallo $\left[\frac{1}{2}, 1\right]$.
+Vediamo se tale intervallo è il giusto candidato per la convergenza del Metodo di Newton.
+Prima verifichiamo le condizioni agli estremi. Si ha
+$$ F(1/2)F(1) = (-1.57944) \cdot 1 < 0 $$
+Ponendo $F(x) = x + 3 \log x$ si ha
+$$ F'(x) = 1 + \frac{3}{x} \implies F'(x) > 0 \;\forall x > 0 $$
+$$ F''(x) = -\frac{3}{x^{2}} \implies F''(x) < 0 \;\forall x \in \left[\frac{1}{2}, 1\right] $$
+Inoltre
+$$ \left|\frac{F(1/2)}{F'(1/2)}\right| = \left|\frac{-1.57944}{7}\right| = 0.22563 < \frac{1}{2} $$
+$$ \left|\frac{F(1)}{F'(1)}\right| = \left|\frac{1}{4}\right| < \frac{1}{2} $$
+Dunque il Metodo di Newton converge $\forall x_{0} \in \left[\frac{1}{2}, 1\right]$.    
+\end{exmp}
+
+\vspace{10pt}
+
+\begin{note}
+La convergenza del Metodo di Newton è garantita quando, supposte soddisfatte le ipotesi del teorema, l'approssimazione iniziale $x_{0}$ è "sufficientemente" vicina alla radice $\overline{x}$.
+Pertanto tale metodo si rivela spesso efficiente soprattutto per migliorare un'approssimazione sufficientemente buona ottenuta con un metodo di ordine più basso la cui convergenza è assicurata.
+In generale, anziché verificare le ipotesi del teorema, è preferibile utilizzare il Metodo di bisezione per determinare un'approssimazione della radice con 1 o 2 cifre decimali corrette, e poi applicare il Metodo di Newton per ottenere con pochissime iterazioni la precisione desiderata.    
+\end{note}
+
+\vspace{10pt}
+
+\begin{lstlisting}[style=matlabCode, title = {Function bisnew}]
+function [x_bis, i_bis, x_newt, i_newt] = bisnew(a, b, f, df, toll, itmax)
+% BISNEW Metodo ibrido: Sgrossatura con Bisezione + Raffinamento con Newton.
+%
+%  Input:
+%    a, b  - Estremi intervallo iniziale
+%    f, df - Funzione e sua Derivata (handle)
+%    toll  - Tolleranza richiesta per la fase finale (Newton)
+%    itmax - Max iterazioni per la fase finale (Newton)
+%
+%  Output:
+%    x_bis  - (vector)  Storia delle approssimazioni della fase di Bisezione
+%    i_bis  - (integer) Numero di iterazioni della fase di Bisezione
+%    x_newt - (vector)  Storia delle approssimazioni della fase di Newton
+%    i_newt - (integer) Numero di iterazioni della fase di Newton
+
+    %% 1. Validazione Input
+    arguments
+        a     (1,1) double
+        b     (1,1) double
+        f     (1,1) function_handle
+        df    (1,1) function_handle
+        toll  (1,1) double {mustBePositive} = 1e-6
+        itmax (1,1) double {mustBePositive, mustBeInteger} = 100
+    end
+
+    %% 2. Fase 1: Sgrossatura (Bisezione)
+    % Usiamo una tolleranza 0.5e-1 fissa per avvicinarci in sicurezza.
+    toll_coarse = 0.5e-1; 
+    [x_bis, i_bis] = bisec(a, b, f, toll_coarse);
+
+    %% 3. Fase 2: Raffinamento (Newton)
+    % Il punto di innesco per Newton è l'ultimo risultato della Bisezione.
+    start_point = x_bis(end); 
+    [x_newt, i_newt] = newton(start_point, f, df, toll, itmax);
+
+end
+\end{lstlisting}
+
+\vspace{20pt}
+
+\subsection{Risoluzione di Equazioni Algebriche}
+
+\vspace{10pt}
+
+\paragraph{Valutazione di un polinomio in un punto}
+Le equazioni algebriche sono equazioni del tipo
+$$ P(x)=0 $$
+dove $P$ è un polinomio di grado $n$, cioè
+$$ P(x)=a_{1}x^{n}+a_{2}x^{n-1}+\dots+a_{n}x+a_{n+1}, \quad a_{1} \ne 0, \quad a_{k} \in \mathbb{R} $$
+Le seguenti proprietà sono ben note:
+\begin{itemize}
+    \item Un polinomio di grado $n$ ha esattamente $n$ radici, che possono essere reali o complesse, ciascuna contata con la sua moltiplicità (Teorema Fondamentale dell'Algebra);
+    \item Se un polinomio $P$ ha una radice complessa $\alpha=a+ib$ allora la sua coniugata $\overline{\alpha}=a-ib$ è anche radice di $P$;
+    \item Un polinomio di grado dispari ha almeno una radice reale;
+    \item Per $n \ge 5$ non esiste alcuna forma esplicita per le radici di $P$.
+\end{itemize}
+Per determinare un'approssimazione delle radici reali di un'equazione algebrica è possibile utilizzare i metodi visti per le equazioni non lineari, dopo aver individuato per ciascuna radice reale un intervallo che la contenga.
+Quando $n$ è molto grande il problema di individuare tali intervalli può risultare non immediato.
+In generale occorre effettuare delle operazioni preliminari:
+\begin{itemize}
+    \item \textit{localizzazione delle radici}: serve a determinare un cerchio del piano complesso che contenga tutte le radici (sia reali che complesse);
+    \item \textit{numerazione delle radici}: consiste nel determinare il numero delle radici reali.
+\end{itemize}
+A tale scopo sono utili i seguenti risultati.
+
+\vspace{10pt}
+
+\paragraph{Teorema di Cauchy}
+\begin{bxthm}
+\begin{thm}
+Tutti gli zeri di
+$$ P(x)=a_{1}x^{n}+a_{2}x^{n-1}+\dots+a_{n}x+a_{n+1} $$
+sono inclusi nel cerchio del piano di centro l'origine e raggio
+$$ r=1+\max_{2 \le k \le n+1} \left| \frac{a_{k}}{a_{1}} \right| $$    
+\end{thm}
+\end{bxthm}
+
+\vspace{10pt}
+
+\begin{note}
+Dunque, in particolare le radici reali si trovano nell'intervallo $[-r, r]$.    
+\end{note}
+
+\vspace{10pt}
+
+\paragraph{Regola dei segni di Cartesio}
+Sia
+$$ P(x)=a_{1}x^{n}+a_{2}x^{n-1}+\dots+a_{n}x+a_{n+1} $$
+Consideriamo l'insieme ordinato dei coefficienti
+$$ A=\{a_{1}, a_{2}, \dots, a_{n}, a_{n+1}\} $$
+Se denotiamo con $\nu$ il numero di variazioni di segno nell'insieme $A$ (gli eventuali zeri non si contano) si ha che il numero $k$ delle radici reali positive di $P$ soddisfa le seguenti proprietà:
+$$ k \le \nu \quad \text{e} \quad \nu-k \text{ è un numero pari.} $$
+Se applichiamo la regola di Cartesio al polinomio
+$$ Q(x)=P(-x) $$
+otteniamo il numero delle radici reali positive di $Q$ e quindi il numero delle radici reali negative di $P$.
+Applicando i precedenti risultati e disegnando il grafico di $P$ sull'intervallo $[-r, r]$ si stabilisce con certezza il numero delle radici reali di $P$ e si determinano tanti intervallini quante sono le radici di $P$. Si può così procedere al calcolo approssimato delle radici reali di $P$ utilizzando i metodi visti per le equazioni non lineari.
+
+\vspace{10pt}
+
+\begin{note}
+È possibile utilizzare il metodo di Newton anche per approssimare le radici complesse di un polinomio scegliendo opportunamente il punto $x_{0}$.
+Esistono delle varianti del Metodo di Newton che permettono di approssimare contemporaneamente tutte le radici del polinomio, sia quelle reali che quelle complesse.    
+\end{note}
+
+\vspace{10pt}
+
+\begin{exmp}
+Sia
+$$ P(x)=x^{6}-x-1 $$
+Poiché
+$$ \max_{2 \le k \le n+1} \left| \frac{a_{k}}{a_{1}} \right| = 1 $$
+applicando il Teorema di Cauchy, tutte le radici reali di $P$ appartengono all'intervallo $[-2, 2]$.
+Poiché
+$$ A=\{1, 0, 0, 0, 0, -1, -1\} $$
+applicando la regola di Cartesio si ha $\nu=1$.
+Pertanto $k$ deve essere necessariamente 1, cioè $P$ ha una sola radice positiva.
+Infine, posto
+$$ Q(x):=P(-x)=x^{6}+x-1 $$
+si ha
+$$ A=\{1, 0, 0, 0, 0, 1, -1\} $$
+e, applicando ancora la regola di Cartesio, otteniamo anche in questo caso $\nu=1$, cioè il numero delle radici negative di $P$ è $k=1$.
+Possiamo concludere che $P(x)=x^{6}-x-1$ ha due radici reali e due coppie di radici complesse coniugate appartenenti alla circonferenza del piano complesso di centro 0 e raggio 2.
+In particolare:
+\begin{itemize}
+    \item la radice positiva appartiene all'intervallo $[0, 2]$;
+    \item la radice negativa appartiene all'intervallo $[-2, 0]$.
+\end{itemize}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{figures/primaeq.png} 
+\end{figure}
+\end{exmp}
+
+\vspace{10pt}
+
+\begin{exmp}
+Sia
+$$ P(x) = x^{9} + 2x^{8} - 3x^{7} + x^{6} + x^{4} - 2x^{2} + x - 1 $$
+Poiché
+$$ \max_{2 \le k \le n+1} \left| \frac{a_{k}}{a_{1}} \right| = 3 $$
+applicando il Teorema di Cauchy, tutte le radici reali di $P$ appartengono all'intervallo $[-4, 4]$.
+Poiché l'insieme dei coefficienti è
+$$ A = \{1, 2, -3, 1, 0, 1, 0, -2, 1, -1\} $$
+applicando la regola di Cartesio si ha $\nu = 5$.
+Pertanto $k$, il numero di radici positive, può essere 1, 3 o 5, cioè $P$ ha 1, 3 o 5 radici positive.
+Infine, posto
+$$ Q(x) := P(-x) = -x^{9} + 2x^{8} + 3x^{7} + x^{6} + x^{4} - 2x^{2} - x - 1 $$
+si ha l'insieme dei coefficienti di $Q$:
+$$ A = \{-1, 2, 3, 1, 0, 1, 0, -2, -1, -1\} $$
+e, applicando ancora la regola di Cartesio, otteniamo $\nu = 2$.
+Cioè il numero delle radici negative di $P$ è $k=0$ o $k=2$.
+Possiamo concludere che tutte le radici di $P(x)$ appartengono alla circonferenza del piano complesso di centro 0 e raggio 4. In particolare, i seguenti casi sono possibili:
+\begin{itemize}
+    \item $P$ ha 5 radici positive appartenenti all'intervallo $[0, 4]$ e due coppie di radici complesse coniugate;
+    \item $P$ ha 3 radici positive appartenenti all'intervallo $[0, 4]$ e tre coppie di radici complesse coniugate;
+    \item $P$ ha 1 radice positiva appartenenti all'intervallo $[0, 4]$ e quattro coppie di radici complesse coniugate;
+    \item $P$ ha 2 radici negative appartenenti all'intervallo $[-4, 0]$, 5 radici positive appartenenti all'intervallo $[0, 4]$ e una coppia di radici complesse coniugate;
+    \item $P$ ha 2 radici negative appartenenti all'intervallo $[-4, 0]$, 3 radici positive appartenenti all'intervallo $[0, 4]$ e due coppie di radici complesse coniugate;
+    \item $P$ ha 2 radici negative appartenenti all'intervallo $[-4, 0]$, 1 radice positiva appartenenti all'intervallo $[0, 4]$ e tre coppie di radici complesse coniugate.
+\end{itemize}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{figures/secondaeq.png} 
+\end{figure}
+Zoommando si può vedere che $P$ ha 3 radici reali di cui:
+\begin{itemize}
+    \item 1 radice negativa appartenente all'intervallo $[-\frac{7}{2}, -3]$;
+    \item 1 radice negativa appartenente all'intervallo $[-1, -\frac{1}{2}]$;
+    \item 1 radice positiva appartenente all'intervallo $[\frac{1}{2}, \frac{3}{2}]$.
+\end{itemize}    
+\end{exmp}
+
+\vspace{10pt}
+
+\paragraph{Valutazione di un polinomio in un punto}
+I metodi di Bisezione e Newton per il calcolo approssimato delle readici di una equazione algebrica $P(x)=0$, richiedono la valutazione del polinomio $P$ e della sua derivata prima $P'$ 
+nelle successive approssimazioni $x_0,x_1,\ldots,x_n,\ldots$ della radice $\overline{x}$.
+Consideriamo un polinomio di grado $n$ a coefficienti reali:
+$$ P(x) = a_{1}x^{n} + a_{2}x^{n-1} + \dots + a_{n}x + a_{n+1} $$
+Il nostro obiettivo è costruire l'algoritmo più efficiente per valutare $P$ in un punto fissato $\overline{x}$.
+
+\vspace{10pt}
+
+\subparagraph{Algoritmo 1: Metodo Immediato}
+L'approccio più diretto consiste nel calcolare ogni termine della sommatoria singolarmente:
+$$ P(x) = \sum_{i=0}^{n} a_{i+1}x^{n-i} $$
+In questo metodo, ogni potenza $x^{k}$ viene calcolata da zero moltiplicando $x$ per se stesso $k-1$ volte. Questo comporta un costo computazionale elevato per gradi $n$ grandi.
+\begin{itemize}
+    \item \textit{Operazioni moltiplicative:} $\sum_{i=1}^{n} i = \frac{n(n+1)}{2}$
+    \item \textit{Operazioni additive:} $n$
+\end{itemize}
+
+\vspace{10pt}
+
+\subparagraph{Algoritmo 2: Metodo con Accumulazione delle Potenze} 
+È possibile migliorare l'efficienza evitando di ricalcolare le potenze ogni volta. Riscriviamo il polinomio come:
+$$ P(x) = a_{n+1} + \sum_{i=0}^{n-1} a_{n-i}x^{i+1} $$
+L'idea chiave è quella di accumulare la potenza di $x$: invece di calcolare $x^{i+1}$ da capo, si utilizza il valore della potenza precedente $x^{i}$ e lo si moltiplica per $x$ (cioè $x^{i+1} = x \cdot x^{i}$).
+In questo modo, il numero di moltiplicazioni necessarie diminuisce drasticamente, passando da una crescita quadratica a una lineare.
+\begin{itemize}
+    \item \textit{Operazioni moltiplicative:} $2n$ (una per aggiornare la potenza e una per il coefficiente ad ogni passo)
+    \item \textit{Operazioni additive:} $n$
+\end{itemize}
+
+\vspace{10pt}
+
+Esiste un algoritmo, detto \textbf{Algoritmo di Horner}, che permette di valutare $P$ in un punto con un costo computazionale pari a $n$ operazioni moltiplicative e $n$ operazioni additive.
+
+\vspace{10pt}
+
+\paragraph{Algoritmo di Horner}
+Per semplificare, supponiamo che $P$ sia di grado 3:
+$$ P(x)=a_{4}+a_{3}x+a_{2}x^{2}+a_{1}x^{3} $$
+Mettendo in evidenza la $x$ otteniamo:
+$$ P(x)=a_{4}+x(a_{3}+x(a_{2}+xa_{1})) $$
+Riepilogando, ponendo
+$$ b_{1}:=a_{1} $$
+$$ b_{2}:=a_{2}+\overline{x}b_{1} $$
+$$ b_{3}:=a_{3}+\overline{x}b_{2} $$
+$$ b_{4}:=a_{4}+\overline{x}b_{3} $$
+si ottiene $P(\overline{x})=b_{4}$.
+In generale, per valutare il polinomio $P(x)$ in un punto $\overline{x}$, ponendo:
+$$ b_{1}:=a_{1} $$
+$$ b_{i}:=a_{i}+\overline{x}b_{i-1}, \quad i\in\{2, 3, \dots, n+1\} $$
+si ha
+$$ P(\overline{x})=b_{n+1} .$$
+
+\vspace{10pt}
+
+\begin{note}
+I numeri $b_{i}, i\in\{1, \dots, n\}$ non sono altro che i coefficienti del polinomio $Q(x)$ ottenuto come quoziente della divisione del polinomio $P(x)$ per il binomio $(x-\overline{x})$ e $P(\overline{x})$ non è altro che il resto, cioè
+$$ P(x)=Q(x)(x-\overline{x})+P(\overline{x}) $$
+con
+$$ Q(x)=b_{1}x^{n-1}+b_{2}x^{n-2}+\dots+b_{n-1}x+b_{n} $$
+Dunque le formule dell'algoritmo di Horner permettono di calcolare, senza eseguire la divisione, i coefficienti di $Q(x)$ nonché il resto $P(\overline{x})$ secondo lo schema di Ruffini:
+$$
+\begin{array}{c|cccccc|c}
+ & a_{1} & a_{2} & a_{3} & \dots & a_{n-1} & a_{n} & a_{n+1} \\
+\overline{x} & & \overline{x}b_{1} & \overline{x}b_{2} & \dots & \overline{x}b_{n-2} & \overline{x}b_{n-1} & \overline{x}b_{n} \\
+\hline
+ & b_{1} & b_{2} & b_{3} & \dots & b_{n-1} & b_{n} & b_{n+1}
+\end{array}
+$$    
+\end{note}
+
+\vspace{10pt}
+
+\subparagraph{Schema Algoritmo}
+\begin{verbatim}
+START main
+in n, a, x
+b(1) = a(1)
+for i = 2; i <= n; i++
+    b(i) = a(i) + x * b(i-1)
+px = a(n+1) + x * b(n)
+out px, b
+END
+\end{verbatim}
+
+\vspace{10pt}
+
+\subparagraph{Costo Computazionale}
+$n$ operazioni moltiplicative e $n$ operazioni additive.
+
+\vspace{10pt}
+
+\begin{lstlisting}[style=matlabCode, title={Function hornerP}]
+function [p, b] = hornerP(a, t)
+% HORNERP Esegue la divisione sintetica di P(x) per (x-t).
+%  [p, b] = HORNERP(a, t)
+%
+%  Input:
+%    a - Vettore dei coefficienti ordinati dal grado massimo al minimo
+%    t - Punto in cui valutare il polinomio (scalare).
+%
+%  Output:
+%    p - Resto della divisione (ovvero P(t)).
+%    b - Coefficienti del polinomio quoziente Q(x) di grado n-1
+
+    % Numero di coefficienti
+    m = length(a);
+
+    % Pre-allocazione di b per velocità (grado n-1)
+    b = zeros(1, m-1);
+
+    % Il primo coefficiente del quoziente è uguale al primo di P(x)
+    b(1) = a(1); 
+    
+    % Calcolo dei coefficienti del quoziente (Regola di Ruffini)
+    for i = 2:m-1
+        b(i) = b(i-1) .* t + a(i);
+    end
+    
+    % Calcolo del resto finale
+    p = b(m-1) .* t + a(m);
+    
+end
+\end{lstlisting}
+
+\vspace{10pt}
+
+\begin{exmp}
+Valutare il polinomio
+$$ P(x)=2x^{9}+8x^{4}-x^{3}-1 $$
+nel punto $\overline{x}=1$.
+Usando lo schema di Ruffini:
+$$
+\begin{array}{c|ccccccccc|cc}
+ & 2 & 0 & 0 & 0 & 0 & 8 & -1 & 0 & 0 & -1 \\
+1 & & 2 & 2 & 2 & 2 & 2 & 10 & 9 & 9 & 9 \\
+\hline
+ & 2 & 2 & 2 & 2 & 2 & 10 & 9 & 9 & 9 & 8
+\end{array}
+$$
+Dunque $P(1)=8$ e il quoziente è:
+$$ Q(x)=2x^{8}+2x^{7}+2x^{6}+2x^{5}+2x^{4}+10x^{3}+9x^{2}+9x+9.$$
+In Matlab abbiamo
+\begin{lstlisting}[style=matlabCode]
+% Definizione del polinomio: P(x) = 2x^9 + 8x^4 - x^3 - 1
+a = [2 0 0 0 0 8 -1 0 0 -1];
+
+% Punto di valutazione
+t = 1; 
+
+% Esegue la divisione sintetica (Ruffini)
+[p, b] = hornerP(a, t);
+
+fprintf("Resto (Valore del polinomio in %d): %d\n", t, p)
+fprintf("Coefficienti del polinomio Quoziente: \n")
+disp(b);
+\end{lstlisting}
+\begin{verbatim}
+Resto (Valore del polinomio in 1): 8
+Coefficienti del polinomio Quoziente: 
+     2     2     2     2     2    10     9     9     9
+\end{verbatim}    
+\end{exmp}
+
+\vspace{10pt}
+
+\paragraph{Calcolo della derivata}
+Vediamo ora che, contestualmente al calcolo di $P(\xi)$ è possibile calcolare anche $P'(\xi)$.
+Si può dimostrare facilmente che
+$$ P(x)=Q(x)(x-\xi)+P(\xi) $$
+dove
+$$ Q(x)=b_{1}x^{n-1}+b_{2}x^{n-2}+\dots+b_{n-1}x+b_{n} $$
+Ricordando la formula di Taylor:
+$$ P(x)=P(\xi)+P'(\xi)(x-\xi)+\frac{(x-\xi)^{2}}{2!}P(\xi)+\dots+\frac{(x-\xi)^{n}}{n!}P^{(n)}(\xi) $$
+possiamo scrivere
+$$ Q(x)=\frac{P(x)-P(\xi)}{x-\xi}=P'(\xi)+\frac{(x-\xi)}{2!}P(\xi)+\dots $$
+Facendo il limite per $x \to \xi$ otteniamo
+$$ Q(\xi)=\lim_{x \to \xi}\frac{P(x)-P(\xi)}{x-\xi}=P'(\xi) $$
+Dunque per calcolare $P'(\xi)$ basta calcolare $Q(\xi)$.
+Lo possiamo fare utilizzando ancora l'algoritmo di Horner sui coefficienti $b_{i}$.
+Infatti, ricordando la definizione di $Q(x)$ e ponendo:
+$$
+\begin{cases}
+c_{1}:=b_{1} \\
+c_{i}=c_{i-1}\xi+b_{i}, \quad i\in\{2,\dots,n\}
+\end{cases}
+$$
+si ha
+$$ P'(\xi)=Q(\xi)=c_{n} $$
+
+\vspace{10pt}
+
+\begin{lstlisting}[style=matlabCode, title={Function hornerR}]
+function p = hornerR(c, r, x)
+% HORNERR Calcola le prime r derivate del polinomio P(x) nel punto x.
+%   p = HORNERR(c, r, x) restituisce un vettore con i valori delle derivate.
+%
+%   Input:
+%       c : Coefficienti del polinomio (grado decrescente).
+%       r : Ordine massimo della derivata (es. 2 per derivata seconda).
+%       x : Punto di valutazione.
+%
+%   Output:
+%       p : Vettore dei risultati dove p(k+1) è la derivata k-esima.
+%           p(1) = P(x), p(2) = P'(x), ..., p(r+1) = P^(r)(x).
+
+    for i = 0 : r
+        % Esegue Ruffini: ottiene il resto (val) e il quoziente aggiornato (c)
+        % Nota: 'c' viene sovrascritto con i coeff. del quoziente per il prossimo giro
+        [val, c] = hornerP(c, x);
+        
+        % Formula di Taylor inversa: P^(i)(x) = Resto * i!
+        p(i+1) = val * factorial(i);
+    end
+    
+end
+\end{lstlisting}
+
+\vspace{10pt}
+
+\subparagraph{Schema Algoritmo}
+L'algoritmo per calcolare $P(\xi)$ e $P'(\xi)$ è dunque:
+\begin{verbatim}
+p = a(1);
+dp = p;
+for i = 2:n
+    p = p * x + a(i);
+    dp = dp * x + p;
+end
+p = p * x + a(n+1);
+\end{verbatim}
+
+\vspace{10pt}
+
+\subparagraph{Costo Computazionale}
+Il suo costo computazionale complessivo è $2n$.
+
+\vspace{10pt}
+
+\begin{lstlisting}[style=matlabCode, title={Function horner}]
+function [p, dp] = horner(a, t)
+% HORNER Valuta un polinomio e la sua derivata prima usando l'algoritmo di Horner.
+%  [p, dp] = HORNER(a, t) calcola il valore del polinomio P(x) e della sua
+%  derivata P'(x) nel punto (o nei punti) t.
+%
+%  Input:
+%    a - Vettore dei coefficienti ordinati dal grado massimo al minimo
+%      P(x) = a(1)*x^n + a(2)*x^(n-1) + ... + a(n)*x + a(n+1)
+%    t - Punto/i in cui valutare il polinomio (scalare o vettore).
+%
+%  Output:
+%    p  - Valore del polinomio calcolato in t.
+%    dp - Valore della derivata prima calcolata in t.
+
+    % Numero totale di coefficienti (grado del polinomio n = m - 1)
+    m = length(a);
+    
+    % Inizializzazione con il coefficiente di grado massimo
+    p = a(1);
+    dp = p;
+    
+    % Ciclo di Horner: aggiorna p e dp iterativamente
+    % Nota: Il ciclo si ferma al penultimo coefficiente
+    for i = 2 : m-1
+        p = p .* t + a(i);      % Aggiorna valore polinomio
+        dp = dp .* t + p;       % Aggiorna derivata usando il nuovo p
+    end
+    
+    % Ultimo passo per il polinomio (aggiunta del termine noto)
+    % La derivata è già completa all'uscita del ciclo
+    p = p .* t + a(m);
+    
+end
+\end{lstlisting}
+
+\vspace{10pt}
+
+\paragraph{Condizionamento delle radici di un polinomio}
+Sia
+$$ P(x) = a_{1}x^{n} + a_{2}x^{n-1} + \dots + a_{n}x + a_{n+1} $$
+un polinomio di grado $n$ e siano $\alpha_{1}, \dots, \alpha_{n}$ le sue radici.
+Per effetto della rappresentazione finita, i dati in ingresso del problema (ovvero i coefficienti) sono affetti da un errore che al massimo è l'epsilon macchina e di conseguenza le radici effettivamente calcolate saranno altre.
+Obiettivo dello studio del condizionamento è misurare, a posteriori, la sensibilità del problema posto.
+Nello stesso polinomio ci possono essere radici ben condizionate ed altre mal condizionate, cioè lo studio non è globale (tutte le radici) ma puntuale (una sola radice alla volta).
+
+\vspace{10pt}
+
+\subparagraph{Condizionamento di una radice semplice}
+Sia $\alpha$ una generica radice semplice del polinomio $P(x)$ e sia $\beta$ la corrispondente radice del polinomio che si ottiene perturbando il $k$-esimo coefficiente. Si dimostra che:
+$$ \frac{|\alpha-\beta|}{|\alpha|} \le \frac{\varepsilon}{|\alpha|} \max_{k\in\{1,\dots,n+1\}} \left| \frac{a_{k}\alpha^{n-k+1}}{P'(\alpha)} \right| $$
+La quantità
+$$ \frac{1}{|\alpha|} \max_{k\in\{1,\dots,n+1\}} \left| \frac{a_{k}\alpha^{n-k+1}}{P'(\alpha)} \right| $$
+rappresenta l'indice di condizionamento della radice.
+Si evince che l'errore si amplifica o perché la derivata prima del polinomio computato nella radice è molto piccola (radici quasi doppie) o perché i coefficienti del polinomio sono molto grandi.
+
+\vspace{10pt}
+
+\subparagraph{Condizionamento di una radice multipla}
+Sia $\alpha$ una generica radice di molteplicità $r>1$. Si dimostra che:
+$$ \frac{|\alpha-\beta|}{|\alpha|} \le \frac{\varepsilon^{1/r}}{|\alpha|} \max_{k\in\{1,\dots,n+1\}} \left| \frac{r! a_{k}\alpha^{n-k+1}}{P^{(r)}(\alpha)} \right|^{1/r} $$
+Quindi il problema è in generale mal condizionato.
+
+\vspace{10pt}
+
+\begin{lstlisting}[style=matlabCode, title={Function condRoot}]
+function cond = condRoot(c, r, x)
+% CONDROOT Calcola l'indice di condizionamento di una radice.
+%  cond = CONDROOT(c, r, x) stima quanto la radice x (con molteplicità r)
+%  è sensibile alle perturbazioni sui coefficienti del polinomio.
+%
+%  Input:
+%    c - Vettore dei coefficienti (dal grado massimo al noto).
+%    r - Molteplicità della radice x (r=1 per radici semplici).
+%    x - Il valore della radice.
+%
+%  Output:
+%    cond - Indice di condizionamento.
+
+    n = length(c) - 1;   % Grado del polinomio
+
+    % Calcola le derivate fino all'ordine r usando Horner Generalizzato
+    p = HornerR(c, r, x);
+    
+    y = p(end);          % Valore della derivata r-esima: P^(r)(x)
+
+    % Calcola i singoli termini del polinomio: a_k * x^potenza
+    % (Serve per trovare il termine massimo al numeratore)
+    for k = 1 : n+1
+        fatt(k) = c(k) * x^(n - k + 1);
+    end
+
+    % Formula dell'indice di condizionamento per radici multiple:
+    % K = (1/|x|) * [ (r! * max|a_k * x^k|) / |P^(r)(x)| ] ^ (1/r)
+    cond = max(abs(fatt * factorial(r) / y).^(1/r)) / abs(x);
+
+end
+\end{lstlisting}
+
+\vspace{10pt}
+
+\paragraph{Problema del calcolo simultaneo di tutti gli zeri}
+Esistono diversi approcci:
+\begin{enumerate}
+    \item \textbf{Deflazione:} Si calcola una radice $x_{1}$ e si costruisce il quoziente $P_{1}(x)=P(x)/(x-x_{1})$. Si itera il procedimento.
+    \textit{Difetti:} L'errore di arrotondamento si accumula in modo inaccettabile fornendo risultati fasulli dopo le prime radici.
+
+    \item \textbf{Matrice Companion:} Si riduce il calcolo degli zeri di $P$ al calcolo degli autovalori della matrice companion di $P$, che ha $P$ come polinomio caratteristico.
+    $$ P_{n}(x)=a_{1}x^{n}+\dots+a_{n}x+a_{n+1} $$
+    $$ A=\begin{pmatrix}
+    -\frac{a_{2}}{a_{1}} & -\frac{a_{3}}{a_{1}} & \dots & -\frac{a_{n}}{a_{1}} & -\frac{a_{n+1}}{a_{1}} \\
+    1 & 0 & \dots & 0 & 0 \\
+    0 & 1 & \dots & 0 & 0 \\
+    \vdots & & \ddots & & \vdots \\
+    0 & 0 & \dots & 1 & 0
+    \end{pmatrix} $$
+    È quello che fa la function \texttt{roots} del Matlab.
+    \textit{Difetti:} Il metodo calcola con precisione gli autovalori della matrice, ma ciò non implica una soddisfacente approssimazione degli zeri di $P$, poiché i due problemi hanno un differente condizionamento.
+\end{enumerate}
+
+\vspace{10pt}
+
+\paragraph{Implementazione degli algoritmi per equazioni algebriche}
+L'analisi svolta nei paragrafi precedenti sulla stabilità della valutazione polinomiale (Algoritmo di Horner) e sul calcolo delle derivate (Horner Generalizzato) trova la sua naturale applicazione nella ricerca delle radici.
+A differenza delle routine generiche per funzioni non lineari $f(x)$ qualsiasi (viste nei capitoli precedenti), le seguenti implementazioni sono ottimizzate specificamente per equazioni algebriche della forma $P_n(x)=0$.
+L'utilizzo dello schema di Horner per valutare sia $P(x)$ che $P'(x)$ garantisce non solo una maggiore robustezza numerica contro gli errori di arrotondamento, ma anche un costo computazionale ridotto ($2n$ operazioni per ottenere valore e derivata).
+Di seguito presentiamo tre varianti algoritmiche:
+
+\vspace{10pt}
+
+\subparagraph{\texttt{bisecAlg}}
+Una specializzazione del metodo di \emph{Bisezione} che utilizza l'algoritmo di Horner per la valutazione puntuale del residuo. Questo approccio garantisce la convergenza globale anche per polinomi di grado elevato, dove la valutazione diretta delle potenze $x^n$ potrebbe introdurre errori significativi.
+
+\vspace{10pt}
+
+\begin{lstlisting}[style=matlabCode, title={Function bisecAlg}]
+function [iter, x_vect, itmax] = bisecAlg(a, b, c, TOLL)
+% BISECALG Trova la radice di un polinomio in [a,b].
+%  [iter, x_vect, itmax] = bisecAlg(a, b, c, TOLL)
+%
+%  Input:
+%    a, b - Estremi dell'intervallo di ricerca.
+%    c    - Coefficienti del polinomio (per Horner).
+%    TOLL - Tolleranza richiesta per l'arresto.
+%
+%  Output:
+%    iter   - Numero di iterazioni effettuate.
+%    x_vect - Vettore con la successione delle approssimazioni.
+%    itmax  - Numero massimo di iterazioni teoriche previste.
+
+    % Calcolo dei valori agli estremi usando Horner
+    fa = Horner(c, a);
+    fb = Horner(c, b);
+
+    % Controllo esistenza dello zero (Teorema degli zeri)
+    if fa * fb >= 0
+        disp('bisecAlg:ZeroThm','La funzione non cambia segno agli estremi dell''intervallo.');
+        iter = [];
+        x_vect = [];
+        itmax = [];
+        return;
+    end
+
+    % Calcolo numero massimo di iterazioni teoriche
+    itmax = 1 + floor(log((b - a) / TOLL) / log(2));
+    
+    % Pre-allocazione del vettore x per efficienza
+    x_vect = zeros(itmax, 1);
+    
+    % Prima iterazione
+    x_vect(1) = (a + b) / 2;
+    fx = Horner(c, x_vect(1));
+    iter = 1;
+
+    % Ciclo di bisezione
+    while iter < itmax && abs(fx) >= TOLL
+        iter = iter + 1;
+        
+        % Selezione del sotto-intervallo
+        if fa * fx < 0
+            b = x_vect(iter-1);
+        else
+            a = x_vect(iter-1);
+            fa = fx;
+        end
+        
+        % Nuova stima
+        x_vect(iter) = (a + b) / 2;
+        fx = Horner(c, x_vect(iter));
+    end
+    
+    % Rimuove gli zeri in eccesso se il ciclo è finito prima di itmax
+    x_vect = x_vect(1:iter);
+
+end
+\end{lstlisting}
+
+\vspace{10pt}
+
+\subparagraph{\texttt{newtonAlg}} Implementazione del metodo di \emph{Newton Modificato}, progettata per gestire radici con molteplicità $m \ge 1$. Questa routine sfrutta la divisione sintetica ripetuta per valutare simultaneamente $P(x)$ e $P'(x)$ nello stesso punto, rendendo il calcolo del passo di aggiornamento $x_{k+1} = x_k - m \frac{P(x_k)}{P'(x_k)}$ particolarmente efficiente.
+
+\vspace{10pt}
+
+\begin{lstlisting}[style=matlabCode, title={Function newtonAlg}]
+function [x_vect, iter] = newtonAlg(x0, c, m, TOLL, itmax)
+% NEWTONALG Trova la radice di un polinomio con il metodo di Newton.
+%  [x_vect, iter] = newtonAlg(x0, c, m, TOLL, itmax)
+%
+%  Input:
+%    x0    : Stima iniziale della radice.
+%    c     : Vettore dei coefficienti del polinomio (per Horner).
+%    m     : Molteplicità della radice attesa (m=1 per radici semplici).
+%    TOLL  : Tolleranza richiesta per l'arresto (su incremento e residuo).
+%    itmax : Numero massimo di iterazioni consentite.
+%
+%  Output:
+%    x_vect : Vettore contenente la successione delle approssimazioni.
+%    iter   : Numero di iterazioni effettuate.
+
+    % Pre-allocazione del vettore delle soluzioni per efficienza
+    x_vect = zeros(itmax, 1);
+    
+    % Inizializzazione
+    x_vect(1) = x0;
+    iter = 1;
+    err = 1; % Errore relativo iniziale arbitrario > TOLL
+    
+    % Calcolo valore e derivata nel punto iniziale usando Horner
+    [fx, dfx] = Horner(c, x_vect(1));
+    
+    % Ciclo di Newton
+    % Criteri di arresto: max iterazioni, errore relativo, residuo
+    while (iter < itmax) && (err > TOLL) && (abs(fx) > TOLL)
+        
+        % Controllo per evitare divisione per zero (derivata nulla)
+        if dfx == 0
+            disp('Arresto: La derivata si è annullata.');
+            break;
+        end
+        
+        % Passo di Newton modificato per la molteplicità m
+        % x_{k+1} = x_k - m * (f(x_k) / f'(x_k))
+        x_vect(iter + 1) = x_vect(iter) - m * (fx / dfx);
+        
+        % Calcolo dell'errore relativo stimato
+        if x_vect(iter + 1) ~= 0
+            err = abs(x_vect(iter + 1) - x_vect(iter)) / abs(x_vect(iter + 1));
+        else
+            err = abs(x_vect(iter + 1) - x_vect(iter)); % Errore assoluto se x è 0
+        end
+        
+        % Aggiornamento per la prossima iterazione
+        iter = iter + 1;
+        [fx, dfx] = Horner(c, x_vect(iter));
+        
+    end
+    
+    % Ridimensiona il vettore al numero reale di iterazioni fatte
+    x_vect = x_vect(1:iter);
+
+end
+\end{lstlisting}
+
+\vspace{10pt}
+
+\subparagraph{\texttt{bisnewAlg}} Una strategia \emph{ibrida} che combina i punti di forza dei due metodi precedenti. L'algoritmo avvia una fase di ``sgrossatura'' tramite Bisezione per avvicinarsi alla radice (entrando nel bacino di attrazione), per poi commutare automaticamente al metodo di Newton (fase di ``raffinamento'') e sfruttarne la convergenza quadratica.
+
+\vspace{10pt}
+
+\begin{lstlisting}[style=matlabCode, title={Function bisnewAlg}]
+function [x_bis, i_bis, x_newt, i_newt] = bisnewAlg(a, b, c, m, TOLL, itmax)
+% BISNEWALG Metodo ibrido per polinomi.
+%
+%   La funzione combina la robustezza della Bisezione (per avvicinarsi alla
+%   radice) con la velocità di Newton (per affinare il risultato), specifica
+%   per equazioni algebriche P(x)=0.
+%
+%   Input:
+%       a, b  : Estremi dell'intervallo iniziale.
+%       c     : Vettore dei coefficienti del polinomio.
+%       m     : Molteplicità della radice (m=1 per radici semplici).
+%       TOLL  : Tolleranza richiesta per la fase finale (Newton).
+%       itmax : Max iterazioni per la fase finale (Newton).
+%
+%   Output:
+%       x_bis  : (vector) Storia delle approssimazioni (Bisezione).
+%       i_bis  : (int)    Numero iterazioni (Bisezione).
+%       x_newt : (vector) Storia delle approssimazioni (Newton).
+%       i_newt : (int)    Numero iterazioni (Newton).
+
+    %% 1. Validazione Input
+    arguments
+        a     (1,1) double
+        b     (1,1) double
+        c     (1,:) double % Vettore riga dei coefficienti
+        m     (1,1) double {mustBePositive} = 1
+        TOLL  (1,1) double {mustBePositive} = 1e-6
+        itmax (1,1) double {mustBeInteger, mustBePositive} = 100
+    end
+
+    %% 2. Fase 1: Sgrossatura (Bisezione)
+    % Usiamo una tolleranza 0.5e-1 fissa per avvicinarci in sicurezza.
+    toll_coarse = 0.5e-1; 
+    [i_bis, x_bis, ~] = bisecAlg(a, b, c, toll_coarse);
+
+    %% 3. Fase 2: Raffinamento (Newton)
+    % Il punto di innesco per Newton è l'ultima approssimazione della Bisezione
+    start_point = x_bis(end); 
+    [x_newt, i_newt] = newtonAlg(start_point, c, m, TOLL, itmax);
+
+end
+\end{lstlisting}
+
+\vspace{20pt}
+
+\subsection{Esercizi}
 
 \vspace{10pt}
 
@@ -6139,4 +6716,5 @@ P(x) = x^6 - 2x^5 - 4x^4 + 6x^3 + 7x^2 - 4x - 4
 \item Studiare il condizionamento delle radici reali di $P$. Riportare il valore delle radici con le cifre che si possono ritenere corrette.
 \end{itemize}
 \end{enumerate}
+
 \end{document}
