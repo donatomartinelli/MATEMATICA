@@ -1,5 +1,5 @@
 function isSym = isSymm(A, tol)
-%ISSYMM Verifica se una matrice è simmetrica con una data tolleranza.
+% ISSYMM Verifica se una matrice è simmetrica con una data tolleranza.
 %  isSym = ISSYMM(A) restituisce true se A è simmetrica (entro 1e-10).
 %  isSym = ISSYMM(A, tol) permette di specificare la tolleranza.
 %
@@ -17,8 +17,7 @@ function isSym = isSymm(A, tol)
     end
 
     %% 2. Controllo Dimensioni
-    % Estraggo le dimensioni della matrice
-    [r, c] = size(A);
+    [r, c] = size(A);  % Estraggo le dimensioni della matrice
 
     % Verifico che la matrice sia quadrata
     if r ~= c
@@ -26,10 +25,7 @@ function isSym = isSymm(A, tol)
     end
 
     %% 3. Verifica Simmetria
-    % Calcoliamo la trasposta una sola volta
-    AT = A'; 
-    
-    % Confrontiamo vettorialmente usando la tolleranza
-    isSym = all( abs(A(:) - AT(:)) <= tol );
+    AT = A';  % Calcoliamo la trasposta una sola volta
+    isSym = all( abs(A(:) - AT(:)) <= tol ); % Confrontiamo vettorialmente usando la tolleranza
 
 end
