@@ -1,30 +1,30 @@
-# Appunti delle Lezioni
+# Lecture Notes
 
-Benvenuto nella sezione **Appunti delle Lezioni** della repository MATEMATICA!  
-Questa cartella contiene appunti dettagliati delle lezioni e materiali aggiuntivi per aiutarti a prepararti agli esami.  
-Gli appunti sono organizzati per anno accademico e per corso specifico, in modo da trovare facilmente le risorse che ti servono.  
+Welcome to the **Lecture Notes** section of the MATHEMATICS repository!  
+This folder contains detailed lecture notes and additional materials to help you prepare for your exams.  
+The notes are organized by academic year and specific course, making it easy to find the resources you need.
 
-## Struttura delle cartelle
+## Folder Structure
 
-### BSC - Anno 1
-- **Analisi Matematica 1**
-- **Geometria 1**
+### BSc - Year 1
+- **Mathematical Analysis 1**
+- **Geometry 1**
 - **Algebra**
-- **Fondamenti di Informatica**
+- **Fundamentals of Computer Science**
 
-### BSC - Anno 2
-- **Analisi Matematica 2**
-- **Geometria 2**
-- **Fisica 1**
-- **Meccanica Razionale**
-- **Calcolo Scientifico**
+### BSc - Year 2
+- **Mathematical Analysis 2**
+- **Geometry 2**
+- **Physics 1**
+- **Rational Mechanics**
+- **Numerical Analysis**
 
-### BSC - Anno 3
-- **Complementi di Analisi**
-- **Complementi di Geometria**
-- **Complementi di Algebra**
-- **Fisica 2**
-- **Fisica Moderna**
-- **Calcolo delle Probabilità**
-- **Complementi di Calcolo Scientifico**
-- **Analisi Complessa**
+### BSc - Year 3
+- **Advanced Analysis**
+- **Advanced Geometry**
+- **Advanced Algebra**
+- **Physics 2**
+- **Modern Physics**
+- **Probability Theory**
+- **Advanced Numerical Analysis**
+- **Complex Analysis**
